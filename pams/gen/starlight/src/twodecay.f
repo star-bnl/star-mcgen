@@ -1,7 +1,7 @@
 C     This routine decays a particle into two particles of mass mdec,
 c     taking spin into account
 
-      subroutine twodecay (ipid,W,px0,py0,pz0,mdec,px1,py1,pz1,E1,
+      subroutine twodecay (ipid,E,W,px0,py0,pz0,mdec,px1,py1,pz1,E1,
      &	px2,py2,pz2,E2,iFbadevent)
 
 	implicit NONE
@@ -10,7 +10,8 @@ c     taking spin into account
 	include 'global.inc'
 	include 'inputp.inc'
 	include 'tables.inc'
-	real mdec,px0,py0,pz0,px1,py1,pz1,px2,py2,pz2,ran,W
+        real W
+	real mdec,px0,py0,pz0,px1,py1,pz1,px2,py2,pz2,ran,E
 	real pmag, anglelep(0:100),ytest
 	real phi,theta,xtest,dndtheta,thetalep,Ecm,E1,E2
 	integer ipid,iFbadevent,i
@@ -72,6 +73,12 @@ C     calculate a table of integrated angle values for leptons
         anglelep(0) = 0
         do 125 i = 1,100
           theta = pi * float(i) /100.
+
+C  Added sin(theta) phase space factor (not in thetalep) and changed E to W in thetalep call
+C  11/9/2000 SRK 
+C  Note that thetalep is form invariant, so it could be called for E, theta_lab just
+C  as well as W,theta_cm.  Since there is a boost from cm to lab below, the former is fine.
+
           anglelep(i) = anglelep(i-1) + thetalep(W,theta)*sin(theta)
  125    continue
         theta = 0.
@@ -84,9 +91,12 @@ C     calculate a table of integrated angle values for leptons
       elseif(spin.eq.1.) then
  200	theta = pi*ran(ISEED)
 	xtest = ran(ISEED)
-c	Follow distribution for helicity +/- 1 
-c	Eq. 19 of J. Breitweg et al., Eur. Phys. J. C2, 247 (1998)
-	dndtheta = sin(theta)*(1-cos(theta)*cos(theta))	
+C  Follow distribution for helicity +/-1
+C  Eq. 19 of J. Breitweg et al., Eur. Phys. J. C2, 247 (1998)
+C  SRK 11/14/2000
+ 
+        dndtheta= sin(theta)*(1-(cos(theta))**2)
+C	dndtheta = sin(theta)*cos(theta)*cos(theta)	
 	if(xtest.gt.dndtheta) goto 200
 
       elseif(spin.eq.2.) then
@@ -107,16 +117,24 @@ c     compute unboosted momenta
       py2 = -py1
       pz2 = -pz1
 
-c      compute energies
-      Ecm = sqrt(W**2+px0**2+py0**2+pz0**2)
+c	compute energies
+C      if(ip.eq.33) then
+
+Changed mass to W 11/9/2000 SRK
+
+      	Ecm = sqrt(W**2+px0**2+py0**2+pz0**2)
+C      else
+C	Ecm = sqrt(E**2 + px0**2 + py0**2 + pz0**2)
+C      endif
       E1 = sqrt(mdec**2+px1**2+py1**2+pz1**2)
       E2 = sqrt(mdec**2+px2**2+py2**2+pz2**2)
 
-c	decay tauons to electrons
+c	decay tau to electrons
 c	note that after this routine px1, etc., refer to the electrons
       if(ip.eq.15) call taudecay(px1,py1,pz1,E1,px2,py2,pz2,E2)
 
-c     lorentz transform into the lab frame
+c     Lorentz transform into the lab frame
+c betax,betay,betaz are the boost of the complete system
       betax = -(px0/Ecm)
       betay = -(py0/Ecm)
       betaz = -(pz0/Ecm)
