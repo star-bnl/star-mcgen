@@ -1,3 +1,8 @@
+c     Version 1.382
+c     Nuclear distribution for deuteron is taken as the Hulthen wave
+c     function as provided by Brian Cole (Columbia)
+c
+c
 c     Version 1.381
 c
 c     The parameters for Wood-Saxon distribution for deuteron are
@@ -237,6 +242,15 @@ C
 C		********choose theta from uniform cos(theta) distr
 	PHI=RAN(NSEED)*2.0*HIPR1(40)
 C		********choose phi form uniform phi distr 0 to 2*pi
+c
+        if(IHNT2(1).EQ.2) then
+           rnd1=max(RAN(NSEED),1.0e-20)
+           rnd2=max(RAN(NSEED),1.0e-20)
+           rnd3=max(RAN(NSEED),1.0e-20)
+           R=-(log(rnd1)*4.38/2.0+log(rnd2)*0.85/2.0
+     &          +4.38*0.85*log(rnd3)/(4.38+0.85))
+        endif
+c
 	YP(1,KP)=R*SX*COS(PHI)
 	YP(2,KP)=R*SX*SIN(PHI)
 	YP(3,KP)=R*CX
@@ -278,6 +292,15 @@ C******************************
 C		********choose theta from uniform cos(theta) distr
 	PHI=RAN(NSEED)*2.0*HIPR1(40)
 C		********chose phi form uniform phi distr 0 to 2*pi
+c
+        if(IHNT2(3).EQ.2) then
+           rnd1=max(RAN(NSEED),1.0e-20)
+           rnd2=max(RAN(NSEED),1.0e-20)
+           rnd3=max(RAN(NSEED),1.0e-20)
+           R=-(log(rnd1)*4.38/2.0+log(rnd2)*0.85/2.0
+     &          +4.38*0.85*log(rnd3)/(4.38+0.85))
+        endif
+c
 	YT(1,KT)=R*SX*COS(PHI)
 	YT(2,KT)=R*SX*SIN(PHI)
 	YT(3,KT)=R*CX
@@ -3615,7 +3638,6 @@ C       IHNT2(13)-> 1=
 C	double diffrac 2=single diffrac, 3=non-single diffrac.
 C*******************************************************************
 	IERROR=0
-	I_SNG=0
 	JJP=JP
 	JJT=JT
 	NDPM=0
