@@ -1,5 +1,4 @@
       PROGRAM MEVSIM 
-      implicit none
 CCC   Documentation and Description:
 CCC
 C     This code is intended to provide a quick means of producing
@@ -362,6 +361,7 @@ C
         LOGICAl NODCAY,NOETA,NOPI0,NONUNU,NOEVOL,NOHADR
         COMMON/PRIMAR/NJET,SCM,HALFE,ECM,IDIN(2),NEVENT,NTRIES,NSIGMA
         COMMON/PARTCL/NPTCL,PPTCL(5,4000),IORIG(4000),IDENT(4000)
+     1  ,IDCAY(4000)      
         COMMON/DEKIN/NOFILE
         LOGICAL NOFILE,notbk
 
@@ -1809,10 +1809,10 @@ CCC   Output track kinematics for ievent and pid:
              IF(ppnxlv(5).gt..001) then
                 nptcl=1
                 pptcl(1,1)=ppnxlv(1)
-                pptcl(1,1)=ppnxlv(2)
-                pptcl(1,1)=ppnxlv(3)
-                pptcl(1,1)=ppnxlv(4)
-                pptcl(1,1)=ppnxlv(5)
+                pptcl(2,1)=ppnxlv(2)
+                pptcl(3,1)=ppnxlv(3)
+                pptcl(4,1)=ppnxlv(4)
+                pptcl(5,1)=ppnxlv(5)
                 ident(1)=220
                 CALL DECAY(NPTCL)
                 ida2(ksav)=ida1(ksav)+NPTCL-2
@@ -1908,10 +1908,10 @@ CCC   Output track kinematics for ievent and pid:
              IF(ppnxlv(5).gt..001) then
                 nptcl=1
                 pptcl(1,1)=ppnxlv(1)
-                pptcl(1,1)=ppnxlv(2)
-                pptcl(1,1)=ppnxlv(3)
-                pptcl(1,1)=ppnxlv(4)
-                pptcl(1,1)=ppnxlv(5)
+                pptcl(2,1)=ppnxlv(2)
+                pptcl(3,1)=ppnxlv(3)
+                pptcl(4,1)=ppnxlv(4)
+                pptcl(5,1)=ppnxlv(5)
                 ident(1)=220
                 CALL DECAY(NPTCL)
                 ida2(ksav)=ida1(ksav)+NPTCL-2
@@ -2006,10 +2006,10 @@ CCC   Output track kinematics for ievent and pid:
              IF(ppnxlv(5).gt..001) then
                 nptcl=1
                 pptcl(1,1)=ppnxlv(1)
-                pptcl(1,1)=ppnxlv(2)
-                pptcl(1,1)=ppnxlv(3)
-                pptcl(1,1)=ppnxlv(4)
-                pptcl(1,1)=ppnxlv(5)
+                pptcl(2,1)=ppnxlv(2)
+                pptcl(3,1)=ppnxlv(3)
+                pptcl(4,1)=ppnxlv(4)
+                pptcl(5,1)=ppnxlv(5)
                 ident(1)=idsav
                 CALL DECAY(NPTCL)
                 ida2(ksav)=ida1(ksav)+NPTCL-2
