@@ -1,5 +1,8 @@
-* $Id: flight.F,v 1.2 1999/09/28 15:30:27 nevski Exp $
+* $Id: flight.F,v 1.3 1999/09/28 15:34:45 nevski Exp $
 * $Log: flight.F,v $
+* Revision 1.3  1999/09/28 15:34:45  nevski
+* fix for pgf-m migration
+*
 * Revision 1.2  1999/09/28 15:30:27  nevski
 * fix for pgf-m migration
 *
@@ -82,7 +85,8 @@
         Write (*, *) ' '
       Endif                     ! (First)
       Flag=0
-      Do While (Flag.eq.0) ! Ensure that it is in the proper range
+      Do While (Flag.eq.0) 
+C       Ensure that it is in the proper range
         If (P_Mode.eq.1) then
           Call GetP1(P_Min,P_Max,Rnum(3),P)
         Elseif (P_Mode.eq.2) then
