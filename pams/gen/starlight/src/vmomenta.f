@@ -1,5 +1,6 @@
 c     This subroutine calculates momentum and energy of vector meson
-c     given W and Y.
+c     given W and Y,   without interference.  Subroutine vmpt.f handles
+C     production with interference
 
       SUBROUTINE VMOMENTA(W,Y,E,px,py,pz,tcheck)
 
@@ -9,7 +10,6 @@ c     given W and Y.
       include 'global.inc'
       include 'D2LParam.inc'
       include 'inputp.inc'
-      include 'range.inc'
       REAL W,Y,dW,dY
       REAL ran,xtest,xt
       REAL Egam,Epom,tmin,pt1,pt2,phi1,phi2
@@ -19,9 +19,9 @@ c     given W and Y.
       double precision formf,t1,t2
       INTEGER tcheck
 
-      dW = (Wtop-Wmin)/DFLOAT(numw)
+      dW = (Wmax-Wmin)/DFLOAT(numw)
 
-      dY  = (Ytop-Ymin)/DFLOAT(numy)      
+      dY  = (Ymax-Ymin)/DFLOAT(numy)      
       
 C       >> Find Egam,Epom in CM frame
         Egam = 0.5*W*EXP(Y)
