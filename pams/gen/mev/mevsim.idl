@@ -1,0 +1,15 @@
+/*    $Id: mevsim.idl,v 1.1 1998/04/01 15:28:18 longacre Exp $
+      $Log: mevsim.idl,v $
+      Revision 1.1  1998/04/01 15:28:18  longacre
+      first
+
+
+*/
+#include "PAM.idl"
+#include "particle.idl"
+ 
+interface mevsim : amiModule{
+        STAFCV_T call
+                ( out    particle par
+                );
+};

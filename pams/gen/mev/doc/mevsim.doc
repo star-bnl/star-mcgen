@@ -1,0 +1,236 @@
+CCC   Documentation and Description:
+CCC
+C     This code is intended to provide a quick means of producing
+C     uncorrelated simulated events for event-by-event studies,
+C     detector acceptance and efficiency studies, etc.  The
+C     user selects the number of events, the one-particle distribution
+C     model, the particles to include, the ranges in transverse
+C     momentum, pseudorapidity and azimuthal angle, the mean
+C     multiplicity for each particle type for the event run, the
+C     mean temperature, Rapidity width, etc., and the standard deviations
+C     for the event-to-event variation in the model parameters.
+C    
+C     The user may select either to have the same multiplicity per
+C     particle type for each event or to let the multiplicity vary
+C     randomly according to a Poisson distribution.  Similarly the
+C     parameters of the one-particle distribution models may either
+C     be fixed to the same value for each event or allowed to randomly
+C     vary about a specified mean with a specified standard deviation
+C     and assuming a Gaussian distribution.
+C
+C     The input is from a file, named 'mult_gen.in'.  The output is
+C     particle table for a given event.
+C     Header information is store in the first particle. Event header 
+C     information store in the first particle includes: Impact parameter
+C     and phi angle of collision; Generator number 62 mev giving VENUS
+C     like central collision and number 80 giving VNI like central; 
+C     Energy per nucleon-nucleon collision; Colliding system A.A;
+C     Run number; Event number; Day; and Time. 
+C     A log file, 'mult_gen.log' is also written which contain config. 
+C     messages.
+C
+C     The method for generating random multiplicities and model parameter
+C     values involves the following steps:
+C        (1) The Poisson or Gaussian distributions are computed and
+C            loaded into function f().
+C        (2) The distribution f(x') is integrated from xmin to x
+C            and saved from x = xmin to x = xmax.  The range and mesh
+C            spaces are specified by the user.
+C        (3) The integral of f is normalized to unity where 
+C            integral[f(x')](at x = xmin) = 0.0
+C            integral[f(x')](at x = xmax) = 1.0
+C        (4) A random number generator is called which delivers values
+C            between 0.0 and 1.0.  
+C        (5) We consider the coordinate x (from xmin to xmax) to be
+C            dependent on the integral[f].  Using the random number
+C            for the selected value of integral[f] the value of x
+C            is obtained by interpolation.
+C
+C     An interpolation subroutine from Rubin Landau, Oregon State Univ.,
+C     is used to do this interpolation; it involves uneven mesh point 
+C     spacing.
+C
+C     The method for generating the particle momenta uses the
+C     standard random elimination method and involves the following
+C     steps:
+C        (1) The transverse momentum (pt) and pseudorapidity (eta) are 
+C            randomly chosen within the specified ranges.
+C        (2) The one-particle model distribution is calculated at this
+C            point and its ratio to the maximum value throughout the
+C            (pt,eta) region is calculated.
+C        (3) Another random number is called and if less than the ratio
+C            from step(2) the particle momentum is used; if not then
+C            another trial value of (pt,eta) is obtained.
+C        (4) This continues until the required multiplicity for the 
+C            specific event and particle type has been satisfied.
+C        (5) This process is repeated for the requested number of particle
+C            types and events. 
+C
+C     Problematic parameter values are tested, bad input values are checked
+C     and in some cases may be changed so that the program will not crash.
+C     In some cases the code execution is stopped.
+C     Some distributions and/or unusual model parameter values may cause the
+C     code to hang up due to the poor performance of the "elimination"
+C     method for very strongly peaked distributions.  These are tested for
+C     certain problematic values and if necessary these events are aborted.
+C     A message, "*** Event No.    2903 ABORTED:" for example is printed
+C     in the 'mult_gen.out' file.  Temperatures .le. 0.01 GeV and rapidity
+C     width parameters .le. 0.01 will cause the event to abort.
+C
+C     The input is described below in the 'read' statements and also in
+C     the sample input file.  Some additional comments are as follows:
+C
+C     (1) n_events - Selected number of events in run. Can be anything
+C                    .ge. 1.
+C     (2) n_pid_type - Number of particle ID types to include in the
+C                      particle list. e.g. pi(+) and pi(-) are counted
+C                      separately.  The limit is set by parameter npid
+C                      in the accompanying include file 'Parameter_values.inc'
+C                      and is presently set at 10.
+C     (3) model_type - equals 1,2,3,4,5 or 6 so far.  See comments in
+C                      Function dNdpty to see what is calculated.
+C                      The models included are:
+C                    = 1, Factorized mt exponential, Gaussian rapidity model
+C                    = 2, Pratt non-expanding, spherical thermal source model
+C                    = 3, Bertsch non-expanding spherical thermal source model
+C                    = 4, Pratt spherically expanding, thermally equilibrated
+C                         source model.
+C                    = 5, Factorized pt and eta distributions input bin-by-bin.
+C                    = 6, Fully 2D pt,eta distributions input bin-by-bin.
+C     (4) pt_cut_min,pt_cut_max - Range of transverse momentum in GeV/c.
+C     (5) eta_cut_min,eta_cut_max - Pseudorapidity range
+C     (6) phi_cut_min,phi_cut_max - Azimuthal angular range in degrees.
+C     (7) n_stdev_mult - Number of standard deviations about the mean value
+C                        of multiplicity to include in the random event-to-
+C                        event selection process.  The maximum number of
+C                        steps that can be covered is determined by
+C                        parameter n_mult_max_steps in the accompanying
+C                        include file 'Parameter_values.inc' which is
+C                        presently set at 1000, but the true upper limit for
+C                        this is n_mult_max_steps - 1 = 999.
+C     (8) n_stdev_temp - Same, except for the "Temperature" parameter.
+C     (9) n_stdev_sigma- Same, except for the rapidity width parameter.
+C    (10) n_stdev_expvel - Same, except for the expansion velocity parameter.
+C    (11) n_integ_pts - Number of mesh points to use in the random model
+C                       parameter selection process.  The upper limit is
+C                       set by parameter nmax_integ in the accompanying
+C                       include file 'Parameter_values.inc' which is presently
+C                       set at 100, but the true upper limit for n_integ_pts
+C                       is nmax_integ - 1 = 99. 
+C    (12) n_scan_pts  - Number of mesh points to use to scan the (pt,y)
+C                       dependence of the model distributions looking for
+C                       the maximum value.  The 2-D grid has
+C                       n_scan_pts * n_scan_pts points; no limit to size of
+C                       n_scan_pts.
+C    (13) irand       - Starting random number seed.
+C
+C**************************************************************************
+C    FOR MODEL_TYPE = 1,2,3 or 4:
+C    Input the following 5 lines for each particle type; repeat these
+C    set of lines n_pid_type times:
+C
+C         (a) gpid - Geant Particle ID code number
+C         (b) mult_mean,mult_variance_control - Mean multiplicity and
+C                                               variance control where:
+C             mult_variance_control = 0 for no variance in multiplicity 
+C             mult_variance_control = 1 to allow Poisson distribution for
+C                                       particle multiplicities for all events.
+C             Note that a hard limit exists for the maximum possible
+C             multiplicity for a given particle type per event.  This is
+C             determined by parameter factorial_max in accompanying include
+C             file 'common_facfac.inc' and is presently set at 5000.
+C         (c) Temp_mean, Temp_stdev - Temperature parameter mean (in GeV)
+C             and standard deviation (Gaussian distribution assumed).
+C         (d) sigma_mean, sigma_stdev - Rapidity distribution width (sigma)
+C             parameter mean and standard deviation (Gaussian distribution
+C             assumed).
+C         (e) expvel_mean, expvel_stdev - S. Pratt expansion velocity
+C             (in units of c) mean and standard deviation (Gaussian 
+C             distribution assumed).
+C
+C**************************************************************************
+C    FOR MODEL_TYPE = 5 input the following set of lines for each particle
+C                       type; repeat these n_pid_type times.
+C
+C         (a) gpid - Geant Particle ID code number
+C         (b) mult_mean,mult_variance_control - Mean multiplicity and
+C                                               variance control where:
+C             mult_variance_control = 0 for no variance in multiplicity
+C             mult_variance_control = 1 to allow Poisson distribution for
+C                                       particle multiplicities for all events.
+C         (c) pt_start, eta_start - minimum starting values for pt, eta 
+C                                   input for the bin-by-bin distributions.
+C         (d) n_pt_bins, n_eta_bins - # input pt and eta bins.
+C         (e) delta_pt, pt_bin - pt bin size and function value, repeat for
+C                                each pt bin.
+C         (f) delta_eta, eta_bin - eta bin size and function value, repeat
+C                                  for each eta bin.
+C
+C         NOTE: The pt, eta ranges must fully include the requested ranges
+C               in input #4 and 5 above; else the code execution will stop.
+C
+C         Also, variable bin sizes are permitted for the input distributions.
+C
+C         Also, this input distribution is used for all events in the run;
+C         no fluctuations in this "parent" distribution are allowed from 
+C         event-to-event.
+C
+C**************************************************************************
+C    FOR MODEL_TYPE = 6 input the following set of lines for each particle
+C                       type; repeat these n_pid_type times.
+C
+C         (a) gpid - Geant Particle ID code number
+C         (b) mult_mean,mult_variance_control - Mean multiplicity and
+C                                               variance control where:
+C             mult_variance_control = 0 for no variance in multiplicity
+C             mult_variance_control = 1 to allow Poisson distribution for
+C                                       particle multiplicities for all events.
+C         (c) pt_start, eta_start - minimum starting values for pt, eta
+C                                   input for the bin-by-bin distributions.
+C         (d) n_pt_bins, n_eta_bins - # input pt and eta bins.
+C         (e) delta_pt - pt bin size, repeat for each pt bin. 
+C         (f) delta_eta - eta bin size, repeat for each eta bin.
+C         (g) i,j,pt_eta_bin(i,j) - read pt (index = i) and eta (index = j)
+C                                   bin numbers and bin value for full 2D space.
+C
+C         NOTE: The pt, eta ranges must fully include the requested ranges
+C               in input #4 and 5 above; else the code execution will stop.
+C
+C         Also, variable bin sizes are permitted for the input distributions.
+C
+C         Also, this input distribution is used for all events in the run;
+C         no fluctuations in this "parent" distribution are allowed from
+C         event-to-event.
+C
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+*:>--------------------------------------------------------------------
+*: ROUTINE:    MEVSIM
+*:>--------------------------------------------------------------------
+CCC   File 'mult_gen.in' is the input file for the run.
+CCC   File 'mult_gen.log' is a log file for the run.
+CCC  Read Input:
+
+      read(4,*) VSSHEP(1)              ! Run number
+      read(4,*) VSSHEP(2)              ! Starting No. for the  events to generate
+      read(4,*) PSSHEP(3)              ! Generator Code
+      read(4,*) PSSHEP(4)              ! Energy of the Nucleon-Nucleon CM
+      read(4,*) PSSHEP(5)              ! Awest.Aeast for the colliding systems
+      read(4,*) n_pid_type             ! No. of Geant PID types to include
+      read(4,*) model_type             ! Distribution model type (see
+CCC                                    ! Function dNdpty for explanation).
+      read(4,*) pt_cut_min,pt_cut_max  ! Min/Max pt range in GeV/c
+      read(4,*) eta_cut_min,eta_cut_max ! Min/Max pseudorapidity range
+      read(4,*) phi_cut_min,phi_cut_max ! Min/Max azimuthal angular range (deg)
+      read(4,*) n_stdev_mult            ! No.(+/-) standard deviation range
+CCC                                     ! for multiplicity
+      read(4,*) n_stdev_temp            ! No.(+/-) st.dev. range for Temp.
+      read(4,*) n_stdev_sigma           ! No.(+/-) st.dev. range for rapidity
+CCC                                     ! width, sigma.
+      read(4,*) n_stdev_expvel          ! No.(+/-) st.dev. range for expansion
+CCC                                     ! velocity.
+      read(4,*) n_integ_pts             ! No. of integration mesh points to use
+CCC                                     ! for random parameter fluctuations.
+      read(4,*) n_scan_pts              ! No. of pt and eta mesh points to use
+CCC                                     ! in scan for maximum value of dN/dpt*dy
+      read(4,*) irand                   ! Random number seed; default=12345.
+
