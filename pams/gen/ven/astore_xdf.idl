@@ -1,0 +1,15 @@
+/* astore_xdf.idl */
+#include "PAM.idl"
+#include "eg_gener.idl"
+#include "eg_event.idl"
+#include "eg_track.idl"
+#include "eg_vertex.idl"
+
+interface astore_xdf {
+	STAFCV_T call (
+		in eg_gener gtable,
+		in eg_event etable,
+		in eg_track ttable,
+		in eg_vertex vtable
+	);
+};
