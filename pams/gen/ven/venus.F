@@ -1,5 +1,8 @@
 * Id: venus.F, v 1.1 1998/04/02 11:10:40 longacre Exp $
 *$Log: venus.F,v $
+*Revision 1.4  1998/08/02 21:38:16  longacre
+*added vertex cm -> mm
+*
 *Revision 1.3  1998/07/16 13:49:32  longacre
 *fixed bugs with ks and kl ids
 *
@@ -125,7 +128,7 @@ CCCC Try to write text output.
         par(ii).jdahep(2)  = 0           !  the first/last daughter  
         DO J = 1, 4
           par(ii).phep(j)  = pptl(j,i)   !  p4 
-          par(ii).vhep(j)  = xorptl(j,i)*scfermi ! vertex (cm) and time (mm/
+          par(ii).vhep(j)  = xorptl(j,i)*scfermi*10.! vertex (mm) and time (mm)
         END DO
         par(ii).phep(5)    = pptl(5,i)   !  mass (GeV)  
 9910    CONTINUE

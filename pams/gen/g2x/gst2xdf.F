@@ -1,5 +1,8 @@
 * Id: gst2xdf.F, v 1.1 1998/03/17 14:35:30 longacre Exp $
 *$Log: gst2xdf.F,v $
+*Revision 1.5  1998/08/02 21:38:15  longacre
+*added vertex cm -> mm
+*
 *Revision 1.4  1998/07/01 19:58:37  longacre
 *make g2x read Lanny's txt files
 *
@@ -84,6 +87,46 @@ C  Only read from disk if a new record is needed.
           GO TO 1011
         ENDIF
         IF(LINE(1:1).EQ.' ') THEN
+         IF(INDEX(LINE,'event').GT.0 .AND. ITR+IVT.EQ.0) THEN
+C  No keywords.  Must be "OLD" format.
+C  Read in the event and output it.  
+            I=INDEX(LINE,'event')
+            IEVTREAD=0
+            LINE(I:I+6)='  ' 
+            READ(LINE,*,ERR=1020)NTRAC,IEVEN 
+            WRITE(*,1090)NTRAC,IEVEN 
+1090        FORMAT(' gstar_ReadOld: ',I8,' event# ',I6)
+            DO 1101 ITR=1,NTRAC 
+               READ(LI,*,ERR=1020)GE_PID,phep(1), phep(2), phep(3) 
+               idhep=idtran(GE_PID)
+CCCCCCC               WRITE(*,1110)idhep, phep(1), phep(2), phep(3)
+1110           FORMAT(16X,I7,3G10.3)
+               ICODE = 1
+               IF(IABS(idhep).LT.7) ICODE=3
+               IF(idhep.EQ.21) ICODE=3
+               IF(idhep.LT.6999999) THEN
+                  masss    = hepmass(idhep)      !  mass (GeV)  
+               ELSE
+                  masss    = ionmass(GE_PID)        !  mass (GeV)  
+               ENDIF
+               phep(4)=dsqrt(phep(1)**2+phep(2)**2+phep(3)**2+masss**2)
+               par(ITR).isthep     = ICODE    !  status code
+               par(ITR).idhep      = idhep    !  particle identity
+               par(ITR).jmohep(1)  = 0        !  pointer(s) to position 
+               par(ITR).jmohep(2)  = 0        !  where the mothers(s) stored   
+               par(ITR).jdahep(1)  = 0        !  pointers to position of 
+               par(ITR).jdahep(2)  = 0        !  the first/last daughter  
+               DO J = 1, 4
+                 par(ITR).phep(j)  = phep(j)  !  p4 
+                 par(ITR).vhep(j)  = 0.0 !production vertex(mm) and time(mm/c) 
+               END DO
+               par(ITR).phep(5)    = masss    !  mass (GeV)  
+1101        CONTINUE 
+            par_h.nok = NTRAC 
+            GST2XDF=STAFCV_OK
+1102        CONTINUE
+            GO TO 1012
+         ENDIF
           IEVTREAD=0
           GO TO 1011
         ENDIF
@@ -137,6 +180,14 @@ C              end of data
             WRITE(*,1070)GE_PID,PP,LABELTR,STARTVX,STOPVX,EG_PID 
 1070        FORMAT(16X,'TRACK :',I6,3F9.3,4I6)
             ITR=ITR+1 
+            IF(LABELVX.NE.0) THEN
+            IF(STARTVX.NE.LABELVX) THEN
+               WRITE(*,1072) STARTVX, LABELVX
+1072           FORMAT(' VERTEX GOES BEFORE TRACK AND MUST MATCH',/
+     *         ,' TRACK VERTEX IS ',I10,'VERTEX IS ',I10)
+               STOP
+            ENDIF
+            ENDIF
             ITRSAV=ITR
             phep(1)=pp(1)
             phep(2)=pp(2)
@@ -162,7 +213,7 @@ CCCCCCC               WRITE(*,1110)idhep, phep(1), phep(2), phep(3)
             par(ITR).jdahep(2)  = 0        !  the first/last daughter  
             DO J = 1, 4
               par(ITR).phep(j)  = phep(j)  !  p4 
-              par(ITR).vhep(j)  = 0.0 !production vertex(mm) and time(mm/c) 
+              par(ITR).vhep(j)  = VERT(j)*10. ! vertex(mm) and time(mm/c)
             END DO
             par(ITR).phep(5)    = masss    !  mass (GeV)   
          ELSE IF(LINE(1:6).EQ.'VERTEX') THEN 
@@ -171,45 +222,6 @@ CCCCCCC               WRITE(*,1110)idhep, phep(1), phep(2), phep(3)
             WRITE(*,1080)VERT,LABELVX,EG_PROC,PARENT
 1080        FORMAT(16X,'VERTEX:',4F10.6,3I6)
             IVT=IVT+1
-         ELSE IF(INDEX(LINE,'event').GT.0 .AND. ITR+IVT.EQ.0) THEN
-C  No keywords.  Must be "OLD" format.
-C  Read in the event and output it.  
-            I=INDEX(LINE,'event')
-            IEVTREAD=0
-            LINE(I:I+6)='  ' 
-            READ(LINE,*,ERR=1020)NTRAC,IEVEN 
-            WRITE(*,1090)NTRAC,IEVEN 
-1090        FORMAT(' gstar_ReadOld: ',I8,' event# ',I6)
-            DO 1101 ITR=1,NTRAC 
-               READ(LI,*,ERR=1020)GE_PID,phep(1), phep(2), phep(3) 
-               idhep=idtran(GE_PID)
-CCCCCCC               WRITE(*,1110)idhep, phep(1), phep(2), phep(3)
-1110           FORMAT(16X,I7,3G10.3)
-               ICODE = 1
-               IF(IABS(idhep).LT.7) ICODE=3
-               IF(idhep.EQ.21) ICODE=3
-               IF(idhep.LT.6999999) THEN
-                  masss    = hepmass(idhep)      !  mass (GeV)  
-               ELSE
-                  masss    = ionmass(GE_PID)        !  mass (GeV)  
-               ENDIF
-               phep(4)=dsqrt(phep(1)**2+phep(2)**2+phep(3)**2+masss**2)
-               par(ITR).isthep     = ICODE    !  status code
-               par(ITR).idhep      = idhep    !  particle identity
-               par(ITR).jmohep(1)  = 0        !  pointer(s) to position 
-               par(ITR).jmohep(2)  = 0        !  where the mothers(s) stored   
-               par(ITR).jdahep(1)  = 0        !  pointers to position of 
-               par(ITR).jdahep(2)  = 0        !  the first/last daughter  
-               DO J = 1, 4
-                 par(ITR).phep(j)  = phep(j)  !  p4 
-                 par(ITR).vhep(j)  = 0.0 !production vertex(mm) and time(mm/c) 
-               END DO
-               par(ITR).phep(5)    = masss    !  mass (GeV)  
-1101        CONTINUE 
-            par_h.nok = NTRAC 
-            GST2XDF=STAFCV_OK
-1102        CONTINUE
-            GO TO 1012
          ELSE IF(LENOCC(LINE).GT.0) THEN  
             WRITE(*,1120)LINE(1:LENOCC(LINE))
 1120        FORMAT(' unknown line : ',A)
