@@ -5,6 +5,6 @@
  macro run
 
  ami/module/call gst2xdf_
-   /dui/evgen/particle
+   /dui/event/evgen/particle
  return
 * ****************************************

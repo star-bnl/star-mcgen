@@ -6,7 +6,7 @@
  macro run
    
  ami/mod/call pythia_
-    /dui/evgen/particle
+    /dui/event/evgen/particle
  
  return
 * *****************************************

@@ -4,7 +4,7 @@
 * **********************************************
  macro run 
  ami/module/call hijjet_
-   /dui/evgen/particle
+   /dui/event/evgen/particle
  return
  
 * ************************************************
