@@ -1,6 +1,6 @@
     0.0         ! Starting event number 
  200.           ! Energy NN CM 
- 1000.0         ! STOPPING  EVENT NUMBER
+   10.          ! STOPPING  EVENT NUMBER
 Y               ! NO DECAY FILE
 Y               ! PIO DECAY
 Y               ! ETA DECAY
@@ -11,7 +11,7 @@ Y               ! KSTAR DECAY
 Y               ! PHI DECAY
 Y               ! DELTA DECAY
 Y               ! JPSI DECAY
-     1                  ! Number of PID types
+    20                  ! Number of PID types
      1                  ! Distribution model type (1,2,3,4,5,6)
      4                  ! Reaction Plane Control (1,2,3,4)
    0.0    0.0           ! Reaction Plane Angle, mean and std.dev. (deg)
@@ -28,8 +28,127 @@ Y               ! JPSI DECAY
    3.                   ! # of std.dev. for Multiplicity scale factor
    25                   ! # of integration mesh pts for param var.
    60                   ! # of pt,y scan pts for finding max val of dN/dp
+         7              ! Repeat for other PID types, etc.....
+        10   1 
+         0.18  0.01 
+         1.7   0.1 
+         0.0   0.0
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
+         8              ! Repeat for other PID types, etc.....
+        10   1 
+         0.18  0.01 
+         1.7   0.1 
+         0.0   0.0
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
+         9              ! Repeat for other PID types, etc.....
+        10   1 
+         0.18  0.01 
+         1.7   0.1 
+         0.0   0.0
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
+         11             ! Repeat for other PID types, etc.....
+        10   1 
+         0.18  0.01 
+         1.7   0.1 
+         0.0   0.0
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
+         12             ! Repeat for other PID types, etc.....
+        10   1 
+         0.18  0.01 
+         1.7   0.1 
+         0.0   0.0
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
+         14             ! Repeat for other PID types, etc.....
+        10   1 
+         0.18  0.01 
+         1.7   0.1 
+         0.0   0.0
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
+         151            ! Repeat for other PID types, etc.....
+        10   1 
+         0.18  0.01 
+         1.7   0.1 
+         0.0   0.0
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
+  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
+  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
          152            ! Repeat for other PID types, etc.....
-     2000   1 
+        10   1 
          0.18  0.01 
          1.7   0.1 
          0.0   0.0
@@ -234,23 +353,6 @@ Y               ! JPSI DECAY
   0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
          164            ! Repeat for other PID types, etc.....
         10   1 
-         0.18  0.01 
-         1.7   0.1 
-         0.0   0.0
-  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=1
-  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=1
-  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=2
-  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=2
-  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=3
-  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=3
-  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=4
-  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=4
-  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=5
-  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=5
-  0.0   0.0   0.0   0.0 ! Mean anisotropic flow coeffs.,          for n=6
-  0.0   0.0   0.0   0.0 ! Std. Dev. for anisotropic flow coeffs., for n=6
-         151            ! Repeat for other PID types, etc.....
-       2000   1 
          0.18  0.01 
          1.7   0.1 
          0.0   0.0
