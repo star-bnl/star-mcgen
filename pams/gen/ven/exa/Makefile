@@ -13,10 +13,10 @@ STAR_DIR=$(STAR_ROOT)/$(STAR_LEVEL)
 #
 #       Library definitions
 #
-LIBS =  `cernlib -v pro kernlib` \
+LIBS =  `cernlib  kernlib` \
 	-legz \
-        `cernlib -v pro packlib mathlib pawlib` \
-        `cernlib -v pro geant321`
+        `cernlib packlib mathlib pawlib` \
+        `cernlib geant321`
 #
 #	Library directories (mainly for libegz.a)
 #
