@@ -11,15 +11,14 @@ c     (Breit-Wigner) resonance.
       include 'bw.inc'
       DOUBLE PRECISION formf,flux,sigmagp,nrbw,sigma_A
       DOUBLE PRECISION Av,Wgp,cs,cvma
-      DOUBLE PRECISION W,Wmin,dW,Ymin,dY
+      DOUBLE PRECISION W,dW,dY
       DOUBLE PRECISION y1,y2,y12,ega1,ega2,ega12
       DOUBLE PRECISION t,tmin,tmax
-      DOUBLE PRECISION csgA1,csgA2,csgA12,int,dR,rate,Eth,EgMax
-      DOUBLE PRECISION C,bwnorm,dsigdW,dsigdWalt,dndW,tmp
+      DOUBLE PRECISION csgA1,csgA2,csgA12,int,dR,rate
+      DOUBLE PRECISION dsigdW,dsigdWalt,dndW,tmp
       DOUBLE PRECISION dsigdW2
       DOUBLE PRECISION xg(1:5),ag(1:5)
       DOUBLE PRECISION ax,bx
-      DOUBLE PRECISION ANORM,BNORM,BNORM_0
       INTEGER          I,J,K,NW,NY,NGAUSS
 
 C     >> DATA FOR GAUSS INTEGRATION
@@ -35,7 +34,11 @@ C     >> DATA FOR GAUSS INTEGRATION
       NY   =  1200
       dY   = (Ytop-Ymin)/DFLOAT(NY)
 
-      WRITE(*,*) 'Using Breit-Wigner Resonance Profile ...'
+      if (BNORM .eq. 0.) THEN
+         WRITE(*,*) 'Using Breit-Wigner Resonance Profile.'
+      ELSE
+         WRITE(*,*) ' Using Breit-Wigner plus direct pi+pi- profile.'
+      ENDIF
       WRITE(*,*) 'Integrating over W from',Wmin,' to',Wtop
 
       int=0.
@@ -154,7 +157,7 @@ C         >> Sum the contribution for this W,Y. The 2 accounts for the 2 beams
           dR  = dR + 4.*ega12*flux(ega12)*csgA12
           dR  = dR + ega2*flux(ega2)*csgA2
           tmp = tmp+2.*dR*(dY/6.)
-          dR  = dR*(dY/6.)*nrbw(W,ANORM,BNORM_0,bwnorm)*dW
+          dR  = dR*(dY/6.)*nrbw(W,ANORM,BNORM,bwnorm)*dW
           dR  = 2.*dR
           int = int+dR
 

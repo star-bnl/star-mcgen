@@ -8,7 +8,7 @@ C     >> Unit for cross section: fm**2
       include 'inputp.inc'
       DOUBLE PRECISION Wgp
 
-      IF(ip.eq.113)THEN
+      IF(ip.eq.113 .or. ip.eq.913)THEN
 c	these are rhos
        sigmagp=1.E-4*(5.0*DEXP(0.22*DLOG(Wgp))+26.0*
      &		DEXP(-1.23*DLOG(Wgp)))

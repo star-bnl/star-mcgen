@@ -145,7 +145,7 @@ c betax,betay,betaz are the boost of the complete system
 c       change particle id from that of parent to that of daughters
 c       rhos and omegas, f2(1270) - each goes to pi+/pi-
           if((ip.eq.113).or.(ip.eq.223).or.(ip.eq.33).or.
-     &		(ip.eq.225)) ipid=211
+     &		(ip.eq.225) .or. (ip.eq.913)) ipid=211
 c	f2(1525)-- 50% to K+/K-, 50% to K0_S,K0_L
 	  if(ip.eq.335) then 
 		if(ytest.ge.0.5) then

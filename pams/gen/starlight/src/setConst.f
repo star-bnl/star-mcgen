@@ -92,6 +92,13 @@ c	to 0.15 is safe for Summer 2000 triggering for e+e- pairs
            f2o4pi=2.02
            Wmin_default = 2.*mpi
            Wtop = mass + 5.*width
+
+C Breit-Wigner parameters (no direct pipi)
+
+           ANORM =-2.75 
+	   BNORM=0.
+	   C=1.0
+
       	endif
 
 C  rho0+direct pi+pi-.  maximum W set by wmax
@@ -103,8 +110,16 @@ C  rho0+direct pi+pi-.  maximum W set by wmax
            bslope=11.0
            f2o4pi=2.02
            Wmin_default = 2.*mpi
-           Wtop = wmax
+C  for now, stick to the same 1.5 GeV maximum mass
+           Wtop = mass+5.*width
+
+C  Breit-Wigner parameters, with direct pipi
+
+	   ANORM =-2.75 
+	   BNORM = 1.84
+	   C =1.0
       	endif
+
       	if (ip.eq.223) then
            mass = 0.78194
            width = 0.00843
@@ -198,10 +213,12 @@ C       >> At LHC
            EgMax = 600.0
       	ENDIF
 
-c	define constants for Breit-Wigner normalization
-	ANORM =-2.75 
-	BNORM = 1.84
-	BNORM_0 =0.0
-	C =1.0
+C  constants for Breit-Wigner normalization for rho^0 (only)
+C  These are from ZEUS data, appropriate for gamma p, maybe not for gamma A
+
 	RETURN
 	END
+
+
+
+
