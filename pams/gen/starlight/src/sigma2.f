@@ -39,13 +39,20 @@ c     calculate the total two-lepton cross section
 
 
       if (ip.eq.11)
-     &     print *,'The total electron crossection is:',sum
+     &     print *,'The total electron crossection is:',sum,' barns'
 
       if (ip.eq.13)
-     &     print *,'The total muon crossection is:',sum
+     &     print *,'The total muon crossection is:',sum,' barns'
 
       if (ip.eq.15)
-     &     print *,'The total tau crossection is:',sum
+     &     print *,'The total tau crossection is:',sum,' barns'
 
       return
       end
+
+
+
+
+
+
+
