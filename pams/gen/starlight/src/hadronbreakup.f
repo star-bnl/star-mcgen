@@ -10,6 +10,8 @@ C  To normalize to an absolute  probablity P=1-exp(-pbreakup)
 
       integer IFIRST
 
+      include 'D2LParam.inc'
+
       DIMENSION DEN2(20001),DEN1(20001)
 
 C  this subroutine calculates the probability for hadronic nuclear breakup
@@ -36,20 +38,10 @@ C  gamma is in cm system
       IF (gamma .GT. 500.) SIGNN=8.8
 
 
-      if (zp .eq. 79) THEN
+C  Use parameter from SetConst.inc
+         R1=Rnuc
+         A1=0.535
 
-         R1=6.38
-         A1=0.535
-      elseif (zp .eq. 82) THEN
-         R1=6.62
-         A1=0.535
-      ELSE
-         WRITE(6,2)zp
- 2       FORMAT(' NUCLEAR PARAMETERS NOT DEFINED FOR Z.', 
-     *'USING DEFAULTS.  ZP =',F7.2)
-         R1=1.2*A**(1./3.)
-         A1=0.535
-      ENDIF
 
       WRITE(6,12)R1,A1,SIGNN
  12   FORMAT(' Nuclear density R= ',F7.4,' fm.  thick= ',F7.4,
