@@ -523,9 +523,11 @@ C
 		   CALL LUEDIT(2)
 		ELSE
 331		   N_ST=N_ST+1
+                   if (N_ST .gt. N) go to 332
 		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  331
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
+ 332               continue
 		ENDIF
 C
 		IF(FRAME.EQ.'LAB') THEN
@@ -589,9 +591,11 @@ C
 		   CALL LUEDIT(2)
 		ELSE
 351		   N_ST=N_ST+1
+                   if (N_ST .gt. N) go to 352
 		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  351
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
+ 352               continue
 		ENDIF
 C
 		IF(FRAME.EQ.'LAB') THEN
@@ -659,9 +663,11 @@ C           WRITE (6, *) '  NATT','  IDST ', '  IMOH', '  JDA1', '  JDA2'
 		   CALL LUEDIT(2)
 		ELSE
 381		   N_ST=N_ST+1
+                   if (N_ST .gt. N) go to 382
 		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  381
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
+ 382               continue
 		ENDIF
 		IF(FRAME.EQ.'LAB') THEN
 			CALL HIBOOST
