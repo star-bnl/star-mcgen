@@ -1,5 +1,5 @@
 c     this function calculates the perpendicular momentum distribution
-c     function
+c     function for two-photon interactions
 c     gives a randomly chosen pp when given a photon energy
 c     uses a binary seach assuming a monotonically increasing function
 
@@ -21,8 +21,10 @@ c
 c	p_perp ~hbar/b ~E/gamma, NOT hbar/R_A
 c	changed 11/10/2000 SRK
 
-       u0 = 2.*(E/gamma_em)**4
-c      u0 =2.*(E*RNuc/(hbarc*gamma_em))**2
+
+C  take out fix, go back to Evan's original code
+C       u0 = 2.*(E/gamma_em)**4
+      u0 =2.*(E*RNuc/(hbarc*gamma_em))**2
       u1 =2.*(1.5)**2
 c      call ranmar(ran,1)
       ranx = ran(iseed) * pperpdist(u0,u1)
