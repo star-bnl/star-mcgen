@@ -1,4 +1,5 @@
 5/2/2000  J. Seger
+Modified 5/25/2001 S. Klein
 
 
 The STARlight Monte Carlo models 2-photon and photon-Pomeron interactions
@@ -86,6 +87,12 @@ needs.
 	will lead to a simple text file.  A 2 here leads to a text file in 
 	the format specified by gstar.  A three leads to output in a PAW
 	ntuple.
+1	// This number controls the nuclear breakup
+        // Note that this option only works for lead or gold; it should work at any energy
+	1 = no requirement
+	2 = both nuclei break up (XnXn)
+	3 = a single neutron from each nucleus (1n1n)
+
 
 ----------------------------------------------------------------------------
 
@@ -112,3 +119,5 @@ Currently supported vector meson options:
 	223		omega
 	333		phi
 	443		J/psi
+	913		rho0 + direct pi+pi- (with interference)
+The direct pi+pi- fraction is from the ZEUS results
