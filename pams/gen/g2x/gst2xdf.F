@@ -1,5 +1,8 @@
 * Id: gst2xdf.F, v 1.1 1998/03/17 14:35:30 longacre Exp $
 *$Log: gst2xdf.F,v $
+*Revision 1.6  1999/08/13 21:54:15  fisyak
+*move hepevt
+*
 *Revision 1.5  1998/08/02 21:38:15  longacre
 *added vertex cm -> mm
 *
@@ -29,7 +32,7 @@ C
 *: GET one text ASCII FILE event and put into table
 *:>--------------------------------------------------------------------
 #include "gst2xdf.inc"
-#include "g2xcdes/hepevt.inc"
+#include "hepevt.inc"
 C---------------------------------------------------------------------
 C      IVENT records the number of times an 'EVENT' flag was found.
 C      Actually it gets incremented TWICE per event after the first one.
