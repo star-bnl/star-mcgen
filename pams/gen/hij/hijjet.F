@@ -1,5 +1,8 @@
-* $Id: hijjet.F,v 1.5 1999/08/14 21:49:00 fisyak Exp $
+* $Id: hijjet.F,v 1.6 2000/01/22 17:37:41 nevski Exp $
 * $Log: hijjet.F,v $
+* Revision 1.6  2000/01/22 17:37:41  nevski
+* clean up unused variables
+*
 * Revision 1.5  1999/08/14 21:49:00  fisyak
 * eliminate include and source level
 *
@@ -39,11 +42,11 @@
       DIMENSION pt(40000), eta(40000), idst(40000,2), ptjet(50)
       DIMENSION NUMJET(50)
       REAL PT, ETA, ptjet, px1, py1
-      REAL px, py, pz, theta, phi, pe, HMEMOR 
+      REAL px, py, pz, theta, HMEMOR 
       INTEGER I, J, IK, IP, idst, numjet
 *
-      INTEGER ii, nd1, nd2, idip, idik, kk, mm, ll, km
-      INTEGER nd3, nd4, nd5, nd6, nd7, nd8, idkk
+      INTEGER ii, nd1, nd2, kk, mm, ll, km
+      INTEGER nd3, nd4, nd5, nd6, nd7, nd8
       INTEGER nd9, nd10, nd11, nd12, njets, njetp
       
       COMMON/PAWC/HMEMOR(20000)
