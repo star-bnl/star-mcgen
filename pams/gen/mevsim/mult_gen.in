@@ -16,6 +16,7 @@ Y               ! JPSI DECAY
      4                  ! Reaction Plane Control (1,2,3,4)
    0.0    0.0           ! Reaction Plane Angle, mean and std.dev. (deg)
    1.00    0.0          ! Multiplicity scaling factor mean & std.dev.
+   0.0    0.0    0.0    ! Transverse rapidity, mean, std.dev., num of std.dev.
    0.01   3.0           ! pt min/max (GeV/c)
    -4.5   4.5           ! pseudorapidity min/max
    0.0   360.0          ! azimuthal angle min/max (degrees)

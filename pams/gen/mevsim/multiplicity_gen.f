@@ -1490,6 +1490,45 @@ CCC   Local Variable Type Declarations:
 
       Return
       END
+C----------------------------------------------------------------------
+      Subroutine boost(betatr,upppx,upppy,upppz,theta,mass,
+     1                 pxnew,pynew,pznew)
+      implicit none
+CCC   Computes velocity addition
+
+CCC   Local Variable Type Declarations:
+      real*4  betatr
+      real*4  upppx,upppy,upppz,theta,mass,pxnew,pynew,pznew
+      real*4  costhe,sinthe,uppx,uppy,uppz,fac1,fac2
+      real*4  upx,upy,upz,ux,uy,uz,gamma
+
+      costhe = cos(theta)
+      sinthe = sin(theta)
+
+      uppx =  upppx*costhe + upppy*sinthe
+      uppy = -upppx*sinthe + upppy*costhe
+      uppz =  upppz
+
+      fac1 = sqrt(1.0 - betatr*betatr) 
+      fac2 = 1.0 + betatr*uppx
+      upx  = (uppx + betatr)/fac2
+      upy  = fac1*uppy/fac2
+      upz  = fac1*uppz/fac2
+
+      ux   = upx*costhe - upy*sinthe
+      uy   = upx*sinthe + upy*costhe
+      uz   = upz
+
+      gamma = 1.0/sqrt(1.0 - ux*ux - uy*uy - uz*uz)
+      pxnew = gamma*mass*ux
+      pynew = gamma*mass*uy
+      pznew = gamma*mass*uz
+
+      Return
+      END
+
+
+
 
 
 

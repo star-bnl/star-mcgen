@@ -198,10 +198,13 @@ C                                 of the value of reac_plane_cntrl.
 C     (6) MultFac_mean, MultFac_stdev - Overall multiplicity scaling factor
 C                                       for all PID types; mean and std.dev.;
 C                                       for trigger fluctuations event-to-evt.
-C     (7) pt_cut_min,pt_cut_max - Range of transverse momentum in GeV/c.
-C     (8) eta_cut_min,eta_cut_max - Pseudorapidity range
-C     (9) phi_cut_min,phi_cut_max - Azimuthal angular range in degrees.
-C    (10) n_stdev_mult - Number of standard deviations about the mean value
+C     (7) etaf_mean, etaf_stdev, n_stdev_etaf
+C                              Transverse rapidity paramters. Applied to
+C                              all particle types
+C     (8) pt_cut_min,pt_cut_max - Range of transverse momentum in GeV/c.
+C     (9) eta_cut_min,eta_cut_max - Pseudorapidity range
+C    (10) phi_cut_min,phi_cut_max - Azimuthal angular range in degrees.
+C    (11) n_stdev_mult - Number of standard deviations about the mean value
 C                        of multiplicity to include in the random event-to-
 C                        event selection process.  The maximum number of
 C                        steps that can be covered is determined by
@@ -209,19 +212,19 @@ C                        parameter n_mult_max_steps in the accompanying
 C                        include file 'Parameter_values.inc' which is
 C                        presently set at 1000, but the true upper limit for
 C                        this is n_mult_max_steps - 1 = 999.
-C    (11) n_stdev_temp - Same, except for the "Temperature" parameter.
-C    (12) n_stdev_sigma- Same, except for the rapidity width parameter.
-C    (13) n_stdev_expvel - Same, except for the expansion velocity parameter.
-C    (14) n_stdev_PSIr   - Same, except for the reaction plane angle
-C    (15) n_stdev_Vn     - Same, except for the anisotropy coefficients, Vn.
-C    (16) n_stdev_MultFac - Same, except for the multiplicity scaling factor.
-C    (17) n_integ_pts - Number of mesh points to use in the random model
+C    (12) n_stdev_temp - Same, except for the "Temperature" parameter.
+C    (13) n_stdev_sigma- Same, except for the rapidity width parameter.
+C    (14) n_stdev_expvel - Same, except for the expansion velocity parameter.
+C    (15) n_stdev_PSIr   - Same, except for the reaction plane angle
+C    (16) n_stdev_Vn     - Same, except for the anisotropy coefficients, Vn.
+C    (17) n_stdev_MultFac - Same, except for the multiplicity scaling factor.
+C    (18) n_integ_pts - Number of mesh points to use in the random model
 C                       parameter selection process.  The upper limit is
 C                       set by parameter nmax_integ in the accompanying
 C                       include file 'Parameter_values.inc' which is presently
 C                       set at 100, but the true upper limit for n_integ_pts
 C                       is nmax_integ - 1 = 99. 
-C    (18) n_scan_pts  - Number of mesh points to use to scan the (pt,y)
+C    (19) n_scan_pts  - Number of mesh points to use to scan the (pt,y)
 C                       dependence of the model distributions looking for
 C                       the maximum value.  The 2-D grid has
 C                       n_scan_pts * n_scan_pts points; no limit to size of
@@ -443,7 +446,8 @@ CCC         precede this file everywhere it occurs.
       real*4 pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max
       real*4 y_cut_min,y_cut_max
       real*4 phi_cut_min,phi_cut_max,n_stdev_mult,n_stdev_temp
-      real*4 n_stdev_sigma,n_stdev_expvel,Temp_mean(npid)
+      real*4 n_stdev_sigma,n_stdev_expvel
+      real*4 Temp_mean(npid)
       real*4 Temp_stdev(npid),pi,rad,mult_mean_real,mult_stdev
       real*4 mult_min_real,mult_max_real,ranf
       real*4 Temp_abort, sigma_abort, bin_value
@@ -492,6 +496,14 @@ CCC   Variables associated with trigger fluctuations:
       real*4 MultFac_min, MultFac_max, MultFac_event
       real*4 MultFac_integ_save(nmax_integ)
       real*4 MultFac_xfunc_save(nmax_integ)
+
+CCC   Variables associated with radial flow:
+      real*4 etaf_mean, etaf_stdev, n_stdev_etaf
+      real*4 etaf_min, etaf_max,etaf_event
+      real*4 etaf_integ_save(nmax_integ)
+      real*4 etaf_xfunc_save(nmax_integ)
+      real*4 betatr, theta, Etot, mass
+      real*4 ux, uy, uz, pxnew, pynew, pznew
 
       DATA IFIRST/0/
       DATA INTRUN/0/
@@ -693,6 +705,8 @@ CCC                                    ! Function dNdpty for explanation).
       read(4,*) PSIr_mean,PSIr_stdev   ! Reaction plane angle mean and std.
 CCC                                    ! dev., both are in degrees.
       read(4,*) MultFac_mean,MultFac_stdev ! Mult scaling factor mean,stdev.
+      read(4,*) etaf_mean, etaf_stdev, n_stdev_etaf
+                                       ! radial flow rapidity.
       read(4,*) pt_cut_min,pt_cut_max  ! Min/Max pt range in GeV/c
       read(4,*) eta_cut_min,eta_cut_max ! Min/Max pseudorapidity range
       read(4,*) phi_cut_min,phi_cut_max ! Min/Max azimuthal angular range (deg)
@@ -779,6 +793,15 @@ CCC   Check the multiplicity scaling factor input parameters:
          STOP
       end if
 
+CCC   Check the transverse rapidity factor input parameters:
+      if(etaf_mean.lt.0.0 .or. etaf_stdev.lt.0.0
+     1       .or. n_stdev_etaf.lt.0) then
+         write(8,49) etaf_mean, etaf_stdev, n_stdev_etaf
+49       Format(//10x,'transverse rapidity mean or stdev or nstdev= ',
+     1   3F7.4,' - not valid - STOP')
+         STOP
+      end if
+
 CCC   FOR MODEL_TYPE = 1,2,3 or 4; 
 CCC   Repeat the following lines of input for each particle ID type:
      
@@ -840,7 +863,6 @@ CCC      Check Validity and Consistency of Input Parameters
      1   2F7.4,' - not valid -STOP')
          STOP
          end if
-
          do k = 1,4
             do i = 1,nflowterms
                if(Vn_stdev(i,k,pid) .lt. 0.0) then
@@ -1104,6 +1126,22 @@ CCC   simulations via the overall multiplicity scaling factor.
          MultFac_event = MultFac_mean
       end if
 
+CCC   Obtain 1D integral for Gaussian distribution for the transverse flow
+CCC   simulations.
+      if((n_stdev_etaf*etaf_stdev) .gt. 0.0) then
+         Call MinMax(etaf_mean,etaf_stdev,n_stdev_etaf,
+     1               etaf_min,etaf_max)
+         Call Gaussian(etaf_min,etaf_max,etaf_mean,etaf_stdev,
+     1                 n_integ_pts,integ,xfunc,nmax_integ)
+         do i = 1,n_integ_pts + 1
+            etaf_integ_save(i) = integ(i)
+            etaf_xfunc_save(i) = xfunc(i)
+         end do
+      else
+         etaf_event = etaf_mean
+      end if
+
+
       do pid = 1,n_pid_type
 
          Call Particle_mass(gpid(pid),pid,n_integ_pts)
@@ -1180,7 +1218,7 @@ CCC   simulations via the overall multiplicity scaling factor.
          else if(expvel_stdev(pid) .eq. 0.0) then
             expvel_event(pid) = expvel_mean(pid)
          end if 
-         end if ! End model_type .le. 4 options.
+         end if 
 
          if(reac_plane_cntrl .gt. 1) then
             do i = 1,nflowterms
@@ -1233,6 +1271,7 @@ CCC   Write Run Header Output:
       write(8,2053) reac_plane_cntrl
       write(8,2054) PSIr_mean, PSIr_stdev
       write(8,2055) MultFac_mean,MultFac_stdev
+      write(8,2056) etaf_mean,etaf_stdev, n_stdev_etaf
       write(8,206) pt_cut_min, pt_cut_max
       write(8,207) eta_cut_min, eta_cut_max
       write(8,2071) y_cut_min,y_cut_max
@@ -1284,12 +1323,14 @@ CCC   Print out flow parameters:
      1          ' (deg)')
 2055  Format('* Multiplicity Scaling Factor - mean and std.dev = ',
      1       2G12.5)
+2056  Format('* Transverse Rapidity Factor - mean, std.dev and',
+     1       ' nstd.dev = ', 3G12.5)
 206   Format('* Min, Max range in pt              = ', 2G12.5)
 207   Format('* Min, Max range in pseudorapidity  = ', 2G12.5)
 2071  Format('* Min, Max range in rapdity + cush  = ', 2G12.5)
 208   Format('* Min, Max range in azimuthal angle = ', 2G12.5)
 209   Format('* No. std. dev. range used for mult and parameters = ',
-     1       4F5.2)
+     1       5F5.2)
 2091  Format('* No. std. dev. range for PSIr, Vn  = ', 2G12.5)
 2092  Format('* No. std. dev. range for MultFac   = ',G12.5)
 210   Format('* No. integration points for parameter variance = ',
@@ -1419,6 +1460,7 @@ CCC   Check each multiplicity wrt upper array size limit:
                Call LAGRNG(ranf(),integ,expvel_event(pid),xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
+
          end if
          
          if(reac_plane_cntrl .gt. 1) then
@@ -1496,10 +1538,45 @@ CCC   random track list:
             end do
          end if
 
+C djp Feb 14, 2003
+C     Put Lanny's transverse flow code here.
+
+CCC   Select random transverse colective flow velocity:
+          if((n_stdev_etaf*etaf_stdev) .gt. 0.0) then
+              do i = 1,n_integ_pts + 1
+                  integ(i) = etaf_integ_save(i)
+                  xfunc(i) = etaf_xfunc_save(i)
+              end do
+              Call LAGRNG(ranf(),integ,etaf_event,xfunc,
+     1                    n_integ_pts+1,1,5,n_integ_pts+1,1)
+          end if
+CCC   Boost every particle in event.
+          do pid = 1,n_pid_type
+              do i = 1,mult_event(pid)
+                  px   = pout(pid,1,i)
+                  py   = pout(pid,2,i)
+                  pz   = pout(pid,3,i)
+                  mass = pout(pid,4,i)
+                  betatr = tanh(etaf_event*sqrt(ranf()))
+                  theta  = 2.0*pi*ranf()
+                  Etot   = sqrt(mass*mass + px*px + py*py + pz*pz)
+                  ux  = px/Etot
+                  uy  = py/Etot
+                  uz  = pz/Etot
+                  Call boost(betatr,ux,uy,uz,theta,mass,
+     1                       pxnew,pynew,pznew)
+                  pout(pid,1,i) = pxnew
+                  pout(pid,2,i) = pynew
+                  pout(pid,3,i) = pznew
+              end do
+          end do
+
+
          if(event_abort.eq.1 .and. status_abort.eq.1) then
 CCC Event Header Output:
            write(8,2301) PSIr_event
            write(8,2302) MultFac_event
+           write(8,2303) etaf_event
            write(8,213) (gpid(pid),pid = 1,n_pid_type)
            write(8,231) (mult_event(pid),pid = 1,n_pid_type)
            if(model_type .le. 4) then
@@ -1511,6 +1588,7 @@ CCC Event Header Output:
 230   Format(/'***  Next Event:  No. ',I7,'; Total # tracks = ',I10)
 2301  Format('* Reaction plane angle = ',G12.5,' (deg)')
 2302  Format('* Multiplicity Scaling Factor = ',G12.5)
+2303  Format('* Max Transverse Rapidity =  ',10F7.4)
 231   Format('* Multiplicity:         ',10I7)
 232   Format('* Temperature:          ',10F7.4)
 233   Format('* Rapidity Dist. sigma: ',10F7.4)
