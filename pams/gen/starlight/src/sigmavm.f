@@ -6,12 +6,12 @@ c     a narrow resonance.  For reference, see STAR Note 386.
       IMPLICIT NONE
 
       include 'inputp.inc'
-      include 'range.inc'
       include 'global.inc'
       include 'const.inc'
+      include 'D2LParam.inc'
       DOUBLE PRECISION formf,flux,sigmagp,sigma_A
       DOUBLE PRECISION Av,Wgp,cs,cvma
-      DOUBLE PRECISION W,Ymin,Ytop,dY
+      DOUBLE PRECISION W,Ymin,dY
       DOUBLE PRECISION y1,y2,y12,ega1,ega2,ega12
       DOUBLE PRECISION t,tmin,tmax
       DOUBLE PRECISION csgA1,csgA2,csgA12,int,dR,rate
@@ -30,7 +30,7 @@ C     >> DATA FOR GAUSS INTEGRATION
       NGAUSS = 5
 
       NY   =  numy
-      dY   = (Ytop-Ymin)/DFLOAT(NY)
+      dY   = (Ymax-Ymin)/DFLOAT(NY)
 
 
       WRITE(*,*) 'Using Narrow Resonance ...'
@@ -66,7 +66,7 @@ C       >> Calculate V.M.+Nucleus cross section
 C       >> Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
         Av=(alpha*cvma*cvma)/(16.*pi*f2o4pi*hbarc*hbarc)
 
-        tmin  = ( (W**2)/(4.*ega1*gamma_ta) )**2
+        tmin  = ( (W**2)/(4.*ega1*gamma_em) )**2
         tmax  = tmin + 0.25
         ax    = 0.5*(tmax-tmin)
         bx    = 0.5*(tmax+tmin)
@@ -95,7 +95,7 @@ C       >> Calculate V.M.+Nucleus cross section
 C       >> Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
         Av=(alpha*cvma*cvma)/(16.*pi*f2o4pi*hbarc*hbarc)
 
-        tmin   = ( (W**2)/(4.*ega12*gamma_ta) )**2
+        tmin   = ( (W**2)/(4.*ega12*gamma_em) )**2
         tmax   = tmin + 0.25
         ax     = 0.5*(tmax-tmin)
         bx     = 0.5*(tmax+tmin)
@@ -123,7 +123,7 @@ C       >> Calculate V.M.+Nucleus cross section
 C       >> Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
         Av=(alpha*cvma*cvma)/(16.*pi*f2o4pi*hbarc*hbarc)
 
-        tmin  = ( (W**2)/(4.*ega2*gamma_ta) )**2
+        tmin  = ( (W**2)/(4.*ega2*gamma_em) )**2
         tmax  = tmin + 0.25
         ax    = 0.5*(tmax-tmin)
         bx    = 0.5*(tmax+tmin)
