@@ -1,30 +1,19 @@
-c     This subroutine 
+c     This subroutine computes Coulomb/Hadronic breakup probabilities, and then does diff. lum. calculation
       subroutine diffLum_2gamma
 
       implicit NONE
 
       include 'inputp.inc'
-      include 'range.inc'
+      include 'const.inc'
       include 'D2LParam.inc'
+      Double Precision OldNorm
       integer i,j
       real xlum,wmev,sum,D2LDMDY
       real w(1000),y(1000)
 
+      Normalize = 1./SQRT(1.*numw*numy) !if your grid is very fine, you'll want high accuracy --> small Normalize
+      OldNorm   = Normalize
 c     xlum is the luminosity as a function of w and y
-
-c     Write the parameters being used for the calculation to 
-c     starlight.dat so that they are there for future reference.
-      open (unit=20,file='starlight.dat',status='unknown')
-      write (20,*) Z
-      write (20,*) A
-      write (20,*) gamma_em
-      write (20,*) wmax
-      write (20,*) Wmin
-      write (20,*) numw
-      write (20,*) ymax
-      write (20,*) numy
-      write (20,*) gg_or_gP
-      write (20,*) ibreakup
 
 c     Write to starlight.dat the set of values for w used in the
 c     calculation.
@@ -51,10 +40,11 @@ C     Convert from photon flux dN/dW to Lorentz invariant
 C     photon number WdN/dW 
 
            xlum =  wmev * D2LDMDY(wmev,y(j))
-           write(20,*) xlum
+           write(20,*) xlum 
+           if (j.eq.1) OldNorm = Normalize ! save value of Integral for each new W(i) and Y(1)
  300    continue
+        Normalize = OldNorm
  400  continue
 
-      close (unit=20)
       return
       end
