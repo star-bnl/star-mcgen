@@ -28,4 +28,9 @@ C  spare variables
      & gg_or_gP, ibreakup, iinterfere,idummy1, xinterfere, rdummy1,
      &Eth,EgMax
 C  iinterfere=0 (no interference) iinterference=1 (interference)
-C  xinterfere is not yet implemented
+C  xinterfere = linear variable between 0 (no interference) and 1 (full
+C  interference).  Only used when iinterference=1
+
+
+
+
