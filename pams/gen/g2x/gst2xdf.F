@@ -1,5 +1,8 @@
 * Id: gst2xdf.F, v 1.1 1998/03/17 14:35:30 longacre Exp $
 *$Log: gst2xdf.F,v $
+*Revision 1.4  1998/07/01 19:58:37  longacre
+*make g2x read Lanny's txt files
+*
 *Revision 1.3  1998/05/29 14:31:18  longacre
 *now makes correct particle for new txtfile
 *
@@ -76,6 +79,14 @@ C  Only read from disk if a new record is needed.
          ENDIF
          WRITE(*,1030)LINE
 1030     FORMAT(1X,A)
+        IF(LINE(1:1).EQ.'*') THEN
+          IEVTREAD=0
+          GO TO 1011
+        ENDIF
+        IF(LINE(1:1).EQ.' ') THEN
+          IEVTREAD=0
+          GO TO 1011
+        ENDIF
 C    * 
 C       Check LINE(1:5) for FORMAT key word 
         IF (LINE(1:5).EQ.'GENER') THEN
@@ -106,8 +117,10 @@ c   'LINE' and not to reread it from disk for the next event.
                    RETURN
                  ENDIF
             ENDIF
- 10         READ(LINE(7:),*,END=  1050,ERR=1020)IEVEN,NTRAC,NVERT,A,B
-            WRITE(*,1060)IEVEN,NTRAC,NVERT,A,B
+10         READ(LINE(7:),*,END=  1022,ERR=1022)IEVEN,NTRAC,NVERT,A,B
+           GO TO 1023
+1022       READ(LINE(7:),*,END=  1050,ERR=1020)IEVEN,NTRAC,NVERT
+1023       WRITE(*,1060)IEVEN,NTRAC,NVERT,A,B
 1060        FORMAT(' gstar_ReadNew: EVENT :',3I8,2F8.3, ' changed ')
             IEVTREAD=0
 1050        IF (IEVEN.LT.-999) GOTO 1020    ! Error on read
