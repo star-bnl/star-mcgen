@@ -22,9 +22,9 @@ c     	take care of two particle decays
             write(*,*) 'Calling sigma2...'
             call sigma2
 
-c    	take care of vector mesons
+c    	take care of vector mesons & rho0+direct pi+pi-
           elseif((ip.eq.113).or.(ip.eq.223).or.(ip.eq.333).or.
-     &    (ip.eq.443)) then
+     &    (ip.eq.443).or.(ip.eq.913)) then
             if(gg_or_gP.eq.2) then
               write(*,*) 'Calling sigmavm...'
               call sigmavm
@@ -39,3 +39,4 @@ c    	take care of vector mesons
 
       return
       end
+
