@@ -93,6 +93,18 @@ c	to 0.15 is safe for Summer 2000 triggering for e+e- pairs
            Wmin_default = 2.*mpi
            Wtop = mass + 5.*width
       	endif
+
+C  rho0+direct pi+pi-.  maximum W set by wmax
+
+       	if (ip.eq.913) then
+           mass = 0.7685
+           width = 0.1507
+           spin = 1.
+           bslope=11.0
+           f2o4pi=2.02
+           Wmin_default = 2.*mpi
+           Wtop = wmax
+      	endif
       	if (ip.eq.223) then
            mass = 0.78194
            width = 0.00843
