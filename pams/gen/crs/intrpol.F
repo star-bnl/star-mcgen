@@ -1,3 +1,8 @@
+* $Id: intrpol.F,v 1.2 1998/02/14 23:02:46 fisyak Exp $
+* $Log: intrpol.F,v $
+* Revision 1.2  1998/02/14 23:02:46  fisyak
+* Split Fortran sources
+*
       Real*4 Function IntrPol(N,X,X_Points,Y_Points)
 
 ******-****************************************************************-******

@@ -1,3 +1,8 @@
+* $Id: begran.F,v 1.2 1998/02/14 23:02:38 fisyak Exp $
+* $Log: begran.F,v $
+* Revision 1.2  1998/02/14 23:02:38  fisyak
+* Split Fortran sources
+*
       real function begran(I)
 *
 * random number between (0,1)

@@ -1,3 +1,8 @@
+* $Id: begcosm.F,v 1.2 1998/02/14 23:02:38 fisyak Exp $
+* $Log: begcosm.F,v $
+* Revision 1.2  1998/02/14 23:02:38  fisyak
+* Split Fortran sources
+*
       Subroutine BegCosm(D_Mode,P_Mode,Det_Len,Det_Rad,Det_Off,
      +                   P_Min,P_Max,End_Hits,Rate_PD,
      +                               End_Nsph,Rate_Sph,Version)

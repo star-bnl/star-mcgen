@@ -1,3 +1,8 @@
+* $Id: getran.F,v 1.2 1998/02/14 23:02:45 fisyak Exp $
+* $Log: getran.F,v $
+* Revision 1.2  1998/02/14 23:02:45  fisyak
+* Split Fortran sources
+*
       Real*4 Function GetRan(I)
 
 ******-****************************************************************-******
@@ -29,11 +34,11 @@
         GetRan=BegRan(I+L1)
         If (GetRan.gt.0.0 .and. GetRan.lt.1.0) goto 999
       Enddo
-      Write(*,*)"GetRan:"
-      Write(*,*)"Error:  Program termination due to random number"
-      Write(*,*)"  generation anomaly.  0 and or 1 was generated 10"
-      Write(*,*)"  times in a row."
-      Write(*,*)"Terminating program..."
+      Write(*,*)'GetRan:'
+      Write(*,*)'Error:  Program termination due to random number'
+      Write(*,*)'  generation anomaly.  0 and or 1 was generated 10'
+      Write(*,*)'  times in a row.'
+      Write(*,*)'Terminating program...'
       Stop  !Stopped in GetRan
 
  999  Return

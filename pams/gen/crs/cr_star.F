@@ -1,4 +1,8 @@
-*yf   program cr_star
+* $Id: cr_star.F,v 1.2 1998/02/14 23:02:39 fisyak Exp $
+* $Log: cr_star.F,v $
+* Revision 1.2  1998/02/14 23:02:39  fisyak
+* Split Fortran sources
+*
       INTEGER*4 FUNCTION CR_STAR()
       IMPLICIT NONE
 #include "cr_star.inc"
