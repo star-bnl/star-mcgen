@@ -52,6 +52,7 @@ C***************************************************************************
       read ( lin, * ) line, ih11, ih12
       read ( lin, * ) line, ih21, ih18
       read ( lin, * ) line, hipr7
+      read ( lin, * ) line, etamin, etamax 
            
 *      read ( lin, * ) line, nevt_file, output_dir 
 *
