@@ -1,263 +1,190 @@
-C     Function for the photon energy spectrum in gamma-Pomeron
-c     interactions, dn/dEgamma.
-C     Approximately, dn/dEgamma=int_2RtoInf(dn/dEgamma db)
+       DOUBLE PRECISION FUNCTION flux(Egamma)
 
-      DOUBLE PRECISION FUNCTION flux(Egamma)
+
+C  This routine gives the photon flux as a function of energy Egamma
+C  It works for arbitrary nuclei and gamma; the first time it is
+C  called, it calculates a lookup table which is used on 
+C  subsequent calls
+
+C it returns dN_gamma/dE (dimensions 1/E), not dI/dE
+C energies are in GeV, in the lab frame
+
+C  rewritten 4/25/2001 by SRK
 
       IMPLICIT NONE
 
       include 'D2LParam.inc'
-      DOUBLE PRECISION Egamma
-      DOUBLE PRECISION dide(1:100),lnE1,lnE2,dlnE,lnElt
-      DOUBLE PRECISION y0(1:100),y1(1:100),y2(1:100),y4(1:100)
-      DOUBLE PRECISION z1(1:100),z2(1:100)
-      INTEGER Icheck
-      INTEGER I,Ilt,Igt
+      include 'const.inc'
+      DOUBLE PRECISION Egamma,lEgamma,Emin,Emax,lnEmin,lnEmax
+      DOUBLE PRECISION stepmult,energy,rZ
+      INTEGER j,nbstep,jb,nrstep,jr,nphistep,jphi,nstep
+      DOUBLE PRECISION bmin,bmax,bmult,biter,bold,integratedflux
+      DOUBLE PRECISION fluxelement,rmin,rmax,deltar,riter
+      DOUBLE PRECISION deltaphi,phiiter,dist
+      DOUBLE PRECISION dide(1:100),dlnE,lnElt
 
-      SAVE Icheck,dide,lnE1,lnE2,dlnE
+      DOUBLE PRECISION Xvar,Dbesk1
+
+      INTEGER Icheck,I,Ilt
+
+      SAVE Icheck,dide,lnEMax,lnEmin,dlnE
 
       DATA Icheck/0/
-C     >> Integrated Values of dI/dEgamma
-c     >>Au+Au at RHIC(gamma=70)
-      DATA y0/	0.183314E+03,0.180394E+03,0.177475E+03,0.174555E+03,
-     $		0.171636E+03,0.168716E+03,0.165797E+03,0.162877E+03,
-     $		0.159958E+03,0.157038E+03,0.154119E+03,0.151199E+03,
-     $		0.148280E+03,0.145361E+03,0.142442E+03,0.139522E+03,
-     $		0.136603E+03,0.133685E+03,0.130766E+03,0.127847E+03,
-     $		0.124929E+03,0.122011E+03,0.119093E+03,0.116176E+03,
-     $		0.113259E+03,0.110342E+03,0.107427E+03,0.104512E+03,
-     $		0.101598E+03,0.986846E+02,0.957729E+02,0.928628E+02,
-     $		0.899544E+02,0.870483E+02,0.841447E+02,0.812442E+02,
-     $		0.783473E+02,0.754548E+02,0.725672E+02,0.696857E+02,
-     $		0.668113E+02,0.639501E+02,0.610889E+02,0.582440E+02,
-     $		0.554126E+02,0.525970E+02,0.497997E+02,0.470237E+02,
-     $		0.442725E+02,0.415499E+02,0.388604E+02,0.362088E+02,
-     $		0.336008E+02,0.310423E+02,0.285400E+02,0.261012E+02,
-     $		0.237336E+02,0.214456E+02,0.192455E+02,0.171422E+02,
-     $		0.151444E+02,0.132607E+02,0.114987E+02,0.986577E+01,
-     $		0.836753E+01,0.700825E+01,0.579023E+01,0.471361E+01,
-     $		0.377611E+01,0.297303E+01,0.229726E+01,0.173953E+01,
-     $		0.128880E+01,0.932689E+00,0.658122E+00,0.451909E+00,
-     $		0.301340E+00,0.194681E+00,0.121548E+00,0.731318E-01,
-     $		0.422708E-01,0.233904E-01,0.123427E-01,0.618431E-02,
-     $		0.292822E-02,0.130335E-02,0.542173E-03,0.209442E-03,
-     $		0.746097E-04,0.243219E-04,0.719480E-05,0.191364E-05,
-     $		0.453042E-06,0.944190E-07,0.171144E-07,0.266246E-08,
-     $		0.350347E-09,0.383777E-10,0.343902E-11,0.247332E-12/
-C     >> Au+Au at RHIC (gamma=108)
-      DATA y1/0.195994E+03,0.193074E+03,0.190155E+03,0.187235E+03,
-     &        0.184315E+03,0.181396E+03,0.178476E+03,0.175556E+03,
-     &	      0.172637E+03,0.169717E+03,0.166798E+03,0.163878E+03,
-     &	      0.160959E+03,0.158039E+03,0.155120E+03,0.152201E+03,
-     &        0.149281E+03,0.146362E+03,0.143443E+03,0.140523E+03,
-     &        0.137604E+03,0.134685E+03,0.131767E+03,0.128848E+03,
-     &	      0.125930E+03,0.123012E+03,0.120094E+03,0.117176E+03,
-     &	      0.114259E+03,0.111342E+03,0.108427E+03,0.105511E+03,
-     &	      0.102597E+03,0.996834E+02,0.967713E+02,0.938606E+02,
-     &	      0.909516E+02,0.880446E+02,0.851401E+02,0.822385E+02,
-     &	      0.793403E+02,0.764462E+02,0.735568E+02,0.706732E+02,
-     &	      0.677962E+02,0.649270E+02,0.620672E+02,0.592182E+02,
-     &	      0.563819E+02,0.535606E+02,0.507567E+02,0.479730E+02,
-     &	      0.452129E+02,0.424801E+02,0.397787E+02,0.371135E+02,
-     &	      0.344899E+02,0.319137E+02,0.293913E+02,0.269299E+02,
-     &	      0.245370E+02,0.222207E+02,0.199895E+02,0.178520E+02,
-     &	      0.158171E+02,0.138933E+02,0.120888E+02,0.104109E+02,
-     &	      0.886584E+01,0.745854E+01,0.619196E+01,0.506698E+01,
-     &	      0.408217E+01,0.323368E+01,0.251519E+01,0.191815E+01,
-     &	      0.143206E+01,0.104495E+01,0.743917E+00,0.515731E+00,
-     &        0.347461E+00,0.226988E+00,0.143433E+00,0.874303E-01,
-     &	      0.512547E-01,0.288009E-01,0.154544E-01,0.788624E-02,
-     &	      0.380938E-02,0.173298E-02,0.738319E-03,0.292768E-03,
-     &	      0.107321E-03,0.360990E-04,0.110513E-04,0.305186E-05,
-     &        0.752839E-06,0.164125E-06,0.312528E-07,0.513166E-08/
-C     >> I+I at RHIC
-      DATA y2/0.906037E+02,0.892896E+02,0.879755E+02,0.866614E+02,
-     &	      0.853473E+02,0.840333E+02,0.827192E+02,0.814051E+02,
-     &	      0.800910E+02,0.787770E+02,0.774629E+02,0.761488E+02,
-     &	      0.748348E+02,0.735207E+02,0.722067E+02,0.708927E+02,
-     &	      0.695787E+02,0.682647E+02,0.669507E+02,0.656368E+02,
-     $        0.643229E+02,0.630090E+02,0.616952E+02,0.603814E+02,
-     &	      0.590677E+02,0.577541E+02,0.564406E+02,0.551272E+02,
-     &	      0.538139E+02,0.525008E+02,0.511879E+02,0.498753E+02,
-     &	      0.485629E+02,0.472508E+02,0.459391E+02,0.446280E+02,
-     &        0.433173E+02,0.420074E+02,0.406983E+02,0.393901E+02,
-     $        0.380830E+02,0.367773E+02,0.354732E+02,0.341709E+02,
-     &        0.328709E+02,0.315736E+02,0.302793E+02,0.289887E+02,
-     &        0.277023E+02,0.264211E+02,0.251457E+02,0.238772E+02,
-     &        0.226168E+02,0.213658E+02,0.201257E+02,0.188982E+02,
-     &	      0.176852E+02,0.164890E+02,0.153119E+02,0.141567E+02,
-     $        0.130263E+02,0.119240E+02,0.108531E+02,0.981744E+01,
-     &        0.882076E+01,0.786701E+01,0.696012E+01,0.610393E+01,
-     &        0.530204E+01,0.455768E+01,0.387356E+01,0.325170E+01,
-     &	      0.269328E+01,0.219852E+01,0.176656E+01,0.139546E+01,
-     &	      0.108220E+01,0.822748E+00,0.612255E+00,0.445242E+00,
-     $        0.315865E+00,0.218194E+00,0.146467E+00,0.953320E-01,
-     &	      0.600196E-01,0.364541E-01,0.212969E-01,0.119283E-01,
-     &	      0.638188E-02,0.324847E-02,0.156614E-02,0.711660E-03,
-     &        0.303151E-03,0.120344E-03,0.442345E-04,0.149487E-04,
-     &        0.460906E-05,0.128570E-05,0.321528E-06,0.713698E-07/
-C     >> Si+Si at RHIC
-      DATA y4/0.696162E+01,0.686993E+01,0.677824E+01,0.668655E+01,
-     &        0.659486E+01,0.650317E+01,0.641147E+01,0.631978E+01,
-     &	      0.622809E+01,0.613640E+01,0.604471E+01,0.595302E+01,
-     &        0.586133E+01,0.576964E+01,0.567794E+01,0.558625E+01,
-     &	      0.549456E+01,0.540287E+01,0.531118E+01,0.521950E+01,
-     $        0.512781E+01,0.503612E+01,0.494443E+01,0.485275E+01,
-     &	      0.476106E+01,0.466938E+01,0.457770E+01,0.448602E+01,
-     &	      0.439435E+01,0.430268E+01,0.421101E+01,0.411934E+01,
-     &	      0.402769E+01,0.393604E+01,0.384439E+01,0.375276E+01,
-     &        0.366114E+01,0.356953E+01,0.347794E+01,0.338637E+01,
-     $        0.329483E+01,0.320331E+01,0.311182E+01,0.302038E+01,
-     &        0.292898E+01,0.283765E+01,0.274638E+01,0.265519E+01,
-     &        0.256409E+01,0.247311E+01,0.238227E+01,0.229158E+01,
-     &        0.220108E+01,0.211080E+01,0.202078E+01,0.193107E+01,
-     &        0.184171E+01,0.175278E+01,0.166433E+01,0.157646E+01,
-     $        0.148925E+01,0.140282E+01,0.131728E+01,0.123277E+01,
-     &        0.114944E+01,0.106747E+01,0.987034E+00,0.908354E+00,
-     &        0.831648E+00,0.757159E+00,0.685139E+00,0.615855E+00,
-     &	      0.549577E+00,0.486575E+00,0.427111E+00,0.371430E+00,
-     &        0.319748E+00,0.272248E+00,0.229060E+00,0.190257E+00,
-     $        0.155848E+00,0.125766E+00,0.998721E-01,0.779544E-01,
-     &        0.597351E-01,0.448817E-01,0.330217E-01,0.237594E-01,
-     &        0.166943E-01,0.114380E-01,0.762970E-02,0.494656E-02,
-     &        0.311138E-02,0.189499E-02,0.111518E-02,0.632668E-03,
-     &        0.345174E-03,0.180634E-03,0.904207E-04,0.431712E-04/
-C     >> Pb+Pb at LHC
-      DATA z1/0.418615E+03,0.413399E+03,0.408182E+03,0.402965E+03,
-     &        0.397749E+03,0.392532E+03,0.387316E+03,0.382099E+03,
-     &	      0.376882E+03,0.371666E+03,0.366449E+03,0.361233E+03,
-     &	      0.356016E+03,0.350799E+03,0.345583E+03,0.340366E+03,
-     &	      0.335149E+03,0.329933E+03,0.324716E+03,0.319499E+03,
-     $        0.314283E+03,0.309066E+03,0.303850E+03,0.298633E+03,
-     &        0.293416E+03,0.288200E+03,0.282983E+03,0.277766E+03,
-     &	      0.272550E+03,0.267333E+03,0.262117E+03,0.256900E+03,
-     &	      0.251683E+03,0.246467E+03,0.241250E+03,0.236033E+03,
-     &        0.230817E+03,0.225600E+03,0.220384E+03,0.215167E+03,
-     $        0.209950E+03,0.204734E+03,0.199517E+03,0.194301E+03,
-     &        0.189084E+03,0.183868E+03,0.178651E+03,0.173435E+03,
-     &        0.168218E+03,0.163002E+03,0.157786E+03,0.152570E+03,
-     &	      0.147355E+03,0.142140E+03,0.136925E+03,0.131711E+03,
-     &        0.126498E+03,0.121286E+03,0.116076E+03,0.110868E+03,
-     $        0.105663E+03,0.100462E+03,0.952658E+02,0.900771E+02,
-     &        0.848978E+02,0.797309E+02,0.745803E+02,0.694512E+02,
-     &	      0.643503E+02,0.592860E+02,0.542694E+02,0.493140E+02,
-     &	      0.444370E+02,0.396595E+02,0.350068E+02,0.305091E+02,
-     &	      0.262014E+02,0.221228E+02,0.183153E+02,0.148219E+02,
-     $        0.116833E+02,0.893374E+01,0.659632E+01,0.467860E+01,
-     &	      0.316926E+01,0.203720E+01,0.123378E+01,0.698435E+00,
-     &	      0.366275E+00,0.176129E+00,0.767342E-01,0.298611E-01,
-     &	      0.102047E-01,0.300097E-02,0.741384E-03,0.149568E-03,
-     &	      0.238359E-04,0.288660E-05,0.253909E-06,0.153891E-07/
-C     >> Ca+Ca at LHC
-      DATA z2/0.263310E+02,0.260207E+02,0.257104E+02,0.254001E+02,
-     &        0.250897E+02,0.247794E+02,0.244691E+02,0.241587E+02,
-     &        0.238484E+02,0.235381E+02,0.232278E+02,0.229174E+02,
-     &        0.226071E+02,0.222968E+02,0.219864E+02,0.216761E+02,
-     &        0.213658E+02,0.210555E+02,0.207451E+02,0.204348E+02,
-     $        0.201245E+02,0.198141E+02,0.195038E+02,0.191935E+02,
-     &	      0.188832E+02,0.185728E+02,0.182625E+02,0.179522E+02,
-     &	      0.176418E+02,0.173315E+02,0.170212E+02,0.167109E+02,
-     &	      0.164005E+02,0.160902E+02,0.157799E+02,0.154695E+02,
-     &	      0.151592E+02,0.148489E+02,0.145386E+02,0.142282E+02,
-     $        0.139179E+02,0.136076E+02,0.132972E+02,0.129869E+02,
-     &	      0.126766E+02,0.123663E+02,0.120559E+02,0.117456E+02,
-     &	      0.114353E+02,0.111250E+02,0.108146E+02,0.105043E+02,
-     &	      0.101940E+02,0.988370E+01,0.957340E+01,0.926311E+01,
-     &	      0.895283E+01,0.864257E+01,0.833234E+01,0.802214E+01,
-     $        0.771199E+01,0.740190E+01,0.709189E+01,0.678199E+01,
-     &	      0.647225E+01,0.616270E+01,0.585342E+01,0.554449E+01,
-     &	      0.523604E+01,0.492822E+01,0.462122E+01,0.431532E+01,
-     &	      0.401085E+01,0.370825E+01,0.340809E+01,0.311107E+01,
-     &	      0.281810E+01,0.253029E+01,0.224898E+01,0.197580E+01,
-     $        0.171267E+01,0.146176E+01,0.122548E+01,0.100636E+01,
-     &	      0.806902E+00,0.629388E+00,0.475600E+00,0.346549E+00,
-     &	      0.242234E+00,0.161500E+00,0.102064E+00,0.607271E-01,
-     &	      0.337664E-01,0.174029E-01,0.823740E-02,0.354321E-02,
-     &        0.136803E-02,0.467349E-03,0.138922E-03,0.352471E-04/
 
       Icheck=Icheck+1
-      IF(Icheck.gt.1)GOTO 777
-     
-C     >> Read photon flux at first call
+      IF(Icheck.gt.1)GOTO 1000
 
-C     >> lnE1 <-> ln(Egamma) for the 0th bin
-C     >> lnE2 <-> ln(Egamma) for the last bin
-      IF( Z.eq.82 )THEN
-C       >> Pb at LHC
-        lnE1= -10.30
-        lnE2=   6.40
-        dlnE=(lnE2-lnE1)/100.
-        DO I=1,100
-          dide(I)=z1(I)
-        ENDDO
-      ELSEIF( Z.eq.79 )THEN
-C       >> Au at RHIC
-        lnE1 = -6.85
-        lnE2 =  3.22
-        dlnE=(lnE2-lnE1)/100.
-	if (gamma_em.eq.70.0) then
-          DO I=1,100
-            dide(I)=y0(I)
-          ENDDO
-	elseif (gamma_em.eq.108.4) then
-          DO I=1,100
-            dide(I)=y1(I)
-          ENDDO
-	else
-	  write(*,*) "No flux parametrization for this value of gamma.
-     $    Using parametrization for gamma = 108.4."
-          DO I=1,100
-            dide(I)=y1(I)
-          ENDDO
-	endif
-      ELSEIF( Z.eq.53 )THEN
-C       >> I at RHIC
-        lnE1 = -6.85
-        lnE2 =  3.22
-        dlnE=(lnE2-lnE1)/100.
-	write(*,*) "Using flux parametrization for gamma = 108.4."
-        DO I=1,100
-          dide(I)=y2(I)
-        ENDDO
-      ELSEIF( Z.eq.20 )THEN
-C       >> Ca at LHC
-        lnE1= -10.30
-        lnE2=   6.40
-        dlnE=(lnE2-lnE1)/100.
-        DO I=1,100
-          dide(I)=z2(I)
-        ENDDO
-      ELSEIF( Z.eq.14 )THEN
-C       >> Si at RHIC
-        lnE1 = -6.85
-        lnE2 =  3.22
-        dlnE=(lnE2-lnE1)/100.
-	write(*,*) "Using flux parametrization for gamma = 108.4."
-        DO I=1,100
-          dide(I)=y4(I)
-        ENDDO
-      ELSE
-        WRITE(*,*) 'This Z was not defined! Z=',Z
-        STOP 99
-      ENDIF
+C   first call - calculate photon flux
 
-C     >> Go directly here if photon-flux has already been defined
- 777  CONTINUE
-  
-      IF ((DLOG(Egamma).lt.(lnE1+dlnE)) .or. (DLOG(Egamma).gt.lnE2))THEN
-        WRITE(*,*) 'ERROR: Egamma outside defined range. Egamma=',Egamma
-        flux=0.0
-      ELSE
-C       >> Egamma between Ilt and Igt
-        Ilt = INT( (DLOG(Egamma)-lnE1)/dlnE )
-        Igt = Ilt+1
+C  collect number of integration steps here, in one place
+
+          nbstep=400
+          nrstep=60
+          nphistep=40
+
+C  following previous choices, take Emin=10 keV at LHC, Emin = 1 MeV at RHIC
+
+        Emin=1.E-5
+        if (gamma_em .lt. 500) Emin=1.E-3
+
+C  maximum energy is 10 times the cutoff
+C  25 GeV for gold at RHIC, 650 GeV for lead at LHC
+
+        Emax=10.*hbarc*gamma_em/Rnuc
+
+C     >> lnEmin <-> ln(Egamma) for the 0th bin
+C     >> lnEmax <-> ln(Egamma) for the last bin
+
+        lnEmin=DLOG(Emin)
+        lnEmax=DLOG(Emax)
+        dlnE=(lnEmax-lnEmin)/100.
+
+        rZ=float(Z)
+
+        write(6,5)Emin,Emax
+ 5      format(' flux.f.  Calculating flux for photon energies', 
+     &'from E=',E11.3,' to ',E11.3,'.')
+
+C  100 steps in energy
+
+        nstep=100
+
+        stepmult= exp(log(Emax/Emin)/float(nstep))
+        energy=Emin
+
+        do 100 j=1,nstep
+           energy=energy*stepmult
+
+C  integrate flux over 2R_A < b < 2R_A+ 6* gamma hbar/energy 
+C  use exponential steps
+
+          bmin=2.*Rnuc
+          bmax=bmin + 6.*hbarc*gamma_em/energy
+
+          bmult=exp(log(bmax/bmin)/float(nbstep))
+          biter=bmin
+          integratedflux=0.
+
+          do 90 jb=1,nbstep
+
+             bold=biter
+             biter=biter*bmult
+
+C  for b>10R_A, use a single point evaluation, at the center of the nucleus
+C  for b<10R_A, integrate over nuclear surface and average
+
+             if (biter .gt. 10.*Rnuc) THEN
+
+C  Eq. 41 of Vidovic, Greiner and Soff, Phys. Rev. C47, 2308 (1993), among other places
+C  this is the flux per unit area
+
+                Xvar=energy*biter/(hbarc*gamma_em)
+                fluxelement  = (rZ*rZ*alpha*energy)*(Dbesk1(Xvar))**2/
+     *((pi*gamma_em*hbarc)**2)
+
+             ELSE
+
+C integrate over nuclear surface. n.b. this assumes total shadowing - 
+C treat photons hitting the nucleus the same no matter where they strike
+
+                fluxelement=0.
+                rmax=Rnuc
+                riter=0.
+                deltar=rmax/float(nrstep)
+                do 80 jr=1,nrstep
+                   riter=riter+deltar
+
+C use symmetry;  only integrate from 0 to pi (half circle)
+
+                   deltaphi=pi/float(nphistep)
+                   phiiter=0.
+
+                   do 70 jphi=1,nphistep
+                      phiiter=phiiter+deltaphi
+                   
+C  dist is the distance from the center of the emitting nucleus to the point in question
+
+                      dist=sqrt((biter+riter*cos(phiiter))**2+
+     *(riter*sin(phiiter))**2)
+
+                      Xvar=energy*dist/(hbarc*gamma_em)
+
+                      flux = (rZ*rZ*alpha*energy)*(Dbesk1(Xvar))**2/
+     *((pi*gamma_em*hbarc)**2)
+                      
+C  The surface  element is 2.* delta phi* r * delta r
+C  The '2' is because the phi integral only goes from 0 to pi
+
+         fluxelement=fluxelement+flux*2.*deltaphi*riter*deltar
+
+C  end phi and r integrations
+                     
+ 70                continue
+ 80             continue
+
+C  average fluxelement over the nuclear surface
+
+                fluxelement=fluxelement/(pi*Rnuc**2)
+
+C                 write(6,85)biter,fluxelement,Xvar
+C  85    format(' b<2R_A = ',F7.3,' fluxelement= ',E11.3,' Xvar= ',E11.3)
+
+             ENDIF
+
+C  multiply by volume element to get total flux in the volume element
+
+             fluxelement=fluxelement*2.*pi*biter*(biter-bold)
+             integratedflux=integratedflux+fluxelement
+
+ 90          continue
+C  end energy integration
+
+             dide(j)=integratedflux*energy
+
+ 100         continue
+                   
+C  for 2nd and subsequent calls, use lookup table immediately
+
+ 1000   lEgamma=DLOG(Egamma)
+        IF (lEgamma.lt.(lnEmin+dlnE).or. lEgamma .gt.lnEmax)THEN
+            WRITE(6,1005)Egamma
+ 1005   FORMAT(' ERROR: Egamma outside defined range. Egamma= ',E11.3)
+            flux=0.0
+        ELSE
+C       >> Egamma between Ilt and Ilt+1
+
+            Ilt = INT((lEgamma-lnEmin)/dlnE)
+
 C       >> ln(Egamma) for first point
-        lnElt = lnE1 + Ilt*dlnE
+
+            lnElt = lnEmin + Ilt*dlnE
+
 C       >> Interpolate
-        flux = dide(Ilt) + ((DLOG(Egamma)-lnElt)/dlnE)*(dide(Igt)-
-     &		dide(Ilt))
-        flux = flux/Egamma
+
+            flux = dide(Ilt) + ((lEgamma-lnElt)/dlnE)*
+     &(dide(Ilt+1)- dide(Ilt))
+            flux = flux/Egamma
       ENDIF
-C
       RETURN
       END
+
