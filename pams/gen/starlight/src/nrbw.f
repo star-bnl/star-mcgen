@@ -12,13 +12,14 @@ C     term. C is an overall normalization.
       include 'inputp.inc'
       DOUBLE PRECISION W,ANORM,B,C
       DOUBLE PRECISION ppi,ppi0,GammaPrim,rat
-      DOUBLE PRECISION aa,bb,cc,dd
+      DOUBLE PRECISION aa,bb,cc
 
 C  width depends on energy - Jackson Eq. A.2
 
 C  if below threshold, then return 0.  Added 5/3/2001 SRK
+C  0.5% extra added for safety margin
       
-      if (W .LT. 2.*mpi) THEN
+      if (W .LT. 2.01*mpi) THEN
          nrbw=0.
          return
       ENDIF
@@ -42,13 +43,20 @@ C handle phi-->K+K- properly
       aa=ANORM*DSQRT(GammaPrim*mass*W)
       bb=W*W-mass*mass
       cc=mass*GammaPrim
-      dd=B
-C      nrbw = ( (aa*bb)/(bb*bb+cc*cc) + dd )**2
-C      nrbw = nrbw + ( (aa*cc)/(bb*bb+cc*cc) )**2
-C  Put in a simple, no-background BW, following J. Breitweg et al.
-C  Eq. 15 of Eur. Phys. J. C2, 247 (1998).  SRK 11/10/2000
 
-      nrbw = (ANORM*mass*GammaPrim/(bb*bb+cc*cc))**2
+C  real part^2
+
+       nrbw = ( (aa*bb)/(bb*bb+cc*cc) + B)**2
+
+C imaginary part^2
+
+       nrbw = nrbw + ( (aa*cc)/(bb*bb+cc*cc) )**2
+
+
+C  Alternative, a simple, no-background BW, following J. Breitweg et al.
+C  Eq. 15 of Eur. Phys. J. C2, 247 (1998).  SRK 11/10/2000
+C      nrbw = (ANORM*mass*GammaPrim/(bb*bb+cc*cc))**2
+
       nrbw = C*nrbw
 
       RETURN
