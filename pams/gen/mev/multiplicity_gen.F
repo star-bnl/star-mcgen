@@ -1,6 +1,8 @@
       Subroutine track_gen(gpid,N,model_type,T,sigma,expvel,
-     1     pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
-     2     phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
+     1     reac_plane_cntrl,PSIr,Vn,
+     2     pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
+     3     y_cut_min,y_cut_max,
+     4     phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
       implicit none
 #include "multi_gen.inc"
       Common/track/ pout(npid,3,factorial_max)
@@ -12,9 +14,12 @@
       real*4 eta_cut_max,phi_cut_min,phi_cut_max,mass
       real*4 dpt,deta,facmax,pt,eta,y,rapidity,dNdpty,dNdp
       real*4 pt_trial,eta_trial,y_trial,rndm,rad,phi
+      real*4 y_cut_min,y_cut_max,pseudorapidity
+      real*4 PSIr,Vn(nflowterms),dphi,facmax_phi,dNdphi
 
       integer gpid,N,model_type,npt,neta,n_scan_pts,ipt,ieta
       integer Track_count,i,j,pid,status
+      integer reac_plane_cntrl,iphi,phi_flag
 
       do i = 1,factorial_max
       do j = 1,3
@@ -54,22 +59,75 @@ CCC   be aborted in this instance.
          status = 1
       end if
 
+CCC   Determine the maximum value of the azimuthal model distribution
+CCC   in phi, for case with reaction plane dependence and anisotropic flow
+
+      if(reac_plane_cntrl .gt. 1) then
+         dphi = (phi_cut_max - phi_cut_min)/float(npt-1)
+         facmax_phi = 0.0
+         phi_flag = 0
+         do iphi  = 1,npt
+            phi = phi_cut_min + dphi*float(iphi - 1)
+            dNdphi = 1.0
+            do i = 1,nflowterms
+               dNdphi = dNdphi + 2.0*Vn(i)*cosd(float(i)*(phi-PSIr))
+            end do
+            if(dNdphi.gt.facmax_phi) facmax_phi = dNdphi 
+            if(dNdphi .lt. 0.0) phi_flag = 1
+         end do
+CCC   Check facmax_phi; if 0, then event will be aborted.  Check
+CCC   dNdphi < 0, which will also cause the event to be aborted.
+         if(facmax_phi .eq. 0.0) then
+            status = -86
+            Return
+         else if (phi_flag .eq. 1) then
+            status = -86
+            Return
+         else
+            status = 1
+         end if
+      end if
+
 CCC Start Random Track Selection:
 
       Track_count = 0
 
+CCC   Determine phi angle:
+101   continue
+      if(reac_plane_cntrl .gt. 1) then
+         phi = rndm(-1)*(phi_cut_max - phi_cut_min)+phi_cut_min
+         dNdphi = 1.0
+         do i = 1,nflowterms
+            dNdphi = dNdphi + 2.0*Vn(i)*cosd(float(i)*(phi-PSIr))
+         end do
+         if(rndm(-1).gt.(dNdphi/facmax_phi)) then
+            go to 101
+         else
+            phi = phi/rad
+         end if
+      end if
+
 100   pt_trial = rndm(-1)*(pt_cut_max - pt_cut_min)+pt_cut_min
-      eta_trial=rndm(-1)*(eta_cut_max-eta_cut_min)+eta_cut_min
-      y_trial = rapidity(mass,pt_trial,eta_trial)
+      if(model_type.ge.1 .and. model_type.le.4) then
+         y_trial = rndm(-1)*(y_cut_max - y_cut_min)+y_cut_min
+         eta_trial = pseudorapidity(mass,pt_trial,y_trial)
+         if(eta_trial.lt.eta_cut_min .or. eta_trial.gt.eta_cut_max)
+     1      go to 100
+      else if (model_type.eq.5 .or. model_type.eq.6) then
+         eta_trial=rndm(-1)*(eta_cut_max-eta_cut_min)+eta_cut_min
+         y_trial = rapidity(mass,pt_trial,eta_trial)
+      end if
       dNdp = dNdpty(1.0,pt_trial,eta_trial,y_trial,mass,T,sigma,
      1       expvel,model_type,1,pid)/facmax 
       if(rndm(-1) .le. dNdp) then
          Track_count = Track_count + 1
-         phi = (rndm(-1)*(phi_cut_max - phi_cut_min) + 
-     1         phi_cut_min)/rad
+         if(reac_plane_cntrl .eq. 1) then
+            phi = (rndm(-1)*(phi_cut_max - phi_cut_min) + 
+     1            phi_cut_min)/rad
+         end if
          Call kinematics(mass,pt_trial,y_trial,phi,Track_count,pid)
          if(Track_count .lt. N) then
-            go to 100
+            go to 101
          else if(Track_count .ge. N) then
             Return
          end if
@@ -93,6 +151,37 @@ CCC Start Random Track Selection:
       end if
       E = sqrt(pt*pt + pz*pz + m*m)
       rapidity = 0.5*log((E+pz)/(E-pz))
+      Return
+      END
+
+      Real*4 Function pseudorapidity(m,pt,y)
+      implicit none
+
+CCC   This Function computes the pseudorapidty for a given mass, pt, y:
+
+      real*4 m,pt,y,mt,coshy,E,pzmag,pz,pmag,expR
+
+      if(y.eq.0.0) then
+         pseudorapidity = 0.0
+         Return
+      end if
+      mt = sqrt(m*m + pt*pt)
+      coshy = 0.5*(expR(y) + expR(-y))
+      E = mt*coshy
+      pzmag = sqrt(abs(E*E - mt*mt))
+      if(y.eq.0.0) then
+         pz = 0.0
+      else
+         pz = (y/abs(y))*pzmag
+      end if
+      pmag = sqrt(pt*pt + pz*pz)
+      if(pt.ne.0.0) then
+         pseudorapidity = 0.5*log((pmag+pz)/(pmag-pz))
+      else if (pt.eq.0.0) then
+         pseudorapidity = 86.0
+         write(8,10)
+10       Format(10x,'Function pseudorapidity called with pt=0')
+      end if
       Return
       END
 
