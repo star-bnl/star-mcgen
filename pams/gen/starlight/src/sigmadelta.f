@@ -20,8 +20,16 @@ CVM: multipy all farray() by f_max
 c     calculate the differential cross section and place in the sigma table
       do 300 i  = 1,numw
       do 400 j = 1, numy
+
+
+C  Changed '8' to '4' in the following equation, to fix the integration of
+C  a delta function. Now, it matches the standard literature (cf. Eq. 67 of
+C  G. Baur et al, Phys. Rep. 364, 359 (2002).  STAR Note 243 gives the 
+C  incorrect '4'
+
         sigma (i,j) = (spin*2.+1.)*
-     &   8*pi**2.*width/(mass**3.)*f_max*farray(i,j)*hbarc**2./100.
+     &   4*pi**2.*width/(mass**3.)*f_max*farray(i,j)*hbarc**2./100.
+
  400  continue
  300  continue
 
@@ -59,7 +67,7 @@ c       over just 1/2 of the rapidity range
  600    continue
       endif
 
-      print *,'the total crossection is:',sum
+      print *,'the total crossection is:',sum, ' barns.'
 
       return
       end
