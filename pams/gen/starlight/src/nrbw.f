@@ -14,16 +14,24 @@ C     term. C is an overall normalization.
       DOUBLE PRECISION ppi,ppi0,GammaPrim,rat
       DOUBLE PRECISION aa,bb,cc,dd
 
-
-
 C  width depends on energy - Jackson Eq. A.2
 
+C  if below threshold, then return 0.  Added 5/3/2001 SRK
+      
+      if (W .LT. 2.*mpi) THEN
+         nrbw=0.
+         return
+      ENDIF
       ppi=DSQRT( (W/2.)**2 - mpi*mpi )
       ppi0=0.358
 
 
 C handle phi-->K+K- properly
       if (ip .eq. 333) then
+         if (W .LT. 2.*mK) THEN
+            nrbw=0.
+            return
+         ENDIF
          ppi=DSQRT( (W/2.)**2- mK*mK)
          ppi0=DSQRT( (mass/2)**2-mK*mK)
       endif
