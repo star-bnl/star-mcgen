@@ -102,7 +102,7 @@ C
        end
       REAL FUNCTION RAN(IDUMMY)
 
- 100  RAN = RLU(IDUMMY)
+ 100  RAN = RNDM(IDUMMY)
       if(RAN.LE.0. .OR. RAN.GE.1.) GOTO 100
       
       RETURN

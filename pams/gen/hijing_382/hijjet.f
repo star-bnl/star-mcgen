@@ -1,5 +1,8 @@
-* $Id: hijjet.f,v 1.1 2003/01/15 18:00:42 longacre Exp $
+* $Id: hijjet.f,v 1.2 2003/04/21 16:55:47 longacre Exp $
 * $Log: hijjet.f,v $
+* Revision 1.2  2003/04/21 16:55:47  longacre
+* corrected random number seed input
+*
 * Revision 1.1  2003/01/15 18:00:42  longacre
 * tagging 382 as 382
 *
@@ -106,7 +109,7 @@ C
         DO ip = 1, NATT
         if(katt(ip,1).gt.90.and.katt(ip,1).lt.94) then 
         pt=sqrt(patt(ip,1)**2+patt(ip,2)**2)
-        if(pt.gt.1.0.or.iabs(katt(katt(ip,3),1)).eq.5) then
+        if(pt.gt.5.0.or.iabs(katt(katt(ip,3),1)).eq.5) then
         njets = njets +1
         if(iabs(katt(katt(ip,3),1)).eq.5) then
         njets = njets +1
@@ -334,7 +337,7 @@ CCCCC          WRITE(6,888) natt
         DO ip = 1, NATT
         if(katt(ip,1).gt.90.and.katt(ip,1).lt.94) then 
         pt=sqrt(patt(ip,1)**2+patt(ip,2)**2)
-        if(pt.gt.1.0) then
+        if(pt.gt.5.0) then
         njets = njets +1
         endif
         endif
