@@ -1461,14 +1461,6 @@ c-----------------------------------------------------------------------
      *,npjevt,ntgevt
       common /cptlu/nptlu
 
-c -- dhwi
-c put in call to zebra output
-
-      call astore_egz
-      return
-
-c -- dhwi
-
       ish0=ish
       ishs0=ishsub
       if(ishevt.ne.0.and.nrevt.ne.ishevt)ish=0
@@ -1476,7 +1468,6 @@ c -- dhwi
       if(ishsub/100.eq.8)ish=mod(ishsub,100)
       if(ish.eq.14)call uttima('*** astore *** ')
       if(ish.eq.17)write(ifch,*)' '
-      if(ish.eq.17)write(ifch,*)'astore (entry)'
       if(ichoic.eq.4.or.ichoic.eq.5)goto1000
       if(nevt.ne.1)goto1000
       nptlu=max0(nptl,nptlu)
@@ -1562,8 +1553,6 @@ c     ---------------
       call uttimx(timaa)
       if(isup.ne.1.and.mod(nrevt,modsho).eq.0)
      *write(ifmt,*)nrevt,timaa
-      if(ish.eq.14)call uttima('    astore f   ')
-      if(ish.eq.17)write(ifch,*)'astore (exit)'
       ish=ish0
       ishsub=ishs0
       return
@@ -1583,15 +1572,6 @@ c-----------------------------------------------------------------------
      *,inoiac,ilamas
       common/cifipr/ifipr /cptlu/nptlu
       character dcn*3
-c MAB
-      integer istat, egzend
-c MAB
-
-c>>>>>dhwi + MAB
-c>>>>>ensure clean ending of zebra file
-      istat=egzend(0)
-c>>>>>dhwi + MAB
-
       if(ish.eq.14)call uttima('*** atermi *** ')
       call veanly
       if(ichoic.eq.4.or.ichoic.eq.5)stop

@@ -1,5 +1,8 @@
 * Id: venus.F, v 1.1 1998/04/02 11:10:40 longacre Exp $
 *$Log: venus.F,v $
+*Revision 1.2  1998/04/20 21:01:36  longacre
+*getting ZEBRA out
+*
 *Revision 1.1  1998/04/16 17:26:44  longacre
 *checking in new venus staf module
 *
@@ -32,7 +35,6 @@ c
 c
 c MAB
 
-      character*4 chfram
       data scfermi/0.100E-12/
       IF(IFIRST.EQ.0) THEN
 CCCCC STRATOS
