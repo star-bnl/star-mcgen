@@ -488,6 +488,7 @@ C...Purpose: to set values of commonblock variables.
      &'PMAS','PARF','VCKM','MDCY','MDME','BRAT','KFDP','CHAF'/  
       DATA CHALP/'abcdefghijklmnopqrstuvwxyz',  
      &'ABCDEFGHIJKLMNOPQRSTUVWXYZ'/ 
+      CHARACTER*1 CEQ/'='/
     
 C...Length of character variable. Subdivide it into instructions.   
       IF(MSTU(12).GE.1) CALL LULIST(0)  
@@ -511,7 +512,7 @@ C...Length of character variable. Subdivide it into instructions.
 C...Identify commonblock variable.  
       LNAM=1    
   140 LNAM=LNAM+1   
-      IF(CHBIT(LNAM:LNAM).NE.'('.AND.CHBIT(LNAM:LNAM).NE.'='.AND.   
+      IF(CHBIT(LNAM:LNAM).NE.'('.AND.CHBIT(LNAM:LNAM).NE.CEQ.AND.   
      &LNAM.LE.4) GOTO 140   
       CHNAM=CHBIT(1:LNAM-1)//' '    
       DO 150 LCOM=1,LNAM-1  
@@ -560,7 +561,7 @@ C...Identify any indices.
     
 C...Check that indices allowed and save old value.  
       IERR=1    
-      IF(CHBIT(LNAM:LNAM).NE.'=') GOTO 190  
+      IF(CHBIT(LNAM:LNAM).NE.CEQ) GOTO 190  
       IF(IVAR.EQ.1) THEN    
         IF(I.NE.0.OR.J.NE.0) GOTO 190   
         IOLD=N  
