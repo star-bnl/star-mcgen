@@ -1,5 +1,8 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
+*Revision 1.5  1998/04/03 20:14:32  longacre
+*change how tells too many particles
+*
 *Revision 1.4  1998/04/03 18:58:50  longacre
 *change order of ifirst in headpss.inc
 *
@@ -871,7 +874,12 @@ CCC   random track list:
 
          if(event_abort.eq.1 .and. status_abort.eq.1) then
 CCC Event Header Output:
-           IF(total_mult.GT.par_h.maxlen) STOP
+           IF(total_mult.GT.par_h.maxlen) THEN
+           write(8,781)
+781        FORMAT('total_mult.GT.par_h.maxlen')
+           mevsim  = STAFCV_BAD
+           return
+           ENDIF
            write(8,213) (gpid(pid),pid = 1,n_pid_type)
            write(8,231) (mult_event(pid),pid = 1,n_pid_type)
            if(model_type .le. 4) then
