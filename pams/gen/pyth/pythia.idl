@@ -1,0 +1,15 @@
+/*    $Id: pythia.idl,v 1.1 1998/02/10 15:13:49 fisyak Exp $
+      Generate one pythia event
+      $Log: pythia.idl,v $
+      Revision 1.1  1998/02/10 15:13:49  fisyak
+      Add interface with Staf
+
+*/
+#include "PAM.idl"
+#include "particle.idl"
+ 
+interface pythia : amiModule{
+        STAFCV_T call
+                ( out    particle par
+                );
+};
