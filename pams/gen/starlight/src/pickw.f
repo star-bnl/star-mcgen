@@ -7,9 +7,9 @@ c     This function picks a w for the 2-photon calculation.
       include 'Ftable.inc'
       include 'sig.inc'
 
-      real sigofw(1000),sgfint(1000),ivalw,remainarea
+      real sigofw(1000),sgfint(1000),remainarea
       real remainw,w,sgf,signorm,x,a,b,c,ran
-      integer i,j
+      integer i,j, ivalw
 
 c     DEAL WITH THE DELTA FUNCTION TYPE SIGMA CASE
       if (wdelta.ne.0.) then

@@ -13,6 +13,7 @@ c     See starlight.doc for an explanation of input parameters
       read (15,*) A
       read (15,*) gamma_em
       read (15,*) wmax
+      read (15,*) Wmin
       read (15,*) numw
       read (15,*) ymax
       read (15,*) numy

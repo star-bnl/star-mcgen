@@ -1,7 +1,7 @@
 C     This routine decays a particle into two particles of mass mdec,
 c     taking spin into account
 
-      subroutine twodecay (ipid,E,px0,py0,pz0,mdec,px1,py1,pz1,E1,
+      subroutine twodecay (ipid,W,px0,py0,pz0,mdec,px1,py1,pz1,E1,
      &	px2,py2,pz2,E2,iFbadevent)
 
 	implicit NONE
@@ -10,7 +10,7 @@ c     taking spin into account
 	include 'global.inc'
 	include 'inputp.inc'
 	include 'tables.inc'
-	real mdec,px0,py0,pz0,px1,py1,pz1,px2,py2,pz2,ran,E
+	real mdec,px0,py0,pz0,px1,py1,pz1,px2,py2,pz2,ran,W
 	real pmag, anglelep(0:100),ytest
 	real phi,theta,xtest,dndtheta,thetalep,Ecm,E1,E2
 	integer ipid,iFbadevent,i
@@ -46,12 +46,12 @@ c     calculate the magnitude of the momentum
 c	the rho pairs are produced at threshold
 	      pmag = sqrt(mass*mass/4. - mdec*mdec)
 	else
-	      IF(E.lt.2*mdec) then
-		WRITE(*,*) 'ERROR: E=',E
+	      IF(W.lt.2*mdec) then
+		WRITE(*,*) 'ERROR: W=',W
 		iFbadevent = 1
 	        return
 	      endif
-	      pmag = sqrt(E*E/4. - mdec*mdec)
+	      pmag = sqrt(W*W/4. - mdec*mdec)
 	endif
 
 c     pick an orientation, based on the spin
@@ -72,7 +72,7 @@ C     calculate a table of integrated angle values for leptons
         anglelep(0) = 0
         do 125 i = 1,100
           theta = pi * float(i) /100.
-          anglelep(i) = anglelep(i-1) + thetalep(E,theta)
+          anglelep(i) = anglelep(i-1) + thetalep(W,theta)*sin(theta)
  125    continue
         theta = 0.
 	xtest = ran(ISEED)
@@ -84,7 +84,9 @@ C     calculate a table of integrated angle values for leptons
       elseif(spin.eq.1.) then
  200	theta = pi*ran(ISEED)
 	xtest = ran(ISEED)
-	dndtheta = sin(theta)*cos(theta)*cos(theta)	
+c	Follow distribution for helicity +/- 1 
+c	Eq. 19 of J. Breitweg et al., Eur. Phys. J. C2, 247 (1998)
+	dndtheta = sin(theta)*(1-cos(theta)*cos(theta))	
 	if(xtest.gt.dndtheta) goto 200
 
       elseif(spin.eq.2.) then
@@ -105,12 +107,8 @@ c     compute unboosted momenta
       py2 = -py1
       pz2 = -pz1
 
-c	compute energies
-      if(ip.eq.33) then
-      	Ecm = sqrt(mass**2+px0**2+py0**2+pz0**2)
-      else
-	Ecm = sqrt(E**2 + px0**2 + py0**2 + pz0**2)
-      endif
+c      compute energies
+      Ecm = sqrt(W**2+px0**2+py0**2+pz0**2)
       E1 = sqrt(mdec**2+px1**2+py1**2+pz1**2)
       E2 = sqrt(mdec**2+px2**2+py2**2+pz2**2)
 

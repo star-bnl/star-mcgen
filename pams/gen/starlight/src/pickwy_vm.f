@@ -9,8 +9,8 @@ c     calculation.
       include 'Ftable.inc'
       include 'range.inc'
       include 'inputp.inc'
-      real W,Y,IW,IY,xw,xy,xtest,ran,dW,dY      
-      integer ISEED
+      real W,Y,xw,xy,xtest,ran,dW,dY      
+      integer ISEED,IW,IY
 
       dW = (Wtop-Wmin)/DFLOAT(numw)
       dY = (Ytop-Ymin)/DFLOAT(numy)

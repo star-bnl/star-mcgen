@@ -1,2 +1,2 @@
-	DOUBLE PRECISION Wtop,Wmin,Ytop,Ymin,Eth,EgMax
-	COMMON/range/Wtop,Wmin,Ytop,Ymin,Eth,EgMax
+	DOUBLE PRECISION Wtop,Ytop,Ymin,Eth,EgMax
+	COMMON/range/Wtop,Ytop,Ymin,Eth,EgMax

@@ -15,7 +15,14 @@ c     uses a binary seach assuming a monotonically increasing function
       real u0,u1,ran
       integer i
 
-      u0 =2.*(E*RNuc/(hbarc*gamma_em))**2
+c	Calculate p_perp following Eq. 2 of
+c	M. Vidovic et al., Phys. Rev. C47, 2308 (1993).
+c
+c	p_perp ~hbar/b ~E/gamma, NOT hbar/R_A
+c	changed 11/10/2000 SRK
+
+       u0 = 2.*(E/gamma_em)**4
+c      u0 =2.*(E*RNuc/(hbarc*gamma_em))**2
       u1 =2.*(1.5)**2
 c      call ranmar(ran,1)
       ranx = ran(iseed) * pperpdist(u0,u1)
@@ -35,7 +42,9 @@ c     ptest is a dimensionless pperp
         dp = dp /2.
  50   continue
 
-      pp = ptest * hbarc / RNuc
+c	scale by E/gamma, not hbar/R
+      pp = ptest*E/gamma_em
+c      pp = ptest * hbarc / RNuc
 
       return
       end

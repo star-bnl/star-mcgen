@@ -9,20 +9,33 @@ C     term. C is an overall normalization.
 
       include 'global.inc'
       include 'const.inc'
+      include 'inputp.inc'
       DOUBLE PRECISION W,ANORM,B,C
       DOUBLE PRECISION ppi,ppi0,GammaPrim,rat
       DOUBLE PRECISION aa,bb,cc,dd
 
+c	width depends on energy - Jackson Eq, A.2
       ppi=DSQRT( (W/2.)**2 - mpi*mpi )
       ppi0=0.358
+
+c	handle phi-K+K- properly
+      if (ip.eq.333) then
+      	ppi=DSQRT( (W/2.)**2 - mK*mK )
+     	ppi0=DSQRT( (mass/2)**2-mK*mK)
+      endif
+
       rat=ppi/ppi0
       GammaPrim=width*(mass/W)*rat*rat*rat
       aa=ANORM*DSQRT(GammaPrim*mass*W)
       bb=W*W-mass*mass
       cc=mass*GammaPrim
       dd=B
-      nrbw = ( (aa*bb)/(bb*bb+cc*cc) + dd )**2
-      nrbw = nrbw + ( (aa*cc)/(bb*bb+cc*cc) )**2
+c      nrbw = ( (aa*bb)/(bb*bb+cc*cc) + dd )**2
+c      nrbw = nrbw + ( (aa*cc)/(bb*bb+cc*cc) )**2
+c      nrbw = C*nrbw
+c 	put in a simple, no-background BW, follwoing J. Breitweg et al.
+c	Eq. 15 of Eur. Phys. J. C2, 247 (1998) SRK 11/10/2000
+      nrbw = (ANORM*mass*GammaPrim/(bb*bb+cc*cc))**2
       nrbw = C*nrbw
 
       RETURN

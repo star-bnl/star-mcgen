@@ -4,6 +4,7 @@ c     (Breit-Wigner) resonance.
 
       IMPLICIT NONE
 
+      include 'inputp.inc'
       include 'global.inc'
       include 'const.inc'
       include 'range.inc'

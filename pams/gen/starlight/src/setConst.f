@@ -9,6 +9,8 @@
 	include 'inputp.inc'
 	include 'bw.inc'
 
+	double precision Wmin_default
+
 c       define constants
 	hbarc = .197327053
       	pi = 3.141592654
@@ -20,34 +22,40 @@ c       define constants
       	mmu = 0.105658389
       	mtau = 1.777
         RNuc = 1.2 * A**(1.0/3.0)
-c	unless otherwise defined later, Wmin=0
-	Wmin = 0
+
+c	unless otherwise defined later, default is Wmin=0
+	Wmin_default = 0
 
 c       define masses, widths and spins
         if(ip.eq.11) then 
-	   mass = 0.00051099907
-	   Wmin = 0.2
+	   mass = mel
+c	Wmin is settable in  input file-- default is 0.01; Wmin up
+c	to 0.15 is safe for Summer 2000 triggering for e+e- pairs
+	   Wmin_default = 0.01
+	   spin = 0.5
 	endif
         if(ip.eq.13) then
-	   mass = 0.105658389
+	   mass = mmu
 	   spin = 0.5
+	   Wmin_default = 2.*mmu
 	endif
         if(ip.eq.15) then
 	   mass = 1.777
 	   spin = 0.5
+	   Wmin_default = 2*mtau
 	endif
         if(ip.eq.115) then
-	   mass = 1.3181
+	   mass = 1.318
            width =  1.04 * 10.0**(-6.)
 	   spin = 2.
 	endif
         if(ip.eq.221) then
-	   mass = 0.54745
+	   mass = 0.54730
            width = 1. * 10.0**(-6.)
 	   spin = 0.
 	endif
         if(ip.eq.225) then
-	   mass = 1.275
+	   mass = 1.2754
            width = 2.6 * 10.0**(-6.)
 	   spin = 2.
 	endif
@@ -82,7 +90,7 @@ c       define masses, widths and spins
            spin = 1.
            bslope=11.0
            f2o4pi=2.02
-           Wmin = 2.*mpi
+           Wmin_default = 2.*mpi
            Wtop = mass + 5.*width
       	endif
       	if (ip.eq.223) then
@@ -91,7 +99,7 @@ c       define masses, widths and spins
            spin = 1.
            bslope=10.0
            f2o4pi=23.13
-           Wmin = mass - 5.*width
+           Wmin _default= mass - 5.*width
            Wtop = mass + 5.*width
       	endif
       	if (ip.eq.333) then
@@ -100,7 +108,7 @@ c       define masses, widths and spins
            spin = 1.
            bslope=7.0
            f2o4pi=13.71
-           Wmin = 2.*mK
+           Wmin_default = 2.*mK
            Wtop = mass + 5.*width
       	endif
        if (ip.eq.443) then
@@ -109,9 +117,13 @@ c       define masses, widths and spins
            spin = 1.
            bslope=4.0
            f2o4pi=10.45
-           Wmin = mass - 5.*width
+           Wmin_default = mass - 5.*width
            Wtop = mass + 5.*width
       	endif
+
+c	set Wmin equal to the default values if Wmin is set 
+c	to -1 in the input file
+	if(Wmin.eq.-1) Wmin = Wmin_default
 
 c	set gamma_ta and gamma_em equal
 	gamma_ta = gamma_em

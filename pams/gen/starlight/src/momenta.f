@@ -17,10 +17,6 @@ c     E1 and E2 are for the two photons in the CM frame
 c	I think this way to calculate pz is wrong... it assumes pt=0
 c	I'll do it in the way I think is right after getting pt
 c      pz =  E1 - E2
-      signpx = ran(iseed)
-c      call ranmar(signpx,1)
-      if (signpx.gt.0.5) pz = - pz
-
 
 c     calculate px and py
 c	pp gives the pt of each photon; multiply by cos(phi) or sin(phi)
@@ -42,6 +38,9 @@ c       W is the mass of the produced particle (not necessarily
 c       on-mass-shell); now compute its energy and pz
         E  = SQRT(W**2+pt**2)*COSH(Y)
         pz = SQRT(W**2+pt**2)*SINH(Y)
+
+        signpx = ran(iseed)
+        if (signpx.gt.0.5) pz = - pz
 
       return
       end

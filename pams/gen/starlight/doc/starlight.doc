@@ -64,7 +64,12 @@ needs.
 	108.4 and 70 and an appropriate parametrization of the photon flux)
 4.0	// maximum value for w (w is the gamma-gamma center of mass
 	energy, w = 4(E1)(E2)
-50	// number of bins for w-integration (used in cross-section
+-1	// minimum value for w to be used the in cross-section calculation 
+	(a -1 here tells starlight to use the default values which are
+	specified in setConst.f; if you want to use something other
+	than the default, specify it here, and it will be used
+	instead of the default value)
+50 	// number of bins for w-integration (used in cross-section
 	calculation)
 3.0	// maximum value for y (y is the rapidity, y = 0.5 ln(E1/E2) )
 30	// number of bins for y-integration (used in cross-section 
