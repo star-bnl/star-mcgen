@@ -134,6 +134,10 @@ C  Breit-Wigner parameters, with direct pipi
            f2o4pi=23.13
            Wmin _default= mass - 5.*width
            Wtop = mass + 5.*width
+C artificial Breit-Wigner parameters
+	   ANORM=-2.75
+	   BNORM=0.
+	   C=1.0
       	endif
       	if (ip.eq.333) then
            width = 0.00443
@@ -143,6 +147,10 @@ C  Breit-Wigner parameters, with direct pipi
            f2o4pi=13.71
            Wmin_default = 2.*mK
            Wtop = mass + 5.*width
+C artificial Breit-Wigner parameters
+	   ANORM=-2.75
+	   BNORM=0.
+	   C=1.0
       	endif
        if (ip.eq.443) then
            mass = 3.09688
@@ -152,6 +160,10 @@ C  Breit-Wigner parameters, with direct pipi
            f2o4pi=10.45
            Wmin_default = mass - 5.*width
            Wtop = mass + 5.*width
+C artificial Breit-Wigner parameters
+	   ANORM=-2.75
+	   BNORM=0.
+	   C=1.0
       	endif
 
 c	set Wmin equal to the default values if Wmin is set 
