@@ -73,7 +73,9 @@ FSOURCES = starlight.f \
 	   jtog.f\
 	   twodecay.f\
 	   pickwy_vm.f\
-	   heptup.f
+	   heptup.f\
+	   photonbreakup.f\
+	   hadronbreakup.f
 #
 #      C Sources
 #
