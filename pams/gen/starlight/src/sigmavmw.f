@@ -7,8 +7,8 @@ c     (Breit-Wigner) resonance.
       include 'inputp.inc'
       include 'global.inc'
       include 'const.inc'
-      include 'range.inc'
       include 'bw.inc'
+      include 'D2LParam.inc'
       DOUBLE PRECISION formf,flux,sigmagp,nrbw,sigma_A
       DOUBLE PRECISION Av,Wgp,cs,cvma
       DOUBLE PRECISION W,dW,dY
@@ -29,17 +29,17 @@ C     >> DATA FOR GAUSS INTEGRATION
       NGAUSS = 5
 
       NW   = 100
-      dW   = (Wtop-Wmin)/DFLOAT(NW)
+      dW   = (Wmax-Wmin)/DFLOAT(NW)
 
       NY   =  1200
-      dY   = (Ytop-Ymin)/DFLOAT(NY)
+      dY   = (Ymax-Ymin)/DFLOAT(NY)
 
       if (BNORM .eq. 0.) THEN
          WRITE(*,*) 'Using Breit-Wigner Resonance Profile.'
       ELSE
          WRITE(*,*) ' Using Breit-Wigner plus direct pi+pi- profile.'
       ENDIF
-      WRITE(*,*) 'Integrating over W from',Wmin,' to',Wtop
+      WRITE(*,*) 'Integrating over W from',Wmin,' to',Wmax
 
       int=0.
       DO 200 I=0,NW-1
@@ -77,7 +77,7 @@ C         >> Calculate V.M.+Nucleus cross section
 C         >> Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
           Av=(alpha*cvma*cvma)/(16.*pi*f2o4pi*hbarc*hbarc)
 
-          tmin  = ( (W**2)/(4.*ega1*gamma_ta) )**2
+          tmin  = ( (W**2)/(4.*ega1*gamma_em) )**2
           tmax  = tmin + 0.25
           ax    = 0.5*(tmax-tmin)
           bx    = 0.5*(tmax+tmin)
@@ -107,7 +107,7 @@ C         >> Calculate V.M.+Nucleus cross section
 C         >> Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
           Av=(alpha*cvma*cvma)/(16.*pi*f2o4pi*hbarc*hbarc)
 
-          tmin   = ( (W**2)/(4.*ega12*gamma_ta) )**2
+          tmin   = ( (W**2)/(4.*ega12*gamma_em) )**2
           tmax   = tmin + 0.25
           ax     = 0.5*(tmax-tmin)
           bx     = 0.5*(tmax+tmin)
@@ -136,7 +136,7 @@ C         >> Calculate V.M.+Nucleus cross section
 C         >> Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
           Av=(alpha*cvma*cvma)/(16.*pi*f2o4pi*hbarc*hbarc)
 
-          tmin  = ( (W**2)/(4.*ega2*gamma_ta) )**2
+          tmin  = ( (W**2)/(4.*ega2*gamma_em) )**2
           tmax  = tmin + 0.25
           ax    = 0.5*(tmax-tmin)
           bx    = 0.5*(tmax+tmin)
