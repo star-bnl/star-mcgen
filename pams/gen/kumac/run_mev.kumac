@@ -2,8 +2,8 @@
 * *************** run_mev.kumac ******************
 * * contains kumacs for the pam: mev
 * **********************************************
-
+ macro run
  ami/module/call mevsim_
    /dui/evgen/particle
- 
+ return
 * *******************************************

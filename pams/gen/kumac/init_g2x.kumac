@@ -3,9 +3,12 @@
 * * contains kumacs for the pam: g2x
 * **********************************************
  
- 
+ macro init
+   
  cd /dui/evgen
  
   tdm/newtable particle particle 30000
 
  cd /dui
+ 
+ return
