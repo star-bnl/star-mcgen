@@ -2,7 +2,7 @@
 
 C     Relativistic Breit-Wigner according to J.D. Jackson,
 C     Nuovo Cimento 34, 6692 (1964), with nonresonant term. A is the strength
-C     of the resnonant term and b the strength of the non-resonant
+C     of the resonant term and b the strength of the non-resonant
 C     term. C is an overall normalization. 
 
       IMPLICIT NONE
