@@ -1,4 +1,0 @@
-+USE,INCL.
-+USE,TITLE,P=$VENFILE,T=EXE.
-+PAM,11,          T=C,T=A.venus307.car
-+QUIT.
