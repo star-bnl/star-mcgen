@@ -5,7 +5,7 @@ C  This routine gives the photon flux as a function of energy Egamma
 C  It works for arbitrary nuclei and gamma; the first time it is
 C  called, it calculates a lookup table which is used on 
 C  subsequent calls
-
+C  x
 C it returns dN_gamma/dE (dimensions 1/E), not dI/dE
 C energies are in GeV, in the lab frame
 
@@ -27,17 +27,12 @@ C  rewritten 4/25/2001 by SRK
 
       DOUBLE PRECISION Xvar,Dbesk1,Dbesk0
 
-      DOUBLE PRECISION binc,ra,phad,P1N,PXN,omax
-
       INTEGER Icheck,I,Ilt
 
       INTEGER ILOW,IHIGH
-      DOUBLE PRECISION deltab,brange,singlep,bin
+      DOUBLE PRECISION deltab,brange,bin,ra
 
-      DOUBLE PRECISION gammatarg,rhad,pnohad
-
-C  This holds the 'chosen' table
-      DOUBLE PRECISION prob(1070),b1(1070)
+      REAL PofB
 
       SAVE Icheck,dide,lnEMax,lnEmin,dlnE
 
@@ -51,131 +46,7 @@ C   first call?  - initialize - calculate photon flux
       rz=float(Z)
       ra=float(A)
 
-C  is nuclear breakup considered?
-
-      if (ibreakup .eq. 1) then
-         write(6,111)
- 111     format(' no nuclear breakup criteria')
-         goto 220
-      endif
-
-
-C  !!!!Breakup is considered!!!!!
-
-
-C  determine hadronic breakup probability from hadronbreakup.f
-C  determine EM breakup probability from photonbreakup.f
-
-C  start lookup table at bmin=2R_A; multiplicative steps of 1.1%
-      bmin=2.*RNuc
-      rmult=0.01
-      binc=10.**rmult
-
-C  If we allow for hadronic breakup, try a slightly smaller
-C  bmin
-
-      IF (ibreakup .NE. 1) bmin=0.95*bmin
-
-
-C  different photon energy cutoffs for RHIC & LHC
-C  in MeV
-
-      omax=1.E7
-      if (gamma_em .gt. 500) omax=1.E10
-
-
-C  find gamma in target system
-
-      gammatarg=2.*gamma_em*gamma_em-1.
-
-C  both nuclei break up (XnXn)
-
-           if (ibreakup .eq. 2) THEN
-              write(6,213)bmin
- 213      FORMAT(' Requiring both nuclei to break up (XnXn). ',
-     *'Coulomb Only. bmin= ',F7.3)
-
-              do 203 j=1,996
-                 bmin=bmin*binc
-                 call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
-                 call photonbreakup(P1N,PXN,bmin,rz,ra,gammatarg,omax)
-                 b1(j)=bmin
-                 pnohad=dexp(-rhad)
- 203             prob(j)= (1.-dexp(-PXN))*(1-dexp(-PXN))*pnohad
-              goto 220
-
-           ENDIF
-
-C ibreakup=3  --> both nuclear emit 1 neutron  (1n1n)
-
-           if (ibreakup .eq. 3) THEN
-
-              WRITE(6,214)bmin
- 214   FORMAT(' Req. both nuclei to emit 1 neutron (1n1n) . bmin = '
-     *,F7.3)
-
-              do 204 j=1,996
-                 bmin=bmin*binc
-                 call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
-                 call photonbreakup(P1N,PXN,bmin,rz,ra,gammatarg,omax)
-                 b1(j)=bmin
-                 pnohad=dexp(-rhad)                 
-
-C  old version
-C 204            prob(j)= (1.-exp(-P1N))*(1-exp(-P1N))*pnohad
-
-C following Eq. 7 of Baltz, Klein & Nystrand
-C the 1n excitation cannot be accompanied by Xn
-C 204             prob(j)=(exp(P1N-PXN)-exp(-PXN))**2*pnohad
-
-C  Version following the 'old' version of Joakim's Erice talk
-
-C  204             prob(j)=(dexp(P1N)-1.)*dexp(-2.*PXN)*pnohad
-
-C Following the 'new' version of Joakim's Erice talk
-
-  204             prob(j)=(P1N**2)*dexp(-2.*PXN)*pnohad
-
-                 goto 220
-           ENDIF
-
-C ibreakup=4 --> neither nucleus is excited
-
-           if (ibreakup .eq. 4) THEN
-              do 205 j=1,996
-                 bmin=bmin*binc
-                 call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
-                 call photonbreakup(P1N,PXN,bmin,rz,ra,gammatarg,omax)
-                 b1(j)=bmin
-                 pnohad=dexp(-rhad)
- 205             prob(j)= pnohad*dexp(-PXN)*dexp(-PXN)
-                WRITE(6,215)
- 215            FORMAT(' Requiring that neither nucleus break up.')
-                GOTO 220
-           ENDIF
-
-C  ibreakup=5 - no hadronic breakup
-
-           if (ibreakup .eq. 5) THEN
-
-              WRITE(6,224)bmin
- 224   FORMAT(' Requiring no hadronic breakup. bmin = '
-     *,F7.3)
-
-              do 225 j=1,996
-                 bmin=bmin*binc
-                 call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
-                 b1(j)=bmin
-                 pnohad=dexp(-rhad)                 
- 225             prob(j)=pnohad
-                goto 220
-           ENDIF
-
-           WRITE(6,227)ibreakup
- 227       FORMAT(' Ibreakup =',I7,'. Not understood')
-           STOP
-
- 220       continue
+C  Nuclear breakup is done by PofB.f
 
 C  collect number of integration steps here, in one place
 
@@ -324,18 +195,7 @@ C  multiply by volume element to get total flux in the volume element
 C  modulate by the probability of nuclear breakup as f(biter)
 
              IF (ibreakup .gt. 1) THEN
-
-C This was the original line - I don't think the 0.5 belongs here
-C since we do the linear interpolation
-C                 bin = 0.5 + DLOG(biter/10.)/(rmult*LOG(10.))
-                  bin = DLOG(biter/bmin)/(rmult*LOG(10.))
-                 ILOW = INT(bin)
-                 IHIGH = ILOW + 1
-                 brange = b1(IHIGH)-b1(ILOW)
-                 deltab = biter - b1(ILOW)        
-                 singlep = (1-(deltab/brange))*prob(ILOW) + 
-     &(deltab/brange)*prob(IHIGH)
-                 fluxelement=fluxelement*singlep
+                fluxelement=fluxelement*PofB(biter)
               ENDIF
 
              integratedflux=integratedflux+fluxelement
