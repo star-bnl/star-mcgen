@@ -129,7 +129,7 @@ C
 	SAVE  /HIJCRDN/
 	COMMON/HIMAIN1/NATT,EATT,JATT,NT,NP,N0,N01,N10,N11
 	SAVE  /HIMAIN1/
-	COMMON/HIMAIN2/KATT(130000,4),PATT(130000,4)
+	COMMON/HIMAIN2/KATT(100000,6),PATT(100000,5),VATT(100000,5)
 	SAVE  /HIMAIN2/
 	COMMON/HISTRNG/NFP(300,15),PP(300,15),NFT(300,15),PT(300,15)
 	SAVE  /HISTRNG/
@@ -156,7 +156,11 @@ C
 	SAVE  /LUJETS/
 	COMMON/LUDAT1/MSTU(200),PARU(200),MSTJ(200),PARJ(200)
 	SAVE  /LUDAT1/
-
+C
+        COMMON/NCOUNT/NATSUM
+        INTEGER NATSUM
+        SAVE /NCOUNT/
+C
 	BMAX=MIN(BMAX0,HIPR1(34)+HIPR1(35))
 	BMIN=MIN(BMIN0,BMAX)
 	IF(IHNT2(1).LE.1 .AND. IHNT2(3).LE.1) THEN
@@ -172,12 +176,12 @@ C
 	YP(3,1)=0.0
 	IF(IHNT2(1).LE.1) GO TO 14
 	DO 10 KP=1,IHNT2(1)
-5       R=HIRND(1)
-        X= RNDM(-1)
+5	R=HIRND(1)
+	X=RNDM(-1)
 	CX=2.0*X-1.0
 	SX=SQRT(1.0-CX*CX)
 C		********choose theta from uniform cos(theta) distr
-        PHI=RNDM(-1)*2.0*HIPR1(40)
+	PHI=RNDM(-1)*2.0*HIPR1(40)
 C		********choose phi form uniform phi distr 0 to 2*pi
 	YP(1,KP)=R*SX*COS(PHI)
 	YP(2,KP)=R*SX*SIN(PHI)
@@ -214,11 +218,11 @@ C******************************
 	IF(IHNT2(3).LE.1) GO TO 24
 	DO 20 KT=1,IHNT2(3)
 15	R=HIRND(2)
-        X=RNDM(-1)
+	X=RNDM(-1)
 	CX=2.0*X-1.0
 	SX=SQRT(1.0-CX*CX)
 C		********choose theta from uniform cos(theta) distr
-        PHI=RNDM(-1)*2.0*HIPR1(40)
+	PHI=RNDM(-1)*2.0*HIPR1(40)
 C		********chose phi form uniform phi distr 0 to 2*pi
 	YT(1,KT)=R*SX*COS(PHI)
 	YT(2,KT)=R*SX*SIN(PHI)
@@ -257,6 +261,7 @@ C********************
 	   STOP
 	ENDIF
 
+        NATSUM = 0
 	NATT=0
 	JATT=0
 	EATT=0.0
@@ -271,13 +276,14 @@ C			********Initialize for a new event
 	N11=0
 	NSG=0
 	NCOLT=0
-
+C        WRITE (6, *) 'NEW EVENT'
+C
 C****	BB IS THE ABSOLUTE VALUE OF IMPACT PARAMETER,BB**2 IS 
 C       RANDOMLY GENERATED AND ITS ORIENTATION IS RANDOMLY SET 
 C       BY THE ANGLE PHI  FOR EACH COLLISION.******************
 C
-        BB=SQRT(BMIN**2+RNDM(-1)*(BMAX**2-BMIN**2))
-        PHI=2.0*HIPR1(40)*RNDM(-1)
+	BB=SQRT(BMIN**2+RNDM(-1)*(BMAX**2-BMIN**2))
+	PHI=2.0*HIPR1(40)*RNDM(-1)
 	BBX=BB*COS(PHI)
 	BBY=BB*SIN(PHI)
 	HINT1(19)=BB
@@ -302,7 +308,7 @@ C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
 	   IF(IHPR2(14).EQ.0.OR.
      &          (IHNT2(1).EQ.1.AND.IHNT2(3).EQ.1)) THEN
 	      GS=1.0-EXP(-(HIPR1(30)+HINT1(18))*ROMG(R2)/HIPR1(31))
-              RANTOT=RNDM(-1)
+	      RANTOT=RNDM(-1)
 	      IF(RANTOT.GT.GS) GO TO 70
 	      GO TO 65
 	   ENDIF
@@ -311,7 +317,7 @@ C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
 	   R2=R2/GSTOT_0
 	   GS=1.0-EXP(-(HIPR1(30)+HINT1(18))/HIPR1(31)*ROMG(R2))
 	   GSTOT=2.0*(1.0-SQRT(1.0-GS))
-           RANTOT=RNDM(-1)*GSTOT_0
+	   RANTOT=RNDM(-1)*GSTOT_0
 	   IF(RANTOT.GT.GSTOT) GO TO 70
 	   IF(RANTOT.GT.GS) THEN
 	      CALL HIJCSC(JP,JT)
@@ -338,14 +344,14 @@ C                       interaction at all. For NN collision
 C                       repeat the event until interaction happens
 C
 	IF(IHPR2(3).NE.0) THEN
-           NHARD=1+INT(RNDM(-1)*(NCOLT-1)+0.5)
+	   NHARD=1+INT(RNDM(-1)*(NCOLT-1)+0.5)
 	   NHARD=MIN(NHARD,NCOLT)
 	   JPHARD=IPCOL(NHARD)
 	   JTHARD=ITCOL(NHARD)
 	ENDIF
 C
 	IF(IHPR2(9).EQ.1) THEN
-                NMINI=1+INT(RNDM(-1)*(NCOLT-1)+0.5)
+		NMINI=1+INT(RNDM(-1)*(NCOLT-1)+0.5)
 		NMINI=MIN(NMINI,NCOLT)
 		JPMINI=IPCOL(NMINI)
 		JTMINI=ITCOL(NMINI)
@@ -415,7 +421,7 @@ C				JP or JT
 C		********subtract the trigger jet from total number
 C			of jet production  to be done since it has
 C				already been ptoduced here
-           XR1=-ALOG(EXP(-TTRIG)+RNDM(-1)*(1.0-EXP(-TTRIG)))
+	   XR1=-ALOG(EXP(-TTRIG)+RNDM(-1)*(1.0-EXP(-TTRIG)))
  106	   NJET=NJET+1
 	   XR1=XR1-ALOG(RNDM(-1))
 	   IF(XR1.LT.TTRIG) GO TO 106
@@ -526,30 +532,32 @@ C
 			CALL HIBOOST
 		ENDIF
 C		******** boost back to lab frame(if it was in)
-C
+CCCCCCCCCCCCCCCC
 		N_STR=0
-		DO 340 I=N_ST,N
-		   IF(K(I,2).EQ.IDSTR) THEN
-		      N_STR=N_STR+1
-		      GO TO 340
-		   ENDIF
-		   K(I,4)=N_STR
+		DO 344 I=1,N
 		   NATT=NATT+1
 		   KATT(NATT,1)=K(I,2)
 		   KATT(NATT,2)=30
 		   KATT(NATT,4)=K(I,1)
-		   IF(K(I,3).EQ.0 .OR. K(K(I,3),2).EQ.IDSTR) THEN
-		      KATT(NATT,3)=0
-		   ELSE
-		      KATT(NATT,3)=NATT-I+K(I,3)+N_STR-K(K(I,3),4)
-		   ENDIF
+		   KATT(NATT,3)= NATSUM + K(I,3)
+                   KATT(NATT,5)= NATSUM + K(I,4)
+                   KATT(NATT,6)= NATSUM + K(I,5)		     
 C                  ****** identify the mother particle
-		   PATT(NATT,1)=P(I,1)
-		   PATT(NATT,2)=P(I,2)
-		   PATT(NATT,3)=P(I,3)
-		   PATT(NATT,4)=P(I,4)
+                   DO 341 J= 1,4
+		   PATT(NATT,J)=P(I,J)
+                   IF(P(I,5) .GT. 0) THEN
+                   VATT(NATT,J)=V(I,J) + V(I,5)*P(I,J)/P(I,5)
+                   ELSE
+                   VATT(NATT,J)=0.
+                   ENDIF
+ 341            CONTINUE
+                   PATT(NATT,5)= P(I,5)
+                   VATT(NATT,5)= V(I,5)                      
 		   EATT=EATT+P(I,4)
-340	   CONTINUE
+ 344            CONTINUE
+                   NATSUM = NATSUM + N
+C                 WRITE (6, *) 'FIRST','   NATSUM =',NATSUM, '   N =', N
+ 340             CONTINUE
 C			********fragment the sea quark strings
 C
 	   DO 360 ISG=1,NSG
@@ -582,28 +590,30 @@ C
 C		******** boost back to lab frame(if it was in)
 C
 		N_STR=0
-		DO 360 I=N_ST,N
-		   IF(K(I,2).EQ.IDSTR) THEN
-		      N_STR=N_STR+1
-		      GO TO 360
-		   ENDIF
-		   K(I,4)=N_STR
+		DO 362 I=1,N
 		   NATT=NATT+1
 		   KATT(NATT,1)=K(I,2)
 		   KATT(NATT,2)=20
 		   KATT(NATT,4)=K(I,1)
-		   IF(K(I,3).EQ.0 .OR. K(K(I,3),2).EQ.IDSTR) THEN
-		      KATT(NATT,3)=0
-		   ELSE
-		      KATT(NATT,3)=NATT-I+K(I,3)+N_STR-K(K(I,3),4)
-		   ENDIF
-C       ****** identify the mother particle
-		   PATT(NATT,1)=P(I,1)
-		   PATT(NATT,2)=P(I,2)
-		   PATT(NATT,3)=P(I,3)
-		   PATT(NATT,4)=P(I,4)
+                   KATT(NATT,3)= NATSUM + K(I,3)
+                   KATT(NATT,5)= NATSUM + K(I,4)
+                   KATT(NATT,6)= NATSUM + K(I,5)		     
+C                  ****** identify the mother particle
+                   DO 361 J= 1,4
+		   PATT(NATT,J)=P(I,J)
+                   IF(P(I,5) .GT. 0) THEN
+                   VATT(NATT,J)=V(I,J) + V(I,5)*P(I,J)/P(I,5)
+                   ELSE
+                   VATT(NATT,J)=0.
+                   ENDIF
+ 361               CONTINUE
 		   EATT=EATT+P(I,4)
-360	   CONTINUE
+                   PATT(NATT,5) = P(I,5)
+                   VATT(NATT,5) = V(I,5) 
+ 362            CONTINUE
+                   NATSUM = NATSUM + N
+C             WRITE(6, *) 'SECOND', NATT,'  NATSUM=', NATSUM,'   N=', N
+ 360            CONTINUE
 C		********Fragment the q-qbar jets systems *****
 C
 	   JTP(1)=IHNT2(1)
@@ -640,28 +650,29 @@ C
 		NFTP=NFP(J_JTP,5)
 		IF(NTP.EQ.2) NFTP=10+NFT(J_JTP,5)
 		N_STR=0
-		DO 390 I=N_ST,N
-		   IF(K(I,2).EQ.IDSTR) THEN
-		      N_STR=N_STR+1
-		      GO TO 390
-		   ENDIF
-		   K(I,4)=N_STR
+		DO 390 I=1,N
 		   NATT=NATT+1
 		   KATT(NATT,1)=K(I,2)
 		   KATT(NATT,2)=NFTP
 		   KATT(NATT,4)=K(I,1)
-		   IF(K(I,3).EQ.0 .OR. K(K(I,3),2).EQ.IDSTR) THEN
-		      KATT(NATT,3)=0
-		   ELSE
-		      KATT(NATT,3)=NATT-I+K(I,3)+N_STR-K(K(I,3),4)
-		   ENDIF
+		   KATT(NATT,3)= NATSUM + K(I,3)
+                   KATT(NATT,5)= NATSUM + K(I,4)
+                   KATT(NATT,6)= NATSUM + K(I,5)
 C       ****** identify the mother particle
-		   PATT(NATT,1)=P(I,1)
-		   PATT(NATT,2)=P(I,2)
-		   PATT(NATT,3)=P(I,3)
-		   PATT(NATT,4)=P(I,4)
+                   DO 391 J= 1,4
+		   PATT(NATT,J)=P(I,J)
+                   IF(P(I,5) .GT. 0)THEN
+                   VATT(NATT,J)=V(I,J) + V(I,5)*P(I,J)/P(I,5)
+                   ELSE
+                   VATT(NATT,J)=0.
+                   ENDIF
+ 391               CONTINUE
 		   EATT=EATT+P(I,4)
+                   PATT(NATT,5) = P(I,5)
+                   VATT(NATT,5) = V(I,5)
 390		CONTINUE 
+                   NATSUM = NATSUM + N
+C              WRITE (6, *) 'THIRD', NATT,'   NATSUM =', NATSUM,'  N =', N
 400	   CONTINUE
 C		********Fragment the q-qq related string systems
 	ENDIF
@@ -671,12 +682,19 @@ C		********Fragment the q-qq related string systems
 		KATT(NATT,1)=KFDR(I)
 		KATT(NATT,2)=40
 		KATT(NATT,3)=0
-		PATT(NATT,1)=PDR(I,1)
-		PATT(NATT,2)=PDR(I,2)
-		PATT(NATT,3)=PDR(I,3)
-		PATT(NATT,4)=PDR(I,4)
+                KATT(NATT,5)=0
+                KATT(NATT,6)=0
+                DO 451 J=1,4
+		PATT(NATT,J)=PDR(I,J)
+		VATT(NATT,J)=0.
+ 451            CONTINUE
 		EATT=EATT+PDR(I,4)
+          PATT(NATT,5) = SQRT(ABS(PDR(I,4)**2-PDR(I,1)**2-PDR(I,2)**2
+     +    -PDR(I,3)**2))
+                 VATT(NATT,5) = 0. 
 450	CONTINUE
+                NATSUM = NATSUM + NDR
+C          WRITE (6, *) 'FORTH', NATT,'  NATSUM=', NATSUM,'  NDR=',NDR
 C			********store the direct-produced particles
 C
 	DENGY=EATT/(IHNT2(1)*HINT1(6)+IHNT2(3)*HINT1(7))-1.0
@@ -705,6 +723,10 @@ C
 	SAVE  /HIJDAT/
         COMMON/LUDAT1/MSTU(200),PARU(200),MSTJ(200),PARJ(200)
 	SAVE  /LUDAT1/
+C
+        COMMON/NCOUNT/NATSUM
+        INTEGER NATSUM 
+C
 	EXTERNAL FNKICK,FNKICK2,FNSTRU,FNSTRUM,FNSTRUS
 	CALL TITLE
 	IHNT2(1)=IAP
@@ -941,6 +963,10 @@ C
       	SAVE /LUDAT1/ 
 	COMMON/HIPARNT/HIPR1(100),IHPR2(50),HINT1(100),IHNT2(50)
 	SAVE  /HIPARNT/
+C
+        COMMON/NCOUNT/NATSUM
+        INTEGER NATSUM
+        SAVE /NCOUNT/
 	DO 100 I=1,N
 	   DBETA=P(I,3)/P(I,4)
 	   IF(ABS(DBETA).GE.1.D0) THEN
@@ -977,6 +1003,10 @@ C
 	COMMON/LUDAT3/MDCY(500,3),MDME(2000,2),BRAT(2000),KFDP(2000,5)    
 	SAVE /LUDAT3/
 c
+        COMMON/NCOUNT/NATSUM
+        INTEGER NATSUM
+        SAVE /NCOUNT/
+C
 	PARP(81)=ABS(HIPR1(10))-0.25
 	CKIN(5)=ABS(HIPR1(10))-0.25
 	CKIN(3)=ABS(HIPR1(10))-0.25
@@ -5369,7 +5399,7 @@ C***************************************************************
 	SAVE  /RANSEED/
 	COMMON/HIMAIN1/ NATT,EATT,JATT,NT,NP,N0,N01,N10,N11
 	SAVE  /HIMAIN1/
-	COMMON/HIMAIN2/KATT(130000,4),PATT(130000,4)
+	COMMON/HIMAIN2/KATT(100000,6),PATT(100000,5),VATT(100000,5)
 	SAVE  /HIMAIN2/
 	COMMON/HISTRNG/NFP(300,15),PP(300,15),NFT(300,15),PT(300,15)
 	SAVE  /HISTRNG/
@@ -5412,7 +5442,7 @@ C...give all the switchs and parameters the default values
 
 C...initialize all the data common blocks
 	DATA NATT/0/EATT/0.0/JATT/0/NT/0/NP/0/N0/0/N01/0/N10/0/N11/0/
-	DATA KATT/520000*0/PATT/520000*0.0/
+	DATA KATT/600000*0/PATT/500000*0.0/VATT/500000*0.0/
 
 	DATA NFP/4500*0/PP/4500*0.0/NFT/4500*0/PT/4500*0.0/
 
