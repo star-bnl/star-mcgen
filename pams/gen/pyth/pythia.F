@@ -1,5 +1,8 @@
-* $Id: pythia.F,v 1.2 1998/03/27 14:16:16 fisyak Exp $
+* $Id: pythia.F,v 1.3 1999/01/11 22:35:57 nevski Exp $
 * $Log: pythia.F,v $
+* Revision 1.3  1999/01/11 22:35:57  nevski
+* force loading of rluset, pystat
+*
 * Revision 1.2  1998/03/27 14:16:16  fisyak
 * force load of py_init
 *
@@ -15,7 +18,12 @@
       INTEGER I, J, LOAD
       DATA LOAD /-1/
       SAVE LOAD
-      IF (LOAD .EQ. 0) CALL PY_INIT(4)
+      IF (LOAD .EQ. 0) then
+*         just make it loaded
+          CALL PY_INIT(4)
+          CALL PYSTAT(0)
+          CALL RLUSET(0)
+      endif
 *---     
       CALL PYEVNT
       CALL PYHEPC (1)
