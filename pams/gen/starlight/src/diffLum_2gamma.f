@@ -45,8 +45,10 @@ c     it to starlight.dat.
         sum = 0.
         do 300 j = 1,numy
           wmev = w(i) *1000.
-c	I don't understand why this is multiplied by wmev.. but at least
-c	multiplying by wmev instead w(i) correctly accounts for the units
+
+C     Convert from photon flux dN/dW to Lorentz invariant
+C     photon number WdN/dW 
+
            xlum =  wmev * D2LDMDY(wmev,y(j))
            write(20,*) xlum
  300    continue
