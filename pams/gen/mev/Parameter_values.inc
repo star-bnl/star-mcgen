@@ -1,7 +1,7 @@
 CCC   Set array dimension sizes here:
 
       integer npid,nmax_integ,n_mult_max_steps
-      parameter (npid = 10)         ! max # of particle ID types
+      parameter (npid = 30)         ! max # of particle ID types
       parameter (nmax_integ = 100)  ! max # integration steps in parameter
 CCC                                 ! variance calculation.
       parameter (n_mult_max_steps = 1000)

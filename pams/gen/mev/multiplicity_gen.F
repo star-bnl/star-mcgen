@@ -2,30 +2,33 @@
      1     reac_plane_cntrl,PSIr,Vn,
      2     pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
      3     y_cut_min,y_cut_max,
-     4     phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
+     4     phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status,
+     5     n_integ_pts)
       implicit none
 #include "multi_gen.inc"
-      Common/track/ pout(npid,3,factorial_max)
+      Common/track/ pout(npid,4,factorial_max)
       real*4 pout
-      Common/Geant/geant_mass(60)
-      real*4 geant_mass
+      Common/Geant/geant_mass(200),geant_charge(200),
+     1             geant_lifetime(200),geant_width(200)
+      real*4 geant_mass,geant_charge,geant_lifetime,geant_width
 
       real*4 T,sigma,expvel,pt_cut_min,pt_cut_max,eta_cut_min
       real*4 eta_cut_max,phi_cut_min,phi_cut_max,mass
       real*4 dpt,deta,facmax,pt,eta,y,rapidity,dNdpty,dNdp
       real*4 pt_trial,eta_trial,y_trial,rndm,rad,phi
       real*4 y_cut_min,y_cut_max,pseudorapidity
-      real*4 PSIr,Vn(nflowterms),dphi,facmax_phi,dNdphi
-      real*4 facmax_phi_back,dNdphi_back,sign
+      real*4 PSIr,Vn(nflowterms,4),facmax_phi,dNdphi
+      real*4 Vnptmax,Vnymax,Vn_pt_y,Vntmp(nflowterms)
+      real*4 masstmp,Mass_function
       real*4 cosd
 
       integer gpid,N,model_type,npt,neta,n_scan_pts,ipt,ieta
       integer Track_count,i,j,pid,status
-      integer reac_plane_cntrl,iphi,phi_flag
-      integer phi_flag_back
+      integer reac_plane_cntrl
+      integer n_integ_pts
 
       do i = 1,factorial_max
-      do j = 1,3
+      do j = 1,4
          pout(pid,j,i) = 0.0
       end do
       end do
@@ -64,37 +67,37 @@ CCC   be aborted in this instance.
 
 CCC   Determine the maximum values of the azimuthal model distribution
 CCC   in phi, for case with reaction plane dependence and anisotropic flow
-CCC   Treat the y<0 and y=>0 cases separately.
+CCC   Find the absolute maximum possible value given the pt and y dependences
+CCC   and assuming all Fourier components add with maximum coherence.
 
       if(reac_plane_cntrl .gt. 1) then
-         dphi = (phi_cut_max - phi_cut_min)/float(npt-1)
-         facmax_phi = 0.0
-         facmax_phi_back = 0.0
-         phi_flag = 0
-         phi_flag_back = 0
-         do iphi  = 1,npt
-            phi = phi_cut_min + dphi*float(iphi - 1)
-            dNdphi = 1.0
-            dNdphi_back = 1.0
-            do i = 1,nflowterms
-               sign = (-1.0)**i
-               dNdphi = dNdphi + 2.0*Vn(i)*cosd(float(i)*(phi-PSIr))
-               dNdphi_back = dNdphi_back +
-     1                      2.0*Vn(i)*sign*cosd(float(i)*(phi-PSIr))
-            end do
-            if(dNdphi.gt.facmax_phi) facmax_phi = dNdphi 
-            if(dNdphi .lt. 0.0) phi_flag = 1
-            if(dNdphi_back.gt.facmax_phi_back)
-     1          facmax_phi_back = dNdphi_back
-            if(dNdphi_back .lt. 0.0) phi_flag_back = 1
+         facmax_phi = 1.0
+         do i = 1,nflowterms
+            if(i.eq.(2*(i/2))) then ! Select even Fourier components:
+               Vnptmax = max(
+     1                 abs(Vn(i,1)+Vn(i,2)*pt_cut_min*pt_cut_min),
+     2                 abs(Vn(i,1)+Vn(i,2)*pt_cut_max*pt_cut_max))
+               Vnymax  = max(
+     1                 exp(-Vn(i,3)*y_cut_min*y_cut_min),
+     2                 exp(-Vn(i,3)*y_cut_max*y_cut_max))
+               if(y_cut_min.lt.0.0 .and. y_cut_max.gt.0.0) then
+                  Vnymax  = max(Vnymax,1.0)
+               end if
+            else ! Select odd Fourier components
+               Vnptmax = max(
+     1                 abs(Vn(i,1)+Vn(i,2)*pt_cut_min),
+     2                 abs(Vn(i,1)+Vn(i,2)*pt_cut_max))
+               Vnymax  = max(
+     1                 abs(Vn(i,3)+Vn(i,4)*abs(y_cut_min**3)),
+     2                 abs(Vn(i,3)+Vn(i,4)*abs(y_cut_max**3)))
+               if(y_cut_min.lt.0.0 .and. y_cut_max.gt.0.0) then
+                  Vnymax  = max(Vnymax,abs(Vn(i,3)))
+               end if
+            end if
+            facmax_phi = facmax_phi + 2.0*Vnptmax*Vnymax
          end do
-CCC   Check facmax_phi; if 0, then event will be aborted.  Check
-CCC   dNdphi < 0, which will also cause the event to be aborted.
-CCC   Also check the y<0 case
-         if(facmax_phi.eq.0.0 .OR. facmax_phi_back.eq.0.0) then
-            status = -86
-            Return
-         else if (phi_flag.eq.1 .OR. phi_flag_back.eq.1) then
+CCC   Check facmax_phi; if 0, then event will be aborted. 
+         if(facmax_phi.eq.0.0) then
             status = -86
             Return
          else
@@ -126,32 +129,24 @@ CCC   Determine phi angle:
             phi = (rndm(-1)*(phi_cut_max - phi_cut_min) +
      1            phi_cut_min)/rad
          else if(reac_plane_cntrl .gt. 1) then
+            do i = 1,nflowterms
+               Vntmp(i) = Vn_pt_y(i,Vn(i,1),Vn(i,2),Vn(i,3),Vn(i,4),
+     1                    pt_trial,y_trial)
+            end do
 101         phi = rndm(-1)*(phi_cut_max - phi_cut_min)+phi_cut_min
             dNdphi = 1.0
             do i = 1,nflowterms
-               if(y_trial .ge. 0.0) then
-                  sign = 1.0
-               else if(y_trial .lt. 0.0) then
-                  sign = (-1.0)**i
-               end if
-               dNdphi = dNdphi+2.0*Vn(i)*sign*cosd(float(i)*(phi-PSIr))
+               dNdphi = dNdphi+2.0*Vntmp(i)*cosd(float(i)*(phi-PSIr))
             end do
-            if(y_trial .ge. 0.0) then
-               if(rndm(-1).gt.(dNdphi/facmax_phi)) then
-                  go to 101
-               else
-                  phi = phi/rad
-               end if
-            else if(y_trial .lt. 0.0) then
-               if(rndm(-1).gt.(dNdphi/facmax_phi_back)) then
-                  go to 101
-               else
-                  phi = phi/rad
-               end if
+            if(rndm(-1).gt.(dNdphi/facmax_phi)) then
+               go to 101
+            else
+               phi = phi/rad
             end if
          end if
 
-         Call kinematics(mass,pt_trial,y_trial,phi,Track_count,pid)
+         masstmp = Mass_function(gpid,pid,n_integ_pts)
+         Call kinematics(masstmp,pt_trial,y_trial,phi,Track_count,pid)
          if(Track_count .lt. N) then
             go to 100
          else if(Track_count .ge. N) then
@@ -220,7 +215,7 @@ CCC  row of array pout(,,) in Common/track/ .
 
       integer index,pid
 #include "multi_gen.inc"
-      Common/track/ pout(npid,3,factorial_max)
+      Common/track/ pout(npid,4,factorial_max)
       real*4 pout
 
       real*4 m,pt,y,phi,mt,coshy,E,pzmag,px,py,pz,expR
@@ -240,6 +235,7 @@ CCC  row of array pout(,,) in Common/track/ .
       pout(pid,1,index) = px
       pout(pid,2,index) = py
       pout(pid,3,index) = pz
+      pout(pid,4,index) = m
 
       Return
       END
@@ -685,13 +681,36 @@ CCC  interpolation subroutine bug:
       Subroutine Particle_prop
       implicit none
 
-      Common/Geant/geant_mass(60)
-      real*4 geant_mass
+      Common/Geant/geant_mass(200),geant_charge(200),
+     1             geant_lifetime(200),geant_width(200)
 
-CCC   Fills array geant_mass() with particle mass in GeV,
+CCC   Local Variable Type Declarations:
+      integer i
+      real*4 geant_mass,geant_charge,geant_lifetime,geant_width
+      real*4 hbar
+      Parameter(hbar = 6.5821220E-25) ! hbar in GeV*seconds
+
+CCC   Fill arrays geant_mass(),geant_charge(),geant_lifetime(),
+CCC   geant_width() with particle mass in GeV, charge in units of
+CCC   |e|, mean lifetime in seconds, and width in GeV, where
+CCC   width*lifetime = hbar.  For lifetimes listed with values of
+CCC   1.0E+30 (i.e. stable particles) the width is set to 0.000.
 CCC   Row # = Geant Particle ID # code (see Geant Manual 3.10,
-CCC   User's Guide, CONS 300-1 and 300-2).
+CCC   User's Guide, CONS 300-1 and 300-2).  Note, rows 151 and higher
+CCC   are used for resonances.  These assume the masses and widths
+CCC   specific to the models used to represent the invariant mass
+CCC   distributions and therefore may differ slightly from the Particle
+CCC   Data Group's listing.
 
+CCC   Initialize arrays to zero:
+      do i = 1,200
+         geant_mass(i) = 0.0
+         geant_charge(i) = 0.0
+         geant_lifetime(i) = 0.0
+         geant_width(i) = 0.0
+      end do
+
+CCC   Set Particle Masses in GeV:
       geant_mass(1)  = 0.0           ! Gamma
       geant_mass(2)  = 0.000511      ! Positron
       geant_mass(3)  = 0.000511      ! Electron
@@ -730,8 +749,8 @@ CCC   User's Guide, CONS 300-1 and 300-2).
       geant_mass(36) = 1.8694        ! D-
       geant_mass(37) = 1.8647        ! D0
       geant_mass(38) = 1.8647        ! Anti D0
-      geant_mass(39) = 1.9710        ! F+
-      geant_mass(40) = 1.9710        ! F-
+      geant_mass(39) = 1.9710        ! F+, now called Ds+
+      geant_mass(40) = 1.9710        ! F-, now called Ds-
       geant_mass(41) = 2.2822        ! Lambda C+
       geant_mass(42) = 80.8000       ! W+
       geant_mass(43) = 80.8000       ! W-
@@ -740,21 +759,451 @@ CCC   User's Guide, CONS 300-1 and 300-2).
       geant_mass(46) = 2.817         ! Tritium
       geant_mass(47) = 3.755         ! Alpha
       geant_mass(48) = 0.0           ! Geantino
+      geant_mass(49) = 2.80923       ! He3
+      geant_mass(50) = 0.0           ! Cherenkov
+      geant_mass(151) = 0.783        ! rho +
+      geant_mass(152) = 0.783        ! rho -
+      geant_mass(153) = 0.783        ! rho 0
+      geant_mass(154) = 0.782        ! omega 0
+      geant_mass(155) = 0.95750      ! eta'
+      geant_mass(156) = 1.0194       ! phi
+      geant_mass(157) = 3.09693      ! J/Psi
+      geant_mass(158) = 1.232        ! Delta -
+      geant_mass(159) = 1.232        ! Delta 0
+      geant_mass(160) = 1.232        ! Delta +
+      geant_mass(161) = 1.232        ! Delta ++
+      geant_mass(162) = 0.89183      ! K* +
+      geant_mass(163) = 0.89183      ! K* -
+      geant_mass(164) = 0.89610      ! K* 0
+
+CCC   Set Particle Charge in |e|:
+      geant_charge( 1) =  0      ! Gamma
+      geant_charge( 2) =  1      ! Positron
+      geant_charge( 3) = -1      ! Electron
+      geant_charge( 4) =  0      ! Neutrino
+      geant_charge( 5) =  1      ! Muon+
+      geant_charge( 6) = -1      ! Muon-
+      geant_charge( 7) =  0      ! Pion0
+      geant_charge( 8) =  1      ! Pion+
+      geant_charge( 9) = -1      ! Pion-
+      geant_charge(10) =  0      ! Kaon 0 long
+      geant_charge(11) =  1      ! Kaon+
+      geant_charge(12) = -1      ! Kaon-
+      geant_charge(13) =  0      ! Neutron
+      geant_charge(14) =  1      ! Proton
+      geant_charge(15) = -1      ! Antiproton
+      geant_charge(16) =  0      ! Kaon 0 short
+      geant_charge(17) =  0      ! Eta
+      geant_charge(18) =  0      ! Lambda
+      geant_charge(19) =  1      ! Sigma+
+      geant_charge(20) =  0      ! Sigma0
+      geant_charge(21) = -1      ! Sigma-
+      geant_charge(22) =  0      ! Xi 0
+      geant_charge(23) = -1      ! Xi -
+      geant_charge(24) = -1      ! Omega
+      geant_charge(25) =  0      ! Antineutron
+      geant_charge(26) =  0      ! Antilambda
+      geant_charge(27) = -1      ! Anti-Sigma -
+      geant_charge(28) =  0      ! Anti-Sigma 0
+      geant_charge(29) =  1      ! Anti-Sigma +
+      geant_charge(30) =  0      ! AntiXi 0
+      geant_charge(31) =  1      ! AntiXi +
+      geant_charge(32) =  1      ! Anti-Omega +
+      geant_charge(33) =  1      ! Tau +
+      geant_charge(34) = -1      ! Tau -
+      geant_charge(35) =  1      ! D+
+      geant_charge(36) = -1      ! D-
+      geant_charge(37) =  0      ! D0
+      geant_charge(38) =  0      ! Anti D0
+      geant_charge(39) =  1      ! F+, now called Ds+
+      geant_charge(40) = -1      ! F-, now called Ds-
+      geant_charge(41) =  1      ! Lambda C+
+      geant_charge(42) =  1      ! W+
+      geant_charge(43) = -1      ! W-
+      geant_charge(44) =  0      ! Z0
+      geant_charge(45) =  1      ! Deuteron
+      geant_charge(46) =  1      ! Triton
+      geant_charge(47) =  2      ! Alpha
+      geant_charge(48) =  0      ! Geantino (Fake particle)
+      geant_charge(49) =  2      ! He3
+      geant_charge(50) =  0      ! Cerenkov (Fake particle)
+      geant_charge(151) =  1     ! rho+
+      geant_charge(152) = -1     ! rho-
+      geant_charge(153) =  0     ! rho 0
+      geant_charge(154) =  0     ! omega 0
+      geant_charge(155) =  0     ! eta'
+      geant_charge(156) =  0     ! phi
+      geant_charge(157) =  0     ! J/Psi
+      geant_charge(158) = -1     ! Delta -
+      geant_charge(159) =  0     ! Delta 0
+      geant_charge(160) =  1     ! Delta +
+      geant_charge(161) =  2     ! Delta ++
+      geant_charge(162) =  1     ! K* +
+      geant_charge(163) = -1     ! K* -
+      geant_charge(164) =  0     ! K* 0
+
+CCC   Set Particle Lifetimes in seconds:
+      geant_lifetime( 1) = 1.0E+30       ! Gamma
+      geant_lifetime( 2) = 1.0E+30       ! Positron
+      geant_lifetime( 3) = 1.0E+30       ! Electron
+      geant_lifetime( 4) = 1.0E+30       ! Neutrino
+      geant_lifetime( 5) = 2.19703E-06   ! Muon+
+      geant_lifetime( 6) = 2.19703E-06   ! Muon-
+      geant_lifetime( 7) = 8.4E-17       ! Pion0
+      geant_lifetime( 8) = 2.603E-08     ! Pion+
+      geant_lifetime( 9) = 2.603E-08     ! Pion-
+      geant_lifetime(10) = 5.16E-08      ! Kaon 0 long
+      geant_lifetime(11) = 1.237E-08     ! Kaon+
+      geant_lifetime(12) = 1.237E-08     ! Kaon-
+      geant_lifetime(13) = 889.1         ! Neutron
+      geant_lifetime(14) = 1.0E+30       ! Proton
+      geant_lifetime(15) = 1.0E+30       ! Antiproton
+      geant_lifetime(16) = 8.922E-11     ! Kaon 0 short
+      geant_lifetime(17) = 5.53085E-19   ! Eta
+      geant_lifetime(18) = 2.632E-10     ! Lambda
+      geant_lifetime(19) = 7.99E-11      ! Sigma+
+      geant_lifetime(20) = 7.40E-20      ! Sigma0
+      geant_lifetime(21) = 1.479E-10     ! Sigma-
+      geant_lifetime(22) = 2.90E-10      ! Xi 0
+      geant_lifetime(23) = 1.639E-10     ! Xi -
+      geant_lifetime(24) = 8.22E-11      ! Omega
+      geant_lifetime(25) = 889.1         ! Antineutron
+      geant_lifetime(26) = 2.632E-10     ! Antilambda
+      geant_lifetime(27) = 7.99E-11      ! Anti-Sigma -
+      geant_lifetime(28) = 7.40E-20      ! Anti-Sigma 0
+      geant_lifetime(29) = 1.479E-10     ! Anti-Sigma +
+      geant_lifetime(30) = 2.90E-10      ! AntiXi 0
+      geant_lifetime(31) = 1.639E-10     ! AntiXi +
+      geant_lifetime(32) = 8.22E-11      ! Anti-Omega +
+      geant_lifetime(33) = 0.303E-12     ! Tau +
+      geant_lifetime(34) = 0.303E-12     ! Tau -
+      geant_lifetime(35) = 10.62E-13     ! D+
+      geant_lifetime(36) = 10.62E-13     ! D-
+      geant_lifetime(37) = 4.21E-13      ! D0
+      geant_lifetime(38) = 4.21E-13      ! Anti D0
+      geant_lifetime(39) = 4.45E-13      ! F+, now called Ds+
+      geant_lifetime(40) = 4.45E-13      ! F-, now called Ds-
+      geant_lifetime(41) = 1.91E-13      ! Lambda C+
+      geant_lifetime(42) = 2.92E-25      ! W+
+      geant_lifetime(43) = 2.92E-25      ! W-
+      geant_lifetime(44) = 2.60E-25      ! Z0
+      geant_lifetime(45) = 1.0E+30       ! Deuteron
+      geant_lifetime(46) = 1.0E+30       ! Triton
+      geant_lifetime(47) = 1.0E+30       ! Alpha
+      geant_lifetime(48) = 1.0E+30       ! Geantino (Fake particle)
+      geant_lifetime(49) = 1.0E+30       ! He3
+      geant_lifetime(50) = 1.0E+30       ! Cerenkov (Fake particle)
+      geant_lifetime(151) = 3.72E-24     ! rho +
+      geant_lifetime(152) = 3.72E-24     ! rho -
+      geant_lifetime(153) = 3.72E-24     ! rho 0
+      geant_lifetime(154) = 7.84E-23     ! omega 0
+      geant_lifetime(155) = 3.16E-21     ! eta'
+      geant_lifetime(156) = 1.49E-22     ! phi
+      geant_lifetime(157) = 9.68E-21     ! J/Psi
+      geant_lifetime(158) = 9.27E-24     ! Delta -, Based on gamma = 71 MeV
+      geant_lifetime(159) = 9.27E-24     ! Delta 0, -same-
+      geant_lifetime(160) = 9.27E-24     ! Delta +, -same-
+      geant_lifetime(161) = 9.27E-24     ! Delta ++,-same-
+      geant_lifetime(162) = 1.322E-23    ! K* +
+      geant_lifetime(163) = 1.322E-23    ! K* -
+      geant_lifetime(164) = 1.303E-23    ! K* 0
+
+CCC   Set Particle Widths in GeV:
+      do i = 1,200
+         if(geant_lifetime(i) .le. 0.0) then
+            geant_width(i) = 0.0
+         else if(geant_lifetime(i) .ge. 1.0E+30) then
+            geant_width(i) = 0.0
+         else
+            geant_width(i) = hbar/geant_lifetime(i)
+         end if
+      end do
 
       Return
       END
 
+      Real*4 Function Vn_pt_y(n,V1,V2,V3,V4,pt,y)
+      implicit none
 
+CCC   Description:  This function computes the pt,y dependent flow
+CCC                 parameters Vn(pt,y) for the requested Fourier
+CCC                 component, n = 1-6, pt (GeV/c) and y (rapidity).
+CCC
+CCC   Input:    n    = Fourier component, 1,2...6
+CCC             V1   = Constant coefficient in pt dependent term
+CCC             V2   = Coefficient of pt dependence
+CCC             V3   = Coefficient of y dependence; constant for n=odd,
+CCC                    and inverse range squared for Gaussian for n=even.
+CCC             V4   = Coefficient of y^3 dependence for n=odd
+CCC             pt   = Transverse momentum (GeV/c)
+CCC             y    = Rapidity relative to y(C.M.)
+CCC
+CCC   Output:   Vn_pt_y = Vn(pt,y) based on the model suggested by
+CCC                       Art Poskanzer (LBNL, Feb. 2000)
+CCC             Vn_pt_y = (V1 + V2*pt*pt)*exp(-V3*y*y) ; n=even
+CCC             Vn_pt_y = (V1 + V2*pt)*sign(y)*(V3 + V4*abs(y**3)); n=odd
 
+CCC   Local Variable Type Declarations:
 
+      integer n
+      real*4  V1,V2,V3,V4,pt,y,signy
 
+      if(n .eq. (2*(n/2))) then
+         Vn_pt_y = (V1 + V2*pt*pt)*exp(-V3*y*y)
+      else
+         if(y.ge.0.0) then
+            signy = 1.0
+         else if(y.lt.0.0) then
+            signy = -1.0
+         end if
+         Vn_pt_y = (V1 + V2*pt)*signy*(V3 + V4*abs(y**3))
+      end if
+      Return
+      END
 
+      Subroutine Particle_mass(gpid,pid_index,npts)
+      implicit none
 
+CCC   Description:  This subroutine computes the mass distributions for
+C     included resonances at 'npts' number of mesh points in mass from the
+C     lower mass limit to an upper mass limit (listed below), integrates
+C     this mass distribution, normalizes the integral to 1.0, and saves
+C     the mass steps and integral function in the arrays in Common/Mass/.
+C     The mass distribution integral is then randomly sampled in a later
+C     step in order to get the specific resonance mass instances.
+C     For non-resonant particles (i.e. either stable or those with negligible
+C     widths) this subroutine returns without doing anything, leaving the
+C     arrays in Common/Mass/ set to zero.  This subroutine is called for
+C     a specific PID index, corresponding to the input list of particle
+C     types.
+C
+C     Input:   gpid       = Geant particle ID code number, see SUBR:
+C                           Particle_prop for listing.
+C              pid_index  = Particle type array index, determined by input
+C                           particle list.
+C              npts       = n_integ_pts in calling program; is the number
+C                           of mass mesh points used to load the mass
+C                           distribution integral.  Note that one extra
+C                           mesh point is added to handle the bug in the
+C                           Lagrange interpolator, LAGRNG.
+C
+C     Output:  Mass_integ_save( , ) - mass distribution integral
+C              Mass_xfunc_save( , ) - mass distribution mesh
+C              These are in Common/Mass/.
 
+CCC   Include files and common blocks:
+      Include 'Parameter_values.inc'
+      Common/Geant/geant_mass(200),geant_charge(200),
+     1             geant_lifetime(200),geant_width(200)
+      real*4 geant_mass,geant_charge,geant_lifetime,geant_width
+      Common/Mass/ Mass_integ_save(npid,nmax_integ),
+     1             Mass_xfunc_save(npid,nmax_integ)
+      real*4 Mass_integ_save,Mass_xfunc_save
 
+CCC   Local Variable Type Declarations:
+      integer gpid,pid_index,npts,i
+      real*4 dist(nmax_integ),dM,M0,Gamma,GammaS
+      real*4 M,Mpi,MK,MN,R_Delta,Jinc,qR
+      real*4 Mrho_low,Mrho_high,Momega_low,Momega_high
+      real*4 Mphi_low,Mphi_high,MDelta_low,MDelta_high
+      real*4 MKstar_low,MKstar_high
+      real*4 kcm,k0cm,Ecm,E0cm,beta,beta0,Epicm,ENcm,redtotE
 
+CCC   Set Fixed parameter values:
+      Parameter(Mpi = 0.1395675)     ! Charged pion mass (GeV)
+      Parameter(MK  = 0.493646)      ! Charged kaon mass (GeV)
+      Parameter(MN  = 0.938919)      ! Nucleon average mass (GeV)
+      Parameter(R_Delta = 0.81)      ! Delta resonance range parameter
+      Parameter(Mrho_low = 0.28   )  ! Lower rho mass limit
+      Parameter(Mrho_high = 1.200)   ! Upper rho mass limit (GeV)
+      Parameter(Momega_low = 0.75)   ! Lower omega mass limit (GeV)
+      Parameter(Momega_high = 0.81)  ! Upper omega mass limit (GeV)
+      Parameter(Mphi_low = 1.009)    ! Lower phi mass limit (GeV)
+      Parameter(Mphi_high = 1.029)   ! Upper phi mass limit (GeV)
+      Parameter(MDelta_low = 1.1   ) ! Lower Delta mass limit
+      Parameter(MDelta_high = 1.400) ! Upper Delta mass limit (GeV)
+      Parameter(MKstar_low = 0.74)   ! Lower Kstar mass limit (GeV)
+      Parameter(MKstar_high = 1.04)  ! Upper Kstar mass limit (GeV)
 
+CCC   Check npts:
+      if(npts.le.1) Return
 
+CCC   Load mass distribution for rho-meson:
+      if(gpid.ge.151 .and. gpid.le.153) then
+         do i = 1,nmax_integ
+            dist(i) = 0.0
+         end do
+         M0 = geant_mass(gpid)
+         Gamma = geant_width(gpid)
+         dM = (Mrho_high - Mrho_low)/float(npts-1)
+         do i = 1,npts
+            M = Mrho_low + dM*float(i-1)
+            Mass_xfunc_save(pid_index,i) = M
+            kcm = sqrt(0.25*M*M - Mpi*Mpi)
+            dist(i) = kcm/((M-M0)**2 + 0.25*Gamma*Gamma)
+         end do
+
+CCC   Load mass distribution for omega-meson:
+      else if(gpid.eq.154) then
+         do i = 1,nmax_integ
+            dist(i) = 0.0
+         end do
+         M0 = geant_mass(gpid)
+         Gamma = geant_width(gpid)
+         dM = (Momega_high - Momega_low)/float(npts-1)
+         do i = 1,npts
+            M = Momega_low + dM*float(i-1)
+            Mass_xfunc_save(pid_index,i) = M
+            GammaS = Gamma*((M/M0)**3)
+            dist(i) = M0*M0*Gamma/((M0*M0 - M*M)**2
+     1              + M*M*GammaS*GammaS)
+         end do
+
+CCC   Load mass distribution for phi-meson:
+      else if(gpid.eq.156) then
+         do i = 1,nmax_integ
+            dist(i) = 0.0
+         end do
+         M0 = geant_mass(gpid)
+         Gamma = geant_width(gpid)
+         dM = (Mphi_high - Mphi_low)/float(npts-1)
+         k0cm = sqrt(0.25*M0*M0 - MK*MK)
+         E0cm = sqrt(k0cm*k0cm  + MK*MK)
+         beta0 = k0cm/E0cm
+         do i = 1,npts
+            M = Mphi_low + dM*float(i-1)
+            Mass_xfunc_save(pid_index,i) = M
+            kcm = sqrt(0.25*M*M - MK*MK)
+            Ecm = sqrt(kcm*kcm  + MK*MK)
+            beta = kcm/Ecm
+            dist(i) = 0.25*Gamma*Gamma*((beta/beta0)**3)/
+     1                ((M - M0)**2 + 0.25*Gamma*Gamma)
+         end do
+
+CCC   Load mass distribution for Delta resonances:
+      else if(gpid.ge.158 .and. gpid.le.161) then
+         do i = 1,nmax_integ
+            dist(i) = 0.0
+         end do
+         M0 = geant_mass(gpid)
+         Gamma = geant_width(gpid)
+         dM = (MDelta_high - MDelta_low)/float(npts-1)
+         do i = 1,npts
+            M = MDelta_low + dM*float(i-1)
+            Mass_xfunc_save(pid_index,i) = M
+            kcm = ((M*M + Mpi*Mpi - MN*MN)**2)/(4.0*M*M) - Mpi*Mpi
+            kcm = sqrt(abs(kcm))
+            Epicm = sqrt(kcm*kcm + Mpi*Mpi)
+            ENcm  = sqrt(kcm*kcm + MN*MN)
+            redtotE = Epicm*ENcm/(Epicm + ENcm)
+            Jinc = kcm/redtotE
+            qR = kcm*R_Delta/Mpi
+            GammaS = 2.0*qR*qR*qR*Gamma/(1.0 + qR*qR)
+            dist(i) = (Jinc/(kcm*kcm))*GammaS*GammaS/
+     1                ((M - M0)**2 + 0.25*GammaS*GammaS)
+         end do
+
+CCC   Load mass distribution for K*(892) resonances:
+      else if(gpid.ge.162 .and. gpid.le.164) then
+         do i = 1,nmax_integ
+            dist(i) = 0.0
+         end do
+         M0 = geant_mass(gpid)
+         Gamma = geant_width(gpid)
+         dM = (MKstar_high - MKstar_low)/float(npts-1)
+         k0cm = ((M0*M0 + Mpi*Mpi - MK*MK)**2)/(4.0*M0*M0) - Mpi*Mpi
+         k0cm = sqrt(k0cm)
+         do i = 1,npts
+            M = MKstar_low + dM*float(i-1)
+            Mass_xfunc_save(pid_index,i) = M
+            kcm = ((M*M + Mpi*Mpi - MK*MK)**2)/(4.0*M*M) - Mpi*Mpi
+            kcm = sqrt(kcm)
+            qR = kcm/k0cm
+            GammaS = 2.0*qR*qR*qR*Gamma/(1.0 + qR*qR)
+            dist(i) = GammaS*GammaS*M0*M0/
+     1                ((M*M - M0*M0)**2 + GammaS*GammaS*M0*M0)
+         end do
+
+CCC  Load additional resonance mass distributions here:
+
+      else
+         Return        ! Return for Geant PID types without mass distribution
+      end if
+
+CCC   Integrate mass distribution from mass_low to mass_high:
+
+      Mass_integ_save(pid_index,1) = 0.0
+      do i = 2,npts
+         Mass_integ_save(pid_index,i) = 0.5*(dist(i-1) + dist(i))*dM
+     1      + Mass_integ_save(pid_index,i-1)
+      end do
+
+CCC   Normalize this integral such that the last point is 1.00:
+      if(Mass_integ_save(pid_index,npts) .ne. 0.0) then
+         do i = 1,npts
+         Mass_integ_save(pid_index,i) =
+     1   Mass_integ_save(pid_index,i)/Mass_integ_save(pid_index,npts)
+         end do
+      end if
+
+CCC   Extend integ() and xfunc() by one mesh point to avoid Lagrange
+CCC  interpolation subroutine bug:
+      Mass_integ_save(pid_index,npts+1) =
+     1   Mass_integ_save(pid_index,npts) + 0.01
+      Mass_xfunc_save(pid_index,npts+1) =
+     1   Mass_xfunc_save(pid_index,npts)
+
+      Return
+      END
+
+      Real*4 Function Mass_function(gpid,pid_index,npts)
+      implicit none
+
+CCC   Description:  For resonance particles which have mass distributions
+C     this function randomly samples the distributions in Common/Mass/
+C     and returns a particle mass in GeV in 'Mass_function'.
+C     For non-resonant particles this function returns the Geant mass
+C     listed in SUBR: Particle_prop.
+C
+C     Input:   gpid       = Geant particle ID code number, see SUBR:
+C                           Particle_prop for listing.
+C              pid_index  = Particle type array index, determined by input
+C                           particle list.
+C              npts       = n_integ_pts in calling program.  Is the number
+C                           of mass mesh points for the arrays
+C                           in Common/Mass/ minus 1.
+C              irand      = random number generator argument/seed
+C
+C     Output:  Mass_function = particle or resonance mass (GeV)
+
+CCC   Include files and common blocks:
+      Include 'Parameter_values.inc'
+      Common/Geant/geant_mass(200),geant_charge(200),
+     1             geant_lifetime(200),geant_width(200)
+      real*4 geant_mass,geant_charge,geant_lifetime,geant_width
+      Common/Mass/ Mass_integ_save(npid,nmax_integ),
+     1             Mass_xfunc_save(npid,nmax_integ)
+      real*4 Mass_integ_save,Mass_xfunc_save,rndm
+
+CCC   Local Variable Type Declarations:
+      integer gpid,pid_index,npts,i
+      real*4 integ(nmax_integ),xfunc(nmax_integ)
+      real*4 masstmp
+
+      if(Mass_integ_save(pid_index,npts) .ne. 0.0) then
+         do i = 1,npts+1
+            integ(i) = Mass_integ_save(pid_index,i)
+            xfunc(i) = Mass_xfunc_save(pid_index,i)
+         end do
+         Call LAGRNG(rndm(-1),integ,masstmp,xfunc,
+     1               npts+1, 1, 5, npts+1, 1)
+         Mass_function = masstmp
+      else
+         Mass_function = geant_mass(gpid)
+      end if
+
+      Return
+      END
 
 
 

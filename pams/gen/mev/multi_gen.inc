@@ -1,7 +1,7 @@
 CCC   Set array dimension sizes here:
 
       integer npid,nmax_integ,n_mult_max_steps,nflowterms
-      parameter (npid = 20)         ! max # of particle ID types
+      parameter (npid = 30)         ! max # of particle ID types
       parameter (nmax_integ = 100)  ! max # integration steps in parameter
 CCC                                 ! variance calculation.
       parameter (n_mult_max_steps = 1000)
@@ -14,7 +14,7 @@ CCC                                 ! dependence.
 CCC   Common FACFAC for Factorials
 
       integer factorial_max
-      parameter (factorial_max = 5000)  ! max # multiplicity per event;
+      parameter (factorial_max = 10000) ! max # multiplicity per event;
 CCC                                     ! for any specific particle ID;
 CCC                                     ! also used for log(n!).
       Common/FACFAC/ FACLOG(factorial_max)

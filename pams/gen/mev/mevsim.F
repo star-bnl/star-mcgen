@@ -1,5 +1,8 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
+*Revision 1.12  2000/03/14 20:32:17  longacre
+*added decays
+*
 *Revision 1.11  2000/01/21 20:36:37  longacre
 *lannys fix
 *
@@ -58,10 +61,18 @@ C     coefficients and PSIr is the reaction plane angle.
 C     The algebraic signs of the Vn terms for n=odd are reversed
 C     from their input values for particles with rapidity (y) < 0
 C     as suggested in Poskanzer and Voloshin.
+C     The flow parameters can depend on pt and rapidity (y) according
+C     to the model suggested by Art Poskanzer (Feb. 2000) and as
+C     defined in the Function Vn_pt_y.
 C
 C     The user may select either to have the same multiplicity per
 C     particle type for each event or to let the multiplicity vary
-C     randomly according to a Poisson distribution.  Similarly the
+C     randomly according to a Poisson distribution. In addition, an
+C     overall multiplicative scale factor can be applied to each
+C     particle ID's multiplicity (same factor applied to each PID).
+C     This scaling can vary randomly according to a Gaussian from
+C     event-to-event.  This is to simulate trigger acceptance
+C     fluctuations.  Similarly the
 C     parameters of the one-particle distribution models may either
 C     be fixed to the same value for each event or allowed to randomly
 C     vary about a specified mean with a specified standard deviation
@@ -86,6 +97,17 @@ C     to event according to a Gaussian distribution where the user must
 C     specify the mean and std. dev.  For both cases the input file must
 C     list the 'nflowterms' (e.g. 6) values of the mean and Std.dev. for
 C     the Vn parameters for all particle ID types included in the run.
+C
+C     The available list of particles has been increased to permit a
+C     number of meson and baryon resonances.  For those with broad widths
+C     the code samples the mass distribution for the resonance.
+C     The resonance shapes
+C     are approximately Breit-Wigner and are specific for each resonance
+C     case.  The additional particle/resonances include: rho(+,-,0),
+C     omega(0), eta', phi, J/Psi, Delta(-,0,+,++) and K*(+,-,0).  Masses
+C     are sampled for the rho, omega, phi, Deltas and D*s.
+C     Refer to SUBR: Particle_prop and Particle_mass for the explicit
+C     parameters, resonance shape models, and sampling ranges.
 C
 C     The input is from a file, named 'mult_gen.in'.  The output is
 C     particle table for a given event.
@@ -208,10 +230,13 @@ C                                 std.dev. (both are in degrees) for cases
 C                                 with reac_plane_cntrl = 2 (use mean value)
 C                                 and 3.  Note: these are read in regardless
 C                                 of the value of reac_plane_cntrl.
-C     (6) pt_cut_min,pt_cut_max - Range of transverse momentum in GeV/c.
-C     (7) eta_cut_min,eta_cut_max - Pseudorapidity range
-C     (8) phi_cut_min,phi_cut_max - Azimuthal angular range in degrees.
-C     (9) n_stdev_mult - Number of standard deviations about the mean value
+C     (6) MultFac_mean, MultFac_stdev - Overall multiplicity scaling factor
+C                                       for all PID types; mean and std.dev.;
+C                                       for trigger fluctuations event-to-evt.
+C     (7) pt_cut_min,pt_cut_max - Range of transverse momentum in GeV/c.
+C     (8) eta_cut_min,eta_cut_max - Pseudorapidity range
+C     (9) phi_cut_min,phi_cut_max - Azimuthal angular range in degrees.
+C    (10) n_stdev_mult - Number of standard deviations about the mean value
 C                        of multiplicity to include in the random event-to-
 C                        event selection process.  The maximum number of
 C                        steps that can be covered is determined by
@@ -219,18 +244,19 @@ C                        parameter n_mult_max_steps in the accompanying
 C                        include file 'Parameter_values.inc' which is
 C                        presently set at 1000, but the true upper limit for
 C                        this is n_mult_max_steps - 1 = 999.
-C    (10) n_stdev_temp - Same, except for the "Temperature" parameter.
-C    (11) n_stdev_sigma- Same, except for the rapidity width parameter.
-C    (12) n_stdev_expvel - Same, except for the expansion velocity parameter.
-C    (13) n_stdev_PSIr   - Same, except for the reaction plane angle
-C    (14) n_stdev_Vn     - Same, except for the anisotropy coefficients, Vn.
-C    (15) n_integ_pts - Number of mesh points to use in the random model
+C    (11) n_stdev_temp - Same, except for the "Temperature" parameter.
+C    (12) n_stdev_sigma- Same, except for the rapidity width parameter.
+C    (13) n_stdev_expvel - Same, except for the expansion velocity parameter.
+C    (14) n_stdev_PSIr   - Same, except for the reaction plane angle
+C    (15) n_stdev_Vn     - Same, except for the anisotropy coefficients, Vn.
+C    (16) n_stdev_MultFac - Same, except for the multiplicity scaling factor.
+C    (17) n_integ_pts - Number of mesh points to use in the random model
 C                       parameter selection process.  The upper limit is
 C                       set by parameter nmax_integ in the accompanying
 C                       include file 'Parameter_values.inc' which is presently
 C                       set at 100, but the true upper limit for n_integ_pts
 C                       is nmax_integ - 1 = 99. 
-C    (16) n_scan_pts  - Number of mesh points to use to scan the (pt,y)
+C    (18) n_scan_pts  - Number of mesh points to use to scan the (pt,y)
 C                       dependence of the model distributions looking for
 C                       the maximum value.  The 2-D grid has
 C                       n_scan_pts * n_scan_pts points; no limit to size of
@@ -250,7 +276,7 @@ C                                       particle multiplicities for all events.
 C             Note that a hard limit exists for the maximum possible
 C             multiplicity for a given particle type per event.  This is
 C             determined by parameter factorial_max in accompanying include
-C             file 'common_facfac.inc' and is presently set at 5000.
+C             file 'common_facfac.inc' and is presently set at 10000.
 C         (c) Temp_mean, Temp_stdev - Temperature parameter mean (in GeV)
 C             and standard deviation (Gaussian distribution assumed).
 C         (d) sigma_mean, sigma_stdev - Rapidity distribution width (sigma)
@@ -259,10 +285,17 @@ C             assumed).
 C         (e) expvel_mean, expvel_stdev - S. Pratt expansion velocity
 C             (in units of c) mean and standard deviation (Gaussian 
 C             distribution assumed).
-C         (f) Vn_mean(i); i=1,nflowterms - Anisotropic flow parameters,
-C                                          mean values.
-C         (g) Vn_stdev(i); i=1,nflowterms - Anisotropic flow parameters,
-C                                          Gaussian std.dev. values.
+C         (f) Vn_mean(k);  k=1,4  - Anisotropic flow parameters, mean values
+C                                   for Fourier component n=1.
+C         (g) Vn_stdev(k); k=1,4  - Anisotropic flow parameters, std.dev.
+C                                   values for Fourier component n=1.
+C
+C             Repeat the last two lines of input for remaining Fourier
+C             components n=2,3...6.  Include all 6 sets of parameters
+C             even if these are not used by the model for Vn(pt,y) (set
+C             unused parameter means and std.dev. to 0.0).  List 4 values
+C             on every line, even though for n=even the 4th quantity is
+C             not used.
 C
 C**************************************************************************
 C    FOR MODEL_TYPE = 5 input the following set of lines for each particle
@@ -281,10 +314,17 @@ C         (e) delta_pt, pt_bin - pt bin size and function value, repeat for
 C                                each pt bin.
 C         (f) delta_eta, eta_bin - eta bin size and function value, repeat
 C                                  for each eta bin.
-C         (g) Vn_mean(i); i=1,nflowterms - Anisotropic flow parameters,
-C                                          mean values.
-C         (h) Vn_stdev(i); i=1,nflowterms - Anisotropic flow parameters,
-C                                          Gaussian std.dev. values.
+C         (g) Vn_mean(k);  k=1,4  - Anisotropic flow parameters, mean values
+C                                   for Fourier component n=1.
+C         (h) Vn_stdev(k); k=1,4  - Anisotropic flow parameters, std.dev.
+C                                   values for Fourier component n=1.
+C
+C             Repeat the last two lines of input for remaining Fourier
+C             components n=2,3...6.  Include all 6 sets of parameters
+C             even if these are not used by the model for Vn(pt,y) (set
+C             unused parameter means and std.dev. to 0.0).  List 4 values
+C             on every line, even though for n=even the 4th quantity is
+C             not used.
 C
 C         NOTE: The pt, eta ranges must fully include the requested ranges
 C               in input #4 and 5 above; else the code execution will stop.
@@ -312,10 +352,17 @@ C         (e) delta_pt - pt bin size, repeat for each pt bin.
 C         (f) delta_eta - eta bin size, repeat for each eta bin.
 C         (g) i,j,pt_eta_bin(i,j) - read pt (index = i) and eta (index = j)
 C                                   bin numbers and bin value for full 2D space.
-C         (h) Vn_mean(i); i=1,nflowterms - Anisotropic flow parameters,
-C                                          mean values.
-C         (i) Vn_stdev(i); i=1,nflowterms - Anisotropic flow parameters,
-C                                          Gaussian std.dev. values.
+C         (h) Vn_mean(k);  k=1,4  - Anisotropic flow parameters, mean values
+C                                   for Fourier component n=1.
+C         (i) Vn_stdev(k); k=1,4  - Anisotropic flow parameters, std.dev.
+C                                   values for Fourier component n=1.
+C
+C             Repeat the last two lines of input for remaining Fourier
+C             components n=2,3...6.  Include all 6 sets of parameters
+C             even if these are not used by the model for Vn(pt,y) (set
+C             unused parameter means and std.dev. to 0.0).  List 4 values
+C             on every line, even though for n=even the 4th quantity is
+C             not used.
 C
 C         NOTE: The pt, eta ranges must fully include the requested ranges
 C               in input #4 and 5 above; else the code execution will stop.
@@ -334,14 +381,41 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 #include "hepevt.inc"
 #include "headpss.inc"
 C---------------------------------------------------------------------
+C       ISAJET Commons
+C
+        COMMON/ITAPES/ ITDKY,ITEVT,ITCOM,ITLIS
+        COMMON/NODCAY/NODCAY,NOETA,NOPI0,NONUNU,NOEVOL,NOHADR
+        LOGICAl NODCAY,NOETA,NOPI0,NONUNU,NOEVOL,NOHADR
+        COMMON/PRIMAR/NJET,SCM,HALFE,ECM,IDIN(2),NEVENT,NTRIES,NSIGMA
+        COMMON/PARTCL/NPTCL,PPTCL(5,4000),IORIG(4000),IDENT(4000)
+        COMMON/DEKIN/NOFILE
+        LOGICAL NOFILE
+        LOGICAL MOPI0,RHO,DELTA,KSTAR,PHI
+        SAVE MOPI0,RHO,DELTA,KSTAR,PHI
+        SAVE DEKIN
+C
+C       RHO and DELTA Decay Common
+C
+        CHARACTER*1 CETA,CPI0,CRHO,CDELTA,CKSTAR,CPHI,CNOF
+        COMMON/NUMLIM/NUMLO,NUMHI  
+      integer itdky,itevt,itcom,itlis,numlo,numhi,ldecay,lhievt
+      integer lhipar,ifl,njet,idin,nevent,ntries,nsigma,ident
+      integer nptcl,iorig,gntsav,isttemp,idisa,id,iddhep
+      real*4 scm,halfe,ecm,pptcl,pp
+      dimension id(10),pp(5,10)
       DOUBLE PRECISION HEPMASS
       INTEGER IDTRAN
-      INTEGER II
+      INTEGER II,kdahep
+      dimension kdahep(2)
 #include "multi_gen.inc"
-      Common/track/ pout(npid,3,factorial_max)
+      Common/track/ pout(npid,4,factorial_max)
       real*4 pout
-      Common/Geant/geant_mass(60)
-      real*4 geant_mass
+      Common/Geant/geant_mass(200),geant_charge(200),
+     1             geant_lifetime(200),geant_width(200)
+      real*4 geant_mass,geant_charge,geant_lifetime,geant_width
+      Common/Mass/ Mass_integ_save(npid,nmax_integ),
+     1             Mass_xfunc_save(npid,nmax_integ)
+      real*4 Mass_integ_save,Mass_xfunc_save
 
       integer n_events, n_pid_type, model_type, n_integ_pts
       integer gpid(npid),mult_mean(npid),mult_variance_control(npid)
@@ -386,20 +460,40 @@ CCC   Variables associated with anisotropic flow:
       real*4 PSIr_min, PSIr_max, PSIr_event
       real*4 PSIr_integ_save(nmax_integ)
       real*4 PSIr_xfunc_save(nmax_integ)
-      real*4 Vn_mean(nflowterms,npid), Vn_stdev(nflowterms,npid)
+      real*4 Vn_mean(nflowterms,4,npid), Vn_stdev(nflowterms,4,npid)
       real*4 Vn_min, Vn_max
-      real*4 Vn_integ_save(nflowterms,npid,nmax_integ)
-      real*4 Vn_xfunc_save(nflowterms,npid,nmax_integ)
-      real*4 Vn_event(nflowterms,npid), Vn_event_tmp(nflowterms)
+      real*4 Vn1_integ_save(nflowterms,npid,nmax_integ)
+      real*4 Vn1_xfunc_save(nflowterms,npid,nmax_integ)
+      real*4 Vn2_integ_save(nflowterms,npid,nmax_integ)
+      real*4 Vn2_xfunc_save(nflowterms,npid,nmax_integ)
+      real*4 Vn3_integ_save(nflowterms,npid,nmax_integ)
+      real*4 Vn3_xfunc_save(nflowterms,npid,nmax_integ)
+      real*4 Vn4_integ_save(nflowterms,npid,nmax_integ)
+      real*4 Vn4_xfunc_save(nflowterms,npid,nmax_integ)
+      real*4 Vn_event(nflowterms,4,npid), Vn_event_tmp(nflowterms,4)
+
+CCC   Variables associated with trigger fluctuations:
+      real*4 MultFac_mean, MultFac_stdev, n_stdev_MultFac
+      real*4 MultFac_min, MultFac_max, MultFac_event
+      real*4 MultFac_integ_save(nmax_integ)
+      real*4 MultFac_xfunc_save(nmax_integ)
 
       DATA IFIRST/0/
       IF(IFIRST.EQ.0) THEN
 
 CCC  Open I/O Files:
-
+        LDECAY=1
+        LHIEVT=2
+        LHIPAR=3
       open(unit=4,type='old',access='sequential',name='mult_gen.in')
       open(unit=8,type='new',access='sequential',name='mult_gen.log')
-
+C       ISAJET Calls
+C
+        CALL SETCON
+        CALL RESET
+        NOPI0=.TRUE.
+        NOETA=.FALSE.
+        NODCAY=.FALSE.
 CCC   File 'mult_gen.in' is the input file for the run.
 CCC   File 'mult_gen.log' is a log file for the run.
 
@@ -433,24 +527,39 @@ CCC   Initialize Arrays to Zero:
             sigma_xfunc_save(i,j) = 0.0
             expvel_integ_save(i,j) = 0.0
             expvel_xfunc_save(i,j) = 0.0
+            Mass_integ_save(i,j) = 0.0
+            Mass_xfunc_save(i,j) = 0.0
          end do
       end do
 
       do j = 1,nflowterms
-         Vn_event_tmp(j) = 0.0
+         do k = 1,4
+            Vn_event_tmp(j,k) = 0.0
+         end do
          do i = 1,npid
-            Vn_mean(j,i)  = 0.0
-            Vn_stdev(j,i) = 0.0
-            Vn_event(j,i) = 0.0
+            do k = 1,4
+               Vn_mean(j,k,i)  = 0.0
+               Vn_stdev(j,k,i) = 0.0
+               Vn_event(j,k,i) = 0.0
+            end do
             do k = 1,nmax_integ
-               Vn_integ_save(j,i,k) = 0.0
-               Vn_xfunc_save(j,i,k) = 0.0
+               Vn1_integ_save(j,i,k) = 0.0
+               Vn1_xfunc_save(j,i,k) = 0.0
+               Vn2_integ_save(j,i,k) = 0.0
+               Vn2_xfunc_save(j,i,k) = 0.0
+               Vn3_integ_save(j,i,k) = 0.0
+               Vn3_xfunc_save(j,i,k) = 0.0
+               Vn4_integ_save(j,i,k) = 0.0
+               Vn4_xfunc_save(j,i,k) = 0.0
             end do
          end do
       end do
+
       do i = 1,nmax_integ
          PSIr_integ_save(i) = 0.0
          PSIr_xfunc_save(i) = 0.0
+         MultFac_integ_save(i) = 0.0
+         MultFac_xfunc_save(i) = 0.0
       end do
 
       do i = 1,n_mult_max_steps
@@ -496,12 +605,47 @@ CCC  Read Input:
       read(4,*) PSSHEP(3)              ! Generator Code
       read(4,*) PSSHEP(4)              ! Energy of the Nucleon-Nucleon CM
       read(4,*) PSSHEP(5)              ! Awest.Aeast for the colliding systems
+      read(4,*) CNOF                   ! FLAG Yes FOR NO decay FileY
+      IF(CNOF.EQ.'Y') NOFILE = .TRUE.
+      IF(CNOF.EQ.'y') NOFILE = .TRUE.
+      IF(CNOF.EQ.'N') NOFILE = .FALSE.
+      IF(CNOF.EQ.'n') NOFILE = .FALSE.
+      IF(NOFILE) THEN
+      ELSE      
+      OPEN(UNIT=1,FILE='decay.dat',STATUS='OLD',FORM='FORMATTED')
+      ENDIF
+      read(4,*) CPI0                   ! FLAG PI0 decay yes PI0 DECAY
+      IF(CPI0.EQ.'Y') NOPI0 = .FALSE.
+      IF(CPI0.EQ.'y') NOPI0 = .FALSE.
+      IF(CPI0.EQ.'N') NOPI0 = .TRUE.
+      IF(CPI0.EQ.'n') NOPI0 = .TRUE.
+      MOPI0=NOPI0
+      read(4,*) CRHO                   ! FLAG RHO decay yes RHO DECAY
+      IF(CRHO.EQ.'Y') RHO = .FALSE.
+      IF(CRHO.EQ.'y') RHO = .FALSE.
+      IF(CRHO.EQ.'N') RHO = .TRUE.
+      IF(CRHO.EQ.'n') RHO = .TRUE.
+      read(4,*) CKSTAR                 ! FLAG KSTAR decay yes KSTAR DECAY
+      IF(CKSTAR.EQ.'Y') KSTAR = .FALSE.
+      IF(CKSTAR.EQ.'y') KSTAR = .FALSE.
+      IF(CKSTAR.EQ.'N') KSTAR = .TRUE.
+      IF(CKSTAR.EQ.'n') KSTAR = .TRUE.
+      read(4,*) CPHI                   ! FLAG PHI decay yes PHI DECAY
+      IF(CPHI.EQ.'Y') PHI = .FALSE.
+      IF(CPHI.EQ.'y') PHI = .FALSE.
+      IF(CPHI.EQ.'N') PHI = .TRUE.
+      IF(CPHI.EQ.'n') PHI = .TRUE.
+        CALL SETDKY(.FALSE.)
+        CALL READIN(IFL)
+        CALL IDGEN
+      IF(NOFILE) CLOSE(1)
       read(4,*) n_pid_type             ! No. of Geant PID types to include
       read(4,*) model_type             ! Distribution model type (see
 CCC                                    ! Function dNdpty for explanation).
       read(4,*) reac_plane_cntrl       ! Reaction plane control option (1-4)
       read(4,*) PSIr_mean,PSIr_stdev   ! Reaction plane angle mean and std.
 CCC                                    ! dev., both are in degrees.
+      read(4,*) MultFac_mean,MultFac_stdev ! Mult scaling factor mean,stdev.
       read(4,*) pt_cut_min,pt_cut_max  ! Min/Max pt range in GeV/c
       read(4,*) eta_cut_min,eta_cut_max ! Min/Max pseudorapidity range
       read(4,*) phi_cut_min,phi_cut_max ! Min/Max azimuthal angular range (deg)
@@ -515,6 +659,8 @@ CCC                                     ! velocity.
       read(4,*) n_stdev_PSIr            ! No.(+/-) st.dev. range for PSIr
       read(4,*) n_stdev_Vn              ! No.(+/-) st.dev. range for anisotropic
 CCC                                     ! flow parameters Vn.
+      read(4,*) n_stdev_MultFac         ! No.(+/-) st.dev. range for multipli-
+CCC                                     ! city scaling factor for all PIDs.
       read(4,*) n_integ_pts             ! No. of integration mesh points to use
 CCC                                     ! for random parameter fluctuations.
       read(4,*) n_scan_pts              ! No. of pt and eta mesh points to use
@@ -544,6 +690,7 @@ CCC   Check Validity and Consistency of Input Parameters so far:
       if(n_stdev_expvel .lt. 0.0) n_stdev_expvel = 1.0
       if(n_stdev_PSIr   .lt. 0.0) n_stdev_PSIr   = 1.0
       if(n_stdev_Vn     .lt. 0.0) n_stdev_Vn     = 1.0
+      if(n_stdev_MultFac .lt. 0.0) n_stdev_MultFac = 1.0
       if(n_integ_pts .le. 0) n_integ_pts = 10
       if(n_scan_pts  .le. 0) n_scan_pts  = 10
       if(n_pid_type .gt. npid) then
@@ -577,6 +724,14 @@ CCC   range 0 to 360 deg.
          STOP
       end if
 
+CCC   Check the multiplicity scaling factor input parameters:
+      if(MultFac_mean.lt.0.0 .or. MultFac_stdev.lt.0.0) then
+         write(8,48) MultFac_mean, MultFac_stdev
+48       Format(//10x,'Multiplicity scaling factor mean or stdev = ',
+     1   2F7.4,' - not valid - STOP')
+         STOP
+      end if
+
 CCC   FOR MODEL_TYPE = 1,2,3 or 4; 
 CCC   Repeat the following lines of input for each particle ID type:
      
@@ -604,8 +759,10 @@ CCC      deviation (Gaussian distribution assumed).
 CCC      S. Pratt expansion velocity (in units of c) mean and standard
 CCC      deviation (Gaussian distribution assumed).
 
-         read(4,*) (Vn_mean(i,pid),i=1,nflowterms)
-         read(4,*) (Vn_stdev(i,pid),i=1,nflowterms)
+         do i = 1,nflowterms
+            read(4,*) (Vn_mean(i,k,pid) ,k=1,4)
+            read(4,*) (Vn_stdev(i,k,pid),k=1,4)
+         end do
 CCC      Anisotropic flow Fourier component coefficients specifying the
 CCC      azimuthal (phi angle) dependence as defined in Phys. Rev. C58,
 CCC      1671 (1998), Eq.(1); 'nflowterms' number of parameters are
@@ -613,6 +770,8 @@ CCC      allowed (see file 'Parameter_values.inc' where this is currently
 CCC      set to 6); these are the mean and Gaussian std. dev. to be used
 CCC      if random, Gaussian variation in the Vn values from event-to-event
 CCC      are selected (via reac_plane_cntrl).
+CCC      The flow parameters are pt and y dependent; see Function Vn_pt_y
+CCC      for the full definitions.
 
 CCC      Check Validity and Consistency of Input Parameters
 
@@ -635,13 +794,15 @@ CCC      Check Validity and Consistency of Input Parameters
          STOP
          end if
 
-         do i = 1,nflowterms
-            if(Vn_stdev(i,pid) .lt. 0.0) then
-            write(8,*) 'For pid#,term# ',pid,i
-            write(8,*) 'Vn_stdev = ',Vn_stdev(i,pid)
-            write(8,*) 'which is not valid, must be => 0, STOP'
-            STOP
-            end if
+         do k = 1,4
+            do i = 1,nflowterms
+               if(Vn_stdev(i,k,pid) .lt. 0.0) then
+                  write(8,*) 'For pid#,term#,k= ',pid,i,k
+                  write(8,*) 'Vn_stdev = ',Vn_stdev(i,k,pid)
+                  write(8,*) 'which is not valid, must be => 0, STOP'
+                  STOP
+               end if
+            end do
          end do
 
       end do  !  End of loop over of Particle ID types.
@@ -662,8 +823,10 @@ CCC      Input for Factorized pt, eta bin-by-bin distribution:
                read(4,*) delta_eta(pid,i), eta_bin(pid,i)
             end do
 
-            read(4,*) (Vn_mean(i,pid),i=1,nflowterms)
-            read(4,*) (Vn_stdev(i,pid),i=1,nflowterms)
+         do i = 1,nflowterms
+            read(4,*) (Vn_mean(i,k,pid) ,k=1,4)
+            read(4,*) (Vn_stdev(i,k,pid),k=1,4)
+         end do
 CCC      Anisotropic flow Fourier component coefficients specifying the
 CCC      azimuthal (phi angle) dependence as defined in Phys. Rev. C58,
 CCC      1671 (1998), Eq.(1); 'nflowterms' number of parameters are
@@ -671,6 +834,8 @@ CCC      allowed (see file 'Parameter_values.inc' where this is currently
 CCC      set to 6); these are the mean and Gaussian std. dev. to be used
 CCC      if random, Gaussian variation in the Vn values from event-to-event
 CCC      are selected (via reac_plane_cntrl).
+CCC      The flow parameters are pt and y dependent; see Function Vn_pt_y
+CCC      for the full definitions.
 
 CCC      Evaluate grid and find maximum values of pt and eta for input bins:
 
@@ -712,14 +877,16 @@ CCC      Check ranges of pt and eta coverage:
                STOP
             end if
 
+         do k = 1,4
             do i = 1,nflowterms
-               if(Vn_stdev(i,pid) .lt. 0.0) then
-                  write(8,*) 'For pid#,term# ',pid,i
-                  write(8,*) 'Vn_stdev = ',Vn_stdev(i,pid)
+               if(Vn_stdev(i,k,pid) .lt. 0.0) then
+                  write(8,*) 'For pid#,term#,k= ',pid,i,k
+                  write(8,*) 'Vn_stdev = ',Vn_stdev(i,k,pid)
                   write(8,*) 'which is not valid, must be => 0, STOP'
                   STOP
                end if
             end do
+         end do
 
          end do ! End loop over particle ID types.
 
@@ -759,8 +926,10 @@ CCC   Load 2D bin-by-bin distribution:
                pt_eta_bin(pid,iptbin,ietabin) = bin_value
             end do
 
-            read(4,*) (Vn_mean(i,pid),i=1,nflowterms)
-            read(4,*) (Vn_stdev(i,pid),i=1,nflowterms)
+         do i = 1,nflowterms
+            read(4,*) (Vn_mean(i,k,pid) ,k=1,4)
+            read(4,*) (Vn_stdev(i,k,pid),k=1,4)
+         end do
 CCC      Anisotropic flow Fourier component coefficients specifying the
 CCC      azimuthal (phi angle) dependence as defined in Phys. Rev. C58,
 CCC      1671 (1998), Eq.(1); 'nflowterms' number of parameters are
@@ -768,6 +937,8 @@ CCC      allowed (see file 'Parameter_values.inc' where this is currently
 CCC      set to 6); these are the mean and Gaussian std. dev. to be used
 CCC      if random, Gaussian variation in the Vn values from event-to-event
 CCC      are selected (via reac_plane_cntrl).
+CCC      The flow parameters are pt and y dependent; see Function Vn_pt_y
+CCC      for the full definitions.
 
 CCC      Check ranges of pt and eta coverage:
 
@@ -787,14 +958,16 @@ CCC      Check ranges of pt and eta coverage:
                write(8,53) eta_cut_max,eta_stop(pid)
                STOP
             end if
+         do k = 1,4
             do i = 1,nflowterms
-               if(Vn_stdev(i,pid) .lt. 0.0) then
-                  write(8,*) 'For pid#,term# ',pid,i
-                  write(8,*) 'Vn_stdev = ',Vn_stdev(i,pid)
+               if(Vn_stdev(i,k,pid) .lt. 0.0) then
+                  write(8,*) 'For pid#,term#,k= ',pid,i,k
+                  write(8,*) 'Vn_stdev = ',Vn_stdev(i,k,pid)
                   write(8,*) 'which is not valid, must be => 0, STOP'
                   STOP
                end if
             end do
+         end do
 
          end do ! End loop over particle ID types.
 
@@ -803,7 +976,7 @@ CCC      Check ranges of pt and eta coverage:
 CCC   Check some more input parameters; Set constants, and load data tables:
 
       do pid = 1,n_pid_type
-      if(gpid(pid).le.0 .or. gpid(pid).gt.48) then
+      if(gpid(pid).le.0 .or. gpid(pid).gt.200) then
       write(8,43) pid,gpid(pid)
 43    Format(//10x,'For pid # ',I7,', gpid = ',I7,' - not valid -STOP')
       STOP
@@ -824,7 +997,7 @@ CCC   Check some more input parameters; Set constants, and load data tables:
       Temp_abort  = 0.01
       sigma_abort = 0.01
 
-CCC   Load particle properties array; mass in GeV:
+CCC   Load particle properties array; mass in GeV, etc.:
 
       Call Particle_prop
 
@@ -869,7 +1042,24 @@ CCC   angles:
          end if
       end if
 
+CCC   Obtain 1D integral for Gaussian distribution for the trigger fluctuation
+CCC   simulations via the overall multiplicity scaling factor.
+      if((n_stdev_MultFac*MultFac_stdev).gt.0.0) then
+         Call MinMax(MultFac_mean,MultFac_stdev,n_stdev_MultFac,
+     1               MultFac_min,MultFac_max)
+         Call Gaussian(MultFac_min,MultFac_max,MultFac_mean,
+     1                 MultFac_stdev,n_integ_pts,integ,xfunc,nmax_integ)
+         do i = 1,n_integ_pts + 1
+            MultFac_integ_save(i) = integ(i)
+            MultFac_xfunc_save(i) = xfunc(i)
+         end do
+      else
+         MultFac_event = MultFac_mean
+      end if
+
       do pid = 1,n_pid_type
+
+         Call Particle_mass(gpid(pid),pid,n_integ_pts)
 
          if(mult_variance_control(pid) .ne. 0) then
             mult_mean_real = float(mult_mean(pid))
@@ -947,18 +1137,37 @@ CCC   angles:
 
          if(reac_plane_cntrl .gt. 1) then
             do i = 1,nflowterms
-               if((n_stdev_Vn*Vn_stdev(i,pid)) .gt. 0.0) then
-                  Vn_min = Vn_mean(i,pid) - n_stdev_Vn*Vn_stdev(i,pid)
-                  Vn_max = Vn_mean(i,pid) + n_stdev_Vn*Vn_stdev(i,pid)
-                  Call Gaussian(Vn_min,Vn_max,Vn_mean(i,pid),
-     1             Vn_stdev(i,pid),n_integ_pts,integ,xfunc,nmax_integ)
+             do k = 1,4
+               if((n_stdev_Vn*Vn_stdev(i,k,pid)) .gt. 0.0) then
+                  Vn_min = Vn_mean(i,k,pid)-n_stdev_Vn*Vn_stdev(i,k,pid)
+                  Vn_max = Vn_mean(i,k,pid)+n_stdev_Vn*Vn_stdev(i,k,pid)
+                  Call Gaussian(Vn_min,Vn_max,Vn_mean(i,k,pid),
+     1            Vn_stdev(i,k,pid),n_integ_pts,integ,xfunc,nmax_integ)
+                  if(k.eq.1) then
                   do j = 1,n_integ_pts + 1
-                     Vn_integ_save(i,pid,j) = integ(j)
-                     Vn_xfunc_save(i,pid,j) = xfunc(j)
+                     Vn1_integ_save(i,pid,j) = integ(j)
+                     Vn1_xfunc_save(i,pid,j) = xfunc(j)
                   end do
+                  else if(k.eq.2) then
+                  do j = 1,n_integ_pts + 1
+                     Vn2_integ_save(i,pid,j) = integ(j)
+                     Vn2_xfunc_save(i,pid,j) = xfunc(j)
+                  end do
+                  else if(k.eq.3) then
+                  do j = 1,n_integ_pts + 1
+                     Vn3_integ_save(i,pid,j) = integ(j)
+                     Vn3_xfunc_save(i,pid,j) = xfunc(j)
+                  end do
+                  else if(k.eq.4) then
+                  do j = 1,n_integ_pts + 1
+                     Vn4_integ_save(i,pid,j) = integ(j)
+                     Vn4_xfunc_save(i,pid,j) = xfunc(j)
+                  end do
+                  end if
                else
-                  Vn_event(i,pid) = Vn_mean(i,pid)
+                  Vn_event(i,k,pid) = Vn_mean(i,k,pid)
                end if
+             end do
             end do
          end if
 
@@ -976,6 +1185,7 @@ CCC   Write Run Header Output:
       if(model_type .eq. 6) write(8,2052)
       write(8,2053) reac_plane_cntrl
       write(8,2054) PSIr_mean, PSIr_stdev
+      write(8,2055) MultFac_mean,MultFac_stdev
       write(8,206) pt_cut_min, pt_cut_max
       write(8,207) eta_cut_min, eta_cut_max
       write(8,2071) y_cut_min,y_cut_max
@@ -983,6 +1193,7 @@ CCC   Write Run Header Output:
       write(8,209) n_stdev_mult,n_stdev_temp,n_stdev_sigma,
      1             n_stdev_expvel
       write(8,2091) n_stdev_PSIr, n_stdev_Vn
+      write(8,2092) n_stdev_MultFac
       write(8,210) n_integ_pts
       write(8,211) n_scan_pts
       write(8,213) (gpid(pid),pid = 1,n_pid_type)
@@ -1003,9 +1214,12 @@ CCC   Write Run Header Output:
          write(8,226) (eta_start(pid),pid = 1,n_pid_type)
          write(8,227) (eta_stop(pid),pid = 1,n_pid_type)
       end if
-      do i = 1,nflowterms
-         write(8,2271) i,(Vn_mean(i,pid),pid=1,n_pid_type)
-         write(8,2272) i,(Vn_stdev(i,pid),pid=1,n_pid_type)
+CCC   Print out flow parameters:
+      do pid = 1,n_pid_type
+         do i = 1,nflowterms
+            write(8,2271) pid,i,(Vn_mean(i,k,pid),k=1,4)
+            write(8,2272) pid,i,(Vn_stdev(i,k,pid),k=1,4)
+         end do
       end do
 
 200   Format('***  Multiplicity Generator Run Header ***')
@@ -1021,6 +1235,8 @@ CCC   Write Run Header Output:
 2053  Format('* Reaction plane control = ',I5)
 2054  Format('* Reaction plane angles - mean and std.dev. = ',2G12.5,
      1          ' (deg)')
+2055  Format('* Multiplicity Scaling Factor - mean and std.dev = ',
+     1       2G12.5)
 206   Format('* Min, Max range in pt              = ', 2G12.5)
 207   Format('* Min, Max range in pseudorapidity  = ', 2G12.5)
 2071  Format('* Min, Max range in rapdity + cush  = ', 2G12.5)
@@ -1028,6 +1244,7 @@ CCC   Write Run Header Output:
 209   Format('* No. std. dev. range used for mult and parameters = ',
      1       4F5.2)
 2091  Format('* No. std. dev. range for PSIr, Vn  = ', 2G12.5)
+2092  Format('* No. std. dev. range for MultFac   = ',G12.5)
 210   Format('* No. integration points for parameter variance = ',
      1       I6)
 211   Format('* No. of dN/dp(pt,y) scanning grid points to find ',
@@ -1047,8 +1264,8 @@ CCC   Write Run Header Output:
 225   Format('* Input pt stop:      ',10F7.4)
 226   Format('* Input eta start:    ',10F7.4)
 227   Format('* Input eta stop:     ',10F7.4)
-2271  Format('* Anisotropy Vn param#',I2,', mean    =',10G12.5)
-2272  Format('* Anisotropy Vn param#',I2,', st.dev. =',10G12.5)
+2271  Format('* Anisotropy Vn mean (pid=',I2,',n=',I1,'):',4G12.5)
+2272  Format('* Anisotropy Vn std. (pid=',I2,',n=',I1,'):',4G12.5)
 
 CCC  END Run Header Output
          IFIRST=1
@@ -1080,6 +1297,7 @@ C**************************************************************
       par(1).vhep(3) = vsshep(3)
       par(1).vhep(4) = vsshep(4)
 
+      ievent = VSSHEP(2)
 CCC   Compute the Reaction plane angle for this event:
          if(reac_plane_cntrl .eq. 1) then
             PSIr_event = 0.0
@@ -1107,6 +1325,17 @@ CCC NOTE: If PSIr_stdev=0.0, PSIr_event already calculated (see preceding)
 CCC  Load reaction plane angle (in degrees) into 'particle' table:
          par(1).phep(2) = PSIr_event
 
+CCC   Compute the multiplicity scaling factor for simulating trigger
+CCC   fluctuations for this event:
+         if((n_stdev_MultFac*MultFac_stdev).gt.0.0) then
+            do i = 1,n_integ_pts + 1
+               integ(i) = MultFac_integ_save(i)
+               xfunc(i) = MultFac_xfunc_save(i)
+            end do
+            Call LAGRNG(rndm(-1),integ,MultFac_event,xfunc,
+     1         n_integ_pts+1,1,5,n_integ_pts+1,1)
+         end if
+
          do pid = 1,n_pid_type
             if(mult_variance_control(pid) .ne. 0) then
                do i = 1,n_mult_steps(pid) + 1
@@ -1117,6 +1346,18 @@ CCC  Load reaction plane angle (in degrees) into 'particle' table:
      1         mult_xfunc,n_mult_steps(pid)+1,1,5,
      2         n_mult_steps(pid)+1,1)
                mult_event(pid) = mult_event_real
+            else if(mult_variance_control(pid) .eq. 0) then
+               mult_event(pid) = mult_mean(pid)
+            end if
+            mult_event(pid) = int(MultFac_event*float(mult_event(pid))
+     1                            + 0.5)
+CCC   Check each multiplicity wrt upper array size limit:
+            if(mult_event(pid).gt.factorial_max) then
+               write(8,*) 'For event#',ievent,'and pid#',pid,
+     1            'multiplicity=',mult_event(pid),
+     2            'which is > array size (factorial_max=',
+     3             factorial_max,')-STOP'
+               STOP
             end if
 
          if(model_type .le. 4) then
@@ -1151,14 +1392,33 @@ CCC  Load reaction plane angle (in degrees) into 'particle' table:
          
          if(reac_plane_cntrl .gt. 1) then
             do i = 1,nflowterms
-               if((n_stdev_Vn*Vn_stdev(i,pid)) .gt. 0.0) then
+             do k = 1,4
+               if((n_stdev_Vn*Vn_stdev(i,k,pid)) .gt. 0.0) then
+                if(k.eq.1) then
                   do j = 1,n_integ_pts + 1
-                     integ(j) = Vn_integ_save(i,pid,j)
-                     xfunc(j) = Vn_xfunc_save(i,pid,j)
+                     integ(j) = Vn1_integ_save(i,pid,j)
+                     xfunc(j) = Vn1_xfunc_save(i,pid,j)
                   end do
-                  Call LAGRNG(rndm(-1),integ,Vn_event(i,pid),xfunc,
+                else if (k.eq.2) then
+                  do j = 1,n_integ_pts + 1
+                     integ(j) = Vn2_integ_save(i,pid,j)
+                     xfunc(j) = Vn2_xfunc_save(i,pid,j)
+                  end do
+                else if (k.eq.3) then
+                  do j = 1,n_integ_pts + 1
+                     integ(j) = Vn3_integ_save(i,pid,j)
+                     xfunc(j) = Vn3_xfunc_save(i,pid,j)
+                  end do
+                else if (k.eq.4) then
+                  do j = 1,n_integ_pts + 1
+                     integ(j) = Vn4_integ_save(i,pid,j)
+                     xfunc(j) = Vn4_xfunc_save(i,pid,j)
+                  end do
+                end if
+                Call LAGRNG(rndm(-1),integ,Vn_event(i,k,pid),xfunc,
      1                 n_integ_pts+1,1,5,n_integ_pts+1,1)
                end if ! (For n_stdev_Vn*Vn_stdev=0, already have Vn_event)
+             end do
             end do
          end if
 
@@ -1186,7 +1446,9 @@ CCC      Check validity of Temperature and sigma parameters:
 CCC   Load Anisotropic flow parameters for this event# and PID type
 CCC   into temporary array;
                do i = 1,nflowterms
-                  Vn_event_tmp(i) = Vn_event(i,pid)
+                  do k = 1,4
+                     Vn_event_tmp(i,k) = Vn_event(i,k,pid)
+                  end do
                end do
 CCC   For the specified Geant PID, multiplicity, model type, temperature,
 CCC   rapidity width (sigma), and expansion velocity parameter, generate
@@ -1197,7 +1459,8 @@ CCC   random track list:
      2      reac_plane_cntrl,PSIr_event,Vn_event_tmp,
      3      pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
      4      y_cut_min,y_cut_max,
-     5      phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
+     5      phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status,
+     6      n_integ_pts)
             if(status .eq. -86) status_abort = -86
             end do
          end if
@@ -1211,6 +1474,7 @@ CCC Event Header Output:
            return
            ENDIF
            write(8,2301) PSIr_event
+           write(8,2302) MultFac_event
            write(8,213) (gpid(pid),pid = 1,n_pid_type)
            write(8,231) (mult_event(pid),pid = 1,n_pid_type)
            if(model_type .le. 4) then
@@ -1221,15 +1485,19 @@ CCC Event Header Output:
 
 230   Format(/'***  Next Event:  No. ',I7,'; Total # tracks = ',I10)
 2301  Format('* Reaction plane angle = ',G12.5,' (deg)')
+2302  Format('* Multiplicity Scaling Factor = ',G12.5)
 231   Format('* Multiplicity:         ',10I7)
 232   Format('* Temperature:          ',10F7.4)
 233   Format('* Rapidity Dist. sigma: ',10F7.4)
 234   Format('* Expansion Velocity:   ',10F7.4)
 
-           do i = 1,nflowterms
-              write(8,2341) i,(Vn_event(i,pid),pid=1,n_pid_type)
-2341          Format('* Anisotropy Vn param#',I2,', Vn=',10G12.5)
+CCC   Print out flow parameters for this event:
+           do pid = 1,n_pid_type
+              do i = 1,nflowterms
+                 write(8,2341) pid,i,(Vn_event(i,k,pid),k=1,4)
+              end do
            end do
+2341  Format('* Anisotropy Vn (pid=',I2,',n=',I1,'):',4G12.5)
 
            write(8,235) ievent,total_mult,n_vertices
 235        Format('EVENT:',3x,3(1x,I6))
@@ -1242,16 +1510,148 @@ CCC   End Event Header Output:
 CCC   Output track kinematics for ievent and pid:
         II = 1
            do pid = 1,n_pid_type
-           do i = 1,mult_event(pid)
+           gntsav=gpid(pid)
+            do i = 1,mult_event(pid)
         II = II + 1
-        idhep=idtran(gpid(pid))
+        isttemp=1
+        kdahep(1)  = 0           !  pointers to position of 
+        kdahep(2)  = 0           !  the first/last daughter  
+        idhep=idtran(gntsav)
+        IF(MOPI0) THEN
+        isttemp=1
+        ELSE
+          IF(idhep.eq.111) then
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep)
+           CALL DECAY(NPTCL)
+           kdahep(1)=II
+           kdahep(2)=II+NPTCL-2
+           do k=2,NPTCL
+           id(k)=iddhep(ident(K))
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           enddo
+           enddo
+        ENDIF
+        ENDIF
+        IF(RHO) THEN
+        isttemp=1
+        ELSE
+          IF(idhep.eq.113.or.iabs(idhep).eq.213) then
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep)
+           CALL DECAY(NPTCL)
+           kdahep(1)=II
+           kdahep(2)=II+NPTCL-2
+           do k=2,NPTCL
+           id(k)=iddhep(ident(K))
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           enddo
+           enddo
+        ENDIF
+        ENDIF
+        IF(PHI) THEN
+        isttemp=1
+        ELSE
+          IF(idhep.eq.333) then
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep)
+           CALL DECAY(NPTCL)
+           kdahep(1)=II
+           kdahep(2)=II+NPTCL-2
+           do k=2,NPTCL
+           id(k)=iddhep(ident(K))
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           enddo
+           enddo
+        ENDIF
+        ENDIF
+        IF(idhep.eq.313) then
+              if(rndm(-1).gt..5) idhep=-313
+        ENDIF
+        IF(KSTAR) THEN
+        isttemp=1
+        ELSE
+          IF(iabs(idhep).eq.313.or.iabs(idhep).eq.323) then
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep)
+           CALL DECAY(NPTCL)
+           kdahep(1)=II
+           kdahep(2)=II+NPTCL-2
+           do k=2,NPTCL
+           id(k)=iddhep(ident(K))
+           IF(IABS(id(k)).EQ.311) THEN
+              id(k)=310
+              IF(rndm(-1).gt..5) id(k)=130
+           ENDIF
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           enddo
+           enddo
+        ENDIF
+        ENDIF
         phep(1) = pout(pid,1,i)
         phep(2) = pout(pid,2,i)
         phep(3) = pout(pid,3,i)
-        phep(4)=dsqrt(phep(1)**2+phep(2)**2+phep(3)**2+hepmass(idhep)**2)
-        par(ii).isthep     = 1           !  status code
+CCC   Use mass in pout(pid,4,i) which varies for resonances
+C        phep(4)=dsqrt(phep(1)**2+phep(2)**2+phep(3)**2+hepmass(idhep)**2)
+        phep(4)=dsqrt(phep(1)**2+phep(2)**2+phep(3)**2
+     1                + pout(pid,4,i)*pout(pid,4,i))
+        par(ii).isthep     = isttemp     !  status code
         par(ii).idhep      = idhep       !  particle identity
         par(ii).jmohep(1)  = 0           !  pointer(s) to position 
+        par(ii).jmohep(2)  = 0           !  where the mothers(s) stored   
+        par(ii).jdahep(1)  = kdahep(1)   !  pointers to position of 
+        par(ii).jdahep(2)  = kdahep(2)   !  the first/last daughter  
+        DO J = 1, 4
+          par(ii).phep(j)  = phep(j)     !  p4 
+          par(ii).vhep(j)  = 0.0         !  production vertex (mm) and time (mm/c) 
+        END DO
+CCC   Use mass in pout(pid,4,i) which varies for resonances
+        par(ii).phep(5)    = pout(pid,4,i) !  mass (GeV)
+C        par(ii).phep(5)    = hepmass(idhep)!  mass (GeV)  
+        IF(isttemp.ne.1) then
+        do k=2,NPTCL
+        II = II + 1
+        idhep = id(k)
+        phep(1) = pp(1,k)
+        phep(2) = pp(2,k)
+        phep(3) = pp(3,k)
+        phep(4) = pp(4,k)
+        phep(5) = pp(5,k)
+        par(ii).isthep     = 1           !  status code
+        par(ii).idhep      = idhep       !  particle identity
+        par(ii).jmohep(1)  = II-k        !  pointer(s) to position 
         par(ii).jmohep(2)  = 0           !  where the mothers(s) stored   
         par(ii).jdahep(1)  = 0           !  pointers to position of 
         par(ii).jdahep(2)  = 0           !  the first/last daughter  
@@ -1259,7 +1659,9 @@ CCC   Output track kinematics for ievent and pid:
           par(ii).phep(j)  = phep(j)     !  p4 
           par(ii).vhep(j)  = 0.0         !  production vertex (mm) and time (mm/c) 
         END DO
-        par(ii).phep(5)    = hepmass(idhep)!  mass (GeV)  
+        par(ii).phep(5)    = phep(5) !  mass (GeV)
+        enddo
+        ENDIF
            end do
            end do
 CCC   End track kinematics output.
@@ -1270,7 +1672,10 @@ CCC   End track kinematics output.
            write(8,250) ievent, event_abort, status_abort
 250        Format(/'*** Event No. ',I7,' ABORTED: event_abort,',
      1     'status_abort = ',2I7)
+           mevsim = STAFCV_BAD
+           Return
          end if
+
       RETURN
       END
 

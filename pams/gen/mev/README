@@ -5,7 +5,7 @@ kumac mevxdf makes file in XDF particle table format
      Welcome to the Fast Multiplicity Generator Code  
      -----------------------------------------------
 
-This page was last updated on Nov. 8, 1999.
+This page was last updated on Feb. 18, 2000.
 
 A general description of the method, algorithm and input is given 
 in file 'mevsim.doc'
@@ -16,5 +16,5 @@ in 'mult_gen_venus-like.in' and for VINI like events is in the file
 determined by fitting the pt,y distributions from these generators.
 
 The source code is contained in 2 files: mevsim.F and multiplicity_gen.F
-which were updated on 11/8/99 along with the include file multi_gen.inc.
+which were updated on 2/18/00 along with the include file multi_gen.inc.
 
