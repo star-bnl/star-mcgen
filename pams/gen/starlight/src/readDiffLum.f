@@ -4,7 +4,7 @@ c     comment added for newer modify date
 
       subroutine readDiffLum
 
-        REAL f_max
+CVM: this is now in Ftable.inc        REAL f_max
 
         include 'Ftable.inc'
         include 'inputp.inc'
