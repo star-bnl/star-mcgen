@@ -1,7 +1,10 @@
 *
-* $Id: headpss.inc,v 1.1 1998/04/16 17:26:34 longacre Exp $
+* $Id: headpss.inc,v 1.2 1998/04/22 13:35:56 longacre Exp $
 *
 * $Log: headpss.inc,v $
+* Revision 1.2  1998/04/22 13:35:56  longacre
+* correcting headpss.inc
+*
 * Revision 1.1  1998/04/16 17:26:34  longacre
 * checking in new venus staf module
 *
@@ -40,13 +43,13 @@
 * 70 VNI     : NOAFTER : MINBIAS 
 * 71 VNI     : AFTER   : MINBIAS 
 * 72 VNI     : NOAFTER : CENTRAL 
-* 73 VNI     : NOAFTER : CENTRAL 
+* 73 VNI     : AFTER   : CENTRAL 
 * 74 VNI     : NOAFTER : JET
-* 75 VNI     : NOAFTER : JET
+* 75 VNI     : AFTER   : JET
 * 76 VNI     : NOAFTER : PHOTON
-* 77 VNI     : NOAFTER : PHOTON
+* 77 VNI     : AFTER   : PHOTON
 * 78 VNI     : NOAFTER : CHIRAL
-* 79 VNI     : NOAFTER : CHIRAL
+* 79 VNI     : AFTER   : CHIRAL
 * 80 VNI     : CENTRAL : MEV
 * PSSHEP(4) = ENERGY OF N N CMS
 * PSSHEP(5) = Awest.Aeast  p p  =  1.1 or Au Au = 197.197
