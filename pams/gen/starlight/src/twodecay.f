@@ -12,7 +12,7 @@ c     taking spin into account
 	include 'tables.inc'
         real W
 	real mdec,px0,py0,pz0,px1,py1,pz1,px2,py2,pz2,ran,E
-	real pmag, anglelep(0:100),ytest
+	real pmag, anglelep(0:1000),ytest
 	real phi,theta,xtest,dndtheta,thetalep,Ecm,E1,E2
 	integer ipid,iFbadevent,i
 	double precision betax,betay,betaz
@@ -71,8 +71,8 @@ c     the beamline, in the frame of the two photons
       elseif(spin.eq.0.5) then
 C     calculate a table of integrated angle values for leptons
         anglelep(0) = 0
-        do 125 i = 1,100
-          theta = pi * float(i) /100.
+        do 125 i = 1,1000
+          theta = pi * float(i) /1000.
 
 C  Added sin(theta) phase space factor (not in thetalep) and changed E to W in thetalep call
 C  11/9/2000 SRK 
@@ -83,9 +83,9 @@ C  as well as W,theta_cm.  Since there is a boost from cm to lab below, the form
  125    continue
         theta = 0.
 	xtest = ran(ISEED)
-        do 150 i = 1,100
-          if(xtest.gt.(anglelep(i)/anglelep(100)))
-     &         theta = pi * float(i) / 100.
+        do 150 i = 1,1000
+          if(xtest.gt.(anglelep(i)/anglelep(1000)))
+     &         theta = pi * float(i) / 1000.
  150     continue
 
       elseif(spin.eq.1.) then
