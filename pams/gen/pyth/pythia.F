@@ -1,5 +1,8 @@
-* $Id: pythia.F,v 1.6 1999/08/14 21:49:33 fisyak Exp $
+* $Id: pythia.F,v 1.7 2000/07/07 22:05:35 fisyak Exp $
 * $Log: pythia.F,v $
+* Revision 1.7  2000/07/07 22:05:35  fisyak
+* New phythia
+*
 * Revision 1.6  1999/08/14 21:49:33  fisyak
 * eliminate include and source level
 *
@@ -31,7 +34,7 @@
 *         just make it loaded
           CALL PY_INIT(4)
           CALL PYSTAT(0)
-          CALL RLUSET(0)
+*         CALL RLUSET(0)
       endif
 *---     
       CALL PYEVNT
