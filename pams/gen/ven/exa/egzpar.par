@@ -1,7 +1,0 @@
- $ZPAR
- Z_DOUBLE_OUT    = F,
- Z_BLOCKSIZE     =        3600,
- Z_FZ_OPTION_OUT = 'AO',
- Z_FZ_OPTION_IN  = 'AI',
- Z_FZLOGL        =          -2
- $END
