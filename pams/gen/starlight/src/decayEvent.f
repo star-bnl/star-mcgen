@@ -8,7 +8,7 @@ c     this subroutine decays particles and writes events to a file
       include 'lujets.inc'
       include 'inputp.inc'
       integer ievent
-      real w,px,py,pz,W,theta,phi,px0,py0,pz0,mdec
+      real px,py,pz,W,theta,phi,px0,py0,pz0,mdec
       real pxdec(4),pydec(4),pzdec(4),Edec(4)
       integer ipid,iFbadevent,i
       double precision E
@@ -53,7 +53,11 @@ c      decay each of the rho0's  to pi+pi-
         if (iout.eq.2)
      &     call writeGSTARtext(ievent,4,ipid,pxdec,pydec,pzdec)
         if (iout.eq.3)
-     &     call writeNtuple(ievent,4,ipid,pxdec,pydec,pzdec,Edec)
+
+C  fixed call (added mdec) 5/25/2001 SRK
+
+     &     call writeNtuple(ievent,4,ipid,mdec,
+     &pxdec,pydec,pzdec,Edec)
 c       increment the decay counter
         ievent = ievent + 1
 
@@ -77,8 +81,10 @@ c       increment the decay counter
            endif
 
 c       deal with vector meson decays
+C  913 is rho0+direct pipi; added 5/25/2001 by SRK
+C  direct pipi  has same angular distribution as rho0
         elseif((ip.eq.113).or.(ip.eq.223).or.(ip.eq.333).or.
-     &          (ip.eq.443)) then
+     &          (ip.eq.443) .or. (ip.eq.913)) then
          call twodecay (ipid,E,W,px,py,pz,mdec,pxdec(1),pydec(1),
      &	pzdec(1),Edec(1),pxdec(2),pydec(2),pzdec(2),Edec(2),iFbadevent)
              if (iout.eq.1)
