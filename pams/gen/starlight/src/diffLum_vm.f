@@ -21,12 +21,10 @@ c	For reference, see STAR Note 386.
       DOUBLE PRECISION Av,Wgp,cs,cvma
       DOUBLE PRECISION W,dW,dY
       DOUBLE PRECISION Egamma,y
-      DOUBLE PRECISION t,tmin,tmax
+      DOUBLE PRECISION t,tmin,tmax,testint,dndWdY
       DOUBLE PRECISION csgA,int
-      DOUBLE PRECISION bwnorm,testint,dndWdY
-      DOUBLE PRECISION xg(1:5),ag(1:5)
-      DOUBLE PRECISION ax,bx
-      INTEGER          I,J,K,NGAUSS, Z, A
+      DOUBLE PRECISION xg(1:5),ag(1:5),ax,bx
+      INTEGER          I,J,K,NGAUSS
 
 
 C     DATA FOR GAUSS INTEGRATION
@@ -48,6 +46,7 @@ c     are there for future reference.
       write (20,*) Ytop
       write (20,*) numy
       write (20,*) gg_or_gP
+      write (20,*) ibreakup
 
       WRITE(*,*) 'Generating W/Y map for Monte Carlo ...'
 
@@ -60,7 +59,7 @@ C     Normalize the Breit-Wigner Distribution
 c     Write the values of W used in the calculation to starlight.dat.
       DO 50 I=0,numw-1
         W = Wmin + DFLOAT(I)*dW + 0.5*dW
-        testint = testint + nrbw(W,ANORM,BNORM_0,C)*dW
+        testint = testint + nrbw(W,ANORM,BNORM,C)*dW
 	write(20,*) W 
  50   CONTINUE
 
@@ -84,18 +83,20 @@ c     Write the values of Y used in the calculation to starlight.dat.
           Y = Ymin + DFLOAT(J)*dY + 0.5*dY
           Egamma = 0.5*W*DEXP(Y)
 
+C  if below threshold, the cross section is 0.  
+C  (this used to set Egamma = Ethreshold
+
           IF(Egamma.lt.Eth) then
-c	GOTO 101
-c	this is just a kluge to keep it from not writing out when
-c	outside range-- have to think about the best way to handle this
-	Egamma = Eth
-	endif
+             dndWdY=0.
+             goto 80
+	  endif
+
+C  at very high photon energies, the flux ~ 0 anyway, so this
+C  cutoff is fine.
+
           IF(Egamma.gt.EgMax) then
-c	GOTO 101
-c	this is just a kluge to keep it from not writing out when
-c	outside range-- have to think about the best way to handle this
-	Egamma = EgMax
-	endif
+	      Egamma = EgMax
+	  endif
 
 C       Find gamma-proton CM energy
           Wgp=DSQRT(2.*Egamma*(Ep+DSQRT(Ep*Ep-mp*mp))+mp*mp)
@@ -126,10 +127,10 @@ C       Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
           csgA = 0.5*(tmax-tmin)*csgA
           csgA = Av*csgA
 
-          dndWdY = Egamma*flux(Egamma)*csgA*nrbw(W,ANORM,BNORM_0,
-     &	bwnorm)
-	  write(20,*) dndWdY
-
+          dndWdY = Egamma*flux(Egamma)*csgA*nrbw(W,ANORM,BNORM,
+     &bwnorm)
+ 80       write(20,*) dndWdY
+     
  101    CONTINUE
  102  CONTINUE
 
