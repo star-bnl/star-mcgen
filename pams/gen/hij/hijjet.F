@@ -1,5 +1,8 @@
-* $Id: hijjet.F,v 1.2 1998/05/13 18:55:50 didenko Exp $
+* $Id: hijjet.F,v 1.3 1999/01/16 20:53:22 didenko Exp $
 * $Log: hijjet.F,v $
+* Revision 1.3  1999/01/16 20:53:22  didenko
+* add some usefull histogram for jets
+*
 * Revision 1.2  1998/05/13 18:55:50  didenko
 * modified version with full particles history
 *
@@ -28,31 +31,28 @@
       INTEGER IEVEF
       SAVE /WEVENT/
 *
-      REAL px, py, pz, pt, eta, theta, phi, pe, yyr, HMEMOR 
-      INTEGER I, J, IK, IP
+      DIMENSION pt(40000), eta(40000), idst(40000,2), ptjet(50)
+      DIMENSION NUMJET(50)
+      REAL PT, ETA, ptjet, px1, py1
+      REAL px, py, pz, theta, phi, pe, HMEMOR 
+      INTEGER I, J, IK, IP, idst, numjet
 *
+      INTEGER ii, nd1, nd2, idip, idik, kk, mm, ll, km
+      INTEGER nd3, nd4, nd5, nd6, nd7, nd8, idkk
+      INTEGER nd9, nd10, nd11, nd12, njets, njetp
+      
       COMMON/PAWC/HMEMOR(20000)
-      CHARACTER*6 HTAGP(2)
-      CHARACTER*6 HTAGE(2)
-      CHARACTER*6 ITAGN(2)
-      DIMENSION PIEV(2)
-      DIMENSION PREV(2)
-      DIMENSION NMEV(2)
-      REAL PIEV, PREV, NMEV, NMPR, NMPI
-      EQUIVALENCE (PIEV(1), PTPI), (PIEV(2), ETHAPI)
-      EQUIVALENCE (PREV(1), PTPR), (PREV(2), ETHAPR)
-      EQUIVALENCE (NMEV(1), NMPI), (NMEV(2), NMPR)
-      REAL PTPR, PTPI, ETHAPR, ETHAPI, PIEV, PREV
-      DATA HTAGP/'PTPI','ETHAPI'/
-      DATA HTAGE/'PTPR','ETHAPR'/
-      DATA ITAGN/'NMPI','NMPR'/ 
       LOGICAL FIRST/.TRUE./
 **
       IF (FIRST) THEN
        FIRST=.FALSE.
-       CALL HBOOKN(101,'PARTICLE PT',2,' ',1000, htagp)
-       CALL HBOOKN(102,'PARTICLE ETHA',2,' ',1000, htage)
-       CALL HBOOKN(103,'PARTICLE MULPYPLICITY',2,' ',1000,itagn)
+       CALL HBOOK1(100, 'NUMBER of JETS', 10, 0., 10., 0.)
+       CALL HBOOK1(101, 'PT of JETS PT > 5 ', 50, 0., 50., 0.)
+       CALL HBOOK1(102, 'ETHA of JETS', 50, -5., 5., 0.)
+       CALL HBOOK1(103, 'PT of PARTICLES', 40, 0., 20., 0.)
+       CALL HBOOK1(104, 'ETHA of PARTICLES', 50, -5., 5., 0.)
+       CALL HBOOK1(106, 'NUMBER of PART in JET', 40, 0., 80., 0.)
+       CALL HBOOK1(107, 'PT of  JETS', 50, 0., 50., 0.)
       ENDIF
 C
        IEVEF = 0
@@ -69,18 +69,124 @@ C
 *
 *-- Start event loop
 *
-        nmev(1) = 0.
-        nmev(2) = 0.
-        ik = 1
 *
         CALL DATIME(I,J)
         VSSHEP(2) = VSSHEP(2) + 1
         VSSHEP(3) = FLOAT(I)
         VSSHEP(4) = FLOAT(J)
+C--
+        do ii = 1, natt
+          do ik = 1,2
+         idst(ii,ik) = 0
+        enddo
+        enddo
+C-- 
+        do ii = 1, natt
+             px = patt(ii,1)
+             py = patt(ii,2)
+             pz = patt(ii,3)
+C
+             pt(ii) = sqrt(px*px+py*py)
+             theta = atan2 ( pt(ii), pz )
+             eta(ii)   = -log(tan(theta/2.))
+ 
+       if(abs(katt(ii,1)).ge.91.and.abs(katt(ii,1)).le.93) then
+           if(pt(ii).ge. 5.) then
+          call hfill(101, pt(ii), 0., 1.)
+          call hfill(102, eta(ii), 0., 1.)
+        nd1 = katt(ii,5)
+        nd2 = katt(ii,6)
+         do ip = nd1, nd2
+            if(katt(ip,4) .eq. 1) then
+              idst(ip,1) = katt(ii,1)
+              idst(ip,2) = ii 
+            else            
+             nd3 = katt(ip,5)
+             nd4 = katt(ip,6)
+              do ik = nd3, nd4
+                 if(katt(ik,4) .eq. 1) then
+                   idst(ik,1) = katt(ii,1) 
+                   idst(ik,2) = ii
+                  else 
+                  nd5 = katt(ik,5)
+                  nd6 = katt(ik,6)
+                   do kk = nd5, nd6
+                      if(katt(kk,4) .eq. 1) then
+                        idst(kk,1) = katt(ii,1)
+                        idst(kk,2) = ii
+                     else
+                     nd7 = katt(kk,5)
+                     nd8 = katt(kk,6)
+                      do km = nd7, nd8
+                        if(katt(km,4) .eq. 1) then
+                         idst(km,1) = katt(ii,1)
+                         idst(km,2) = ii
+                       else 
+                        nd9 = katt(km,5)
+                        nd10 = katt(km,6)
+                      do mm = nd9, nd10
+                       if(katt(mm,4) .eq. 1) then
+                         idst(mm,1) = katt(ii,1) 
+                         idst(mm,2) = ii
+                       else 
+                        nd11 = katt(mm,5)
+                        nd12 = katt(mm,6)
+                      do ll = nd11, nd12
+                        idst(ll,1) = katt(ii,1)
+                        idst(ll,2) = ii
+                       enddo
+                      endif 
+                     enddo
+                    endif 
+                    enddo
+                   endif
+                 enddo
+               endif
+              enddo
+             endif
+            enddo
+            endif
+           endif
+          enddo 
+C
+          njets = 0
+C 
+          do ii = 1, natt
+        if(abs(katt(ii,1)).ge.91.and.abs(katt(ii,1)).le.93) then
+          if(pt(ii) .ge. 5.) then
+           njetp = 0
+           px1 = 0.
+           py1 = 0. 
+          do ik = 1,natt
+           if(idst(ik,2) .eq. ii ) then
+              njetp = njetp + 1
+              px1 = px1 + patt(ik,1)
+              py1 = py1 + patt(ik,2)
+              call hfill(103, pt(ik), 0., 1.)
+              call hfill(104, eta(ik), 0., 1.)
+             endif
+            enddo 
+             if(njetp.ne.0) then
+              njets = njets + 1 
+             ptjet(njets) = sqrt(px1**2 + py1**2)
+              numjet(njets) = njetp
+             endif 
+           endif
+          endif
+         enddo
+C
+          if(njets .ne. 0) then
+            call hfill(100, float(njets), 0., 1.)
+           do kk = 1, njets
+            call hfill(106, float(numjet(kk)), 0., 1.)
+            call hfill(107, ptjet(kk), 0., 1.)
+           enddo
+          endif 
+C--
         par(1).isthep = 10
         par(1).idhep = 9999999
-        par(1).jmohep(1) = 0
-        par(1).jmohep(2) = 0
+        par(1).jmohep(1) = njets
+        par(1).jmohep(2) = njetp
         par(1).jdahep(1) = 0
         par(1).jdahep(2) = 0
         par(1).phep(1) = psshep(1) 
@@ -92,51 +198,29 @@ C
         par(1).vhep(2) = vsshep(2)
         par(1).vhep(3) = vsshep(3)
         par(1).vhep(4) = vsshep(4)
-*--
-      DO IP = 1, NATT
+C
+        ik = 1
+        DO IP = 1, NATT
+C        if(katt(ip,4) .eq. 1) then
         ik = ik + 1
-        par(ik).isthep     = katt(ip,4)    !  status code
-        par(ik).idhep      = katt(ip,1)    !  particle identity
-        par(ik).jmohep(1)  = katt(ip,3)    !  pointer(s) to position 
-        par(ik).jmohep(2)  = 0             !  where the mothers(s) stored   
+        par(ik).isthep     = katt(ip,4)    ! status code
+        par(ik).idhep      = katt(ip,1)    ! particle identity
+        par(ik).jmohep(1)  = katt(ip,3)    ! pointer(s) to mother position
+        par(ik).jmohep(2)  = 0             !                         
         par(ik).jdahep(1)  = katt(ip,5)    !  pointers to position of 
         par(ik).jdahep(2)  = katt(ip,6)    !  the first/last daughter  
         DO J = 1, 4
           par(ik).phep(j)  = patt(ip,j)    !  p4 
-          par(ik).vhep(j)  = vatt(ip,j)    !  decay vertex (mm) and time(mm/c) 
+          par(ik).vhep(j)  = 0.            !  decay vertex (mm) and time(mm/c) 
         END DO
           par(ik).phep(5) = patt(ip,5)
-C
-             px = patt(ip,1)
-             py = patt(ip,2)
-             pz = patt(ip,3)
-             pe = patt(ip,4)
-C
-             pt = sqrt(px*px+py*py)
-             theta = atan2 ( pt, pz )
-             eta   = -log(tan(theta/2.))
-             yyr = 0.5*log((pe + pz)/(pe - pz))                   
-             phi  = atan2 ( py, px )
-C                 
-             if(abs(katt(ip,1)) .eq. 211) then
-                  nmev(1) = nmev(1) + 1
-                  piev(1) = pt
-                  piev(2) = eta
-                  call hfn(101, piev)
-             elseif(abs(katt(ip,1)) .eq. 2212) then
-                  nmev(2) = nmev(2) + 1
-                  prev(1) = pt
-                  prev(2) = eta
-                  if(abs(eta).lt.20.)then
-                  call hfn(102, prev)
-                  endif
-             endif
+C      endif
 C  
       END DO
-                 call hfn(103, nmev)
       par_h.nok = ik
 *
       HIJJET=STAFCV_OK
+C      endif
       ENDIF
 C
   999 END
