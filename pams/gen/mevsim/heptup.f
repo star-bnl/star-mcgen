@@ -206,7 +206,7 @@ C Check IS!=0                                                             163
       IF (IS.NE.0) STOP ' HEPTUPLE: Can not set buffer size '             163
       CALL HBNT (ID,'HEPEVNT',' ')                                        165
       CALL HEPBNAME (ID,IP, 'itrac' , 0, -1, MXPA)                        166
-      CALL HEPBNAME (ID,ISTAT,'istat' , 0, -1, IVER)                      167
+      CALL HEPBNAME (ID,ISTAT,'istat' , 0, -1, 15)                        167
       CALL HEPBNAME (ID,IPDG, 'ipdg' , 0, -IPMX,IPMX)                     168
       CALL HEPBNAME (ID,MOT1, 'moth1' , 0, -1, MREF)                      169
       CALL HEPBNAME (ID,MOT2, 'moth2' , 0, -MREF, 1)                      170
@@ -231,7 +231,7 @@ C    Loop here                                                            181
       ENDIF                                                               184
 *
       CALL VZERO (IP,16)                                                  186
-      CALL RLUXAT(LUX,IRNDM,IDA1,IDA2)                                    187
+*  Call RLUXAT(Lux,Irndm,Ida1,Ida2)
 * if (MRef>999) { ida1=Pid/Mref; ida2=Mod(Pid,Mref) }
       IEVT=IEVT+1                                                         189
       IP=NPART                                                            189

@@ -31,7 +31,7 @@ LINTFILES = $(SOURCES:.f=.ln)
 #CC = pgf77 
 CC = g77 
 #CFLAGS = -O 
-CFLAGS = -g 
+CFLAGS = -g -w -O -fno-second-underscore -fno-automatic   
 CPPFLAGS =
 LDFLAGS = 
 LINTFLAGS = 
