@@ -738,8 +738,7 @@ C
 	DENGY=EATT/(IHNT2(1)*HINT1(6)+IHNT2(3)*HINT1(7))-1.0
 	IF(ABS(DENGY).GT.HIPR1(43).AND.IHPR2(20).NE.0
      &     .AND.IHPR2(21).EQ.0) THEN
-	IF(IHPR2(10).NE.0) WRITE(6,*) 'Energy not conserved,
-     &	repeat the event'
+	IF(IHPR2(10).NE.0) WRITE(6,*) 'Energy not conserved, repeat the event'
 C		call lulist(1)
 		GO TO 50
 	ENDIF
@@ -4467,8 +4466,7 @@ C**************************************************
 	IF(MISS.LT.100) GO TO 30
 	IERROR=1
 	IF(IHPR2(10).EQ.0) RETURN
-	WRITE(6,*) '    ERROR OCCURED, HIJSFT NOT PERFORMED,
-     &                              abort this event'
+	WRITE(6,*) '    ERROR OCCURED, HIJSFT NOT PERFORMED, abort this event'
 	WRITE(6,*) 'MTP,PTP2',EPP*EPM,PTP2,'  MTT,PTT2',ETP*ETM,PTT2 
 	RETURN
 	END
