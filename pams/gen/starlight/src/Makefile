@@ -11,12 +11,10 @@ include Makefile.Linux
 #
 BIN= ../bin
 #
-<<<<<<< Makefile
+
 SLIB = `cernlib mathlib packlib kernlib jetset74`
-=======
-SLIB = `cernlib mathlib packlib kernlib jetset74`
+
 #SLIB = `cernlib -v pro mathlib packlib kernlib jetset74`
->>>>>>> 1.4
 #
 #CGLIB=`cernlib -v new -G mathlib` 
 #
