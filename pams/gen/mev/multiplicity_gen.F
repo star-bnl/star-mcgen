@@ -1,6 +1,6 @@
       Subroutine track_gen(gpid,N,model_type,T,sigma,expvel,
      1     pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
-     2     phi_cut_min,phi_cut_max,n_scan_pts,irand,rad,pid,status)
+     2     phi_cut_min,phi_cut_max,n_scan_pts,seed,rad,pid,status)
       implicit none
 #include "mevcdes/multi_gen.inc"
       Common/track/ pout(npid,3,factorial_max)
@@ -11,10 +11,10 @@
       real*4 T,sigma,expvel,pt_cut_min,pt_cut_max,eta_cut_min
       real*4 eta_cut_max,phi_cut_min,phi_cut_max,mass
       real*4 dpt,deta,facmax,pt,eta,y,rapidity,dNdpty,dNdp
-      real*4 pt_trial,eta_trial,y_trial,ran,rad,phi
+      real*4 pt_trial,eta_trial,y_trial,ranf,rad,phi,seed
 
       integer gpid,N,model_type,npt,neta,n_scan_pts,ipt,ieta
-      integer Track_count,irand,i,j,pid,status
+      integer Track_count,i,j,pid,status
 
       do i = 1,factorial_max
       do j = 1,3
@@ -58,14 +58,14 @@ CCC Start Random Track Selection:
 
       Track_count = 0
 
-100   pt_trial = ran(irand)*(pt_cut_max - pt_cut_min)+pt_cut_min
-      eta_trial=ran(irand)*(eta_cut_max-eta_cut_min)+eta_cut_min
+100   pt_trial = ranf()*(pt_cut_max - pt_cut_min)+pt_cut_min
+      eta_trial=ranf()*(eta_cut_max-eta_cut_min)+eta_cut_min
       y_trial = rapidity(mass,pt_trial,eta_trial)
       dNdp = dNdpty(1.0,pt_trial,eta_trial,y_trial,mass,T,sigma,
      1       expvel,model_type,1,pid)/facmax 
-      if(ran(irand) .le. dNdp) then
+      if(ranf() .le. dNdp) then
          Track_count = Track_count + 1
-         phi = (ran(irand)*(phi_cut_max - phi_cut_min) + 
+         phi = (ranf()*(phi_cut_max - phi_cut_min) + 
      1         phi_cut_min)/rad
          Call kinematics(mass,pt_trial,y_trial,phi,Track_count,pid)
          if(Track_count .lt. N) then

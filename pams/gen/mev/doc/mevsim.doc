@@ -122,7 +122,7 @@ C                       dependence of the model distributions looking for
 C                       the maximum value.  The 2-D grid has
 C                       n_scan_pts * n_scan_pts points; no limit to size of
 C                       n_scan_pts.
-C    (13) irand       - Starting random number seed.
+C    (13) seed         - Starting random number seed.
 C
 C**************************************************************************
 C    FOR MODEL_TYPE = 1,2,3 or 4:
@@ -232,5 +232,5 @@ CCC                                     ! velocity.
 CCC                                     ! for random parameter fluctuations.
       read(4,*) n_scan_pts              ! No. of pt and eta mesh points to use
 CCC                                     ! in scan for maximum value of dN/dpt*dy
-      read(4,*) irand                   ! Random number seed; default=12345.
+      read(4,*) seed                    ! Random number seed; default=12345.
 

@@ -1,7 +1,7 @@
-/*    $Id: mevsim.idl,v 1.1 1998/04/01 15:28:18 longacre Exp $
+/*    $Id: mevsim.idl,v 1.2 1998/04/02 21:38:00 longacre Exp $
       $Log: mevsim.idl,v $
-      Revision 1.1  1998/04/01 15:28:18  longacre
-      first
+      Revision 1.2  1998/04/02 21:38:00  longacre
+      change ran to ranf
 
 
 */

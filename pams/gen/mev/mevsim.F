@@ -1,7 +1,7 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
-*Revision 1.1  1998/04/01 15:28:18  longacre
-*first
+*Revision 1.2  1998/04/02 21:37:57  longacre
+*change ran to ranf
 * 
       INTEGER FUNCTION MEVSIM(par_h, par) 
       implicit none
@@ -130,7 +130,7 @@ C                       dependence of the model distributions looking for
 C                       the maximum value.  The 2-D grid has
 C                       n_scan_pts * n_scan_pts points; no limit to size of
 C                       n_scan_pts.
-C    (13) irand       - Starting random number seed.
+C    (13) seed       - Starting random number seed.
 C
 C**************************************************************************
 C    FOR MODEL_TYPE = 1,2,3 or 4:
@@ -219,6 +219,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 #include "mevcdes/headpss.inc"
 C---------------------------------------------------------------------
       DOUBLE PRECISION HEPMASS
+      REAL seed
       INTEGER IFIRST
       INTEGER IDTRAN
       INTEGER I
@@ -230,7 +231,7 @@ C---------------------------------------------------------------------
       Common/Geant/geant_mass(60)
       real*4 geant_mass
 
-      integer n_events, n_pid_type, model_type, n_integ_pts, irand
+      integer n_events, n_pid_type, model_type, n_integ_pts
       integer gpid(npid),mult_mean(npid),mult_variance_control(npid)
       integer i,j,k,pid,mult_min,mult_max,n_mult_steps(npid),ievent
       integer mult_event(npid),n_scan_pts,total_mult,n_vertices
@@ -241,7 +242,7 @@ C---------------------------------------------------------------------
       real*4 phi_cut_min,phi_cut_max,n_stdev_mult,n_stdev_temp
       real*4 n_stdev_sigma,n_stdev_expvel,Temp_mean(npid)
       real*4 Temp_stdev(npid),pi,rad,mult_mean_real,mult_stdev
-      real*4 mult_min_real,mult_max_real,ran
+      real*4 mult_min_real,mult_max_real,ranf
       real*4 Temp_abort, sigma_abort, bin_value
 
       real*4 mult_integ(n_mult_max_steps),mult_xfunc(n_mult_max_steps)
@@ -368,7 +369,7 @@ CCC                                     ! velocity.
 CCC                                     ! for random parameter fluctuations.
       read(4,*) n_scan_pts              ! No. of pt and eta mesh points to use
 CCC                                     ! in scan for maximum value of dN/dpt*dy
-      read(4,*) irand                   ! Random number seed; default=12345.
+      read(4,*) seed                    ! Random number seed; default=12345.
 
 CCC   Check Validity and Consistency of Input Parameters so far:
 
@@ -395,7 +396,9 @@ CCC   Check Validity and Consistency of Input Parameters so far:
       if(n_integ_pts .le. 0) n_integ_pts = 10
       if(n_scan_pts  .le. 0) n_scan_pts  = 10
 
-      if(irand .le. 0) irand = 12345
+      if(seed .le. 0.) seed = 12345.
+
+      call ranset(seed)
       if(n_pid_type .gt. npid) then
          write(8,10) n_pid_type, npid
 10       Format(//10x,'No. requested PID types = ',I7,
@@ -713,7 +716,7 @@ CCC   Write Run Header Output:
      1             n_stdev_expvel
       write(8,210) n_integ_pts
       write(8,211) n_scan_pts
-      write(8,212) irand
+      write(8,212) seed
       write(8,213) (gpid(pid),pid = 1,n_pid_type)
       write(8,214) (mult_mean(pid),pid = 1,n_pid_type)
       write(8,215) (mult_variance_control(pid),pid = 1,n_pid_type)
@@ -752,7 +755,7 @@ CCC   Write Run Header Output:
      1       I6)
 211   Format('* No. of dN/dp(pt,y) scanning grid points to find ',
      1   'maximum = ', I6)
-212   Format('* Starting Random Number Seed = ',I10)
+212   Format('* Starting Random Number Seed = ',F20.5)
 213   Format('* Geant PID:          ',10I7)
 214   Format('* Mean Multiplicity:  ',10I7)
 215   Format('* Mult. Var. Control: ',10I7)
@@ -804,7 +807,7 @@ C**************************************************************
                mult_integ(i) = mult_integ_save(pid,i)
                mult_xfunc(i) = mult_xfunc_save(pid,i)
                end do
-               Call LAGRNG(ran(irand),mult_integ,mult_event_real,
+               Call LAGRNG(ranf(),mult_integ,mult_event_real,
      1         mult_xfunc,n_mult_steps(pid)+1,1,5,
      2         n_mult_steps(pid)+1,1)
                mult_event(pid) = mult_event_real
@@ -817,7 +820,7 @@ C**************************************************************
                integ(i) = Temp_integ_save(pid,i)
                xfunc(i) = Temp_xfunc_save(pid,i)
                end do
-               Call LAGRNG(ran(irand),integ,Temp_event(pid),xfunc,
+               Call LAGRNG(ranf(),integ,Temp_event(pid),xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
 
@@ -826,7 +829,7 @@ C**************************************************************
                integ(i) = sigma_integ_save(pid,i)
                xfunc(i) = sigma_xfunc_save(pid,i)
                end do
-               Call LAGRNG(ran(irand),integ,sigma_event(pid),xfunc,
+               Call LAGRNG(ranf(),integ,sigma_event(pid),xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
 
@@ -835,7 +838,7 @@ C**************************************************************
                integ(i) = expvel_integ_save(pid,i)
                xfunc(i) = expvel_xfunc_save(pid,i)
                end do
-               Call LAGRNG(ran(irand),integ,expvel_event(pid),xfunc,
+               Call LAGRNG(ranf(),integ,expvel_event(pid),xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
          end if
@@ -867,7 +870,7 @@ CCC   random track list:
             Call track_gen(gpid(pid),mult_event(pid),model_type,
      1      Temp_event(pid),sigma_event(pid),expvel_event(pid),
      2      pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
-     3      phi_cut_min,phi_cut_max,n_scan_pts,irand,rad,pid,status)
+     3      phi_cut_min,phi_cut_max,n_scan_pts,seed,rad,pid,status)
             if(status .eq. -86) status_abort = -86
             end do
          end if

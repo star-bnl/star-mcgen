@@ -1,9 +1,9 @@
 *
-* $Id: headpss.inc,v 1.1 1998/04/01 15:28:14 longacre Exp $
+* $Id: headpss.inc,v 1.2 1998/04/02 21:37:51 longacre Exp $
 *
 * $Log: headpss.inc,v $
-* Revision 1.1  1998/04/01 15:28:14  longacre
-* first
+* Revision 1.2  1998/04/02 21:37:51  longacre
+* change ran to ranf
 *
 * PSSHEP(1) = B impact parameter
 * PSSHEP(2) = PHI angle of impact
