@@ -1,0 +1,12 @@
+/*   Generated particle table 
+     $Id: par_anal.idl,v 1.1 1998/06/11 21:36:32 didenko Exp $
+     Particle table
+*/
+#include "PAM.idl"
+#include "particle.idl"
+ 
+interface par_anal : amiModule{
+        STAFCV_T call
+                ( in    particle par
+                );
+};
