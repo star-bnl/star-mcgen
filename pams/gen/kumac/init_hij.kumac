@@ -1,11 +1,13 @@
-*  created 6/5/98 Kathy Turner
-* *************** init_hij.kumac ******************
-* * contains kumacs for the pam: hij
-* **********************************************
+* ---------------------------------------------------------
+
  macro init 
  macro/global/import *
- cd [evgen]
- tdm/newtable particle particle 40000
- cd /dui
+   
+  message ' initializing random # for hijing '
+   
+  message ' !!! HIJING expects input file hijev.inp in top directory !!! '
+ 
+  RNDM   114399  54720141
+ 
  return
  
