@@ -53,7 +53,7 @@ CCC         precede this file everywhere it occurs.
       real*4 T,sigma,expvel,pt_cut_min,pt_cut_max,eta_cut_min
       real*4 eta_cut_max,phi_cut_min,phi_cut_max,mass
       real*4 dpt,deta,facmax,pt,eta,y,rapidity,dNdpty,dNdp
-      real*4 pt_trial,eta_trial,y_trial,rndm,rad,phi
+      real*4 pt_trial,eta_trial,y_trial,ranf,rad,phi
       real*4 y_cut_min,y_cut_max,pseudorapidity
       real*4 PSIr,Vn(nflowterms,4),facmax_phi,dNdphi
       real*4 Vnptmax,Vnymax,Vn_pt_y,Vntmp(nflowterms)
@@ -146,37 +146,37 @@ CCC Start Random Track Selection:
 
       Track_count = 0
 
-100   pt_trial = rndm(-1)*(pt_cut_max - pt_cut_min)+pt_cut_min
+100   pt_trial = ranf()*(pt_cut_max - pt_cut_min)+pt_cut_min
       if(model_type.ge.1 .and. model_type.le.4) then
-         y_trial = rndm(-1)*(y_cut_max - y_cut_min)+y_cut_min
+         y_trial = ranf()*(y_cut_max - y_cut_min)+y_cut_min
          eta_trial = pseudorapidity(mass,pt_trial,y_trial)
          if(eta_trial.lt.eta_cut_min .or. eta_trial.gt.eta_cut_max)
      1      go to 100
       else if (model_type.eq.5 .or. model_type.eq.6) then
-         eta_trial=rndm(-1)*(eta_cut_max-eta_cut_min)+eta_cut_min
+         eta_trial=ranf()*(eta_cut_max-eta_cut_min)+eta_cut_min
          y_trial = rapidity(mass,pt_trial,eta_trial)
       end if
       dNdp = dNdpty(1.0,pt_trial,eta_trial,y_trial,mass,T,sigma,
      1       expvel,model_type,1,pid)/facmax
-      if(rndm(-1) .le. dNdp) then
+      if(ranf() .le. dNdp) then
          Track_count = Track_count + 1
 
 CCC   Determine phi angle:
          if(reac_plane_cntrl .eq. 1) then
-            phi = (rndm(-1)*(phi_cut_max - phi_cut_min) +
+            phi = (ranf()*(phi_cut_max - phi_cut_min) +
      1            phi_cut_min)/rad
          else if(reac_plane_cntrl .gt. 1) then
             do i = 1,nflowterms
                Vntmp(i) = Vn_pt_y(i,Vn(i,1),Vn(i,2),Vn(i,3),Vn(i,4),
      1                    pt_trial,y_trial)
             end do
-101         phi = rndm(-1)*(phi_cut_max - phi_cut_min)+phi_cut_min
+101         phi = ranf()*(phi_cut_max - phi_cut_min)+phi_cut_min
             dNdphi = 1.0
             do i = 1,nflowterms
                dNdphi = dNdphi+2.0*Vntmp(i)*cos(float(i)*(phi-PSIr)
      1      /rad)
             end do
-            if(rndm(-1).gt.(dNdphi/facmax_phi)) then
+            if(ranf().gt.(dNdphi/facmax_phi)) then
                go to 101
             else
                phi = phi/rad
@@ -1469,7 +1469,7 @@ CCC                                 ! even integer).
       real*4 geant_mass,geant_charge,geant_lifetime,geant_width
       Common/Mass/ Mass_integ_save(npid,nmax_integ),
      1             Mass_xfunc_save(npid,nmax_integ)
-      real*4 Mass_integ_save,Mass_xfunc_save,rndm
+      real*4 Mass_integ_save,Mass_xfunc_save,ranf
 
 CCC   Local Variable Type Declarations:
       integer gpid,pid_index,npts,i
@@ -1481,7 +1481,7 @@ CCC   Local Variable Type Declarations:
             integ(i) = Mass_integ_save(pid_index,i)
             xfunc(i) = Mass_xfunc_save(pid_index,i)
          end do
-         Call LAGRNG(rndm(-1),integ,masstmp,xfunc,
+         Call LAGRNG(ranf(),integ,masstmp,xfunc,
      1               npts+1, 1, 5, npts+1, 1)
          Mass_function = masstmp
       else

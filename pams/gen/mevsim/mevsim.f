@@ -365,12 +365,13 @@ C
         COMMON/DEKIN/NOFILE
         LOGICAL NOFILE,notbk
 
-        LOGICAL MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI
-        SAVE MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI
+        LOGICAL MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI,ETAP,OMG
+        SAVE MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI,ETAP,OMG
 C
 C       RHO and DELTA Decay Common
 C
-        CHARACTER*1 CETA,CPI0,CRHO,CDELTA,CKSTAR,CPHI,CNOF,CJPSI
+      CHARACTER*1 CETA,CPI0,CRHO,CDELTA,CKSTAR
+      CHARACTER*1 CPHI,CNOF,CJPSI,CETAP,COMG
         COMMON/NUMLIM/NUMLO,NUMHI  
       integer itdky,itevt,itcom,itlis,numlo,numhi,ldecay,lhievt
       integer lhipar,ifl,njet,idin,nevent,ntries,nsigma,ident,ida2
@@ -444,7 +445,7 @@ CCC         precede this file everywhere it occurs.
       real*4 phi_cut_min,phi_cut_max,n_stdev_mult,n_stdev_temp
       real*4 n_stdev_sigma,n_stdev_expvel,Temp_mean(npid)
       real*4 Temp_stdev(npid),pi,rad,mult_mean_real,mult_stdev
-      real*4 mult_min_real,mult_max_real,rndm
+      real*4 mult_min_real,mult_max_real,ranf
       real*4 Temp_abort, sigma_abort, bin_value
 
       real*4 mult_integ(n_mult_max_steps),mult_xfunc(n_mult_max_steps)
@@ -493,8 +494,10 @@ CCC   Variables associated with trigger fluctuations:
       real*4 MultFac_xfunc_save(nmax_integ)
 
       DATA IFIRST/0/
+      DATA INTRUN/0/
       IF(IFIRST.EQ.0) THEN
 
+      CALL HepRun(INTRUN)
 CCC  Open I/O Files:
         LDECAY=1
         LHIEVT=2
@@ -616,12 +619,9 @@ CCC   Initialize Arrays to Zero:
 
 CCC  Read Input:
 
-      read(4,*) VSSHEP(1)              ! Run number
-      write(6,*) VSSHEP(1)              ! Run number
+      write(6,*) INTRUN                ! Run number
       read(4,*) VSSHEP(2)              ! Starting No. for the  events to generate
-      write(6,*) VSSHEP(2)              ! Starting No. for the  events to generate
-      read(4,*) PSSHEP(3)              ! Seed Random Number
-      write(6,*) PSSHEP(3)              ! Seed Random Number
+      write(6,*) VSSHEP(2)             ! Starting No. for the  events to generate
       read(4,*) PSSHEP(4)              ! Energy of the Nucleon-Nucleon CM
       write(6,*) PSSHEP(4)              ! Energy of the Nucleon-Nucleon CM
       read(4,*) PSSHEP(5)              ! Stopping No.
@@ -647,11 +647,21 @@ CCC  Read Input:
       IF(CETA.EQ.'N') NOETA = .TRUE.
       IF(CETA.EQ.'n') NOETA = .TRUE.
       MOETA=NOETA
+      read(4,*) CETAP                  ! FLAG ETA' decay yes ETA' DECAY
+      IF(CETAP.EQ.'Y') ETAP = .FALSE.
+      IF(CETAP.EQ.'y') ETAP = .FALSE.
+      IF(CETAP.EQ.'N') ETAP = .TRUE.
+      IF(CETAP.EQ.'n') ETAP = .TRUE.
       read(4,*) CRHO                   ! FLAG RHO decay yes RHO DECAY
       IF(CRHO.EQ.'Y') RHO = .FALSE.
       IF(CRHO.EQ.'y') RHO = .FALSE.
       IF(CRHO.EQ.'N') RHO = .TRUE.
       IF(CRHO.EQ.'n') RHO = .TRUE.
+      read(4,*) COMG                   ! FLAG OMEGA decay yes OMEGA DECAY
+      IF(COMG.EQ.'Y') OMG = .FALSE.
+      IF(COMG.EQ.'y') OMG = .FALSE.
+      IF(COMG.EQ.'N') OMG = .TRUE.
+      IF(COMG.EQ.'n') OMG = .TRUE.
       read(4,*) CKSTAR                 ! FLAG KSTAR decay yes KSTAR DECAY
       IF(CKSTAR.EQ.'Y') KSTAR = .FALSE.
       IF(CKSTAR.EQ.'y') KSTAR = .FALSE.
@@ -1315,11 +1325,10 @@ C                                                            **
 C**************************************************************
       itimes=psshep(3)
       do j=1,itimes
-         VSSHEP(3)=rndm(-1)
+         VSSHEP(3)=ranf()
       enddo
 7777  CALL DATIME(I,J)
       VSSHEP(2) = VSSHEP(2) + 1
-      INTRUN=vsshep(1)
       WRITE(6,881) PSSHEP(5), VSSHEP(2)
  881  FORMAT(' I GOT TO HERE',2F10.5)
       IF(psshep(5).LT.vsshep(2)) then
@@ -1337,7 +1346,7 @@ CCC   Compute the Reaction plane angle for this event:
                   integ(i) = PSIr_integ_save(i)
                   xfunc(i) = PSIr_xfunc_save(i)
                end do
-               Call LAGRNG(rndm(-1),integ,PSIr_event,xfunc,
+               Call LAGRNG(ranf(),integ,PSIr_event,xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
 CCC         Ensure that the randomly selected reaction plane angle
 CCC         is within the 0 to 360 deg range.
@@ -1346,7 +1355,7 @@ CCC         is within the 0 to 360 deg range.
             end if
 CCC NOTE: If PSIr_stdev=0.0, PSIr_event already calculated (see preceding)
          else if(reac_plane_cntrl .eq. 4) then
-            PSIr_event = 360.0*rndm(-1)
+            PSIr_event = 360.0*ranf()
          else
             PSIr_event = 0.0
          end if
@@ -1358,7 +1367,7 @@ CCC   fluctuations for this event:
                integ(i) = MultFac_integ_save(i)
                xfunc(i) = MultFac_xfunc_save(i)
             end do
-            Call LAGRNG(rndm(-1),integ,MultFac_event,xfunc,
+            Call LAGRNG(ranf(),integ,MultFac_event,xfunc,
      1         n_integ_pts+1,1,5,n_integ_pts+1,1)
          end if
 
@@ -1368,7 +1377,7 @@ CCC   fluctuations for this event:
                mult_integ(i) = mult_integ_save(pid,i)
                mult_xfunc(i) = mult_xfunc_save(pid,i)
                end do
-               Call LAGRNG(rndm(-1),mult_integ,mult_event_real,
+               Call LAGRNG(ranf(),mult_integ,mult_event_real,
      1         mult_xfunc,n_mult_steps(pid)+1,1,5,
      2         n_mult_steps(pid)+1,1)
                mult_event(pid) = mult_event_real
@@ -1393,7 +1402,7 @@ CCC   Check each multiplicity wrt upper array size limit:
                integ(i) = Temp_integ_save(pid,i)
                xfunc(i) = Temp_xfunc_save(pid,i)
                end do
-               Call LAGRNG(rndm(-1),integ,Temp_event(pid),xfunc,
+               Call LAGRNG(ranf(),integ,Temp_event(pid),xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
 
@@ -1402,7 +1411,7 @@ CCC   Check each multiplicity wrt upper array size limit:
                integ(i) = sigma_integ_save(pid,i)
                xfunc(i) = sigma_xfunc_save(pid,i)
                end do
-               Call LAGRNG(rndm(-1),integ,sigma_event(pid),xfunc,
+               Call LAGRNG(ranf(),integ,sigma_event(pid),xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
 
@@ -1411,7 +1420,7 @@ CCC   Check each multiplicity wrt upper array size limit:
                integ(i) = expvel_integ_save(pid,i)
                xfunc(i) = expvel_xfunc_save(pid,i)
                end do
-               Call LAGRNG(rndm(-1),integ,expvel_event(pid),xfunc,
+               Call LAGRNG(ranf(),integ,expvel_event(pid),xfunc,
      1              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
          end if
@@ -1441,7 +1450,7 @@ CCC   Check each multiplicity wrt upper array size limit:
                      xfunc(j) = Vn4_xfunc_save(i,pid,j)
                   end do
                 end if
-                Call LAGRNG(rndm(-1),integ,Vn_event(i,k,pid),xfunc,
+                Call LAGRNG(ranf(),integ,Vn_event(i,k,pid),xfunc,
      1                 n_integ_pts+1,1,5,n_integ_pts+1,1)
                end if ! (For n_stdev_Vn*Vn_stdev=0, already have Vn_event)
              end do
@@ -1694,6 +1703,168 @@ CCC   Output track kinematics for ievent and pid:
              ENDIF
            ENDIF
          ENDIF
+        ENDIF
+        IF(OMG) THEN
+        isttemp=1
+        ELSE
+         IF(idhep(II).eq.223) then
+           ppnxlv(5)=0.0
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep(II))
+           CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
+           kdahep(1)=II+1
+           kdahep(2)=II+NPTCL-1
+           do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
+           id(k)=iddhep(ident(K))
+           istda(k)=1
+           imo1(k)=II
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           IF(MOPI0) THEN
+           ELSE
+             IF(id(k).eq.111) then
+               ppnxlv(j)=pptcl(j,k)
+               ida1(k)=II+NPTCL
+               ksav=k
+               istda(k)=3
+               mopss=II+k-1
+             ENDIF
+           ENDIF
+           enddo
+           enddo
+           IF(MOPI0) THEN
+           ELSE
+             IF(ppnxlv(5).gt..001) then
+                nptcl=1
+                pptcl(1,1)=ppnxlv(1)
+                pptcl(1,1)=ppnxlv(2)
+                pptcl(1,1)=ppnxlv(3)
+                pptcl(1,1)=ppnxlv(4)
+                pptcl(1,1)=ppnxlv(5)
+                ident(1)=110
+                CALL DECAY(NPTCL)
+                ida2(ksav)=ida1(ksav)+NPTCL-2
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=mopss
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+           ENDIF
+         ENDIF
+        ENDIF
+        IF(ETAP) THEN
+        isttemp=1
+        ELSE
+         IF(idhep(II).eq.331) then
+           notbk=.true.
+           ppnxlv(5)=0.0
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep(II))
+           CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
+           kdahep(1)=II+1
+           kdahep(2)=II+NPTCL-1
+           do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
+           id(k)=iddhep(ident(K))
+           istda(k)=1
+           imo1(k)=II
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           IF(MOETA) THEN
+           ELSE
+             IF(id(k).eq.221) then
+               ppnxlv(j)=pptcl(j,k)
+               ida1(k)=II+NPTCL
+               ksav=k
+               istda(k)=3
+               mopss=II+k-1
+             ENDIF
+           ENDIF
+           enddo
+           enddo
+           IF(MOETA) THEN
+           ELSE
+             IF(ppnxlv(5).gt..001) then
+                nptcl=1
+                pptcl(1,1)=ppnxlv(1)
+                pptcl(1,1)=ppnxlv(2)
+                pptcl(1,1)=ppnxlv(3)
+                pptcl(1,1)=ppnxlv(4)
+                pptcl(1,1)=ppnxlv(5)
+                ident(1)=220
+                CALL DECAY(NPTCL)
+                ida2(ksav)=ida1(ksav)+NPTCL-2
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=mopss
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+           ENDIF
+         ENDIF
+        IF(MOPI0) THEN
+        ELSE
+          IF(notbk) then
+          notbk=.false.
+          NEND=NPTCLSAV
+          do kk=2,NEND
+             IF(id(kk).eq.111) then
+                nptcl=1
+                ident(1)=110
+                istda(kk)=3
+                do j=1,5
+                pptcl(J,1)=pp(J,kk)
+                enddo
+                CALL DECAY(NPTCL)
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=II+kk-1
+                ida1(kk)=II+NPTCLSAV-NPTCL+1
+                ida2(kk)=II+NPTCLSAV-1
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+          enddo
+        ENDIF
+        ENDIF
         ENDIF
         IF(PHI) THEN
         isttemp=1
@@ -1959,7 +2130,7 @@ CCC   Output track kinematics for ievent and pid:
          ENDIF
         ENDIF
         IF(idhep(II).eq.313) then
-              if(rndm(-1).gt..5) idhep(II)=-313
+              if(ranf().gt..5) idhep(II)=-313
         ENDIF
         IF(KSTAR) THEN
         isttemp=1
@@ -1987,7 +2158,7 @@ CCC   Output track kinematics for ievent and pid:
            imo1(k)=II
            IF(IABS(id(k)).EQ.311) THEN
               id(k)=310
-              IF(rndm(-1).gt..5) id(k)=130
+              IF(ranf().gt..5) id(k)=130
            ENDIF
            do j=1,5
            pp(j,k)=pptcl(j,k)
@@ -2097,5 +2268,12 @@ CCCC     1,PPP,phep(4,JJ),phep(5,JJ)
 
       RETURN
       END
+      FUNCTION RANF()
+      REAL*4 R
+      CALL RANLUX(R,1)
+      RANF=R
+      RETURN
+      END 
+      
 
 

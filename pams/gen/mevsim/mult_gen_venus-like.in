@@ -1,12 +1,12 @@
-    1.0         ! Run number 
     0.0         ! Starting event number 
-17832.          ! Seed Random Number
-    200         ! Energy NN CM 
-   2.           ! STOPPING  EVENT NUMBER
+ 200.           ! Energy NN CM 
+    1.          ! STOPPING  EVENT NUMBER
 Y               ! NO DECAY FILE
 Y               ! PIO DECAY
 Y               ! ETA DECAY
+Y               ! ETA' DECAY
 Y               ! RHO DECAY
+Y               ! OMEGA DECAY
 Y               ! KSTAR DECAY
 Y               ! PHI DECAY
 Y               ! DELTA DECAY
