@@ -9,6 +9,7 @@ c     calculation.
       include 'Ftable.inc'
       include 'range.inc'
       include 'inputp.inc'
+      include 'const.inc'
       real W,Y,xw,xy,xtest,ran,dW,dY      
       integer ISEED,IW,IY
 
@@ -18,6 +19,11 @@ c     calculation.
 C       >> DRAW xw,xy
  201    xw = ran(ISEED)
         W = Wmin + xw*(Wtop-Wmin)
+
+C  protect against sub-threshold events
+
+        IF (W .lt. 2*mpi) goto 201
+
         IW = INT((W-Wmin)/dW) + 1
         xy = ran(ISEED)
         Y = Ymin + xy*(Ytop-Ymin)
