@@ -6,7 +6,7 @@
 **:<------------------------------------------------------------------*/
 #include "astore_xdf.h"
 
-long astore_xdf_(
+long type_of_call astore_xdf_(
   TABLE_HEAD_ST         *gtable_h,       EG_GENER_ST           *gtable ,
   TABLE_HEAD_ST         *etable_h,       EG_EVENT_ST           *etable ,
   TABLE_HEAD_ST         *ttable_h,       EG_TRACK_ST           *ttable ,
