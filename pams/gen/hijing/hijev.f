@@ -93,8 +93,6 @@ CCC#include "headpss.inc"
 *****  Generate event  
            natt = 0
            do while ( natt .le. 0 ) 
-      WRITE(6,777)
- 777  FORMAT(' GOT TO HERE ')
              call hijing ( frame, bmin, bmax ) 
          enddo
          VSSHEP(1) = HINT1(19)

@@ -1,7 +1,10 @@
-* $Id: hijjet.f,v 1.3 2000/06/22 22:53:54 longacre Exp $
+* $Id: hijjet.f,v 1.4 2000/06/23 18:39:51 longacre Exp $
 * $Log: hijjet.f,v $
+* Revision 1.4  2000/06/23 18:39:51  longacre
+* remove more printout
+*
 * Revision 1.3  2000/06/22 22:53:54  longacre
-* comment out debug code
+*  comment out debug code
 *
 * Revision 1.2  2000/06/22 22:49:36  longacre
 *  new hijing better parton code
@@ -106,7 +109,7 @@ CCCCC      END DO
         katt(ip-1,4)=katt(ip,4)
         NHVY=katt(ip,6)-katt(ip,5)+1
         IF(NHVY.GT.1) THEN
-        WRITE(6,433) ip, katt(ip,5), katt(ip,6), NHVY
+CCCCC        WRITE(6,433) ip, katt(ip,5), katt(ip,6), NHVY
  433    FORMAT(' ip, katt(ip,5), katt(ip,6), NHVY ',4I10)
         jend=nhvy-1
         joff=katt(ip,5)
@@ -124,7 +127,7 @@ CCCCC      END DO
           phvy(j+1,5)=patt(joff+j,5) 
          enddo
          call makhvy
-        WRITE(6,434) NHVY, NHVJ1, NHVJ2
+CCCCC        WRITE(6,434) NHVY, NHVJ1, NHVJ2
  434    FORMAT(' NHVY, NHVJ1, NHVJ2 ',3I10)
         idtst=iabs(KHVJ2(1,1))
         IF(idtst.gt.499.and.idtst.lt.599.or.
@@ -272,7 +275,7 @@ C
 C 
           matt=0
           ksptt=0
-          WRITE(6,888) natt
+CCCCC          WRITE(6,888) natt
  888      FORMAT(' natt ',I10)
           do ii = 1, natt
         if(katt(ii,4).lt.12)  THEN
@@ -331,7 +334,7 @@ C
         endif
         END DO
         endif
-          WRITE(6,888) natt
+CCCCC          WRITE(6,888) natt
          vsshep(3)=float(njets)
 C--
        CALL HEPEvent('hijing',IRUN,NATT,vsshep(1),vsshep(2),psshep(5)

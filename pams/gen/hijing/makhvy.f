@@ -14,7 +14,7 @@
       REAL PXX, PYY, PHI(100)
       INTEGER ISAV, I, J
        PI=3.141593
-       WRITE(6,501) NHVY
+CCCCC       WRITE(6,501) NHVY
  501   FORMAT(' NHVY ',I10)
        ISAV=1
        FLOWMAX=0.0
@@ -35,7 +35,7 @@
            FLOWMAX=FLOW
        ENDIF
 2      CONTINUE         
-       WRITE(6,777) FLOW, ISAV, PHI(ISAV)
+CCCCC       WRITE(6,777) FLOW, ISAV, PHI(ISAV)
 777    FORMAT(' FLOW ',F10.5,' ISAV ',I10,' PHI ',F10.5)   
        COSPHI=COS(PHI(ISAV))
        SINPHI=SIN(PHI(ISAV))
