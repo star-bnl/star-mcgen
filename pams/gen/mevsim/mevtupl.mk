@@ -5,7 +5,7 @@ SOURCES = mevsim.f multiplicity_gen.f heptup.f hepmass.f idtran.f iddhep.f\
 # Include files (for printout, below)
 INCFILES = 
 
-PROGRAM = mevtupl.x
+PROGRAM = mymevtupl.x
 
 #	Names of source files and derived names of .o files
 #	Use pattern matching rules to make
@@ -14,9 +14,7 @@ OBJECTS = $(SOURCES:.f=.o)
 #       Library assignments: if you want to link the CERN library, replace the
 #       assignment with the correct path on your local host.
 LIBS =  
-#LIBS =   -L/cern/pro/lib -lgraflib -lgrafX11 -lpacklib -lmathlib  -lkernlib
-LIBS =   `cernlib graflib packlib mathlib kernlib`
-
+LIBS =   -L/cern/2003/lib  -lmathlib -lgraflib -lgrafX11 -lpacklib_noshift -lkernlib_noshift
 #	Lintfiles can derive the old fashioned way
 #	Don't need them for nr's, yet.
 LINTFILES = $(SOURCES:.f=.ln)

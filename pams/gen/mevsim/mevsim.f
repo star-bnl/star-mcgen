@@ -368,13 +368,13 @@ C
         COMMON/DEKIN/NOFILE
         LOGICAL NOFILE,notbk
 
-        LOGICAL MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI,ETAP,OMG
-        SAVE MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI,ETAP,OMG
+        LOGICAL MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI,ETAP,OMG,D0
+        SAVE MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI,ETAP,OMG,D0
 C
 C       RHO and DELTA Decay Common
 C
       CHARACTER*1 CETA,CPI0,CRHO,CDELTA,CKSTAR
-      CHARACTER*1 CPHI,CNOF,CJPSI,CETAP,COMG
+      CHARACTER*1 CPHI,CNOF,CJPSI,CETAP,COMG,CD0
         COMMON/NUMLIM/NUMLO,NUMHI  
       integer itdky,itevt,itcom,itlis,numlo,numhi,ldecay,lhievt
       integer lhipar,ifl,njet,idin,nevent,ntries,nsigma,ident,ida2
@@ -694,6 +694,11 @@ CCC  Read Input:
       IF(CJPSI.EQ.'y') JPSI = .FALSE.
       IF(CJPSI.EQ.'N') JPSI = .TRUE.
       IF(CJPSI.EQ.'n') JPSI = .TRUE.
+      read(4,*) CD0                   ! FLAG JPSI decay yes D0 DECAY
+      IF(CJPSI.EQ.'Y') D0 = .FALSE.
+      IF(CJPSI.EQ.'y') D0 = .FALSE.
+      IF(CJPSI.EQ.'N') D0 = .TRUE.
+      IF(CJPSI.EQ.'n') D0 = .TRUE.
         CALL SETDKY(.FALSE.)
         CALL READIN(IFL)
         CALL IDGEN
@@ -1780,6 +1785,36 @@ CCC   Output track kinematics for ievent and pid:
            ENDIF
          ENDIF
         ENDIF
+        IF(D0) THEN
+        isttemp=1
+        ELSE
+         IF(IABS(idhep(II)).eq.421) then
+           ppnxlv(5)=0.0
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep(II))
+           CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
+           kdahep(1)=II+1
+           kdahep(2)=II+NPTCL-1
+           do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
+           id(k)=iddhep(ident(K))
+           istda(k)=1
+           imo1(k)=II
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           enddo
+           enddo
+        ENDIF
+      ENDIF
         IF(OMG) THEN
         isttemp=1
         ELSE
@@ -2333,8 +2368,8 @@ CCC   End track kinematics output.
       phep(4,JJ)=SQRT(PPP(1)**2+PPP(2)**2+PPP(3)**2+phep(5,JJ)**2)
         ENDIF
         ENDIF
-CCCC        WRITE(61,6116)JJ,isthep(JJ),idhep(JJ),kmohep,kdahep
-CCCC     1,PPP,phep(4,JJ),phep(5,JJ)
+        WRITE(61,6116)JJ,isthep(JJ),idhep(JJ),kmohep,kdahep
+     1,PPP,phep(4,JJ),phep(5,JJ)
  6116   FORMAT(7I6,5G12.5)
         IF(JJ.EQ.NPT) JJJ=-1
         CALL HEPPart(JJJ,isthep(JJ),idhep(JJ),kmohep,kdahep
