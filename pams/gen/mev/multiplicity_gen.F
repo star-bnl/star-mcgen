@@ -16,7 +16,7 @@
       real*4 pt_trial,eta_trial,y_trial,rndm,rad,phi
       real*4 y_cut_min,y_cut_max,pseudorapidity
       real*4 PSIr,Vn(nflowterms),dphi,facmax_phi,dNdphi
-
+      real*4 cosd
       integer gpid,N,model_type,npt,neta,n_scan_pts,ipt,ieta
       integer Track_count,i,j,pid,status
       integer reac_plane_cntrl,iphi,phi_flag
