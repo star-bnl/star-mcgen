@@ -5684,7 +5684,7 @@ C
       DIMENSION QRAN(10)
       COMMON/SEEDVAX/NUM1
       DO 1 I=1,NDIM
-    1 QRAN(I)=RAN(NUM1)
+    1 QRAN(I)=RNDM(-1)
       RETURN
       END
 
