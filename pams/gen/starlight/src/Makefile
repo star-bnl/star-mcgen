@@ -73,9 +73,7 @@ FSOURCES = starlight.f \
 	   jtog.f\
 	   twodecay.f\
 	   pickwy_vm.f\
-	   heptup.f\
-	   ludata.F
-# comment out the source ludata.F from the above list for Solaris
+	   heptup.f
 #
 #      C Sources
 #

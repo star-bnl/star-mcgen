@@ -110,42 +110,37 @@ c       define masses, widths and spins
            Wtop = mass + 5.*width
       	endif
 
+c	set gamma_ta and gamma_em equal
+	gamma_ta = gamma_em
 c	define luminosities, etc.
        	IF(Z.eq.79) THEN
            lum=2.
-           gamma_ta=108.4
            Q0=0.060
            rho0=0.159407
       	ELSEIF(Z.eq.53)THEN
            lum=27.
-           gamma_ta=112.9
            Q0=0.069
            rho0=0.161626
       	ELSEIF(Z.eq.29)THEN
            lum=95.
-           gamma_ta=124.5
            Q0=0.087
            rho0=0.166878
       	ELSEIF(Z.eq.14)THEN
            lum=440.
-           gamma_ta=135.2
            Q0=0.115
            rho0=0.177128
       	ELSEIF(Z.eq.8)THEN
            lum=980.
-           gamma_ta=135.2
            Q0=0.138
            rho0=0.188459
       	ELSEIF(Z.eq.82)THEN
 c       (for LHC)
            lum=1.
-           gamma_ta=2940.
            Q0=0.059
            rho0=0.159176
       	ELSEIF(Z.eq.20)THEN
 c       (for LHC)
            lum=20000.
-           gamma_ta=3730.
            Q0=0.102
            rho0=0.171907
       	ELSE
