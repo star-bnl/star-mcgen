@@ -1,0 +1,29 @@
+MACRO hijjet nevent=1 file=hijjet_w_ej.xdr
+RNDM 1841445  98361521
+* 
+make gen/hij
+*  
+DIO/NEWFILESTREAM hijjet [file] w
+mkdir hijjet
+do i = 1, [nevent]
+cd hijjet
+tdm/newtable particle particle 40000
+ami/mod/call hijjet particle
+if [i]=1 then
+  tdm/table/print /dui/hijjet/particle
+endif
+cd ..
+message "Write event no." [i]
+DIO/STREAM/PUTEVENT hijjet hijjet
+enddo
+DIO/STREAM/CLOSE hijjet
+return
+**************************************************
+ macro readev nevent=1 file=hijjet_w_ej.xdr
+ DIO/NEWFILESTREAM hijjet [file] r
+ do i = 1, [nevent]
+ getevent hijjet .
+ tdm/table/print /dui/hijjet/particle
+ enddo
+ DIO/STREAM/CLOSE hijjet
+ return
