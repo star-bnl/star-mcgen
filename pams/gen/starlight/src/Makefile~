@@ -1,0 +1,69 @@
+#########################################################################
+#
+# Makefile for gammagamma monte carlo
+#
+#
+########################################################################
+
+BIN= ../bin
+#
+SLIB = 'cernlib -v pro mathlib packlib kernlib jetset74'
+#
+#CGLIB=`cernlib -v new -G mathlib` 
+#
+# 	Libraries
+#
+#
+#CERNLIB=/cern/pro/lib
+#LIBS= -L$(CERNLIB) -lmathlib -ljetset74 -lkernlib
+#
+# Additional suffixes
+#
+.SUFFIXES: .F .cdf  .car .cra
+#
+#      Executable Name
+EXE = starlight
+#
+#
+#          Fortran Sources
+#
+FSOURCES = starlight.f \
+           hencken.f 
+	   map_2.f
+	   flux.f
+	   formf.f
+	   nrbw.f
+	   sigma_A.f
+	   sigmagp.f
+#
+#      C Sources
+#
+CSOURCES =
+#
+#
+#
+# Objects list
+#
+OBJECTS= $(FSOURCES:.f=.o) \
+         $(CSOURCES:.c=.o)
+#
+#
+#
+#---------
+main:
+	make $(BIN)/$(EXE)
+#
+# Target definitions
+#
+#
+$(BIN)/$(EXE):  $(OBJECTS)
+	$(FC) -o $(BIN)/$(EXE) $(OBJECTS) $(SLIB)
+#
+#    Second-level dependencies
+#
+.F.o:    
+	$(FC) -c -o $*.o $*.F                              
+
+
+
+

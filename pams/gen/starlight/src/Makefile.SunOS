@@ -1,0 +1,3 @@
+FC     = f77 -O
+CC     = cc
+CPPC   = c++

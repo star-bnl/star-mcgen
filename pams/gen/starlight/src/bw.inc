@@ -1,0 +1,2 @@
+	DOUBLE PRECISION ANORM,BNORM,BNORM_0,C,bwnorm	
+        common/bw/ANORM,BNORM,BNORM_0,C,bwnorm
