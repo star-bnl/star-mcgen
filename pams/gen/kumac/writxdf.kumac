@@ -1,0 +1,22 @@
+MACRO gst2xdf [N]=1 [dir]=/scr22/
+
+** set [dir] to your  working directory  ** 
+
+cd /dui
+mkdir evgen
+newfilestream genout [dir]genoutput.xdf w
+
+cd evgen
+make gen/g2x
+tdm/newtable particle particle 30000
+cd /dui
+
+DO I=1,[N]
+ ami/mod/call gst2xdf evgen/particle
+ table/print  evgen/particle
+ dio/stream/putevent genout evgen
+ENDDO
+
+dio/stream/close genout
+
+return
