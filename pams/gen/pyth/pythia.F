@@ -1,5 +1,8 @@
-* $Id: pythia.F,v 1.3 1999/01/11 22:35:57 nevski Exp $
+* $Id: pythia.F,v 1.4 1999/08/13 23:12:41 fisyak Exp $
 * $Log: pythia.F,v $
+* Revision 1.4  1999/08/13 23:12:41  fisyak
+* unify hepevt
+*
 * Revision 1.3  1999/01/11 22:35:57  nevski
 * force loading of rluset, pystat
 *
@@ -14,7 +17,7 @@
 *:>--------------------------------------------------------------------
       EXTERNAL PYDATA, PYEVNT, PYHEPC, PY_INIT
 #include "pythia.inc"
-#include "pycdes/hepevt.inc"
+#include "hepevt.inc"
       INTEGER I, J, LOAD
       DATA LOAD /-1/
       SAVE LOAD
