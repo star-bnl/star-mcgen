@@ -92,12 +92,13 @@ Hard scattering kinematics cuts like Emax, Pt.
 Most important of these are CKIN(1)-CKIN(8), CKIN(27)-CKIN(28)
 >action apytuser
 
->Command  MPRY
+>Command  MRPY
 >Parameters
 mpry   'key 1-6' C
 >Guidance 
-This random number setting is not used under atlsim.
-Use RanLux or RNDM instead.
+Random number setting for Pythia internal random
+number generator. If not set, the built-in starsim
+generator will be used instead.
 >action apytuser
 
 >Command  MSUB
