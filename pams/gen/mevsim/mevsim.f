@@ -1716,7 +1716,8 @@ CCC   Output track kinematics for ievent and pid:
         IF(RHO) THEN
         isttemp=1
         ELSE
-         IF(idhep(II).eq.113.or.iabs(idhep(II)).eq.213) then
+        IF(idhep(II).eq.113.or.iabs(idhep(II)).eq.10221
+     1  .or.iabs(idhep(II)).eq.213) then
            ppnxlv(5)=0.0
            isttemp=3
            nptcl=1
@@ -1727,6 +1728,7 @@ CCC   Output track kinematics for ievent and pid:
            pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
      1     +pptcl(5,1)**2)
            ident(1)=idisa(idhep(II))
+           IF(idhep(II).EQ.10221) ident(1)=111
            CALL DECAY(NPTCL)
            NPTCLSAV=NPTCL
            kdahep(1)=II+1

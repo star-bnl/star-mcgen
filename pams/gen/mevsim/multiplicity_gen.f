@@ -1041,6 +1041,7 @@ CCC   Set Particle Masses in GeV:
       geant_mass(162) = 0.89183      ! K* +
       geant_mass(163) = 0.89183      ! K* -
       geant_mass(164) = 0.89610      ! K* 0
+      geant_mass(165) = 0.500        ! sigma 0
 
 CCC   Set Particle Charge in |e|:
       geant_charge( 1) =  0      ! Gamma
@@ -1107,6 +1108,7 @@ CCC   Set Particle Charge in |e|:
       geant_charge(162) =  1     ! K* +
       geant_charge(163) = -1     ! K* -
       geant_charge(164) =  0     ! K* 0
+      geant_charge(165) =  0     ! sigma 0
 
 CCC   Set Particle Lifetimes in seconds:
       geant_lifetime( 1) = 1.0E+30       ! Gamma
@@ -1173,6 +1175,7 @@ CCC   Set Particle Lifetimes in seconds:
       geant_lifetime(162) = 1.322E-23    ! K* +
       geant_lifetime(163) = 1.322E-23    ! K* -
       geant_lifetime(164) = 1.303E-23    ! K* 0
+      geant_lifetime(165) = 1.000E-24    ! sigma 0
 
 CCC   Set Particle Widths in GeV:
       do i = 1,200
@@ -1281,6 +1284,7 @@ CCC   Local Variable Type Declarations:
       real*4 dist(nmax_integ),dM,M0,Gamma,GammaS
       real*4 M,Mpi,MK,MN,R_Delta,Jinc,qR
       real*4 Mrho_low,Mrho_high,Momega_low,Momega_high
+      real*4 Msig_low,Msig_high, sigomnes
       real*4 Mphi_low,Mphi_high,MDelta_low,MDelta_high
       real*4 MKstar_low,MKstar_high
       real*4 kcm,k0cm,Ecm,E0cm,beta,beta0,Epicm,ENcm,redtotE
@@ -1290,6 +1294,8 @@ CCC   Set Fixed parameter values:
       Parameter(MK  = 0.493646)      ! Charged kaon mass (GeV)
       Parameter(MN  = 0.938919)      ! Nucleon average mass (GeV)
       Parameter(R_Delta = 0.81)      ! Delta resonance range parameter
+      Parameter(Msig_low = 0.28   )  ! Lower rho mass limit
+      Parameter(Msig_high = .98)     ! Upper sigma mass limit (GeV)
       Parameter(Mrho_low = 0.28   )  ! Lower rho mass limit
       Parameter(Mrho_high = 1.200)   ! Upper rho mass limit (GeV)
       Parameter(Momega_low = 0.75)   ! Lower omega mass limit (GeV)
@@ -1317,6 +1323,18 @@ CCC   Load mass distribution for rho-meson:
             Mass_xfunc_save(pid_index,i) = M
             kcm = sqrt(0.25*M*M - Mpi*Mpi)
             dist(i) = kcm/((M-M0)**2 + 0.25*Gamma*Gamma)
+         end do
+
+CCC   Load mass distribution for sigma-meson:
+      else if(gpid.eq.165) then
+         do i = 1,nmax_integ
+            dist(i) = 0.0
+         end do
+         dM = (Msig_high - Msig_low)/float(npts-1)
+         do i = 1,npts
+            M = Mrho_low + dM*float(i-1)
+            Mass_xfunc_save(pid_index,i) = M
+            dist(i) = sigomnes(M)
          end do
 
 CCC   Load mass distribution for omega-meson:
@@ -1526,6 +1544,33 @@ CCC   Local Variable Type Declarations:
 
       Return
       END
+       REAL FUNCTION SIGOMNES(AM)
+       implicit none
+       REAL*4 AM,TWOPI,Q,GAM1,GAM2,AM1,AM2,TANF
+       REAL*4 THETA,THRAD,T,WAT,BOWLER,SQRBOW,SQRWAT,OMNES
+       TWOPI=6.28318530718
+       Q=SQRT(AM**2-.077284)
+       GAM1=.144*Q
+       GAM2=3.778*Q
+       AM1=1.017
+       AM2=1.038
+       TANF=((AM1**2-AM**2)*GAM2+(AM2**2-AM**2)*GAM1)/
+     1 ((AM1**2-AM**2)*(AM2**2-AM**2)-GAM1*GAM2)
+       THETA=360.0*ATAN(TANF)/TWOPI-15.0
+       IF(THETA.LT.0.0.AND.AM.LT..2861) THETA=0.
+       IF(THETA.LT.0.0) THETA=THETA+180.
+       THRAD=TWOPI*THETA/360.
+       T=SIN(THRAD)
+       WAT=T**2/Q
+       BOWLER=(1.0-T**2)
+       SQRBOW=SQRT(BOWLER)
+       IF(AM.GT..86) SQRBOW=-SQRBOW
+       SQRWAT=SQRT(WAT)
+       OMNES=(SQRWAT+SQRBOW)**2
+       IF(AM.GT..98) OMNES=0.0
+       SIGOMNES=OMNES
+       RETURN
+       END
 
 
 
