@@ -1,5 +1,8 @@
 * Id: gst2xdf.F, v 1.1 1998/03/17 14:35:30 longacre Exp $
 *$Log: gst2xdf.F,v $
+*Revision 1.7  1999/10/08 15:50:10  nevski
+*pgf->g77 cleanup
+*
 *Revision 1.6  1999/08/13 21:54:15  fisyak
 *move hepevt
 *
@@ -42,7 +45,7 @@ C           = 2   Event read and processed
 
       CHARACTER*120 LINE 
       INTEGER LENOCC,INDEX,LI,IEVEN,NTRAC,NVERT,ITR,IVT,
-     *LABELTR,LABELVX,GE_PID,EG_PID,STARTVX,STOPVX,I, EG_PROC,PARENT   
+     *LABELTR,LABELVX,GE_PID,EG_PID,STARTVX,STOPVX,EG_PROC,PARENT   
       REAL VERSION,EAST_Z,EAST_A,WEST_Z,WEST_A,SQRTS,B_MAX,PP(3),VERT(4)
      *,A,B 
       INTEGER IDEBUG,IDEMIN,IDEMAX,ITEST,IDRUN,IDEVT,IEORUN,IEOTRI,
