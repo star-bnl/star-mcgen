@@ -1,7 +1,10 @@
-* $Id: hijjet.f,v 1.5 2003/05/02 19:02:10 longacre Exp $
+* $Id: hijjet.f,v 1.6 2003/05/05 16:10:37 longacre Exp $
 * $Log: hijjet.f,v $
+* Revision 1.6  2003/05/05 16:10:37  longacre
+* resonance istat code were 11 now are 2
+*
 * Revision 1.5  2003/05/02 19:02:10  longacre
-* added bin coll and wounded proj and targ
+*  added bin coll and wounded proj and targ
 *
 * Revision 1.4  2000/06/23 18:39:51  longacre
 *  remove more printout
@@ -348,6 +351,7 @@ C--
         DO IP = 1, NATT
         ik = ik + 1
         ISTAT=katt(ip,4)
+        IF(ISTAT.EQ.11) ISTAT=2
         imo(1)=katt(ip,3)
         imo(2)=0
         idau(1)=katt(ip,5)
