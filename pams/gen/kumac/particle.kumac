@@ -1,0 +1,14 @@
+cd /dui/event
+mkdir evgen
+cd evgen
+tdm/type/load $STAR/pams/gen/idl/particle.idl
+tdm/newtable particle particle 1
+tdm/table/rowcount particle 1
+tdm/table/print particle
+tdm/table/cell/putvalue 'particle[0].isthep' 1
+tdm/table/cell/putvalue 'particle[0].idhep' 13
+tdm/table/cell/putvalue 'particle[0].jmohep' 0 0
+tdm/table/cell/putvalue 'particle[0].jdahep' 0 0
+tdm/table/cell/putvalue 'particle[0].phep'  4.0 0.0 0.0 4.0 0.106
+tdm/table/cell/putvalue 'particle[0].vhep'  0.0 0.0 0.0 0.0
+tdm/table/print particle
