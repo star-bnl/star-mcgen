@@ -1,5 +1,8 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
+*Revision 1.8  1999/10/08 23:09:25  nevski
+*pgf->g77
+*
 *Revision 1.7  1999/08/14 21:49:01  fisyak
 *eliminate include and source level
 *
@@ -407,7 +410,7 @@ CCC   Check Validity and Consistency of Input Parameters so far:
       if(n_pid_type .gt. npid) then
          write(8,10) n_pid_type, npid
 10       Format(//10x,'No. requested PID types = ',I7,
-     1   ', exceeds maximum of ',I7,'; reset')
+     >   ', exceeds maximum of ',I7,'; reset')
          n_pid_type = npid
       end if
       if(model_type .lt. 0 .or. model_type .gt. 6) then
@@ -418,7 +421,7 @@ CCC   Check Validity and Consistency of Input Parameters so far:
       if(n_integ_pts .gt. nmax_integ) then
          write(8,12) n_integ_pts, nmax_integ
 12       Format(/10x,'No. integ. pts = ',I7,
-     1   ', exceeds maximum of ',I7,'; reset')
+     >   ', exceeds maximum of ',I7,'; reset')
          n_integ_pts = nmax_integ
       end if
 
@@ -454,19 +457,19 @@ CCC      Check Validity and Consistency of Input Parameters
          if(Temp_mean(pid).le.0.0 .or. Temp_stdev(pid).lt.0.0) then
          write(8,45) pid,Temp_mean(pid),Temp_stdev(pid)
 45       Format(//10x,'For pid # ',I7,', Temp_mean or Temp_stdev= ',
-     1   2F7.4,' - not valid -STOP')
+     >   2F7.4,' - not valid -STOP')
          STOP
          end if
          if(sigma_mean(pid).le.0.0 .or. sigma_stdev(pid).lt.0.0) then
          write(8,46) pid,sigma_mean(pid),sigma_stdev(pid)
 46       Format(//10x,'For pid # ',I7,', sigma_mean or sigma_stdev= ',
-     1   2F7.4,' - not valid -STOP')
+     >   2F7.4,' - not valid -STOP')
          STOP
          end if
          if(expvel_mean(pid).lt.0.0.or.expvel_stdev(pid).lt.0.0) then
          write(8,47) pid,expvel_mean(pid),expvel_stdev(pid)
 47       Format(//10x,'For pid #',I7,',expvel_mean or expvel_stdev=',
-     1   2F7.4,' - not valid -STOP')
+     >   2F7.4,' - not valid -STOP')
          STOP
          end if
 
@@ -506,25 +509,25 @@ CCC      Check ranges of pt and eta coverage:
             if(pt_cut_min .lt. pt_start(pid)) then
                write(8,50) pt_cut_min,pt_start(pid)
 50             Format(//10x,'pt_cut_min = ',F10.7,' .lt. pt_start =',
-     1         F10.7,' - STOP')
+     >         F10.7,' - STOP')
                STOP
             end if
             if(pt_cut_max .gt. pt_stop(pid)) then
                write(8,51) pt_cut_max,pt_stop(pid)
 51             Format(//10x,'pt_cut_max = ',F10.7,' .gt. pt_stop =',
-     1         F10.7,' - STOP')
+     >         F10.7,' - STOP')
                STOP
             end if
             if(eta_cut_min .lt. eta_start(pid)) then
                write(8,52) eta_cut_min,eta_start(pid)
 52             Format(//10x,'eta_cut_min = ',F10.7,'.lt.eta_start =',
-     1         F10.7,' - STOP')
+     >         F10.7,' - STOP')
                STOP
             end if
             if(eta_cut_max .gt. eta_stop(pid)) then
                write(8,53) eta_cut_max,eta_stop(pid)
 53             Format(//10x,'eta_cut_max = ',F10.7,'.gt.eta_stop =',
-     1         F10.7,' - STOP')
+     >         F10.7,' - STOP')
                STOP
             end if
          end do ! End loop over particle ID types.
@@ -596,12 +599,12 @@ CCC   Check some more input parameters; Set constants, and load data tables:
       STOP
       end if
       if(mult_variance_control(pid) .lt. 0  .or.
-     1   mult_variance_control(pid) .gt. 1)
-     2   mult_variance_control(pid) = 0
+     >   mult_variance_control(pid) .gt. 1)
+     >   mult_variance_control(pid) = 0
       if(mult_mean(pid) .le. 0) then
       write(8,44) pid,mult_mean(pid)
 44    Format(//10x,'For pid # ',I7,', mult_mean= ',I7,
-     1   ' - not valid -STOP')
+     >   ' - not valid -STOP')
       STOP
       end if
       end do ! End Particle ID input parameter check and verification loop.
@@ -632,14 +635,14 @@ CCC   parameter values for each event in the run.
             mult_mean_real = float(mult_mean(pid))
             mult_stdev = sqrt(mult_mean_real)
             Call MinMax(mult_mean_real,mult_stdev,n_stdev_mult,
-     1                  mult_min_real,mult_max_real)
+     >                  mult_min_real,mult_max_real)
             mult_min = int(mult_min_real)
             mult_max = int(mult_max_real + 1)
             n_mult_steps(pid) = mult_max - mult_min + 1
             if((n_mult_steps(pid) + 1) .gt. n_mult_max_steps) then
                write(8,20) n_mult_steps(pid),n_mult_max_steps
 20             Format(//10x,'No. steps in multiplicity integral = ',
-     1         I7,' + 1, exceeds max no. of ',I7,'; reset')
+     >         I7,' + 1, exceeds max no. of ',I7,'; reset')
             mult_min = mult_mean(pid) - (n_mult_max_steps - 1)/2
             mult_max = mult_mean(pid) + (n_mult_max_steps - 1)/2
             n_mult_steps(pid) = mult_max - mult_min + 1
@@ -647,12 +650,12 @@ CCC   parameter values for each event in the run.
             if((mult_max + 1) .gt. factorial_max) then
                write(8,30) mult_max, factorial_max
 30             Format(//10x,'In Poisson multiplicity distribution,',
-     1         ' max = ',I7,', exceeds limit of ',I7,' - STOP')
+     >         ' max = ',I7,', exceeds limit of ',I7,' - STOP')
                STOP
             end if
 
             Call Poisson(mult_min,mult_max,mult_mean(pid),
-     1      n_mult_steps(pid),mult_integ,mult_xfunc,n_mult_max_steps)
+     >      n_mult_steps(pid),mult_integ,mult_xfunc,n_mult_max_steps)
             do i = 1,n_mult_steps(pid) + 1
                mult_integ_save(pid,i) = mult_integ(i)
                mult_xfunc_save(pid,i) = mult_xfunc(i)
@@ -664,9 +667,9 @@ CCC   parameter values for each event in the run.
          if(model_type .le. 4) then
          if(Temp_stdev(pid) .ne. 0.0) then
             Call MinMax(Temp_mean(pid),Temp_stdev(pid),n_stdev_temp,
-     1                  Temp_min, Temp_max)
+     >                  Temp_min, Temp_max)
             Call Gaussian(Temp_min,Temp_max,Temp_mean(pid),
-     1         Temp_stdev(pid),n_integ_pts,integ,xfunc,nmax_integ)
+     >         Temp_stdev(pid),n_integ_pts,integ,xfunc,nmax_integ)
             do i = 1,n_integ_pts + 1
                Temp_integ_save(pid,i) = integ(i)
                Temp_xfunc_save(pid,i) = xfunc(i)
@@ -677,9 +680,9 @@ CCC   parameter values for each event in the run.
 
          if(sigma_stdev(pid) .ne. 0.0) then
             Call MinMax(sigma_mean(pid),sigma_stdev(pid),n_stdev_sigma,
-     1                  sigma_min, sigma_max)
+     >                  sigma_min, sigma_max)
             Call Gaussian(sigma_min,sigma_max,sigma_mean(pid),
-     1         sigma_stdev(pid),n_integ_pts,integ,xfunc,nmax_integ)
+     >         sigma_stdev(pid),n_integ_pts,integ,xfunc,nmax_integ)
             do i = 1,n_integ_pts + 1
                sigma_integ_save(pid,i) = integ(i)
                sigma_xfunc_save(pid,i) = xfunc(i)
@@ -690,9 +693,9 @@ CCC   parameter values for each event in the run.
 
          if(expvel_stdev(pid) .ne. 0.0) then
           Call MinMax(expvel_mean(pid),expvel_stdev(pid),n_stdev_expvel,
-     1                  expvel_min, expvel_max)
+     >                  expvel_min, expvel_max)
             Call Gaussian(expvel_min,expvel_max,expvel_mean(pid),
-     1         expvel_stdev(pid),n_integ_pts,integ,xfunc,nmax_integ)
+     >         expvel_stdev(pid),n_integ_pts,integ,xfunc,nmax_integ)
             do i = 1,n_integ_pts + 1
                expvel_integ_save(pid,i) = integ(i)
                expvel_xfunc_save(pid,i) = xfunc(i)
@@ -718,7 +721,7 @@ CCC   Write Run Header Output:
       write(8,207) eta_cut_min, eta_cut_max
       write(8,208) phi_cut_min, phi_cut_max
       write(8,209) n_stdev_mult,n_stdev_temp,n_stdev_sigma,
-     1             n_stdev_expvel
+     >             n_stdev_expvel
       write(8,210) n_integ_pts
       write(8,211) n_scan_pts
       write(8,213) (gpid(pid),pid = 1,n_pid_type)
@@ -742,23 +745,23 @@ CCC   Write Run Header Output:
 
 200   Format('***  Multiplicity Generator Run Header ***')
 201   Format('*    Number of events = ',I7,'; number of Particle ID',
-     1       ' types = ',I5)
+     >       ' types = ',I5)
 202   Format('* Factorized mt exponential, Gaussian rapidity model')
 203   Format('* Pratt non-expanding, spherical thermal source model')
 204   Format('* Bertsch non-expanding spherical thermal source model')
 205   Format('* Pratt spherically expanding, thermally equilibrated ',
-     1        'source model')
+     >        'source model')
 2051  Format('* Factorized pt,eta bin-by-bin Distribution')
 2052  Format('* Full 2D pt,eta bin-by-bin Distribution')
 206   Format('* Min, Max range in pt              = ', 2G12.5)
 207   Format('* Min, Max range in pseudorapidity  = ', 2G12.5)
 208   Format('* Min, Max range in azimuthal angle = ', 2G12.5)
 209   Format('* No. std. dev. range used for mult and parameters = ',
-     1       4F5.2)
+     >       4F5.2)
 210   Format('* No. integration points for parameter variance = ',
-     1       I6)
+     >       I6)
 211   Format('* No. of dN/dp(pt,y) scanning grid points to find ',
-     1   'maximum = ', I6)
+     >   'maximum = ', I6)
 213   Format('* Geant PID:          ',10I7)
 214   Format('* Mean Multiplicity:  ',10I7)
 215   Format('* Mult. Var. Control: ',10I7)
@@ -811,8 +814,8 @@ C**************************************************************
                mult_xfunc(i) = mult_xfunc_save(pid,i)
                end do
                Call LAGRNG(rndm(-1),mult_integ,mult_event_real,
-     1         mult_xfunc,n_mult_steps(pid)+1,1,5,
-     2         n_mult_steps(pid)+1,1)
+     >         mult_xfunc,n_mult_steps(pid)+1,1,5,
+     >         n_mult_steps(pid)+1,1)
                mult_event(pid) = mult_event_real
             end if
 
@@ -824,7 +827,7 @@ C**************************************************************
                xfunc(i) = Temp_xfunc_save(pid,i)
                end do
                Call LAGRNG(rndm(-1),integ,Temp_event(pid),xfunc,
-     1              n_integ_pts+1,1,5,n_integ_pts+1,1)
+     >              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
 
             if(sigma_stdev(pid) .ne. 0.0) then
@@ -833,7 +836,7 @@ C**************************************************************
                xfunc(i) = sigma_xfunc_save(pid,i)
                end do
                Call LAGRNG(rndm(-1),integ,sigma_event(pid),xfunc,
-     1              n_integ_pts+1,1,5,n_integ_pts+1,1)
+     >              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
 
             if(expvel_stdev(pid) .ne. 0.0) then
@@ -842,7 +845,7 @@ C**************************************************************
                xfunc(i) = expvel_xfunc_save(pid,i)
                end do
                Call LAGRNG(rndm(-1),integ,expvel_event(pid),xfunc,
-     1              n_integ_pts+1,1,5,n_integ_pts+1,1)
+     >              n_integ_pts+1,1,5,n_integ_pts+1,1)
             end if
          end if
          end do !  End Particle ID setup Loop
@@ -871,9 +874,9 @@ CCC   rapidity width (sigma), and expansion velocity parameter, generate
 CCC   random track list:
 
             Call track_gen(gpid(pid),mult_event(pid),model_type,
-     1      Temp_event(pid),sigma_event(pid),expvel_event(pid),
-     2      pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
-     3      phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
+     >      Temp_event(pid),sigma_event(pid),expvel_event(pid),
+     >      pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
+     >      phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
             if(status .eq. -86) status_abort = -86
             end do
          end if
@@ -938,7 +941,7 @@ CCC   End track kinematics output.
          else
            write(8,250) ievent, event_abort, status_abort
 250        Format(/'*** Event No. ',I7,' ABORTED: event_abort,',
-     1     'status_abort = ',2I7)
+     >     'status_abort = ',2I7)
          end if
       RETURN
       END
