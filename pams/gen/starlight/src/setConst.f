@@ -5,14 +5,14 @@
 	include 'const.inc'
 	include 'global.inc'
 	include 'D2LParam.inc'
-	include 'range.inc'
 	include 'inputp.inc'
 	include 'bw.inc'
 
 	double precision Wmin_default
 
-c       define constants
+c       define physical constants and masses
 	hbarc = .197327053
+	hbarcmev=hbarc*1000.
       	pi = 3.141592654
       	alpha = 1/137.0359895
       	mp = 0.93827231
@@ -30,7 +30,9 @@ C  Generic radius first, then specific
 
 
 c	unless otherwise defined later, default is Wmin=0
-	Wmin_default = 0
+	Wmin_default = 0.
+
+C  define constants for specific final states
 
 c       define masses, widths and spins
         if(ip.eq.11) then 
@@ -97,7 +99,7 @@ c	to 0.15 is safe for Summer 2000 triggering for e+e- pairs
            bslope=11.0
            f2o4pi=2.02
            Wmin_default = 2.*mpi
-           Wtop = mass + 5.*width
+           Wmax = mass + 5.*width
 
 C Breit-Wigner parameters (no direct pipi)
 
@@ -107,7 +109,7 @@ C Breit-Wigner parameters (no direct pipi)
 
       	endif
 
-C  rho0+direct pi+pi-.  maximum W set by wmax
+C  rho0+direct pi+pi-.  maximum W set by Wmax
 
        	if (ip.eq.913) then
            mass = 0.7685
@@ -116,8 +118,8 @@ C  rho0+direct pi+pi-.  maximum W set by wmax
            bslope=11.0
            f2o4pi=2.02
            Wmin_default = 2.*mpi
-C  for now, stick to the same 1.5 GeV maximum mass
-           Wtop = mass+5.*width
+C  use the same (ZEUS) 1.5 GeV maximum mass
+           Wmax = mass+5.*width
 
 C  Breit-Wigner parameters, with direct pipi
 
@@ -133,7 +135,7 @@ C  Breit-Wigner parameters, with direct pipi
            bslope=10.0
            f2o4pi=23.13
            Wmin _default= mass - 5.*width
-           Wtop = mass + 5.*width
+           Wmax = mass + 5.*width
 C artificial Breit-Wigner parameters
 	   ANORM=-2.75
 	   BNORM=0.
@@ -146,7 +148,7 @@ C artificial Breit-Wigner parameters
            bslope=7.0
            f2o4pi=13.71
            Wmin_default = 2.*mK
-           Wtop = mass + 5.*width
+           Wmax = mass + 5.*width
 C artificial Breit-Wigner parameters
 	   ANORM=-2.75
 	   BNORM=0.
@@ -154,13 +156,13 @@ C artificial Breit-Wigner parameters
       	endif
        if (ip.eq.443) then
            mass = 3.09688
-           width = 0.087
+           width = 0.000087
            spin = 1.
            bslope=4.0
            f2o4pi=10.45
            Wmin_default = mass - 5.*width
-           Wtop = mass + 5.*width
-C artificial Breit-Wigner parameters
+           Wmax = mass + 5.*width
+C artificial Breit-Wigner parameters - no direct pions
 	   ANORM=-2.75
 	   BNORM=0.
 	   C=1.0
@@ -169,9 +171,6 @@ C artificial Breit-Wigner parameters
 c	set Wmin equal to the default values if Wmin is set 
 c	to -1 in the input file
 	if(Wmin.eq.-1) Wmin = Wmin_default
-
-c	set gamma_ta and gamma_em equal
-	gamma_ta = gamma_em
 
 c	define luminosities, etc.
        	IF(Z.eq.79) THEN
@@ -205,38 +204,31 @@ c       (for LHC)
            Q0=0.102
            rho0=0.171907
       	ELSE
-           write(*,*) 'ERROR: Luminosity not defined for this 
-     &		projectile!'
-           STOP 98
+           write (*,*) 'Warning: Luminosity  and density not'
+	   write(*,*) 'defined for this projectile!'
+           lum=1.
+C  take 'typical' density
+	   rho0=0.16
+C  Q0 isn't used
+	   Q0=0.
       	ENDIF
 
 c	calculate Ep
-        Ep= gamma_ta*mp
 
-c	define rapidities, max photon energy
-      	IF( Z.eq.79 .or. Z.eq.53 .or. Z.eq.29 .or. Z.eq.14 .or. 
-     &		Z.eq.8 )THEN
-C       >> At RHIC
-c           Ymin  =  -5.6
-c           Ytop  =   5.6
-c	remove hard-wired value
-           Ymin  =  -ymax
-           Ytop  =   ymax
-           EgMax =  25.0
-      	ENDIF
-      	IF( Z.eq.82 .or. Z.eq.20 )THEN
-C       >> At LHC
-           Ymin  =  -8.9
-           Ytop  =   8.9
-           EgMax = 600.0
-      	ENDIF
+        Ep= gamma_em*mp
 
-C  constants for Breit-Wigner normalization for rho^0 (only)
-C  These are from ZEUS data, appropriate for gamma p, maybe not for gamma A
+C  rapidity range now comes from input file
+C  n.b. Ymax is used for both 2-photon and gamma-p Ymin not used for 2 photon
+
+           Ymin  =  -Ymax
+
+C  find maximum photon energy (for VM only, in GeV, lab frame 
+C  use beam energy, nuclear size based cutoff
+
+	   EgMax=4.*gamma_em*hbarc/RNuc
 
 	RETURN
 	END
-
 
 
 
