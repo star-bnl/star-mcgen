@@ -593,6 +593,7 @@ c-----------------------------------------------------------------------
      *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
      *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
+     *,icmtst
       common/paro4/grigam,grirsq,gridel,grislo,gricel
       common/paro5/delvol,deleps
       common/nevnt/nevnt
@@ -1080,6 +1081,8 @@ C     *,laproj,maproj,latarg,matarg,npar
       stop'wrong choice'
       endif
       PSSHEP(4)=abs(pnll)
+      icmtst=1
+      if(pnll.lt.0.0)  icmtst=-1
       aproj=maproj 
       deast=10.
       if(aproj.gt.9) deast=100.
@@ -1447,6 +1450,7 @@ c-----------------------------------------------------------------------
      *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
      *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
+     *,icmtst
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
      *,inoiac,ilamas
       parameter (mxptl=150000)
@@ -13340,6 +13344,7 @@ c-----------------------------------------------------------------------
      *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
      *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
+     *,icmtst
       common/paro4/grigam,grirsq,gridel,grislo,gricel
       common/cnsta/pi,prom,piom,ainfin
       real acprob(n)
@@ -15670,6 +15675,7 @@ c----------------------------------------------------------------------
       parameter (kparx=15,nquax=12)
       common/centro/entro(1+kparx,1+nquax)
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
+     *,icmtst
       iop=mod(iopent,10)
  
       sjcent=0
@@ -15771,6 +15777,7 @@ c----------------------------------------------------------------------
       common/cnsta/pi,prom,piom,ainfin
       common/csjcga/amnull,nsuha(7),asuha(7),entrpy,amegam,nopha
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
+     *,icmtst
       common/centex/entexp
       sjcgam=0.
       entrpy=-99.9
@@ -16317,6 +16324,7 @@ c----------------------------------------------------------------------
       common/cnsta/pi,prom,piom,ainfin
       common/csjcga/amnull,nsuha(7),asuha(7),entrpy,amegam,nopha
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
+     *,icmtst
       amnull=0.
  
       do 1 i=1,7

@@ -2,7 +2,7 @@ c-*-Fortran-*-
 c
 c     This file contains the common blocks from VENUS_4.12
 c
-      integer ifop,ifmt,ifch,ifhi,ifdt,mxptl,mxstr,nrptla
+      integer ifop,ifmt,ifch,ifhi,ifdt,mxptl,mxstr,nrptla,icmtst
       real ptmx,gaumx,sigppi,core,fctrmx,qmust,cutmsq
       integer neqmn,iaqu,maxres,ioptq,irescl,ko1ko2,kentro,labsys
       real taunll,ptf,ptq,xcut,delmss,pud,pspinl,pspinh,pispn
@@ -37,6 +37,7 @@ c
      *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
      *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
+     *,icmtst
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
      *,inoiac,ilamas
       parameter (mxptl=150000)

@@ -1,5 +1,8 @@
 * Id: venus.F, v 1.1 1998/04/02 11:10:40 longacre Exp $
 *$Log: venus.F,v $
+*Revision 1.5  1999/06/25 16:18:14  longacre
+*add flag icmtst keep beamgas in lab fram
+*
 *Revision 1.4  1998/08/02 21:38:16  longacre
 *added vertex cm -> mm
 *
@@ -98,8 +101,10 @@ c Note the use of a log expression to get asinh.
                y = 999.
             EndIf
 
+            if(icmtst.lt.0) then
             pptl(3,i) = mperp*sinh(y-yhaha)
             pptl(4,i) = mperp*cosh(y-yhaha)
+            endif
 
          EndDo
 CCCC STRATOS
