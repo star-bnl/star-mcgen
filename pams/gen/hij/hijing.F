@@ -926,8 +926,8 @@ C		********booking for x distribution of valence quarks
 	IF(FRAME.EQ.'LAB') EFRAME='Elab'
 	WRITE(6,100) EFRAME,EFRM,PROJ,IHNT2(1),IHNT2(2),
      &               TARG,IHNT2(3),IHNT2(4) 
-100	FORMAT(//10X,'**********************************
-     &                ****************'/
+100	FORMAT(//,
+     &  10X,'**************************************************'/
      &	10X,'*',48X,'*'/
      &	10X,'*         HIJING has been initialized at         *'/
      &	10X,'*',13X,A4,'= ',F10.2,' GeV/n',13X,'*'/
