@@ -4,6 +4,7 @@ c     This subroutine
       implicit NONE
 
       include 'inputp.inc'
+      include 'range.inc'
       include 'D2LParam.inc'
       integer i,j
       real xlum,wmev,sum,D2LDMDY
@@ -18,6 +19,7 @@ c     starlight.dat so that they are there for future reference.
       write (20,*) A
       write (20,*) gamma_em
       write (20,*) wmax
+      write (20,*) Wmin
       write (20,*) numw
       write (20,*) ymax
       write (20,*) numy
@@ -26,7 +28,7 @@ c     starlight.dat so that they are there for future reference.
 c     Write to starlight.dat the set of values for w used in the
 c     calculation.
       do 175 i = 1,numw
-        w(i)  = wmax/float(numw)*float(i)
+        w(i)  = Wmin + (wmax-Wmin)/float(numw)*float(i)
         write(20,*) w(i)
  175  continue
 

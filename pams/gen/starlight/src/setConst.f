@@ -20,10 +20,13 @@ c       define constants
       	mmu = 0.105658389
       	mtau = 1.777
         RNuc = 1.2 * A**(1.0/3.0)
+c	unless otherwise defined later, Wmin=0
+	Wmin = 0
 
 c       define masses, widths and spins
         if(ip.eq.11) then 
 	   mass = 0.00051099907
+	   Wmin = 0.2
 	endif
         if(ip.eq.13) then
 	   mass = 0.105658389

@@ -75,6 +75,7 @@ c	I guess W is the mass of the vector meson (not necessarily
 c	on-mass-shell), and E is the energy
         E  = SQRT(W**2+pt**2)*COSH(Y)
         pz = SQRT(W**2+pt**2)*SINH(Y)
-
+c	randomly choose to make pz negative 50% of the time
+	if (ran(ISEED).ge.0.5) pz = -pz
       return
       END

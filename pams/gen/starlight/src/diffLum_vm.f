@@ -43,6 +43,7 @@ c     are there for future reference.
       write (20,*) A
       write (20,*) gamma_em
       write (20,*) Wtop
+      write (20,*) Wmin
       write (20,*) numw
       write (20,*) Ytop
       write (20,*) numy
