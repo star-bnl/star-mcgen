@@ -1,5 +1,8 @@
-* $Id: hijjet.F,v 1.3 1999/01/16 20:53:22 didenko Exp $
+* $Id: hijjet.F,v 1.4 1999/08/13 23:55:08 fisyak Exp $
 * $Log: hijjet.F,v $
+* Revision 1.4  1999/08/13 23:55:08  fisyak
+* remove hepevt
+*
 * Revision 1.3  1999/01/16 20:53:22  didenko
 * add some usefull histogram for jets
 *
@@ -19,7 +22,6 @@
       EXTERNAL  HIJEV
 #include "hijjet.inc"
 #include "hicdes/headpss.inc"
-#include "hicdes/hepevt.inc"
 #include "hicdes/himevt2.inc"
 *--
       INTEGER NATT, JATT, NT, NP, N0, N01, N10, N11
