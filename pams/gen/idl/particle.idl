@@ -1,10 +1,13 @@
 /* Generated particle table
 *
-* $Id: particle.idl,v 1.2 1999/02/18 15:52:20 longacre Exp $
+* $Id: particle.idl,v 1.3 1999/02/18 20:51:07 longacre Exp $
 *
 * $Log: particle.idl,v $
+* Revision 1.3  1999/02/18 20:51:07  longacre
+* add two new starlight
+*
 * Revision 1.2  1999/02/18 15:52:20  longacre
-* added listing headpss.inc
+*  added listing headpss.inc
 *
 * Revision 1.1  1998/04/16 17:26:34  longacre
 * first row of particle table in most generators
@@ -35,6 +38,8 @@
 * 42 PYTHIA  : PHOTON
 * 43 PYTHIA  : W
 * 50 STARLIGHT
+* 51 STARLIGHT gamma gamma
+* 52 STARLIGHT photnuc : coherent
 * 60 VENUS   : MINBIAS 
 * 61 VENUS   : CENTRAL  
 * 62 VENUS   : CENTRAL : MEV
@@ -66,10 +71,13 @@
 *      INTEGER IFIRST
 *      DOUBLE PRECISION PSSHEP,VSSHEP
 *      SAVE /HEADPSS/
-   $Id: particle.idl,v 1.2 1999/02/18 15:52:20 longacre Exp $ 
+   $Id: particle.idl,v 1.3 1999/02/18 20:51:07 longacre Exp $ 
    $Log: particle.idl,v $
+   Revision 1.3  1999/02/18 20:51:07  longacre
+   add two new starlight
+
    Revision 1.2  1999/02/18 15:52:20  longacre
-   added listing headpss.inc
+    added listing headpss.inc
 
    Revision 1.1  1998/02/10 15:12:41  fisyak
    Particle table
