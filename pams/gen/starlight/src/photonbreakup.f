@@ -4,6 +4,7 @@ C  Z=zp, A=ap
 
 C  it is not normalized; the real probability is P=1-exp(-p1N), etc.
 
+
       SUBROUTINE PHOTONBREAKUP(P1N,PXN,b,zp,ap,gamma,omaxx)
 
       IMPLICIT REAL*8(A-H,O-Z)
@@ -58,7 +59,7 @@ C  proton and neutron cross sections
      x.022,.022,.022,.021,.021,.021,.020,.020,
      x.020,.019,.018,.017,.016,.015,.014,.013,.012,.011,.010,.009,
      x.008,.007,.006,.005,.004,.003,.002,.001,0./
-c gamma,p gamma,n of Armstrong begin at 265 incr 25
+c gammay,p gamma,n of Armstrong begin at 265 incr 25
       data sigt/.4245,.4870,.5269,.4778,.4066,.3341,.2444,.2245,.2005,
      x.1783,.1769,.1869,.1940,.2117,.2226,.2327,.2395,.2646,.2790,.2756,
      x.2607,.2447,.2211,.2063,.2137,.2088,.2017,.2050,.2015,.2121,.2175,
@@ -95,13 +96,15 @@ C  Initialization needed?
       hbar=197.3
       pi=3.141592654
 
-C  maximum energy for GDR dissocation
+C  maximum energy for GDR dissocation (in target frame, in MeV)
 
       omax1n=24.01
       if(zp.eq.79) then
          ap=197.
          si1=540.
          g1=4.75
+
+C peak and minimum energies for GDR excitation (in MeV)
          o1=13.70
          o0=8.1
       else
@@ -122,6 +125,12 @@ C  part II of initialization
 c .1 to turn mb into fm^2
       scon=.1*g1*g1*si1
       zcon=(zp/(gamma*pi*hbar))**2/137.04
+
+
+C      write(6,51)zp,gamma,pi,hbar,zcon
+C 51   format(' ZP,gamma,pi,hbar,zcon ',F7.4,' ',E11.4,' ',F8.5,
+C     *' ',E12.5,' ',E12.5)
+
 
 c  Single neutron from GDR, Veyssiere et al. Nucl. Phys. A159, 561 (1970)
       do 111 i=1,160
@@ -182,7 +191,12 @@ c Regge parameters
 
 c Regge model for high energy
       s=.002*em*ee(i)
-      do 160 j=1,100
+
+C make sure we reach LHC energies
+      ictr=100
+      if (gamma .gt. (2.*150.*150.)) ictr=150
+
+      do 160 j=1,ictr
           i=i+1
           s=s*exx
           ee(i)=1000.*.5*(s-em*em)/em
@@ -195,7 +209,7 @@ c         write(8,*)ee(i),se(i)
          ee(i+1)=99999999999.
 
          write(6,99)o0
- 99      format(' Coulomb breakup initialized.  Emin= ',F7.3)
+ 99      format(' Coulomb breakup initialized.  Emin= ',F7.3, 'MeV')
 
 C  done with initaliation.
 

@@ -21,7 +21,13 @@ c       define constants
       	mel = 0.00051099907
       	mmu = 0.105658389
       	mtau = 1.777
+
+C  Generic radius first, then specific
+
         RNuc = 1.2 * A**(1.0/3.0)
+	if (Z .eq. 79) RNuc=6.38
+	if (Z .eq. 82) RNuc=6.62
+
 
 c	unless otherwise defined later, default is Wmin=0
 	Wmin_default = 0

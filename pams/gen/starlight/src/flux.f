@@ -1,4 +1,4 @@
-       DOUBLE PRECISION FUNCTION flux(Egamma)
+      DOUBLE PRECISION FUNCTION flux(Egamma)
 
 
 C  This routine gives the photon flux as a function of energy Egamma
@@ -18,14 +18,14 @@ C  rewritten 4/25/2001 by SRK
       include 'inputp.inc'
 
       DOUBLE PRECISION Egamma,lEgamma,Emin,Emax,lnEmin,lnEmax
-      DOUBLE PRECISION stepmult,energy,rZ,rmult
+      DOUBLE PRECISION stepmult,energy,rZ,rmult,beta
       INTEGER j,nbstep,jb,nrstep,jr,nphistep,jphi,nstep
       DOUBLE PRECISION bmin,bmax,bmult,biter,bold,integratedflux
-      DOUBLE PRECISION fluxelement,rmin,rmax,deltar,riter
+      DOUBLE PRECISION fluxelement,rmin,deltar,riter
       DOUBLE PRECISION deltaphi,phiiter,dist
-      DOUBLE PRECISION dide(1:100),dlnE,lnElt
+      DOUBLE PRECISION dide(1:400),dlnE,lnElt
 
-      DOUBLE PRECISION Xvar,Dbesk1
+      DOUBLE PRECISION Xvar,Dbesk1,Dbesk0
 
       DOUBLE PRECISION binc,ra,phad,P1N,PXN,omax
 
@@ -67,15 +67,21 @@ C  determine hadronic breakup probability from hadronbreakup.f
 C  determine EM breakup probability from photonbreakup.f
 
 C  start lookup table at bmin=2R_A; multiplicative steps of 1.1%
-      bmin=2.*Rnuc
-      rmult=0.009
+      bmin=2.*RNuc
+      rmult=0.01
       binc=10.**rmult
+
+C  If we allow for hadronic breakup, try a slightly smaller
+C  bmin
+
+      IF (ibreakup .NE. 1) bmin=0.95*bmin
+
 
 C  different photon energy cutoffs for RHIC & LHC
 C  in MeV
 
       omax=1.E7
-      if (gamma_em .gt. 500) omax=1.E9
+      if (gamma_em .gt. 500) omax=1.E10
 
 
 C  find gamma in target system
@@ -94,8 +100,8 @@ C  both nuclei break up (XnXn)
                  call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
                  call photonbreakup(P1N,PXN,bmin,rz,ra,gammatarg,omax)
                  b1(j)=bmin
-                 pnohad=exp(-rhad)
- 203             prob(j)= (1.-exp(-PXN))*(1-exp(-PXN))*pnohad
+                 pnohad=dexp(-rhad)
+ 203             prob(j)= (1.-dexp(-PXN))*(1-dexp(-PXN))*pnohad
               goto 220
 
            ENDIF
@@ -113,16 +119,24 @@ C ibreakup=3  --> both nuclear emit 1 neutron  (1n1n)
                  call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
                  call photonbreakup(P1N,PXN,bmin,rz,ra,gammatarg,omax)
                  b1(j)=bmin
-                 pnohad=exp(-rhad)                 
+                 pnohad=dexp(-rhad)                 
 
 C  old version
-C 204             prob(j)= (1.-exp(-P1N))*(1-exp(-P1N))*pnohad
+C 204            prob(j)= (1.-exp(-P1N))*(1-exp(-P1N))*pnohad
 
 C following Eq. 7 of Baltz, Klein & Nystrand
 C the 1n excitation cannot be accompanied by Xn
- 204             prob(j)=(exp(P1N-PXN)-exp(-PXN))**2*pnohad
+C 204             prob(j)=(exp(P1N-PXN)-exp(-PXN))**2*pnohad
 
-              goto 220
+C  Version following the 'old' version of Joakim's Erice talk
+
+C  204             prob(j)=(dexp(P1N)-1.)*dexp(-2.*PXN)*pnohad
+
+C Following the 'new' version of Joakim's Erice talk
+
+  204             prob(j)=(P1N**2)*dexp(-2.*PXN)*pnohad
+
+                 goto 220
            ENDIF
 
 C ibreakup=4 --> neither nucleus is excited
@@ -133,11 +147,33 @@ C ibreakup=4 --> neither nucleus is excited
                  call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
                  call photonbreakup(P1N,PXN,bmin,rz,ra,gammatarg,omax)
                  b1(j)=bmin
-                 pnohad=exp(-rhad)
- 205             prob(j)= pnohad*exp(-PXN)*exp(-PXN)
-              WRITE(6,215)
- 215          FORMAT(' Requiring that neither nucleus break up.')
+                 pnohad=dexp(-rhad)
+ 205             prob(j)= pnohad*dexp(-PXN)*dexp(-PXN)
+                WRITE(6,215)
+ 215            FORMAT(' Requiring that neither nucleus break up.')
+                GOTO 220
            ENDIF
+
+C  ibreakup=5 - no hadronic breakup
+
+           if (ibreakup .eq. 5) THEN
+
+              WRITE(6,224)bmin
+ 224   FORMAT(' Requiring no hadronic breakup. bmin = '
+     *,F7.3)
+
+              do 225 j=1,996
+                 bmin=bmin*binc
+                 call hadronbreakup(rhad,bmin,rz,ra,gamma_em)
+                 b1(j)=bmin
+                 pnohad=dexp(-rhad)                 
+ 225             prob(j)=pnohad
+                goto 220
+           ENDIF
+
+           WRITE(6,227)ibreakup
+ 227       FORMAT(' Ibreakup =',I7,'. Not understood')
+           STOP
 
  220       continue
 
@@ -147,6 +183,10 @@ C  collect number of integration steps here, in one place
           nrstep=60
           nphistep=40
 
+C  this last one is the number of energy steps
+         nstep=100
+
+
 C  following previous choices, take Emin=10 keV at LHC, Emin = 1 MeV at RHIC
 
         Emin=1.E-5
@@ -155,24 +195,21 @@ C  following previous choices, take Emin=10 keV at LHC, Emin = 1 MeV at RHIC
 C  maximum energy is 12 times the cutoff
 C  25 GeV for gold at RHIC, 650 GeV for lead at LHC
 
-        Emax=12.*hbarc*gamma_em/Rnuc
+        Emax=12.*hbarc*gamma_em/RNuc
 
 C     >> lnEmin <-> ln(Egamma) for the 0th bin
 C     >> lnEmax <-> ln(Egamma) for the last bin
 
         lnEmin=DLOG(Emin)
         lnEmax=DLOG(Emax)
-        dlnE=(lnEmax-lnEmin)/100.
+        dlnE=(lnEmax-lnEmin)/nstep
 
         write(6,5)Emin,Emax
  5      format(' flux.f.  Calculating flux for photon energies', 
      &'from E=',E11.3,' to ',E11.3,' GeV (lab frame).')
 
-C  100 steps in energy
 
-        nstep=100
-
-        stepmult= exp(log(Emax/Emin)/float(nstep))
+        stepmult= dexp(dlog(Emax/Emin)/float(nstep))
         energy=Emin
 
         do 100 j=1,nstep
@@ -181,10 +218,10 @@ C  100 steps in energy
 C  integrate flux over 2R_A < b < 2R_A+ 6* gamma hbar/energy 
 C  use exponential steps
 
-          bmin=2.*Rnuc
+          bmin=2.*RNuc
           bmax=bmin + 6.*hbarc*gamma_em/energy
 
-          bmult=exp(log(bmax/bmin)/float(nbstep))
+          bmult=dexp(dlog(bmax/bmin)/float(nbstep))
           biter=bmin
           integratedflux=0.
 
@@ -193,27 +230,53 @@ C  use exponential steps
              bold=biter
              biter=biter*bmult
 
-C  for b>10R_A, use a single point evaluation, at the center of the nucleus
-C  for b<10R_A, integrate over nuclear surface and average
 
-             if (biter .gt. 10.*Rnuc) THEN
+C  When we get to b>20R_A change methods - just take the photon flux
+C  at the center of the nucleus.
+
+
+             if (biter .gt. 10.*RNuc) THEN
+
+C if there is no nuclear breakup or only hadronic breakup, which only
+C occurs at smaller b, we can analytically integrate the flux from b~20R_A
+C to infinity, following Jackson (2nd edition), Eq. 15.54
+
+                   Xvar=energy*biter/(hbarc*gamma_em)
+
+C                if (ibreakup .eq. 1 .or. ibreakup .eq. 5) then
+
+C                   beta=dsqrt(1.-1./gamma_em**2)
+           
+C                   fluxelement=(2.0/pi)*rZ*rZ*alpha/energy*
+C     * (Xvar*Dbesk0(Xvar)*Dbesk1(Xvar) -
+C     *beta*beta/2*Xvar*Xvar*(Dbesk1(Xvar)**2-Dbesk0(Xvar)**2))
+           
+C                   integratedflux=integratedflux+fluxelement
+
+C branch out of the b loop.  We're done at this photon energy
+
+C                   GOTO 95
+C                ENDIF
+
+C  Here, there is nuclear breakup.  So, we can't use the integrated flux
+C  However, we can do a single flux calculation, at the center of the
+C  nucleus
 
 C  Eq. 41 of Vidovic, Greiner and Soff, Phys. Rev. C47, 2308 (1993), among other places
 C  this is the flux per unit area
 
-                Xvar=energy*biter/(hbarc*gamma_em)
                 fluxelement  = (rZ*rZ*alpha*energy)*(Dbesk1(Xvar))**2/
      *((pi*gamma_em*hbarc)**2)
-
+           
              ELSE
 
 C integrate over nuclear surface. n.b. this assumes total shadowing - 
 C treat photons hitting the nucleus the same no matter where they strike
 
                 fluxelement=0.
-                rmax=Rnuc
-                riter=0.
-                deltar=rmax/float(nrstep)
+                deltar=RNuc/float(nrstep)
+                riter=-deltar/2.
+
                 do 80 jr=1,nrstep
                    riter=riter+deltar
 
@@ -223,7 +286,7 @@ C use symmetry;  only integrate from 0 to pi (half circle)
                    phiiter=0.
 
                    do 70 jphi=1,nphistep
-                      phiiter=phiiter+deltaphi
+                      phiiter=(float(jphi)-0.5)*deltaphi
                    
 C  dist is the distance from the center of the emitting nucleus to the point in question
 
@@ -247,7 +310,7 @@ C  end phi and r integrations
 
 C  average fluxelement over the nuclear surface
 
-                fluxelement=fluxelement/(pi*Rnuc**2)
+                fluxelement=fluxelement/(pi*RNuc**2)
 
 C                 write(6,85)biter,fluxelement,Xvar
 C  85    format(' b<2R_A = ',F7.3,' fluxelement= ',E11.3,' Xvar= ',E11.3)
@@ -261,7 +324,11 @@ C  multiply by volume element to get total flux in the volume element
 C  modulate by the probability of nuclear breakup as f(biter)
 
              IF (ibreakup .gt. 1) THEN
-                 bin = 0.5 + DLOG(biter/10.)/(rmult*LOG(10.))
+
+C This was the original line - I don't think the 0.5 belongs here
+C since we do the linear interpolation
+C                 bin = 0.5 + DLOG(biter/10.)/(rmult*LOG(10.))
+                  bin = DLOG(biter/bmin)/(rmult*LOG(10.))
                  ILOW = INT(bin)
                  IHIGH = ILOW + 1
                  brange = b1(IHIGH)-b1(ILOW)
@@ -276,11 +343,23 @@ C  modulate by the probability of nuclear breakup as f(biter)
  90          continue
 C  end energy integration
 
+ 95          continue
+
+C  In lookup table, store k*dN/dk because it changes less
+C  so the interpolation should be better
+
+
              dide(j)=integratedflux*energy
+
+C             write(6,97)energy,dide(j)
+C 97          format(' Energy,flux= ',E11.3,'  ',E11.3)
+
 
  100         continue
                    
 C  for 2nd and subsequent calls, use lookup table immediately
+
+
 
  1000   lEgamma=DLOG(Egamma)
         IF (lEgamma.lt.(lnEmin+dlnE).or. lEgamma .gt.lnEmax)THEN

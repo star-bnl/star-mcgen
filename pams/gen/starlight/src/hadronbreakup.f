@@ -15,7 +15,8 @@ C  To normalize to an absolute  probablity P=1-exp(-pbreakup)
 C  this subroutine calculates the probability for hadronic nuclear breakup
 C  at an impact parameter b for a nuclear with charge Z, atomic number A
 
-      SAVE IFIRST
+      SAVE IFIRST,DELL,DELR,SIGNN,R1,A1,R2,RHO1,RHO2
+      SAVE NZ1,NZ2,NR1,NR2,RR1,NY,NX,DEN1,DEN2,AN1,AN2
       DATA IFIRST /0/
 
       IF (IFIRST .NE. 0) GOTO 100
@@ -36,6 +37,7 @@ C  gamma is in cm system
 
 
       if (zp .eq. 79) THEN
+
          R1=6.38
          A1=0.535
       elseif (zp .eq. 82) THEN

@@ -89,10 +89,13 @@ needs.
 	ntuple.
 1	// This number controls the nuclear breakup
         // Note that this option only works for lead or gold; it should work at any energy
-	1 = no requirement
+	1 = hard sphere nuclei (b>2R)
 	2 = both nuclei break up (XnXn)
 	3 = a single neutron from each nucleus (1n1n)
-
+	4 = require that neither nucleon break up (with b>2R)
+	5 = require that there be no hadronic break up
+		(This is similar to option 1, but with the actual hadronic interaction
+		probability)
 
 ----------------------------------------------------------------------------
 

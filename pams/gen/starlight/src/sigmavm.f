@@ -5,6 +5,7 @@ c     a narrow resonance.  For reference, see STAR Note 386.
 
       IMPLICIT NONE
 
+      include 'inputp.inc'
       include 'range.inc'
       include 'global.inc'
       include 'const.inc'
@@ -19,6 +20,8 @@ c     a narrow resonance.  For reference, see STAR Note 386.
       DOUBLE PRECISION ax,bx
       INTEGER          J,K,NY,NGAUSS
 
+      DOUBLE PRECISION dsdy
+
 C     >> DATA FOR GAUSS INTEGRATION
       DATA xg/0.1488743390,0.4333953941,0.6794095683,0.8650633667,
      $        0.9739065285/
@@ -26,7 +29,7 @@ C     >> DATA FOR GAUSS INTEGRATION
      $        0.0666713443/
       NGAUSS = 5
 
-      NY   =  1200
+      NY   =  numy
       dY   = (Ytop-Ymin)/DFLOAT(NY)
 
 
@@ -147,6 +150,10 @@ C       >> The 2 accounts for the 2 beams
         dR  = 2.*dR
         int = int+dR
 
+        dsdy=10.*flux(ega12)*ega12*csgA12
+        write(6,190)y12,ega12,flux(ega12),10.*csgA12,dsdy,10.*int
+ 190    format(' ',F7.3,' ',F7.3,' ',E11.3,' ',F7.3,' ',F7.3,' ',F7.3)
+
  200    CONTINUE
 
       rate=lum*int
@@ -155,3 +162,6 @@ C       >> The 2 accounts for the 2 beams
 
       RETURN
       END
+
+
+
