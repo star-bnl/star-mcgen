@@ -129,7 +129,7 @@ C
 	SAVE  /HIJCRDN/
 	COMMON/HIMAIN1/NATT,EATT,JATT,NT,NP,N0,N01,N10,N11
 	SAVE  /HIMAIN1/
-	COMMON/HIMAIN2/KATT(100000,6),PATT(100000,5),VATT(100000,5)
+	COMMON/HIMAIN2/KATT(150000,6),PATT(150000,5),VATT(150000,5)
 	SAVE  /HIMAIN2/
 	COMMON/HISTRNG/NFP(300,15),PP(300,15),NFT(300,15),PT(300,15)
 	SAVE  /HISTRNG/
@@ -532,7 +532,8 @@ C
 			CALL HIBOOST
 		ENDIF
 C		******** boost back to lab frame(if it was in)
-CCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCC
+C           WRITE (6, *) '  NATT','  IDST ', '  IMOH', '  JDA1', '  JDA2'
 		N_STR=0
 		DO 344 I=1,N
 		   NATT=NATT+1
@@ -544,8 +545,13 @@ CCCCCCCCCCCCCCCC
                     ELSE
                         KATT(NATT,3) = 0
                     ENDIF
+                    IF(K(I,1) .NE. 1) THEN
                    KATT(NATT,5)= NATSUM + K(I,4)
-                   KATT(NATT,6)= NATSUM + K(I,5)		     
+                   KATT(NATT,6)= NATSUM + K(I,5)
+                    ELSE
+                   KATT(NATT,5)= 0
+                   KATT(NATT,6)= 0
+                   ENDIF		     
 C                  ****** identify the mother particle
                    DO 341 J= 1,4
 		   PATT(NATT,J)=P(I,J)
@@ -554,9 +560,13 @@ C                  ****** identify the mother particle
                    PATT(NATT,5)= P(I,5)
                    VATT(NATT,5)= V(I,5)                      
 		   EATT=EATT+P(I,4)
+C            WRITE (6, 91) NATT, KATT(NATT,4), KATT(NATT,3), KATT(NATT,5),
+C     +   KATT(NATT,6)
+C            WRITE (6, 91) I, K(I,1), K(I,3), K(I,4), K(I,5) 
  344            CONTINUE
                    NATSUM = NATSUM + N
-C                 WRITE (6, *) 'FIRST','   NATSUM =',NATSUM, '   N =', N
+C                 WRITE (6, *) 'FIRST',' NATSUM =',NATSUM, ' N =', N,
+C     + ' NATT =', NATT
  340             CONTINUE
 C			********fragment the sea quark strings
 C
@@ -589,6 +599,7 @@ C
 		ENDIF
 C		******** boost back to lab frame(if it was in)
 C
+C           WRITE (6, *) '  NATT','  IDST ', '  IMOH', '  JDA1', '  JDA2'
 		N_STR=0
 		DO 362 I=1,N
 		   NATT=NATT+1
@@ -600,8 +611,13 @@ C
                      ELSE
                          KATT(NATT,3)= 0
                      ENDIF
-                   KATT(NATT,5)= NATSUM + K(I,4)
-                   KATT(NATT,6)= NATSUM + K(I,5)		     
+                     IF(K(I,1) .NE. 1) THEN 
+                       KATT(NATT,5)= NATSUM + K(I,4)
+                       KATT(NATT,6)= NATSUM + K(I,5)
+                     ELSE
+                       KATT(NATT,5)= 0
+                       KATT(NATT,6)= 0
+                     ENDIF		     
 C                  ****** identify the mother particle
                    DO 361 J= 1,4
 		   PATT(NATT,J)=P(I,J)
@@ -609,10 +625,14 @@ C                  ****** identify the mother particle
  361               CONTINUE
 		   EATT=EATT+P(I,4)
                    PATT(NATT,5) = P(I,5)
-                   VATT(NATT,5) = V(I,5) 
+                   VATT(NATT,5) = V(I,5)
+C            WRITE (6, 91) NATT, KATT(NATT,4), KATT(NATT,3), KATT(NATT,5),
+C     +   KATT(NATT,6)
+C            WRITE (6, 91) I, K(I,1), K(I,3), K(I,4), K(I,5)
  362            CONTINUE
                    NATSUM = NATSUM + N
-C             WRITE(6, *) 'SECOND', NATT,'  NATSUM=', NATSUM,'   N=', N
+C           WRITE(6, *) 'SECOND', NATT,'  NATSUM=', NATSUM,'   N=', N,
+C     +    ' NATT =', NATT
  360            CONTINUE
 C		********Fragment the q-qbar jets systems *****
 C
@@ -632,6 +652,7 @@ C
 		ENDIF
 C			********check errors
 C
+C           WRITE (6, *) '  NATT','  IDST ', '  IMOH', '  JDA1', '  JDA2'
 		N_ST=1
 		IDSTR=92
 		IF(IHPR2(21).EQ.0) THEN
@@ -660,8 +681,13 @@ C
                      ELSE
                         KATT(NATT,3)= 0
                      ENDIF
-                   KATT(NATT,5)= NATSUM + K(I,4)
-                   KATT(NATT,6)= NATSUM + K(I,5)
+                    IF(K(I,1) .NE. 1) THEN
+                      KATT(NATT,5)= NATSUM + K(I,4)
+                      KATT(NATT,6)= NATSUM + K(I,5)
+                    ELSE
+                      KATT(NATT,5)= 0
+                      KATT(NATT,6)= 0
+                    ENDIF
 C       ****** identify the mother particle
                    DO 391 J= 1,4
 		   PATT(NATT,J)=P(I,J)
@@ -670,13 +696,18 @@ C       ****** identify the mother particle
 		   EATT=EATT+P(I,4)
                    PATT(NATT,5) = P(I,5)
                    VATT(NATT,5) = V(I,5)
+C            WRITE (6, 91) NATT, KATT(NATT,4), KATT(NATT,3), KATT(NATT,5),
+C     +   KATT(NATT,6)
+C            WRITE (6, 91) I, K(I,1), K(I,3), K(I,4), K(I,5)
 390		CONTINUE 
                    NATSUM = NATSUM + N
-C              WRITE (6, *) 'THIRD', NATT,'   NATSUM =', NATSUM,'  N =', N
+C            WRITE (6, *) 'THIRD', NATT,' NATSUM =', NATSUM,' N =',N,
+C     +    ' NATT =', NATT
 400	   CONTINUE
 C		********Fragment the q-qq related string systems
 	ENDIF
-
+C
+C           WRITE (6, *) '  NATT','  IDST ', '  IMOH', '  JDA1', '  JDA2'
 	DO 450 I=1,NDR
 		NATT=NATT+1
 		KATT(NATT,1)=KFDR(I)
@@ -691,10 +722,11 @@ C		********Fragment the q-qq related string systems
 		EATT=EATT+PDR(I,4)
           PATT(NATT,5) = SQRT(ABS(PDR(I,4)**2-PDR(I,1)**2-PDR(I,2)**2
      +    -PDR(I,3)**2))
-                 VATT(NATT,5) = 0. 
+                 VATT(NATT,5) = 0.
 450	CONTINUE
                 NATSUM = NATSUM + NDR
-C          WRITE (6, *) 'FORTH', NATT,'  NATSUM=', NATSUM,'  NDR=',NDR
+C        WRITE (6, *) 'FORTH', NATT,' NATSUM=', NATSUM,' NDR=',NDR,
+C     +    ' NATT =', NATT
 C			********store the direct-produced particles
 C
 	DENGY=EATT/(IHNT2(1)*HINT1(6)+IHNT2(3)*HINT1(7))-1.0
@@ -705,6 +737,7 @@ C
 C		call lulist(1)
 		GO TO 50
 	ENDIF
+ 91     FORMAT(10x, 5I10)
 	RETURN
 	END
 C
@@ -5399,7 +5432,7 @@ C***************************************************************
 	SAVE  /RANSEED/
 	COMMON/HIMAIN1/ NATT,EATT,JATT,NT,NP,N0,N01,N10,N11
 	SAVE  /HIMAIN1/
-	COMMON/HIMAIN2/KATT(100000,6),PATT(100000,5),VATT(100000,5)
+	COMMON/HIMAIN2/KATT(150000,6),PATT(150000,5),VATT(150000,5)
 	SAVE  /HIMAIN2/
 	COMMON/HISTRNG/NFP(300,15),PP(300,15),NFT(300,15),PT(300,15)
 	SAVE  /HISTRNG/
@@ -5442,7 +5475,7 @@ C...give all the switchs and parameters the default values
 
 C...initialize all the data common blocks
 	DATA NATT/0/EATT/0.0/JATT/0/NT/0/NP/0/N0/0/N01/0/N10/0/N11/0/
-	DATA KATT/600000*0/PATT/500000*0.0/VATT/500000*0.0/
+	DATA KATT/900000*0/PATT/750000*0.0/VATT/750000*0.0/
 
 	DATA NFP/4500*0/PP/4500*0.0/NFT/4500*0/PT/4500*0.0/
 
