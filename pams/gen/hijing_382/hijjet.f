@@ -1,5 +1,8 @@
-* $Id: hijjet.f,v 1.2 2003/04/21 16:55:47 longacre Exp $
+* $Id: hijjet.f,v 1.3 2003/04/21 18:08:57 longacre Exp $
 * $Log: hijjet.f,v $
+* Revision 1.3  2003/04/21 18:08:57  longacre
+* take out debug print
+*
 * Revision 1.2  2003/04/21 16:55:47  longacre
 * corrected random number seed input
 *
@@ -103,8 +106,8 @@ C
         END DO
           E     = patt(ip,4)    
           AMASS = patt(ip,5)
-        WRITE(63,6116)ik,ISTAT,katt(ip,1),imo,idau
-     1,P,E,AMASS
+CCCCC        WRITE(63,6116)ik,ISTAT,katt(ip,1),imo,idau
+CCCCC     1,P,E,AMASS
       END DO
         DO ip = 1, NATT
         if(katt(ip,1).gt.90.and.katt(ip,1).lt.94) then 
@@ -364,8 +367,8 @@ C--
           E     = patt(ip,4)    
           AMASS = patt(ip,5)
       CALL HEPPart(ik,ISTAT,katt(ip,1),imo,idau,P,E,AMASS,V,X4) 
-        WRITE(61,6116)ik,ISTAT,katt(ip,1),imo,idau
-     1,P,E,AMASS
+CCCCCC        WRITE(61,6116)ik,ISTAT,katt(ip,1),imo,idau
+CCCCCC     1,P,E,AMASS
  6116   FORMAT(7I6,5G12.5)
       END DO
       GO TO 999
