@@ -25,6 +25,7 @@ c      to GEANT
       if(ip.eq.2212) jtog = 14
       if(ip.eq.-2212) jtog = 15
       if(ip.eq.310) jtog = 16
+      if(ip.eq.-310) jtog = 10
       if(ip.eq.221) jtog = 17
       if(ip.eq.3122) jtog = 18
       if(ip.eq.3222) jtog = 19
