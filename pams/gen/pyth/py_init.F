@@ -26,9 +26,8 @@
 *
       EXTERNAL PYDATA
 #include "geant321/gcflag.inc"
-      INTEGER         MSTU, MSTJ
 #include "pydat1.inc"
-      INTEGER         MDCY ,MDME, KFDP
+      INTEGER         MDCY ,MDME, KFDP      
 #include "pydat3.inc"
       INTEGER         PYCOMP
 *
@@ -43,7 +42,6 @@
       CHARACTER       CBUF*80
       INTEGER         IER, KC, IFCH, IDC, I, KF, KF1, KF2, KF3
       INTEGER         KF4, KF5, M1S, M2S 
-      INTEGER         LINP
 *
 *     General data card variables
 *     ---------------------------
