@@ -15,7 +15,6 @@ c	For reference, see STAR Note 386.
       include 'D2LParam.inc'
       include 'const.inc'
       include 'global.inc'
-      include 'range.inc'
       include 'bw.inc'
       DOUBLE PRECISION formf,flux,sigmagp,nrbw,sigma_A
       DOUBLE PRECISION Av,Wgp,cs,cvma
@@ -34,24 +33,13 @@ C     DATA FOR GAUSS INTEGRATION
      $        0.0666713443/
       NGAUSS = 5
 
-c     Write parameters for this calculation to starlight.dat so they
-c     are there for future reference.
-      open (unit=20,file='starlight.dat',status='unknown')
-      write (20,*) Z
-      write (20,*) A
-      write (20,*) gamma_em
-      write (20,*) Wtop
-      write (20,*) Wmin
-      write (20,*) numw
-      write (20,*) Ytop
-      write (20,*) numy
-      write (20,*) gg_or_gP
-      write (20,*) ibreakup
+C  unit 20 should already be open, and input parameters written, 
+C  from starlight.f
 
       WRITE(*,*) 'Generating W/Y map for Monte Carlo ...'
 
-      dW = (Wtop-Wmin)/DFLOAT(numw)
-      dY  = (Ytop-Ymin)/DFLOAT(numy)      
+      dW = (Wmax-Wmin)/DFLOAT(numw)
+      dY  = (Ymax-Ymin)/DFLOAT(numy)      
 
 C     Normalize the Breit-Wigner Distribution
       testint=0.0
@@ -111,7 +99,7 @@ C       Calculate V.M.+Nucleus cross section
 C       Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
           Av=(alpha*cvma*cvma)/(16.*pi*f2o4pi*hbarc*hbarc)
 
-          tmin   = ( (W**2)/(4.*Egamma*gamma_ta) )**2
+          tmin   = ( (W**2)/(4.*Egamma*gamma_em) )**2
           tmax   = tmin + 0.25
           ax     = 0.5*(tmax-tmin)
           bx     = 0.5*(tmax+tmin)
@@ -133,8 +121,6 @@ C       Calculate Av = dsigma/dt(t=0) Note Units: fm**s/Gev**2
      
  101    CONTINUE
  102  CONTINUE
-
-      close (unit=20)
 
       RETURN
       END
