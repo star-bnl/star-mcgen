@@ -22,6 +22,11 @@ c     See starlight.doc for an explanation of input parameters
       read (15,*) ip
       read (15,*) iseed
       read (15,*) iout
+
+C added 4/12/2001 by SRK ibreakup: 1=don't care; 2= mutual excitation
+C 3= no excitation 4=exactly 1 excitation 5=1+ excitation
+
+      read (15,*) ibreakup
       close (unit=15)
 
       return
