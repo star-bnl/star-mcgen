@@ -14,7 +14,7 @@ C***************************************************************************
 *--
       COMMON/HIMAIN1/NATT,EATT,JATT,NT,NP,N0,N01,N10,N11
       SAVE  /HIMAIN1/
-      COMMON/HIMAIN2/KATT(130000,4),PATT(130000,4)
+      COMMON/HIMAIN2/KATT(100000,6),PATT(100000,5), VATT(100000,5)
       SAVE  /HIMAIN2/
       COMMON/HIPARNT/HIPR1(100),IHPR2(50),HINT1(100),IHNT2(50)
       SAVE  /HIPARNT/
