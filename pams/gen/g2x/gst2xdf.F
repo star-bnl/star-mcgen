@@ -1,5 +1,8 @@
 * Id: gst2xdf.F, v 1.1 1998/03/17 14:35:30 longacre Exp $
 *$Log: gst2xdf.F,v $
+*Revision 1.10  1999/10/12 21:40:41  fisyak
+*typo in format
+*
 *Revision 1.9  1999/10/08 22:24:11  nevski
 *pgf->g77
 *
@@ -252,7 +255,7 @@ C   Error Returns
       RETURN
 
 999   WRITE(*,231)
-231  FORMAT('gst2xdf: SIZE problem  ')
+231   FORMAT('gst2xdf: SIZE problem  ')
       GST2XDF  = STAFCV_BAD
       RETURN
 
