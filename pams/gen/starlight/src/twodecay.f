@@ -19,8 +19,8 @@ c     taking spin into account
 
 c	set the mass of the daughter particles
 	if((ip.eq.11).or.(ip.eq.13).or.(ip.eq.15)) mdec = mass
-        if((ip.eq.113).or.(ip.eq.223).or.(ip.eq.33).or.(ip.eq.225)) 
-     &		mdec = mpi
+        if((ip.eq.113).or.(ip.eq.223).or.(ip.eq.33).or.(ip.eq.225)
+     &.or.(ip.eq.913))  mdec = mpi
         if(ip.eq.333) mdec = mK
         if(ip.eq.335) then
 c	decays 50% to K+/K-, 50% to K_0's
