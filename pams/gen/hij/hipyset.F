@@ -13362,7 +13362,7 @@ C***************************************************************
 C**********ERROR HAS OCCURED HERE
       IF(XFBO.EQ.0.0) THEN
                 WRITE(MSTU(11),1000)
-                WRITE(MSTU(11),1001) KFLB,XFB(FKLB)
+                WRITE(MSTU(11),1001) KFLB,XFB(KFLB)
 		XFBO=0.00001
       ENDIF
 C****************************************************************    
