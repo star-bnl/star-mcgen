@@ -18,7 +18,7 @@ C  rewritten 4/25/2001 by SRK
       include 'inputp.inc'
 
       DOUBLE PRECISION Egamma,lEgamma,Emin,Emax,lnEmin,lnEmax
-      DOUBLE PRECISION stepmult,energy,rZ
+      DOUBLE PRECISION stepmult,energy,rZ,rmult
       INTEGER j,nbstep,jb,nrstep,jr,nphistep,jphi,nstep
       DOUBLE PRECISION bmin,bmax,bmult,biter,bold,integratedflux
       DOUBLE PRECISION fluxelement,rmin,rmax,deltar,riter
@@ -68,9 +68,11 @@ C  determine EM breakup probability from photonbreakup.f
 
 C  start lookup table at bmin=2R_A; multiplicative steps of 1.1%
       bmin=2.*Rnuc
-      binc=10.**.005
+      rmult=0.009
+      binc=10.**rmult
 
 C  different photon energy cutoffs for RHIC & LHC
+C  in MeV
 
       omax=1.E7
       if (gamma_em .gt. 500) omax=1.E9
@@ -259,7 +261,7 @@ C  multiply by volume element to get total flux in the volume element
 C  modulate by the probability of nuclear breakup as f(biter)
 
              IF (ibreakup .gt. 1) THEN
-                 bin = 0.5 + DLOG(biter/10.)/(0.005*LOG(10.))
+                 bin = 0.5 + DLOG(biter/10.)/(rmult*LOG(10.))
                  ILOW = INT(bin)
                  IHIGH = ILOW + 1
                  brange = b1(IHIGH)-b1(ILOW)
