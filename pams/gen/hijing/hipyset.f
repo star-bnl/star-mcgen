@@ -13230,9 +13230,14 @@ C...Copy outgoing partons to documentation lines.
         K(I1,2)=K(I2,2) 
         IF(IDOC.LE.9) K(I1,3)=0 
         IF(IDOC.GE.11) K(I1,3)=MINT(83)+2+I 
-        DO 450 J=1,5    
-  450   P(I1,J)=P(I2,J) 
-      ENDIF 
+        DO 451 J=1,5    
+ 451    P(I1,J)=P(I2,J) 
+        WRITE(6,7044) K(I1,1),K(I1,2)
+ 7044  FORMAT(' K(I1,1),K(I1,2),K(I1,3) ',2I10)
+        WRITE(6,7045) P(I1,2),P(I1,1),P(I1,3),P(I1,4),P(I1,5)
+ 7045   FORMAT(' P(I1,1-5) ',5F10.5)
+ 450   CONTINUE
+       ENDIF 
       MINT(52)=N    
     
 C...Low-pT events: remove gluons used for string drawing purposes.  

@@ -28,6 +28,7 @@ CCC#include "headpss.inc"
      &                PJTX(300,500),PJTY(300,500),PJTZ(300,500),
      &                PJTE(300,500),PJTM(300,500)
       SAVE  /HIJJET1/
+      INTEGER ISTAT
       DATA IFIRST /0/
        IF(IFIRST.EQ.0) THEN
        IRUN=0
@@ -56,6 +57,7 @@ CCC#include "headpss.inc"
       read ( lin, * ) line, ih11, ih12
       read ( lin, * ) line, ih21, ih18
       read ( lin, * ) line, hipr7 
+      read ( lin, * ) line, ISTAT 
 *           
 *      read ( lin, * ) line, nevt_file, output_dir 
 *
@@ -86,6 +88,7 @@ CCC#include "headpss.inc"
 *****  Initialize HIJING 
           call hijset(efrm,frame,proj,targ,iap,izp,iat,izt)
           IFIRST = 1
+          IF(ISTAT.GT.1) IFIRST=2
         endif
 *****  Generate event  
            natt = 0

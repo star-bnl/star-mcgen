@@ -1,5 +1,5 @@
 
-SOURCES = hijjet.f hipyset.f hijev.f heptup.f hijing.f 
+SOURCES = hijjet.f hipyset.f hijev.f heptup.f hijing.f makhvy.f
 
 # Include files (for printout, below)
 INCFILES = 
