@@ -1,21 +1,29 @@
-C	Version 1.4 
 C
-C	Last modification on March 22, 1995 (Matthew Bloomer  mabloomer@lbl.gov)
+C       Version 1.33
+C       Last modifcation on April 10, 1996. To conduct final
+C       state radiation, PYTHIA reorganize the two scattered
+C       partons and their final momenta will be a little
+C       different. The summed total momenta of the partons
+C       from the final state radiation are stored in HINT1(26-29)
+C       and HINT1(36-39) which are little different from 
+C       HINT1(21-24) and HINT1(41-44).
 C
-C	- subroutine hijing:  FRAME changed from CHARACTER*8 to CHARACTER*4,
-C	  in conformity with other routines.  Added EXTERNAL statement for block
-C	  data.
-C 	- block data hidata:  commented out lines which initialized large arrays
-C	  to zero.  HIPR1(41) now used for HIJING version number.
-C	- title:  prints the version number (HIPR1(41)).
-C	- changed MAX(0.D0,HIPR1(10)) to MAX(0.0,HIPR1(10)) wherever found 
-C	  (wrong argument type). 
-C	- hijsft:  added duplicate code after conditional statement to
-C	  avoid goto into if-then-endif (which is illegal and causes
-C	  compilation warnings on AIX).
-C	- other:  cosmetic changes to format statements.
 C
-C       Version 1.31
+C       Last modfication  on September 11, 1995. When HIJING and
+C       PYTHIA are initialized, the shadowing is evaluated at
+C       b=0 which is the maximum. This will cause overestimate
+C       of shadowing for peripheral interactions. To correct this
+C       problem, shadowing is set to zero when initializing. Then
+C       use these maximum  cross section without shadowing as a
+C       normalization of the Monte Carlo. This however increase
+C       the computing time. IHNT2(16) is used to indicate whether
+C       the sturcture function is called for (IHNT2(16)=1) initialization
+C       or for (IHNT2(16)=0)normal collisions simulation
+C
+C       Last modification on Aagust 28, 1994. Two bugs associate
+C       with the impact parameter dependence of the shadowing is
+C       corrected.
+C
 C
 c       Last modification on October 14, 1994. One bug is corrected
 c       in the direct photon production option in subroutine
@@ -111,7 +119,7 @@ C	SUBROUTINE HIJING
 C
 C****************************************************************
 	SUBROUTINE HIJING(FRAME,BMIN0,BMAX0)
-	CHARACTER FRAME*4
+	CHARACTER FRAME*8
 	DIMENSION SCIP(300,300),RNIP(300,300),SJIP(300,300),JTP(3),
      &			IPCOL(90000),ITCOL(90000)
 	COMMON/HIPARNT/HIPR1(100),IHPR2(50),HINT1(100),IHNT2(50)
@@ -148,9 +156,7 @@ C
 	SAVE  /LUJETS/
 	COMMON/LUDAT1/MSTU(200),PARU(200),MSTJ(200),PARJ(200)
 	SAVE  /LUDAT1/
-C
-	EXTERNAL HIDATA, PYDATA, LUDATA
-C
+
 	BMAX=MIN(BMAX0,HIPR1(34)+HIPR1(35))
 	BMIN=MIN(BMIN0,BMAX)
 	IF(IHNT2(1).LE.1 .AND. IHNT2(3).LE.1) THEN
@@ -166,12 +172,12 @@ C
 	YP(3,1)=0.0
 	IF(IHNT2(1).LE.1) GO TO 14
 	DO 10 KP=1,IHNT2(1)
-5	R=HIRND(1)
-	X=RAN(NSEED)
+5       R=HIRND(1)
+        X= RNDM(-1)
 	CX=2.0*X-1.0
 	SX=SQRT(1.0-CX*CX)
 C		********choose theta from uniform cos(theta) distr
-	PHI=RAN(NSEED)*2.0*HIPR1(40)
+        PHI=RNDM(-1)*2.0*HIPR1(40)
 C		********choose phi form uniform phi distr 0 to 2*pi
 	YP(1,KP)=R*SX*COS(PHI)
 	YP(2,KP)=R*SX*SIN(PHI)
@@ -208,11 +214,11 @@ C******************************
 	IF(IHNT2(3).LE.1) GO TO 24
 	DO 20 KT=1,IHNT2(3)
 15	R=HIRND(2)
-	X=RAN(NSEED)
+        X=RNDM(-1)
 	CX=2.0*X-1.0
 	SX=SQRT(1.0-CX*CX)
 C		********choose theta from uniform cos(theta) distr
-	PHI=RAN(NSEED)*2.0*HIPR1(40)
+        PHI=RNDM(-1)*2.0*HIPR1(40)
 C		********chose phi form uniform phi distr 0 to 2*pi
 	YT(1,KT)=R*SX*COS(PHI)
 	YT(2,KT)=R*SX*SIN(PHI)
@@ -270,8 +276,8 @@ C****	BB IS THE ABSOLUTE VALUE OF IMPACT PARAMETER,BB**2 IS
 C       RANDOMLY GENERATED AND ITS ORIENTATION IS RANDOMLY SET 
 C       BY THE ANGLE PHI  FOR EACH COLLISION.******************
 C
-	BB=SQRT(BMIN**2+RAN(NSEED)*(BMAX**2-BMIN**2))
-	PHI=2.0*HIPR1(40)*RAN(NSEED)
+        BB=SQRT(BMIN**2+RNDM(-1)*(BMAX**2-BMIN**2))
+        PHI=2.0*HIPR1(40)*RNDM(-1)
 	BBX=BB*COS(PHI)
 	BBY=BB*SIN(PHI)
 	HINT1(19)=BB
@@ -285,7 +291,7 @@ C
 C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
 	   RRB1=MIN((YP(1,JP)**2+YP(2,JP)**2)
      &          /1.2**2/REAL(IHNT2(1))**0.6666667,1.0)
-	   RRB2=MIN((YP(1,JT)**2+YT(2,JT)**2)
+	   RRB2=MIN((YT(1,JT)**2+YT(2,JT)**2)
      &          /1.2**2/REAL(IHNT2(3))**0.6666667,1.0)
 	   APHX1=HIPR1(6)*4.0/3.0*(IHNT2(1)**0.3333333-1.0)
      &           *SQRT(1.0-RRB1)
@@ -296,7 +302,7 @@ C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
 	   IF(IHPR2(14).EQ.0.OR.
      &          (IHNT2(1).EQ.1.AND.IHNT2(3).EQ.1)) THEN
 	      GS=1.0-EXP(-(HIPR1(30)+HINT1(18))*ROMG(R2)/HIPR1(31))
-	      RANTOT=RAN(NSEED)
+              RANTOT=RNDM(-1)
 	      IF(RANTOT.GT.GS) GO TO 70
 	      GO TO 65
 	   ENDIF
@@ -305,7 +311,7 @@ C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
 	   R2=R2/GSTOT_0
 	   GS=1.0-EXP(-(HIPR1(30)+HINT1(18))/HIPR1(31)*ROMG(R2))
 	   GSTOT=2.0*(1.0-SQRT(1.0-GS))
-	   RANTOT=RAN(NSEED)*GSTOT_0
+           RANTOT=RNDM(-1)*GSTOT_0
 	   IF(RANTOT.GT.GSTOT) GO TO 70
 	   IF(RANTOT.GT.GS) THEN
 	      CALL HIJCSC(JP,JT)
@@ -323,7 +329,7 @@ C		********total number interactions proj and targ has
 C				suffered
 	IF(NCOLT.EQ.0) THEN
 	   NLOP=NLOP+1
-           IF(NLOP.LE.20.AND.
+           IF(NLOP.LE.20.OR.
      &           (IHNT2(1).EQ.1.AND.IHNT2(3).EQ.1)) GO TO 60
            RETURN
 	ENDIF
@@ -332,14 +338,14 @@ C                       interaction at all. For NN collision
 C                       repeat the event until interaction happens
 C
 	IF(IHPR2(3).NE.0) THEN
-	   NHARD=1+INT(RAN(NSEED)*(NCOLT-1)+0.5)
+           NHARD=1+INT(RNDM(-1)*(NCOLT-1)+0.5)
 	   NHARD=MIN(NHARD,NCOLT)
 	   JPHARD=IPCOL(NHARD)
 	   JTHARD=ITCOL(NHARD)
 	ENDIF
 C
 	IF(IHPR2(9).EQ.1) THEN
-		NMINI=1+INT(RAN(NSEED)*(NCOLT-1)+0.5)
+                NMINI=1+INT(RNDM(-1)*(NCOLT-1)+0.5)
 		NMINI=MIN(NMINI,NCOLT)
 		JPMINI=IPCOL(NMINI)
 		JTMINI=ITCOL(NMINI)
@@ -396,7 +402,7 @@ C				JP or JT
 	   IF(IHPR2(8).EQ.0) GO TO 160
 	   RRB1=MIN((YP(1,JP)**2+YP(2,JP)**2)/1.2**2
      &		/REAL(IHNT2(1))**0.6666667,1.0)
-	   RRB2=MIN((YP(1,JT)**2+YT(2,JT)**2)/1.2**2
+	   RRB2=MIN((YT(1,JT)**2+YT(2,JT)**2)/1.2**2
      &		/REAL(IHNT2(3))**0.6666667,1.0)
 	   APHX1=HIPR1(6)*4.0/3.0*(IHNT2(1)**0.3333333-1.0)
      &           *SQRT(1.0-RRB1)
@@ -409,13 +415,13 @@ C				JP or JT
 C		********subtract the trigger jet from total number
 C			of jet production  to be done since it has
 C				already been ptoduced here
-	   XR1=-ALOG(EXP(-TTRIG)+RAN(NSEED)*(1.0-EXP(-TTRIG)))
+           XR1=-ALOG(EXP(-TTRIG)+RNDM(-1)*(1.0-EXP(-TTRIG)))
  106	   NJET=NJET+1
-	   XR1=XR1-ALOG(RAN(NSEED))
+	   XR1=XR1-ALOG(RNDM(-1))
 	   IF(XR1.LT.TTRIG) GO TO 106
 	   XR=0.0
  107	   NJET=NJET+1
-	   XR=XR-ALOG(RAN(NSEED))
+	   XR=XR-ALOG(RNDM(-1))
 	   IF(XR.LT.TT-TTRIG) GO TO 107
 	   NJET=NJET-1
 	   GO TO 112
@@ -429,9 +435,9 @@ C
 	IF(IHPR2(8).GT.0 .AND.RNIP(JP,JT).LT.EXP(-TT)*
      &		(1.0-EXP(-TTS))) GO TO 160
 C		********this is the probability for no jet production
-110	XR=-ALOG(EXP(-TT)+RAN(NSEED)*(1.0-EXP(-TT)))
+110	XR=-ALOG(EXP(-TT)+RNDM(-1)*(1.0-EXP(-TT)))
 111	NJET=NJET+1
-	XR=XR-ALOG(RAN(NSEED))
+	XR=XR-ALOG(RNDM(-1))
 	IF(XR.LT.TT) GO TO 111
 112	NJET=MIN(NJET,IHPR2(8))
 	IF(IHPR2(8).LT.0)  NJET=ABS(IHPR2(8))
@@ -486,6 +492,11 @@ C********perform jet quenching for jets with PT>HIPR1(11)**********
 C
 C**************fragment all the string systems in the following*****
 C
+C********N_ST is where particle information starts
+C********N_STR+1 is the number of strings in fragmentation
+C********the number of strings before a line is stored in K(I,4)
+C********IDSTR is id number of the string system (91,92 or 93)
+C
 	IF(IHPR2(20).NE.0) THEN
 	   DO 340 ISG=1,NSEA
 		CALL HIJFRG(ISG,4,IERROR)
@@ -501,6 +512,7 @@ C
 C			********Check errors
 C
 		N_ST=1
+		IDSTR=92
 		IF(IHPR2(21).EQ.0) THEN
 		   CALL LUEDIT(2)
 		ELSE
@@ -509,11 +521,6 @@ C
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
 		ENDIF
-C
-C********N_ST is where particle information starts
-C********N_STR+1 is the number of strings in fragmentation
-C********the number of strings before a line is stored in K(I,4)
-C********IDSTR is id number of the string system (91,92 or 93)
 C
 		IF(FRAME.EQ.'LAB') THEN
 			CALL HIBOOST
@@ -559,6 +566,7 @@ C
 C			********Check errors
 C
 		N_ST=1
+		IDSTR=92
 		IF(IHPR2(21).EQ.0) THEN
 		   CALL LUEDIT(2)
 		ELSE
@@ -615,6 +623,7 @@ C
 C			********check errors
 C
 		N_ST=1
+		IDSTR=92
 		IF(IHPR2(21).EQ.0) THEN
 		   CALL LUEDIT(2)
 		ELSE
@@ -666,7 +675,7 @@ C		********Fragment the q-qq related string systems
 		PATT(NATT,2)=PDR(I,2)
 		PATT(NATT,3)=PDR(I,3)
 		PATT(NATT,4)=PDR(I,4)
-		EATT=EATT+P(I,4)
+		EATT=EATT+PDR(I,4)
 450	CONTINUE
 C			********store the direct-produced particles
 C
@@ -862,8 +871,8 @@ C		********booking for x distribution of valence quarks
 	IF(FRAME.EQ.'LAB') EFRAME='Elab'
 	WRITE(6,100) EFRAME,EFRM,PROJ,IHNT2(1),IHNT2(2),
      &               TARG,IHNT2(3),IHNT2(4) 
-100	FORMAT(//10X,'**********************************',
-     &               '****************'/
+100	FORMAT(//10X,'**********************************
+     &                ****************'/
      &	10X,'*',48X,'*'/
      &	10X,'*         HIJING has been initialized at         *'/
      &	10X,'*',13X,A4,'= ',F10.2,' GeV/n',13X,'*'/
@@ -1020,6 +1029,14 @@ C			********switch on and off scatter channels
         CALL JETINI(1)
 	CALL HIJHRD(JP,JT,0,JFLG,0)
 	CALL JETINI(0)
+        HINT1(26)=HINT1(47)
+        HINT1(27)=HINT1(48)
+        HINT1(28)=HINT1(49)
+        HINT1(29)=HINT1(50)
+        HINT1(36)=HINT1(67)
+        HINT1(37)=HINT1(68)
+        HINT1(38)=HINT1(69)
+        HINT1(39)=HINT1(70)
 	RETURN
 	END
 C
@@ -1125,7 +1142,7 @@ C*******	rearrange according decending rd************
 		 V2=PJPY(JP,I)/PTOT
 		 V3=PJPZ(JP,I)/PTOT
 
- 200		 RN=RAN(NSEED)
+ 200		 RN=RNDM(-1)
  210		 IF(MT.GE.KT .AND. MP.GE.KP) GO TO 290
 		 IF(MT.GE.KT) GO TO 220
 		 IF(MP.GE.KP) GO TO 240
@@ -1291,7 +1308,7 @@ C*******	rearrange according to decending rd************
 		V2=PJTY(JT,I)/PTOT
 		V3=PJTZ(JT,I)/PTOT
 
- 600		RN=RAN(NSEED)
+ 600		RN=RNDM(-1)
  610		IF(MT.GE.KT .AND. MP.GE.KP) GO TO 690
 		IF(MT.GE.KT) GO TO 620
 		IF(MP.GE.KP) GO TO 640
@@ -1460,7 +1477,7 @@ C*******	rearrange according to decending rd************
 		 V2=PYSG(ISG,I)/PTOT
 		 V3=PZSG(ISG,I)/PTOT
 
- 2600		 RN=RAN(NSEED)
+ 2600		 RN=RNDM(-1)
  2610		 IF(MT.GE.KT .AND. MP.GE.KP) GO TO 2690
 		 IF(MT.GE.KT) GO TO 2620
 		 IF(MP.GE.KP) GO TO 2640
@@ -1824,7 +1841,7 @@ C				********reverse the order of jets
 580		CONTINUE
 		N=N+NTJ(JTP)
 	ENDIF
-	IF(IHPR2(1).GT.0.AND.RAN(NSEED).LE.HIDAT(3)) THEN
+	IF(IHPR2(1).GT.0.AND.RNDM(-1).LE.HIDAT(3)) THEN
 	     HIDAT20=HIDAT(2)
 	     HIPR150=HIPR1(5)
 	     IF(IHPR2(8).EQ.0.AND.IHPR2(3).EQ.0.AND.IHPR2(9).EQ.0)
@@ -1838,7 +1855,7 @@ C				********reverse the order of jets
 	     HIPR1(5)=HIPR150
 	ELSE IF(JETOT.EQ.0.AND.IHPR2(1).GT.0.AND.
      &                       HINT1(1).GE.1000.0.AND.
-     &		RAN(NSEED).LE.0.8) THEN
+     &		RNDM(-1).LE.0.8) THEN
 		HIDAT20=HIDAT(2)
 		HIPR150=HIPR1(5)
 		HIDAT(2)=3.0
@@ -2101,7 +2118,7 @@ C.....CREATE ONE GLUON AND ORIENTATE.....
 	   PTG=MAX(PTG1,PTG2,PTG3)
 	   IF(PTG.GT.HIDAT(2)) THEN
 	      FMFACT=EXP(-(PTG**2-HIDAT(2)**2)/HIPR1(2)**2)
-	      IF(RAN(NSEED).GT.FMFACT) GO TO 1
+	      IF(RNDM(-1).GT.FMFACT) GO TO 1
 	   ENDIF
 	ENDIF
 C.....ROTATE AND BOOST BACK.....
@@ -2178,10 +2195,10 @@ C
       	ENDIF
       	NTRY=NTRY+1
      
-      	XT2=A*(XT2M/A)**(RAN(NSEED)**(1./D))
+      	XT2=A*(XT2M/A)**(RNDM(-1)**(1./D))
      
       	YMAX=ALOG(.5/SQRT(XT2)+SQRT(.25/XT2-1.))
-      	Y=(2.*RAN(NSEED)-1.)*YMAX
+      	Y=(2.*RNDM(-1)-1.)*YMAX
       	X1=1.-SQRT(XT2)*EXP(Y)
       	X3=1.-SQRT(XT2)*EXP(-Y)
       	X2=2.-X1-X3
@@ -2197,7 +2214,7 @@ C
      
       	FG=2.*YMAX*C*(X1**EXP1+X3**EXP3)/D
       	XT2M=XT2
-      	IF(FG.LT.RAN(NSEED)) GOTO 1
+      	IF(FG.LT.RNDM(-1)) GOTO 1
      
       	RETURN
       	END
@@ -2240,7 +2257,7 @@ C.....MINIMIZE PT1-SQUARED PLUS PT3-SQUARED.....
 	   PZ3=-P3*COS(PSI)
       	ENDIF
      
-      	DEL=2.0*HIPR1(40)*RAN(NSEED)
+      	DEL=2.0*HIPR1(40)*RNDM(-1)
       	P(JL,4)=E1
       	P(JL,1)=PT1*SIN(DEL)
       	P(JL,2)=-PT1*COS(DEL)
@@ -2529,7 +2546,7 @@ C
 	PINIRAD=(1.0-EXP(-2.0*(VINT(47)-HIDAT(1))))
      &		/(1.0+EXP(-2.0*(VINT(47)-HIDAT(1))))
 	I_INIRAD=0
-	IF(RAN(NSEED).LE.PINIRAD) I_INIRAD=1
+	IF(RNDM(-1).LE.PINIRAD) I_INIRAD=1
 	IF(K(7,2).EQ.-K(8,2)) GO TO 190
 	IF(K(7,2).EQ.21.AND.K(8,2).EQ.21.AND.IOPJET.EQ.1) GO TO 190
 C*******************************************************************
@@ -2545,9 +2562,31 @@ C*******************************************************************
 	LTB=0
 	IS7=0
 	IS8=0
+        HINT1(47)=0.0
+        HINT1(48)=0.0
+        HINT1(49)=0.0
+        HINT1(50)=0.0
+        HINT1(67)=0.0
+        HINT1(68)=0.0
+        HINT1(69)=0.0
+        HINT1(70)=0.0
 	DO 180 I=9,N
 	   IF(K(I,3).EQ.1 .OR. K(I,3).EQ.2.OR.
      &                   ABS(K(I,2)).GT.30) GO TO 180
+C************************************************************
+           IF(K(I,3).EQ.7) THEN
+              HINT1(47)=HINT1(47)+P(I,1)
+              HINT1(48)=HINT1(48)+P(I,2)
+              HINT1(49)=HINT1(49)+P(I,3)
+              HINT1(50)=HINT1(50)+P(I,4)
+           ENDIF
+           IF(K(I,3).EQ.8) THEN
+              HINT1(67)=HINT1(67)+P(I,1)
+              HINT1(68)=HINT1(68)+P(I,2)
+              HINT1(69)=HINT1(69)+P(I,3)
+              HINT1(70)=HINT1(70)+P(I,4)
+           ENDIF
+C************************modifcation made on Apr 10. 1996*****
 	   IF(K(I,2).GT.21.AND.K(I,2).LE.30) THEN
 	      NDR=NDR+1
 	      IADR(NDR,1)=JP
@@ -2631,8 +2670,9 @@ C************************correction made on Oct. 14,1994*****
 		 ENDIF
 	      ENDIF
 	   ENDIF
- 180	CONTINUE	
-
+ 180	CONTINUE
+c
+c
 	IF(LPQ.NE.LPB .OR. LTQ.NE.LTB) THEN
 		MISS=MISS+1
 		IF(MISS.LE.50) GO TO 155
@@ -2946,7 +2986,6 @@ C******* reset the energy-momentum of incoming particles ********
 
 	NFP(JP,6)=NFP(JP,6)+1
 	NFT(JT,6)=NFT(JT,6)+1
-
 	RETURN
 C
 1000	JFLG=-1
@@ -3107,6 +3146,11 @@ C		********switch on and off scattering channels
 	ELSE
 		WRITE(6,*) 'unavailable target type', IHNT2(6)
 	ENDIF
+C
+	IHNT2(16)=1
+C       ******************indicate for initialization use when
+C                         structure functions are called in PYTHIA
+C
 	CALL PYINIT('CMS',BEAM,TARG,HINT1(1))
 	MINT4=MINT(44)
 	MINT5=MINT(45)
@@ -3121,6 +3165,9 @@ C		********switch on and off scattering channels
 			ATCO(I,J)=COEF(I,J)
 			COEF0(I_TYPE,I,J)=COEF(I,J)
 500	CONTINUE
+C
+	IHNT2(16)=0
+C
 	RETURN
 C		********Store the initialization information for
 C				late use
@@ -3206,7 +3253,7 @@ C
 	NFP(I,2)=IDQQ
 	NFP(I,15)=-1
 	IF(ABS(IDQ).GT.1000.OR.(ABS(IDQ*IDQQ).LT.100.AND.
-     &		RAN(NSEED).LT.0.5)) NFP(I,15)=1
+     &		RNDM(-1).LT.0.5)) NFP(I,15)=1
 	PP(I,14)=ULMASS(IDQ)
 	PP(I,15)=ULMASS(IDQQ)
 100	CONTINUE
@@ -3238,7 +3285,7 @@ C
 	NFT(I,2)=IDQQ
 	NFT(I,15)=1
 	IF(ABS(IDQ).GT.1000.OR.(ABS(IDQ*IDQQ).LT.100.AND.
-     &			RAN(NSEED).LT.0.5)) NFT(I,15)=-1
+     &			RNDM(-1).LT.0.5)) NFT(I,15)=-1
 	PT(I,14)=ULMASS(IDQ)
 	PT(I,15)=ULMASS(IDQQ)
 200	CONTINUE
@@ -3278,7 +3325,7 @@ C
 	IDQ=2
 	IF(ABS(ID).EQ.2112) IDQ=1
 	IDQQ=2101
-	X=RAN(NSEED)
+	X=RNDM(-1)
 	IF(X.LE.0.5) GO TO 30
 	IF(X.GT.0.666667) GO TO 10
 	IDQQ=2103
@@ -3358,7 +3405,7 @@ C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
      &			*ROMG(R2))**2
 		GS0=1.0-EXP(-(HIPR1(30)+HINT1(11))/HIPR1(31)/2.0
      &			*ROMG(0.0))**2
-		IF(RAN(NSEED).GT.GS/GS0) GO TO 40
+		IF(RNDM(-1).GT.GS/GS0) GO TO 40
 		DO 30 K=1,5
 			PSC1(K)=PP(JP,K)
 			PSC2(K)=PP(I,K)
@@ -3402,7 +3449,7 @@ C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
      &			*ROMG(R2)))**2
 		GS0=(1.0-EXP(-(HIPR1(30)+HINT1(11))/HIPR1(31)/2.0
      &			*ROMG(0.0)))**2
-		IF(RAN(NSEED).GT.GS/GS0) GO TO 70
+		IF(RNDM(-1).GT.GS/GS0) GO TO 70
 		DO 60 K=1,5
 			PSC1(K)=PT(JT,K)
 			PSC2(K)=PT(I,K)
@@ -3463,11 +3510,11 @@ C				to each other
 	PMAX=(AMM**2+AM1**2+AM2**2-2.0*AMM*AM1-2.0*AMM*AM2
      &			-2.0*AM1*AM2)/4.0/AMM
 	PMAX=ABS(PMAX)
-20	TT=RAN(NSEED)*MIN(PMAX,1.5)
+20	TT=RNDM(-1)*MIN(PMAX,1.5)
 	ELS=98.0*EXP(-2.8*TT)/EP
      &		+52.0*EXP(-9.2*TT)*(1.0+RR*EXP(-4.6*(BB-1.0)*TT))**2
-	IF(RAN(NSEED).GT.ELS/ELS0) GO TO 20
-	PHI=2.0*HIPR1(40)*RAN(NSEED)
+	IF(RNDM(-1).GT.ELS/ELS0) GO TO 20
+	PHI=2.0*HIPR1(40)*RNDM(-1)
 C
 	DBX=PCM1/ECM
 	DBY=PCM2/ECM
@@ -3634,8 +3681,8 @@ C
 	      IF(ABS(COS(PHI)).LT.1.0E-5) THEN
 		 DD1=R1
 		 DD2=R1
-		 DD3=ABS(BY+SQRT(R2**2-(XX0-BX)**2)-YY0)
-		 DD4=ABS(BY-SQRT(R2**2-(XX0-BX)**2)-YY0)
+		 DD3=ABS(BY+SQRT(R2**2-(XP0-BX)**2)-YP0)
+		 DD4=ABS(BY-SQRT(R2**2-(XP0-BX)**2)-YP0)
 		 GO TO 5
 	      ENDIF
 	      BB=2.0*SIN(PHI)*(COS(PHI)*YP0-SIN(PHI)*XP0)
@@ -3645,8 +3692,8 @@ C
 	      IF(DD.LT.0.0) GO TO 10
 	      XX1=(-BB+SQRT(DD))/2.0
 	      XX2=(-BB-SQRT(DD))/2.0
-	      DD1=ABS((XX1-XX0)/COS(PHI))
-	      DD2=ABS((XX2-XX0)/COS(PHI))
+	      DD1=ABS((XX1-XP0)/COS(PHI))
+	      DD2=ABS((XX2-XP0)/COS(PHI))
 C			
 	      BB=2.0*SIN(PHI)*(COS(PHI)*(YT0-BY)-SIN(PHI)*XT0)-2.0*BX
 	      CC=(BX**2+(YT0-BY)**2-R2**2)*COS(PHI)**2+XT0*SIN(PHI)
@@ -3818,14 +3865,14 @@ C
 C		********If the valence quarks had a hard-collision
 C			the pt kick is the pt from hard-collision.
 	I_SNG=0
-	IF(IHPR2(13).NE.0 .AND. RAN(NSEED).LE.HIDAT(4)) I_SNG=1
+	IF(IHPR2(13).NE.0 .AND. RNDM(-1).LE.HIDAT(4)) I_SNG=1
 	IF((NFP(JP,5).EQ.3 .OR.NFT(JT,5).EQ.3).OR.
      &		(NPJ(JP).NE.0.OR.NFP(JP,10).NE.0).OR.
      &		(NTJ(JT).NE.0.OR.NFT(JT,10).NE.0)) I_SNG=0
 C
 C               ********decite whether to have single-diffractive
 	IF(IHPR2(5).EQ.0) THEN
-		PKC=HIPR1(2)*SQRT(-ALOG(1.0-RAN(NSEED)
+		PKC=HIPR1(2)*SQRT(-ALOG(1.0-RNDM(-1)
      &			*(1.0-EXP(-PKCMX**2/HIPR1(2)**2))))
 		GO TO 30
 	ENDIF
@@ -3833,13 +3880,13 @@ C               ********decite whether to have single-diffractive
 	PKC=SQRT(PKC)
 	IF(PKC.GT.HIPR1(20)) 
      &	   PKC=HIPR1(2)*SQRT(-ALOG(EXP(-HIPR1(20)**2/HIPR1(2)**2)
-     &	       -RAN(NSEED)*(EXP(-HIPR1(20)**2/HIPR1(2)**2)-
+     &	       -RNDM(-1)*(EXP(-HIPR1(20)**2/HIPR1(2)**2)-
      &	       EXP(-PKCMX**2/HIPR1(2)**2))))
 C
 	IF(I_SNG.EQ.1) PKC=0.65*SQRT(
-     &		-ALOG(1.0-RAN(NSEED)*(1.0-EXP(-PKCMX**2/0.65**2))))
+     &		-ALOG(1.0-RNDM(-1)*(1.0-EXP(-PKCMX**2/0.65**2))))
 C			********select PT kick
-30	PHI0=2.0*HIPR1(40)*RAN(NSEED)
+30	PHI0=2.0*HIPR1(40)*RNDM(-1)
 	PKC11=PKC*SIN(PHI0)
 	PKC12=PKC*COS(PHI0)
 	PKC21=-PKC11
@@ -3916,16 +3963,10 @@ C
 c
 	      IF((NFP(JP,5).EQ.3 .AND.NFT(JT,5).EQ.3).OR.
      &	         (NPJ(JP).NE.0.OR.NFP(JP,10).NE.0).OR.
-     &		 (NTJ(JT).NE.0.OR.NFT(JT,10).NE.0)) THEN
- 	          D1=DPX
-	          D2=DTX
-	          NFP3=0
-	          NFT3=0
-	          GO TO 400
-	      ENDIF
+     &		 (NTJ(JT).NE.0.OR.NFT(JT,10).NE.0)) GO TO 46
 C		********do not allow excited strings to have 
 C			single-diffr 
-	      IF(RAN(NSEED).GT.0.5.OR.(NFT(JT,5).GT.2.OR.
+	      IF(RNDM(-1).GT.0.5.OR.(NFT(JT,5).GT.2.OR.
      &		      NTJ(JT).NE.0.OR.NFT(JT,10).NE.0)) THEN
 		 D1=DPN
 		 D2=DTX
@@ -3944,7 +3985,7 @@ C		********have single diffractive collision
 	ELSE IF(SW.GT.MAX(SPDTX,SPXTD)+0.001 .AND.
      &				SW.LE.SXX+0.001) THEN
 	   IF(((NPJ(JP).EQ.0.AND.NTJ(JT).EQ.0.AND.
-     &         RAN(NSEED).GT.0.5).OR.(NPJ(JP).EQ.0
+     &         RNDM(-1).GT.0.5).OR.(NPJ(JP).EQ.0
      &         .AND.NTJ(JT).NE.0)).AND.NFP(JP,5).LE.2) THEN
 	      D1=DPD
 	      D2=DTX
@@ -3981,7 +4022,7 @@ C		********have single diffractive collision
      &			SW.LE.MIN(SPDTX,SPXTD)+0.001) THEN
  50	   CONTINUE
 	   IF(((NPJ(JP).EQ.0.AND.NTJ(JT).EQ.0
-     &       .AND.RAN(NSEED).GT.0.5).OR.(NPJ(JP).EQ.0
+     &       .AND.RNDM(-1).GT.0.5).OR.(NPJ(JP).EQ.0
      &        .AND.NTJ(JT).NE.0)).AND.NFP(JP,5).LE.2) THEN
 	      D1=DPN
 	      D2=DTX
@@ -4029,7 +4070,7 @@ C		********have single diffractive collision
 	   GO TO 100
 	ELSE IF(SW.GT.MAX(SPNTD,SPDTN)+0.001 
      &                      .AND. SW.LE.SDD+0.001) THEN
-	   IF(RAN(NSEED).GT.0.5) THEN
+	   IF(RNDM(-1).GT.0.5) THEN
 	      D1=DPD
 	      D2=DTN
 	      NFP3=NFDP
@@ -4081,7 +4122,7 @@ C***************************************************
 		PKC=PKC*0.5
 		GO TO 30
 	ENDIF
-	IF(RAN(NSEED).LT.0.5) THEN
+	IF(RNDM(-1).LT.0.5) THEN
 		X1=(BB1-SQRT(BB1**2-4.0*D1))/2.0
 		X2=(BB2-SQRT(BB2**2-4.0*D2))/2.0
 	ELSE
@@ -4140,120 +4181,7 @@ C			********Fix proj mass*********
 	IHNT2(13)=2
 	GO TO 600
 C			********Fix targ mass*********
-c
-c
-c*******************************************************
-c	DPM single and double diffractive interaction
-C	vs string flip
-c	proj and targ become diffractive
-C	and leave in the middle one or two small strings
-C******************************************************* 
 C
-c500	NDPM=0
-c	XPMAX=1.0-AMPD/PP(JP,4)
-c	XTMAX=1.0-AMTD/PT(JT,4)
-c	XPMIN=0.15**2/4.0/PP(JP,4)/PT(JT,4)
-c	XTMIN=0.15**2/4.0/PP(JP,4)/PT(JT,4)
-c	XPMAX2=(SW-SDD-2.0*XTMIN*PT(JT,4)*WP)
-c     &		/(2.0*PP(JP,4)*WM+4.0*XTMIN*PP(JP,4)*PT(JT,4))
-c	XTMAX2=(SW-SDD-2.0*XPMIN*PP(JP,4)*WM)
-c     &		/(2.0*PT(JT,4)*WP+4.0*XPMIN*PP(JP,4)*PT(JT,4))
-c	XPMAX2=MAX(XPMAX2,0.0)
-c	XTMAX2=MAX(XTMAX2,0.0)
-c	IF(XPMAX2.EQ.0.0 .OR. XTMAX2.EQ.0.0) GO TO 45
-c	XPMAX=MIN(XPMAX,XPMAX2)
-c	XTMAX=MIN(XTMAX,XTMAX2)
-c        SQQ=2.0*XPMIN*PP(JP,4)*WM/XTMAX+2.0*XTMIN*PT(JT,4)*WP/XPMAX
-c     &		-4.0*XPMIN*XTMIN*PP(JP,4)*PT(JT,4)/XPMAX/XTMAX
-c	SQQD=2.0*SQQ-3.0*XPMIN*XTMIN*PP(JP,4)*PT(JT,4)/XPMAX/XTMAX
-c        IF(SW.LE.SDD+MIN(SQQ,SQQD)) GO TO 45
-c	IF(SW.LE.SXX+MIN(SQQ,SQQD).AND.(NPJ(JP).NE.0.OR.NFP(JP,10)
-c     &     .NE.0).AND.(NTJ(JT).NE.0.OR.NFT(JT,10).NE.0)) GO TO 45
-c	IF(SW.LE.SPXTD+MIN(SQQ,SQQD).AND.(NPJ(JP).NE.0
-c     &     .OR.NFP(JP,10).NE.0)) GO TO 45
-c	IF(SW.LE.SPDTX+MIN(SQQ,SQQD).AND.(NTJ(JT).NE.0
-c     &     .OR.NFT(JT,10).NE.0)) GO TO 45
-C
-C
-c	XREMP=1.0
-c	XREMT=1.0
-c	IOPMAIN=0
-c	RNDFR=RAN(NSEED)
-c	IF(NFP(JP,5).EQ.3.AND.NFT(JT,5).EQ.3) THEN
-c		GO TO 501
-c	ELSE IF(NFP(JP,5).EQ.3.AND.NFT(JT,5).NE.3) THEN
-c		GO TO 502
-c	ELSE IF(NFP(JP,5).NE.3.AND.NFT(JT,5).EQ.3) THEN
-c		GO TO 503
-c	ENDIF
-C		********wounded nucleon can only have diffractive
-C
-c	IF(RNDFR.GT.HIPR1(18)*(2.0-HIPR1(18)).AND.SW.GT.SXX) THEN
-c		AMP=AMPX
-c		AMT=AMTX
-c		APX0=AMX
-c		ATX0=AMX
-c		IOP=4
-c	ELSE IF(RNDFR.LE.HIPR1(18)**2.AND.SW.GT.SDD+SQQD) THEN
-501		AMP=AMPD
-c		AMT=AMTD
-c		APX0=DPM0
-c		ATX0=DTM0
-c		IF(NPJ(JP).NE.0.OR.NFP(JP,10).NE.0) THEN
-c			AMP=AMPX
-c			APX0=AMX
-c		ENDIF
-c		IF(NTJ(JT).NE.0.OR.NFT(JT,10).NE.0) THEN
-c			AMT=AMTX
-c			ATX0=AMX
-c		ENDIF
-c		IF(SW.LE.(AMP+AMT)**2+SQQD) GO TO 45
-c		IOP=1
-c	ELSE IF(RNDFR.GT.HIPR1(18)**2.AND.RNDFR.LE.HIPR1(18)
-c     &				.AND.SW.GT.SQQ+SPDTX) THEN
-c502		AMP=AMPD
-c		APX0=DPM0
-c		AMT=AMTX
-c		ATX0=AMX
-c		IF(NPJ(JP).NE.0.OR.NFP(JP,10).NE.0) THEN
-c			AMP=AMPX
-c			APX0=AMX
-c			IF(SW.LE.SXX+SQQ) GO TO 45
-c		ENDIF
-c		IOP=2
-c	ELSE IF(RNDFR.GT.HIPR1(18).AND.SW.GT.SQQ+SPXTD) THEN
-c503		AMP=AMPX
-c		APX0=AMX
-c		AMT=AMTD
-c		ATX0=DTM0
-c		IF(NTJ(JT).NE.0.OR.NFT(JT,10).NE.0) THEN
-c			AMT=AMTX
-c			ATX0=AMX
-c			IF(SW.LE.SXX+SQQ) GO TO 45
-c		ENDIF
-c		IOP=3
-c	ELSE
-c		GO TO 45
-c	ENDIF
-C
-c	NFP3=NFP(JP,3)
-c	NFP5=NFP(JP,5)
-c	NFT3=NFT(JT,3)
-c	NFT5=NFT(JT,5)
-c	CALL  HIJDPM(IOP,NFP3,NFT3,NFP5,NFT5,DP,DT,IGO,IERR)
-c	IF(IERR.NE.0) GO TO 45
-c	IOPMAIN=IOP				
-c530	D1=DP
-c	D2=DT
-c	IF(IGO.EQ.100) THEN
-c		GO TO 100
-c	ELSE IF(IGO.EQ.220) THEN
-c		GO TO 220
-c	ELSE IF(IGO.EQ.240) THEN
-c		GO TO 240
-c	ELSE IF(IGO.EQ.400) THEN
-c		GO TO 400
-c	ENDIF
 C*************non-single diffractive**********************
 C	both proj and targ may not be fixed in mass 
 C*********************************************************
@@ -4346,8 +4274,8 @@ C       so that pt=p1+p2
      &			ABS(NFT(JT,1)*NFT(JT,2)).LT.100) THEN
 		KICKDIT=0
 	ENDIF
-	IF((KICKDIP.EQ.0.AND.RAN(NSEED).LT.0.5)
-     &     .OR.(KICKDIP.NE.0.AND.RAN(NSEED)
+	IF((KICKDIP.EQ.0.AND.RNDM(-1).LT.0.5)
+     &     .OR.(KICKDIP.NE.0.AND.RNDM(-1)
      &     .LT.0.5/(1.0+(PKC11**2+PKC12**2)/HIPR1(22)**2))) THEN
 	   PP(JP,6)=(PP(JP,1)-PP(JP,6)-PP(JP,8)-DPKC1)/2.0+PP(JP,6)
 	   PP(JP,7)=(PP(JP,2)-PP(JP,7)-PP(JP,9)-DPKC2)/2.0+PP(JP,7)
@@ -4368,8 +4296,8 @@ C       so that pt=p1+p2
 C				********pt kick for proj
 	PT(JT,1)=PT11-PKC21
 	PT(JT,2)=PT12-PKC22
-	IF((KICKDIT.EQ.0.AND.RAN(NSEED).LT.0.5)
-     &     .OR.(KICKDIT.NE.0.AND.RAN(NSEED)
+	IF((KICKDIT.EQ.0.AND.RNDM(-1).LT.0.5)
+     &     .OR.(KICKDIT.NE.0.AND.RNDM(-1)
      &     .LT.0.5/(1.0+(PKC21**2+PKC22**2)/HIPR1(22)**2))) THEN
 	   PT(JT,6)=(PT(JT,1)-PT(JT,6)-PT(JT,8)-DPKC1)/2.0+PT(JT,6)
 	   PT(JT,7)=(PT(JT,2)-PT(JT,7)-PT(JT,9)-DPKC2)/2.0+PT(JT,7)
@@ -4476,820 +4404,13 @@ C**************************************************
 	RETURN
 	END
 C
-C
-C
-	SUBROUTINE HIJDPM(IOP,NFP3,NFT3,NFP5,NFT5,DP,DT,IGO,IERR)
-	COMMON/HISTRNG/NFP(300,15),PP(300,15),NFT(300,15),PT(300,15)
-	SAVE  /HISTRNG/
-	COMMON/HIPARNT/HIPR1(100),IHPR2(50),HINT1(100),IHNT2(50)
-	SAVE  /HIPARNT/
-	COMMON/HIJJET1/NPJ(300),KFPJ(300,500),PJPX(300,500),
-     &               PJPY(300,500),PJPZ(300,500),PJPE(300,500),
-     &               PJPM(300,500),NTJ(300),KFTJ(300,500),
-     &               PJTX(300,500),PJTY(300,500),PJTZ(300,500),
-     &               PJTE(300,500),PJTM(300,500)
-	SAVE  /HIJJET1/
-	COMMON/RANSEED/NSEED
-	SAVE  /RANSEED/
-	COMMON/DPMCOM1/JP,JT,AMP,AMT,APX0,ATX0,AMPN,AMTN,AMP0,AMT0,
-     &		NFDP,NFDT,WP,WM,SW,XREMP,XREMT,DPKC1,DPKC2,PP11,PP12,
-     &		PT11,PT12,PTP2,PTT2
-	SAVE  /DPMCOM1/
-	COMMON/DPMCOM2/NDPM,KDPM(20,2),PDPM1(20,5),PDPM2(20,5)
-	SAVE  /DPMCOM2/
-C****************************************************************
-	I_OPT=IHPR2(17)
-	IERR=0
-	MISS_W=0
-	MISS=0
-	XPMIN=HIPR1(1)**2/4.0/PP(JP,4)/PT(JT,4)
-	XTMIN=HIPR1(1)**2/4.0/PP(JP,4)/PT(JT,4)
-	SSS=(AMP+AMT)**2
-	XPMAX=1.0-AMP/PP(JP,4)
-	XTMAX=1.0-AMT/PT(JT,4)
-	XPMAX2=(SW-SSS-2.0*XTMIN*PT(JT,4)*WP)
-     &		/(2.0*PP(JP,4)*WM+4.0*XTMIN*PP(JP,4)*PT(JT,4))
-	XTMAX2=(SW-SSS-2.0*XPMIN*PP(JP,4)*WM)
-     &		/(2.0*PT(JT,4)*WP+4.0*XPMIN*PP(JP,4)*PT(JT,4))
-	XPMAX2=MAX(XPMAX2,0.0)
-	XTMAX2=MAX(XTMAX2,0.0)
-	XPMAX=MIN(XPMAX,XPMAX2)
-	XTMAX=MIN(XTMAX,XTMAX2)
-	IF(XPMAX.EQ.0.OR.XTMAX.EQ.0.OR.XPMAX.LT.XPMIN
-     &     .OR.XTMAX.LT.XTMIN) GO TO 10
-	SQQ=2.0*XPMIN*PP(JP,4)*WM/XTMAX+2.0*XTMIN*PT(JT,4)*WP/XPMAX
-     &		-4.0*XPMIN*XTMIN*PP(JP,4)*PT(JT,4)/XPMAX/XTMAX
-	SQQD=2.0*SQQ-3.0*XPMIN*XTMIN*PP(JP,4)*PT(JT,4)/XPMAX/XTMAX
-	I_LOW=0
-	IF((IOP.EQ.1.AND.SW.LE.SSS+SQQD)
-     &           .OR.(IOP.NE.1.AND.SW.LE.SSS+SQQ)) THEN
- 10	   I_LOW=1
-	   XPMIN=0.145**2/4.0/PP(JP,4)/PT(JT,4)
-	   XTMIN=0.145**2/4.0/PP(JP,4)/PT(JT,4)
-	   SSS=(AMP+AMT)**2
-	   XPMAX=1.0-AMP/PP(JP,4)
-	   XTMAX=1.0-AMT/PT(JT,4)
-	   XPMAX2=(SW-SSS-2.0*XTMIN*PT(JT,4)*WP)
-     &		/(2.0*PP(JP,4)*WM+4.0*XTMIN*PP(JP,4)*PT(JT,4))
-	   XTMAX2=(SW-SSS-2.0*XPMIN*PP(JP,4)*WM)
-     &		/(2.0*PT(JT,4)*WP+4.0*XPMIN*PP(JP,4)*PT(JT,4))
-	   XPMAX2=MAX(XPMAX2,0.0)
-	   XTMAX2=MAX(XTMAX2,0.0)
-	   XPMAX=MIN(XPMAX,XPMAX2)
-	   XTMAX=MIN(XTMAX,XTMAX2)
-	ENDIF
-	IF(XREMP.LE.0.OR.XREMT.LE.0.OR.XREMP*XREMT
-     &     .LT.XPMIN*4.0) GO TO 1000
-	IF(XPMAX2.EQ.0.0 .OR. XTMAX2.EQ.0.0) GO TO 1000
-	IF(XPMAX.LE.XPMIN.OR.XTMAX.LE.XTMIN) GO TO 1000
-C
-	IF(IOP.EQ.1) THEN
-	   CALL HIJFLV(IDQP10)
-	   IDQP20=-IDQP10
-	   CALL HIJFLV(IDQT10)
-	   IDQT20=IDQT10
-	   IDQT10=-IDQT20
-C			********flavor of quark pairs
-	   AMQP=ULMASS(IDQP10)
-	   AMQT=ULMASS(IDQT10)
-	   ID0=IDQT10
-	   AMCUT=HIPR1(1)+AMQP+AMQT
- 100	   CALL LUKFDI(IDQP10,IDQT10,ID0,KF1)
-	   CALL LUKFDI(IDQP20,IDQT20,ID0,KF2)
-	   IF(KF1.EQ.0.OR.KF2.EQ.0) THEN
-	      MISS_W=MISS_W+1
-	      IF(MISS_W.LE.1000) GO TO 100
-	      IERR=1
-	      WRITE(6,*) 'error in flavor creation in DPM'
-	      RETURN
-	   ENDIF
-	   AM1=ULMASS(KF1)
-	   AM2=ULMASS(KF2)
-	   MISS_W=MISS_W+1
-	   IF(MISS_W.GT.1000) GO TO 900
-	   IF(MAX(AM1,AM2).GT.HIPR1(1)) GO TO 100
- 200	   XP1=HIRND2(6,XPMIN,XPMAX)
-	   XT1=HIRND2(6,XTMIN,XTMAX)
-	   MISS_W=MISS_W+1
-	   IF(MISS_W.GT.1000) GO TO 900
-	   IF(I_LOW.EQ.1) AMCUT=AM1
-	   IF(XP1*XT1.LE.AMCUT**2/4.0/PP(JP,4)/PT(JT,4)) GO TO 200
- 250	   XP2=HIRND2(6,XPMIN,XPMAX)
-	   XT2=HIRND2(6,XTMIN,XTMAX)
-	   MISS_W=MISS_W+1
-	   IF(MISS_W.GT.2000) GO TO 900
-	   IF(I_LOW.EQ.1) AMCUT=AM2
-	   IF(XP2*XT2.LE.AMCUT**2/4.0/PP(JP,4)/PT(JT,4)) GO TO 250
-	   ZP=1.0-XP1-XP2
-	   ZT=1.0-XT1-XT2
-	   IF(ZP.LE.AMP/PP(JP,4).OR.ZT.LE.AMT/PT(JT,4)) GO TO 200
-	   EQP1=XP1*PP(JP,4)
-	   EQT1=XT1*PT(JT,4)
-	   IF(XP1*XT1.LE.
-     &        (HIPR1(1)+AMQP+AMQT)**2/4.0/PP(JP,4)/PT(JT,4))THEN
-	      IF(RAN(NSEED).LT.0.5) THEN
-		 XP1=AM1**2/4.0/PP(JP,4)/PT(JT,4)/XT1
-	      ELSE
-		 XT1=AM1**2/4.0/PP(JP,4)/PT(JT,4)/XP1
-	      ENDIF
-	      EQP1=XP1*PP(JP,4)+XT1*PT(JT,4)
-	      QMP1=AM1
-	      IDQP1=KF1
-	      EQT1=0.0
-	      ZQT1=0.0
-	      XQT1=0.0
-	      YQT1=0.0
-	      QMT1=0.0
-	      IDQT1=0
-	   ENDIF
-	   EQP2=XP2*PP(JP,4)
-	   EQT2=XT2*PT(JT,4)
-	   IF(XP2*XT2.LE.
-     &        (HIPR1(1)+AMQP+AMQT)**2/4.0/PP(JP,4)/PT(JT,4))THEN
-	      IF(RAN(NSEED).LT.0.5) THEN
-		 XP2=AM2**2/4.0/PP(JP,4)/PT(JT,4)/XT2
-	      ELSE
-		 XT2=AM2**2/4.0/PP(JP,4)/PT(JT,4)/XP2
-	      ENDIF
-	      EQP2=XP2*PP(JP,4)+XT2*PT(JT,4)
-	      QMP2=AM2
-	      IDQP2=KF2
-	      EQT2=0.0
-	      ZQT2=0.0
-	      XQT2=0.0
-	      YQT2=0.0
-	      QMT2=0.0
-	      IDQT2=0
-	   ENDIF
-	   IF(EQT1.NE.0.0 .AND. EQT2.NE.0.0) THEN
-	      IF(MIN(EQP1,EQP2).LE.AMQP.OR.MIN(EQT1,EQT2).LE.AMQT) 
-     &				GO TO 200
-	      PT_PRMX=MIN(SQRT(EQP1**2-AMQP**2),
-     &                                 SQRT(EQT1**2-AMQT**2))
-	      CALL HIPTDI(PT_Q1,PT_PRMX,I_OPT)
-	      ZQP1=SQRT(EQP1**2-PT_Q1**2-AMQP**2)
-	      QMP1=AMQP
-	      IDQP1=IDQP10
-	      ZQT1=SQRT(EQT1**2-PT_Q1**2-AMQT**2)
-	      QMT1=AMQT
-	      IDQT1=IDQT10
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP1=PT_Q1*COS(PHI)
-	      YQP1=PT_Q1*SIN(PHI)
-	      XQT1=-PT_Q1*COS(PHI)
-	      YQT1=-PT_Q1*SIN(PHI)
-	      PT_PRMX=MIN(SQRT(EQP2**2-AMQP**2)
-     &                              ,SQRT(EQT2**2-AMQT**2))
-	      CALL HIPTDI(PT_Q2,PT_PRMX,I_OPT)
-	      ZQP2=SQRT(EQP2**2-PT_Q2**2-AMQP**2)
-	      QMP2=AMQP
-	      IDQP2=IDQP20
-	      ZQT2=SQRT(EQT2**2-PT_Q2**2-AMQT**2)
-	      QMT2=AMQT
-	      IDQT2=IDQT20
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP2=PT_Q2*COS(PHI)
-	      YQP2=PT_Q2*SIN(PHI)
-	      XQT2=-PT_Q2*COS(PHI)
-	      YQT2=-PT_Q2*SIN(PHI)
-	   ELSE IF(EQT1.EQ.0.0 .AND.EQT2.NE.0) THEN
-	      IF(EQP2.LE.AMQP.OR.EQT2.LE.AMQT) GO TO 200
-	      PT_PRMX=SQRT(EQP1**2-AM1**2)
-	      CALL HIPTDI(PT_QP1,PT_PRMX,I_OPT)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      ZQP1=SQRT(EQP1**2-PT_QP1**2-AM1**2)
-	      XQP1=PT_QP1*COS(PHI)
-	      YQP1=PT_QP1*SIN(PHI)
-	      PT_PRMX=MIN(SQRT(EQP2**2-AMQP**2)
-     &                               ,SQRT(EQT2**2-AMQT**2))
-	      CALL HIPTDI(PT_Q,PT_PRMX,I_OPT)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      ZQP2=SQRT(EQP2**2-PT_Q**2-AMQP**2)
-	      XQP2=PT_Q*COS(PHI)
-	      YQP2=PT_Q*SIN(PHI)
-	      QMP2=AMQP
-	      IDQP2=IDQP20
-	      ZQT2=SQRT(EQT2**2-PT_Q**2-AMQT**2)
-	      XQT2=-PT_Q*COS(PHI)
-	      YQT2=-PT_Q*SIN(PHI)
-	      QMT2=AMQT
-	      IDQT2=IDQT20
-	   ELSE IF(EQT1.NE.0.0 .AND.EQT2.EQ.0) THEN
-	      IF(EQP1.LE.AMQP.OR.EQT1.LE.AMQT) GO TO 200
-	      PT_PRMX=SQRT(EQP2**2-AM2**2)
-	      CALL HIPTDI(PT_QP2,PT_PRMX,I_OPT)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      ZQP2=SQRT(EQP2**2-PT_QP2**2-AM2**2)
-	      XQP2=PT_QP2*COS(PHI)
-	      YQP2=PT_QP2*SIN(PHI)
-	      PT_PRMX=MIN(SQRT(EQP1**2-AMQP**2)
-     &                              ,SQRT(EQT1**2-AMQT**2))
-	      CALL HIPTDI(PT_Q,PT_PRMX,I_OPT)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP1=PT_Q*COS(PHI)
-	      YQP1=PT_Q*SIN(PHI)
-	      ZQP1=SQRT(EQP1**2-PT_Q**2-AMQP**2)
-	      QMP1=AMQP
-	      IDQP1=IDQP10
-	      XQT1=-PT_Q*COS(PHI)
-	      YQT1=-PT_Q*SIN(PHI)
-	      ZQT1=SQRT(EQT1**2-PT_Q**2-AMQT**2)
-	      QMT1=AMQT
-	      IDQT1=IDQT10
-	   ELSE IF(EQT1.EQ.0.0 .AND.EQT2.EQ.0.0) THEN
-	      PT_PRMX=MIN(SQRT(EQP1**2-AM1**2),SQRT(EQP2**2-AM2**2))
-	      CALL HIPTDI(PT_QP,PT_PRMX,I_OPT)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP1=PT_QP*COS(PHI)
-	      YQP1=PT_QP*SIN(PHI)
-	      XQP2=-PT_QP*COS(PHI)
-	      YQP2=-PT_QP*SIN(PHI)
-	      ZQP1=SQRT(EQP1**2-PT_QP**2-AM1**2)
-	      ZQP2=SQRT(EQP2**2-PT_QP**2-AM2**2)
-	   ENDIF
-	   PP11_TM=PP11-(XQP1+XQT1+XQP2+XQT2)/2.0
-	   PP12_TM=PP12-(YQP1+YQT1+YQP2+YQT2)/2.0
-	   PT11_TM=PT11-(XQP1+XQT1+XQP2+XQT2)/2.0
-	   PT12_TM=PT12-(YQP1+YQT1+YQP2+YQT2)/2.0
-	   AMP_TM=SQRT(APX0**2+PP11_TM**2+PP12_TM**2)
-	   AMT_TM=SQRT(ATX0**2+PT11_TM**2+PT12_TM**2)
-	   AMPN_TM=SQRT(AMP0**2+PP11_TM**2+PP12_TM**2)
-	   AMTN_TM=SQRT(AMT0**2+PT11_TM**2+PT12_TM**2)
-	   IF(ZQP1+ZQP2.LE.ABS(PP(JP,3))) THEN
-	      SNP1=1.0
-	      IF(PP(JP,3).LT.0) SNP1=-1.0
-	      SNP2=SNP1
-	   ELSE
-	      SNP1=1.0
-	      SNP2=-1.0
-	   ENDIF
-	   IF(ZQT1+ZQT2.LE.ABS(PT(JT,3))) THEN
-	      SNT1=1.0
-	      IF(PT(JT,3).LT.0) SNT1=-1.0
-	      SNT2=SNT1
-	   ELSE
-	      SNT1=-1.0
-	      SNT2=1.0
-	   ENDIF
-	   IF(SNP1*SNT1.GT.0) SNT1=-SNP1
-	   IF(SNP2*SNT2.GT.0) SNP2=-SNT2
-	   ZQP1=ZQP1*SNP1
-	   ZQP2=ZQP2*SNP2
-	   ZQT1=ZQT1*SNT1
-	   ZQT2=ZQT2*SNT2
-	   WP1=EQP1+ZQP1+EQT1+ZQT1
-	   WM1=EQP1-ZQP1+EQT1-ZQT1
-	   WP2=EQP2+ZQP2+EQT2+ZQT2
-	   WM2=EQP2-ZQP2+EQT2-ZQT2
-	   WP0=WP-WP1-WP2
-	   WM0=WM-WM1-WM2
-	   SW0=WP0*WM0
-	   SSS=(AMP_TM+AMT_TM)**2
-	   MISS=MISS+1
-	   IF(WP0.LE.0.0 .OR.WM0.LE.0.0 .OR.SW0.LT.SSS) THEN
-	      IF(MISS.GT.100) GO TO 800
-	      GO TO 200
-	   ENDIF
-	   WP=WP0
-	   WM=WM0
-	   SW=SW0
-	   AMP=AMP_TM
-	   AMT=AMT_TM
-	   AMPN=AMPN_TM
-	   AMTN=AMTN_TM
-	   PP11=PP11_TM
-	   PP12=PP12_TM
-	   PT11=PT11_TM
-	   PT12=PT12_TM
-	   PTP2=PP11**2+PP12**2
-	   PTT2=PT11**2+PT12**2
-	   DP=AMP**2/SW0
-	   DT=AMT**2/SW0
-	   DPN=AMPN**2/SW0
-	   DTN=AMTN**2/SW0
-C
-	   NFP30=NFDP
-	   NFT30=NFDT
-	   IF(NFP5.LE.2.AND.NFP3.NE.0.AND.NPJ(JP).EQ.0
-     &			.AND.NFP(JP,10).EQ.0) THEN
-	      DP=DPN
-	      NFP30=NFP(JP,3)
-	   ENDIF
-	   IF(NFT5.LE.2.AND.NFT3.NE.0.AND.NTJ(JT).EQ.0
-     &			.AND.NFT(JT,10).EQ.0) THEN
-	      DT=DTN
-	      NFT30=NFT(JT,3)
-	   ENDIF
-	   IF(NFP5.LE.2.AND.NFP3.NE.0.AND.NFT5.LE.2.AND.NFT3.NE.0
-     &			.AND.NFP(JP,10).EQ.0.AND.NPJ(JP).EQ.0
-     &			.AND.NTJ(JT).EQ.0.AND.NFT(JT,10).EQ.0) THEN
-	      IGO=100
-	      NFP50=2
-	      NFT50=2
-	   ELSE IF(NFP5.LE.2.AND.NFP3.NE.0.AND.NPJ(JP).EQ.0.AND.
-     &			NFP(JP,10).EQ.0.AND.(NFT5.EQ.3.OR.
-     &			NTJ(JT).NE.0.OR.NFT(JT,10).NE.0)) THEN
-	      NFT30=0
-	      NFT50=3
-	      NFP50=2
-	      IGO=220
-	   ELSE IF((NFP5.EQ.3.OR.NPJ(JP).NE.0.OR.NFP(JP,10).NE.0)
-     &			.AND.NFT5.LE.2.AND.NFT3.NE.0.AND.
-     &			NTJ(JT).EQ.0.AND.NFT(JT,10).EQ.0) THEN
-	      NFP30=0
-	      NFP50=3
-	      NFT50=2
-	      IGO=240
-	   ELSE
-	      NFP30=0
-	      NFT30=0
-	      NFP50=3
-	      NFT50=3
-	      IGO=400
-	   ENDIF
-	   NFP3=NFP30
-	   NFT3=NFT30
-	   NFP5=NFP50
-	   NFT5=NFT50
-	   XREMP=XREMP-XP1-XP2
-	   XREMT=XREMT-XT1-XT2
-	   XREMP=MAX(XREMP,0.0)
-	   XREMT=MAX(XREMT,0.0)
-	ELSE IF(IOP.EQ.2) THEN
-	   CALL HIJFLV(IDQ)
-	   AMQP=ULMASS(IDQ)
-	   IF(ABS(NFT(JT,1)).GT.1000.OR.(ABS(NFT(JT,1)*NFT(JT,2))
-     &			.LT.100.AND.RAN(NSEED).LT.0.5)) THEN
-	      IDQT=NFT(JT,2)
-	      AMQT=PT(JT,15)
-	      IF(IDQT.GT.0) THEN
-		 IDQP=-IDQ
-		 IF(IDQT.GT.1000) IDQP=IDQ
-	      ELSE IF(IDQT.LT.0) THEN
-		 IDQP=-IDQ
-		 IF(ABS(IDQT).LT.100) IDQP=IDQ
-	      ENDIF
-	      NFT(JT,2)=-IDQP
-	      PT(JT,15)=AMQP
-	   ELSE
-	      IDQT=NFT(JT,1)
-	      AMQT=PT(JT,14)
-	      IF(IDQT.GT.0) THEN
-		 IDQP=-IDQ
-		 IF(IDQT.GT.1000) IDQP=IDQ
-	      ELSE IF(IDQT.LT.0) THEN
-		 IDQP=-IDQ
-		 IF(ABS(IDQT).LT.100) IDQP=IDQ
-	      ENDIF
-	      NFT(JT,1)=-IDQP
-	      PT(JT,14)=AMQP
-	   ENDIF
-	   ID0=IDQT
-	   AMCUT=HIPR1(1)+AMQP+AMQT
- 300	   CALL LUKFDI(IDQP,IDQT,ID0,KF1)
-	   IF(KF1.EQ.0) THEN
-	      MISS_W=MISS_W+1
-	      IF(MISS_W.LE.1000) GO TO 300
-	      IERR=1
-	      WRITE(6,*) 'error in flavor creation in DPM'
-	      RETURN
-	   ENDIF
-	   AM1=ULMASS(KF1)
-	   MISS_W=MISS_W+1
-	   IF(MISS_W.GT.1000) GO TO 900
-	   IF(AM1.GT.HIPR1(1)) GO TO 300
- 400	   XQ=HIRND2(6,XPMIN,XPMAX)
-	   XV=HIRND2(4,XTMIN,XTMAX)
-	   IF(ABS(NFT(JT,1)*NFT(JT,2)).GT.1000000.OR.
-     &	    ABS(NFT(JT,1)*NFT(JT,2)).LT.100) XV=HIRND2(5,XTMIN,XTMAX)
-	   MISS_W=MISS_W+1
-	   IF(MISS_W.GT.1000) GO TO 900
-	   IF(I_LOW.EQ.1) AMCUT=AM1
-	   IF(XQ*XV.LT.AMCUT**2/4.0/PP(JP,4)/PT(JT,4)) GO TO 400
-	   EQP1=XQ*PP(JP,4)
-	   EQT1=XV*PT(JT,4)
-	   IF(XQ*XV.LT.(HIPR1(1)+AMQP+AMQT)**2
-     &			/4.0/PP(JP,4)/PT(JT,4)) THEN
-	      IF(RAN(NSEED).LT.0.5) THEN
-		 XQ=AM1**2/4.0/PP(JP,4)/PT(JT,4)/XV
-	      ELSE
-		 XV=AM1**2/4.0/PP(JP,4)/PT(JT,4)/XQ
-	      ENDIF
-	      EQP1=XQ*PP(JP,4)+XV*PT(JT,4)
-	      QMP1=AM1
-	      IDQP1=KF1
-	      EQT1=0.0
-	      ZQT1=0.0
-	      XQT1=0.0
-	      YQT1=0.0
-	      QMT1=0.0
-	      IDQT1=0
-	      PT_PRMX=SQRT(EQP1**2-AM1**2)
-	      CALL HIPTDI(PT_QP,PT_PRMX,I_OPT)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP1=PT_QP*COS(PHI)
-	      YQP1=PT_QP*SIN(PHI)
-	      ZQP1=SQRT(EQP1**2-PT_QP**2-AM1**2)
-	   ELSE
-	      IF(EQP1.LE.AMQP.OR.EQT1.LE.AMQT) GO TO 400
-	      PT_PRMX=MIN(SQRT(EQP1**2-AMQP**2)
-     &                                 ,SQRT(EQT1**2-AMQT**2))
-	      CALL HIPTDI(PT_Q,PT_PRMX,I_OPT)
-	      ZQP1=SQRT(EQP1**2-PT_Q**2-AMQP**2)
-	      ZQT1=SQRT(EQT1**2-PT_Q**2-AMQT**2)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP1=PT_Q*COS(PHI)
-	      YQP1=PT_Q*SIN(PHI)
-	      XQT1=-PT_Q*COS(PHI)
-	      YQT1=-PT_Q*SIN(PHI)
-	      QMP1=AMQP
-	      QMT1=AMQT
-	      IDQP1=IDQP
-	      IDQT1=IDQT
-	   ENDIF
-	   PP11_TM=PP11-(XQP1+XQT1)/2.0
-	   PP12_TM=PP12-(YQP1+YQT1)/2.0
-	   PT11_TM=PT11-(XQP1+XQT1)/2.0
-	   PT12_TM=PT12-(YQP1+YQT1)/2.0
-	   AMP_TM=SQRT(APX0**2+PP11_TM**2+PP12_TM**2)
-	   AMT_TM=SQRT(ATX0**2+PT11_TM**2+PT12_TM**2)
-	   AMPN_TM=SQRT(AMP0**2+PP11_TM**2+PP12_TM**2)
-	   IF(ZQP1.LE.ABS(PP(JP,3)).AND.ZQT1.LE.ABS(PT(JT,3))) THEN
-	      SNP1=1
-	      SNT1=1
-	      IF(PT(JT,3).LT.0) SNT1=-1
-	      IF(PP(JP,3).LT.0) SNP1=-1
-	   ELSE
-	      SNP1=1
-	      SNT1=-1
-	   ENDIF
-	   IF(SNP1*SNT1.GT.0) SNT1=-SNP1
-	   ZQP1=ZQP1*SNP1
-	   ZQT1=ZQT1*SNT1
-	   
-	   WP0=WP-(EQP1+ZQP1+EQT1+ZQT1)
-	   WM0=WM-(EQP1-ZQP1+EQT1-ZQT1)
-	   SW0=WP0*WM0
-	   SSS=(AMP_TM+AMT_TM)**2
-	   MISS=MISS+1
-	   IF(WP0.LE.0.0 .OR.WM0.LE.0.0 .OR.SW0.LT.SSS) THEN
-	      IF(MISS.GT.100) GO TO 800
-	      GO TO 400
-	   ENDIF
-	   WP=WP0
-	   WM=WM0
-	   SW=SW0
-	   AMP=AMP_TM
-	   AMT=AMT_TM
-	   AMPN=AMPN_TM
-	   PP11=PP11_TM
-	   PP12=PP12_TM
-	   PT11=PT11_TM
-	   PT12=PT12_TM
-	   PTP2=PP11**2+PP12**2
-	   PTT2=PT11**2+PT12**2
-	   DT=AMT**2/SW0
-	   DP=AMP**2/SW0
-	   DPN=AMPN**2/SW0
-	   NFP30=NFDP
-	   NFT30=0
-	   IF(NFP5.LE.2.AND.NFP3.NE.0.AND.NPJ(JP).EQ.0.AND.
-     &				NFP(JP,10).EQ.0) THEN
-	      DP=DPN
-	      NFP30=NFP(JP,3)
-	   ENDIF
-	   IF(NFP5.LE.2.AND.NFP3.NE.0.AND.NPJ(JP).EQ.0.AND.
-     &				NFP(JP,10).EQ.0) THEN
-	      IGO=220
-	      NFP50=2
-	      NFT50=3
-	   ELSE
-	      NFP30=0
-	      NFP50=3
-	      NFT50=3
-	      IGO=400
-	   ENDIF
-	   NFP3=NFP30
-	   NFT3=NFT30
-	   NFP5=NFP50
-	   NFT5=NFT50
-	   MISS4=0
- 450	   X2=HIRND2(6,DP,1.0-XQ)
-	   X20=HIRND2(4,XV,1.0-DT)
-	   IF(ABS(NFT(JT,1)*NFT(JT,2)).GT.1000000.OR.
-     &      ABS(NFT(JT,1)*NFT(JT,2)).LT.100) X20=HIRND2(5,XV,1.0-DT)
-	   IF(X2*(1.0-X20).LT.DT) THEN
-	      MISS4=MISS4+1
-	      IF(MISS4.LT.100) GO TO 450
-	   ENDIF
-	   XREMP=1.0-XQ-X2
-	   XREMT=X20-XV
-	   XREMP=MAX(XREMP,0.0)
-	   XREMT=MAX(XREMT,0.0)
-C***********************************************
-	ELSE IF(IOP.EQ.3) THEN
-	   CALL HIJFLV(IDQ)
-	   AMQP=ULMASS(IDQ)
-	   IF(ABS(NFP(JP,1)).GT.1000.AND.NFP(JP,15).NE.-1.OR.
-     &	     (ABS(NFP(JP,1)*NFP(JP,2)).LT.100
-     &       .AND.RAN(NSEED).LT.0.5)) THEN
-	      IDQT=NFP(JP,2)
-	      AMQT=PP(JP,15)
-	      IF(IDQT.GT.0) THEN
-		 IDQP=-IDQ
-		 IF(IDQT.GT.1000) IDQP=IDQ
-	      ELSE IF(IDQT.LT.0) THEN
-		 IDQP=-IDQ
-		 IF(ABS(IDQT).LT.100) IDQP=IDQ
-	      ENDIF
-	      NFP(JP,2)=-IDQP
-	      PP(JP,15)=AMQP
-	   ELSE
-	      IDQT=NFP(JP,1)
-	      AMQT=PP(JP,14)
-	      IF(IDQT.GT.0) THEN
-		 IDQP=-IDQ
-		 IF(IDQT.GT.1000) IDQP=IDQ
-	      ELSE IF(IDQT.LT.0) THEN
-		 IDQP=-IDQ
-		 IF(ABS(IDQT).LT.100) IDQP=IDQ
-	      ENDIF
-	      NFP(JP,1)=-IDQP
-	      PP(JP,14)=AMQP
-	   ENDIF
-	   ID0=IDQT
-	   AMCUT=HIPR1(1)+AMQP+AMQT
- 500	   CALL LUKFDI(IDQP,IDQT,ID0,KF1)
-	   IF(KF1.EQ.0) THEN
-	      MISS_W=MISS_W+1
-	      IF(MISS_W.LE.1000) GO TO 500
-	      IERR=1
-	      WRITE(6,*) 'error in flavor creation in DPM'
-	      RETURN
-	   ENDIF
-	   AM1=ULMASS(KF1)
-	   MISS_W=MISS_W+1
-	   IF(MISS_W.GT.1000) GO TO 900		
-	   IF(AM1.GT.HIPR1(1)) GO TO 500
- 600	   XQ=HIRND2(6,XTMIN,XTMAX)
-	   XV=HIRND2(4,XPMIN,XPMAX)
-	   IF(ABS(NFP(JP,1)*NFP(JP,2)).GT.1000000.OR.
-     &	    ABS(NFP(JP,1)*NFP(JP,2)).LT.100) XV=HIRND2(5,XPMIN,XPMAX)
-	   MISS_W=MISS_W+1
-	   IF(MISS_W.GT.1000) GO TO 900
-	   IF(I_LOW.EQ.1) AMCUT=AM1
-	   IF(XQ*XV.LT.AMCUT**2/4.0/PP(JP,4)/PT(JT,4)) GO TO 600
-	   EQT1=XV*PP(JP,4)
-	   EQP1=XQ*PT(JT,4)
-	   IF(XQ*XV.LT.(HIPR1(1)+AMQP+AMQT)**2
-     &			/4.0/PP(JP,4)/PT(JT,4)) THEN
-	      IF(RAN(NSEED).LT.0.5) THEN
-		 XQ=AM1**2/4.0/PP(JP,4)/PT(JT,4)/XV
-	      ELSE
-		 XV=AM1**2/4.0/PP(JP,4)/PT(JT,4)/XQ
-	      ENDIF
-	      EQP1=XV*PP(JP,4)+XQ*PT(JT,4)
-	      IDQP1=KF1
-	      QMP1=AM1
-	      EQT1=0.0
-	      ZQT1=0.0
-	      XQT1=0.0
-	      YQT1=0.0
-	      QMT1=0.0
-	      IDQT1=0
-	      PT_PRMX=SQRT(EQP1**2-AM1**2)
-	      CALL HIPTDI(PT_QP,PT_PRMX,1)
-	      ZQP1=SQRT(EQP1**2-PT_QP**2-AM1**2)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP1=PT_QP*COS(PHI)
-	      YQP1=PT_QP*SIN(PHI)
-	   ELSE
-	      IF(EQP1.LE.AMQP.OR.EQT1.LE.AMQT) GO TO 600
-	      PT_PRMX=MIN(SQRT(EQP1**2-AMQP**2)
-     &                          ,SQRT(EQT1**2-AMQT**2))
-	      CALL HIPTDI(PT_Q,PT_PRMX,I_OPT)
-	      ZQP1=SQRT(EQP1**2-PT_Q**2-AMQP**2)
-	      ZQT1=SQRT(EQT1**2-PT_Q**2-AMQT**2)
-	      PHI=2.0*HIPR1(40)*RAN(NSEED)
-	      XQP1=PT_Q*COS(PHI)
-	      YQP1=PT_Q*SIN(PHI)
-	      XQT1=-PT_Q*COS(PHI)
-	      YQT1=-PT_Q*SIN(PHI)
-	      QMP1=AMQP
-	      QMT1=AMQT
-	      IDQP1=IDQP
-	      IDQT1=IDQT
-	   ENDIF
-	   PP11_TM=PP11-(XQP1+XQT1)/2.0
-	   PP12_TM=PP12-(YQP1+YQT1)/2.0
-	   PT11_TM=PT11-(XQP1+XQT1)/2.0
-	   PT12_TM=PT12-(YQP1+YQT1)/2.0
-	   AMP_TM=SQRT(APX0**2+PP11_TM**2+PP12_TM**2)
-	   AMT_TM=SQRT(ATX0**2+PT11_TM**2+PT12_TM**2)
-	   AMTN_TM=SQRT(AMT0**2+PT11_TM**2+PT12_TM**2)
-	   IF(ZQP1.LE.ABS(PT(JT,3)).AND.ZQT1.LE.ABS(PP(JP,3))) THEN
-	      SNP1=1
-	      SNT1=1
-	      IF(PT(JT,3).LT.0) SNP1=-1
-	      IF(PP(JP,3).LT.0) SNT1=-1
-	   ELSE
-	      SNP1=1.0
-	      SNT1=-1.0
-	   ENDIF
-	   IF(SNP1*SNT1.GT.0) SNT1=-SNP1
-	   ZQP1=ZQP1*SNP1
-	   ZQT1=ZQT1*SNT1
-	   
-	   WP0=WP-(EQP1+ZQP1+EQT1+ZQT1)
-	   WM0=WM-(EQP1-ZQP1+EQT1-ZQT1)
-	   SW0=WP0*WM0
-	   SSS=(AMP_TM+AMT_TM)**2
-	   MISS=MISS+1
-	   IF(WP0.LE.0.0 .OR.WM0.LE.0.0 .OR.SW0.LT.SSS) THEN
-	      IF(MISS.GT.100) GO TO 800
-	      GO TO 600
-	   ENDIF
-	   WP=WP0
-	   WM=WM0
-	   SW=SW0
-	   AMP=AMP_TM
-	   AMT=AMT_TM
-	   AMTN=AMTN_TM
-	   PP11=PP11_TM
-	   PP12=PP12_TM
-	   PT11=PT11_TM
-	   PT12=PT12_TM
-	   PTP2=PP11**2+PP12**2
-	   PTT2=PT11**2+PT12**2
-	   DP=AMP**2/SW0
-	   DT=AMT**2/SW0
-	   DTN=AMTN**2/SW0
-	   NFP30=0
-	   NFT30=NFDT
-	   IF(NFT5.LE.2.AND.NFT3.NE.0.AND.NTJ(JT).EQ.0.AND.
-     &				NFT(JT,10).EQ.0) THEN
-	      DT=DTN
-	      NFT30=NFT(JT,3)
-	   ENDIF
-	   IF(NFT5.LE.2.AND.NFT3.NE.0.AND.NTJ(JT).EQ.0.AND.
-     &				NFT(JT,10).EQ.0) THEN
-	      IGO=240
-	      NFT50=2
-	      NFP50=3
-	   ELSE
-	      NFT30=0
-	      NFP50=3
-	      NFT50=3
-	      IGO=400
-	   ENDIF
-	   NFP3=NFP30
-	   NFT3=NFT30
-	   NFP5=NFP50
-	   NFT5=NFT50
-	   MISS4=0
- 650	   X2=HIRND2(6,DT,1.0-XQ)
-	   X20=HIRND2(4,XV,1.0-DP)
-	   IF(ABS(NFP(JP,1)*NFP(JP,2)).GT.1000000.OR.
-     &	     ABS(NFP(JP,1)*NFP(JP,2)).LT.100) X20=HIRND2(5,XV,1.0-DP)
-	   IF(X2*(1.0-X20).LT.DP) THEN
-	      MISS4=MISS4+1
-	      IF(MISS4.LT.100) GO TO 650
-	   ENDIF
-	   XREMP=X20-XV
-	   XREMT=1.0-XQ-X2
-	   XREMP=MAX(XREMP,0.0)
-	   XREMT=MAX(XREMT,0.0)
-	ELSE IF(IOP.EQ.4) THEN
-	   D1=AMP**2/SW
-	   D2=AMT**2/SW
-	   BB1=1.0+D1-D2
-	   BB2=1.0+D2-D1
-	   IF(BB1**2.LT.4.0*D1 .OR. BB2**2.LT.4.0*D2) GO TO 1200
-	   XMIN1=(BB1-SQRT(BB1**2-4.0*D1))/2.0
-	   XMAX1=(BB1+SQRT(BB1**2-4.0*D1))/2.0
-	   XMIN2=(BB2-SQRT(BB2**2-4.0*D2))/2.0
-	   XMAX2=(BB2+SQRT(BB2**2-4.0*D2))/2.0
-	   MISS4=0	
- 700	   IF(ABS(NFP(JP,1)*NFP(JP,2)).GT.1000000.OR.
-     &			ABS(NFP(JP,1)*NFP(JP,2)).LT.100) THEN
-	      XP1=HIRND2(5,XMIN1,XMAX1)
-	      XP2=HIRND2(5,XMIN1,XMAX1)
-	   ELSE
-	      XP1=HIRND2(4,XMIN1,XMAX1)
-	      XP2=HIRND2(4,XMIN1,XMAX1)
-	   ENDIF
-	   X10=MAX(XP1,XP2)
-	   X1=MIN(XP1,XP2)
-	   IF(ABS(NFT(JT,1)*NFT(JT,2)).GT.1000000.OR.
-     &			ABS(NFT(JT,1)*NFT(JT,2)).LT.100) THEN
-	      XT1=HIRND2(5,XMIN2,XMAX2)
-	      XT2=HIRND2(5,XMIN2,XMAX2)
-	   ELSE
-	      XT1=HIRND2(4,XMIN2,XMAX2)
-	      XT2=HIRND2(4,XMIN2,XMAX2)
-	   ENDIF
-	   X20=MAX(XT1,XT2)
-	   X2=MIN(XT1,XT2)
-C	********For q-qbar or (qq)-(qq)bar system use symetric
-C		distribution, for q-(qq) or qbar-(qq)bar use
-C		unsymetrical distribution
-C
-	   IF(ABS(NFP(JP,2)).GT.1000.AND.ABS(NFT(JT,1)).GT.1000) THEN
-	      X1=1.0-X1
-	      X10=1.0-X10
-	   ELSE IF(ABS(NFP(JP,1)).GT.1000
-     &                   .AND.ABS(NFT(JT,2)).GT.1000) THEN
-	      X1=1.0-X1
-	      X10=1.0-X10
-	   ENDIF
-	   IF(NFP(JP,15).LT.0) THEN
-	      NFT1=NFT(JT,1)
-	      NFT(JT,1)=NFP(JP,1)
-	      NFP(JP,1)=NFT1
-	   ELSE
-	      NFT2=NFT(JT,2)
-	      NFT(JT,2)=NFP(JP,2)
-	      NFP(JP,2)=NFT2
-	   ENDIF
-	   XREMP=X10-X1
-	   XREMT=X20-X2
-	   NFP3=0
-	   NFT3=0
-	   NFP5=3
-	   NFT5=3
-	   DP=AMP**2/SW
-	   DT=AMT**2/SW
-	   IGO=400
-	   RETURN
-	ENDIF
-	NDPM=NDPM+1
-	KDPM(NDPM,1)=IDQP1
-	PDPM1(NDPM,1)=XQP1
-	PDPM1(NDPM,2)=YQP1
-	PDPM1(NDPM,3)=ZQP1
-	PDPM1(NDPM,4)=EQP1
-	PDPM1(NDPM,5)=QMP1
-	KDPM(NDPM,2)=IDQT1
-	PDPM2(NDPM,1)=XQT1
-	PDPM2(NDPM,2)=YQT1
-	PDPM2(NDPM,3)=ZQT1
-	PDPM2(NDPM,4)=EQT1
-	PDPM2(NDPM,5)=QMT1
-	DPKC1=DPKC1+(XQP1+XQT1)/2.0
-	DPKC2=DPKC2+(YQP1+YQT1)/2.0
-	IF(IOP.EQ.1) THEN
-		NDPM=NDPM+1
-		KDPM(NDPM,1)=IDQP2
-		PDPM1(NDPM,1)=XQP2
-		PDPM1(NDPM,2)=YQP2
-		PDPM1(NDPM,3)=ZQP2
-		PDPM1(NDPM,4)=EQP2
-		PDPM1(NDPM,5)=QMP2
-		KDPM(NDPM,2)=IDQT2
-		PDPM2(NDPM,1)=XQT2
-		PDPM2(NDPM,2)=YQT2
-		PDPM2(NDPM,3)=ZQT2
-		PDPM2(NDPM,4)=EQT2
-		PDPM2(NDPM,5)=QMT2
-		DPKC1=DPKC1+(XQP2+XQT2)/2.0
-		DPKC2=DPKC2+(YQP2+YQT2)/2.0
-	ENDIF
-	RETURN
-800	IERR=2
-	IF(IHPR2(10).EQ.0) RETURN
-	WRITE(6,*) ' not enough energy to peform regular 
-     &                                  DPM-like scattering'
-	WRITE(6,*) ' IOP',IOP,' WP=',WP0,' WM=',WM0,
-     &             ' SW=',SW0,' SSS',SSS
-	RETURN
-900	IERR=3
-	IF(IHPR2(10).EQ.0) RETURN
-	WRITE(6,*) ' failed to preform regular DPM-like scattering'
-	WRITE(6,*) ' IOP',IOP,' WP',WP,' WM',WM,' SW',SW,
-     &             ' SSS',(AMP+AMT)**2
-	RETURN 	
-1000	IERR=4
-	IF(IHPR2(10).EQ.0) RETURN
-	WRITE(6,*) ' not enough energy to have regular 
-     &             DPM-like scattering'
-	WRITE(6,*) 'XPMAX,XPMIN,XTMAX,XTMIN',XPMAX,XPMIN,XTMAX,XTMIN
-	RETURN
-1200	IERR=5
-	IF(IHPR2(10).EQ.0) RETURN
-	WRITE(6,*) ' error occured in HIJDPM, regular 
-     &              DPM-like not performed'
-	WRITE(6,*) ' (AMP+AMT)**2',(AMP+AMT)**2,' SW',SW	
-	RETURN
-	END
-C
-C
 C	
 C***************************************
 	SUBROUTINE HIJFLV(ID)
 	COMMON/RANSEED/NSEED
 	SAVE  /RANSEED/
 	ID=1
-	RNID=RAN(NSEED)
+	RNID=RNDM(-1)
 	IF(RNID.GT.0.43478) THEN
 		ID=2
 		IF(RNID.GT.0.86956) ID=3
@@ -5308,11 +4429,11 @@ C
 		PT=HIRND2(7,0.0,PTMAX)
 		IF(PT.GT.HIPR1(8)) 
      &		PT=HIPR1(2)*SQRT(-ALOG(EXP(-HIPR1(8)**2/HIPR1(2)**2)
-     &			-RAN(NSEED)*(EXP(-HIPR1(8)**2/HIPR1(2)**2)-
+     &			-RNDM(-1)*(EXP(-HIPR1(8)**2/HIPR1(2)**2)-
      &			EXP(-PTMAX**2/HIPR1(2)**2))))
 
 	ELSE
-		PT=HIPR1(2)*SQRT(-ALOG(1.0-RAN(NSEED)*
+		PT=HIPR1(2)*SQRT(-ALOG(1.0-RNDM(-1)*
      &			(1.0-EXP(-PTMAX**2/HIPR1(2)**2))))
 	ENDIF
 	PTMAX0=MAX(PTMAX,0.01)
@@ -5560,7 +4681,7 @@ C
 	SAVE  /HIJHB/
 	COMMON/RANSEED/NSEED
 	SAVE  /RANSEED/
-	RX=RAN(NSEED)
+	RX=RNDM(-1)
 	JL=0
 	JU=202
 10	IF(JU-JL.GT.1) THEN
@@ -5592,7 +4713,7 @@ C	This generate random number between XMIN and XMAX
 	IF(XMAX.GT.XX(I,201)) XMAX=XX(I,201)
 	JMIN=1+200*(XMIN-XX(I,1))/(XX(I,201)-XX(I,1))
 	JMAX=1+200*(XMAX-XX(I,1))/(XX(I,201)-XX(I,1))
-	RX=RR(I,JMIN)+(RR(I,JMAX)-RR(I,JMIN))*RAN(NSEED)
+	RX=RR(I,JMIN)+(RR(I,JMAX)-RR(I,JMIN))*RNDM(-1)
 	JL=0
 	JU=202
 10	IF(JU-JL.GT.1) THEN
@@ -6248,22 +5369,22 @@ C***************************************************************
 	SAVE  /RANSEED/
 	COMMON/HIMAIN1/ NATT,EATT,JATT,NT,NP,N0,N01,N10,N11
 	SAVE  /HIMAIN1/
-C	COMMON/HIMAIN2/KATT(130000,4),PATT(130000,4)
-C	SAVE  /HIMAIN2/
-C	COMMON/HISTRNG/NFP(300,15),PP(300,15),NFT(300,15),PT(300,15)
-C	SAVE  /HISTRNG/
-C	COMMON/HIJCRDN/YP(3,300),YT(3,300)
-C	SAVE  /HIJCRDN/
-C	COMMON/HIJJET1/NPJ(300),KFPJ(300,500),PJPX(300,500),
-C     &               PJPY(300,500),PJPZ(300,500),PJPE(300,500),
-C     &               PJPM(300,500),NTJ(300),KFTJ(300,500),
-C     &               PJTX(300,500),PJTY(300,500),PJTZ(300,500),
-C     &               PJTE(300,500),PJTM(300,500)
-C	SAVE  /HIJJET1/
-C	COMMON/HIJJET2/NSG,NJSG(900),IASG(900,3),K1SG(900,100),
-C     &		K2SG(900,100),PXSG(900,100),PYSG(900,100),
-C     &		PZSG(900,100),PESG(900,100),PMSG(900,100)
-C	SAVE  /HIJJET2/
+	COMMON/HIMAIN2/KATT(130000,4),PATT(130000,4)
+	SAVE  /HIMAIN2/
+	COMMON/HISTRNG/NFP(300,15),PP(300,15),NFT(300,15),PT(300,15)
+	SAVE  /HISTRNG/
+	COMMON/HIJCRDN/YP(3,300),YT(3,300)
+	SAVE  /HIJCRDN/
+	COMMON/HIJJET1/NPJ(300),KFPJ(300,500),PJPX(300,500),
+     &               PJPY(300,500),PJPZ(300,500),PJPE(300,500),
+     &               PJPM(300,500),NTJ(300),KFTJ(300,500),
+     &               PJTX(300,500),PJTY(300,500),PJTZ(300,500),
+     &               PJTE(300,500),PJTM(300,500)
+	SAVE  /HIJJET1/
+	COMMON/HIJJET2/NSG,NJSG(900),IASG(900,3),K1SG(900,100),
+     &		K2SG(900,100),PXSG(900,100),PYSG(900,100),
+     &		PZSG(900,100),PESG(900,100),PMSG(900,100)
+	SAVE  /HIJJET2/
 	COMMON/HIJDAT/HIDAT0(10,10),HIDAT(10)
 	SAVE  /HIJDAT/
 	COMMON/HIPYINT/MINT4,MINT5,ATCO(200,20),ATXS(0:200)
@@ -6278,7 +5399,7 @@ C...give all the switchs and parameters the default values
      &	1.6,  1.0,  2.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.4,  57.0,
      &	28.5, 3.9,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  
      &	3.141592654,
-     &	1.4,  0.4,  0.1,  1.5,  0.1, 0.25,  0.0,  0.5,  0.0,  0.0,
+     &	0.0,  0.4,  0.1,  1.5,  0.1, 0.25, 0.0,  0.5,  0.0,  0.0,
      &	50*0.0/
 
 	DATA IHPR2/
@@ -6291,21 +5412,20 @@ C...give all the switchs and parameters the default values
 
 C...initialize all the data common blocks
 	DATA NATT/0/EATT/0.0/JATT/0/NT/0/NP/0/N0/0/N01/0/N10/0/N11/0/
-C...not necessary for large arrays
-C	DATA KATT/520000*0/PATT/520000*0.0/
-C
-C	DATA NFP/4500*0/PP/4500*0.0/NFT/4500*0/PT/4500*0.0/
-C
-C	DATA YP/900*0.0/YT/900*0.0/
-C
-C	DATA NPJ/300*0/KFPJ/150000*0/PJPX/150000*0.0/PJPY/150000*0.0/
-C     &	PJPZ/150000*0.0/PJPE/150000*0.0/PJPM/150000*0.0/
-C	DATA NTJ/300*0/KFTJ/150000*0/PJTX/150000*0.0/PJTY/150000*0.0/
-C     &	PJTZ/150000*0.0/PJTE/150000*0.0/PJTM/150000*0.0/
-C
-C	DATA NSG/0/NJSG/900*0/IASG/2700*0/K1SG/90000*0/K2SG/90000*0/
-C     &	PXSG/90000*0.0/PYSG/90000*0.0/PZSG/90000*0.0/PESG/90000*0.0/
-C     &	PMSG/90000*0.0/
+	DATA KATT/520000*0/PATT/520000*0.0/
+
+	DATA NFP/4500*0/PP/4500*0.0/NFT/4500*0/PT/4500*0.0/
+
+	DATA YP/900*0.0/YT/900*0.0/
+
+	DATA NPJ/300*0/KFPJ/150000*0/PJPX/150000*0.0/PJPY/150000*0.0/
+     &	PJPZ/150000*0.0/PJPE/150000*0.0/PJPM/150000*0.0/
+	DATA NTJ/300*0/KFTJ/150000*0/PJTX/150000*0.0/PJTY/150000*0.0/
+     &	PJTZ/150000*0.0/PJTE/150000*0.0/PJTM/150000*0.0/
+
+	DATA NSG/0/NJSG/900*0/IASG/2700*0/K1SG/90000*0/K2SG/90000*0/
+     &	PXSG/90000*0.0/PYSG/90000*0.0/PZSG/90000*0.0/PESG/90000*0.0/
+     &	PMSG/90000*0.0/
 	DATA MINT4/0/MINT5/0/ATCO/4000*0.0/ATXS/201*0.0/
 	DATA (HIDAT0(1,I),I=1,10)/0.0,0.0,0.0,0.0,0.0,0.0,2.25,
      &          2.5,4.0,4.1/
@@ -6744,10 +5864,7 @@ C
 C
 C
 	SUBROUTINE TITLE
-C
-	COMMON/HIPARNT/HIPR1(100),IHPR2(50),HINT1(100),IHNT2(50)
-C
-	WRITE(6,200) HIPR1(41)
+	WRITE(6,200)
 200	FORMAT(//10X,
      &	'**************************************************'/10X,
      &  '*     |      \       _______      /  ------/     *'/10X,
@@ -6760,7 +5877,6 @@ C
      &	'*                                                *'/10X,
      &	'**************************************************'/10X,
      &	'                      HIJING                      '/10X,
-     &  '                   Version ',F4.2,'                   '/10X,
      &	'       Heavy Ion Jet INteraction Generator        '/10X,
      &	'                        by                        '/10X,
      &  '	    X. N. Wang  and  M. Gyulassy           '/10X,
