@@ -12,13 +12,16 @@ c     For reference, see STAR Note 243, Eq. 9.
       integer i,j
       real sum,sigmui
 
+CVM: multipy all farray() by f_max
+
 c     calculate the two-lepton differential cross section
 c     the 100 is to convert to barns
 c     the two is to account for the fact that we integrate only
 c     over one half of the rapidity range
       do 200 i  = 1,numw
       do 100 j = 1, numy
-        sigma (i,j) = 2. * sigmui(warray(i))* farray(i,j) / 100.
+        sigma (i,j) = 2. * sigmui(warray(i))* f_max
+     &                *farray(i,j) / 100.
 c	write(*,*) 'i,j,sigma',i,j,sigma(i,j)
 c	write(*,*) 'w,f',warray(i),farray(i,j)
  100  continue
