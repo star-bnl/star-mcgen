@@ -1,0 +1,10 @@
+* *************** init_g2x.kumac ******************
+* * contains kumacs for the pam: g2x
+* **********************************************
+ 
+ 
+ cd /dui/evgen
+ 
+  tdm/newtable particle particle 30000
+
+ cd /dui

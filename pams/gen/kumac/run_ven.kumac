@@ -1,0 +1,8 @@
+* *************** run_ven.kumac ******************
+* * contains kumacs for the pam: ven
+* **********************************************
+
+ ami/module/call venus_
+   /dui/evgen/particle
+ 
+* ****************************************

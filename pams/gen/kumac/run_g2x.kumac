@@ -1,0 +1,9 @@
+* *************** run_g2x.kumac ******************
+* * contains kumacs for the pam: g2x
+* **********************************************
+
+
+ ami/module/call gst2xdf_
+   /dui/evgen/particle
+ 
+* ****************************************

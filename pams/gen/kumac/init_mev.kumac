@@ -1,0 +1,9 @@
+* *************** init_mev.kumac ******************
+* * contains kumacs for the pam: mev
+* **********************************************
+ 
+ cd /dui/evgen
+ tdm/newtable particle particle 30000
+ cd /dui
+ 
+* **************************************

@@ -1,0 +1,9 @@
+* *************** run_hij.kumac ******************
+* * contains kumacs for the pam: hij
+* **********************************************
+ 
+ ami/module/call hijjet_
+   /dui/evgen/particle
+ 
+ 
+* ************************************************
