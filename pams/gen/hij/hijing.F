@@ -73,8 +73,8 @@ C       machines' compiler
 C
 C*********************************************
 C	LAST MODIFICATION April 5, 1991
-C QUARK DISTRIBUTIOIN (1-X)**A/(X**2+C**2/S)**B 
-C (A=HIPR1(44),B=HIPR1(46),C=HIPR1(45))
+CQUARK DISTRIBUTIOIN (1-X)**A/(X**2+C**2/S)**B 
+C(A=HIPR1(44),B=HIPR1(46),C=HIPR1(45))
 C STRING FLIP, VENUS OPTION IHPR2(15)=1,IN WHICH ONE CAN HAVE ONE AND
 C TWO COLOR CHANGES, (1-W)**2,W*(1-W),W*(1-W),AND W*2, W=HIPR1(18), 
 C AMONG PT DISTRIBUTION OF SEA QUARKS IS CONTROLLED BY HIPR1(42)
@@ -926,7 +926,7 @@ C		********booking for x distribution of valence quarks
 	IF(FRAME.EQ.'LAB') EFRAME='Elab'
 	WRITE(6,100) EFRAME,EFRM,PROJ,IHNT2(1),IHNT2(2),
      &               TARG,IHNT2(3),IHNT2(4) 
-100	FORMAT(//,
+100	FORMAT(//
      &  10X,'**************************************************'/
      &	10X,'*',48X,'*'/
      &	10X,'*         HIJING has been initialized at         *'/
@@ -2172,7 +2172,7 @@ C.....ROTATE TO Z-AXIS....
      
 C.....CREATE ONE GLUON AND ORIENTATE.....
      
- 10     CALL AR3JET(S,X1,X3,JL)
+1	CALL AR3JET(S,X1,X3,JL)
       	CALL ARORIE(S,X1,X3,JL)		
 	IF(HIDAT(2).GT.0.0) THEN
       	   PTG1=SQRT(P(JL,1)**2+P(JL,2)**2)
@@ -2181,7 +2181,7 @@ C.....CREATE ONE GLUON AND ORIENTATE.....
 	   PTG=MAX(PTG1,PTG2,PTG3)
 	   IF(PTG.GT.HIDAT(2)) THEN
 	      FMFACT=EXP(-(PTG**2-HIDAT(2)**2)/HIPR1(2)**2)
-	      IF(RNDM(-1).GT.FMFACT) GO TO 10
+	      IF(RNDM(-1).GT.FMFACT) GO TO 1
 	   ENDIF
 	ENDIF
 C.....ROTATE AND BOOST BACK.....
@@ -2210,7 +2210,7 @@ C      	PTGMAX=WSTRI/2.
 C      	DOPT=SQRT((4.*PAR(71)*VFR(2))/WSTRI)
 C      	PTOPT=(DOPT*WSTRI)/(2.*VFR(2))
 C      	IF(PTG.GT.PTOPT) IORDER=IORDER-1
-C      	IF(PTG.GT.PTOPT) GOTO 10
+C      	IF(PTG.GT.PTOPT) GOTO 1
 C      	ENDIF
 C-----
      	IF(SM.GE.HIPR1(5)) GOTO 40
@@ -2251,7 +2251,7 @@ C
       	XT2M=(1.-2.*SQRT(SM1)+SM1-SM3)*(1.-2.*SQRT(SM3)-SM1+SM3)
       	XT2M=MIN(.25,XT2M)
       	NTRY=0
- 10     IF(NTRY.EQ.5000) THEN
+1     	IF(NTRY.EQ.5000) THEN
 	        X1=.5*(2.*SQRT(SM1)+1.+SM1-SM3)
 		X3=.5*(2.*SQRT(SM3)+1.-SM1+SM3)
 		RETURN
@@ -2273,11 +2273,11 @@ C
         X1=X1+SM1-SM3
         X3=X3-SM1+SM3
      	ENDIF
-      	IF(NEG.EQ.1) GOTO 10
+      	IF(NEG.EQ.1) GOTO 1
      
       	FG=2.*YMAX*C*(X1**EXP1+X3**EXP3)/D
       	XT2M=XT2
-      	IF(FG.LT.RNDM(-1)) GOTO 10
+      	IF(FG.LT.RNDM(-1)) GOTO 1
      
       	RETURN
       	END
@@ -2845,8 +2845,8 @@ C			********check the bounds of common blocks
 	NTJ(JT)=NTJ(JT)+JTT
 	GO TO 900
 C*****************************************************************
-C This is the case of a quark-antiquark jet it will fragment alone
-C*****************************************************************
+CThis is the case of a quark-antiquark jet it will fragment alone
+C****************************************************************
 190	JFLG=3
 	IF(K(7,2).NE.21.AND.K(8,2).NE.21.AND.
      &                   K(7,2)*K(8,2).GT.0) GO TO 155
@@ -3542,7 +3542,7 @@ C		********mb=0.1*fm, YP is in fm,HIPR1(31) is in mb
 C
 C
 C*******************************************************************
-C This subroutine performs elastic scattering between two nucleons
+CThis subroutine performs elastic scattering between two nucleons
 C
 C*******************************************************************
 	SUBROUTINE HIJELS(PSC1,PSC2)
@@ -5524,14 +5524,14 @@ C
       COMMON/BVEG3/F,TI,TSI   
       SAVE  /BVEG3/
       EXTERNAL FXN
-      DIMENSION D(50,10),DI(50,10),XIN(50),R(50),DX(10),DT(10),X(10),
-     >          KG(10),IA(10)
+      DIMENSION D(50,10),DI(50,10),XIN(50),R(50),DX(10),DT(10),X(10)
+     1   ,KG(10),IA(10)
       REAL*4 QRAN(10)
       DATA NDMX/50/,ALPH/1.5D0/,ONE/1.D0/,MDS/-1/
 C
       NDO=1
-      DO 101 J=1,NDIM
- 101  XI(1,J)=ONE
+      DO 1 J=1,NDIM
+1     XI(1,J)=ONE
 C
       ENTRY VEGAS1(FXN,AVGI,SD,CHI2A)
 C         - INITIALIZES CUMMULATIVE VARIABLES, BUT NOT GRID
@@ -5746,8 +5746,8 @@ C
       SUBROUTINE ARAN9(QRAN,NDIM)
       DIMENSION QRAN(10)
       COMMON/SEEDVAX/NUM1
-      DO 10 I=1,NDIM
- 10   QRAN(I)=RNDM(-1)
+      DO 1 I=1,NDIM
+    1 QRAN(I)=RNDM(-1)
       RETURN
       END
 
@@ -5775,9 +5775,9 @@ C
 	C2=C1-AA
 	S8=0.0
 	S16=0.0
-	DO 10 I=1,4
+	DO 1 I=1,4
 	U=X(I)*C2
- 10     S8=S8+W(I)*(F(C1+U)+F(C1-U))
+1	S8=S8+W(I)*(F(C1+U)+F(C1-U))
 	DO 3 I=5,12
 	U=X(I)*C2
 3	S16=S16+W(I)*(F(C1+U)+F(C1-U))
@@ -5817,9 +5817,9 @@ C
 	C2=C1-AA
 	S8=0.0
 	S16=0.0
-	DO 10 I=1,4
+	DO 1 I=1,4
 	U=X(I)*C2
- 10     S8=S8+W(I)*(F(C1+U)+F(C1-U))
+1	S8=S8+W(I)*(F(C1+U)+F(C1-U))
 	DO 3 I=5,12
 	U=X(I)*C2
 3	S16=S16+W(I)*(F(C1+U)+F(C1-U))
@@ -5859,9 +5859,9 @@ C
 	C2=C1-AA
 	S8=0.0
 	S16=0.0
-	DO 10 I=1,4
+	DO 1 I=1,4
 	U=X(I)*C2
- 10     S8=S8+W(I)*(F(C1+U)+F(C1-U))
+1	S8=S8+W(I)*(F(C1+U)+F(C1-U))
 	DO 3 I=5,12
 	U=X(I)*C2
 3	S16=S16+W(I)*(F(C1+U)+F(C1-U))
@@ -5902,9 +5902,9 @@ C
 	C2=C1-AA
 	S8=0.0
 	S16=0.0
-	DO 10 I=1,4
+	DO 1 I=1,4
 	U=X(I)*C2
- 10     S8=S8+W(I)*(F(C1+U)+F(C1-U))
+1	S8=S8+W(I)*(F(C1+U)+F(C1-U))
 	DO 3 I=5,12
 	U=X(I)*C2
 3	S16=S16+W(I)*(F(C1+U)+F(C1-U))

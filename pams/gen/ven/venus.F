@@ -1,7 +1,7 @@
 * Id: venus.F, v 1.1 1998/04/02 11:10:40 longacre Exp $
 *$Log: venus.F,v $
-*Revision 1.8  1999/10/09 01:22:03  nevski
-*pgf->g77 cleanup
+*Revision 1.9  1999/10/09 22:38:38  nevski
+*pgf-> g77 cleanup
 *
 *Revision 1.7  1999/08/14 21:49:57  fisyak
 *eliminate include and source level
@@ -86,12 +86,12 @@ CCCCC STRATOS
       par(1).phep(1) = bimevt
       par(1).phep(2) = phievt
       nptls=0
-      do 10 i=1,nptl
+      do 1 i=1,nptl
           nrptla(i)=-999
-          if(istptl(i).gt.istmax)goto10
+          if(istptl(i).gt.istmax)goto1
           nptls=nptls+1
           nrptla(i)=nptls
- 10       continue
+ 1    continue
          Do i = 1, nptl
 
             pz = pptl(3,i)
@@ -125,8 +125,8 @@ CCCC Try to write text output.
         if(nrptla(i).lt.0) goto 9918
         Call isa_to_geant(idptl(i),idtype)
         write(32, 9911) idtype, pptl(1,i), pptl(2,i), 
-     >  pptl(3,i), pptl(4,i), xorptl(1,i), xorptl(2,i),
-     >  xorptl(3,i), xorptl(4,i)
+     1  pptl(3,i), pptl(4,i), xorptl(1,i), xorptl(2,i),
+     2  xorptl(3,i), xorptl(4,i)
  9911   FORMAT(I9,9X,8F12.5)
  9918 Continue
       endif
@@ -163,3 +163,5 @@ c     tivptl ....... time interval of existence
 c     nqjptl ....... quark numbers of jets
       return
       end
+
+

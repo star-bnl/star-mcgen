@@ -20,8 +20,7 @@ c
 c  venus is a monte carlo procedure to simulate hadronic interactions at
 c  ultrarelativistic energies (hadron-hadron, hadron-nucleus, nucleus-
 c  nucleus scattering), and also interactions involving leptons (e+e- 
-c  astore_egz.Fastore_egz.Fastore_egz.Fannihilation, lepton-nucleon, 
-c  lepton-nucleus scattering).
+c  astore_egz.Fastore_egz.Fastore_egz.Fannihilation, lepton-nucleon, lepton-nucleus scattering).
 c  venus is based on gribov-regge theory (of multiple pomeron exchange)
 c  and classical relativistic string dynamics. a detailed description can 
 c  be found in the univ. heidelberg preprint hd-tvp-93-1 (270 pages), to
@@ -209,7 +208,7 @@ c  notes
 c  -----
 c
 c
-c     >** the following dimensions are used (def with parameter statemt)
+c     *** the following dimensions are used (def with parameter statemt)
 c            max # of strings per event:   mxstr=20000
 c            max # of particles per event: mxptl=150000
 c
@@ -582,30 +581,30 @@ c     performs all initializations
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
-     >,icmtst
+     *,icmtst
       common/paro4/grigam,grirsq,gridel,grislo,gricel
       common/paro5/delvol,deleps
       common/nevnt/nevnt
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       parameter(nprbms=20)
       common /cprbms/prbms(nprbms)
       parameter (nptj=129)
@@ -614,15 +613,15 @@ c-----------------------------------------------------------------------
       common /cptq/xptq(nptq),qptq(nptq),qpth(nptq),wptq(nptq)
       parameter (nptf=129)
       common /cptf/xptf(nptf),wptf(nptf)
-     >,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
+     *,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
       parameter (ngau=129)
       common /cgau/xgau(ngau),qgau(ngau),wgau(ngau)
       parameter (nsplit=129)
       common /csplit/xsplit(nsplit),qsplit(nsplit),qsplix(nsplit)
-     >,wsplit(nsplit)
+     *,wsplit(nsplit)
       parameter (nstru=2049)
       common/stru/xstru(nstru),wstru(nstru)
-     >,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
+     *,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
       character choic*3
       parameter(mxpar=99)
       character*6 parcha(mxpar)
@@ -630,7 +629,7 @@ c-----------------------------------------------------------------------
       common/paramc/npar,idmmy,parval,parcha
       common /cvsn/iversn /cden/massnr,rmx
       external sdensi,stzzvl,stzzse
-     >,sptj,spth,sptq,sptf,sgau,ssplit,ssplix
+     *,sptj,spth,sptq,sptf,sgau,ssplit,ssplix
       common /cptlu/nptlu
       common /cquama/quama /cipio/ipio /clep/icinpu,idscat
       parameter (mxtau=4,mxvol=10,mxeps=20)
@@ -997,29 +996,29 @@ c     ---------------
       if(jread.ne.1)return
       if(isup.ne.1)write(ifmt,105)float(iversn)/100
 105   format(
-     > ' !-----------------------------------------------------!'
-     >/' !            venus',f5.2,6x,'-     k. werner          !'
-     >/' !-----------------------------------------------------!')
- 10   continue
+     * ' !-----------------------------------------------------!'
+     */' !            venus',f5.2,6x,'-     k. werner          !'
+     */' !-----------------------------------------------------!')
+1     continue
       if(isup.ne.1)write(ifmt,*)'choice? [a3]      type hlp for help'
       read(ifop,*,err=1)choic
       call utlow3(choic)
       if(isup.ne.1.and.ivi.eq.1)write(ifmt,*)choic
       if(choic.eq.'hlp')write(ifmt,100)
-      if(choic.eq.'hlp')goto 10
+      if(choic.eq.'hlp')goto1
       if(choic.eq.'sup')then
       isup=1
-      goto 10
+      goto1
       endif
 100   format(
-     > ' !----------------------------------------------------!'
-     >/' !  choice [format:character*3]                       !'
-     >/' !   str ... string fragmentation                     !'
-     >/' !   had ... hadronic collisions (hh,ha,aa)           !'
-     >/' !   col ... only collision analysis                  !'
-     >/' !   ans ... only analysis (string frg.)              !'
-     >/' !   anh ... only analysis (hadr. coll.)              !'
-     >/' !----------------------------------------------------!')
+     * ' !----------------------------------------------------!'
+     */' !  choice [format:character*3]                       !'
+     */' !   str ... string fragmentation                     !'
+     */' !   had ... hadronic collisions (hh,ha,aa)           !'
+     */' !   col ... only collision analysis                  !'
+     */' !   ans ... only analysis (string frg.)              !'
+     */' !   anh ... only analysis (hadr. coll.)              !'
+     */' !----------------------------------------------------!')
       if(choic.eq.'str')ichoic=1
       if(choic.eq.'had')ichoic=2
       if(choic.eq.'col')ichoic=3
@@ -1028,10 +1027,10 @@ c     ---------------
  
       if(ichoic.eq.1.or.ichoic.eq.4)then
       if(isup.ne.1)write(ifmt,*)'#events?[i]   modsho?[i]   '
-     >,'engy?[f]   #str?[i])   tg?[2i]   #par?[i]'
+     *,'engy?[f]   #str?[i])   tg?[2i]   #par?[i]'
       read(ifop,*)nevent,modsho,engy,ns,latarg,matarg,npar
       if(isup.ne.1.and.ivi.eq.1)write(ifmt,103)
-     >nevent,modsho,engy,ns,latarg,matarg,npar
+     *nevent,modsho,engy,ns,latarg,matarg,npar
 103   format(1x,i6,i5,f9.3,3x,i6,3x,2i6,3x,i6)
       if(ns.eq.0)stop'nr of strings must not be 0.'
       if(ns.gt.99)stop'nr of strings has to be < 100.'
@@ -1040,9 +1039,9 @@ c     ---------------
       do 4 n=1,ns
       if(isup.ne.1)write(ifmt,*)n,'. string?[fiiii]'
       read(ifop,*)prob(n)
-     >,icbac(n,1),icbac(n,2),icfor(n,1),icfor(n,2)
+     *,icbac(n,1),icbac(n,2),icfor(n,1),icfor(n,2)
       if(isup.ne.1.and.ivi.eq.1)write(ifmt,106)prob(n)
-     >,icbac(n,1),icbac(n,2),icfor(n,1),icfor(n,2)
+     *,icbac(n,1),icbac(n,2),icfor(n,1),icfor(n,2)
 4     continue
 106   format(9x,f5.2,4x,2i8,4x,2i8)
       else
@@ -1051,18 +1050,18 @@ c     ---------------
  
       elseif(ichoic.eq.2.or.ichoic.eq.3.or.ichoic.eq.5)then
       if(isup.ne.1)write(ifmt,*)'#events?[i]   modsho?[i]   '
-     >,'p(lab)?[f]   pj,tg?[4i]   #par?[i]'
+     *,'p(lab)?[f]   pj,tg?[4i]   #par?[i]'
 C      read(ifop,*)nevent,modsho,pnll
-C     >,laproj,maproj,latarg,matarg,npar
+C     *,laproj,maproj,latarg,matarg,npar
       read(ifop,*)pnll,laproj,maproj,latarg,matarg
        nevent=1
        modsho=1
        npar=8
       if(isup.ne.1.and.ivi.eq.1)write(ifmt,104)nevent,modsho,pnll
-     >,laproj,maproj,latarg,matarg,npar
+     *,laproj,maproj,latarg,matarg,npar
 104   format(1x,i6,i5,f10.0,3x,4i4,i6)
       if(laproj.lt.0.or.latarg.lt.0)
-     >call utstop('ainitl: code only good for p-p          ')
+     *call utstop('ainitl: code only good for p-p          ')
       if(laproj.lt.0.and.latarg.lt.0)then
       if(isup.ne.1)write(ifmt,*)'id_proj? [i]  id_targ? [i]'
       read(ifop,*)idproj,idtarg
@@ -1239,7 +1238,7 @@ C     >,laproj,maproj,latarg,matarg,npar
       engy=sqrt( 2*sqrt(pnll**2+amproj**2)*amtarg+amtarg**2+amproj**2 )
          endif
       if(engy.lt.12.)
-     >call utstop('ainitl: incident energy too small       ')
+     *call utstop('ainitl: incident energy too small       ')
       engyi=engy
       pnlli=pnll
          if(pnll/amproj.lt.1e2)then
@@ -1386,56 +1385,56 @@ c-c  *phard=1-exp(-0.000275*(sqrt(s)-100.))
  
       entry shopar
       if(isup.ne.1.and.ish.ge.90)write(ifmt,102)('*',i=1,69)
-     > ,taunll,maxres,ptf,ptq,ioptq,ptmx,neqmn,iaqu,wtarg
-     > ,wproj,qmust,sigppi,core,fctrmx,ncolmx,labsys,irescl,overlp
-     > ,ntrymx,delmss,gaumx,bmaxim,pud,pspinl,pspinh,pispn
-     > ,nclean,jpsi,cutmss,rstras,istmax,tensn,neqmx,ipagi,ndecay
-     > ,pdiqua,parea,delrem,taumx,nsttau,sigj,jpsifi,bminim
-     > ,radiac,taumin,taumax,numtau,themas,amsiac,elepti
+     * ,taunll,maxres,ptf,ptq,ioptq,ptmx,neqmn,iaqu,wtarg
+     * ,wproj,qmust,sigppi,core,fctrmx,ncolmx,labsys,irescl,overlp
+     * ,ntrymx,delmss,gaumx,bmaxim,pud,pspinl,pspinh,pispn
+     * ,nclean,jpsi,cutmss,rstras,istmax,tensn,neqmx,ipagi,ndecay
+     * ,pdiqua,parea,delrem,taumx,nsttau,sigj,jpsifi,bminim
+     * ,radiac,taumin,taumax,numtau,themas,amsiac,elepti
 102   format(' ',69a1
-     >/' *  taunll=',f7.3,'  maxres=',i7,'  ptf   =',f7.3
-     >,'  ptq   =',f7.3,'   *'/' *  ioptq =',i7,'  ptmx  =',f7.3
-     >,'  neqmn =',i7,'  iaqu  =',i7,'   *'/' *  wtarg =',f7.3
-     >,'  wproj =',f7.3,'  qmust =',f7.3,'  sigppi=',f7.3,'   *'
-     >/' *  core  =',f7.3,'  fctrmx=',f7.3,'  ncolmx=',i7
-     >,'  labsys=',  i7,'   *'/' *  irescl=',i7,'  overlp=',f7.3
-     >,'  ntrymx=',i7,'  delmss=',f7.3,'   *'/
-     >,'  gaumx =',f7.3,'  bmaxim=',f7.1,'   *'/' *  pud   =',f7.3
-     >,'  pspinl=',f7.3,'  pspinh=',f7.3,'  pispn =',f7.3,'   *'
-     >/' *  nclean=',i7,'  jpsi  =',i7,'  cutmss=',f7.3
-     >,'  rstras=',f7.3,'   *'/' *  istmax=',i7,'  tensn =',f7.3
-     >,'  neqmx =',i7,'  ipagi =',i7,'   *'/' *  ndecay=',i7
-     >,'  pdiqua=',f7.3,'  parea =',f7.3,'  delrem=',f7.3,'   *'
-     >/' *  taumx =',f7.3,'  nsttau=',i7,'  sigj  =',f7.3
-     >,'  jpsifi=',i7,'   *'/' *  bminim=',f7.1,'  radiac=',f7.3
-     >,'  taumin=',f7.3,'  taumax=',f7.3,'   *'/' *  numtau=',i7
-     >,'  themas=',f7.3,'  amsiac=',f7.3,'  elepti=',f7.3,'   *')
+     */' *  taunll=',f7.3,'  maxres=',i7,'  ptf   =',f7.3
+     *,'  ptq   =',f7.3,'   *'/' *  ioptq =',i7,'  ptmx  =',f7.3
+     *,'  neqmn =',i7,'  iaqu  =',i7,'   *'/' *  wtarg =',f7.3
+     *,'  wproj =',f7.3,'  qmust =',f7.3,'  sigppi=',f7.3,'   *'
+     */' *  core  =',f7.3,'  fctrmx=',f7.3,'  ncolmx=',i7
+     *,'  labsys=',  i7,'   *'/' *  irescl=',i7,'  overlp=',f7.3
+     *,'  ntrymx=',i7,'  delmss=',f7.3,'   *'/
+     *,'  gaumx =',f7.3,'  bmaxim=',f7.1,'   *'/' *  pud   =',f7.3
+     *,'  pspinl=',f7.3,'  pspinh=',f7.3,'  pispn =',f7.3,'   *'
+     */' *  nclean=',i7,'  jpsi  =',i7,'  cutmss=',f7.3
+     *,'  rstras=',f7.3,'   *'/' *  istmax=',i7,'  tensn =',f7.3
+     *,'  neqmx =',i7,'  ipagi =',i7,'   *'/' *  ndecay=',i7
+     *,'  pdiqua=',f7.3,'  parea =',f7.3,'  delrem=',f7.3,'   *'
+     */' *  taumx =',f7.3,'  nsttau=',i7,'  sigj  =',f7.3
+     *,'  jpsifi=',i7,'   *'/' *  bminim=',f7.1,'  radiac=',f7.3
+     *,'  taumin=',f7.3,'  taumax=',f7.3,'   *'/' *  numtau=',i7
+     *,'  themas=',f7.3,'  amsiac=',f7.3,'  elepti=',f7.3,'   *')
       if(isup.ne.1.and.ish.ge.90)write(ifmt,108)
-     >  elepto,angmue,smas,uumas,usmas,ssmas,iopbrk,ndecaw
-     > ,imihis,kentro,radias,isphis,rhophi,iclhis,ishsub,iopenu
-     > ,iopent,cutmsq,kutdiq,idpm,taurea,ispall,ymximi,pth,phard
-     > ,ioptf,prosea,ndecax,wtmini,wtstep,iwcent,ishevt,pvalen
-     > ,ifrade,ientro,grigam,grirsq,gridel,grislo,gricel,ijphis
-     > ,uentro,iwzzzz,iojint,amprif,delvol,deleps
-     > ,('*',i=1,69)
+     *  elepto,angmue,smas,uumas,usmas,ssmas,iopbrk,ndecaw
+     * ,imihis,kentro,radias,isphis,rhophi,iclhis,ishsub,iopenu
+     * ,iopent,cutmsq,kutdiq,idpm,taurea,ispall,ymximi,pth,phard
+     * ,ioptf,prosea,ndecax,wtmini,wtstep,iwcent,ishevt,pvalen
+     * ,ifrade,ientro,grigam,grirsq,gridel,grislo,gricel,ijphis
+     * ,uentro,iwzzzz,iojint,amprif,delvol,deleps
+     * ,('*',i=1,69)
 108   format(
-     > ' *  elepto=',f7.3,'  angmue=',f7.3,'  smas  =',f7.3
-     >,'  uumas =',f7.3,'   *'/' *  usmas =',f7.3,'  ssmas =',f7.3
-     >,'  iopbrk=',i7,'  ndecaw=',i7  ,'   *'/' *  imihis=',i7
-     >,'  kentro=',i7,'  radias=',f7.3,'  isphis=',i7  ,'   *'
-     >/' *  rhophi=',f7.3,'  iclhis=',i7  ,'  ishsub=',i7
-     >,'  iopenu=',i7  ,'   *'/' *  iopent=',i7,'  cutmsq=',f7.3
-     >,'  kutdiq=',i7  ,'  idpm  =',i7  ,'   *'/' *  taurea=',f7.3
-     >,'  ispall=',i7  ,'  ymximi=',f7.3,'  pth   =',f7.3,'   *'
-     >/' *  phard =',f7.3,'  ioptf =',i7  ,'  prosea=',f7.3
-     >,'  ndecax=',i7  ,'   *'/' *  wtmini=',f7.3,'  wtstep=',f7.3
-     >,'  iwcent=',i7  ,'  ishevt=',i7  ,'   *'/' *  pvalen=',f7.3
-     >,'  ifrade=',i7  ,'  ientro=',i7  ,'  grigam=',f7.3,'   *'
-     >/' *  grirsq=',f7.3,'  gridel=',f7.3,'  grislo=',f7.3
-     >,'  gricel=',f7.3,'   *'/' *  ijphis=',i7  ,'  uentro=',f7.3
-     >,'  iwzzzz=',i7  ,'  iojint=',i7  ,'   *'/' *  amprif=',f7.3
-     >,'  delvol=',f7.3,'  deleps=',f7.3,'         ',7x  ,'   *'
-     >/' ',69a1)
+     * ' *  elepto=',f7.3,'  angmue=',f7.3,'  smas  =',f7.3
+     *,'  uumas =',f7.3,'   *'/' *  usmas =',f7.3,'  ssmas =',f7.3
+     *,'  iopbrk=',i7,'  ndecaw=',i7  ,'   *'/' *  imihis=',i7
+     *,'  kentro=',i7,'  radias=',f7.3,'  isphis=',i7  ,'   *'
+     */' *  rhophi=',f7.3,'  iclhis=',i7  ,'  ishsub=',i7
+     *,'  iopenu=',i7  ,'   *'/' *  iopent=',i7,'  cutmsq=',f7.3
+     *,'  kutdiq=',i7  ,'  idpm  =',i7  ,'   *'/' *  taurea=',f7.3
+     *,'  ispall=',i7  ,'  ymximi=',f7.3,'  pth   =',f7.3,'   *'
+     */' *  phard =',f7.3,'  ioptf =',i7  ,'  prosea=',f7.3
+     *,'  ndecax=',i7  ,'   *'/' *  wtmini=',f7.3,'  wtstep=',f7.3
+     *,'  iwcent=',i7  ,'  ishevt=',i7  ,'   *'/' *  pvalen=',f7.3
+     *,'  ifrade=',i7  ,'  ientro=',i7  ,'  grigam=',f7.3,'   *'
+     */' *  grirsq=',f7.3,'  gridel=',f7.3,'  grislo=',f7.3
+     *,'  gricel=',f7.3,'   *'/' *  ijphis=',i7  ,'  uentro=',f7.3
+     *,'  iwzzzz=',i7  ,'  iojint=',i7  ,'   *'/' *  amprif=',f7.3
+     *,'  delvol=',f7.3,'  deleps=',f7.3,'         ',7x  ,'   *'
+     */' ',69a1)
       return
       end
  
@@ -1446,24 +1445,24 @@ c     contains a description of the stored variables.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
-     >,icmtst
+     *,icmtst
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       dimension nrptla(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       common /cptlu/nptlu
 
       ish0=ish
@@ -1485,17 +1484,17 @@ c-----------------------------------------------------------------------
       lptl=3
  
       nptls=0
-      do 10 i=1,nptl
+      do 1 i=1,nptl
       nrptla(i)=-999
-      if(istptl(i).gt.istmax)goto10
+      if(istptl(i).gt.istmax)goto1
       nptls=nptls+1
       nrptla(i)=nptls
- 10   continue
+1     continue
  
 c     store event variables:
  
       write(ifdt)levt,nrevt,nptls,bimevt,kolevt,colevt,pmxevt
-     >,egyevt,npjevt,ntgevt
+     *,egyevt,npjevt,ntgevt
  
 c     levt................... record label (levt=1)
 c     nrevt.................. event number
@@ -1525,8 +1524,8 @@ c     npjevt,ntgevt ......... # of proj/targ participants
 c     store particle variables:
  
       write(ifdt)lptl,nrevt,nrptla(i),i,idptl(i),(pptl(l,i),l=1,5),ioptl
-     >,joptl,istptl(i),(xorptl(l,i),l=1,4),(tivptl(l,i),l=1,2)
-     >,nqjptl(i)
+     *,joptl,istptl(i),(xorptl(l,i),l=1,4),(tivptl(l,i),l=1,2)
+     *,nqjptl(i)
  
 c     lptl ......... record label (lptl=3)
 c     nrevt ........ event number
@@ -1557,7 +1556,7 @@ c     ---------------
 1000  continue
       call uttimx(timaa)
       if(isup.ne.1.and.mod(nrevt,modsho).eq.0)
-     >write(ifmt,*)nrevt,timaa
+     *write(ifmt,*)nrevt,timaa
       ish=ish0
       ishsub=ishs0
       return
@@ -1569,12 +1568,12 @@ c     terminates run
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cifipr/ifipr /cptlu/nptlu
       character dcn*3
       if(ish.eq.14)call uttima('*** atermi *** ')
@@ -1591,13 +1590,13 @@ c-----------------------------------------------------------------------
       endif
       endif
       if(isup.ne.1.and.imsg.gt.0)write(ifmt,106)
-     >('*',i=1,69),imsg,ifch,('*',i=1,69)
+     *('*',i=1,69),imsg,ifch,('*',i=1,69)
 106   format(' ',69a1/' *',67x,'*'
-     >/' *',12x,i5,' message(s) - written to file ',i2,18x,'*'
-     >/' *',67x,'*'/' ',69a1)
+     */' *',12x,i5,' message(s) - written to file ',i2,18x,'*'
+     */' *',67x,'*'/' ',69a1)
       endif
       if(isup.ne.1)write(ifmt,*)
-     >'stop execution (stp) or run again (agn)?'
+     *'stop execution (stp) or run again (agn)?'
       read(ifop,*)dcn
       call utlow3(dcn)
       if(isup.ne.1.and.ivi.eq.1)write(ifmt,*)dcn
@@ -1618,21 +1617,21 @@ c     generates one venus event
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       ish0=ish
       ishs0=ishsub
       if(ishevt.ne.0.and.nrevt+1.ne.ishevt)ish=0
@@ -1644,9 +1643,9 @@ c-----------------------------------------------------------------------
       ipage=0
       call utpage
       if(ish.ge.91)
-     >write(ifch,113)('-',l=1,79),ipage,nrevt+1,('-',l=1,79)
+     *write(ifch,113)('-',l=1,79),ipage,nrevt+1,('-',l=1,79)
 113   format(/1x,79a1/1x,i5,'.page            '
-     >,5x,'evt:',i4,5x,/1x,79a1/)
+     *,5x,'evt:',i4,5x,/1x,79a1/)
       if(ichoic.eq.4.or.ichoic.eq.5)goto1000
       bimevt=-1
       ntevt0=ntevt
@@ -1667,7 +1666,7 @@ c-----------------------------------------------------------------------
       goto2
       endif
       if(jerr.gt.0)
-     >call utstop('avenus: jerr > 0                        ')
+     *call utstop('avenus: jerr > 0                        ')
       nrevt=nrevt+1
  
 1000  continue
@@ -1684,48 +1683,48 @@ c     performs a basic (one color exchange) hadron-hadron collision
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       common/ckol/kol
       parameter (nsi=6,nsix=100,nvmax=10)
       parameter (nha=nsix+2)
       real proj(nsi,nha),targ(nsi,nha)
-     >,strap(nsi,nsix+1),strat(nsi,nsix+1),str0(nsi,nsix+1)
-     >,strlp(nsi,nsix+1),strlt(nsi,nsix+1)
-     >,strpwo(nsi,2),strtwo(nsi,2)
+     *,strap(nsi,nsix+1),strat(nsi,nsix+1),str0(nsi,nsix+1)
+     *,strlp(nsi,nsix+1),strlt(nsi,nsix+1)
+     *,strpwo(nsi,2),strtwo(nsi,2)
       parameter (mamx=250)
       common/cproja/iproj,itarg,kproja(nha,mamx),ktarga(nha,mamx)
       real siap(nsi),sibp(nsi),silp(nsi),sixp(nsi,nsix),
-     >siat(nsi),sibt(nsi),silt(nsi),sixt(nsi,nsix)
-     >,siapwo(nsi),sibpwo(nsi),siatwo(nsi),sibtwo(nsi)
+     *siat(nsi),sibt(nsi),silt(nsi),sixt(nsi,nsix)
+     *,siapwo(nsi),sibpwo(nsi),siatwo(nsi),sibtwo(nsi)
       common /cnew/kotri,newico,newcol
-     >/clead/lead,cooav3,cooav4
-     >/cnce/nces,ncolex
+     */clead/lead,cooav3,cooav4
+     */cnce/nces,ncolex
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       character xflap*3,xflbp*3,xflat*3,xflbt*3
       parameter (nflav=6)
       integer icvp(2),icvt(2),jcvp(nflav,2),jcvt(nflav,2)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cstsh/nstsh
       common/cpzstr/pzstrl,estrl,istrl,isea
       real psum(5),psumx(5)
@@ -1751,15 +1750,15 @@ c-----------------------------------------------------------------------
  
 9997  call hdecmp(proj,silp,sixp)
       call hdecmp(targ,silt,sixt)
- 10   icvp(1)=nint(proj(5,1))
+1     icvp(1)=nint(proj(5,1))
       icvp(2)=nint(proj(6,1))
       icvt(1)=nint(targ(5,1))
       icvt(2)=nint(targ(6,1))
       call hapapa(silp,iflap,xflap,ptap,ptahp,iflbp,xflbp,ptbp,ptbhp
-     >,nqaqp,icvp)
+     *,nqaqp,icvp)
       call hapapa(silt,iflat,xflat,ptat,ptaht,iflbt,xflbt,ptbt,ptbht
-     >,nqaqt,icvt)
-      if(nqaqp*nqaqt.eq.-1)goto10
+     *,nqaqt,icvt)
+      if(nqaqp*nqaqt.eq.-1)goto1
  
 9998  ntry=ntry+1
       if(ntry.gt.ntrymx+1)then
@@ -1770,7 +1769,7 @@ c-----------------------------------------------------------------------
       call hdecmp(proj,silp,sixp)
       call hdecmp(targ,silt,sixt)
       call hastfs(silp,sixp,iflap,xflap,ptap,ptahp
-     >,silt,sixt,iflbt,xflbt,ptbt,ptbht,strap,iret,1)
+     *,silt,sixt,iflbt,xflbt,ptbt,ptbht,strap,iret,1)
       if(iret.eq.1)then
       iskip=1
       goto9999
@@ -1795,7 +1794,7 @@ c-----------------------------------------------------------------------
       goto9998
       endif
       call hastfs(silt,sixt,iflat,xflat,ptat,ptaht
-     >,silp,sixp,iflbp,xflbp,ptbp,ptbhp,strat,iret,2)
+     *,silp,sixp,iflbp,xflbp,ptbp,ptbhp,strat,iret,2)
       if(iret.eq.1)then
       iskip=1
       goto9999
@@ -1822,7 +1821,7 @@ c-----------------------------------------------------------------------
  
       call hastfc(silp,sixp,iret)
       if(iret.eq.0)
-     >call hastfc(silt,sixt,iret)
+     *call hastfc(silt,sixt,iret)
            if(iret.eq.1)then
       if(ish.ge.91)write(ifch,*)'light string --> redo hastfs'
       goto9998
@@ -1855,10 +1854,10 @@ c-----------------------------------------------------------------------
       if(xflbt(1:2).eq.'va')jcvt(iabs(iflbt),2)=jcvt(iabs(iflbt),2)-1
       call idenco(jcvp,icvp,ireten)
       if(ireten.eq.1)
-     >call utstop('hapapa: idenco ret code = 1             ')
+     *call utstop('hapapa: idenco ret code = 1             ')
       call idenco(jcvt,icvt,ireten)
       if(ireten.eq.1)
-     >call utstop('hapapa: idenco ret code = 1             ')
+     *call utstop('hapapa: idenco ret code = 1             ')
  
       proj(5,1)=icvp(1)
       proj(6,1)=icvp(2)
@@ -1867,9 +1866,9 @@ c-----------------------------------------------------------------------
       call utksix(sixp,kmaxpn)
       call utksix(sixt,kmaxtn)
       if(kmaxpn+1.gt.nsix)
-     >call utstop('hahabs: dimension nsix too small        ')
+     *call utstop('hahabs: dimension nsix too small        ')
       if(kmaxtn+1.gt.nsix)
-     >call utstop('hahabs: dimension nsix too small        ')
+     *call utstop('hahabs: dimension nsix too small        ')
       kmxp=kmaxpn+1
       kmxt=kmaxtn+1
       do 5 n=1,nsi
@@ -1896,11 +1895,11 @@ c-----------------------------------------------------------------------
       isplt=0
 11    call hastpr(strap,isplt)
       if(isplt.ne.0)
-     >call utstop('hahabs: isplt /= 0                      ')
+     *call utstop('hahabs: isplt /= 0                      ')
       isplt=0
 12    call hastpr(strat,isplt)
       if(isplt.ne.0)
-     >call utstop('hahabs: isplt /= 0                      ')
+     *call utstop('hahabs: isplt /= 0                      ')
  
       if(kmaxpn.gt.kmaxp)then
       proj(3,1)=proj(3,1)+coord(3,kol)
@@ -1949,7 +1948,7 @@ c-c   if(k.eq.1)ampr=.94
       if(pzstrl/pnllx.gt.1.-0.850/engy**2.and.iskip.ne.1)goto1002
       istrl=0
       if(nstsh.eq.0.and.isea.eq.1
-     >.and.pzstrl/pnllx.gt.1.-10.000/engy**2)istrl=1
+     *.and.pzstrl/pnllx.gt.1.-10.000/engy**2)istrl=1
       do i=1,nsi
       do k=1,kmaxor
       str0(i,k)=strlp(i,k)
@@ -1983,8 +1982,8 @@ c-c   if(k.eq.1)ampr=.94
 c-c   write(6,*)' '
 c-c   do j=nstr0+1,nstr
 c-c   write(6,109)j,(icstr(k,j)/100,k=1,4)
-c-c  >,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
-c-c  >,irlstr(j)
+c-c  *,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
+c-c  *,irlstr(j)
 c-c   enddo
 c-c   write(6,*)psum
 c-c   write(6,*)psumx
@@ -2012,8 +2011,8 @@ c-c   write(6,*)'rescale failed'
       if(psumx(5).gt.0.)psumx(5)=sqrt(psumx(5))
 c-c   do j=nstr0+1,nstr
 c-c   write(6,109)j,(icstr(k,j)/100,k=1,4)
-c-c  >,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
-c-c  >,irlstr(j)
+c-c  *,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
+c-c  *,irlstr(j)
 c-c   enddo
 c-c   write(6,*)psum
 c-c   write(6,*)psumx
@@ -2056,7 +2055,7 @@ c-c   if(k.eq.1)ampr=.94
       if(-pzstrl/pnllx.gt.1.-0.850/engy**2.and.iskip.ne.1)goto1002
       istrl=0
       if(nstsh.eq.0.and.isea.eq.1
-     >.and.-pzstrl/pnllx.gt.1.-10.000/engy**2)istrl=1
+     *.and.-pzstrl/pnllx.gt.1.-10.000/engy**2)istrl=1
       do i=1,nsi
       do k=1,kmaxor
       str0(i,k)=strlt(i,k)
@@ -2090,8 +2089,8 @@ c-c   if(k.eq.1)ampr=.94
 c-c   write(6,*)' '
 c-c   do j=nstr0+1,nstr
 c-c   write(6,109)j,(icstr(k,j)/100,k=1,4)
-c-c  >,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
-c-c  >,irlstr(j)
+c-c  *,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
+c-c  *,irlstr(j)
 c-c   enddo
 c-c   write(6,*)psum
 c-c   write(6,*)psumx
@@ -2119,8 +2118,8 @@ c-c   write(6,*)'rescale failed'
       if(psumx(5).gt.0.)psumx(5)=sqrt(psumx(5))
 c-c   do j=nstr0+1,nstr
 c-c   write(6,109)j,(icstr(k,j)/100,k=1,4)
-c-c  >,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
-c-c  >,irlstr(j)
+c-c  *,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j)/pnllx,pstr(5,j)
+c-c  *,irlstr(j)
 c-c   enddo
 c-c   write(6,*)psum
 c-c   write(6,*)psumx
@@ -2136,9 +2135,9 @@ c     ----
       write(ifch,100)((proj(i,j),i=1,nsi),j=2,kmaxp+2)
       write(ifch,102)((targ(i,j),i=1,nsi),j=2,kmaxt+2)
 100   format(' proj:',4f11.5,2f8.0/
-     >   ,20('      ',4f11.5,2f8.0/))
+     *   ,20('      ',4f11.5,2f8.0/))
 102   format(' targ:',4f11.5,2f8.0/
-     >   ,50('      ',4f11.5,2f8.0/))
+     *   ,50('      ',4f11.5,2f8.0/))
 101   format('  ',i3,'. trial')
       return
  
@@ -2154,7 +2153,7 @@ c     ----
       if(ish.ge.91)then
       write(ifch,*)' '
       write(ifch,*)
-     >'sr hahabs: not justified complete absorption -> irethh=1'
+     *'sr hahabs: not justified complete absorption -> irethh=1'
       endif
       irethh=1
       if(iskip.eq.1)goto9996
@@ -2167,45 +2166,45 @@ c     ----
       endif
       irethh=1
       if(iskip.eq.1)
-     >call utstop('hahabs: iskip=1 should not happen       ')
+     *call utstop('hahabs: iskip=1 should not happen       ')
       return
  
       end
  
 c-----------------------------------------------------------------------
       subroutine hapapa(sil,ifla,xfla,pta,ptah,iflb,xflb,ptb,ptbh,nqaq
-     >,icv)
+     *,icv)
 c     determines momenta and flavor of participating partons in a hadron
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (nsi=6,nsix=100,nflav=6)
       parameter (nha=nsix+2)
       real sia(nsi),sib(nsi),sil(nsi),probab(nflav),probsu(nflav+1)
       integer jv0(nflav),jc(nflav,2),jcx(nflav),id(2)
-     >,icv(2),jcv(nflav,2)
+     *,icv(2),jcv(nflav,2)
       parameter (nptq=129)
       common /cptq/xptq(nptq),qptq(nptq),qpth(nptq),wptq(nptq)
       parameter (nstru=2049)
       common/stru/xstru(nstru),wstru(nstru)
-     >,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
+     *,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
       common /cnew/kotri,newico,newcol
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       character xfla*3,xflb*3,chpt*1
  
       sgn=sign(1.,sil(3))
@@ -2282,9 +2281,9 @@ c     --------------------------
       nqaq=0
            endif
       if(nqu-naq-nqaq.lt.neqmn)
-     >call utstop('hapapa: neq.lt.neqmn                    ')
+     *call utstop('hapapa: neq.lt.neqmn                    ')
       if(nqu-naq-nqaq.gt.neqmx)
-     >call utstop('hapapa: neq.gt.neqmx                    ')
+     *call utstop('hapapa: neq.gt.neqmx                    ')
            endif
 14    continue
       ival1=ival
@@ -2379,7 +2378,7 @@ c-c   if(nqaq.eq.0.and.ival1.eq.0)ifla=iflb
  
 c-----------------------------------------------------------------------
       subroutine hasi(qaq,sil,ifl,xfl,pt0,pt0h,si,iret,jord,ixflab
-     >               ,ptdiff)
+     *               ,ptdiff)
 c     determines string ingredients (=jets)
 c iret=0: ok
 c iret=1: remnant changes direction
@@ -2387,19 +2386,19 @@ c iret=2: jc(,)=10
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cnsta/pi,prom,piom,ainfin
       character xfl*3,qaq*5
       parameter (nsi=6,nflav=6,nsix=100)
@@ -2429,8 +2428,8 @@ c-c   enll=sqrt(ams**2+pnllx**2)
       sgn=sign(1.,sil(3))
       ihard=0
       if(rangen().le.phard)ihard=1
-      do 13 i=1,2
- 13   id(i)=nint(sil(4+i))
+      do 1 i=1,2
+1     id(i)=nint(sil(4+i))
       call iddeco(id,jc)
 9999  ntry=ntry+1
       if(ntry.gt.20)then
@@ -2496,7 +2495,7 @@ c-c   ptdiff(2)=(ptfull-pt)*sin(phi)
       if(jc(ifla,1).eq.10.or.jc(ifla,2).eq.10)goto9998
       call idenco(jc,ic,ireten)
       if(ireten.eq.1)
-     >call utstop('hasi  : idenco ret code = 1             ')
+     *call utstop('hasi  : idenco ret code = 1             ')
       sil(5)=ic(1)
       sil(6)=ic(2)
       goto1000
@@ -2518,13 +2517,13 @@ c-c   ptdiff(2)=(ptfull-pt)*sin(phi)
            endif
       if(ish.ge.93)then
       if(iret.ne.0.or.ntry.gt.1)
-     >write(ifch,*)'iret=',iret,'  ntry=',ntry
+     *write(ifch,*)'iret=',iret,'  ntry=',ntry
       if(ntry.gt.0)
-     >write(ifch,100)xfl,pt0,pt,en,en/enll
+     *write(ifch,100)xfl,pt0,pt,en,en/enll
 100   format(1x,'hasi: xfl=',a3
-     >,' pt0=',e8.3,' pt=',e8.3,' en=',e8.3,' x=',e8.3)
+     *,' pt0=',e8.3,' pt=',e8.3,' en=',e8.3,' x=',e8.3)
       if(ntry.eq.0)
-     >write(ifch,101)xfl
+     *write(ifch,101)xfl
 101   format(1x,'hasi: xfl=',a3)
       endif
       return
@@ -2539,12 +2538,12 @@ c     iret=2: jc(,) .gt. 9
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common /cnce/nces,ncolex
       parameter (nsi=6,nflav=6,nsix=100)
       real sil(nsi),six(nsi,nsix),si(nsi)
@@ -2593,19 +2592,19 @@ c-c   if(s.lt.amin**2)iret=1
            if(ish.ge.94)then
       write(ifch,*)' '
       if(iret.eq.0)
-     >write(ifch,*)('-',l=1,79)
+     *write(ifch,*)('-',l=1,79)
       if(iret.ne.0)
-     >write(ifch,*)('#',l=1,79)
+     *write(ifch,*)('#',l=1,79)
       write(ifch,*)'iret= ',iret ,'  kmax= ',kmax,'  nrevt= ',nrevt
-     >,'  nces= ',nces
+     *,'  nces= ',nces
       write(ifch,8004)sil
 8004  format(' sil: ',4f11.5,2f8.0)
            if(kmax.gt.0)then
       write(ifch,8007)(six(i,1),i=1,nsi)
 8007  format(' six: ',4f11.5,2f8.0)
       if(kmax.gt.1)then
-      do 190 j=2,kmax
- 190  write(ifch,8008)(six(i,j),i=1,nsi)
+      do 1 j=2,kmax
+1     write(ifch,8008)(six(i,j),i=1,nsi)
 8008  format('      ',4f11.5,2f8.0)
       endif
       write(ifch,8005)(si(i),i=1,4)
@@ -2618,9 +2617,9 @@ c-c   if(s.lt.amin**2)iret=1
       write(ifch,*)'s= ',s,'    amin**2= ',amin**2,'   amin= ',amin
            endif
       if(iret.ne.0)
-     >write(ifch,*)('#',l=1,79)
+     *write(ifch,*)('#',l=1,79)
       if(iret.eq.0)
-     >write(ifch,*)('-',l=1,79)
+     *write(ifch,*)('-',l=1,79)
       write(ifch,*)' '
            endif
  
@@ -2631,7 +2630,7 @@ c-c   if(s.lt.amin**2)iret=1
       call utksix(six,kmax)
       write(ifch,103)sil,((six(i,j),i=1,nsi),j=1,kmax)
 103   format(/' sil: ',4f11.5,2f8.0/,' six: ',4f11.5,2f8.0/
-     >,50('      ',4f11.5,2f8.0/))
+     *,50('      ',4f11.5,2f8.0/))
       return
       end
  
@@ -2661,17 +2660,17 @@ c  subtracts sia-sib from sila-silb (only momentum components)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
 
       parameter (nsi=6)
       real sila(nsi),silb(nsi),sia(nsi),sib(nsi)
       double precision a,d,b,put,pux,puy,pot,pox,poy,pep,pem,pyp,pym
-     >,pip,pim,pi3,pi4,pap,pam,pa3,pa4,sla,slb
+     *,pip,pim,pi3,pi4,pap,pam,pa3,pa4,sla,slb
       double precision ssila(nsi),ssilb(nsi),ssia(nsi),ssib(nsi)
-     >,plab(4),pab(4)
+     *,plab(4),pab(4)
  
       iret=0
 
@@ -2773,24 +2772,24 @@ c-----------------------------------------------------------------------
       call utmsgf
       endif
       if(dabs(ssila(4)**2
-     >-ssila(1)**2-ssila(2)**2-ssila(3)**2).gt.1e-4)then
+     *-ssila(1)**2-ssila(2)**2-ssila(3)**2).gt.1e-4)then
       call utmsg('hastfr')
       write(ifch,*)'*****  mass**2 of ssila nonzero'
       write(ifch,*)'mass**2=',ssila(4)**2
-     >-ssila(1)**2-ssila(2)**2-ssila(3)**2
+     *-ssila(1)**2-ssila(2)**2-ssila(3)**2
       call utmsgf
       endif
       if(dabs(ssilb(4)**2
-     >-ssilb(1)**2-ssilb(2)**2-ssilb(3)**2).gt.1e-4)then
+     *-ssilb(1)**2-ssilb(2)**2-ssilb(3)**2).gt.1e-4)then
       call utmsg('hastfr')
       write(ifch,*)'*****  mass**2 of ssilb nonzero'
       write(ifch,*)'mass**2=',ssilb(4)**2
-     >-ssilb(1)**2-ssilb(2)**2-ssilb(3)**2
+     *-ssilb(1)**2-ssilb(2)**2-ssilb(3)**2
       call utmsgf
       endif
       do 14 n=1,4
       if(dabs(plab(n)
-     >-ssila(n)-ssilb(n)-ssia(n)-ssib(n)).gt.1e-4)goto15
+     *-ssila(n)-ssilb(n)-ssia(n)-ssib(n)).gt.1e-4)goto15
 14    continue
       goto16
 15    continue
@@ -2839,7 +2838,7 @@ c-----------------------------------------------------------------------
  
 c-----------------------------------------------------------------------
       subroutine hastfs(sila,sixa,ifla,xfla,pta,ptah
-     >                 ,silb,sixb,iflb,xflb,ptb,ptbh  ,str,iret  ,jord)
+     *                 ,silb,sixb,iflb,xflb,ptb,ptbh  ,str,iret  ,jord)
 c     forms a short (=q-qbar) string
 c iret=0: ok
 c iret=1: in sr hasi: remnant changes direction or zero si().
@@ -2850,22 +2849,22 @@ c iret=5: string mass too small. valence quarks involved.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (nsi=6,nsix=100)
       real sila(nsi),sixa(nsi,nsix),silb(nsi),sixb(nsi,nsix)
-     >,sia(nsi),sib(nsi),str(nsi,nsix+1),sila0(nsi),silb0(nsi),si(nsi)
-     >,six(nsi),sts(nsi,2)
+     *,sia(nsi),sib(nsi),str(nsi,nsix+1),sila0(nsi),silb0(nsi),si(nsi)
+     *,six(nsi),sts(nsi,2)
       character xfla*3,xflb*3
       integer ic(2)
       parameter (nptq=129)
@@ -2890,9 +2889,9 @@ c-----------------------------------------------------------------------
  
       ixflab=0
       if(  xfla.ne.'---'.and.xflb.ne.'---'
-     >.and.(xfla.ne.'000'.or.xflb.ne.'000'))ixflab=1
+     *.and.(xfla.ne.'000'.or.xflb.ne.'000'))ixflab=1
       call hasi('quark',sila,ifla,xfla,pta,ptah,sia,iret,jord,ixflab
-     >,ptdiff)
+     *,ptdiff)
       if(iret.eq.1)goto9001
       if(iret.eq.2)goto9002
       sila(1)=sila(1)-ptdiff(1)
@@ -2900,7 +2899,7 @@ c-----------------------------------------------------------------------
       silb(1)=silb(1)+ptdiff(1)
       silb(2)=silb(2)+ptdiff(2)
       call hasi('antiq',silb,iflb,xflb,ptb,ptbh,sib,iret,jord,ixflab
-     >,ptdiff)
+     *,ptdiff)
       if(iret.eq.1)goto9001
       if(iret.eq.2)goto9002
       silb(1)=silb(1)-ptdiff(1)
@@ -2928,7 +2927,7 @@ c-----------------------------------------------------------------------
 70    str(n,2)=sib(n)
            elseif(xfla.ne.'---'.and.xflb.eq.'---')then
       if(kmaxb+1.gt.nsix)
-     >call utstop('hastfs: nsix too small                  ')
+     *call utstop('hastfs: nsix too small                  ')
       do 60 n=1,nsi
       sixb(n,kmaxb+1)=sia(n)
       if(kmaxb+2.le.nsix)sixb(n,kmaxb+2)=0
@@ -2938,7 +2937,7 @@ c-----------------------------------------------------------------------
       kmaxb=kmaxb+1
            elseif(xfla.eq.'---'.and.xflb.ne.'---')then
       if(kmaxa+1.gt.nsix)
-     >call utstop('hastfs: nsix too small                  ')
+     *call utstop('hastfs: nsix too small                  ')
       do 80 n=1,nsi
       sixa(n,kmaxa+1)=sib(n)
       if(kmaxa+2.le.nsix)sixa(n,kmaxa+2)=0
@@ -2955,7 +2954,7 @@ c     no action
 9000  iret=0
       if(ish.ge.91)write(ifch,102)sia,xfla,sib,xflb
 102   format(' sia: ',4f11.5,2f8.0,2x,a3
-     >      /' sib: ',4f11.5,2f8.0,2x,a3)
+     *      /' sib: ',4f11.5,2f8.0,2x,a3)
       return
  
 9001  iret=1
@@ -2973,9 +2972,9 @@ c     jc(,)=10
 9003  iret=3
       if(xfla(1:2).eq.'va'.or.xflb(1:2).eq.'va')goto9005
       wt=abs(sia(1)+sib(1))+abs(sia(2)+sib(2))
-     >+abs(sia(3)+sib(3))
+     *+abs(sia(3)+sib(3))
       if(iabs(ifla).eq.iabs(iflb).and.wt.lt.1e-3
-     >.and.xfla.eq.'000'.and.xflb.eq.'000')goto9004
+     *.and.xfla.eq.'000'.and.xflb.eq.'000')goto9004
       iflb=iabs(ifla)*iflb/iabs(iflb)
       if(ish.ge.91)write(ifch,102)sia,xfla,sib,xflb
       if(ish.ge.91)write(ifch,*)'string mass too small (3)'
@@ -3014,42 +3013,42 @@ c           -5 : hastpr to be redone because of produced s=3/2 particle
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (nsi=6,nsix=100)
       real str(nsi,2),strp(nsi,2),stro(nsi,nsix+1)
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       parameter (nflav=6)
       integer jc1(nflav,2),jc2(nflav,2),jc(nflav,2),ic1(2),ic2(2),ic(2)
-     >,icx(2),icy(2),ic1x(2)
+     *,icx(2),icy(2),ic1x(2)
       parameter (ngau=129)
       common /cgau/xgau(ngau),qgau(ngau),wgau(ngau)
-     >/clead/lead,cooav3,cooav4 /ckol/kol
+     */clead/lead,cooav3,cooav4 /ckol/kol
       real p1(4),p2(4)
       double precision ppx,ppy,ppz,ppe,ppm,pp1(4),pp2(4),ppp
       parameter (nha=nsix+2,mamx=250)
@@ -3107,8 +3106,8 @@ c     --------------------
 c     split string
 c     ------------
            if(kmax.gt.2.or.kmax.eq.2.and.isplt.gt.0
-     >                 .or.kmax.eq.2.and.npa.gt.3
-     >                 .or.kmax.eq.2.and.lead.eq.1)then
+     *                 .or.kmax.eq.2.and.npa.gt.3
+     *                 .or.kmax.eq.2.and.lead.eq.1)then
            if(isplt.eq.0)then
       nsuc=0
       kmaxor=kmax
@@ -3125,7 +3124,7 @@ c     ------------
       do 16 i=1,2
       jc2(n,i)=jc2(n,i)+jc1(n,i)
       if(n.gt.4.and.jc2(n,i).ne.0)
-     >call utstop('hastpr: flavour > 4                     ')
+     *call utstop('hastpr: flavour > 4                     ')
 16    continue
 15    continue
       keu=jc2(1,1)-jc2(1,2)
@@ -3173,7 +3172,7 @@ c-c   alead=0
       kolz=kolsp
       if(kolz.lt.1.or.kolz.gt.kollmx)write(ifch,*)'kolz=',kolz
       if(kolz.lt.1.or.kolz.gt.kollmx)
-     >call utstop('hastpr: kolz out of range (1)           ')
+     *call utstop('hastpr: kolz out of range (1)           ')
       kin=1
            else
       kin=0
@@ -3195,7 +3194,7 @@ c-c   alead=0
       if(kolz.lt.1.or.kolz.gt.kollmx)then
       call utmsg('hastpr')
       write(ifch,*)'*****  kolz out of range;   kolz:',kolz
-     >,'   set to:',kol
+     *,'   set to:',kol
       write(ifch,105)(str(i,1),i=1,4),(nint(str(i,1)),i=5,6)
       write(ifch,104)(str(i,2),i=1,4),(nint(str(i,2)),i=5,6)
       call utmsgf
@@ -3206,10 +3205,9 @@ c-c   alead=0
  
 c     add two jets
 c     ------------
-      do i=1,2
-        ic1(i)=nint(str(4+i,1))
-        ic2(i)=nint(str(4+i,2))
-      enddo
+      do 1 i=1,2
+      ic1(i)=nint(str(4+i,1))
+1     ic2(i)=nint(str(4+i,2))
       ia1=ic1(1)+ic1(2)
       ia2=ic2(1)+ic2(2)
            if(ia1.eq.0.and.ia2.eq.0)then
@@ -3234,7 +3232,7 @@ c     ------------
       n2=n2+jc2(n,i)
       jc(n,i)=jc1(n,i)+jc2(n,i)
       if(n.gt.4.and.jc(n,i).ne.0)
-     >call utstop('hastpr: flavour > 4                     ')
+     *call utstop('hastpr: flavour > 4                     ')
 9     continue
       keu=jc(1,1)-jc(1,2)
       ked=jc(2,1)-jc(2,2)
@@ -3243,7 +3241,7 @@ c     ------------
       amstr=utamnu(keu,ked,kes,kec,6)
       call idenco(jc,ic,ireten)
       if(ireten.eq.1)
-     >call utstop('hastpr: idenco ret code = 1             ')
+     *call utstop('hastpr: idenco ret code = 1             ')
       idstr=idtra(ic,0,0,3)
  
 c     determine rot
@@ -3346,7 +3344,7 @@ c-c   if(mod(idstrr,10).eq.0.and.rangen().lt.0.33)am=am+0.300
  
 c leading string = hadron:
       if(lead.eq.1.and.ia1.ne.0.and.ia2.ne.0
-     >.and.isplt0.eq.0.and.isplt.eq.0.and.idstrr.ne.0)then
+     *.and.isplt0.eq.0.and.isplt.eq.0.and.idstrr.ne.0)then
       am=0
       call idres(idstr,am,idstrr,iadj)
       if(mod(idstrr,10).eq.0.and.rangen().lt.0.33)am=am+0.300
@@ -3362,7 +3360,7 @@ c     write /cstr/
 c     ------------
       nstr=nstr+1
       if(nstr.gt.mxstr)
-     >call utstop('hastpr: nstr>mxstr                      ')
+     *call utstop('hastpr: nstr>mxstr                      ')
       if(lead.eq.0)nstsh=1
       nsuc=nsuc+1
       irlstr(nstr)=nsuc
@@ -3380,7 +3378,7 @@ c     ------------
       rotstr(2,nstr)=p1(2)
       rotstr(3,nstr)=p1(3)
       if(p1(1).eq.0..and.p1(2).eq.0..and.p1(3).eq.0.)
-     >rotstr(3,nstr)=1.
+     *rotstr(3,nstr)=1.
       do 2 i=1,4
 2     xorstr(i,nstr)=coord(i,kolz)
       iorstr(nstr)=-kolz
@@ -3396,7 +3394,7 @@ c     ------------
       write(ifch,*)'ordinary mesonic string:'
       endif
       write(ifch,106)nstr,(icstr(k,nstr)/100,k=1,4)
-     >,(pstr(i,nstr),i=3,5)
+     *,(pstr(i,nstr),i=3,5)
 106   format(/' /cstr/',i4,3x,4i5,2x,3(1x,e9.3)/)
       endif
  
@@ -3410,8 +3408,8 @@ c-----------------------------------------------------------------------
       parameter (nsi=6,nsix=100)
       parameter (nha=nsix+2)
       real bar(nsi,nha),sil(nsi),six(nsi,nsix)
-      do 10 n=1,nsi
- 10   sil(n)=bar(n,2)
+      do 1 n=1,nsi
+1     sil(n)=bar(n,2)
       do 3 m=1,nsix
       sixsqr=0
       do 2 n=1,nsi
@@ -3428,15 +3426,15 @@ c     rescales string momenta of strings j1-j2 to have total mom psum.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       dimension psum(5),beta(3)
       double precision ppsum(5),padd(5),pp(5)
       data errlim/.001/
@@ -3448,7 +3446,7 @@ c-----------------------------------------------------------------------
       enddo
 
       if(j1.ge.j2)
-     >call utstop('hrescl: j1 .ge. j2                      ')
+     *call utstop('hrescl: j1 .ge. j2                      ')
 
       do 100 k=1,5
 100   padd(k)=0.
@@ -3460,9 +3458,9 @@ c-----------------------------------------------------------------------
       if(ish.ge.90)then
       call utmsg('hrescl')
       write(ifch,*)'*****  sum of str masses .ge. psum(5)'
-      do 10 j=j1,j2
- 10   write(ifch,109)j,(icstr(k,j)/100,k=1,4)
-     >,(pstr(l,j),l=3,5)
+      do 1 j=j1,j2
+1     write(ifch,109)j,(icstr(k,j)/100,k=1,4)
+     *,(pstr(l,j),l=3,5)
 109   format(' /cstr/',i4,3x,4i5,2x,3(1x,e9.3))
       write(ifch,*)'ppsum(345):',(sngl(ppsum(k)),k=3,5)
       call utmsgf
@@ -3485,7 +3483,7 @@ c     ---------------------
       pp(k)=pstr(k,j)
       enddo 
       call utlob2(1,padd(1),padd(2),padd(3),padd(4),padd(5)    
-     >,pp(1),pp(2),pp(3),pp(4))
+     *,pp(1),pp(2),pp(3),pp(4))
       do k=1,4
       pstr(k,j)=pp(k)
       enddo 
@@ -3500,7 +3498,7 @@ c     -----------------------------
       do 320 k=1,3
 320   pstr(k,j)=scal*pstr(k,j)
       pstr(4,j)=sqrt(pstr(1,j)**2+pstr(2,j)**2+pstr(3,j)**2
-     >+pstr(5,j)**2)
+     *+pstr(5,j)**2)
       sum=sum+pstr(4,j)
 310   continue
       scal=psum(5)/sum
@@ -3520,7 +3518,7 @@ c     ---------------------
       pp(k)=pstr(k,j)
       enddo 
       call utlob2(-1,ppsum(1),ppsum(2),ppsum(3),ppsum(4),ppsum(5)    
-     >,pp(1),pp(2),pp(3),pp(4))
+     *,pp(1),pp(2),pp(3),pp(4))
       do k=1,4
       pstr(k,j)=pp(k)
       enddo 
@@ -3538,8 +3536,8 @@ c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       dimension ichrg(53),ifl(3)
       data ichrg/0,2,-1,-1,2,-1,2,-1,2,0,0,0,-3,0,-3,0,-3,0,-3,3*0
-     >,2,-1,-1,2,-1,2,-1,2,0,0,0,-3,0,-3,0,-3,0,-3,3,0
-     >,3,0,0,0,3,3,3,6,6,6,0/
+     *,2,-1,-1,2,-1,2,-1,2,0,0,0,-3,0,-3,0,-3,0,-3,3,0
+     *,3,0,0,0,3,3,3,6,6,6,0/
       idabs=iabs(id)
       call idflav(id,ifl(1),ifl(2),ifl(3),jspin,index)
       if(idabs.lt.100) goto200
@@ -3603,17 +3601,17 @@ c-----------------------------------------------------------------------
       icx(2)=0
            do n=1,nflav
            do j=1,2
-      if(jc(n,j).ne.0)goto 10
+      if(jc(n,j).ne.0)goto1
            enddo
            enddo
       return
- 10   l=0
+1     l=0
            do n=1,nflav
       k=min0(jc(n,1),jc(n,2))
       jc(n,1)=jc(n,1)-k
       jc(n,2)=jc(n,2)-k
       if(jc(n,1).lt.0.or.jc(n,2).lt.0)
-     >call utstop('idcomp: jc negative                     ')
+     *call utstop('idcomp: jc negative                     ')
       l=l+jc(n,1)+jc(n,2)
            enddo
            if(l.eq.0)then
@@ -3623,7 +3621,7 @@ c-----------------------------------------------------------------------
            if(im.eq.1)then
       call idenco(jc,icx,ireten)
       if(ireten.eq.1)
-     >call utstop('idcomp: idenco ret code = 1             ')
+     *call utstop('idcomp: idenco ret code = 1             ')
            endif
       return
       end
@@ -3634,24 +3632,24 @@ c     constructs particle identification code for ifl1+ifl2
 c-----------------------------------------------------------------------
       common/didib/ndidib
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       real pmix1(3,2),pmix2(3,2),pspin1(8)
       data pmix1/.25,.25,.5,0.,.5,1./,pmix2/.5,.5,1.,0.,0.,1./
-      do 10 i=1,8
+      do 1 i=1,8
       if(i.le.3)pspin1(i)=pspinl
       if(i.gt.3)pspin1(i)=pspinh
- 10   continue
+1     continue
       ifail=0
  
 c               meson:
                 if(iabs(ifl1).le.6.and.iabs(ifl2).le.6)then
       if(ifl1*ifl2.gt.0)
-     >call utstop('idcon : ifl1*ifl2.gt.0                  ')
+     *call utstop('idcon : ifl1*ifl2.gt.0                  ')
       ihigh=max0(iabs(ifl1),iabs(ifl2))
       jspin=int(rangen()+pspin1(ihigh))
       id1=ifl1
@@ -3671,7 +3669,7 @@ c               meson:
  
 c               baryon:
                 elseif(mod(ifl1,100).eq.0.and.iabs(ifl2).le.6
-     >             .or.mod(ifl2,100).eq.0.and.iabs(ifl1).le.6)then
+     *             .or.mod(ifl2,100).eq.0.and.iabs(ifl1).le.6)then
            if(mod(ifl1,100).eq.0)then
       id3=mod(ifl1/100,10)
       id2=ifl1/1000
@@ -3702,7 +3700,7 @@ c               baryon:
       jspin=int(rangen()+pspin1(ihigh))
            endif
            if(jspin.ne.1.and.id1.ne.id2.and.id2.ne.id3
-     >      .and.rangen().le.pispn)then
+     *      .and.rangen().le.pispn)then
       iswap=id1
       id1=id2
       id2=iswap
@@ -3816,10 +3814,10 @@ c          only x,y baryons are qqx, qqy, q=u,d,s.
       ifl3=isign(k,id)
       if(k.le.6) then
         index=max0(i-1,j-1)**2+i+max0(i-j,0)+(k-1)*k*(2*k-1)/6
-     >  +109*jspin+36*nmes+nqlep+11
+     1  +109*jspin+36*nmes+nqlep+11
       else
         index=max0(i-1,j-1)**2+i+max0(i-j,0)+9*(k-7)+91
-     >  +109*jspin+36*nmes+nqlep+11
+     1  +109*jspin+36*nmes+nqlep+11
       endif
       return
 c          mesons
@@ -3869,111 +3867,111 @@ c
       dimension lqq(21),laqq(21)
 c          diquark labels
       data lqq/
-     >'uu0. ','ud0. ','dd0. ','us0. ','ds0. ','ss0. ','uc0. ','dc0. ',
-     >'sc0. ','cc0. ','ub0. ','db0. ','sb0. ','cb0. ','bb0. ','ut0. ',
-     >'dt0. ','st0. ','ct0. ','bt0. ','tt0. '/
+     1'uu0. ','ud0. ','dd0. ','us0. ','ds0. ','ss0. ','uc0. ','dc0. ',
+     2'sc0. ','cc0. ','ub0. ','db0. ','sb0. ','cb0. ','bb0. ','ut0. ',
+     3'dt0. ','st0. ','ct0. ','bt0. ','tt0. '/
       data laqq/
-     >'auu0.','aud0.','add0.','aus0.','ads0.','ass0.','auc0.','adc0.',
-     >'asc0.','acc0.','aub0.','adb0.','asb0.','acb0.','abb0.','aut0.',
-     >'adt0.','ast0.','act0.','abt0.','att0.'/
+     1'auu0.','aud0.','add0.','aus0.','ads0.','ass0.','auc0.','adc0.',
+     2'asc0.','acc0.','aub0.','adb0.','asb0.','acb0.','abb0.','aut0.',
+     3'adt0.','ast0.','act0.','abt0.','att0.'/
 c          quark and lepton labels
       data llep/
-     >'     ','up   ','ub   ','dn   ','db   ','st   ','sb   ','ch   ',
-     >'cb   ','bt   ','bb   ','tp   ','tb   ','y    ','yb   ','x    ',
-     >'xb   ','gl   ','err  ','gm   ','err  ','nue  ','anue ','e-   ',
-     >'e+   ','num  ','anum ','mu-  ','mu+  ','nut  ','anut ','tau- ',
-     >'tau+ ','err  ','err  ','err  ','err  ','err  ','err  ','ks   ',
-     >'err  ','err  ','kl   ',
-     >'upss ','ubss ','dnss ','dbss ','stss ','sbss ','chss ','cbss ',
-     >'btss ','bbss ','tpss ','tbss ','err  ','err  ','err  ','err  ',
-     >'glss ','err  ','gmss ','err  ','ness ','aness','e-ss ','e+ss ',
-     >'nmss ','anmss','mu-ss','mu+ss','ntss ','antss','t-ss ','t+ss ',
-     >'err  ','err  ','err  ','err  ','w+ss ','w-ss ','z0ss ','err  ',
-     >'w+   ','w-   ','h10  ','ah10 ','h20  ','ah20 ','h30  ','ah30 ',
-     >'h4+  ','h4-  ','h5+  ','h5-  ','h6+  ','h6-  ','h7++ ','h7-- ',
-     >'h8++ ','h8-- ','h9++ ','h9-- ','z0   '/
+     *'     ','up   ','ub   ','dn   ','db   ','st   ','sb   ','ch   ',
+     *'cb   ','bt   ','bb   ','tp   ','tb   ','y    ','yb   ','x    ',
+     *'xb   ','gl   ','err  ','gm   ','err  ','nue  ','anue ','e-   ',
+     *'e+   ','num  ','anum ','mu-  ','mu+  ','nut  ','anut ','tau- ',
+     *'tau+ ','err  ','err  ','err  ','err  ','err  ','err  ','ks   ',
+     *'err  ','err  ','kl   ',
+     *'upss ','ubss ','dnss ','dbss ','stss ','sbss ','chss ','cbss ',
+     *'btss ','bbss ','tpss ','tbss ','err  ','err  ','err  ','err  ',
+     *'glss ','err  ','gmss ','err  ','ness ','aness','e-ss ','e+ss ',
+     *'nmss ','anmss','mu-ss','mu+ss','ntss ','antss','t-ss ','t+ss ',
+     *'err  ','err  ','err  ','err  ','w+ss ','w-ss ','z0ss ','err  ',
+     *'w+   ','w-   ','h10  ','ah10 ','h20  ','ah20 ','h30  ','ah30 ',
+     *'h4+  ','h4-  ','h5+  ','h5-  ','h6+  ','h6-  ','h7++ ','h7-- ',
+     *'h8++ ','h8-- ','h9++ ','h9-- ','z0   '/
 c          0- meson labels
       data lmes0/
-     >'pi0  ','pi+  ','eta  ','pi-  ','k+   ','k0   ','etap ','ak0  ',
-     >'k-   ','ad0  ','d-   ','f-   ','etac ','f+   ','d+   ','d0   ',
-     >'ub.  ','db.  ','sb.  ','cb.  ','bb.  ','bc.  ','bs.  ','bd.  ',
-     >'bu.  ','ut.  ','dt.  ','st.  ','ct.  ','bt.  ','tt.  ','tb.  ',
-     >'tc.  ','ts.  ','td.  ','tu.  ','uy.  ','dy.  ','sy.  ','cy.  ',
-     >'by.  ','ty.  ','yy.  ','yt.  ','yb.  ','yc.  ','ys.  ','yd.  ',
-     >'yu.  ','ux.  ','dx.  ','sx.  ','cx.  ','bx.  ','tx.  ','yx.  ',
-     >'xx.  ','xy.  ','xt.  ','xb.  ','xc.  ','xs.  ','xd.  ','xu.  '/
+     1'pi0  ','pi+  ','eta  ','pi-  ','k+   ','k0   ','etap ','ak0  ',
+     2'k-   ','ad0  ','d-   ','f-   ','etac ','f+   ','d+   ','d0   ',
+     2'ub.  ','db.  ','sb.  ','cb.  ','bb.  ','bc.  ','bs.  ','bd.  ',
+     3'bu.  ','ut.  ','dt.  ','st.  ','ct.  ','bt.  ','tt.  ','tb.  ',
+     4'tc.  ','ts.  ','td.  ','tu.  ','uy.  ','dy.  ','sy.  ','cy.  ',
+     5'by.  ','ty.  ','yy.  ','yt.  ','yb.  ','yc.  ','ys.  ','yd.  ',
+     6'yu.  ','ux.  ','dx.  ','sx.  ','cx.  ','bx.  ','tx.  ','yx.  ',
+     7'xx.  ','xy.  ','xt.  ','xb.  ','xc.  ','xs.  ','xd.  ','xu.  '/
 c          1- meson labels
       data lmes1/
-     >'rho0 ','rho+ ','omeg ','rho- ','k*+  ','k*0  ','phi  ','ak*0 ',
-     >'k*-  ','ad*0 ','d*-  ','f*-  ','jpsi ','f*+  ','d*+  ','d*0  ',
-     >'ub*  ','db*  ','sb*  ','cb*  ','upsl ','bc*  ','bs*  ','bd*  ',
-     >'bu*  ','ut*  ','dt*  ','st*  ','ct*  ','bt*  ','tt*  ','tb*  ',
-     >'tc*  ','ts*  ','td*  ','tu*  ','uy*  ','dy*  ','sy*  ','cy*  ',
-     >'by*  ','ty*  ','yy*  ','yt*  ','yb*  ','yc*  ','ys*  ','yd*  ',
-     >'yu*  ','ux*  ','dx*  ','sx*  ','cx*  ','bx*  ','tx*  ','yx*  ',
-     >'xx*  ','xy*  ','xt*  ','xb*  ','xc*  ','xs*  ','xd*  ','xu*  '/
+     1'rho0 ','rho+ ','omeg ','rho- ','k*+  ','k*0  ','phi  ','ak*0 ',
+     2'k*-  ','ad*0 ','d*-  ','f*-  ','jpsi ','f*+  ','d*+  ','d*0  ',
+     3'ub*  ','db*  ','sb*  ','cb*  ','upsl ','bc*  ','bs*  ','bd*  ',
+     4'bu*  ','ut*  ','dt*  ','st*  ','ct*  ','bt*  ','tt*  ','tb*  ',
+     5'tc*  ','ts*  ','td*  ','tu*  ','uy*  ','dy*  ','sy*  ','cy*  ',
+     6'by*  ','ty*  ','yy*  ','yt*  ','yb*  ','yc*  ','ys*  ','yd*  ',
+     7'yu*  ','ux*  ','dx*  ','sx*  ','cx*  ','bx*  ','tx*  ','yx*  ',
+     8'xx*  ','xy*  ','xt*  ','xb*  ','xc*  ','xs*  ','xd*  ','xu*  '/
 c          1/2+ baryon labels
       data lbar0/
-     >'err  ','p    ','n    ','err  ','err  ','s+   ','s0   ','s-   ',
-     >'l    ','xi0  ','xi-  ','err  ','err  ','err  ','sc++ ','sc+  ',
-     >'sc0  ','lc+  ','usc. ','dsc. ','ssc. ','sdc. ','suc. ','ucc. ',
-     >'dcc. ','scc. ','err  ','err  ','err  ','err  ','uub. ','udb. ',
-     >'ddb. ','dub. ','usb. ','dsb. ','ssb. ','sdb. ','sub. ','ucb. ',
-     >'dcb. ','scb. ','ccb. ','csb. ','cdb. ','cub. ','ubb. ','dbb. ',
-     >'sbb. ','cbb. ','err  ','err  ','err  ','err  ','err  ','utt. ',
-     >'udt. ','ddt. ','dut. ','ust. ','dst. ','sst. ','sdt. ','sut. ',
-     >'uct. ','dct. ','sct. ','cct. ','cst. ','cdt. ','cut. ','ubt. ',
-     >'dbt. ','sbt. ','cbt. ','bbt. ','bct. ','bst. ','bdt. ','but. ',
-     >'utt. ','dtt. ','stt. ','ctt. ','btt. ','err  ','err  ','err  ',
-     >'err  ','err  ','err  ','uuy. ','udy. ','ddy. ','duy. ','usy. ',
-     >'dsy. ','ssy. ','sdy. ','suy. ','uux. ','udx. ','ddx. ','dux. ',
-     >'usx. ','dsx. ','ssx. ','sdx. ','sux. '/
+     1'err  ','p    ','n    ','err  ','err  ','s+   ','s0   ','s-   ',
+     2'l    ','xi0  ','xi-  ','err  ','err  ','err  ','sc++ ','sc+  ',
+     3'sc0  ','lc+  ','usc. ','dsc. ','ssc. ','sdc. ','suc. ','ucc. ',
+     4'dcc. ','scc. ','err  ','err  ','err  ','err  ','uub. ','udb. ',
+     5'ddb. ','dub. ','usb. ','dsb. ','ssb. ','sdb. ','sub. ','ucb. ',
+     6'dcb. ','scb. ','ccb. ','csb. ','cdb. ','cub. ','ubb. ','dbb. ',
+     7'sbb. ','cbb. ','err  ','err  ','err  ','err  ','err  ','utt. ',
+     8'udt. ','ddt. ','dut. ','ust. ','dst. ','sst. ','sdt. ','sut. ',
+     9'uct. ','dct. ','sct. ','cct. ','cst. ','cdt. ','cut. ','ubt. ',
+     1'dbt. ','sbt. ','cbt. ','bbt. ','bct. ','bst. ','bdt. ','but. ',
+     2'utt. ','dtt. ','stt. ','ctt. ','btt. ','err  ','err  ','err  ',
+     3'err  ','err  ','err  ','uuy. ','udy. ','ddy. ','duy. ','usy. ',
+     4'dsy. ','ssy. ','sdy. ','suy. ','uux. ','udx. ','ddx. ','dux. ',
+     5'usx. ','dsx. ','ssx. ','sdx. ','sux. '/
       data labar0/
-     >'err  ','ap   ','an   ','err  ','err  ','as-  ','as0  ','as+  ',
-     >'al   ','axi0 ','axi+ ','err  ','err  ','err  ','asc--','asc- ',
-     >'asc0 ','alc- ','ausc.','adsc.','assc.','asdc.','asuc.','aucc.',
-     >'adcc.','ascc.','err  ','err  ','err  ','err  ','auub.','audb.',
-     >'addb.','adub.','ausb.','adsb.','assb.','asdb.','asub.','aucb.',
-     >'adcb.','ascb.','accb.','acsb.','acdb.','acub.','aubb.','adbb.',
-     >'asbb.','acbb.','err  ','err  ','err  ','err  ','err  ','autt.',
-     >'audt.','addt.','adut.','aust.','adst.','asst.','asdt.','asut.',
-     >'auct.','adct.','asct.','acct.','acst.','acdt.','acut.','aubt.',
-     >'adbt.','asbt.','acbt.','abbt.','abct.','abst.','abdt.','abut.',
-     >'autt.','adtt.','astt.','actt.','abtt.','err  ','err  ','err  ',
-     >'err  ','err  ','err  ','auuy.','audy.','addy.','aduy.','ausy.',
-     >'adsy.','assy.','asdy.','asuy.','auux.','audx.','addx.','adux.',
-     >'ausx.','adsx.','assx.','asdx.','asux.'/
+     1'err  ','ap   ','an   ','err  ','err  ','as-  ','as0  ','as+  ',
+     2'al   ','axi0 ','axi+ ','err  ','err  ','err  ','asc--','asc- ',
+     3'asc0 ','alc- ','ausc.','adsc.','assc.','asdc.','asuc.','aucc.',
+     4'adcc.','ascc.','err  ','err  ','err  ','err  ','auub.','audb.',
+     5'addb.','adub.','ausb.','adsb.','assb.','asdb.','asub.','aucb.',
+     6'adcb.','ascb.','accb.','acsb.','acdb.','acub.','aubb.','adbb.',
+     7'asbb.','acbb.','err  ','err  ','err  ','err  ','err  ','autt.',
+     8'audt.','addt.','adut.','aust.','adst.','asst.','asdt.','asut.',
+     9'auct.','adct.','asct.','acct.','acst.','acdt.','acut.','aubt.',
+     1'adbt.','asbt.','acbt.','abbt.','abct.','abst.','abdt.','abut.',
+     2'autt.','adtt.','astt.','actt.','abtt.','err  ','err  ','err  ',
+     3'err  ','err  ','err  ','auuy.','audy.','addy.','aduy.','ausy.',
+     4'adsy.','assy.','asdy.','asuy.','auux.','audx.','addx.','adux.',
+     5'ausx.','adsx.','assx.','asdx.','asux.'/
 c          3/2+ baryon labels
       data lbar1/
-     >'dl++ ','dl+  ','dl0  ','dl-  ','err  ','s*+  ','s*0  ','s*-  ',
-     >'err  ','xi*0 ','xi*- ','om-  ','err  ','err  ','uuc* ','udc* ',
-     >'ddc* ','err  ','usc* ','dsc* ','ssc* ','err  ','err  ','ucc* ',
-     >'dcc* ','scc* ','ccc* ','err  ','err  ','err  ','uub* ','udb* ',
-     >'ddb* ','err  ','usb* ','dsb* ','ssb* ','err  ','err  ','ucb* ',
-     >'dcb* ','scb* ','ccb* ','err  ','err  ','err  ','ubb* ','dbb* ',
-     >'sbb* ','cbb* ','bbb* ','err  ','err  ','err  ','err  ','utt* ',
-     >'udt* ','ddt* ','err  ','ust* ','dst* ','sst* ','err  ','err  ',
-     >'uct* ','dct* ','sct* ','cct* ','err  ','err  ','err  ','ubt* ',
-     >'dbt* ','sbt* ','cbt* ','bbt* ','err  ','err  ','err  ','err  ',
-     >'utt* ','dtt* ','stt* ','ctt* ','btt* ','ttt* ','err  ','err  ',
-     >'err  ','err  ','err  ','uuy* ','udy* ','ddy* ','err  ','usy* ',
-     >'dsy* ','ssy* ','err  ','err  ','uux* ','udx* ','ddx* ','err  ',
-     >'usx* ','dsx* ','ssx* ','err  ','err  '/
+     1'dl++ ','dl+  ','dl0  ','dl-  ','err  ','s*+  ','s*0  ','s*-  ',
+     2'err  ','xi*0 ','xi*- ','om-  ','err  ','err  ','uuc* ','udc* ',
+     3'ddc* ','err  ','usc* ','dsc* ','ssc* ','err  ','err  ','ucc* ',
+     4'dcc* ','scc* ','ccc* ','err  ','err  ','err  ','uub* ','udb* ',
+     5'ddb* ','err  ','usb* ','dsb* ','ssb* ','err  ','err  ','ucb* ',
+     6'dcb* ','scb* ','ccb* ','err  ','err  ','err  ','ubb* ','dbb* ',
+     7'sbb* ','cbb* ','bbb* ','err  ','err  ','err  ','err  ','utt* ',
+     8'udt* ','ddt* ','err  ','ust* ','dst* ','sst* ','err  ','err  ',
+     9'uct* ','dct* ','sct* ','cct* ','err  ','err  ','err  ','ubt* ',
+     1'dbt* ','sbt* ','cbt* ','bbt* ','err  ','err  ','err  ','err  ',
+     2'utt* ','dtt* ','stt* ','ctt* ','btt* ','ttt* ','err  ','err  ',
+     3'err  ','err  ','err  ','uuy* ','udy* ','ddy* ','err  ','usy* ',
+     4'dsy* ','ssy* ','err  ','err  ','uux* ','udx* ','ddx* ','err  ',
+     5'usx* ','dsx* ','ssx* ','err  ','err  '/
       data labar1/
-     >'adl--','adl- ','adl0 ','adl+ ','err  ','as*- ','as*0 ','as*+ ',
-     >'err  ','axi*0','axi*+','aom+ ','err  ','err  ','auuc*','audc*',
-     >'addc*','err  ','ausc*','adsc*','assc*','err  ','err  ','aucc*',
-     >'adcc*','ascc*','accc*','err  ','err  ','err  ','auub*','audb*',
-     >'addb*','err  ','ausb*','adsb*','assb*','err  ','err  ','aucb*',
-     >'adcb*','ascb*','accb*','err  ','err  ','err  ','aubb*','adbb*',
-     >'asbb*','acbb*','abbb*','err  ','err  ','err  ','err  ','autt*',
-     >'audt*','addt*','err  ','aust*','adst*','asst*','err  ','err  ',
-     >'auct*','adct*','asct*','acct*','err  ','err  ','err  ','aubt*',
-     >'adbt*','asbt*','acbt*','abbt*','err  ','err  ','err  ','err  ',
-     >'autt*','adtt*','astt*','actt*','abtt*','attt*','err  ','err  ',
-     >'err  ','err  ','err  ','auuy*','audy*','addy*','err  ','ausy*',
-     >'adsy*','assy*','err  ','err  ','auux*','audx*','addx*','err  ',
-     >'ausx*','adsx*','assx*','err  ','err  '/
+     1'adl--','adl- ','adl0 ','adl+ ','err  ','as*- ','as*0 ','as*+ ',
+     2'err  ','axi*0','axi*+','aom+ ','err  ','err  ','auuc*','audc*',
+     3'addc*','err  ','ausc*','adsc*','assc*','err  ','err  ','aucc*',
+     4'adcc*','ascc*','accc*','err  ','err  ','err  ','auub*','audb*',
+     5'addb*','err  ','ausb*','adsb*','assb*','err  ','err  ','aucb*',
+     6'adcb*','ascb*','accb*','err  ','err  ','err  ','aubb*','adbb*',
+     7'asbb*','acbb*','abbb*','err  ','err  ','err  ','err  ','autt*',
+     8'audt*','addt*','err  ','aust*','adst*','asst*','err  ','err  ',
+     9'auct*','adct*','asct*','acct*','err  ','err  ','err  ','aubt*',
+     1'adbt*','asbt*','acbt*','abbt*','err  ','err  ','err  ','err  ',
+     2'autt*','adtt*','astt*','actt*','abtt*','attt*','err  ','err  ',
+     3'err  ','err  ','err  ','auuy*','audy*','addy*','err  ','ausy*',
+     4'adsy*','assy*','err  ','err  ','auux*','audx*','addx*','err  ',
+     5'ausx*','adsx*','assx*','err  ','err  '/
 c          entry
       call idflav(id,ifl1,ifl2,ifl3,jspin,index)
       if(iabs(id).lt.100) goto200
@@ -4018,30 +4016,30 @@ c-----------------------------------------------------------------------
       dimension amlep(52)
       parameter ( nqlep=41,nmes=2,nbary=2)
       data amlep/.3,.3,.5,1.6,4.9,30.,-1.,-1.,0.,0.,
-     >0.,.511003e-3,0.,.105661,0.,1.807,3*-1.,.49767,.49767,
-     >100.3,100.3,100.5,101.6,104.9,130.,2*-1.,100.,0.,
-     >100.,100.005,100.,100.1,100.,101.8,2*-1.,100.,100.,
-     >11*0./
+     *0.,.511003e-3,0.,.105661,0.,1.807,3*-1.,.49767,.49767,
+     *100.3,100.3,100.5,101.6,104.9,130.,2*-1.,100.,0.,
+     *100.,100.005,100.,100.1,100.,101.8,2*-1.,100.,100.,
+     *11*0./
 c          0- meson mass table
       data ammes0/.13496,.13957,.5488,.49367,.49767,.9576,1.8633
-     >,1.8683,2.030,2.976/
+     1,1.8683,2.030,2.976/
 c          1- meson mass table
       data ammes1/.770,.770,.7826,.8881,.8922,1.0196,2.006,2.0086
-     >,2.140,3.097/
+     1,2.140,3.097/
 c          1/2+ baryon mass table
       data ambar0/-1.,.93828,.93957,2*-1.,1.1894,1.1925,1.1974
-     >,1.1156,1.3149,1.3213,3*-1.,2.43,2.43,2.43,2.26
-     >,2.50,2.50,2.60,2.40,2.40,3.55,3.55,3.70,4*-1./
+     1,1.1156,1.3149,1.3213,3*-1.,2.43,2.43,2.43,2.26
+     2,2.50,2.50,2.60,2.40,2.40,3.55,3.55,3.70,4*-1./
 c          3/2+ baryon mass table
       data ambar1/1.232,1.232,1.232,1.232,-1.,1.3823,1.3820
-     >,1.3875,-1.,1.5318,1.5350,1.6722,2*-1.
-     >,2.63,2.63,2.63,-1.,2.70,2.70,2.80,2*-1.,3.75,3.75
-     >,3.90,4.80,3*-1./
+     1,1.3875,-1.,1.5318,1.5350,1.6722,2*-1.
+     2,2.63,2.63,2.63,-1.,2.70,2.70,2.80,2*-1.,3.75,3.75
+     3,3.90,4.80,3*-1./
 c          entry
       call idflav(id,ifl1,ifl2,ifl3,jspin,index)
       if(id.ne.0.and.mod(id,100).eq.0) goto400
       if(iabs(ifl1).gt.4.or.iabs(ifl2).gt.4.or.iabs(ifl3).gt.4)
-     >goto300
+     1goto300
       if(ifl2.eq.0) goto200
       if(ifl1.eq.0) goto100
 c          baryons
@@ -4105,8 +4103,8 @@ c        jc(nflav,2) = jc-type particle identification code.
 c-----------------------------------------------------------------------
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter (nflav=6)
       integer jc(nflav,2),ic(2)
  
@@ -4119,10 +4117,9 @@ c-----------------------------------------------------------------------
       if(iabs(idptl(i)).lt.100)then
       nq=0
       ns=0
-      do n=1,nflav
-       jc(n,1)=0
-       jc(n,2)=0
-      enddo
+      do 1 n=1,nflav
+      jc(n,1)=0
+1     jc(n,2)=0
       return
       endif
  
@@ -4148,21 +4145,21 @@ c     performs mass adjustment, if necessary (if so iadj=1, 0 else)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
  
       if(am.eq.0.)am=1e-5
  
@@ -4180,25 +4177,25 @@ c-----------------------------------------------------------------------
  
       ix=iabs(id)/10
       if(ix.lt.1.or.ix.gt.mxindx)
-     >call utstop('idres: ix out of range.                 ')
+     *call utstop('idres: ix out of range.                 ')
       i=indx(ix)
       if(i.lt.1.or.i.gt.mxre)
-     >call utstop('idres: particle not in table            ')
-      do 10 j=1,mxma-1
+     *call utstop('idres: particle not in table            ')
+      do 1 j=1,mxma-1
       if(am.ge.rema(i,j).and.am.le.rema(i,j+1))then
       if(j-1.gt.9)
-     >call utstop('idres: spin > 9                         ')
+     *call utstop('idres: spin > 9                         ')
       idr=id/10*10+(j-1)*id/iabs(id)
       goto2
       endif
- 10   continue
+1     continue
       goto9999
 2     continue
  
       do 4 k=1,mxmx
       if(ix.eq.idmx(1,k))then
       if(j.lt.1.or.j.gt.mxma-1)
-     >call utstop('idres: index j out of range             ')
+     *call utstop('idres: index j out of range             ')
       if(idmx(j+1,k).ne.0)idr=idmx(j+1,k)*id/iabs(id)
       endif
 4     continue
@@ -4216,7 +4213,7 @@ c-----------------------------------------------------------------------
       if(am.lt.0.)then
       write(ifch,*)' '
       write(ifch,*)'*****  error in idres: '
-     >,'neg mass returned from idmass'
+     *,'neg mass returned from idmass'
       write(ifch,*)'id,am(input):',idi,ami
       write(ifch,*)'idr,am:',idr,am
       call utstop('idres: neg mass returned from idmass    ')
@@ -4238,10 +4235,10 @@ c     initializes /crema/
 c-----------------------------------------------------------------------
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
       parameter (n=29)
       dimension remai(n,mxma),rewii(n,mxma),idmxi(mxma,mxmx)
-     >,icrei(n,2*mxma)
+     *,icrei(n,2*mxma)
       do 3 i=1,mxindx
 3     indx(i)=0
       do 4 k=1,mxre
@@ -4256,164 +4253,162 @@ c-----------------------------------------------------------------------
       data (idmxi(j,6),j=1,mxma)/234,3240,2340,2341,   0,   0,   0, 4*0/
  
       data ((icrei(k,m),m=1,2*mxma),k=1,10)/
-     >111,000000, 9*300000,    11*0,
-     >222,000000, 9*030000,    11*0,
-     >112,       10*210000,    11*0,
-     >122,       10*120000,    11*0,
-     >113,       10*201000,    11*0,
-     >223,       10*021000,    11*0,
-     >123,       10*111000,    11*0,
-     >133,       10*102000,    11*0,
-     >233,       10*012000,    11*0,
-     >333,000000, 9*003000,    11*0/
+     *111,000000, 9*300000,    11*0,
+     *222,000000, 9*030000,    11*0,
+     *112,       10*210000,    11*0,
+     *122,       10*120000,    11*0,
+     *113,       10*201000,    11*0,
+     *223,       10*021000,    11*0,
+     *123,       10*111000,    11*0,
+     *133,       10*102000,    11*0,
+     *233,       10*012000,    11*0,
+     *333,000000, 9*003000,    11*0/
       data ((icrei(k,m),m=1,2*mxma),k=11,20)/
-     >114,       10*200100,    11*0,
-     >124,       10*110100,    11*0,
-     >224,       10*020100,    11*0,
-     >134,       10*101100,    11*0,
-     >234,       10*011100,    11*0,
-     >334,       10*002100,    11*0,
-     >144,       10*100200,    11*0,
-     >244,       10*010200,    11*0,
-     >344,       10*001200,    11*0,
-     >444,000000, 9*000300,    11*0/
+     *114,       10*200100,    11*0,
+     *124,       10*110100,    11*0,
+     *224,       10*020100,    11*0,
+     *134,       10*101100,    11*0,
+     *234,       10*011100,    11*0,
+     *334,       10*002100,    11*0,
+     *144,       10*100200,    11*0,
+     *244,       10*010200,    11*0,
+     *344,       10*001200,    11*0,
+     *444,000000, 9*000300,    11*0/
       data ((icrei(k,m),m=1,2*mxma),k=21,29)/
-     > 11,  10*100000,    0,   10*100000,
-     > 22,  10*001000,    0,   10*001000,
-     > 12,  10*100000,    0,   10*010000,
-     > 13,  10*100000,    0,   10*001000,
-     > 23,  10*010000,    0,   10*001000,
-     > 14,  10*100000,    0,   10*000100,
-     > 24,  10*010000,    0,   10*000100,
-     > 34,  10*001000,    0,   10*000100,
-     > 44,  10*000100,    0,   10*000100/
+     * 11,  10*100000,    0,   10*100000,
+     * 22,  10*001000,    0,   10*001000,
+     * 12,  10*100000,    0,   10*010000,
+     * 13,  10*100000,    0,   10*001000,
+     * 23,  10*010000,    0,   10*001000,
+     * 14,  10*100000,    0,   10*000100,
+     * 24,  10*010000,    0,   10*000100,
+     * 34,  10*001000,    0,   10*000100,
+     * 44,  10*000100,    0,   10*000100/
  
       data ((remai(k,m),m=1,mxma),k=1,10)/
-     >111.,0.000,1.425,1.660,1.825,2.000,0.000,0.000,0.000,0.000,0.000,
-     >222.,0.000,1.425,1.660,1.825,2.000,0.000,0.000,0.000,0.000,0.000,
-     >112.,1.080,1.315,1.485,1.575,1.645,1.685,1.705,1.825,2.000,0.000,
-     >122.,1.080,1.315,1.485,1.575,1.645,1.685,1.705,1.825,2.000,0.000,
-     >113.,1.300,1.500,1.700,1.850,2.000,0.000,0.000,0.000,0.000,0.000,
-     >223.,1.300,1.500,1.700,1.850,2.000,0.000,0.000,0.000,0.000,0.000,
-     >123.,1.117,1.300,1.395,1.465,1.540,1.655,1.710,1.800,1.885,2.000,
-     >133.,1.423,2.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >233.,1.428,2.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >333.,0.000,2.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000/
+     *111.,0.000,1.425,1.660,1.825,2.000,0.000,0.000,0.000,0.000,0.000,
+     *222.,0.000,1.425,1.660,1.825,2.000,0.000,0.000,0.000,0.000,0.000,
+     *112.,1.080,1.315,1.485,1.575,1.645,1.685,1.705,1.825,2.000,0.000,
+     *122.,1.080,1.315,1.485,1.575,1.645,1.685,1.705,1.825,2.000,0.000,
+     *113.,1.300,1.500,1.700,1.850,2.000,0.000,0.000,0.000,0.000,0.000,
+     *223.,1.300,1.500,1.700,1.850,2.000,0.000,0.000,0.000,0.000,0.000,
+     *123.,1.117,1.300,1.395,1.465,1.540,1.655,1.710,1.800,1.885,2.000,
+     *133.,1.423,2.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *233.,1.428,2.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *333.,0.000,2.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000/
       data ((remai(k,m),m=1,mxma),k=11,20)/
-     >114.,2.530,2.730,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >124.,2.345,2.530,2.730,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >224.,2.530,2.730,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >134.,2.450,2.600,2.800,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >234.,2.450,2.600,2.800,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >334.,2.700,2.900,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >144.,3.650,3.850,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >244.,3.650,3.850,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >344.,3.800,4.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     >444.,0.000,5.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000/
+     *114.,2.530,2.730,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *124.,2.345,2.530,2.730,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *224.,2.530,2.730,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *134.,2.450,2.600,2.800,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *234.,2.450,2.600,2.800,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *334.,2.700,2.900,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *144.,3.650,3.850,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *244.,3.650,3.850,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *344.,3.800,4.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     *444.,0.000,5.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000/
       data ((remai(k,m),m=1,mxma),k=21,29)/
-     > 11.,0.450,0.950,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 22.,0.750,0.965,1.080,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 12.,0.450,0.950,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 13.,0.700,1.050,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 23.,0.700,1.050,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 14.,1.935,2.077,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 24.,1.938,2.079,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 34.,2.085,2.195,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
-     > 44.,3.037,3.158,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000/
+     * 11.,0.450,0.950,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 22.,0.750,0.965,1.080,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 12.,0.450,0.950,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 13.,0.700,1.050,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 23.,0.700,1.050,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 14.,1.935,2.077,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 24.,1.938,2.079,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 34.,2.085,2.195,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,
+     * 44.,3.037,3.158,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000/
  
       data ((rewii(k,m),m=1,mxma),k=1,5)/
-     >111.,0.000e+00,0.115e+00,0.140e+00,0.250e+00,0.250e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >222.,0.000e+00,0.115e+00,0.140e+00,0.250e+00,0.250e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >112.,0.000e+00,0.115e+00,0.200e+00,0.140e+00,0.140e+00,
-     >     0.145e+00,0.250e+00,0.140e+00,0.250e+00,0.000e+00,
-     >122.,0.000e+00,0.115e+00,0.200e+00,0.140e+00,0.140e+00,
-     >     0.145e+00,0.250e+00,0.140e+00,0.250e+00,0.000e+00,
-     >113.,0.824e-14,0.036e+00,0.080e+00,0.100e+00,0.170e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
+     *111.,0.000e+00,0.115e+00,0.140e+00,0.250e+00,0.250e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *222.,0.000e+00,0.115e+00,0.140e+00,0.250e+00,0.250e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *112.,0.000e+00,0.115e+00,0.200e+00,0.140e+00,0.140e+00,
+     *     0.145e+00,0.250e+00,0.140e+00,0.250e+00,0.000e+00,
+     *122.,0.000e+00,0.115e+00,0.200e+00,0.140e+00,0.140e+00,
+     *     0.145e+00,0.250e+00,0.140e+00,0.250e+00,0.000e+00,
+     *113.,0.824e-14,0.036e+00,0.080e+00,0.100e+00,0.170e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
       data ((rewii(k,m),m=1,mxma),k=6,10)/
-     >223.,0.445e-14,0.039e+00,0.080e+00,0.100e+00,0.170e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >123.,0.250e-14,0.890e-05,0.036e+00,0.040e+00,0.016e+00,
-     >     0.090e+00,0.080e+00,0.100e+00,0.145e+00,0.170e+00,
-     >133.,0.227e-14,0.009e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >233.,0.400e-14,0.010e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >333.,0.000e+00,0.800e-14,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
+     *223.,0.445e-14,0.039e+00,0.080e+00,0.100e+00,0.170e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *123.,0.250e-14,0.890e-05,0.036e+00,0.040e+00,0.016e+00,
+     *     0.090e+00,0.080e+00,0.100e+00,0.145e+00,0.170e+00,
+     *133.,0.227e-14,0.009e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *233.,0.400e-14,0.010e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *333.,0.000e+00,0.800e-14,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
       data ((rewii(k,m),m=1,mxma),k=11,15)/
-     >114.,0.400e-11,0.010e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >124.,0.400e-11,0.400e-11,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >224.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >134.,0.150e-11,0.400e-11,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >234.,0.150e-11,0.400e-11,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
+     *114.,0.400e-11,0.010e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *124.,0.400e-11,0.400e-11,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *224.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *134.,0.150e-11,0.400e-11,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *234.,0.150e-11,0.400e-11,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
       data ((rewii(k,m),m=1,mxma),k=16,20)/
-     >334.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >144.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >244.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >344.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     >444.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
+     *334.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *144.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *244.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *344.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     *444.,0.400e-11,0.010e+00,0.010e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
       data ((rewii(k,m),m=1,mxma),k=21,25)/
-     > 11.,0.757e-08,0.153e+00,0.057e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     > 22.,0.105e-05,0.210e-03,0.034e+00,0.004e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     > 12.,0.000e+00,0.153e+00,0.057e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     > 13.,0.000e+00,0.051e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     > 23.,0.197e-02,0.051e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
+     * 11.,0.757e-08,0.153e+00,0.057e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     * 22.,0.105e-05,0.210e-03,0.034e+00,0.004e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     * 12.,0.000e+00,0.153e+00,0.057e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     * 13.,0.000e+00,0.051e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     * 23.,0.197e-02,0.051e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
       data ((rewii(k,m),m=1,mxma),k=26,29)/
-     > 14.,0.154e-11,0.002e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     > 24.,0.615e-12,0.002e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     > 34.,0.150e-11,0.020e+00,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
-     > 44.,0.010e+00,0.068e-03,0.000e+00,0.000e+00,0.000e+00,
-     >     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
+     * 14.,0.154e-11,0.002e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     * 24.,0.615e-12,0.002e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     * 34.,0.150e-11,0.020e+00,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00,
+     * 44.,0.010e+00,0.068e-03,0.000e+00,0.000e+00,0.000e+00,
+     *     0.000e+00,0.000e+00,0.000e+00,0.000e+00,0.000e+00/
  
       do 2 j=1,mxma
       do 2 i=1,mxmx
 2     idmx(j,i)=idmxi(j,i)
  
       if(n.gt.mxre)
-     >call utstop('idresi: dimension mxre too small        ')
-      do k=1,n
+     *call utstop('idresi: dimension mxre too small        ')
+      do 1 k=1,n
       ix=nint(remai(k,1))
       ix2=nint(rewii(k,1))
       ix3=icrei(k,1)
       if(ix.ne.ix2)
-     >call utstop('idresi: ix /= ix2                       ')
+     *call utstop('idresi: ix /= ix2                       ')
       if(ix.ne.ix3)
-     >call utstop('idresi: ix /= ix3                       ')
+     *call utstop('idresi: ix /= ix3                       ')
       if(ix.lt.1.or.ix.gt.mxindx)
-     >call utstop('idresi: ix out of range.                ')
+     *call utstop('idresi: ix out of range.                ')
       indx(ix)=k
       rema(k,1)=0.
       rewi(k,1)=0.
       icre1(k,1)=0
       icre2(k,1)=0
-      do  m=2,mxma
-       rema(k,m)=remai(k,m)
-       rewi(k,m)=rewii(k,m)
-       icre1(k,m)=icrei(k,m)
-       icre2(k,m)=icrei(k,mxma+m)
-      enddo
-      enddo
+      do 1 m=2,mxma
+      rema(k,m)=remai(k,m)
+      rewi(k,m)=rewii(k,m)
+      icre1(k,m)=icrei(k,m)
+1     icre2(k,m)=icrei(k,mxma+m)
  
       indx(33) =indx(22)
       indx(213)=indx(123)
@@ -4441,14 +4436,13 @@ c-----------------------------------------------------------------------
       call iddeco(icx,jcx)
       nq=0
       na=0
-      do  i=1,nflav
-       nq=nq+jcx(i,1)
-       na=na+jcx(i,2)
-      enddo
+      do 1 i=1,nflav
+      nq=nq+jcx(i,1)
+1     na=na+jcx(i,2)
       if(nq.eq.0.and.na.eq.0)return
       if(gen.eq.'gen-no')then
       if(nq.eq.3.and.na.eq.0.or.nq.eq.1.and.na.eq.1
-     >.or.nq.eq.0.and.na.eq.3)idsgl=1
+     *.or.nq.eq.0.and.na.eq.3)idsgl=1
       elseif(gen.eq.'gen-ys')then
       if(mod(nq-na,3).eq.0)idsgl=1
       endif
@@ -4460,12 +4454,12 @@ c-----------------------------------------------------------------------
 c     determines particle spin
 c-----------------------------------------------------------------------
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       parameter (nflav=6)
       integer ic(2),jc(nflav,2)
       real pspin1(8)
@@ -4496,16 +4490,16 @@ c     returns lifetime*gamma for id with energy p4, mass p5
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/cnsta/pi,prom,piom,ainfin
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
            if(iabs(id).lt.100.and.id.ne.20)then
       wi=0
            elseif(id.eq.20)then
@@ -4513,7 +4507,7 @@ c-----------------------------------------------------------------------
            elseif(iabs(id).lt.1e8)then
       ix=iabs(id)/10
       if(ix.lt.1.or.ix.gt.mxindx)
-     >call utstop('idtau: ix out of range.                 ')
+     *call utstop('idtau: ix out of range.                 ')
       ii=indx(ix)
       jj=mod(iabs(id),10)+2
       do 75 imx=1,mxmx
@@ -4557,7 +4551,7 @@ c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
       integer ic(2)
            if(iabs(id).lt.1e8)then
       ix=iabs(id)/10
@@ -4605,47 +4599,47 @@ c     tranforms from werner-id to paige-id
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (nidt=44,nflav=6)
       integer idt(3,nidt),ic(2),jc(nflav,2),icm(2)
       data idt/
-     > 100000,000000,   1   ,010000,000000,   2   ,001000,000000,   3
-     >,000100,000000,   4
-     >,200000,000000,1100   ,110000,000000,1200   ,020000,000000,2200
-     >,101000,000000,1300   ,011000,000000,2300   ,002000,000000,3300
-     >,100100,000000,1400   ,010100,000000,2400   ,001100,000000,3400
-     >,000200,000000,4400
-     >,100000,100000, 110   ,100000,010000, 120   ,010000,010000, 220
-     >,100000,001000, 130   ,010000,001000, 230   ,001000,001000, 330
-     >,100000,000100, 140   ,010000,000100, 240   ,001000,000100, 340
-     >,000100,000100, 440
-     >,300000,000000,1111   ,210000,000000,1120   ,120000,000000,1220
-     >,030000,000000,2221   ,201000,000000,1130   ,111000,000000,1230
-     >,021000,000000,2230   ,102000,000000,1330   ,012000,000000,2330
-     >,003000,000000,3331   ,200100,000000,1140   ,110100,000000,1240
-     >,020100,000000,2240   ,101100,000000,1340   ,011100,000000,2340
-     >,002100,000000,3340   ,100200,000000,1440   ,010200,000000,2440
-     >,001200,000000,3440   ,000300,000000,4441/
+     * 100000,000000,   1   ,010000,000000,   2   ,001000,000000,   3
+     *,000100,000000,   4
+     *,200000,000000,1100   ,110000,000000,1200   ,020000,000000,2200
+     *,101000,000000,1300   ,011000,000000,2300   ,002000,000000,3300
+     *,100100,000000,1400   ,010100,000000,2400   ,001100,000000,3400
+     *,000200,000000,4400
+     *,100000,100000, 110   ,100000,010000, 120   ,010000,010000, 220
+     *,100000,001000, 130   ,010000,001000, 230   ,001000,001000, 330
+     *,100000,000100, 140   ,010000,000100, 240   ,001000,000100, 340
+     *,000100,000100, 440
+     *,300000,000000,1111   ,210000,000000,1120   ,120000,000000,1220
+     *,030000,000000,2221   ,201000,000000,1130   ,111000,000000,1230
+     *,021000,000000,2230   ,102000,000000,1330   ,012000,000000,2330
+     *,003000,000000,3331   ,200100,000000,1140   ,110100,000000,1240
+     *,020100,000000,2240   ,101100,000000,1340   ,011100,000000,2340
+     *,002100,000000,3340   ,100200,000000,1440   ,010200,000000,2440
+     *,001200,000000,3440   ,000300,000000,4441/
  
       idtra=0
       if(ic(1).eq.0.and.ic(2).eq.0)return
-      do 10 i=1,nidt
+      do 1 i=1,nidt
       if(ic(2).eq.idt(1,i).and.ic(1).eq.idt(2,i))idtra=-idt(3,i)
       if(ic(1).eq.idt(1,i).and.ic(2).eq.idt(2,i))idtra=idt(3,i)
- 10   continue
+1     continue
       isi=1
       if(idtra.ne.0)isi=idtra/iabs(idtra)
  
       jspin=0
       if(idtra.ne.0.and.mod(idtra,10).eq.0.and.ires.eq.1)
-     >call idspin(1,ic,idu,jspin)
+     *call idspin(1,ic,idu,jspin)
  
       if(imix.eq.1)then
       call idmix(ic,jspin,icm,idtram)
@@ -4759,34 +4753,34 @@ c-----------------------------------------------------------------------
       common/cpc/xbkptl(2,mxpc),isptl(mxpc)
       double precision psg,rotsg,pjt,xorsg
       common/csg/psg(5,mxsg),rotsg(3,mxsg),pjt(5,mxjt),xorsg(4,mxsg)
-     >,isg(mxsg),icjt(2,mxjt),iorsg(mxsg)
+     *,isg(mxsg),icjt(2,mxjt),iorsg(mxsg)
       common/cjambr/nptl2,nptlc
  
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,taufos
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/cdelre/delrer
       parameter (nptf=129)
       common /cptf/xptf(nptf),wptf(nptf)
-     >,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
+     *,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
  
       parameter (nflav=6)
       integer jcp(nflav,2),jcm(nflav,2),jcpm(nflav,2),jcmp(nflav,2)
-     >,jcps(nflav,2),jcms(nflav,2),icp(2),icm(2),icpm(2),icmp(2)
-     >,icps(2),icms(2),ic(2),ics(2),jc(nflav,2),icx(2),jcx(nflav,2)
-     >,icy(2),jcy(nflav,2),icj1(2),icj2(2),jcj1(nflav,2),jcj2(nflav,2)
-     >,jcz(nflav,2),icz(2),icmz(2),icpz(2),jcpz(nflav,2),jcmz(nflav,2)
+     *,jcps(nflav,2),jcms(nflav,2),icp(2),icm(2),icpm(2),icmp(2)
+     *,icps(2),icms(2),ic(2),ics(2),jc(nflav,2),icx(2),jcx(nflav,2)
+     *,icy(2),jcy(nflav,2),icj1(2),icj2(2),jcj1(nflav,2),jcj2(nflav,2)
+     *,jcz(nflav,2),icz(2),icmz(2),icpz(2),jcpz(nflav,2),jcmz(nflav,2)
       double precision xor1(4),xor2(4),xbk(4),tor,zor
       double precision arp(4),arm(4),p0p,p0m,pp,pm,pt,px,py,phi,eeta
  
@@ -4824,7 +4818,7 @@ c     ------------
            call utmsg('jambr1')
            write(ifch,*)'*****  split kinem not possible.'
            write(ifch,112)
-     >     (icjt(j,2*ns-1),j=1,2),(icjt(j,2*ns),j=1,2),psg(5,ns)
+     *     (icjt(j,2*ns-1),j=1,2),(icjt(j,2*ns),j=1,2),psg(5,ns)
 112        format(1x,2i8,4x,2i8,4x,f7.2)
            call utmsgf
            endif
@@ -4849,7 +4843,7 @@ c     -----------------
       if(mod(np+nqu,3).eq.0)ii=1
       if(mod(np-nqu,3).eq.0)ii=2
            if(ii.eq.0)
-     >     call utstop('jambr1: no singlet construction possible')
+     *     call utstop('jambr1: no singlet construction possible')
       ifltt=0
       do 8 n=1,nqu
       ifl=int(rangen()/pud)+1
@@ -4858,10 +4852,10 @@ c     -----------------
 8     jcmp(ifl,3-ii)=jcmp(ifl,3-ii)+1
       call idenco(jcpm,icpm,ireten)
            if(ireten.eq.1)
-     >     call utstop('jambr1: idenco(jcpm... ret.code=1       ')
+     *     call utstop('jambr1: idenco(jcpm... ret.code=1       ')
       call idenco(jcmp,icmp,ireten)
            if(ireten.eq.1)
-     >     call utstop('jambr1: idenco(jcmp... ret.code=1       ')
+     *     call utstop('jambr1: idenco(jcmp... ret.code=1       ')
       do 25 nf=1,nflav
       do 25 i=1,2
       jcps(nf,i)=jcp(nf,i)+jcpm(nf,i)
@@ -4874,8 +4868,8 @@ c     -----------------
 c     calculate p+,p-,pt of string breaking
 c     -------------------------------------
            if(ish.ge.93)write(ifch,109)
-     >     icm(1),icmp(1),icpm(1),icp(1)
-     >     ,icm(2),icmp(2),icpm(2),icp(2)
+     *     icm(1),icmp(1),icpm(1),icp(1)
+     *     ,icm(2),icmp(2),icpm(2),icp(2)
 109        format(1x,'flavors:',2(i11,i7)/9x,2(i11,i7)/)
            if(ish.ge.93)write(ifch,*)'ifltt:',ifltt
            if(ish.ge.93)write(ifch,*)' '
@@ -4964,9 +4958,9 @@ c     -------------------------------------
            call utmsg('jambr1')
            write(ifch,*)'*****  negative jet energy. split again.'
            if(p0p-pp-pt**2/pm.lt.0.)
-     >     write(ifch,*)'p0p: ',p0p,'   pp+pt**2/pm: ',pp+pt**2/pm
+     *     write(ifch,*)'p0p: ',p0p,'   pp+pt**2/pm: ',pp+pt**2/pm
            if(p0m-pm-pt**2/pp.lt.0.)
-     >     write(ifch,*)'p0m: ',p0m,'   pm+pt**2/pp: ',pm+pt**2/pp
+     *     write(ifch,*)'p0m: ',p0m,'   pm+pt**2/pp: ',pm+pt**2/pp
            call utmsgf
            endif
            goto9994
@@ -4981,9 +4975,9 @@ c     -----------------------------------
            if(ish.ge.93)write(ifch,118)xor1
 118        format(' new origin +: ',13x,4f7.2)
       call utrot2(-1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,xor1(1),xor1(2),xor1(3))
+     *,xor1(1),xor1(2),xor1(3))
       call utlob2(-1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,xor1(1),xor1(2),xor1(3),xor1(4))
+     *,xor1(1),xor1(2),xor1(3),xor1(4))
       do 44 j=1,4
 44    xor1(j)=xor1(j)+xorsg(j,ns)
            if(ish.ge.93)write(ifch,117)xor1
@@ -4994,9 +4988,9 @@ c     -----------------------------------
            if(ish.ge.93)write(ifch,116)xbk
 116        format(' breaking pnt: ',13x,4f7.2)
       call utrot2(-1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,xbk(1),xbk(2),xbk(3))
+     *,xbk(1),xbk(2),xbk(3))
       call utlob2(-1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,xbk(1),xbk(2),xbk(3),xbk(4))
+     *,xbk(1),xbk(2),xbk(3),xbk(4))
       do 45 j=1,4
 45    xbk(j)=xbk(j)+xorsg(j,ns)
       if(ish.ge.93)write(ifch,117)xbk
@@ -5008,9 +5002,9 @@ c     -----------------------------------
       if(ish.ge.93)write(ifch,119)xor2
 119   format(' new origin -: ',13x,4f7.2)
       call utrot2(-1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,xor2(1),xor2(2),xor2(3))
+     *,xor2(1),xor2(2),xor2(3))
       call utlob2(-1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,xor2(1),xor2(2),xor2(3),xor2(4))
+     *,xor2(1),xor2(2),xor2(3),xor2(4))
       do 46 j=1,4
 46    xor2(j)=xor2(j)+xorsg(j,ns)
            if(ish.ge.93)write(ifch,117)xor2
@@ -5021,7 +5015,7 @@ c     ------------------------
       do 9998 m=1,2
       nsg=nsg+1
            if(nsg.gt.mxsg)
-     >     call utstop('jambr1: nsg>mxsg                        ')
+     *     call utstop('jambr1: nsg>mxsg                        ')
       isg(nsg)=nptlc
       if(m.eq.1)then !-------------------
       do 41 j=1,4
@@ -5100,31 +5094,31 @@ c     ------------------------
 28    continue
       call idenco(jcx,icx,ireten)
            if(ireten.eq.1)
-     >     call utstop('jambr1: idenco(jcx... ret.code=1        ')
+     *     call utstop('jambr1: idenco(jcx... ret.code=1        ')
       call idenco(jcy,icy,ireten)
            if(ireten.eq.1)
-     >     call utstop('jambr1: idenco(jcy... ret.code=1        ')
+     *     call utstop('jambr1: idenco(jcy... ret.code=1        ')
       do 20 i=1,2
       icjt(i,2*nsg-1)=icx(i)
 20    icjt(i,2*nsg)=icy(i)
            if(ish.ge.93)write(ifch,108)nsg,ns
-     >     ,(icjt(j,2*nsg-1),j=1,2),(sngl(pjt(j,2*nsg-1)),j=1,5)
+     *     ,(icjt(j,2*nsg-1),j=1,2),(sngl(pjt(j,2*nsg-1)),j=1,5)
 108        format(2x,i3,i4,2x,2i7,3x,5(e8.2,1x))
            if(ish.ge.93)write(ifch,108)nsg,ns
-     >     ,(icjt(j,2*nsg  ),j=1,2),(sngl(pjt(j,2*nsg  )),j=1,5)
+     *     ,(icjt(j,2*nsg  ),j=1,2),(sngl(pjt(j,2*nsg  )),j=1,5)
       do 14 j=1,4
 14    psg(j,nsg)=pjt(j,2*nsg-1)+pjt(j,2*nsg)
       psg(5,nsg)=
-     >sqrt(psg(4,nsg)**2-psg(3,nsg)**2-psg(2,nsg)**2-psg(1,nsg)**2)
+     *sqrt(psg(4,nsg)**2-psg(3,nsg)**2-psg(2,nsg)**2-psg(1,nsg)**2)
            if(ish.ge.93)write(ifch,110)nsg,ns,(psg(j,nsg),j=1,5)
 110        format(2x,i3,i4,19x,5(e8.2,1x))
       call utrot2(-1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,psg(1,nsg),psg(2,nsg),psg(3,nsg))
+     *,psg(1,nsg),psg(2,nsg),psg(3,nsg))
       call utlob2(-1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,psg(1,nsg),psg(2,nsg),psg(3,nsg),psg(4,nsg))
+     *,psg(1,nsg),psg(2,nsg),psg(3,nsg),psg(4,nsg))
       iorsg(nsg)=ns
            if(ish.ge.93)
-     >     write(ifch,102)nsg,iorsg(nsg),(psg(j,nsg),j=1,5)
+     *     write(ifch,102)nsg,iorsg(nsg),(psg(j,nsg),j=1,5)
 102        format(2x,i3,i4,19x,5(e8.2,1x))
            if(ish.ge.93)write(ifch,*)' '
 c-c   do 56 i=1,2
@@ -5173,45 +5167,45 @@ c-----------------------------------------------------------------------
       common/cpc/xbkptl(2,mxpc),isptl(mxpc)
       double precision psg,rotsg,pjt,xorsg
       common/csg/psg(5,mxsg),rotsg(3,mxsg),pjt(5,mxjt),xorsg(4,mxsg)
-     >,isg(mxsg),icjt(2,mxjt),iorsg(mxsg)
+     *,isg(mxsg),icjt(2,mxjt),iorsg(mxsg)
       common/cjambr/nptl2,nptlc
  
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,taufos
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/cdelre/delrer
       parameter (nptf=129)
       common /cptf/xptf(nptf),wptf(nptf)
-     >,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
+     *,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
  
       parameter (nflav=6)
       integer jcp(nflav,2),jcm(nflav,2),jcpm(nflav,2),jcmp(nflav,2)
-     >,jcps(nflav,2),jcms(nflav,2),icp(2),icm(2),icpm(2),icmp(2)
-     >,icps(2),icms(2),ic(2),ics(2),jc(nflav,2),icx(2),jcx(nflav,2)
-     >,icy(2),jcy(nflav,2),icj1(2),icj2(2),jcj1(nflav,2),jcj2(nflav,2)
-     >,jcz(nflav,2),icz(2),icmz(2),icpz(2),jcpz(nflav,2),jcmz(nflav,2)
+     *,jcps(nflav,2),jcms(nflav,2),icp(2),icm(2),icpm(2),icmp(2)
+     *,icps(2),icms(2),ic(2),ics(2),jc(nflav,2),icx(2),jcx(nflav,2)
+     *,icy(2),jcy(nflav,2),icj1(2),icj2(2),jcj1(nflav,2),jcj2(nflav,2)
+     *,jcz(nflav,2),icz(2),icmz(2),icpz(2),jcpz(nflav,2),jcmz(nflav,2)
       double precision xor1(4),xor2(4),xbk(4),tor,zor,pw(4)
       double precision arp(4),arm(4),p0p,p0m,pp,pm,pt,px,py,phi,eeta
  
       DIMENSION XBREAK(100),YBREAK(100),PXBREAK(100),PYBREAK(100),
-     > ITRD(100),ICPMBR(2,100),ICMPBR(2,100)
+     & ITRD(100),ICPMBR(2,100),ICMPBR(2,100)
       PARAMETER (NBRM=99)
       REAL*8 DY,DR,DALFA,DYST,DONE,AMAX,RA,ANEW,DY1,DY2,DYT,AMAM,
-     > RMX,RMY,A,XP,YP,XBR,YBR,YTD,DTWO,DFOUR,DA,YNEW,
-     > DATWID,X2
+     & RMX,RMY,A,XP,YP,XBR,YBR,YTD,DTWO,DFOUR,DA,YNEW,
+     & DATWID,X2
+
       DATA DONE,DTWO,DFOUR,fyst/1.D0,2.D0,4.D0,0.0001/
- 
       LOGICAL LAST
  
       ncnt3=0
@@ -5266,7 +5260,7 @@ c  ----
            call utmsg('jambr2')
            write(ifch,*)'*****  split kinem not possible.'
            write(ifch,112)
-     >     (icjt(j,2*ns-1),j=1,2),(icjt(j,2*ns),j=1,2),psg(5,ns)
+     *     (icjt(j,2*ns-1),j=1,2),(icjt(j,2*ns),j=1,2),psg(5,ns)
 112        format(1x,2i8,4x,2i8,4x,f7.2)
            call utmsgf
            endif
@@ -5296,7 +5290,7 @@ c     ----------------
       if(mod(np+nqu,3).eq.0)ii=1
       if(mod(np-nqu,3).eq.0)ii=2
            if(ii.eq.0)
-     >     call utstop('jambr2: no singlet construction possible')
+     *     call utstop('jambr2: no singlet construction possible')
       ifltt=0
       do 18 n=1,nqu
       ifl=int(rangen()/pud)+1
@@ -5305,16 +5299,16 @@ c     ----------------
 18    jcmp(ifl,3-ii)=jcmp(ifl,3-ii)+1
       call idenco(jcpm,icpm,ireten)
            if(ireten.eq.1)
-     >     call utstop('jambr2: idenco(jcpm... ret.code=1       ')
+     *     call utstop('jambr2: idenco(jcpm... ret.code=1       ')
       call idenco(jcmp,icmp,ireten)
            if(ireten.eq.1)
-     >     call utstop('jambr2: idenco(jcmp... ret.code=1       ')
+     *     call utstop('jambr2: idenco(jcmp... ret.code=1       ')
  
 c  calculate pt of string breaking
 c  -------------------------------------
            if(ish.ge.92)write(ifch,109)
-     >     icm(1),icmp(1),icpm(1),icp(1)
-     >     ,icm(2),icmp(2),icpm(2),icp(2)
+     *     icm(1),icmp(1),icpm(1),icp(1)
+     *     ,icm(2),icmp(2),icpm(2),icp(2)
 109        format(1x,'flavors:',2(i11,i7)/9x,2(i11,i7)/)
            if(ish.ge.92)write(ifch,*)'ifltt:',ifltt
            if(ish.ge.92)write(ifch,*)' '
@@ -5362,7 +5356,7 @@ C	Y-stepping range
       DATWID=XP*(DY-DY1)+RMX*LOG(DY1/DY)+RMY*LOG((DYT-DY)/(DYT-DY1))
       ANEW=RA-DATWID	! DATWID= area for which second derivative=0
       ICOUNT=0
-      IF(ANEW .GT. 0.) GOTO 19
+      IF(ANEW .GT. 0.) GOTO 1
     2 CONTINUE
       DA=XP - RMX/DY - RMY/(DYT-DY)	! first derivative of area
       YNEW=DY+ANEW/DA	! always approach from above
@@ -5374,12 +5368,12 @@ C	Y-stepping range
       ANEW=RA-XP*(DY-DY1)-RMX*LOG(DY1/DY)-RMY*LOG((DYT-DY)/(DYT-DY1))	!
       IF(ANEW .LT. 0.) GOTO 2
       GOTO 4
- 19   CONTINUE
+    1 CONTINUE
       DA=XP - RMX/DY - RMY/(DYT-DY)
       YNEW=DY+ANEW/DA	! always approach from BELOW
       DY=(INT(YNEW/DYST)+1)*DYST
       ANEW=RA-XP*(DY-DY1)-RMX*LOG(DY1/DY)-RMY*LOG((DYT-DY)/(DYT-DY1))
-      IF(ANEW .GT. 0.) GOTO 19
+      IF(ANEW .GT. 0.) GOTO 1
       DY=DY-DYST
       ANEW=RA-XP*(DY-DY1)-RMX*LOG(DY1/DY)-RMY*LOG((DYT-DY)/(DYT-DY1))
     4 CONTINUE
@@ -5396,7 +5390,7 @@ C
 C	end SAMB
 C
       IF(IBR.GE.NBRM)
-     >     call utstop('jambr2: IBR>NBRM                        ')
+     *     call utstop('jambr2: IBR>NBRM                        ')
       IBR=IBR+1
       XBREAK(IBR)=XBR
       YBREAK(IBR)=YBR
@@ -5433,7 +5427,7 @@ c          -----
            write(ifch,*)'icmpbr(1/2,)  x/ybreak  px/ybreak:'
            do 52 ib=1,ibr+1
            write(ifch,100)icmpbr(1,ib),icmpbr(2,ib)
-     >     ,xbreak(ib),ybreak(ib),pxbreak(ib),pybreak(ib)
+     *     ,xbreak(ib),ybreak(ib),pxbreak(ib),pybreak(ib)
 52         write(ifch,100)icpmbr(1,ib),icpmbr(2,ib)
 100        format(1x,i10,i10,2e11.3,7x,2e11.3)
            write(ifch,*)' '
@@ -5500,9 +5494,9 @@ C	Find neighboring earlier break points
       amp=ammp
       amm=ammm
       call utresm(icmpbr(1,ir),icmpbr(2,ir)
-     >,icpmbr(1,i),icpmbr(2,i),amp,idpr,iadjp,ireten)
+     *,icpmbr(1,i),icpmbr(2,i),amp,idpr,iadjp,ireten)
       call utresm(icpmbr(1,il),icpmbr(2,il)
-     >,icmpbr(1,i),icmpbr(2,i),amm,idmr,iadjm,ireten)
+     *,icmpbr(1,i),icmpbr(2,i),amm,idmr,iadjm,ireten)
       IF(amp.gt.ammp) GOTO 13
       IF(amm.gt.ammm) GOTO 13
       pt2=px*px+py*py
@@ -5530,7 +5524,7 @@ c          -----
            write(ifch,*)'icmpbr(1/2,)  x/ybreak  px/ybreak:'
            do 53 ib=1,ibr+1
            write(ifch,100)icmpbr(1,ib),icmpbr(2,ib)
-     >     ,xbreak(ib),ybreak(ib),pxbreak(ib),pybreak(ib)
+     *     ,xbreak(ib),ybreak(ib),pxbreak(ib),pybreak(ib)
 53         write(ifch,100)icpmbr(1,ib),icpmbr(2,ib)
            write(ifch,*)' '
            endif
@@ -5570,9 +5564,9 @@ c  -----------------
       PTR2=(PXR*PXR+PYR*PYR)
       AMP=SQRT(PMR*PPR-PTR2)
       call utresm(icmpbr(1,ir),icmpbr(2,ir)
-     >,icpmbr(1,in),icpmbr(2,in),amp,idpr,iadjp,ireten)
+     *,icpmbr(1,in),icpmbr(2,in),amp,idpr,iadjp,ireten)
       call utresm(icpmbr(1,il),icpmbr(2,il)
-     >,icmpbr(1,in),icmpbr(2,in),amm,idmr,iadjm,ireten)
+     *,icmpbr(1,in),icmpbr(2,in),amm,idmr,iadjm,ireten)
       AREA=PPL*PMR
       P0P=PPL+PPR
       P0M=PML+PMR
@@ -5658,7 +5652,7 @@ c     --------
       do 9998 m=1,MM
       nsg=nsg+1
            if(nsg.gt.mxsg)
-     >     call utstop('jambr2: nsg>mxsg                        ')
+     *     call utstop('jambr2: nsg>mxsg                        ')
            if(ish.ge.92)write(ifch,*)'nsg last:  ',nsg,last
       isg(nsg)=nptlc
       IF(M.EQ.2) THEN
@@ -5672,9 +5666,9 @@ c     --------
       if(ish.ge.92)write(ifch,119)xor2
 119   format(/' origin: ',13x,4f7.2/)
       call utrot2(-1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,xor2(1),xor2(2),xor2(3))
+     *,xor2(1),xor2(2),xor2(3))
       call utlob2(-1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,xor2(1),xor2(2),xor2(3),xor2(4))
+     *,xor2(1),xor2(2),xor2(3),xor2(4))
       do 46 j=1,4
 46    xor2(j)=xor2(j)+xorsg(j,ns)
 c          if(ish.ge.92)write(ifch,117)xor2
@@ -5687,19 +5681,19 @@ c          if(ish.ge.92)write(ifch,117)xor2
       psg(3,nsg)=(pp-pm)/2
       psg(4,nsg)=(pp+pm)/2
       ss=
-     >psg(4,nsg)**2-psg(3,nsg)**2-psg(2,nsg)**2-psg(1,nsg)**2
+     *psg(4,nsg)**2-psg(3,nsg)**2-psg(2,nsg)**2-psg(1,nsg)**2
       psg(5,nsg)=sqrt(ss)
            if(ish.ge.92)write(ifch,110)nsg,ns,(psg(j,nsg),j=1,5)
 110        format(2x,i3,i4,19x,5(e8.2,1x))
       do 55 k=1,4
 55    pw(k)=psg(k,nsg)
       call utrot2(-1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,psg(1,nsg),psg(2,nsg),psg(3,nsg))
+     *,psg(1,nsg),psg(2,nsg),psg(3,nsg))
       call utlob2(-1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,psg(1,nsg),psg(2,nsg),psg(3,nsg),psg(4,nsg))
+     *,psg(1,nsg),psg(2,nsg),psg(3,nsg),psg(4,nsg))
       iorsg(nsg)=ns
            if(ish.ge.92)
-     >     write(ifch,102)nsg,iorsg(nsg),(psg(j,nsg),j=1,5)
+     *     write(ifch,102)nsg,iorsg(nsg),(psg(j,nsg),j=1,5)
 102        format(2x,i3,i4,19x,5(e8.2,1x))
            if(ish.ge.92)write(ifch,*)' '
  
@@ -5732,10 +5726,10 @@ c     --------
       pjt(5,2*nsg)=0
            if(ish.ge.92)then
       write(ifch,108)nsg,ns
-     >,(icjt(j,2*nsg-1),j=1,2),(sngl(pjt(j,2*nsg-1)),j=1,5)
+     *,(icjt(j,2*nsg-1),j=1,2),(sngl(pjt(j,2*nsg-1)),j=1,5)
 108   format(2x,i3,i4,2x,2i7,3x,5(e8.2,1x))
       write(ifch,108)nsg,ns
-     >,(icjt(j,2*nsg  ),j=1,2),(sngl(pjt(j,2*nsg  )),j=1,5)
+     *,(icjt(j,2*nsg  ),j=1,2),(sngl(pjt(j,2*nsg  )),j=1,5)
            endif
       err=0
       do 44 j=1,4
@@ -5773,9 +5767,9 @@ c     -----------------------------------
            if(ish.ge.92)write(ifch,116)xbk
 116        format(' breaking pnt: ',13x,4f7.2)
       call utrot2(-1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,xbk(1),xbk(2),xbk(3))
+     *,xbk(1),xbk(2),xbk(3))
       call utlob2(-1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,xbk(1),xbk(2),xbk(3),xbk(4))
+     *,xbk(1),xbk(2),xbk(3),xbk(4))
       do 45 j=1,4
 45    xbk(j)=xbk(j)+xorsg(j,ns)
       if(ish.ge.92)write(ifch,117)xbk
@@ -5795,31 +5789,31 @@ c     version mar-92 (calls jambr1 or jambr2)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,taufos
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cdelre/delrer
  
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
  
       parameter (mxpc=500,mxsg=500)
       parameter (mxjt=2*mxsg)
@@ -5827,22 +5821,22 @@ c-----------------------------------------------------------------------
       common/cpc/xbkptl(2,mxpc),isptl(mxpc)
       double precision psg,rotsg,pjt,xorsg
       common/csg/psg(5,mxsg),rotsg(3,mxsg),pjt(5,mxjt),xorsg(4,mxsg)
-     >,isg(mxsg),icjt(2,mxjt),iorsg(mxsg)
+     *,isg(mxsg),icjt(2,mxjt),iorsg(mxsg)
       common/cjambr/nptl2,nptlc
  
       parameter (nptf=129)
       common /cptf/xptf(nptf),wptf(nptf)
-     >,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
+     *,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
       parameter (ngau=129)
       common /cgau/xgau(ngau),qgau(ngau),wgau(ngau)
  
       parameter (nflav=6)
       integer jcp(nflav,2),jcm(nflav,2),jcpm(nflav,2),jcmp(nflav,2)
-     >,jcps(nflav,2),jcms(nflav,2)
-     >,icp(2),icm(2),icpm(2),icmp(2),icup(2),icum(2)
-     >,icps(2),icms(2),ic(2),ics(2),jc(nflav,2),icx(2),jcx(nflav,2)
-     >,icy(2),jcy(nflav,2)
-     >,icj1(2),icj2(2),jcj1(nflav,2),jcj2(nflav,2)
+     *,jcps(nflav,2),jcms(nflav,2)
+     *,icp(2),icm(2),icpm(2),icmp(2),icup(2),icum(2)
+     *,icps(2),icms(2),ic(2),ics(2),jc(nflav,2),icx(2),jcx(nflav,2)
+     *,icy(2),jcy(nflav,2)
+     *,icj1(2),icj2(2),jcj1(nflav,2),jcj2(nflav,2)
       double precision xor1(4),xor2(4),xbk(4),tor,zor
       double precision arp(4),arm(4),p0p,p0m,pp,pm,pt,px,py,phi,eeta
  
@@ -5866,17 +5860,17 @@ c-----------------------------------------------------------------------
       s=pstr(5,js)**2
       isg(1)=iorstr(js)
       iorsg(1)=0
-      do i=1,2
-       pjt(1,i)=0
-       pjt(2,i)=0
-       pjt(3,i)=sqrt(s)/2*(3-2*i)
-       pjt(4,i)=sqrt(s)/2
-       pjt(5,i)=0
-       j0=2*i-2
-       if(rotstr(3,js).lt.0.)j0=4-2*i
-       do 3 j=1,2
-3      icjt(j,i)=icstr(j0+j,js)
-      enddo
+      do 1 i=1,2
+      pjt(1,i)=0
+      pjt(2,i)=0
+      pjt(3,i)=sqrt(s)/2*(3-2*i)
+      pjt(4,i)=sqrt(s)/2
+      pjt(5,i)=0
+      j0=2*i-2
+      if(rotstr(3,js).lt.0.)j0=4-2*i
+      do 3 j=1,2
+3     icjt(j,i)=icstr(j0+j,js)
+1     continue
       icj1(1)=icjt(1,1)
       icj1(2)=icjt(2,1)
       icj2(1)=icjt(1,2)
@@ -5911,10 +5905,10 @@ c     --------------------------
       if(ish.ge.92)write(ifch,*)'entry substring processing'
       if(ish.ge.92)write(ifch,*)' '
       if(ish.ge.92)write(ifch,107)ns
-     >,(icjt(j,2*ns-1 ),j=1,2),(sngl(pjt(j,2*ns-1 )),j=1,5)
+     *,(icjt(j,2*ns-1 ),j=1,2),(sngl(pjt(j,2*ns-1 )),j=1,5)
 107   format(2x,i3,3x,3x,2i7,3x,5(e8.2,1x))
       if(ish.ge.92)write(ifch,107)ns
-     >,(icjt(j,2*ns   ),j=1,2),(sngl(pjt(j,2*ns   )),j=1,5)
+     *,(icjt(j,2*ns   ),j=1,2),(sngl(pjt(j,2*ns   )),j=1,5)
       if(ish.ge.92)write(ifch,101)ns,(psg(j,ns),j=1,5)
 101   format(2x,i3,23x,5(e8.2,1x)/)
 114   format(' left breaking pnt: ',8x,4f7.2/)
@@ -5938,7 +5932,7 @@ c     -------------------------
       jc(nf,1)=jcp(nf,1)+jcm(nf,1)
       jc(nf,2)=jcp(nf,2)+jcm(nf,2)
       if(nf.gt.4.and.(jc(nf,1).ne.0.or.jc(nf,2).ne.0))
-     >call utstop('jamfra: flavour > 4                     ')
+     *call utstop('jamfra: flavour > 4                     ')
 7     nubar=nubar+jc(nf,1)-jc(nf,2)
       if(ns.eq.1)numbar=nubar
       call idenco(jc,ic,ireten)
@@ -5975,9 +5969,9 @@ c-c   write(ifch,*)'idk,id,idr,psg(5,ns):'
 c-c   write(ifch,*)idk,id,idr,psg(5,ns)
 c-c   write(ifch,*)'p_jet:'
 c-c   write(ifch,107)ns
-c-c  >,(icjt(j,2*ns-1 ),j=1,2),(sngl(pjt(j,2*ns-1 )),j=1,5)
+c-c  *,(icjt(j,2*ns-1 ),j=1,2),(sngl(pjt(j,2*ns-1 )),j=1,5)
 c-c   write(ifch,107)ns
-c-c  >,(icjt(j,2*ns   ),j=1,2),(sngl(pjt(j,2*ns   )),j=1,5)
+c-c  *,(icjt(j,2*ns   ),j=1,2),(sngl(pjt(j,2*ns   )),j=1,5)
 c-c   write(ifch,*)'p_str:'
 c-c   write(ifch,101)ns,(psg(j,ns),j=1,5)
 c-c   call utmsgf
@@ -5993,9 +5987,9 @@ c     -------------------
 9995  nptl=nptl+1
       nptlc=nptl
       if(nptl.gt.mxptl)
-     >call utstop('jamfra: nptl>mxptl                      ')
+     *call utstop('jamfra: nptl>mxptl                      ')
       if(nptl-nptl2.gt.mxpc)
-     >call utstop('jamfra: nptl-nptl2>mxpc                 ')
+     *call utstop('jamfra: nptl-nptl2>mxpc                 ')
       do 40 j=1,5
 40    pptl(j,nptl)=psg(j,ns)
       do 38 j=1,4
@@ -6017,7 +6011,7 @@ c     -------------------
       if(ic(1).eq.0.and.ic(2).eq.0)then
       idptl(nptl)=7*10**8
       call idtrbi(jc,ibptl(1,nptl),ibptl(2,nptl)
-     >,ibptl(3,nptl),ibptl(4,nptl))
+     *,ibptl(3,nptl),ibptl(4,nptl))
       else
       call idtrbi(jc,idum1,idum2,idum3,idum4)
       idptl(nptl)=8*10**8+ic(1)*100+ic(2)/100
@@ -6025,7 +6019,7 @@ c     -------------------
            endif
            if(ish.ge.91)then
       write(ifch,115)nptl,iorptl(nptl),idptl(nptl)
-     >,(pptl(j,nptl),j=1,5)
+     *,(pptl(j,nptl),j=1,5)
 115   format(1x,'/cptl/',i4,i6,i10,3x,5(e8.2,1x))
       if(idptl(nptl).eq.7e8)write(ifch,*)(ibptl(i,nptl),i=1,4)
       if(ish.ge.92)write(ifch,*)' '
@@ -6060,7 +6054,7 @@ c     -------------
       if(ish.ge.92)write(ifch,*)'quark-cluster'
       if(ish.ge.92)write(ifch,*)' '
       if(icp(1)+icp(2).eq.0.and.icm(1)+icm(2).eq.0)
-     >call utstop('jamfra: zero string.                    ')
+     *call utstop('jamfra: zero string.                    ')
       goto9999
 77    continue
  
@@ -6075,26 +6069,26 @@ c     ----------
       nso=iorsg(ns)
       if(nso.gt.0)then
       call utrot2(-1,rotsg(1,nso),rotsg(2,nso),rotsg(3,nso)
-     >,arp(1),arp(2),arp(3))
+     *,arp(1),arp(2),arp(3))
       call utlob2(-1,psg(1,nso),psg(2,nso),psg(3,nso),psg(4,nso)
-     >,psg(5,nso),arp(1),arp(2),arp(3),arp(4))
+     *,psg(5,nso),arp(1),arp(2),arp(3),arp(4))
       call utrot2(-1,rotsg(1,nso),rotsg(2,nso),rotsg(3,nso)
-     >,arm(1),arm(2),arm(3))
+     *,arm(1),arm(2),arm(3))
       call utlob2(-1,psg(1,nso),psg(2,nso),psg(3,nso),psg(4,nso)
-     >,psg(5,nso),arm(1),arm(2),arm(3),arm(4))
+     *,psg(5,nso),arm(1),arm(2),arm(3),arm(4))
       if(ish.ge.90)call utchm(arp,arm,2)
       call utlob2(1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,arp(1),arp(2),arp(3),arp(4))
+     *,arp(1),arp(2),arp(3),arp(4))
       call utlob2(1,psg(1,ns),psg(2,ns),psg(3,ns),psg(4,ns),psg(5,ns)
-     >,arm(1),arm(2),arm(3),arm(4))
+     *,arm(1),arm(2),arm(3),arm(4))
       if(ish.ge.90)call utchm(arp,arm,3)
       rotsg(1,ns)=(arp(1)-arm(1))/2
       rotsg(2,ns)=(arp(2)-arm(2))/2
       rotsg(3,ns)=(arp(3)-arm(3))/2
       call utrot2(1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,arp(1),arp(2),arp(3))
+     *,arp(1),arp(2),arp(3))
       call utrot2(1,rotsg(1,ns),rotsg(2,ns),rotsg(3,ns)
-     >,arm(1),arm(2),arm(3))
+     *,arm(1),arm(2),arm(3))
       endif
       do i=1,2
       icup(i)=icjt(i,2*ns-1)
@@ -6121,8 +6115,8 @@ c     ----------
            endif
       s=psg(5,ns)**2
            if(abs(sngl(pjt(3,2*ns-1)-pjt(3,2*ns))-sqrt(s)).gt.1e-2
-     >.and.abs(sngl(pjt(3,2*ns-1)-pjt(3,2*ns))-sqrt(s)).gt.
-     >1e-2*sqrt(s))then
+     *.and.abs(sngl(pjt(3,2*ns-1)-pjt(3,2*ns))-sqrt(s)).gt.
+     *1e-2*sqrt(s))then
       if(ish.ge.90)then
       call utmsg('jamfra')
       write(ifch,*)'*****  pz1-pz2-sqrt(s) nonzero'
@@ -6134,10 +6128,10 @@ c     ----------
       endif
            endif
       if(ish.ge.92)write(ifch,103)ns,nso
-     >,(icjt(j,2*ns-1 ),j=1,2),(sngl(pjt(j,2*ns-1 )),j=1,5)
+     *,(icjt(j,2*ns-1 ),j=1,2),(sngl(pjt(j,2*ns-1 )),j=1,5)
 103   format(2x,i3,i3,3x,2i7,3x,5(e8.2,1x))
       if(ish.ge.92)write(ifch,104)
-     > (icjt(j,2*ns   ),j=1,2),(sngl(pjt(j,2*ns   )),j=1,5)
+     * (icjt(j,2*ns   ),j=1,2),(sngl(pjt(j,2*ns   )),j=1,5)
 104   format(2x,9x,2i7,3x,5(e8.2,1x)/)
  
       if(iopbrk.eq.1)call jambr1(ns,nsg,iret)   ! AMOR
@@ -6149,7 +6143,7 @@ c     write on /cptl/ (2)
 c     -------------------
 9997  continue
       if(nptl.le.nptl2)
-     >call utstop('jamfra: nptl<=nptl2                     ')
+     *call utstop('jamfra: nptl<=nptl2                     ')
       if(ish.ge.91)write(ifch,*)' '
       do 67 i=nptl2+1,nptl
       istptl(i)=isptl(i-nptl2)
@@ -6168,12 +6162,12 @@ c     -------------------
       tivptl(1,i)=amax1(tis,xorptl(4,i))
            if(istptl(i).ne.0)then
       taubr=
-     >dsqrt((xbkptl(2,i-nptl2)-tor)**2-(xbkptl(1,i-nptl2)-zor)**2)
+     *dsqrt((xbkptl(2,i-nptl2)-tor)**2-(xbkptl(1,i-nptl2)-zor)**2)
       call uttaix(i,taubr,zor,tor,zis,tis)
       tivptl(2,i)=tis
            elseif(io.gt.0)then
       taubr=
-     >dsqrt((xbkptl(2,io-nptl2)-tor)**2-(xbkptl(1,io-nptl2)-zor)**2)
+     *dsqrt((xbkptl(2,io-nptl2)-tor)**2-(xbkptl(1,io-nptl2)-zor)**2)
       call uttaix(i,taubr,xorsg(3,1),xorsg(4,1),zisbr,tisbr)
       call idtau(idptl(i),pptl(4,i),pptl(5,i),taugm)
       tivptl(2,i)=tisbr+taugm
@@ -6182,10 +6176,10 @@ c     -------------------
       tivptl(2,i)=xorptl(4,i)+taugm
            endif
       if(ish.ge.92)write(ifch,120)i,iorptl(i),idptl(i)
-     >,(sngl(xbkptl(j,i-nptl2)),j=1,2)
-     >,(xorptl(j,i),j=3,4),(tivptl(j,i),j=1,2)
+     *,(sngl(xbkptl(j,i-nptl2)),j=1,2)
+     *,(xorptl(j,i),j=3,4),(tivptl(j,i),j=1,2)
 120   format(1x,'/cptl/',i4,i5,i10
-     >,2x,e8.2,1x,e8.2,1x,e8.2,1x,e8.2,1x,e8.2,1x,e8.2)
+     *,2x,e8.2,1x,e8.2,1x,e8.2,1x,e8.2,1x,e8.2,1x,e8.2)
 67    continue
  
 1000  return
@@ -6202,40 +6196,38 @@ c----------------------------------------------------------------------
       common/centro/entro(1+kparx,1+nquax)
       real entrox(1+kparx,1+nquax)
  
-      do  k=1,1+kparx
-      do  n=1,1+nquax
-        entro(k,n)=entrox(k,n)
-      enddo
-      enddo
+      do 1 k=1,1+kparx
+      do 1 n=1,1+nquax
+1     entro(k,n)=entrox(k,n)
  
       if(kparx.ne.15)
-     >call utstop('icentd: insufficient initialization;   k')
+     *call utstop('icentd: insufficient initialization;   k')
       if(nquax.ne.12)
-     >call utstop('icentd: insufficient initialization;   n')
+     *call utstop('icentd: insufficient initialization;   n')
       data (entrox( 1,1+n),n=0,12)/
-     >.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,
-     >.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,
-     >.00000E+00/
+     *.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,
+     *.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,.00000E+00,
+     *.00000E+00/
       data (entrox( 4,1+n),n=0,12)/
-     >.40254E+01,.59349E+01,.74855E+01,.87464E+01,.98267E+01,.10770E+02,
-     >.11611E+02,.12368E+02,.13058E+02,.13691E+02,.14277E+02,.14822E+02,
-     >.15332E+02/
+     *.40254E+01,.59349E+01,.74855E+01,.87464E+01,.98267E+01,.10770E+02,
+     *.11611E+02,.12368E+02,.13058E+02,.13691E+02,.14277E+02,.14822E+02,
+     *.15332E+02/
       data (entrox( 7,1+n),n=0,12)/
-     >.61944E+01,.89306E+01,.11114E+02,.12969E+02,.14595E+02,.16054E+02,
-     >.17380E+02,.18599E+02,.19728E+02,.20780E+02,.21767E+02,.22696E+02,
-     >.23574E+02/
+     *.61944E+01,.89306E+01,.11114E+02,.12969E+02,.14595E+02,.16054E+02,
+     *.17380E+02,.18599E+02,.19728E+02,.20780E+02,.21767E+02,.22696E+02,
+     *.23574E+02/
       data (entrox(10,1+n),n=0,12)/
-     >.68876E+01,.10183E+02,.12855E+02,.15159E+02,.17201E+02,.19046E+02,
-     >.20734E+02,.22296E+02,.23751E+02,.25115E+02,.26400E+02,.27616E+02,
-     >.28771E+02/
+     *.68876E+01,.10183E+02,.12855E+02,.15159E+02,.17201E+02,.19046E+02,
+     *.20734E+02,.22296E+02,.23751E+02,.25115E+02,.26400E+02,.27616E+02,
+     *.28771E+02/
       data (entrox(13,1+n),n=0,12)/
-     >.61944E+01,.99602E+01,.13068E+02,.15784E+02,.18208E+02,.20406E+02,
-     >.22425E+02,.24295E+02,.26041E+02,.27681E+02,.29228E+02,.30696E+02,
-     >.32092E+02/
+     *.61944E+01,.99602E+01,.13068E+02,.15784E+02,.18208E+02,.20406E+02,
+     *.22425E+02,.24295E+02,.26041E+02,.27681E+02,.29228E+02,.30696E+02,
+     *.32092E+02/
       data (entrox(16,1+n),n=0,12)/
-     >.40254E+01,.82375E+01,.11781E+02,.14923E+02,.17745E+02,.20311E+02,
-     >.22669E+02,.24853E+02,.26890E+02,.28803E+02,.30609E+02,.32320E+02,
-     >.33948E+02/
+     *.40254E+01,.82375E+01,.11781E+02,.14923E+02,.17745E+02,.20311E+02,
+     *.22669E+02,.24853E+02,.26890E+02,.28803E+02,.30609E+02,.32320E+02,
+     *.33948E+02/
  
       return
       end
@@ -6245,10 +6237,10 @@ c----------------------------------------------------------------------
 c     plots entro(,) and ftn sjcent
 c----------------------------------------------------------------------
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (kparx=15,nquax=12)
       common/centro/entro(1+kparx,1+nquax)
       real xplot(101),yplot(101)
@@ -6271,8 +6263,8 @@ c----------------------------------------------------------------------
       xplot(1+n)=n
 55    yplot(1+n)=entro(1+k,1+n)
       call uthist(0.,12.,0.,40.,1+12,xplot,yplot,'lin','linlin'
-     >,'xaxis energy / omega            $                 '
-     >,'yaxis entropy                   $                 ',text)
+     *,'xaxis energy / omega            $                 '
+     *,'yaxis entropy                   $                 ',text)
 54    continue
       endif
  
@@ -6286,8 +6278,8 @@ c----------------------------------------------------------------------
       xplot(1+n)=n*1./k
 65    yplot(1+n)=entro(1+k,1+n)/k
       call uthist(0.,5.,0.,6.,1+12,xplot,yplot,'lin','linlin'
-     >,'xaxis energy / omega / particle $                 '
-     >,'yaxis entropy / particle        $                 ',text)
+     *,'xaxis energy / omega / particle $                 '
+     *,'yaxis entropy / particle        $                 ',text)
 64    continue
       endif
  
@@ -6299,9 +6291,9 @@ c----------------------------------------------------------------------
       xplot(1+n)=x
 63    yplot(1+n)=sjcent(k,k,k*x)/k
       call uthist(0.,5.,0.,6.,101,xplot,yplot,'lin','linlin'
-     >,'xaxis energy / omega / particle $                 '
-     >,'yaxis entropy / particle        $                 '
-     >,'title inter(extra)polated       $                 ')
+     *,'xaxis energy / omega / particle $                 '
+     *,'yaxis entropy / particle        $                 '
+     *,'title inter(extra)polated       $                 ')
 62    continue
       endif
  
@@ -6313,9 +6305,9 @@ c----------------------------------------------------------------------
       xplot(1+n)=x
 59    yplot(1+n)=sjcent(k,k,x)
       call uthist(0.,50.,0.,80.,101,xplot,yplot,'lin','linlin'
-     >,'xaxis energy / omega            $                 '
-     >,'yaxis entropy                   $                 '
-     >,'title inter(extra)polated  ku=k $                 ')
+     *,'xaxis energy / omega            $                 '
+     *,'yaxis entropy                   $                 '
+     *,'title inter(extra)polated  ku=k $                 ')
 58    continue
       endif
  
@@ -6327,9 +6319,9 @@ c----------------------------------------------------------------------
       xplot(1+n)=x
 49    yplot(1+n)=sjcent(k,0,x)
       call uthist(0.,50.,0.,80.,101,xplot,yplot,'lin','linlin'
-     >,'xaxis energy / omega            $                 '
-     >,'yaxis entropy                   $                 '
-     >,'title inter(extra)polated  ku=0 $                 ')
+     *,'xaxis energy / omega            $                 '
+     *,'yaxis entropy                   $                 '
+     *,'title inter(extra)polated  ku=0 $                 ')
 48    continue
       endif
  
@@ -6352,10 +6344,10 @@ c       (init=1 calls uttucl, utpart, utovel)
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (kparx=15,nquax=12)
       parameter (nymax=1000)
       parameter (jpamax=nquax*nquax*nquax,kkpmax=nquax*nquax*2)
@@ -6365,14 +6357,14 @@ c----------------------------------------------------------------------
       real xplot(1+nquax),yplot(1+nquax)
       common/cparta/parta(nquax),ipart(nquax,jpamax)
       integer iyo(nymax,kparx),kkk(kparx),iyox(kparx)
-     >,jyo(nymax)
+     *,jyo(nymax)
       character*1 cyox(1+nquax,kparx)
       double precision tucl
       parameter (ktumax=100,ntumax=100)
       common/ctucl/tucl(1+ktumax,1+ntumax)
       parameter (itamax=1000,nsymax=20)
       integer iyoz(itamax,nsymax,2),iyol(itamax),iyor(nsymax)
-     >,iyoo(itamax),iyom(itamax)
+     *,iyoo(itamax),iyom(itamax)
       real yofa(itamax)
       parameter (iovmax=100,jovmax=100)
       common/covel/ovel(1+iovmax,1+jovmax)
@@ -6387,9 +6379,9 @@ c----------------------------------------------------------------------
  
       write(ifmt,*)'execute sr jcentr ...'
       if(nsym.ge.nsymax)
-     >call utstop('jcentr: dimension nsymax too small      ')
+     *call utstop('jcentr: dimension nsymax too small      ')
       if(mod(kparx,nsym).ne.0)
-     >call utstop('jcentr: kparx should be multiple of nsym')
+     *call utstop('jcentr: kparx should be multiple of nsym')
       mmax=1+(kparx-1)/nsym
       izero=0
       nsymx=nsym
@@ -6404,9 +6396,9 @@ c     ----------------
       else
       kkp=-ipart(n,1)
       if(kkp.gt.kkpmax)
-     >call utstop('jcentr: dimension kkpmax too small      ')
+     *call utstop('jcentr: dimension kkpmax too small      ')
       if(-ipart(n,1).ne.nint(parta(n)))
-     >call utstop('jcentr: # of partitions disagree        ')
+     *call utstop('jcentr: # of partitions disagree        ')
       endif
       if(ish.ge.93)then
       write(ifch,103)('-',ic=1,79),n,kkp,('-',ic=1,79)
@@ -6416,7 +6408,7 @@ c     ----------------
       if(n.gt.0)ll=-ipart(n,jj)
       if(n.eq.0)write(ifch,102)kk,izero
       if(n.gt.0)
-     >write(ifch,102)kk,(ipart(n,i),i=jj+1,jj+min0(20,ll))
+     *write(ifch,102)kk,(ipart(n,i),i=jj+1,jj+min0(20,ll))
 102   format(2x,i2,'. partition:',3x,20i3)
 8     jj=jj+ll+1
       endif
@@ -6433,7 +6425,7 @@ c     -------------------------
       do 6001 kx=1,kparx/3
       k=3*kx
       if(k.gt.kparx)
-     >call utstop('jcentr: dimension kparx too small       ')
+     *call utstop('jcentr: dimension kparx too small       ')
       degen(1+k,1+n)=0
       deli(1+k,1+n)=','
       if(n.eq.nquax)deli(1+k,1+n)='/'
@@ -6458,9 +6450,9 @@ c     --------------------
       goto6003
       endif
       if(ish.ge.93.and.n.eq.0)
-     >write(ifch,102)kk,izero
+     *write(ifch,102)kk,izero
       if(ish.ge.93.and.n.gt.0)
-     >write(ifch,102)kk,(ipart(n,i),i=jj+1,jj+min0(20,ll))
+     *write(ifch,102)kk,(ipart(n,i),i=jj+1,jj+min0(20,ll))
       if(ish.ge.93)write(ifch,*)' '
  
 c     construct young tableaus
@@ -6483,7 +6475,7 @@ c     ------------------------
       if(l.eq.nsym.or.(l.ne.nsym.and.iyo(ny1,(m-1)*nsym+l+1).ne.0))then
       ny2=ny2+1
       if(ny2.gt.nymax)
-     >call utstop('jcentr: dimension nymax too small       ')
+     *call utstop('jcentr: dimension nymax too small       ')
       jy=jyo(ny1)+1
       jyo(ny2)=jy
       do 50 lp=1,k
@@ -6516,7 +6508,7 @@ c     ------------------------
       write(ifch,117)ny-ny1+1,((iyo(ny,(m-1)*nsym+i),i=1,nsym),m=1,1)
 117   format(2x,i2,'. tableau:',5x,3i2)
       if(mmaxk.gt.1)
-     >write(ifch,110)((iyo(ny,(m-1)*nsym+i),i=1,nsym),m=2,mmaxk)
+     *write(ifch,110)((iyo(ny,(m-1)*nsym+i),i=1,nsym),m=2,mmaxk)
 110   format(19x,3i2)
       write(ifch,*)' '
       endif
@@ -6578,7 +6570,7 @@ c     -----
 108   format('GL(',i2,') ')
 109   format('GL(',i3,')')
       write(ifch,116)nn,((cyox(1+nn,(m-1)*nsym+i),i=1,nsym),m=1,1)
-     >,ciga
+     *,ciga
 116   format(2x,i2,'-subtableau:',3x,3(1x,a1),3x,a7)
       if(mmaxks.gt.1)then
       do 39 m=2,mmaxks
@@ -6636,10 +6628,10 @@ c     -------------------------------
       if(iheim.eq.0)disuta=disuta+fac*iyom(n1)
            if(ish.ge.94.and.nsym.eq.3)then
       write(ifch,112)n1,(iyoz(n1,i,1),i=1,nsym),iyoo(n1)
-     >,lev,fac,iyom(n1),iheim,disuta
-     >,(iyoz(n1,i,2),i=1,nsym)
+     *,lev,fac,iyom(n1),iheim,disuta
+     *,(iyoz(n1,i,2),i=1,nsym)
 112   format(3x,i3,2x,3i2,2x,'ori:',i3,3x,'lev:',i2,3x,'fac:',f8.1
-     >,3x,'mul:',i2,3x,'hei:',i2,3x,'sum:',f8.1/8x,3i2/)
+     *,3x,'mul:',i2,3x,'hei:',i2,3x,'sum:',f8.1/8x,3i2/)
            endif
       n2=n2-1
 5001  n2=n2+1
@@ -6648,7 +6640,7 @@ c     -------------------------------
       if(i.lt.nsym.and.iyoz(n2,i,2)-1.lt.iyoz(n2,i+1,2))goto27
       n3=n3+1
       if(n3.gt.itamax)
-     >call utstop('jcentr: dimension itamax too small      ')
+     *call utstop('jcentr: dimension itamax too small      ')
       iyol(n3)=iyol(n1)+1
       yofa(n3)=( yofa(n1)*(iga-iyol(n3)) )/iyol(n3)
       iyoo(n3)=n1
@@ -6665,7 +6657,7 @@ c     -------------------------------
       do 30 nch=n30+1,n3-1
       do 31 ij=1,nsym
       if(iyoz(nch,ij,1).ne.iyoz(n3,ij,1)
-     >.or.iyoz(nch,ij,2).ne.iyoz(n3,ij,2))goto30
+     *.or.iyoz(nch,ij,2).ne.iyoz(n3,ij,2))goto30
 31    continue
       n3=n3-1
       goto27
@@ -6673,11 +6665,11 @@ c     -------------------------------
       endif
            if(ish.ge.95.and.nsym.eq.3)then
       write(ifch,113)n1,(iyoz(n1,ij,1),ij=1,nsym)
-     >,n2,(iyoz(n2,ij,1),ij=1,nsym),n3,(iyoz(n3,ij,1),ij=1,nsym)
-     >,(iyoz(n1,ij,2),ij=1,nsym)
-     >,(iyoz(n2,ij,2),ij=1,nsym),(iyoz(n3,ij,2),ij=1,nsym)
+     *,n2,(iyoz(n2,ij,1),ij=1,nsym),n3,(iyoz(n3,ij,1),ij=1,nsym)
+     *,(iyoz(n1,ij,2),ij=1,nsym)
+     *,(iyoz(n2,ij,2),ij=1,nsym),(iyoz(n3,ij,2),ij=1,nsym)
 113   format(3x,'n1: ',i2,3x,3i2,4x,'n2: ',i2,3x,3i2,4x,'n3: ',i2,3x,3i2
-     >/12x,3i2,13x,3i2,13x,3i2/)
+     */12x,3i2,13x,3i2,13x,3i2/)
            endif
 27    continue
       if(n2.eq.n1)n2=n30
@@ -6691,7 +6683,7 @@ c     -------------------------------
       do 34 nch=n300+1,n30
       do 35 ij=1,nsym
       if(iyoz(nch,ij,1).ne.iyoz(n3,ij,1)
-     >.or.iyoz(nch,ij,2).ne.iyoz(n3,ij,2))goto34
+     *.or.iyoz(nch,ij,2).ne.iyoz(n3,ij,2))goto34
 35    continue
       iyom(nch)=iyom(nch)+iyom(n3)
       n3=n3-1
@@ -6719,7 +6711,7 @@ c     -------------------------------
       dialt=1
       do 40 i=1,nsym
       if(iyoz(1,i,1).gt.1)
-     >call utstop('jcentr: iyoz(,,1).gt.1                  ')
+     *call utstop('jcentr: iyoz(,,1).gt.1                  ')
       if(iyoz(1,i,1).eq.0)goto40
       do 41 m=1,iyoz(1,i,2)
       hak=iyoz(1,i,2)-m+1
@@ -6734,7 +6726,7 @@ c     -------------------------------
       endif
  
       if(dialt.ne.-99999.
-     >.and.abs(dialt-disuta).gt.1e-5*dialt)then
+     *.and.abs(dialt-disuta).gt.1e-5*dialt)then
       write(ifch,*)' '
       write(ifch,*)'n=',n,'    k=',k,'    kk=',kk,'    ny=',ny
       write(ifch,*)'disuta=',disuta,'     dialt=',dialt
@@ -6758,7 +6750,7 @@ c     -------------------------------
 6002  jj=jj+ll+1
 6003  continue
       if(kkk(k).eq.0)
-     >call utstop('jcentr: no allowed partition            ')
+     *call utstop('jcentr: no allowed partition            ')
  
       entro(1+k,1+n)=-9999999.
       if(degen(1+k,1+n).gt.0.)entro(1+k,1+n)=alog(degen(1+k,1+n))
@@ -6773,7 +6765,7 @@ c     -------------------------------
       write(ifch,*)' '
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   degeneracy(k,n)         ig=',ig,'          '
-     >,'nsym=',nsym
+     *,'nsym=',nsym
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   k:','   3','   6','   9','   12'
       write(ifch,121)('-',ic=1,79)
@@ -6782,7 +6774,7 @@ c     -------------------------------
       write(ifch,*)' '
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   entropy(k,n)            ig=',ig,'          '
-     >,'nsym=',nsym
+     *,'nsym=',nsym
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   k:','   3','   6','   9','   12'
       write(ifch,121)('-',ic=1,79)
@@ -6796,14 +6788,14 @@ c     -------------------------------
       write(ifch,*)' '
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   entropy(k,n)            ig=',ig
-     >,'          nsym=',nsym
+     *,'          nsym=',nsym
       write(ifch,121)('-',ic=1,79)
       write(ifch,125)kparx
 125   format(6x,'if(kparx.ne.',i2,')'/5x,
-     >56h*call utstop('jcentd: insufficient initialization;   k'))
+     *56h*call utstop('jcentd: insufficient initialization;   k'))
       write(ifch,126)nquax
 126   format(6x,'if(nquax.ne.',i2,')'/5x,
-     >56h*call utstop('jcentd: insufficient initialization;   n'))
+     *56h*call utstop('jcentd: insufficient initialization;   n'))
       do 58 kx=0,kparx/3
       k=3*kx
       write(ifch,123)k+1,nquax
@@ -6825,25 +6817,25 @@ c  reqires jcentr or jcentd to be called before.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter (nflav=6)
       integer ica(2),ice(2),ico(2),ica0(2)
-     >,jca(nflav,2),jce(nflav,2),jco(nflav,2),jca0(nflav,2)
+     *,jca(nflav,2),jce(nflav,2),jco(nflav,2),jca0(nflav,2)
       common/csjcga/amnull,nsuha(7),asuha(7),entrpy,amegam,nopha
       common/centex/entexp
       common/cscal/scal
@@ -6859,13 +6851,13 @@ c-----------------------------------------------------------------------
       integer ko(1+momax)
 
       data idolis/
-     > 110,120,-120,220,130,-130,230,-230,330
-     >,1120,-1120,1220,-1220,1130,-1130,1230,-1230,2130,-2130
-     >,2230,-2230,1330,-1330,2330,-2330
-     >,1111,-1111,2221,-2221,3331,-3331
-     >,111,121,-121,221,131,-131,231,-231,331
-     >,1121,-1121,1221,-1221,1131,-1131,1231,-1231
-     >,2231,-2231,1331,-1331,2331,-2331/
+     * 110,120,-120,220,130,-130,230,-230,330
+     *,1120,-1120,1220,-1220,1130,-1130,1230,-1230,2130,-2130
+     *,2230,-2230,1330,-1330,2330,-2330
+     *,1111,-1111,2221,-2221,3331,-3331
+     *,111,121,-121,221,131,-131,231,-231,331
+     *,1121,-1121,1221,-1221,1131,-1131,1231,-1231
+     *,2231,-2231,1331,-1331,2331,-2331/
       data ifolis/9*1,16*2,6*4,9*3,14*4/
 
       ish0=ish
@@ -6891,9 +6883,8 @@ c     original cluster --> pa,jca
 c     ---------------------------
 
 6010  continue
-      do  j=1,5
-        pa(j)=pptl(j,ip)
-      enddo
+      do 1 j=1,5
+1     pa(j)=pptl(j,ip)
       call idquac(ip,ndu,ndu,ndu,jca)
       if(ish.ge.92)then
       write(ifch,*)'initial jca:'
@@ -6926,7 +6917,7 @@ c     -----------------------
       ish=92
       write(ifch,117)('-',l=1,75),loop,ish
 117   format(//1x,75a1/1x,i2,'. attempt to decay this cluster!'
-     >/1x,'ish set to: ',i2)
+     */1x,'ish set to: ',i2)
       endif 
            endif
       if(loop.gt.loopmx)then
@@ -6947,7 +6938,7 @@ c     ---------------------------
 
 6002  nptl=nptl+1
       if(nptl.gt.mxptl)
-     >call utstop('jclude: nptl>mxptl                      ')
+     *call utstop('jclude: nptl>mxptl                      ')
       isjca=0
       do nf=1,nflav
       do j=1,2
@@ -6980,11 +6971,11 @@ c     ---------------------------
       if(ismall.eq.0)write(ifch,*)'*****  no phase space --> redo decay'
       if(ismall.eq.1)write(ifch,*)'*****  small phase sp --> redo decay'
       if(ismall.ne.0.and.ismall.ne.1)
-     >write(ifch,*)'***** small/no phase space --> redo decay'
+     *write(ifch,*)'***** small/no phase space --> redo decay'
       if(ismall.ne.0.and.ismall.ne.1)write(ifch,*)'ismall=',ismall
       write(ifch,*)'nt=',ntc,'   loop=',loop,'   nopha=',nopha
       if(ismall.eq.1)
-     >write(ifch,*)'yo_hit=',yohit,'   yo_max=',yomax
+     *write(ifch,*)'yo_hit=',yohit,'   yo_max=',yomax
       write(ifch,*)'m_min=',amicl,'   m=',pa(5)
       write(ifch,100)(pa(k),k=1,5)
       write(ifch,116)jca
@@ -6999,11 +6990,11 @@ c     ---------------------------
       if(ismall.eq.0)write(ifch,*)'*****  no phase space --> incrs mass'
       if(ismall.eq.1)write(ifch,*)'*****  small phase sp --> incrs mass'
       if(ismall.ne.0.and.ismall.ne.1)
-     >write(ifch,*)'***** small/no phase space --> incrs mass'
+     *write(ifch,*)'***** small/no phase space --> incrs mass'
       if(ismall.ne.0.and.ismall.ne.1)write(ifch,*)'ismall=',ismall
       write(ifch,*)'nt=',ntc,'   loop=',loop,'   nopha=',nopha
       if(ismall.eq.1)
-     >write(ifch,*)'yo_hit=',yohit,'   yo_max=',yomax
+     *write(ifch,*)'yo_hit=',yohit,'   yo_max=',yomax
       write(ifch,*)'m_min=',amicl,'   m=',pa(5)
       write(ifch,100)(pa(k),k=1,5)
       write(ifch,116)jca
@@ -7039,7 +7030,7 @@ c     ---------------------------
       do 15 j=1,5
 15    pptl(j,nptl)=pa(j)
       if(ish.ge.92)
-     >write(ifch,101)nptl,idptl(nptl),(pptl(k,nptl),k=1,5)
+     *write(ifch,101)nptl,idptl(nptl),(pptl(k,nptl),k=1,5)
 101   format(1x,'/cptl/',i6,i11,2x,5(e10.3,1x))
       else
       nptl=nptl-1
@@ -7085,7 +7076,7 @@ c     -----------------
       do 13 i=5,nflav
       if(jce(i,1).ne.0.or.jce(i,2).ne.0.or.istpfl.gt.0)then
       if(istpfl.eq.2)
-     >call utstop('jclude: more than 4 flavours            ')
+     *call utstop('jclude: more than 4 flavours            ')
       istpfl=istpfl+1
       ish=93
       if(istpfl.eq.2)goto6010
@@ -7101,7 +7092,7 @@ c     loop over hadron momenta
 c     ------------------------
 
       if(mo+moxmax.gt.1+momax)
-     >call utstop('jclude: dimension momax too small       ')
+     *call utstop('jclude: dimension momax too small       ')
       pox=0.
       mom=mo
       pom=po
@@ -7132,16 +7123,16 @@ c     ------------------------
       if(mox.gt.1.and.gamxm.gt.0..and.gamx.lt.1e-2*gamxm)i6005=1
            if((i6005.eq.0.or.mox.gt.1).and.ish.ge.93)then
       if(mox.eq.1)
-     >write(ifch,109)keu,ked,kes,nsuha,ama,asuha,amnull,ido,amo
+     *write(ifch,109)keu,ked,kes,nsuha,ama,asuha,amnull,ido,amo
       write(ifch,105)mo,xo(mo),pox,sqrt(pox**2+amo**2)
-     >,ama-sqrt(pox**2+amo**2),entrpy,gamx
-     >,yo(mo),oo(mo)
+     *,ama-sqrt(pox**2+amo**2),entrpy,gamx
+     *,yo(mo),oo(mo)
 109   format(/' u_d_s:',3i3,'  n:',7i5,11x,'  a:',f10.2
-     >/18x,'m:',7f5.2,'  m0:',f6.2,'  o:',i5,f5.2
-     >/'   mo     xo   pox      eo ama-eo     entrpy     '
-     >,'  gamx         yo         oo ')
+     */18x,'m:',7f5.2,'  m0:',f6.2,'  o:',i5,f5.2
+     */'   mo     xo   pox      eo ama-eo     entrpy     '
+     *,'  gamx         yo         oo ')
 105   format(i5,1x,f6.2,f6.2,2x,f6.2,f6.2
-     >,3x,e9.3,2x,e9.3,2x,e9.3,2x,e9.3)
+     *,3x,e9.3,2x,e9.3,2x,e9.3,2x,e9.3)
            endif
       if(i6005.eq.1)goto6005
       if(gamx.gt.gamxm)then
@@ -7269,7 +7260,7 @@ c     -------------------------------
       ke=0
       do 27 i=5,nflav
       if(jce(i,1).ne.0.or.jce(i,2).ne.0)
-     >call utstop('jclude: flavour > 4                     ')
+     *call utstop('jclude: flavour > 4                     ')
 27    continue
 
       keu=jce(1,1)-jce(1,2)
@@ -7289,18 +7280,18 @@ c     -------------------------------
 5     pptl(j,nptl)=pos*u(j)
       pptl(4,nptl)=sqrt(pptl(5,nptl)**2+pos**2)
       if(ish.ge.93)
-     >write(ifch,101)nptl,idptl(nptl),(pptl(k,nptl),k=1,5)
+     *write(ifch,101)nptl,idptl(nptl),(pptl(k,nptl),k=1,5)
       call utlobo(-1,pa(1),pa(2),pa(3),pa(4),pa(5)
-     >,pptl(1,nptl),pptl(2,nptl),pptl(3,nptl),pptl(4,nptl))
+     *,pptl(1,nptl),pptl(2,nptl),pptl(3,nptl),pptl(4,nptl))
       if(ish.ge.92)
-     >write(ifch,101)nptl,idptl(nptl),(pptl(k,nptl),k=1,5)
+     *write(ifch,101)nptl,idptl(nptl),(pptl(k,nptl),k=1,5)
  
       pe(5)=amegam
       do 16 j=1,3
 16    pe(j)=-pos*u(j)
       pe(4)=sqrt(pe(5)**2+pos**2)
       call utlobo(-1,pa(1),pa(2),pa(3),pa(4),pa(5)
-     >,pe(1),pe(2),pe(3),pe(4))
+     *,pe(1),pe(2),pe(3),pe(4))
  
       do 17 j=1,5
 17    pa(j)=pe(j)
@@ -7345,7 +7336,7 @@ c-c   y=100
 c-c   dy=3
 c-c   if(e-p.ne.0..and.e+p.ne.0.)y=.5*alog((e+p)/(e-p))+dy
 c-c   write(6,115)ip,idptl(ip)
-c-c  >,(pptl(k,ip),k=3,5),y
+c-c  *,(pptl(k,ip),k=3,5),y
 c-c   write(6,*)'-------> ' 
 c-c   do m=nptlb+1,nptl
 c-c   p=pptl(3,m)
@@ -7354,12 +7345,12 @@ c-c   y=100
 c-c   dy=3
 c-c   if(e-p.ne.0..and.e+p.ne.0.)y=.5*alog((e+p)/(e-p))+dy
 c-c   write(6,115)m,idptl(m)
-c-c  >,(pptl(k,m),k=3,5),y
+c-c  *,(pptl(k,m),k=3,5),y
 c-c   enddo
 c-c   endif
 c-c   enddo
  115  format(1x,'/cptl/',i4,i10
-     >,3x,3(e8.2,1x),2x,2(e8.2,1x))
+     *,3x,3(e8.2,1x),2x,2(e8.2,1x))
 
       if(ish.ge. 0)then
       px=0
@@ -7386,18 +7377,18 @@ c-c   enddo
       endif
  
       if(ish.ge.90.and.(
-     >ifail.eq.0.and. 
-     >   (abs(px-pa0(1)).gt.1e-2*abs(px).and.abs(px-pa0(1)).gt.1e-2
-     >.or.abs(py-pa0(2)).gt.1e-2*abs(py).and.abs(py-pa0(2)).gt.1e-2
-     >.or.abs(pz-pa0(3)).gt.1e-2*abs(pz).and.abs(pz-pa0(3)).gt.1e-2
-     >.or.abs(e -pa0(4)).gt.1e-2*abs(e ).and.abs(e -pa0(4)).gt.1e-2)
-     >.or.
-     >ifail.ne.0.and.
-     >   (abs(px-pa0(1)).gt.1e-2*abs(px).and.abs(px-pa0(1)).gt.1e-2
-     >.or.abs(py-pa0(2)).gt.1e-2*abs(py).and.abs(py-pa0(2)).gt.1e-2
-     >.or.abs(pz-pa0(3)).gt.1e-2*abs(pz).and.abs(pz-pa0(3)).gt.1e-2
-     >.or.abs(e -pa0(4)).gt.35e-1*abs(e ).and.abs(e -pa0(4)).gt.35e-1)
-     >   ))then
+     *ifail.eq.0.and. 
+     *   (abs(px-pa0(1)).gt.1e-2*abs(px).and.abs(px-pa0(1)).gt.1e-2
+     *.or.abs(py-pa0(2)).gt.1e-2*abs(py).and.abs(py-pa0(2)).gt.1e-2
+     *.or.abs(pz-pa0(3)).gt.1e-2*abs(pz).and.abs(pz-pa0(3)).gt.1e-2
+     *.or.abs(e -pa0(4)).gt.1e-2*abs(e ).and.abs(e -pa0(4)).gt.1e-2)
+     *.or.
+     *ifail.ne.0.and.
+     *   (abs(px-pa0(1)).gt.1e-2*abs(px).and.abs(px-pa0(1)).gt.1e-2
+     *.or.abs(py-pa0(2)).gt.1e-2*abs(py).and.abs(py-pa0(2)).gt.1e-2
+     *.or.abs(pz-pa0(3)).gt.1e-2*abs(pz).and.abs(pz-pa0(3)).gt.1e-2
+     *.or.abs(e -pa0(4)).gt.35e-1*abs(e ).and.abs(e -pa0(4)).gt.35e-1)
+     *   ))then
       call utmsg('jclude')
       write(ifch,*)'*****  p_sum /= p_clu'
       write(ifch,*)'ifail_jrescl:',ifail,'   scal:',scal
@@ -7436,21 +7427,21 @@ c     decays i (calls jdecay)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat,zor,tor
       common/cttaus/tpro,zpro,ttar,ztar,ttaus,detap,detat 
       common/cclude/kclude
@@ -7468,7 +7459,7 @@ c-----------------------------------------------------------------------
       call idmass(221,amomeg)
       ioi=iorptl(i)
       if(.not.(ioi.gt.0.and.iabs(idptl(ioi)).lt.10000
-     >.and.jorptl(i).eq.0))then
+     *.and.jorptl(i).eq.0))then
       if(idptl(i).eq.111)idptl(i)=221
       if(idptl(i).eq.221.and.rangen().gt.0.5)idptl(i)=111
       endif
@@ -7504,7 +7495,7 @@ c-----------------------------------------------------------------------
       t=tivptl(2,i)
       nptlb=nptl
       if(nptl.gt.mxptl-10)
-     >call utstop('jdeca: mxptl too small                  ')
+     *call utstop('jdeca: mxptl too small                  ')
       ish=ish0
       call jdecay(i,iret)
       if(ishsub/100.eq.5)ish=mod(ishsub,100)
@@ -7515,9 +7506,9 @@ c-----------------------------------------------------------------------
       if(ish.ge.91)write(ifch,101)sngl(ttaus)
 101   format(1x,'decay  at tau =',e10.3)
       if(ish.ge.91)write(ifch,115)i,idptl(i)
-     >,(pptl(k,i),k=3,5),(tivptl(k,i),k=1,2)
+     *,(pptl(k,i),k=3,5),(tivptl(k,i),k=1,2)
 115   format(1x,'/cptl/',i4,i10
-     >,3x,3(e8.2,1x),2x,2(e8.2,1x))
+     *,3x,3(e8.2,1x),2x,2(e8.2,1x))
       istptl(i)=1
       ifrptl(1,i)=nptlb+1
       ifrptl(2,i)=nptl
@@ -7525,7 +7516,7 @@ c-----------------------------------------------------------------------
       y=xorptl(2,i)+(t-xorptl(4,i))*pptl(2,i)/pptl(4,i)
       z=xorptl(3,i)+(t-xorptl(4,i))*pptl(3,i)/pptl(4,i)
       if(ish.ge.93)write(ifch,*)
-     >'loop over decay products ',nptlb+1,' - ',nptl,' :'
+     *'loop over decay products ',nptlb+1,' - ',nptl,' :'
       do 20 n=nptlb+1,nptl
       if(ish.ge.93)write(ifch,*)'particle: ',n,idptl(n)
       iorptl(n)=i
@@ -7539,9 +7530,9 @@ c-----------------------------------------------------------------------
       xorptl(4,n)=t
       nqjptl(n)=nqjptl(i)
       io=n
- 17   io=iorptl(io)
+1     io=iorptl(io)
       if(ish.ge.93)write(ifch,*)'io = ',io
-      if(iorptl(io).gt.0) goto 17
+      if(iorptl(io).gt.0)goto1
       if(ish.ge.93)write(ifch,*)'origin: ',io,idptl(io)
       zor=xorptl(3,io)
       tor=xorptl(4,io)
@@ -7554,7 +7545,7 @@ c-----------------------------------------------------------------------
       tivptl(2,n)=t+taugm
       iclptl(n)=1
       if(ish.ge.91)write(ifch,115)n,idptl(n)
-     >,(pptl(k,n),k=3,5),(tivptl(k,n),k=1,2)
+     *,(pptl(k,n),k=3,5),(tivptl(k,n),k=1,2)
 20    continue
       ish=ish00
  
@@ -7570,20 +7561,20 @@ c     decays particle ip from /cptl/
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/wco/wmass2,wgam2
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter (mxlook=10000,mxdky=2000)
       common/dkytab/look(mxlook),cbr(mxdky),mode(5,mxdky)
       common/cnsta/pi,prom,piom,ainfin
       dimension pgen(5,5),rnd(5),u(3),beta(3),idqk(3),rot(3,3),psave(3)
-     >,reduce(5)
+     1,reduce(5)
       dimension pold(4),pnew(4)
       dimension prest(4,5)
       common/cclude/kclude
@@ -7592,7 +7583,7 @@ c-----------------------------------------------------------------------
  
 c          fctn definitions
       dot(i1,i2)=prest(4,i1)*prest(4,i2)-prest(1,i1)*prest(1,i2)
-     >-prest(2,i1)*prest(2,i2)-prest(3,i1)*prest(3,i2)
+     *-prest(2,i1)*prest(2,i2)-prest(3,i1)*prest(3,i2)
 c          charged w propagator.
       wprop(z)=(z-wmass2**2)**2+(wmass2*wgam2)**2
  
@@ -7638,9 +7629,7 @@ c     -----------------
            endif
       idlv1=idptl(ip)
       amss=pptl(5,ip)
-
- 77   continue
-
+1     continue
       ipoint=look(iabs(idlv1))-1
       if(ipoint.lt.0) goto1000
       try=rangen()
@@ -7673,7 +7662,7 @@ c     use kroll-wada distribution for dalitz decays.
 c     ----------------------------------------------
       if(ish.ge.93)write(ifch,*)'>= 3 body decay'
       if(.not.((idptl(ip).eq.110.or.idptl(ip).eq.220).and.
-     >iabs(idptl(nptl+2)).eq.12)) goto130
+     1iabs(idptl(nptl+2)).eq.12)) goto130
       ntry=0
 125   ntry=ntry+1
            if(ntry.gt.10)then
@@ -7784,7 +7773,7 @@ c     -------------------------------------------------
       do 530 j=1,3
       prest(j,k)=pptl(j,k1)
       pptl(j,k1)=pptl(j,k1)+gamma*beta(j)*(pptl(4,k1)
-     >+bp*gamma/(gamma+1.))
+     1+bp*gamma/(gamma+1.))
 530   continue
       prest(4,k)=pptl(4,k1)
       pptl(4,k1)=gamma*(pptl(4,k1)+bp)
@@ -7795,17 +7784,17 @@ c     matrix elements
 c     ---------------
       if(nadd.eq.3.and.(idptl(ip).eq.221.or.idptl(ip).eq.331)) goto610
       if(nadd.eq.3.and.iabs(idptl(nptl+1)).lt.20.and.
-     >idptl(nptl+1).ne.10) goto620
+     1idptl(nptl+1).ne.10) goto620
       goto800
  
 c     omeg and phi decay
 c          use vectors in rest frame
 c     ------------------------------
 610   wt=(pptl(5,nptl+1)*pptl(5,nptl+2)*pptl(5,nptl+3))**2
-     >-(pptl(5,nptl+1)*dot(2,3))**2
-     >-(pptl(5,nptl+2)*dot(1,3))**2
-     >-(pptl(5,nptl+3)*dot(1,2))**2
-     >+2.*dot(1,2)*dot(2,3)*dot(1,3)
+     1-(pptl(5,nptl+1)*dot(2,3))**2
+     2-(pptl(5,nptl+2)*dot(1,3))**2
+     3-(pptl(5,nptl+3)*dot(1,2))**2
+     4+2.*dot(1,2)*dot(2,3)*dot(1,3)
       if(wt.lt.rangen()*pptl(5,ip)**6/108.) goto300
       goto800
  
@@ -7845,10 +7834,10 @@ c     -----------------------------------------------
 900   continue
       nptl=nptl+nadd
       if(nptl.gt.mxptl)
-     >call utstop('jdecay: nptl>mxptl                      ')
+     *call utstop('jdecay: nptl>mxptl                      ')
       nqk=0
       if(iabs(idptl(nptl)).lt.10.or.mod(idptl(nptl),100).eq.0)
-     >call utstop('jdecay: decay ptcl is parton            ')
+     *call utstop('jdecay: decay ptcl is parton            ')
  
 1000  continue
       if(ish.ge.93)write(ifch,*)('-',l=1,79)
@@ -7864,10 +7853,10 @@ c     sets up /dkytab/
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/wco/wmass2,wgam2
       dimension imode(6)
@@ -7904,9 +7893,8 @@ c     ----------------------
  
       data iquit/'////'/,iblank/' '/
       ird=0
-      do i=1,mxlook
-         look(i)=0
-      enddo
+      do 1 i=1,mxlook
+1     look(i)=0
       do 2 i=1,mxdky
       do 3 j=1,5
 3     mode(j,i)=0
@@ -7919,10 +7907,10 @@ c     ----------------------
       nohadr=.false.
       if(lprint) write(ifch,10)
 10    format('1',30('*')/' *',28x,'*'/
-     >' *',5x,'isajet decay table',5x,'*'/
-     >' *',28x,'*'/' ',30('*')//
-     >6x,'part',18x,'decay mode',19x,'cum br',15x,'ident',17x,
-     >'decay ident'/)
+     1' *',5x,'isajet decay table',5x,'*'/
+     2' *',28x,'*'/' ',30('*')//
+     36x,'part',18x,'decay mode',19x,'cum br',15x,'ident',17x,
+     4'decay ident'/)
       loop=0
       iold=0
       if(nodcay) return
@@ -7943,7 +7931,7 @@ c     ----------------------
       if(noeta.and.ires.eq.220) goto220
       if(ires.eq.iold) goto230
       if(ires.lt.0.or.ires.gt.mxlook)
-     >call utstop('jdecin: ires out of range               ')
+     *call utstop('jdecin: ires out of range               ')
       look(ires)=loop
 230   iold=ires
       cbr(loop)=br
@@ -7953,1336 +7941,1331 @@ c     ----------------------
 240   continue
       lres=idlabl(ires)
       if(lprint) write(ifch,20) lres,(lmode(k),k=1,5),
-     >br,ires,(imode(k),k=1,5)
+     1br,ires,(imode(k),k=1,5)
 20    format(6x,a5,6x,5(a5,2x),3x,f8.5,15x,i5,4x,5(i5,2x))
       goto200
  
 9999  write(ifch,*)'loop=', loop
       call utstop('jdecin: loop > mxdky                    ')
  
-      data ((dectab(i,j),i=1,7),j=  1, 18)
-     >/ 110., .98850,  10.,  10.,   0.,   0.,   0.
-     >, 110.,1.00000,  10.,  12., -12.,   0.,   0.
-     >, 220., .38000,  10.,  10.,   0.,   0.,   0.
-     >, 220., .71000, 110., 110., 110.,   0.,   0.
-     >, 220., .94600, 120.,-120., 110.,   0.,   0.
-     >, 220., .99500, 120.,-120.,  10.,   0.,   0.
-     >, 220.,1.00000,  10.,  12., -12.,   0.,   0.
-     >, 330., .44100, 220., 120.,-120.,   0.,   0.
-     >, 330., .66100, 220., 110., 110.,   0.,   0.
-     >, 330., .95900, 111.,  10.,   0.,   0.,   0.
-     >, 330., .98000, 221.,  10.,   0.,   0.,   0.
-     >, 330.,1.00000,  10.,  10.,   0.,   0.,   0.
-     >, 121.,1.00000, 120., 110.,   0.,   0.,   0.
-     >, 111., .99989, 120.,-120.,   0.,   0.,   0.
-     >, 111., .99993,  12., -12.,   0.,   0.,   0.
-     >, 111.,1.00000,  14., -14.,   0.,   0.,   0.
-     >, 221., .89900, 120.,-120., 110.,   0.,   0.
-     >, 221., .91200, 120.,-120.,   0.,   0.,   0./
+      data ((dectab(i,j),i=1,7),j=  1, 18)/
+     *  110., .98850,  10.,  10.,   0.,   0.,   0.
+     *, 110.,1.00000,  10.,  12., -12.,   0.,   0.
+     *, 220., .38000,  10.,  10.,   0.,   0.,   0.
+     *, 220., .71000, 110., 110., 110.,   0.,   0.
+     *, 220., .94600, 120.,-120., 110.,   0.,   0.
+     *, 220., .99500, 120.,-120.,  10.,   0.,   0.
+     *, 220.,1.00000,  10.,  12., -12.,   0.,   0.
+     *, 330., .44100, 220., 120.,-120.,   0.,   0.
+     *, 330., .66100, 220., 110., 110.,   0.,   0.
+     *, 330., .95900, 111.,  10.,   0.,   0.,   0.
+     *, 330., .98000, 221.,  10.,   0.,   0.,   0.
+     *, 330.,1.00000,  10.,  10.,   0.,   0.,   0.
+     *, 121.,1.00000, 120., 110.,   0.,   0.,   0.
+     *, 111., .99989, 120.,-120.,   0.,   0.,   0.
+     *, 111., .99993,  12., -12.,   0.,   0.,   0.
+     *, 111.,1.00000,  14., -14.,   0.,   0.,   0.
+     *, 221., .89900, 120.,-120., 110.,   0.,   0.
+     *, 221., .91200, 120.,-120.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j= 19, 36)/
-     >  221., .99992, 110.,  10.,   0.,   0.,   0.
-     >, 221.,1.00000,  12., -12.,   0.,   0.,   0.
-     >, 331., .48600, 130.,-130.,   0.,   0.,   0.
-     >, 331., .83700, 230.,-230.,   0.,   0.,   0.
-     >, 331., .98400, 120.,-120., 110.,   0.,   0.
-     >, 331., .99944, 220.,  10.,   0.,   0.,   0.
-     >, 331., .99975,  12., -12.,   0.,   0.,   0.
-     >, 331.,1.00000,  14., -14.,   0.,   0.,   0.
-     >, 230., .50000,  20.,   0.,   0.,   0.,   0.
-     >, 230.,1.00000, -20.,   0.,   0.,   0.,   0.
-     >, 131., .66670, 230., 120.,   0.,   0.,   0.
-     >, 131.,1.00000, 130., 110.,   0.,   0.,   0.
-     >, 231., .66670, 130.,-120.,   0.,   0.,   0.
-     >, 231.,1.00000, 230., 110.,   0.,   0.,   0.
-     >, 240., .11000,  12., -11., 230.,   0.,   0.
-     >, 240., .17000,  12., -11., 231.,   0.,   0.
-     >, 240., .28000,  14., -13., 230.,   0.,   0.
-     >, 240., .34000,  14., -13., 231.,   0.,   0./
+     *  221., .99992, 110.,  10.,   0.,   0.,   0.
+     *, 221.,1.00000,  12., -12.,   0.,   0.,   0.
+     *, 331., .48600, 130.,-130.,   0.,   0.,   0.
+     *, 331., .83700, 230.,-230.,   0.,   0.,   0.
+     *, 331., .98400, 120.,-120., 110.,   0.,   0.
+     *, 331., .99944, 220.,  10.,   0.,   0.,   0.
+     *, 331., .99975,  12., -12.,   0.,   0.,   0.
+     *, 331.,1.00000,  14., -14.,   0.,   0.,   0.
+     *, 230., .50000,  20.,   0.,   0.,   0.,   0.
+     *, 230.,1.00000, -20.,   0.,   0.,   0.,   0.
+     *, 131., .66670, 230., 120.,   0.,   0.,   0.
+     *, 131.,1.00000, 130., 110.,   0.,   0.,   0.
+     *, 231., .66670, 130.,-120.,   0.,   0.,   0.
+     *, 231.,1.00000, 230., 110.,   0.,   0.,   0.
+     *, 240., .11000,  12., -11., 230.,   0.,   0.
+     *, 240., .17000,  12., -11., 231.,   0.,   0.
+     *, 240., .28000,  14., -13., 230.,   0.,   0.
+     *, 240., .34000,  14., -13., 231.,   0.,   0./
       data ((dectab(i,j),i=1,7),j= 37, 54)/
-     >  240., .37800, 230.,-120.,   0.,   0.,   0.
-     >, 240., .56300, 230.,-121.,   0.,   0.,   0.
-     >, 240., .60800, 231.,-120.,   0.,   0.,   0.
-     >, 240., .62100, 230.,-120., 110.,   0.,   0.
-     >, 240., .71000, 130.,-120.,-120.,   0.,   0.
-     >, 240., .80100, 230.,-120.,-120., 120.,   0.
-     >, 240., .87900, 130.,-120.,-120., 110.,   0.
-     >, 240., .95400, 230.,-120., 110., 110.,   0.
-     >, 240., .96600, 230.,-130.,   0.,   0.,   0.
-     >, 240., .97600, 331.,-120.,   0.,   0.,   0.
-     >, 240., .98800,-130., 231.,   0.,   0.,   0.
-     >, 240.,1.00000,-131., 230.,   0.,   0.,   0.
-     >, 140., .04500,  12., -11., 130.,   0.,   0.
-     >, 140., .07500,  12., -11., 131.,   0.,   0.
-     >, 140., .12000,  14., -13., 130.,   0.,   0.
-     >, 140., .15000,  14., -13., 131.,   0.,   0.
-     >, 140., .20300, 130.,-120.,   0.,   0.,   0.
-     >, 140., .22700, 230., 110.,   0.,   0.,   0./
+     *  240., .37800, 230.,-120.,   0.,   0.,   0.
+     *, 240., .56300, 230.,-121.,   0.,   0.,   0.
+     *, 240., .60800, 231.,-120.,   0.,   0.,   0.
+     *, 240., .62100, 230.,-120., 110.,   0.,   0.
+     *, 240., .71000, 130.,-120.,-120.,   0.,   0.
+     *, 240., .80100, 230.,-120.,-120., 120.,   0.
+     *, 240., .87900, 130.,-120.,-120., 110.,   0.
+     *, 240., .95400, 230.,-120., 110., 110.,   0.
+     *, 240., .96600, 230.,-130.,   0.,   0.,   0.
+     *, 240., .97600, 331.,-120.,   0.,   0.,   0.
+     *, 240., .98800,-130., 231.,   0.,   0.,   0.
+     *, 240.,1.00000,-131., 230.,   0.,   0.,   0.
+     *, 140., .04500,  12., -11., 130.,   0.,   0.
+     *, 140., .07500,  12., -11., 131.,   0.,   0.
+     *, 140., .12000,  14., -13., 130.,   0.,   0.
+     *, 140., .15000,  14., -13., 131.,   0.,   0.
+     *, 140., .20300, 130.,-120.,   0.,   0.,   0.
+     *, 140., .22700, 230., 110.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j= 55, 72)/
-     >  140., .24700, 230., 220.,   0.,   0.,   0.
-     >, 140., .28900, 230., 221.,   0.,   0.,   0.
-     >, 140., .45100, 130.,-121.,   0.,   0.,   0.
-     >, 140., .53600, 131.,-120.,   0.,   0.,   0.
-     >, 140., .56200, 231., 110.,   0.,   0.,   0.
-     >, 140., .57600, 230., 111.,   0.,   0.,   0.
-     >, 140., .58700, 130.,-120., 110.,   0.,   0.
-     >, 140., .60300, 230.,-120., 120.,   0.,   0.
-     >, 140., .72700, 130.,-120.,-120., 120.,   0.
-     >, 140., .87600, 230.,-120., 120., 110.,   0.
-     >, 140., .96900, 130.,-120., 110., 110.,   0.
-     >, 140.,1.00000, 230., 110., 110., 110.,   0.
-     >, 340., .03250,  12., -11., 220.,   0.,   0.
-     >, 340., .06500,  12., -11., 331.,   0.,   0.
-     >, 340., .09750,  14., -13., 220.,   0.,   0.
-     >, 340., .13000,  14., -13., 331.,   0.,   0.
-     >, 340., .17900,-130., 230.,   0.,   0.,   0.
-     >, 340., .22800,-120., 220.,   0.,   0.,   0./
+     *  140., .24700, 230., 220.,   0.,   0.,   0.
+     *, 140., .28900, 230., 221.,   0.,   0.,   0.
+     *, 140., .45100, 130.,-121.,   0.,   0.,   0.
+     *, 140., .53600, 131.,-120.,   0.,   0.,   0.
+     *, 140., .56200, 231., 110.,   0.,   0.,   0.
+     *, 140., .57600, 230., 111.,   0.,   0.,   0.
+     *, 140., .58700, 130.,-120., 110.,   0.,   0.
+     *, 140., .60300, 230.,-120., 120.,   0.,   0.
+     *, 140., .72700, 130.,-120.,-120., 120.,   0.
+     *, 140., .87600, 230.,-120., 120., 110.,   0.
+     *, 140., .96900, 130.,-120., 110., 110.,   0.
+     *, 140.,1.00000, 230., 110., 110., 110.,   0.
+     *, 340., .03250,  12., -11., 220.,   0.,   0.
+     *, 340., .06500,  12., -11., 331.,   0.,   0.
+     *, 340., .09750,  14., -13., 220.,   0.,   0.
+     *, 340., .13000,  14., -13., 331.,   0.,   0.
+     *, 340., .17900,-130., 230.,   0.,   0.,   0.
+     *, 340., .22800,-120., 220.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j= 73, 90)/
-     >  340., .33800,-131., 230.,   0.,   0.,   0.
-     >, 340., .44800,-130., 231.,   0.,   0.,   0.
-     >, 340., .55800,-120., 331.,   0.,   0.,   0.
-     >, 340., .57500,-130., 230., 110.,   0.,   0.
-     >, 340., .59200,-230., 230.,-120.,   0.,   0.
-     >, 340., .69400,-130., 230.,-120., 120.,   0.
-     >, 340., .79600,-130., 230., 110., 110.,   0.
-     >, 340., .89800,-130., 130.,-120., 110.,   0.
-     >, 340.,1.00000,-230., 230.,-120., 110.,   0.
-     >, 241., .64000, 140.,-120.,   0.,   0.,   0.
-     >, 241., .92000, 240., 110.,   0.,   0.,   0.
-     >, 241.,1.00000, 240.,  10.,   0.,   0.,   0.
-     >, 141., .55000, 140., 110.,   0.,   0.,   0.
-     >, 141.,1.00000, 140.,  10.,   0.,   0.,   0.
-     >, 341.,1.00000, 340.,  10.,   0.,   0.,   0.
-     >, 441., .07400,  12., -12.,   0.,   0.,   0.
-     >, 441., .14800,  14., -14.,   0.,   0.,   0.
-     >, 441., .15210,-121., 120.,   0.,   0.,   0./
+     *  340., .33800,-131., 230.,   0.,   0.,   0.
+     *, 340., .44800,-130., 231.,   0.,   0.,   0.
+     *, 340., .55800,-120., 331.,   0.,   0.,   0.
+     *, 340., .57500,-130., 230., 110.,   0.,   0.
+     *, 340., .59200,-230., 230.,-120.,   0.,   0.
+     *, 340., .69400,-130., 230.,-120., 120.,   0.
+     *, 340., .79600,-130., 230., 110., 110.,   0.
+     *, 340., .89800,-130., 130.,-120., 110.,   0.
+     *, 340.,1.00000,-230., 230.,-120., 110.,   0.
+     *, 241., .64000, 140.,-120.,   0.,   0.,   0.
+     *, 241., .92000, 240., 110.,   0.,   0.,   0.
+     *, 241.,1.00000, 240.,  10.,   0.,   0.,   0.
+     *, 141., .55000, 140., 110.,   0.,   0.,   0.
+     *, 141.,1.00000, 140.,  10.,   0.,   0.,   0.
+     *, 341.,1.00000, 340.,  10.,   0.,   0.,   0.
+     *, 441., .07400,  12., -12.,   0.,   0.,   0.
+     *, 441., .14800,  14., -14.,   0.,   0.,   0.
+     *, 441., .15210,-121., 120.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j= 91,108)/
-     >  441., .15620, 111., 110.,   0.,   0.,   0.
-     >, 441., .16020, 121.,-120.,   0.,   0.,   0.
-     >, 441., .16300,-121., 111., 120.,   0.,   0.
-     >, 441., .16580, 121.,-121., 110.,   0.,   0.
-     >, 441., .16860, 121., 111.,-120.,   0.,   0.
-     >, 441., .28740, 120.,-120., 130.,-130.,   0.
-     >, 441., .40620, 110., 110., 130.,-130.,   0.
-     >, 441., .52500, 120.,-120., 120.,-120.,   0.
-     >, 441., .64380, 120.,-120., 110., 110.,   0.
-     >, 441., .76260, 110., 110., 110., 110.,   0.
-     >, 441., .88130, 120.,-120., 230.,-230.,   0.
-     >, 441.,1.00000, 110., 110., 230., 230.,   0.
-     >, 150., .06000, -12.,  11., 140.,   0.,   0.
-     >, 150., .12000, -12.,  11., 141.,   0.,   0.
-     >, 150., .18000, -14.,  13., 140.,   0.,   0.
-     >, 150., .24000, -14.,  13., 141.,   0.,   0.
-     >, 150., .25500, -16.,  15., 140.,   0.,   0.
-     >, 150., .27000, -16.,  15., 141.,   0.,   0./
+     *  441., .15620, 111., 110.,   0.,   0.,   0.
+     *, 441., .16020, 121.,-120.,   0.,   0.,   0.
+     *, 441., .16300,-121., 111., 120.,   0.,   0.
+     *, 441., .16580, 121.,-121., 110.,   0.,   0.
+     *, 441., .16860, 121., 111.,-120.,   0.,   0.
+     *, 441., .28740, 120.,-120., 130.,-130.,   0.
+     *, 441., .40620, 110., 110., 130.,-130.,   0.
+     *, 441., .52500, 120.,-120., 120.,-120.,   0.
+     *, 441., .64380, 120.,-120., 110., 110.,   0.
+     *, 441., .76260, 110., 110., 110., 110.,   0.
+     *, 441., .88130, 120.,-120., 230.,-230.,   0.
+     *, 441.,1.00000, 110., 110., 230., 230.,   0.
+     *, 150., .06000, -12.,  11., 140.,   0.,   0.
+     *, 150., .12000, -12.,  11., 141.,   0.,   0.
+     *, 150., .18000, -14.,  13., 140.,   0.,   0.
+     *, 150., .24000, -14.,  13., 141.,   0.,   0.
+     *, 150., .25500, -16.,  15., 140.,   0.,   0.
+     *, 150., .27000, -16.,  15., 141.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=109,126)/
-     >  150., .28050, 140., 120.,   0.,   0.,   0.
-     >, 150., .29100, 140., 121.,   0.,   0.,   0.
-     >, 150., .30150, 141., 120.,   0.,   0.,   0.
-     >, 150., .31200, 141., 121.,   0.,   0.,   0.
-     >, 150., .32650, 140.,-340.,   0.,   0.,   0.
-     >, 150., .34100, 140.,-341.,   0.,   0.,   0.
-     >, 150., .35550, 141.,-340.,   0.,   0.,   0.
-     >, 150., .37000, 141.,-341.,   0.,   0.,   0.
-     >, 150., .39800, 140., 120., 110.,   0.,   0.
-     >, 150., .42600, 140., 120., 220.,   0.,   0.
-     >, 150., .45400, 140., 120., 111.,   0.,   0.
-     >, 150., .48200, 140., 120., 221.,   0.,   0.
-     >, 150., .51000, 140., 121., 110.,   0.,   0.
-     >, 150., .53800, 140., 121., 220.,   0.,   0.
-     >, 150., .56600, 140., 121., 111.,   0.,   0.
-     >, 150., .59400, 140., 121., 221.,   0.,   0.
-     >, 150., .62200, 141., 120., 110.,   0.,   0.
-     >, 150., .65000, 141., 120., 220.,   0.,   0./
+     *  150., .28050, 140., 120.,   0.,   0.,   0.
+     *, 150., .29100, 140., 121.,   0.,   0.,   0.
+     *, 150., .30150, 141., 120.,   0.,   0.,   0.
+     *, 150., .31200, 141., 121.,   0.,   0.,   0.
+     *, 150., .32650, 140.,-340.,   0.,   0.,   0.
+     *, 150., .34100, 140.,-341.,   0.,   0.,   0.
+     *, 150., .35550, 141.,-340.,   0.,   0.,   0.
+     *, 150., .37000, 141.,-341.,   0.,   0.,   0.
+     *, 150., .39800, 140., 120., 110.,   0.,   0.
+     *, 150., .42600, 140., 120., 220.,   0.,   0.
+     *, 150., .45400, 140., 120., 111.,   0.,   0.
+     *, 150., .48200, 140., 120., 221.,   0.,   0.
+     *, 150., .51000, 140., 121., 110.,   0.,   0.
+     *, 150., .53800, 140., 121., 220.,   0.,   0.
+     *, 150., .56600, 140., 121., 111.,   0.,   0.
+     *, 150., .59400, 140., 121., 221.,   0.,   0.
+     *, 150., .62200, 141., 120., 110.,   0.,   0.
+     *, 150., .65000, 141., 120., 220.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=127,144)/
-     >  150., .67800, 141., 120., 111.,   0.,   0.
-     >, 150., .70600, 141., 120., 221.,   0.,   0.
-     >, 150., .73400, 141., 121., 110.,   0.,   0.
-     >, 150., .76200, 141., 121., 220.,   0.,   0.
-     >, 150., .79000, 141., 121., 111.,   0.,   0.
-     >, 150., .81800, 141., 121., 221.,   0.,   0.
-     >, 150., .83200, 140., 130.,-230.,   0.,   0.
-     >, 150., .84600, 140., 130.,-231.,   0.,   0.
-     >, 150., .86000, 140., 131.,-230.,   0.,   0.
-     >, 150., .87400, 140., 131.,-231.,   0.,   0.
-     >, 150., .88800, 141., 130.,-230.,   0.,   0.
-     >, 150., .90200, 141., 130.,-231.,   0.,   0.
-     >, 150., .91600, 141., 131.,-230.,   0.,   0.
-     >, 150., .93000, 141., 131.,-231.,   0.,   0.
-     >, 150., .93300, 140.,-140., 130.,   0.,   0.
-     >, 150., .93600, 140.,-140., 131.,   0.,   0.
-     >, 150., .93900, 140.,-141., 130.,   0.,   0.
-     >, 150., .94200, 140.,-141., 131.,   0.,   0./
+     *  150., .67800, 141., 120., 111.,   0.,   0.
+     *, 150., .70600, 141., 120., 221.,   0.,   0.
+     *, 150., .73400, 141., 121., 110.,   0.,   0.
+     *, 150., .76200, 141., 121., 220.,   0.,   0.
+     *, 150., .79000, 141., 121., 111.,   0.,   0.
+     *, 150., .81800, 141., 121., 221.,   0.,   0.
+     *, 150., .83200, 140., 130.,-230.,   0.,   0.
+     *, 150., .84600, 140., 130.,-231.,   0.,   0.
+     *, 150., .86000, 140., 131.,-230.,   0.,   0.
+     *, 150., .87400, 140., 131.,-231.,   0.,   0.
+     *, 150., .88800, 141., 130.,-230.,   0.,   0.
+     *, 150., .90200, 141., 130.,-231.,   0.,   0.
+     *, 150., .91600, 141., 131.,-230.,   0.,   0.
+     *, 150., .93000, 141., 131.,-231.,   0.,   0.
+     *, 150., .93300, 140.,-140., 130.,   0.,   0.
+     *, 150., .93600, 140.,-140., 131.,   0.,   0.
+     *, 150., .93900, 140.,-141., 130.,   0.,   0.
+     *, 150., .94200, 140.,-141., 131.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=145,162)/
-     >  150., .94500, 141.,-140., 130.,   0.,   0.
-     >, 150., .94800, 141.,-140., 131.,   0.,   0.
-     >, 150., .95100, 141.,-141., 130.,   0.,   0.
-     >, 150., .95400, 141.,-141., 131.,   0.,   0.
-     >, 150., .95700, 140.,-240., 230.,   0.,   0.
-     >, 150., .96000, 140.,-240., 231.,   0.,   0.
-     >, 150., .96300, 140.,-241., 230.,   0.,   0.
-     >, 150., .96600, 140.,-241., 231.,   0.,   0.
-     >, 150., .96900, 141.,-240., 230.,   0.,   0.
-     >, 150., .97200, 141.,-240., 231.,   0.,   0.
-     >, 150., .97500, 141.,-241., 230.,   0.,   0.
-     >, 150., .97800, 141.,-241., 231.,   0.,   0.
-     >, 150., .97950, 140.,-340., 330.,   0.,   0.
-     >, 150., .98100, 140.,-340., 331.,   0.,   0.
-     >, 150., .98250, 140.,-341., 331.,   0.,   0.
-     >, 150., .98400, 140.,-341., 331.,   0.,   0.
-     >, 150., .98550, 141.,-340., 330.,   0.,   0.
-     >, 150., .98700, 141.,-340., 331.,   0.,   0./
+     *  150., .94500, 141.,-140., 130.,   0.,   0.
+     *, 150., .94800, 141.,-140., 131.,   0.,   0.
+     *, 150., .95100, 141.,-141., 130.,   0.,   0.
+     *, 150., .95400, 141.,-141., 131.,   0.,   0.
+     *, 150., .95700, 140.,-240., 230.,   0.,   0.
+     *, 150., .96000, 140.,-240., 231.,   0.,   0.
+     *, 150., .96300, 140.,-241., 230.,   0.,   0.
+     *, 150., .96600, 140.,-241., 231.,   0.,   0.
+     *, 150., .96900, 141.,-240., 230.,   0.,   0.
+     *, 150., .97200, 141.,-240., 231.,   0.,   0.
+     *, 150., .97500, 141.,-241., 230.,   0.,   0.
+     *, 150., .97800, 141.,-241., 231.,   0.,   0.
+     *, 150., .97950, 140.,-340., 330.,   0.,   0.
+     *, 150., .98100, 140.,-340., 331.,   0.,   0.
+     *, 150., .98250, 140.,-341., 331.,   0.,   0.
+     *, 150., .98400, 140.,-341., 331.,   0.,   0.
+     *, 150., .98550, 141.,-340., 330.,   0.,   0.
+     *, 150., .98700, 141.,-340., 331.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=163,180)/
-     >  150., .98850, 141.,-341., 331.,   0.,   0.
-     >, 150., .99000, 141.,-341., 331.,   0.,   0.
-     >, 150., .99200, 441., 130., 110.,   0.,   0.
-     >, 150., .99400, 441., 131., 110.,   0.,   0.
-     >, 150., .99600, 441., 230., 120.,   0.,   0.
-     >, 150., .99800, 441., 231., 120.,   0.,   0.
-     >, 150., .99900, 441., 330., 130.,   0.,   0.
-     >, 150.,1.00000, 441., 331., 130.,   0.,   0.
-     >, 250., .06000, -12.,  11., 240.,   0.,   0.
-     >, 250., .12000, -12.,  11., 241.,   0.,   0.
-     >, 250., .18000, -14.,  13., 240.,   0.,   0.
-     >, 250., .24000, -14.,  13., 241.,   0.,   0.
-     >, 250., .25500, -16.,  15., 240.,   0.,   0.
-     >, 250., .27000, -16.,  15., 241.,   0.,   0.
-     >, 250., .28050, 240., 120.,   0.,   0.,   0.
-     >, 250., .29100, 240., 121.,   0.,   0.,   0.
-     >, 250., .30150, 241., 120.,   0.,   0.,   0.
-     >, 250., .31200, 241., 121.,   0.,   0.,   0./
+     *  150., .98850, 141.,-341., 331.,   0.,   0.
+     *, 150., .99000, 141.,-341., 331.,   0.,   0.
+     *, 150., .99200, 441., 130., 110.,   0.,   0.
+     *, 150., .99400, 441., 131., 110.,   0.,   0.
+     *, 150., .99600, 441., 230., 120.,   0.,   0.
+     *, 150., .99800, 441., 231., 120.,   0.,   0.
+     *, 150., .99900, 441., 330., 130.,   0.,   0.
+     *, 150.,1.00000, 441., 331., 130.,   0.,   0.
+     *, 250., .06000, -12.,  11., 240.,   0.,   0.
+     *, 250., .12000, -12.,  11., 241.,   0.,   0.
+     *, 250., .18000, -14.,  13., 240.,   0.,   0.
+     *, 250., .24000, -14.,  13., 241.,   0.,   0.
+     *, 250., .25500, -16.,  15., 240.,   0.,   0.
+     *, 250., .27000, -16.,  15., 241.,   0.,   0.
+     *, 250., .28050, 240., 120.,   0.,   0.,   0.
+     *, 250., .29100, 240., 121.,   0.,   0.,   0.
+     *, 250., .30150, 241., 120.,   0.,   0.,   0.
+     *, 250., .31200, 241., 121.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=181,198)/
-     >  250., .32650, 240.,-340.,   0.,   0.,   0.
-     >, 250., .34100, 240.,-341.,   0.,   0.,   0.
-     >, 250., .35550, 241.,-340.,   0.,   0.,   0.
-     >, 250., .37000, 241.,-341.,   0.,   0.,   0.
-     >, 250., .39800, 240., 120., 110.,   0.,   0.
-     >, 250., .42600, 240., 120., 220.,   0.,   0.
-     >, 250., .45400, 240., 120., 111.,   0.,   0.
-     >, 250., .48200, 240., 120., 221.,   0.,   0.
-     >, 250., .51000, 240., 121., 110.,   0.,   0.
-     >, 250., .53800, 240., 121., 220.,   0.,   0.
-     >, 250., .56600, 240., 121., 111.,   0.,   0.
-     >, 250., .59400, 240., 121., 221.,   0.,   0.
-     >, 250., .62200, 241., 120., 110.,   0.,   0.
-     >, 250., .65000, 241., 120., 220.,   0.,   0.
-     >, 250., .67800, 241., 120., 111.,   0.,   0.
-     >, 250., .70600, 241., 120., 221.,   0.,   0.
-     >, 250., .73400, 241., 121., 110.,   0.,   0.
-     >, 250., .76200, 241., 121., 220.,   0.,   0./
+     *  250., .32650, 240.,-340.,   0.,   0.,   0.
+     *, 250., .34100, 240.,-341.,   0.,   0.,   0.
+     *, 250., .35550, 241.,-340.,   0.,   0.,   0.
+     *, 250., .37000, 241.,-341.,   0.,   0.,   0.
+     *, 250., .39800, 240., 120., 110.,   0.,   0.
+     *, 250., .42600, 240., 120., 220.,   0.,   0.
+     *, 250., .45400, 240., 120., 111.,   0.,   0.
+     *, 250., .48200, 240., 120., 221.,   0.,   0.
+     *, 250., .51000, 240., 121., 110.,   0.,   0.
+     *, 250., .53800, 240., 121., 220.,   0.,   0.
+     *, 250., .56600, 240., 121., 111.,   0.,   0.
+     *, 250., .59400, 240., 121., 221.,   0.,   0.
+     *, 250., .62200, 241., 120., 110.,   0.,   0.
+     *, 250., .65000, 241., 120., 220.,   0.,   0.
+     *, 250., .67800, 241., 120., 111.,   0.,   0.
+     *, 250., .70600, 241., 120., 221.,   0.,   0.
+     *, 250., .73400, 241., 121., 110.,   0.,   0.
+     *, 250., .76200, 241., 121., 220.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=199,216)/
-     >  250., .79000, 241., 121., 111.,   0.,   0.
-     >, 250., .81800, 241., 121., 221.,   0.,   0.
-     >, 250., .83200, 240., 130.,-230.,   0.,   0.
-     >, 250., .84600, 240., 130.,-231.,   0.,   0.
-     >, 250., .86000, 240., 131.,-230.,   0.,   0.
-     >, 250., .87400, 240., 131.,-231.,   0.,   0.
-     >, 250., .88800, 241., 130.,-230.,   0.,   0.
-     >, 250., .90200, 241., 130.,-231.,   0.,   0.
-     >, 250., .91600, 241., 131.,-230.,   0.,   0.
-     >, 250., .93000, 241., 131.,-231.,   0.,   0.
-     >, 250., .93300, 240.,-140., 130.,   0.,   0.
-     >, 250., .93600, 240.,-140., 131.,   0.,   0.
-     >, 250., .93900, 240.,-141., 130.,   0.,   0.
-     >, 250., .94200, 240.,-141., 131.,   0.,   0.
-     >, 250., .94500, 241.,-140., 130.,   0.,   0.
-     >, 250., .94800, 241.,-140., 131.,   0.,   0.
-     >, 250., .95100, 241.,-141., 130.,   0.,   0.
-     >, 250., .95400, 241.,-141., 131.,   0.,   0./
+     *  250., .79000, 241., 121., 111.,   0.,   0.
+     *, 250., .81800, 241., 121., 221.,   0.,   0.
+     *, 250., .83200, 240., 130.,-230.,   0.,   0.
+     *, 250., .84600, 240., 130.,-231.,   0.,   0.
+     *, 250., .86000, 240., 131.,-230.,   0.,   0.
+     *, 250., .87400, 240., 131.,-231.,   0.,   0.
+     *, 250., .88800, 241., 130.,-230.,   0.,   0.
+     *, 250., .90200, 241., 130.,-231.,   0.,   0.
+     *, 250., .91600, 241., 131.,-230.,   0.,   0.
+     *, 250., .93000, 241., 131.,-231.,   0.,   0.
+     *, 250., .93300, 240.,-140., 130.,   0.,   0.
+     *, 250., .93600, 240.,-140., 131.,   0.,   0.
+     *, 250., .93900, 240.,-141., 130.,   0.,   0.
+     *, 250., .94200, 240.,-141., 131.,   0.,   0.
+     *, 250., .94500, 241.,-140., 130.,   0.,   0.
+     *, 250., .94800, 241.,-140., 131.,   0.,   0.
+     *, 250., .95100, 241.,-141., 130.,   0.,   0.
+     *, 250., .95400, 241.,-141., 131.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=217,234)/
-     >  250., .95700, 240.,-240., 230.,   0.,   0.
-     >, 250., .96000, 240.,-240., 231.,   0.,   0.
-     >, 250., .96300, 240.,-241., 230.,   0.,   0.
-     >, 250., .96600, 240.,-241., 231.,   0.,   0.
-     >, 250., .96900, 241.,-240., 230.,   0.,   0.
-     >, 250., .97200, 241.,-240., 231.,   0.,   0.
-     >, 250., .97500, 241.,-241., 230.,   0.,   0.
-     >, 250., .97800, 241.,-241., 231.,   0.,   0.
-     >, 250., .97950, 240.,-340., 330.,   0.,   0.
-     >, 250., .98100, 240.,-340., 331.,   0.,   0.
-     >, 250., .98250, 240.,-341., 331.,   0.,   0.
-     >, 250., .98400, 240.,-341., 331.,   0.,   0.
-     >, 250., .98550, 241.,-340., 330.,   0.,   0.
-     >, 250., .98700, 241.,-340., 331.,   0.,   0.
-     >, 250., .98850, 241.,-341., 331.,   0.,   0.
-     >, 250., .99000, 241.,-341., 331.,   0.,   0.
-     >, 250., .99200, 441., 130.,-120.,   0.,   0.
-     >, 250., .99400, 441., 131.,-120.,   0.,   0./
+     *  250., .95700, 240.,-240., 230.,   0.,   0.
+     *, 250., .96000, 240.,-240., 231.,   0.,   0.
+     *, 250., .96300, 240.,-241., 230.,   0.,   0.
+     *, 250., .96600, 240.,-241., 231.,   0.,   0.
+     *, 250., .96900, 241.,-240., 230.,   0.,   0.
+     *, 250., .97200, 241.,-240., 231.,   0.,   0.
+     *, 250., .97500, 241.,-241., 230.,   0.,   0.
+     *, 250., .97800, 241.,-241., 231.,   0.,   0.
+     *, 250., .97950, 240.,-340., 330.,   0.,   0.
+     *, 250., .98100, 240.,-340., 331.,   0.,   0.
+     *, 250., .98250, 240.,-341., 331.,   0.,   0.
+     *, 250., .98400, 240.,-341., 331.,   0.,   0.
+     *, 250., .98550, 241.,-340., 330.,   0.,   0.
+     *, 250., .98700, 241.,-340., 331.,   0.,   0.
+     *, 250., .98850, 241.,-341., 331.,   0.,   0.
+     *, 250., .99000, 241.,-341., 331.,   0.,   0.
+     *, 250., .99200, 441., 130.,-120.,   0.,   0.
+     *, 250., .99400, 441., 131.,-120.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=235,252)/
-     >  250., .99600, 441., 230., 220.,   0.,   0.
-     >, 250., .99800, 441., 231., 221.,   0.,   0.
-     >, 250., .99900, 441., 330., 230.,   0.,   0.
-     >, 250.,1.00000, 441., 331., 230.,   0.,   0.
-     >, 350., .06000, -12.,  11., 340.,   0.,   0.
-     >, 350., .12000, -12.,  11., 341.,   0.,   0.
-     >, 350., .18000, -14.,  13., 340.,   0.,   0.
-     >, 350., .24000, -14.,  13., 341.,   0.,   0.
-     >, 350., .25500, -16.,  15., 340.,   0.,   0.
-     >, 350., .27000, -16.,  15., 341.,   0.,   0.
-     >, 350., .28050, 340., 120.,   0.,   0.,   0.
-     >, 350., .29100, 340., 121.,   0.,   0.,   0.
-     >, 350., .30150, 341., 120.,   0.,   0.,   0.
-     >, 350., .31200, 341., 121.,   0.,   0.,   0.
-     >, 350., .32650, 340.,-340.,   0.,   0.,   0.
-     >, 350., .34100, 340.,-341.,   0.,   0.,   0.
-     >, 350., .35550, 341.,-340.,   0.,   0.,   0.
-     >, 350., .37000, 341.,-341.,   0.,   0.,   0./
+     *  250., .99600, 441., 230., 220.,   0.,   0.
+     *, 250., .99800, 441., 231., 221.,   0.,   0.
+     *, 250., .99900, 441., 330., 230.,   0.,   0.
+     *, 250.,1.00000, 441., 331., 230.,   0.,   0.
+     *, 350., .06000, -12.,  11., 340.,   0.,   0.
+     *, 350., .12000, -12.,  11., 341.,   0.,   0.
+     *, 350., .18000, -14.,  13., 340.,   0.,   0.
+     *, 350., .24000, -14.,  13., 341.,   0.,   0.
+     *, 350., .25500, -16.,  15., 340.,   0.,   0.
+     *, 350., .27000, -16.,  15., 341.,   0.,   0.
+     *, 350., .28050, 340., 120.,   0.,   0.,   0.
+     *, 350., .29100, 340., 121.,   0.,   0.,   0.
+     *, 350., .30150, 341., 120.,   0.,   0.,   0.
+     *, 350., .31200, 341., 121.,   0.,   0.,   0.
+     *, 350., .32650, 340.,-340.,   0.,   0.,   0.
+     *, 350., .34100, 340.,-341.,   0.,   0.,   0.
+     *, 350., .35550, 341.,-340.,   0.,   0.,   0.
+     *, 350., .37000, 341.,-341.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=253,270)/
-     >  350., .39800, 340., 120., 110.,   0.,   0.
-     >, 350., .42600, 340., 120., 220.,   0.,   0.
-     >, 350., .45400, 340., 120., 111.,   0.,   0.
-     >, 350., .48200, 340., 120., 221.,   0.,   0.
-     >, 350., .51000, 340., 121., 110.,   0.,   0.
-     >, 350., .53800, 340., 121., 220.,   0.,   0.
-     >, 350., .56600, 340., 121., 111.,   0.,   0.
-     >, 350., .59400, 340., 121., 221.,   0.,   0.
-     >, 350., .62200, 341., 120., 110.,   0.,   0.
-     >, 350., .65000, 341., 120., 220.,   0.,   0.
-     >, 350., .67800, 341., 120., 111.,   0.,   0.
-     >, 350., .70600, 341., 120., 221.,   0.,   0.
-     >, 350., .73400, 341., 121., 110.,   0.,   0.
-     >, 350., .76200, 341., 121., 220.,   0.,   0.
-     >, 350., .79000, 341., 121., 111.,   0.,   0.
-     >, 350., .81800, 341., 121., 221.,   0.,   0.
-     >, 350., .83200, 340., 130.,-230.,   0.,   0.
-     >, 350., .84600, 340., 130.,-231.,   0.,   0./
+     *  350., .39800, 340., 120., 110.,   0.,   0.
+     *, 350., .42600, 340., 120., 220.,   0.,   0.
+     *, 350., .45400, 340., 120., 111.,   0.,   0.
+     *, 350., .48200, 340., 120., 221.,   0.,   0.
+     *, 350., .51000, 340., 121., 110.,   0.,   0.
+     *, 350., .53800, 340., 121., 220.,   0.,   0.
+     *, 350., .56600, 340., 121., 111.,   0.,   0.
+     *, 350., .59400, 340., 121., 221.,   0.,   0.
+     *, 350., .62200, 341., 120., 110.,   0.,   0.
+     *, 350., .65000, 341., 120., 220.,   0.,   0.
+     *, 350., .67800, 341., 120., 111.,   0.,   0.
+     *, 350., .70600, 341., 120., 221.,   0.,   0.
+     *, 350., .73400, 341., 121., 110.,   0.,   0.
+     *, 350., .76200, 341., 121., 220.,   0.,   0.
+     *, 350., .79000, 341., 121., 111.,   0.,   0.
+     *, 350., .81800, 341., 121., 221.,   0.,   0.
+     *, 350., .83200, 340., 130.,-230.,   0.,   0.
+     *, 350., .84600, 340., 130.,-231.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=271,288)/
-     >  350., .86000, 340., 131.,-230.,   0.,   0.
-     >, 350., .87400, 340., 131.,-231.,   0.,   0.
-     >, 350., .88800, 341., 130.,-230.,   0.,   0.
-     >, 350., .90200, 341., 130.,-231.,   0.,   0.
-     >, 350., .91600, 341., 131.,-230.,   0.,   0.
-     >, 350., .93000, 341., 131.,-231.,   0.,   0.
-     >, 350., .93300, 340.,-140., 130.,   0.,   0.
-     >, 350., .93600, 340.,-140., 131.,   0.,   0.
-     >, 350., .93900, 340.,-141., 130.,   0.,   0.
-     >, 350., .94200, 340.,-141., 131.,   0.,   0.
-     >, 350., .94500, 341.,-140., 130.,   0.,   0.
-     >, 350., .94800, 341.,-140., 131.,   0.,   0.
-     >, 350., .95100, 341.,-141., 130.,   0.,   0.
-     >, 350., .95400, 341.,-141., 131.,   0.,   0.
-     >, 350., .95700, 340.,-240., 230.,   0.,   0.
-     >, 350., .96000, 340.,-240., 231.,   0.,   0.
-     >, 350., .96300, 340.,-241., 230.,   0.,   0.
-     >, 350., .96600, 340.,-241., 231.,   0.,   0./
+     *  350., .86000, 340., 131.,-230.,   0.,   0.
+     *, 350., .87400, 340., 131.,-231.,   0.,   0.
+     *, 350., .88800, 341., 130.,-230.,   0.,   0.
+     *, 350., .90200, 341., 130.,-231.,   0.,   0.
+     *, 350., .91600, 341., 131.,-230.,   0.,   0.
+     *, 350., .93000, 341., 131.,-231.,   0.,   0.
+     *, 350., .93300, 340.,-140., 130.,   0.,   0.
+     *, 350., .93600, 340.,-140., 131.,   0.,   0.
+     *, 350., .93900, 340.,-141., 130.,   0.,   0.
+     *, 350., .94200, 340.,-141., 131.,   0.,   0.
+     *, 350., .94500, 341.,-140., 130.,   0.,   0.
+     *, 350., .94800, 341.,-140., 131.,   0.,   0.
+     *, 350., .95100, 341.,-141., 130.,   0.,   0.
+     *, 350., .95400, 341.,-141., 131.,   0.,   0.
+     *, 350., .95700, 340.,-240., 230.,   0.,   0.
+     *, 350., .96000, 340.,-240., 231.,   0.,   0.
+     *, 350., .96300, 340.,-241., 230.,   0.,   0.
+     *, 350., .96600, 340.,-241., 231.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=289,306)/
-     >  350., .96900, 341.,-240., 230.,   0.,   0.
-     >, 350., .97200, 341.,-240., 231.,   0.,   0.
-     >, 350., .97500, 341.,-241., 230.,   0.,   0.
-     >, 350., .97800, 341.,-241., 231.,   0.,   0.
-     >, 350., .97950, 340.,-340., 330.,   0.,   0.
-     >, 350., .98100, 340.,-340., 331.,   0.,   0.
-     >, 350., .98250, 340.,-341., 331.,   0.,   0.
-     >, 350., .98400, 340.,-341., 331.,   0.,   0.
-     >, 350., .98550, 341.,-340., 330.,   0.,   0.
-     >, 350., .98700, 341.,-340., 331.,   0.,   0.
-     >, 350., .98850, 341.,-341., 331.,   0.,   0.
-     >, 350., .99000, 341.,-341., 331.,   0.,   0.
-     >, 350., .99200, 441., 130.,-130.,   0.,   0.
-     >, 350., .99400, 441., 131.,-130.,   0.,   0.
-     >, 350., .99600, 441., 230.,-230.,   0.,   0.
-     >, 350., .99800, 441., 231.,-230.,   0.,   0.
-     >, 350., .99900, 441., 330., 330.,   0.,   0.
-     >, 350.,1.00000, 441., 331., 331.,   0.,   0./
+     *  350., .96900, 341.,-240., 230.,   0.,   0.
+     *, 350., .97200, 341.,-240., 231.,   0.,   0.
+     *, 350., .97500, 341.,-241., 230.,   0.,   0.
+     *, 350., .97800, 341.,-241., 231.,   0.,   0.
+     *, 350., .97950, 340.,-340., 330.,   0.,   0.
+     *, 350., .98100, 340.,-340., 331.,   0.,   0.
+     *, 350., .98250, 340.,-341., 331.,   0.,   0.
+     *, 350., .98400, 340.,-341., 331.,   0.,   0.
+     *, 350., .98550, 341.,-340., 330.,   0.,   0.
+     *, 350., .98700, 341.,-340., 331.,   0.,   0.
+     *, 350., .98850, 341.,-341., 331.,   0.,   0.
+     *, 350., .99000, 341.,-341., 331.,   0.,   0.
+     *, 350., .99200, 441., 130.,-130.,   0.,   0.
+     *, 350., .99400, 441., 131.,-130.,   0.,   0.
+     *, 350., .99600, 441., 230.,-230.,   0.,   0.
+     *, 350., .99800, 441., 231.,-230.,   0.,   0.
+     *, 350., .99900, 441., 330., 330.,   0.,   0.
+     *, 350.,1.00000, 441., 331., 331.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=307,324)/
-     >  160., .33330,  -1.,   2.,  -5.,   0.,   0.
-     >, 160., .66660,  -4.,   3.,  -5.,   0.,   0.
-     >, 160., .77770, -11.,  12.,  -5.,   0.,   0.
-     >, 160., .88880, -13.,  14.,  -5.,   0.,   0.
-     >, 160.,1.00000, -15.,  16.,  -5.,   0.,   0.
-     >, 260., .33330,  -1.,   2.,  -5.,   0.,   0.
-     >, 260., .66660,  -4.,   3.,  -5.,   0.,   0.
-     >, 260., .77770, -11.,  12.,  -5.,   0.,   0.
-     >, 260., .88880, -13.,  14.,  -5.,   0.,   0.
-     >, 260.,1.00000, -15.,  16.,  -5.,   0.,   0.
-     >, 360., .33330,  -1.,   2.,  -5.,   0.,   0.
-     >, 360., .66660,  -4.,   3.,  -5.,   0.,   0.
-     >, 360., .77770, -11.,  12.,  -5.,   0.,   0.
-     >, 360., .88880, -13.,  14.,  -5.,   0.,   0.
-     >, 360.,1.00000, -15.,  16.,  -5.,   0.,   0.
-     >, 151.,1.00000, 150.,  10.,   0.,   0.,   0.
-     >, 251.,1.00000, 250.,  10.,   0.,   0.,   0.
-     >, 351.,1.00000, 350.,  10.,   0.,   0.,   0./
+     *  160., .33330,  -1.,   2.,  -5.,   0.,   0.
+     *, 160., .66660,  -4.,   3.,  -5.,   0.,   0.
+     *, 160., .77770, -11.,  12.,  -5.,   0.,   0.
+     *, 160., .88880, -13.,  14.,  -5.,   0.,   0.
+     *, 160.,1.00000, -15.,  16.,  -5.,   0.,   0.
+     *, 260., .33330,  -1.,   2.,  -5.,   0.,   0.
+     *, 260., .66660,  -4.,   3.,  -5.,   0.,   0.
+     *, 260., .77770, -11.,  12.,  -5.,   0.,   0.
+     *, 260., .88880, -13.,  14.,  -5.,   0.,   0.
+     *, 260.,1.00000, -15.,  16.,  -5.,   0.,   0.
+     *, 360., .33330,  -1.,   2.,  -5.,   0.,   0.
+     *, 360., .66660,  -4.,   3.,  -5.,   0.,   0.
+     *, 360., .77770, -11.,  12.,  -5.,   0.,   0.
+     *, 360., .88880, -13.,  14.,  -5.,   0.,   0.
+     *, 360.,1.00000, -15.,  16.,  -5.,   0.,   0.
+     *, 151.,1.00000, 150.,  10.,   0.,   0.,   0.
+     *, 251.,1.00000, 250.,  10.,   0.,   0.,   0.
+     *, 351.,1.00000, 350.,  10.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=325,342)/
-     >  161.,1.00000, 160.,  10.,   0.,   0.,   0.
-     >, 261.,1.00000, 260.,  10.,   0.,   0.,   0.
-     >, 361.,1.00000, 360.,  10.,   0.,   0.,   0.
-     >,1230.,1.00000,2130.,  10.,   0.,   0.,   0.
-     >,1111.,1.00000,1120., 120.,   0.,   0.,   0.
-     >,1121., .66670,1120., 110.,   0.,   0.,   0.
-     >,1121.,1.00000,1220., 120.,   0.,   0.,   0.
-     >,1221., .66670,1220., 110.,   0.,   0.,   0.
-     >,1221.,1.00000,1120.,-120.,   0.,   0.,   0.
-     >,2221.,1.00000,1220.,-120.,   0.,   0.,   0.
-     >,1131., .88000,2130., 120.,   0.,   0.,   0.
-     >,1131., .94000,1130., 110.,   0.,   0.,   0.
-     >,1131.,1.00000,1230., 120.,   0.,   0.,   0.
-     >,1231., .88000,2130., 110.,   0.,   0.,   0.
-     >,1231., .94000,1130.,-120.,   0.,   0.,   0.
-     >,1231.,1.00000,2230., 120.,   0.,   0.,   0.
-     >,2231., .88000,2130.,-120.,   0.,   0.,   0.
-     >,2231., .94000,1230.,-120.,   0.,   0.,   0./
+     *  161.,1.00000, 160.,  10.,   0.,   0.,   0.
+     *, 261.,1.00000, 260.,  10.,   0.,   0.,   0.
+     *, 361.,1.00000, 360.,  10.,   0.,   0.,   0.
+     *,1230.,1.00000,2130.,  10.,   0.,   0.,   0.
+     *,1111.,1.00000,1120., 120.,   0.,   0.,   0.
+     *,1121., .66670,1120., 110.,   0.,   0.,   0.
+     *,1121.,1.00000,1220., 120.,   0.,   0.,   0.
+     *,1221., .66670,1220., 110.,   0.,   0.,   0.
+     *,1221.,1.00000,1120.,-120.,   0.,   0.,   0.
+     *,2221.,1.00000,1220.,-120.,   0.,   0.,   0.
+     *,1131., .88000,2130., 120.,   0.,   0.,   0.
+     *,1131., .94000,1130., 110.,   0.,   0.,   0.
+     *,1131.,1.00000,1230., 120.,   0.,   0.,   0.
+     *,1231., .88000,2130., 110.,   0.,   0.,   0.
+     *,1231., .94000,1130.,-120.,   0.,   0.,   0.
+     *,1231.,1.00000,2230., 120.,   0.,   0.,   0.
+     *,2231., .88000,2130.,-120.,   0.,   0.,   0.
+     *,2231., .94000,1230.,-120.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=343,360)/
-     > 2231.,1.00000,2230., 110.,   0.,   0.,   0.
-     >,1331., .66670,2330., 120.,   0.,   0.,   0.
-     >,1331.,1.00000,1330., 110.,   0.,   0.,   0.
-     >,2331., .66670,1330.,-120.,   0.,   0.,   0.
-     >,2331.,1.00000,2330., 110.,   0.,   0.,   0.
-     >,  16., .18000,  12., -11.,  15.,   0.,   0.
-     >,  16., .36000,  14., -13.,  15.,   0.,   0.
-     >,  16., .45100,-120.,  15.,   0.,   0.,   0.
-     >,  16., .66000,-121.,  15.,   0.,   0.,   0.
-     >,  16., .78000, 110., 110.,-120.,  15.,   0.
-     >,  16., .83600, 120.,-120.,-120.,  15.,   0.
-     >,  16.,1.00000, 120., 110.,-120.,-120.,  15.
-     >,2140., .03750, -12.,  11.,2130.,   0.,   0.
-     >,2140., .07500, -12.,  11.,1231.,   0.,   0.
-     >,2140., .11250, -14.,  13.,2130.,   0.,   0.
-     >,2140., .15000, -14.,  13.,1231.,   0.,   0.
-     >,2140., .18200,2130., 120.,   0.,   0.,   0.
-     >,2140., .21300,1230., 110.,   0.,   0.,   0./
+     * 2231.,1.00000,2230., 110.,   0.,   0.,   0.
+     *,1331., .66670,2330., 120.,   0.,   0.,   0.
+     *,1331.,1.00000,1330., 110.,   0.,   0.,   0.
+     *,2331., .66670,1330.,-120.,   0.,   0.,   0.
+     *,2331.,1.00000,2330., 110.,   0.,   0.,   0.
+     *,  16., .18000,  12., -11.,  15.,   0.,   0.
+     *,  16., .36000,  14., -13.,  15.,   0.,   0.
+     *,  16., .45100,-120.,  15.,   0.,   0.,   0.
+     *,  16., .66000,-121.,  15.,   0.,   0.,   0.
+     *,  16., .78000, 110., 110.,-120.,  15.,   0.
+     *,  16., .83600, 120.,-120.,-120.,  15.,   0.
+     *,  16.,1.00000, 120., 110.,-120.,-120.,  15.
+     *,2140., .03750, -12.,  11.,2130.,   0.,   0.
+     *,2140., .07500, -12.,  11.,1231.,   0.,   0.
+     *,2140., .11250, -14.,  13.,2130.,   0.,   0.
+     *,2140., .15000, -14.,  13.,1231.,   0.,   0.
+     *,2140., .18200,2130., 120.,   0.,   0.,   0.
+     *,2140., .21300,1230., 110.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=361,378)/
-     > 2140., .24400,1120.,-230.,   0.,   0.,   0.
-     >,2140., .29500,1131., 110.,   0.,   0.,   0.
-     >,2140., .34600,1231., 120.,   0.,   0.,   0.
-     >,2140., .39700,1121.,-230.,   0.,   0.,   0.
-     >,2140., .44800,1111.,-130.,   0.,   0.,   0.
-     >,2140., .49900,1130., 111.,   0.,   0.,   0.
-     >,2140., .55000,1230., 121.,   0.,   0.,   0.
-     >,2140., .60100,1120.,-231.,   0.,   0.,   0.
-     >,2140., .65800,1120.,-230., 120.,-120.,   0.
-     >,2140., .71500,1120.,-230., 110., 110.,   0.
-     >,2140., .77200,1120.,-130., 120., 110.,   0.
-     >,2140., .82900,1220.,-230., 120., 110.,   0.
-     >,2140., .88600,1220.,-130., 120., 120.,   0.
-     >,2140., .94300,2130., 120., 120.,-120.,   0.
-     >,2140.,1.00000,2130., 120., 110., 110.,   0.
-     >,1140.,1.00000,2140., 120.,   0.,   0.,   0.
-     >,1240.,1.00000,2140., 110.,   0.,   0.,   0.
-     >,2240.,1.00000,2140.,-120.,   0.,   0.,   0./
+     * 2140., .24400,1120.,-230.,   0.,   0.,   0.
+     *,2140., .29500,1131., 110.,   0.,   0.,   0.
+     *,2140., .34600,1231., 120.,   0.,   0.,   0.
+     *,2140., .39700,1121.,-230.,   0.,   0.,   0.
+     *,2140., .44800,1111.,-130.,   0.,   0.,   0.
+     *,2140., .49900,1130., 111.,   0.,   0.,   0.
+     *,2140., .55000,1230., 121.,   0.,   0.,   0.
+     *,2140., .60100,1120.,-231.,   0.,   0.,   0.
+     *,2140., .65800,1120.,-230., 120.,-120.,   0.
+     *,2140., .71500,1120.,-230., 110., 110.,   0.
+     *,2140., .77200,1120.,-130., 120., 110.,   0.
+     *,2140., .82900,1220.,-230., 120., 110.,   0.
+     *,2140., .88600,1220.,-130., 120., 120.,   0.
+     *,2140., .94300,2130., 120., 120.,-120.,   0.
+     *,2140.,1.00000,2130., 120., 110., 110.,   0.
+     *,1140.,1.00000,2140., 120.,   0.,   0.,   0.
+     *,1240.,1.00000,2140., 110.,   0.,   0.,   0.
+     *,2240.,1.00000,2140.,-120.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=379,396)/
-     > 1340., .03750, -12.,  11.,1330.,   0.,   0.
-     >,1340., .07500, -12.,  11.,1331.,   0.,   0.
-     >,1340., .11250, -14.,  13.,1330.,   0.,   0.
-     >,1340., .15000, -14.,  13.,1331.,   0.,   0.
-     >,1340., .19900,1330., 120.,   0.,   0.,   0.
-     >,1340., .24800,1231.,-230.,   0.,   0.,   0.
-     >,1340., .28800,1330., 120.,   0.,   0.,   0.
-     >,1340., .32800,1131.,-230.,   0.,   0.,   0.
-     >,1340., .36800,1330., 121.,   0.,   0.,   0.
-     >,1340., .40800,1130.,-230.,   0.,   0.,   0.
-     >,1340., .44800,1330., 120., 110.,   0.,   0.
-     >,1340., .48800,2330., 120., 120.,   0.,   0.
-     >,1340., .52800,1130.,-130., 120.,   0.,   0.
-     >,1340., .56800,1130.,-230., 110.,   0.,   0.
-     >,1340., .60800,1230.,-230., 120.,   0.,   0.
-     >,1340., .66400,2130.,-230., 120., 110.,   0.
-     >,1340., .72000,2130.,-130., 120., 120.,   0.
-     >,1340., .77600,1130.,-230., 120., 120.,   0./
+     * 1340., .03750, -12.,  11.,1330.,   0.,   0.
+     *,1340., .07500, -12.,  11.,1331.,   0.,   0.
+     *,1340., .11250, -14.,  13.,1330.,   0.,   0.
+     *,1340., .15000, -14.,  13.,1331.,   0.,   0.
+     *,1340., .19900,1330., 120.,   0.,   0.,   0.
+     *,1340., .24800,1231.,-230.,   0.,   0.,   0.
+     *,1340., .28800,1330., 120.,   0.,   0.,   0.
+     *,1340., .32800,1131.,-230.,   0.,   0.,   0.
+     *,1340., .36800,1330., 121.,   0.,   0.,   0.
+     *,1340., .40800,1130.,-230.,   0.,   0.,   0.
+     *,1340., .44800,1330., 120., 110.,   0.,   0.
+     *,1340., .48800,2330., 120., 120.,   0.,   0.
+     *,1340., .52800,1130.,-130., 120.,   0.,   0.
+     *,1340., .56800,1130.,-230., 110.,   0.,   0.
+     *,1340., .60800,1230.,-230., 120.,   0.,   0.
+     *,1340., .66400,2130.,-230., 120., 110.,   0.
+     *,1340., .72000,2130.,-130., 120., 120.,   0.
+     *,1340., .77600,1130.,-230., 120., 120.,   0./
       data ((dectab(i,j),i=1,7),j=397,414)/
-     > 1340., .83200,1130.,-230., 110., 110.,   0.
-     >,1340., .88800,1330., 120., 120.,-120.,   0.
-     >,1340., .94400,1330., 120., 110., 110.,   0.
-     >,1340.,1.00000,2330., 120., 120., 110.,   0.
-     >,3140., .03750, -12.,  11.,1330.,   0.,   0.
-     >,3140., .07500, -12.,  11.,1331.,   0.,   0.
-     >,3140., .11250, -14.,  13.,1330.,   0.,   0.
-     >,3140., .15000, -14.,  13.,1331.,   0.,   0.
-     >,3140., .19900,1330., 120.,   0.,   0.,   0.
-     >,3140., .24800,1231.,-230.,   0.,   0.,   0.
-     >,3140., .28800,1330., 120.,   0.,   0.,   0.
-     >,3140., .32800,1131.,-230.,   0.,   0.,   0.
-     >,3140., .36800,1330., 121.,   0.,   0.,   0.
-     >,3140., .40800,1130.,-230.,   0.,   0.,   0.
-     >,3140., .44800,1330., 120., 110.,   0.,   0.
-     >,3140., .48800,2330., 120., 120.,   0.,   0.
-     >,3140., .52800,1130.,-130., 120.,   0.,   0.
-     >,3140., .56800,1130.,-230., 110.,   0.,   0./
+     * 1340., .83200,1130.,-230., 110., 110.,   0.
+     *,1340., .88800,1330., 120., 120.,-120.,   0.
+     *,1340., .94400,1330., 120., 110., 110.,   0.
+     *,1340.,1.00000,2330., 120., 120., 110.,   0.
+     *,3140., .03750, -12.,  11.,1330.,   0.,   0.
+     *,3140., .07500, -12.,  11.,1331.,   0.,   0.
+     *,3140., .11250, -14.,  13.,1330.,   0.,   0.
+     *,3140., .15000, -14.,  13.,1331.,   0.,   0.
+     *,3140., .19900,1330., 120.,   0.,   0.,   0.
+     *,3140., .24800,1231.,-230.,   0.,   0.,   0.
+     *,3140., .28800,1330., 120.,   0.,   0.,   0.
+     *,3140., .32800,1131.,-230.,   0.,   0.,   0.
+     *,3140., .36800,1330., 121.,   0.,   0.,   0.
+     *,3140., .40800,1130.,-230.,   0.,   0.,   0.
+     *,3140., .44800,1330., 120., 110.,   0.,   0.
+     *,3140., .48800,2330., 120., 120.,   0.,   0.
+     *,3140., .52800,1130.,-130., 120.,   0.,   0.
+     *,3140., .56800,1130.,-230., 110.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=415,432)/
-     > 3140., .60800,1230.,-230., 120.,   0.,   0.
-     >,3140., .66400,2130.,-230., 120., 110.,   0.
-     >,3140., .72000,2130.,-130., 120., 120.,   0.
-     >,3140., .77600,1130.,-230., 120., 120.,   0.
-     >,3140., .83200,1130.,-230., 110., 110.,   0.
-     >,3140., .88800,1330., 120., 120.,-120.,   0.
-     >,3140., .94400,1330., 120., 110., 110.,   0.
-     >,3140.,1.00000,2330., 120., 120., 110.,   0.
-     >,2340., .03750, -12.,  11.,2330.,   0.,   0.
-     >,2340., .07500, -12.,  11.,2331.,   0.,   0.
-     >,2340., .11250, -14.,  13.,2330.,   0.,   0.
-     >,2340., .15000, -14.,  13.,2331.,   0.,   0.
-     >,2340., .17500,2330., 120.,   0.,   0.,   0.
-     >,2340., .20000,1330., 110.,   0.,   0.,   0.
-     >,2340., .22500,1130.,-130.,   0.,   0.,   0.
-     >,2340., .25000,1230.,-230.,   0.,   0.,   0.
-     >,2340., .29500,2331., 120.,   0.,   0.,   0.
-     >,2340., .34000,1331., 110.,   0.,   0.,   0./
+     * 3140., .60800,1230.,-230., 120.,   0.,   0.
+     *,3140., .66400,2130.,-230., 120., 110.,   0.
+     *,3140., .72000,2130.,-130., 120., 120.,   0.
+     *,3140., .77600,1130.,-230., 120., 120.,   0.
+     *,3140., .83200,1130.,-230., 110., 110.,   0.
+     *,3140., .88800,1330., 120., 120.,-120.,   0.
+     *,3140., .94400,1330., 120., 110., 110.,   0.
+     *,3140.,1.00000,2330., 120., 120., 110.,   0.
+     *,2340., .03750, -12.,  11.,2330.,   0.,   0.
+     *,2340., .07500, -12.,  11.,2331.,   0.,   0.
+     *,2340., .11250, -14.,  13.,2330.,   0.,   0.
+     *,2340., .15000, -14.,  13.,2331.,   0.,   0.
+     *,2340., .17500,2330., 120.,   0.,   0.,   0.
+     *,2340., .20000,1330., 110.,   0.,   0.,   0.
+     *,2340., .22500,1130.,-130.,   0.,   0.,   0.
+     *,2340., .25000,1230.,-230.,   0.,   0.,   0.
+     *,2340., .29500,2331., 120.,   0.,   0.,   0.
+     *,2340., .34000,1331., 110.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=433,450)/
-     > 2340., .38500,1131.,-130.,   0.,   0.,   0.
-     >,2340., .43000,1231.,-230.,   0.,   0.,   0.
-     >,2340., .47500,2330., 121.,   0.,   0.,   0.
-     >,2340., .52000,1330., 111.,   0.,   0.,   0.
-     >,2340., .56500,1130.,-131.,   0.,   0.,   0.
-     >,2340., .61000,1230.,-231.,   0.,   0.,   0.
-     >,2340., .64900,2130.,-230., 120.,-120.,   0.
-     >,2340., .68800,2130.,-230., 110., 110.,   0.
-     >,2340., .72700,2130.,-130., 120., 110.,   0.
-     >,2340., .76600,1130.,-230.,-120., 110.,   0.
-     >,2340., .80500,1130.,-130., 120.,-120.,   0.
-     >,2340., .84400,1130.,-130., 110., 110.,   0.
-     >,2340., .88300,1330., 120.,-120., 110.,   0.
-     >,2340., .92200,1330., 110., 110., 110.,   0.
-     >,2340., .96100,2330., 120., 120.,-120.,   0.
-     >,2340.,1.00000,2330., 120., 110., 110.,   0.
-     >,3240., .03750, -12.,  11.,2330.,   0.,   0.
-     >,3240., .07500, -12.,  11.,2331.,   0.,   0./
+     * 2340., .38500,1131.,-130.,   0.,   0.,   0.
+     *,2340., .43000,1231.,-230.,   0.,   0.,   0.
+     *,2340., .47500,2330., 121.,   0.,   0.,   0.
+     *,2340., .52000,1330., 111.,   0.,   0.,   0.
+     *,2340., .56500,1130.,-131.,   0.,   0.,   0.
+     *,2340., .61000,1230.,-231.,   0.,   0.,   0.
+     *,2340., .64900,2130.,-230., 120.,-120.,   0.
+     *,2340., .68800,2130.,-230., 110., 110.,   0.
+     *,2340., .72700,2130.,-130., 120., 110.,   0.
+     *,2340., .76600,1130.,-230.,-120., 110.,   0.
+     *,2340., .80500,1130.,-130., 120.,-120.,   0.
+     *,2340., .84400,1130.,-130., 110., 110.,   0.
+     *,2340., .88300,1330., 120.,-120., 110.,   0.
+     *,2340., .92200,1330., 110., 110., 110.,   0.
+     *,2340., .96100,2330., 120., 120.,-120.,   0.
+     *,2340.,1.00000,2330., 120., 110., 110.,   0.
+     *,3240., .03750, -12.,  11.,2330.,   0.,   0.
+     *,3240., .07500, -12.,  11.,2331.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=451,468)/
-     > 3240., .11250, -14.,  13.,2330.,   0.,   0.
-     >,3240., .15000, -14.,  13.,2331.,   0.,   0.
-     >,3240., .17500,2330., 120.,   0.,   0.,   0.
-     >,3240., .20000,1330., 110.,   0.,   0.,   0.
-     >,3240., .22500,1130.,-130.,   0.,   0.,   0.
-     >,3240., .25000,1230.,-230.,   0.,   0.,   0.
-     >,3240., .29500,2331., 120.,   0.,   0.,   0.
-     >,3240., .34000,1331., 110.,   0.,   0.,   0.
-     >,3240., .38500,1131.,-130.,   0.,   0.,   0.
-     >,3240., .43000,1231.,-230.,   0.,   0.,   0.
-     >,3240., .47500,2330., 121.,   0.,   0.,   0.
-     >,3240., .52000,1330., 111.,   0.,   0.,   0.
-     >,3240., .56500,1130.,-131.,   0.,   0.,   0.
-     >,3240., .61000,1230.,-231.,   0.,   0.,   0.
-     >,3240., .64900,2130.,-230., 120.,-120.,   0.
-     >,3240., .68800,2130.,-230., 110., 110.,   0.
-     >,3240., .72700,2130.,-130., 120., 110.,   0.
-     >,3240., .76600,1130.,-230.,-120., 110.,   0./
+     * 3240., .11250, -14.,  13.,2330.,   0.,   0.
+     *,3240., .15000, -14.,  13.,2331.,   0.,   0.
+     *,3240., .17500,2330., 120.,   0.,   0.,   0.
+     *,3240., .20000,1330., 110.,   0.,   0.,   0.
+     *,3240., .22500,1130.,-130.,   0.,   0.,   0.
+     *,3240., .25000,1230.,-230.,   0.,   0.,   0.
+     *,3240., .29500,2331., 120.,   0.,   0.,   0.
+     *,3240., .34000,1331., 110.,   0.,   0.,   0.
+     *,3240., .38500,1131.,-130.,   0.,   0.,   0.
+     *,3240., .43000,1231.,-230.,   0.,   0.,   0.
+     *,3240., .47500,2330., 121.,   0.,   0.,   0.
+     *,3240., .52000,1330., 111.,   0.,   0.,   0.
+     *,3240., .56500,1130.,-131.,   0.,   0.,   0.
+     *,3240., .61000,1230.,-231.,   0.,   0.,   0.
+     *,3240., .64900,2130.,-230., 120.,-120.,   0.
+     *,3240., .68800,2130.,-230., 110., 110.,   0.
+     *,3240., .72700,2130.,-130., 120., 110.,   0.
+     *,3240., .76600,1130.,-230.,-120., 110.,   0./
       data ((dectab(i,j),i=1,7),j=469,486)/
-     > 3240., .80500,1130.,-130., 120.,-120.,   0.
-     >,3240., .84400,1130.,-130., 110., 110.,   0.
-     >,3240., .88300,1330., 120.,-120., 110.,   0.
-     >,3240., .92200,1330., 110., 110., 110.,   0.
-     >,3240., .96100,2330., 120., 120.,-120.,   0.
-     >,3240.,1.00000,2330., 120., 110., 110.,   0.
-     >,3340., .07500, -12.,  11.,3331.,   0.,   0.
-     >,3340., .15000, -12.,  11.,3331.,   0.,   0.
-     >,3340., .25000,1330.,-230.,   0.,   0.,   0.
-     >,3340., .31000,3331., 120.,   0.,   0.,   0.
-     >,3340., .37000,1331.,-230.,   0.,   0.,   0.
-     >,3340., .43000,1330.,-231.,   0.,   0.,   0.
-     >,3340., .49000,2330.,-230., 120.,   0.,   0.
-     >,3340., .55000,1330.,-230., 110.,   0.,   0.
-     >,3340., .61000,1330.,-130., 120.,   0.,   0.
-     >,3340., .67500,3331., 120., 120.,-120.,   0.
-     >,3340., .74000,3331., 120., 110., 110.,   0.
-     >,3340., .80500,1330.,-230., 120.,-120.,   0./
+     * 3240., .80500,1130.,-130., 120.,-120.,   0.
+     *,3240., .84400,1130.,-130., 110., 110.,   0.
+     *,3240., .88300,1330., 120.,-120., 110.,   0.
+     *,3240., .92200,1330., 110., 110., 110.,   0.
+     *,3240., .96100,2330., 120., 120.,-120.,   0.
+     *,3240.,1.00000,2330., 120., 110., 110.,   0.
+     *,3340., .07500, -12.,  11.,3331.,   0.,   0.
+     *,3340., .15000, -12.,  11.,3331.,   0.,   0.
+     *,3340., .25000,1330.,-230.,   0.,   0.,   0.
+     *,3340., .31000,3331., 120.,   0.,   0.,   0.
+     *,3340., .37000,1331.,-230.,   0.,   0.,   0.
+     *,3340., .43000,1330.,-231.,   0.,   0.,   0.
+     *,3340., .49000,2330.,-230., 120.,   0.,   0.
+     *,3340., .55000,1330.,-230., 110.,   0.,   0.
+     *,3340., .61000,1330.,-130., 120.,   0.,   0.
+     *,3340., .67500,3331., 120., 120.,-120.,   0.
+     *,3340., .74000,3331., 120., 110., 110.,   0.
+     *,3340., .80500,1330.,-230., 120.,-120.,   0./
       data ((dectab(i,j),i=1,7),j=487,504)/
-     > 3340., .87000,1330.,-230., 110., 110.,   0.
-     >,3340., .93500,2330.,-230., 120., 110.,   0.
-     >,3340.,1.00000,2330.,-130., 120., 120.,   0.
-     >,1141.,1.00000,2140., 120.,   0.,   0.,   0.
-     >,1241.,1.00000,2140., 110.,   0.,   0.,   0.
-     >,2241.,1.00000,2140.,-120.,   0.,   0.,   0.
-     >,1341., .66670,2340., 120.,   0.,   0.,   0.
-     >,1341.,1.00000,1340., 110.,   0.,   0.,   0.
-     >,2341., .66670,1340.,-120.,   0.,   0.,   0.
-     >,2341.,1.00000,2340., 110.,   0.,   0.,   0.
-     >,3341.,1.00000,3340., 110.,   0.,   0.,   0.
-     >,1150., .06000,  12., -11.,1140.,   0.,   0.
-     >,1150., .12000,  12., -11.,1141.,   0.,   0.
-     >,1150., .18000,  14., -13.,1140.,   0.,   0.
-     >,1150., .24000,  14., -13.,1141.,   0.,   0.
-     >,1150., .25500,  16., -15.,1140.,   0.,   0.
-     >,1150., .27000,  16., -15.,1141.,   0.,   0.
-     >,1150., .28925,1140.,-120.,   0.,   0.,   0./
+     * 3340., .87000,1330.,-230., 110., 110.,   0.
+     *,3340., .93500,2330.,-230., 120., 110.,   0.
+     *,3340.,1.00000,2330.,-130., 120., 120.,   0.
+     *,1141.,1.00000,2140., 120.,   0.,   0.,   0.
+     *,1241.,1.00000,2140., 110.,   0.,   0.,   0.
+     *,2241.,1.00000,2140.,-120.,   0.,   0.,   0.
+     *,1341., .66670,2340., 120.,   0.,   0.,   0.
+     *,1341.,1.00000,1340., 110.,   0.,   0.,   0.
+     *,2341., .66670,1340.,-120.,   0.,   0.,   0.
+     *,2341.,1.00000,2340., 110.,   0.,   0.,   0.
+     *,3341.,1.00000,3340., 110.,   0.,   0.,   0.
+     *,1150., .06000,  12., -11.,1140.,   0.,   0.
+     *,1150., .12000,  12., -11.,1141.,   0.,   0.
+     *,1150., .18000,  14., -13.,1140.,   0.,   0.
+     *,1150., .24000,  14., -13.,1141.,   0.,   0.
+     *,1150., .25500,  16., -15.,1140.,   0.,   0.
+     *,1150., .27000,  16., -15.,1141.,   0.,   0.
+     *,1150., .28925,1140.,-120.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=505,522)/
-     > 1150., .30850,1140.,-121.,   0.,   0.,   0.
-     >,1150., .32775,1141.,-120.,   0.,   0.,   0.
-     >,1150., .34700,1141.,-121.,   0.,   0.,   0.
-     >,1150., .35775,1140., 340.,   0.,   0.,   0.
-     >,1150., .36850,1140., 341.,   0.,   0.,   0.
-     >,1150., .37925,1141., 340.,   0.,   0.,   0.
-     >,1150., .39000,1141., 341.,   0.,   0.,   0.
-     >,1150., .42050,1140.,-120., 110.,   0.,   0.
-     >,1150., .45100,1140.,-120., 220.,   0.,   0.
-     >,1150., .48150,1140.,-120., 111.,   0.,   0.
-     >,1150., .51200,1140.,-120., 221.,   0.,   0.
-     >,1150., .54250,1140.,-121., 110.,   0.,   0.
-     >,1150., .57300,1140.,-121., 220.,   0.,   0.
-     >,1150., .60350,1140.,-121., 111.,   0.,   0.
-     >,1150., .63400,1140.,-121., 221.,   0.,   0.
-     >,1150., .66450,1141.,-120., 110.,   0.,   0.
-     >,1150., .69500,1141.,-120., 220.,   0.,   0.
-     >,1150., .72550,1141.,-120., 111.,   0.,   0./
+     * 1150., .30850,1140.,-121.,   0.,   0.,   0.
+     *,1150., .32775,1141.,-120.,   0.,   0.,   0.
+     *,1150., .34700,1141.,-121.,   0.,   0.,   0.
+     *,1150., .35775,1140., 340.,   0.,   0.,   0.
+     *,1150., .36850,1140., 341.,   0.,   0.,   0.
+     *,1150., .37925,1141., 340.,   0.,   0.,   0.
+     *,1150., .39000,1141., 341.,   0.,   0.,   0.
+     *,1150., .42050,1140.,-120., 110.,   0.,   0.
+     *,1150., .45100,1140.,-120., 220.,   0.,   0.
+     *,1150., .48150,1140.,-120., 111.,   0.,   0.
+     *,1150., .51200,1140.,-120., 221.,   0.,   0.
+     *,1150., .54250,1140.,-121., 110.,   0.,   0.
+     *,1150., .57300,1140.,-121., 220.,   0.,   0.
+     *,1150., .60350,1140.,-121., 111.,   0.,   0.
+     *,1150., .63400,1140.,-121., 221.,   0.,   0.
+     *,1150., .66450,1141.,-120., 110.,   0.,   0.
+     *,1150., .69500,1141.,-120., 220.,   0.,   0.
+     *,1150., .72550,1141.,-120., 111.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=523,540)/
-     > 1150., .75600,1141.,-120., 221.,   0.,   0.
-     >,1150., .78650,1141.,-121., 110.,   0.,   0.
-     >,1150., .81700,1141.,-121., 220.,   0.,   0.
-     >,1150., .84750,1141.,-121., 111.,   0.,   0.
-     >,1150., .87800,1141.,-121., 221.,   0.,   0.
-     >,1150., .89325,1140.,-130., 230.,   0.,   0.
-     >,1150., .90850,1140.,-130., 231.,   0.,   0.
-     >,1150., .92375,1140.,-131., 230.,   0.,   0.
-     >,1150., .93900,1140.,-131., 231.,   0.,   0.
-     >,1150., .95425,1141.,-130., 230.,   0.,   0.
-     >,1150., .96950,1141.,-130., 231.,   0.,   0.
-     >,1150., .98475,1141.,-131., 230.,   0.,   0.
-     >,1150.,1.00000,1141.,-131., 231.,   0.,   0.
-     >,1250., .06000,  12., -11.,1240.,   0.,   0.
-     >,1250., .12000,  12., -11.,1241.,   0.,   0.
-     >,1250., .18000,  14., -13.,1240.,   0.,   0.
-     >,1250., .24000,  14., -13.,1241.,   0.,   0.
-     >,1250., .25500,  16., -15.,1240.,   0.,   0./
+     * 1150., .75600,1141.,-120., 221.,   0.,   0.
+     *,1150., .78650,1141.,-121., 110.,   0.,   0.
+     *,1150., .81700,1141.,-121., 220.,   0.,   0.
+     *,1150., .84750,1141.,-121., 111.,   0.,   0.
+     *,1150., .87800,1141.,-121., 221.,   0.,   0.
+     *,1150., .89325,1140.,-130., 230.,   0.,   0.
+     *,1150., .90850,1140.,-130., 231.,   0.,   0.
+     *,1150., .92375,1140.,-131., 230.,   0.,   0.
+     *,1150., .93900,1140.,-131., 231.,   0.,   0.
+     *,1150., .95425,1141.,-130., 230.,   0.,   0.
+     *,1150., .96950,1141.,-130., 231.,   0.,   0.
+     *,1150., .98475,1141.,-131., 230.,   0.,   0.
+     *,1150.,1.00000,1141.,-131., 231.,   0.,   0.
+     *,1250., .06000,  12., -11.,1240.,   0.,   0.
+     *,1250., .12000,  12., -11.,1241.,   0.,   0.
+     *,1250., .18000,  14., -13.,1240.,   0.,   0.
+     *,1250., .24000,  14., -13.,1241.,   0.,   0.
+     *,1250., .25500,  16., -15.,1240.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=541,558)/
-     > 1250., .27000,  16., -15.,1241.,   0.,   0.
-     >,1250., .28925,1240.,-120.,   0.,   0.,   0.
-     >,1250., .30850,1240.,-121.,   0.,   0.,   0.
-     >,1250., .32775,1241.,-120.,   0.,   0.,   0.
-     >,1250., .34700,1241.,-121.,   0.,   0.,   0.
-     >,1250., .35775,1240., 340.,   0.,   0.,   0.
-     >,1250., .36850,1240., 341.,   0.,   0.,   0.
-     >,1250., .37925,1241., 340.,   0.,   0.,   0.
-     >,1250., .39000,1241., 341.,   0.,   0.,   0.
-     >,1250., .42050,1240.,-120., 110.,   0.,   0.
-     >,1250., .45100,1240.,-120., 220.,   0.,   0.
-     >,1250., .48150,1240.,-120., 111.,   0.,   0.
-     >,1250., .51200,1240.,-120., 221.,   0.,   0.
-     >,1250., .54250,1240.,-121., 110.,   0.,   0.
-     >,1250., .57300,1240.,-121., 220.,   0.,   0.
-     >,1250., .60350,1240.,-121., 111.,   0.,   0.
-     >,1250., .63400,1240.,-121., 221.,   0.,   0.
-     >,1250., .66450,1241.,-120., 110.,   0.,   0./
+     * 1250., .27000,  16., -15.,1241.,   0.,   0.
+     *,1250., .28925,1240.,-120.,   0.,   0.,   0.
+     *,1250., .30850,1240.,-121.,   0.,   0.,   0.
+     *,1250., .32775,1241.,-120.,   0.,   0.,   0.
+     *,1250., .34700,1241.,-121.,   0.,   0.,   0.
+     *,1250., .35775,1240., 340.,   0.,   0.,   0.
+     *,1250., .36850,1240., 341.,   0.,   0.,   0.
+     *,1250., .37925,1241., 340.,   0.,   0.,   0.
+     *,1250., .39000,1241., 341.,   0.,   0.,   0.
+     *,1250., .42050,1240.,-120., 110.,   0.,   0.
+     *,1250., .45100,1240.,-120., 220.,   0.,   0.
+     *,1250., .48150,1240.,-120., 111.,   0.,   0.
+     *,1250., .51200,1240.,-120., 221.,   0.,   0.
+     *,1250., .54250,1240.,-121., 110.,   0.,   0.
+     *,1250., .57300,1240.,-121., 220.,   0.,   0.
+     *,1250., .60350,1240.,-121., 111.,   0.,   0.
+     *,1250., .63400,1240.,-121., 221.,   0.,   0.
+     *,1250., .66450,1241.,-120., 110.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=559,576)/
-     > 1250., .69500,1241.,-120., 220.,   0.,   0.
-     >,1250., .72550,1241.,-120., 111.,   0.,   0.
-     >,1250., .75600,1241.,-120., 221.,   0.,   0.
-     >,1250., .78650,1241.,-121., 110.,   0.,   0.
-     >,1250., .81700,1241.,-121., 220.,   0.,   0.
-     >,1250., .84750,1241.,-121., 111.,   0.,   0.
-     >,1250., .87800,1241.,-121., 221.,   0.,   0.
-     >,1250., .89325,1240.,-130., 230.,   0.,   0.
-     >,1250., .90850,1240.,-130., 231.,   0.,   0.
-     >,1250., .92375,1240.,-131., 230.,   0.,   0.
-     >,1250., .93900,1240.,-131., 231.,   0.,   0.
-     >,1250., .95425,1241.,-130., 230.,   0.,   0.
-     >,1250., .96950,1241.,-130., 231.,   0.,   0.
-     >,1250., .98475,1241.,-131., 230.,   0.,   0.
-     >,1250.,1.00000,1241.,-131., 231.,   0.,   0.
-     >,1350., .06000,  12., -11.,1340.,   0.,   0.
-     >,1350., .12000,  12., -11.,1341.,   0.,   0.
-     >,1350., .18000,  14., -13.,1340.,   0.,   0./
+     * 1250., .69500,1241.,-120., 220.,   0.,   0.
+     *,1250., .72550,1241.,-120., 111.,   0.,   0.
+     *,1250., .75600,1241.,-120., 221.,   0.,   0.
+     *,1250., .78650,1241.,-121., 110.,   0.,   0.
+     *,1250., .81700,1241.,-121., 220.,   0.,   0.
+     *,1250., .84750,1241.,-121., 111.,   0.,   0.
+     *,1250., .87800,1241.,-121., 221.,   0.,   0.
+     *,1250., .89325,1240.,-130., 230.,   0.,   0.
+     *,1250., .90850,1240.,-130., 231.,   0.,   0.
+     *,1250., .92375,1240.,-131., 230.,   0.,   0.
+     *,1250., .93900,1240.,-131., 231.,   0.,   0.
+     *,1250., .95425,1241.,-130., 230.,   0.,   0.
+     *,1250., .96950,1241.,-130., 231.,   0.,   0.
+     *,1250., .98475,1241.,-131., 230.,   0.,   0.
+     *,1250.,1.00000,1241.,-131., 231.,   0.,   0.
+     *,1350., .06000,  12., -11.,1340.,   0.,   0.
+     *,1350., .12000,  12., -11.,1341.,   0.,   0.
+     *,1350., .18000,  14., -13.,1340.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=577,594)/
-     > 1350., .24000,  14., -13.,1341.,   0.,   0.
-     >,1350., .25500,  16., -15.,1340.,   0.,   0.
-     >,1350., .27000,  16., -15.,1341.,   0.,   0.
-     >,1350., .28925,1340.,-120.,   0.,   0.,   0.
-     >,1350., .30850,1340.,-121.,   0.,   0.,   0.
-     >,1350., .32775,1341.,-120.,   0.,   0.,   0.
-     >,1350., .34700,1341.,-121.,   0.,   0.,   0.
-     >,1350., .35775,1340., 340.,   0.,   0.,   0.
-     >,1350., .36850,1340., 341.,   0.,   0.,   0.
-     >,1350., .37925,1341., 340.,   0.,   0.,   0.
-     >,1350., .39000,1341., 341.,   0.,   0.,   0.
-     >,1350., .42050,1340.,-120., 110.,   0.,   0.
-     >,1350., .45100,1340.,-120., 220.,   0.,   0.
-     >,1350., .48150,1340.,-120., 111.,   0.,   0.
-     >,1350., .51200,1340.,-120., 221.,   0.,   0.
-     >,1350., .54250,1340.,-121., 110.,   0.,   0.
-     >,1350., .57300,1340.,-121., 220.,   0.,   0.
-     >,1350., .60350,1340.,-121., 111.,   0.,   0./
+     * 1350., .24000,  14., -13.,1341.,   0.,   0.
+     *,1350., .25500,  16., -15.,1340.,   0.,   0.
+     *,1350., .27000,  16., -15.,1341.,   0.,   0.
+     *,1350., .28925,1340.,-120.,   0.,   0.,   0.
+     *,1350., .30850,1340.,-121.,   0.,   0.,   0.
+     *,1350., .32775,1341.,-120.,   0.,   0.,   0.
+     *,1350., .34700,1341.,-121.,   0.,   0.,   0.
+     *,1350., .35775,1340., 340.,   0.,   0.,   0.
+     *,1350., .36850,1340., 341.,   0.,   0.,   0.
+     *,1350., .37925,1341., 340.,   0.,   0.,   0.
+     *,1350., .39000,1341., 341.,   0.,   0.,   0.
+     *,1350., .42050,1340.,-120., 110.,   0.,   0.
+     *,1350., .45100,1340.,-120., 220.,   0.,   0.
+     *,1350., .48150,1340.,-120., 111.,   0.,   0.
+     *,1350., .51200,1340.,-120., 221.,   0.,   0.
+     *,1350., .54250,1340.,-121., 110.,   0.,   0.
+     *,1350., .57300,1340.,-121., 220.,   0.,   0.
+     *,1350., .60350,1340.,-121., 111.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=595,612)/
-     > 1350., .63400,1340.,-121., 221.,   0.,   0.
-     >,1350., .66450,1341.,-120., 110.,   0.,   0.
-     >,1350., .69500,1341.,-120., 220.,   0.,   0.
-     >,1350., .72550,1341.,-120., 111.,   0.,   0.
-     >,1350., .75600,1341.,-120., 221.,   0.,   0.
-     >,1350., .78650,1341.,-121., 110.,   0.,   0.
-     >,1350., .81700,1341.,-121., 220.,   0.,   0.
-     >,1350., .84750,1341.,-121., 111.,   0.,   0.
-     >,1350., .87800,1341.,-121., 221.,   0.,   0.
-     >,1350., .89325,1340.,-130., 230.,   0.,   0.
-     >,1350., .90850,1340.,-130., 231.,   0.,   0.
-     >,1350., .92375,1340.,-131., 230.,   0.,   0.
-     >,1350., .93900,1340.,-131., 231.,   0.,   0.
-     >,1350., .95425,1341.,-130., 230.,   0.,   0.
-     >,1350., .96950,1341.,-130., 231.,   0.,   0.
-     >,1350., .98475,1341.,-131., 230.,   0.,   0.
-     >,1350.,1.00000,1341.,-131., 231.,   0.,   0.
-     >,2150., .06000,  12., -11.,2140.,   0.,   0./
+     * 1350., .63400,1340.,-121., 221.,   0.,   0.
+     *,1350., .66450,1341.,-120., 110.,   0.,   0.
+     *,1350., .69500,1341.,-120., 220.,   0.,   0.
+     *,1350., .72550,1341.,-120., 111.,   0.,   0.
+     *,1350., .75600,1341.,-120., 221.,   0.,   0.
+     *,1350., .78650,1341.,-121., 110.,   0.,   0.
+     *,1350., .81700,1341.,-121., 220.,   0.,   0.
+     *,1350., .84750,1341.,-121., 111.,   0.,   0.
+     *,1350., .87800,1341.,-121., 221.,   0.,   0.
+     *,1350., .89325,1340.,-130., 230.,   0.,   0.
+     *,1350., .90850,1340.,-130., 231.,   0.,   0.
+     *,1350., .92375,1340.,-131., 230.,   0.,   0.
+     *,1350., .93900,1340.,-131., 231.,   0.,   0.
+     *,1350., .95425,1341.,-130., 230.,   0.,   0.
+     *,1350., .96950,1341.,-130., 231.,   0.,   0.
+     *,1350., .98475,1341.,-131., 230.,   0.,   0.
+     *,1350.,1.00000,1341.,-131., 231.,   0.,   0.
+     *,2150., .06000,  12., -11.,2140.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=613,630)/
-     > 2150., .12000,  12., -11.,1241.,   0.,   0.
-     >,2150., .18000,  14., -13.,2140.,   0.,   0.
-     >,2150., .24000,  14., -13.,1241.,   0.,   0.
-     >,2150., .25500,  16., -15.,2140.,   0.,   0.
-     >,2150., .27000,  16., -15.,1241.,   0.,   0.
-     >,2150., .28925,2140.,-120.,   0.,   0.,   0.
-     >,2150., .30850,2140.,-121.,   0.,   0.,   0.
-     >,2150., .32775,1241.,-120.,   0.,   0.,   0.
-     >,2150., .34700,1241.,-121.,   0.,   0.,   0.
-     >,2150., .35775,2140., 340.,   0.,   0.,   0.
-     >,2150., .36850,2140., 341.,   0.,   0.,   0.
-     >,2150., .37925,1241., 340.,   0.,   0.,   0.
-     >,2150., .39000,1241., 341.,   0.,   0.,   0.
-     >,2150., .42050,2140.,-120., 110.,   0.,   0.
-     >,2150., .45100,2140.,-120., 220.,   0.,   0.
-     >,2150., .48150,2140.,-120., 111.,   0.,   0.
-     >,2150., .51200,2140.,-120., 221.,   0.,   0.
-     >,2150., .54250,2140.,-121., 110.,   0.,   0./
+     * 2150., .12000,  12., -11.,1241.,   0.,   0.
+     *,2150., .18000,  14., -13.,2140.,   0.,   0.
+     *,2150., .24000,  14., -13.,1241.,   0.,   0.
+     *,2150., .25500,  16., -15.,2140.,   0.,   0.
+     *,2150., .27000,  16., -15.,1241.,   0.,   0.
+     *,2150., .28925,2140.,-120.,   0.,   0.,   0.
+     *,2150., .30850,2140.,-121.,   0.,   0.,   0.
+     *,2150., .32775,1241.,-120.,   0.,   0.,   0.
+     *,2150., .34700,1241.,-121.,   0.,   0.,   0.
+     *,2150., .35775,2140., 340.,   0.,   0.,   0.
+     *,2150., .36850,2140., 341.,   0.,   0.,   0.
+     *,2150., .37925,1241., 340.,   0.,   0.,   0.
+     *,2150., .39000,1241., 341.,   0.,   0.,   0.
+     *,2150., .42050,2140.,-120., 110.,   0.,   0.
+     *,2150., .45100,2140.,-120., 220.,   0.,   0.
+     *,2150., .48150,2140.,-120., 111.,   0.,   0.
+     *,2150., .51200,2140.,-120., 221.,   0.,   0.
+     *,2150., .54250,2140.,-121., 110.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=631,648)/
-     > 2150., .57300,2140.,-121., 220.,   0.,   0.
-     >,2150., .60350,2140.,-121., 111.,   0.,   0.
-     >,2150., .63400,2140.,-121., 221.,   0.,   0.
-     >,2150., .66450,1241.,-120., 110.,   0.,   0.
-     >,2150., .69500,1241.,-120., 220.,   0.,   0.
-     >,2150., .72550,1241.,-120., 111.,   0.,   0.
-     >,2150., .75600,1241.,-120., 221.,   0.,   0.
-     >,2150., .78650,1241.,-121., 110.,   0.,   0.
-     >,2150., .81700,1241.,-121., 220.,   0.,   0.
-     >,2150., .84750,1241.,-121., 111.,   0.,   0.
-     >,2150., .87800,1241.,-121., 221.,   0.,   0.
-     >,2150., .89325,2140.,-130., 230.,   0.,   0.
-     >,2150., .90850,2140.,-130., 231.,   0.,   0.
-     >,2150., .92375,2140.,-131., 230.,   0.,   0.
-     >,2150., .93900,2140.,-131., 231.,   0.,   0.
-     >,2150., .95425,1241.,-130., 230.,   0.,   0.
-     >,2150., .96950,1241.,-130., 231.,   0.,   0.
-     >,2150., .98475,1241.,-131., 230.,   0.,   0./
+     * 2150., .57300,2140.,-121., 220.,   0.,   0.
+     *,2150., .60350,2140.,-121., 111.,   0.,   0.
+     *,2150., .63400,2140.,-121., 221.,   0.,   0.
+     *,2150., .66450,1241.,-120., 110.,   0.,   0.
+     *,2150., .69500,1241.,-120., 220.,   0.,   0.
+     *,2150., .72550,1241.,-120., 111.,   0.,   0.
+     *,2150., .75600,1241.,-120., 221.,   0.,   0.
+     *,2150., .78650,1241.,-121., 110.,   0.,   0.
+     *,2150., .81700,1241.,-121., 220.,   0.,   0.
+     *,2150., .84750,1241.,-121., 111.,   0.,   0.
+     *,2150., .87800,1241.,-121., 221.,   0.,   0.
+     *,2150., .89325,2140.,-130., 230.,   0.,   0.
+     *,2150., .90850,2140.,-130., 231.,   0.,   0.
+     *,2150., .92375,2140.,-131., 230.,   0.,   0.
+     *,2150., .93900,2140.,-131., 231.,   0.,   0.
+     *,2150., .95425,1241.,-130., 230.,   0.,   0.
+     *,2150., .96950,1241.,-130., 231.,   0.,   0.
+     *,2150., .98475,1241.,-131., 230.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=649,666)/
-     > 2150.,1.00000,1241.,-131., 231.,   0.,   0.
-     >,2250., .06000,  12., -11.,2240.,   0.,   0.
-     >,2250., .12000,  12., -11.,2241.,   0.,   0.
-     >,2250., .18000,  14., -13.,2240.,   0.,   0.
-     >,2250., .24000,  14., -13.,2241.,   0.,   0.
-     >,2250., .25500,  16., -15.,2240.,   0.,   0.
-     >,2250., .27000,  16., -15.,2241.,   0.,   0.
-     >,2250., .28925,2240.,-120.,   0.,   0.,   0.
-     >,2250., .30850,2240.,-121.,   0.,   0.,   0.
-     >,2250., .32775,2241.,-120.,   0.,   0.,   0.
-     >,2250., .34700,2241.,-121.,   0.,   0.,   0.
-     >,2250., .35775,2240., 340.,   0.,   0.,   0.
-     >,2250., .36850,2240., 341.,   0.,   0.,   0.
-     >,2250., .37925,2241., 340.,   0.,   0.,   0.
-     >,2250., .39000,2241., 341.,   0.,   0.,   0.
-     >,2250., .42050,2240.,-120., 110.,   0.,   0.
-     >,2250., .45100,2240.,-120., 220.,   0.,   0.
-     >,2250., .48150,2240.,-120., 111.,   0.,   0./
+     * 2150.,1.00000,1241.,-131., 231.,   0.,   0.
+     *,2250., .06000,  12., -11.,2240.,   0.,   0.
+     *,2250., .12000,  12., -11.,2241.,   0.,   0.
+     *,2250., .18000,  14., -13.,2240.,   0.,   0.
+     *,2250., .24000,  14., -13.,2241.,   0.,   0.
+     *,2250., .25500,  16., -15.,2240.,   0.,   0.
+     *,2250., .27000,  16., -15.,2241.,   0.,   0.
+     *,2250., .28925,2240.,-120.,   0.,   0.,   0.
+     *,2250., .30850,2240.,-121.,   0.,   0.,   0.
+     *,2250., .32775,2241.,-120.,   0.,   0.,   0.
+     *,2250., .34700,2241.,-121.,   0.,   0.,   0.
+     *,2250., .35775,2240., 340.,   0.,   0.,   0.
+     *,2250., .36850,2240., 341.,   0.,   0.,   0.
+     *,2250., .37925,2241., 340.,   0.,   0.,   0.
+     *,2250., .39000,2241., 341.,   0.,   0.,   0.
+     *,2250., .42050,2240.,-120., 110.,   0.,   0.
+     *,2250., .45100,2240.,-120., 220.,   0.,   0.
+     *,2250., .48150,2240.,-120., 111.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=667,684)/
-     > 2250., .51200,2240.,-120., 221.,   0.,   0.
-     >,2250., .54250,2240.,-121., 110.,   0.,   0.
-     >,2250., .57300,2240.,-121., 220.,   0.,   0.
-     >,2250., .60350,2240.,-121., 111.,   0.,   0.
-     >,2250., .63400,2240.,-121., 221.,   0.,   0.
-     >,2250., .66450,2241.,-120., 110.,   0.,   0.
-     >,2250., .69500,2241.,-120., 220.,   0.,   0.
-     >,2250., .72550,2241.,-120., 111.,   0.,   0.
-     >,2250., .75600,2241.,-120., 221.,   0.,   0.
-     >,2250., .78650,2241.,-121., 110.,   0.,   0.
-     >,2250., .81700,2241.,-121., 220.,   0.,   0.
-     >,2250., .84750,2241.,-121., 111.,   0.,   0.
-     >,2250., .87800,2241.,-121., 221.,   0.,   0.
-     >,2250., .89325,2240.,-130., 230.,   0.,   0.
-     >,2250., .90850,2240.,-130., 231.,   0.,   0.
-     >,2250., .92375,2240.,-131., 230.,   0.,   0.
-     >,2250., .93900,2240.,-131., 231.,   0.,   0.
-     >,2250., .95425,2241.,-130., 230.,   0.,   0./
+     * 2250., .51200,2240.,-120., 221.,   0.,   0.
+     *,2250., .54250,2240.,-121., 110.,   0.,   0.
+     *,2250., .57300,2240.,-121., 220.,   0.,   0.
+     *,2250., .60350,2240.,-121., 111.,   0.,   0.
+     *,2250., .63400,2240.,-121., 221.,   0.,   0.
+     *,2250., .66450,2241.,-120., 110.,   0.,   0.
+     *,2250., .69500,2241.,-120., 220.,   0.,   0.
+     *,2250., .72550,2241.,-120., 111.,   0.,   0.
+     *,2250., .75600,2241.,-120., 221.,   0.,   0.
+     *,2250., .78650,2241.,-121., 110.,   0.,   0.
+     *,2250., .81700,2241.,-121., 220.,   0.,   0.
+     *,2250., .84750,2241.,-121., 111.,   0.,   0.
+     *,2250., .87800,2241.,-121., 221.,   0.,   0.
+     *,2250., .89325,2240.,-130., 230.,   0.,   0.
+     *,2250., .90850,2240.,-130., 231.,   0.,   0.
+     *,2250., .92375,2240.,-131., 230.,   0.,   0.
+     *,2250., .93900,2240.,-131., 231.,   0.,   0.
+     *,2250., .95425,2241.,-130., 230.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=685,702)/
-     > 2250., .96950,2241.,-130., 231.,   0.,   0.
-     >,2250., .98475,2241.,-131., 230.,   0.,   0.
-     >,2250.,1.00000,2241.,-131., 231.,   0.,   0.
-     >,2350., .06000,  12., -11.,2340.,   0.,   0.
-     >,2350., .12000,  12., -11.,2341.,   0.,   0.
-     >,2350., .18000,  14., -13.,2340.,   0.,   0.
-     >,2350., .24000,  14., -13.,2341.,   0.,   0.
-     >,2350., .25500,  16., -15.,2340.,   0.,   0.
-     >,2350., .27000,  16., -15.,2341.,   0.,   0.
-     >,2350., .28925,2340.,-120.,   0.,   0.,   0.
-     >,2350., .30850,2340.,-121.,   0.,   0.,   0.
-     >,2350., .32775,2341.,-120.,   0.,   0.,   0.
-     >,2350., .34700,2341.,-121.,   0.,   0.,   0.
-     >,2350., .35775,2340., 340.,   0.,   0.,   0.
-     >,2350., .36850,2340., 341.,   0.,   0.,   0.
-     >,2350., .37925,2341., 340.,   0.,   0.,   0.
-     >,2350., .39000,2341., 341.,   0.,   0.,   0.
-     >,2350., .42050,2340.,-120., 110.,   0.,   0./
+     * 2250., .96950,2241.,-130., 231.,   0.,   0.
+     *,2250., .98475,2241.,-131., 230.,   0.,   0.
+     *,2250.,1.00000,2241.,-131., 231.,   0.,   0.
+     *,2350., .06000,  12., -11.,2340.,   0.,   0.
+     *,2350., .12000,  12., -11.,2341.,   0.,   0.
+     *,2350., .18000,  14., -13.,2340.,   0.,   0.
+     *,2350., .24000,  14., -13.,2341.,   0.,   0.
+     *,2350., .25500,  16., -15.,2340.,   0.,   0.
+     *,2350., .27000,  16., -15.,2341.,   0.,   0.
+     *,2350., .28925,2340.,-120.,   0.,   0.,   0.
+     *,2350., .30850,2340.,-121.,   0.,   0.,   0.
+     *,2350., .32775,2341.,-120.,   0.,   0.,   0.
+     *,2350., .34700,2341.,-121.,   0.,   0.,   0.
+     *,2350., .35775,2340., 340.,   0.,   0.,   0.
+     *,2350., .36850,2340., 341.,   0.,   0.,   0.
+     *,2350., .37925,2341., 340.,   0.,   0.,   0.
+     *,2350., .39000,2341., 341.,   0.,   0.,   0.
+     *,2350., .42050,2340.,-120., 110.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=703,720)/
-     > 2350., .45100,2340.,-120., 220.,   0.,   0.
-     >,2350., .48150,2340.,-120., 111.,   0.,   0.
-     >,2350., .51200,2340.,-120., 221.,   0.,   0.
-     >,2350., .54250,2340.,-121., 110.,   0.,   0.
-     >,2350., .57300,2340.,-121., 220.,   0.,   0.
-     >,2350., .60350,2340.,-121., 111.,   0.,   0.
-     >,2350., .63400,2340.,-121., 221.,   0.,   0.
-     >,2350., .66450,2341.,-120., 110.,   0.,   0.
-     >,2350., .69500,2341.,-120., 220.,   0.,   0.
-     >,2350., .72550,2341.,-120., 111.,   0.,   0.
-     >,2350., .75600,2341.,-120., 221.,   0.,   0.
-     >,2350., .78650,2341.,-121., 110.,   0.,   0.
-     >,2350., .81700,2341.,-121., 220.,   0.,   0.
-     >,2350., .84750,2341.,-121., 111.,   0.,   0.
-     >,2350., .87800,2341.,-121., 221.,   0.,   0.
-     >,2350., .89325,2340.,-130., 230.,   0.,   0.
-     >,2350., .90850,2340.,-130., 231.,   0.,   0.
-     >,2350., .92375,2340.,-131., 230.,   0.,   0./
+     * 2350., .45100,2340.,-120., 220.,   0.,   0.
+     *,2350., .48150,2340.,-120., 111.,   0.,   0.
+     *,2350., .51200,2340.,-120., 221.,   0.,   0.
+     *,2350., .54250,2340.,-121., 110.,   0.,   0.
+     *,2350., .57300,2340.,-121., 220.,   0.,   0.
+     *,2350., .60350,2340.,-121., 111.,   0.,   0.
+     *,2350., .63400,2340.,-121., 221.,   0.,   0.
+     *,2350., .66450,2341.,-120., 110.,   0.,   0.
+     *,2350., .69500,2341.,-120., 220.,   0.,   0.
+     *,2350., .72550,2341.,-120., 111.,   0.,   0.
+     *,2350., .75600,2341.,-120., 221.,   0.,   0.
+     *,2350., .78650,2341.,-121., 110.,   0.,   0.
+     *,2350., .81700,2341.,-121., 220.,   0.,   0.
+     *,2350., .84750,2341.,-121., 111.,   0.,   0.
+     *,2350., .87800,2341.,-121., 221.,   0.,   0.
+     *,2350., .89325,2340.,-130., 230.,   0.,   0.
+     *,2350., .90850,2340.,-130., 231.,   0.,   0.
+     *,2350., .92375,2340.,-131., 230.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=721,738)/
-     > 2350., .93900,2340.,-131., 231.,   0.,   0.
-     >,2350., .95425,2341.,-130., 230.,   0.,   0.
-     >,2350., .96950,2341.,-130., 231.,   0.,   0.
-     >,2350., .98475,2341.,-131., 230.,   0.,   0.
-     >,2350.,1.00000,2341.,-131., 231.,   0.,   0.
-     >,3150., .06000,  12., -11.,3140.,   0.,   0.
-     >,3150., .12000,  12., -11.,1341.,   0.,   0.
-     >,3150., .18000,  14., -13.,3140.,   0.,   0.
-     >,3150., .24000,  14., -13.,1341.,   0.,   0.
-     >,3150., .25500,  16., -15.,3140.,   0.,   0.
-     >,3150., .27000,  16., -15.,1341.,   0.,   0.
-     >,3150., .28925,3140.,-120.,   0.,   0.,   0.
-     >,3150., .30850,3140.,-121.,   0.,   0.,   0.
-     >,3150., .32775,1341.,-120.,   0.,   0.,   0.
-     >,3150., .34700,1341.,-121.,   0.,   0.,   0.
-     >,3150., .35775,3140., 340.,   0.,   0.,   0.
-     >,3150., .36850,3140., 341.,   0.,   0.,   0.
-     >,3150., .37925,1341., 340.,   0.,   0.,   0./
+     * 2350., .93900,2340.,-131., 231.,   0.,   0.
+     *,2350., .95425,2341.,-130., 230.,   0.,   0.
+     *,2350., .96950,2341.,-130., 231.,   0.,   0.
+     *,2350., .98475,2341.,-131., 230.,   0.,   0.
+     *,2350.,1.00000,2341.,-131., 231.,   0.,   0.
+     *,3150., .06000,  12., -11.,3140.,   0.,   0.
+     *,3150., .12000,  12., -11.,1341.,   0.,   0.
+     *,3150., .18000,  14., -13.,3140.,   0.,   0.
+     *,3150., .24000,  14., -13.,1341.,   0.,   0.
+     *,3150., .25500,  16., -15.,3140.,   0.,   0.
+     *,3150., .27000,  16., -15.,1341.,   0.,   0.
+     *,3150., .28925,3140.,-120.,   0.,   0.,   0.
+     *,3150., .30850,3140.,-121.,   0.,   0.,   0.
+     *,3150., .32775,1341.,-120.,   0.,   0.,   0.
+     *,3150., .34700,1341.,-121.,   0.,   0.,   0.
+     *,3150., .35775,3140., 340.,   0.,   0.,   0.
+     *,3150., .36850,3140., 341.,   0.,   0.,   0.
+     *,3150., .37925,1341., 340.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=739,756)/
-     > 3150., .39000,1341., 341.,   0.,   0.,   0.
-     >,3150., .42050,3140.,-120., 110.,   0.,   0.
-     >,3150., .45100,3140.,-120., 220.,   0.,   0.
-     >,3150., .48150,3140.,-120., 111.,   0.,   0.
-     >,3150., .51200,3140.,-120., 221.,   0.,   0.
-     >,3150., .54250,3140.,-121., 110.,   0.,   0.
-     >,3150., .57300,3140.,-121., 220.,   0.,   0.
-     >,3150., .60350,3140.,-121., 111.,   0.,   0.
-     >,3150., .63400,3140.,-121., 221.,   0.,   0.
-     >,3150., .66450,1341.,-120., 110.,   0.,   0.
-     >,3150., .69500,1341.,-120., 220.,   0.,   0.
-     >,3150., .72550,1341.,-120., 111.,   0.,   0.
-     >,3150., .75600,1341.,-120., 221.,   0.,   0.
-     >,3150., .78650,1341.,-121., 110.,   0.,   0.
-     >,3150., .81700,1341.,-121., 220.,   0.,   0.
-     >,3150., .84750,1341.,-121., 111.,   0.,   0.
-     >,3150., .87800,1341.,-121., 221.,   0.,   0.
-     >,3150., .89325,3140.,-130., 230.,   0.,   0./
+     * 3150., .39000,1341., 341.,   0.,   0.,   0.
+     *,3150., .42050,3140.,-120., 110.,   0.,   0.
+     *,3150., .45100,3140.,-120., 220.,   0.,   0.
+     *,3150., .48150,3140.,-120., 111.,   0.,   0.
+     *,3150., .51200,3140.,-120., 221.,   0.,   0.
+     *,3150., .54250,3140.,-121., 110.,   0.,   0.
+     *,3150., .57300,3140.,-121., 220.,   0.,   0.
+     *,3150., .60350,3140.,-121., 111.,   0.,   0.
+     *,3150., .63400,3140.,-121., 221.,   0.,   0.
+     *,3150., .66450,1341.,-120., 110.,   0.,   0.
+     *,3150., .69500,1341.,-120., 220.,   0.,   0.
+     *,3150., .72550,1341.,-120., 111.,   0.,   0.
+     *,3150., .75600,1341.,-120., 221.,   0.,   0.
+     *,3150., .78650,1341.,-121., 110.,   0.,   0.
+     *,3150., .81700,1341.,-121., 220.,   0.,   0.
+     *,3150., .84750,1341.,-121., 111.,   0.,   0.
+     *,3150., .87800,1341.,-121., 221.,   0.,   0.
+     *,3150., .89325,3140.,-130., 230.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=757,774)/
-     > 3150., .90850,3140.,-130., 231.,   0.,   0.
-     >,3150., .92375,3140.,-131., 230.,   0.,   0.
-     >,3150., .93900,3140.,-131., 231.,   0.,   0.
-     >,3150., .95425,1341.,-130., 230.,   0.,   0.
-     >,3150., .96950,1341.,-130., 231.,   0.,   0.
-     >,3150., .98475,1341.,-131., 230.,   0.,   0.
-     >,3150.,1.00000,1341.,-131., 231.,   0.,   0.
-     >,3250., .06000,  12., -11.,3240.,   0.,   0.
-     >,3250., .12000,  12., -11.,2341.,   0.,   0.
-     >,3250., .18000,  14., -13.,3240.,   0.,   0.
-     >,3250., .24000,  14., -13.,2341.,   0.,   0.
-     >,3250., .25500,  16., -15.,3240.,   0.,   0.
-     >,3250., .27000,  16., -15.,2341.,   0.,   0.
-     >,3250., .28925,3240.,-120.,   0.,   0.,   0.
-     >,3250., .30850,3240.,-121.,   0.,   0.,   0.
-     >,3250., .32775,2341.,-120.,   0.,   0.,   0.
-     >,3250., .34700,2341.,-121.,   0.,   0.,   0.
-     >,3250., .35775,3240., 340.,   0.,   0.,   0./
+     * 3150., .90850,3140.,-130., 231.,   0.,   0.
+     *,3150., .92375,3140.,-131., 230.,   0.,   0.
+     *,3150., .93900,3140.,-131., 231.,   0.,   0.
+     *,3150., .95425,1341.,-130., 230.,   0.,   0.
+     *,3150., .96950,1341.,-130., 231.,   0.,   0.
+     *,3150., .98475,1341.,-131., 230.,   0.,   0.
+     *,3150.,1.00000,1341.,-131., 231.,   0.,   0.
+     *,3250., .06000,  12., -11.,3240.,   0.,   0.
+     *,3250., .12000,  12., -11.,2341.,   0.,   0.
+     *,3250., .18000,  14., -13.,3240.,   0.,   0.
+     *,3250., .24000,  14., -13.,2341.,   0.,   0.
+     *,3250., .25500,  16., -15.,3240.,   0.,   0.
+     *,3250., .27000,  16., -15.,2341.,   0.,   0.
+     *,3250., .28925,3240.,-120.,   0.,   0.,   0.
+     *,3250., .30850,3240.,-121.,   0.,   0.,   0.
+     *,3250., .32775,2341.,-120.,   0.,   0.,   0.
+     *,3250., .34700,2341.,-121.,   0.,   0.,   0.
+     *,3250., .35775,3240., 340.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=775,792)/
-     > 3250., .36850,3240., 341.,   0.,   0.,   0.
-     >,3250., .37925,2341., 340.,   0.,   0.,   0.
-     >,3250., .39000,2341., 341.,   0.,   0.,   0.
-     >,3250., .42050,3240.,-120., 110.,   0.,   0.
-     >,3250., .45100,3240.,-120., 220.,   0.,   0.
-     >,3250., .48150,3240.,-120., 111.,   0.,   0.
-     >,3250., .51200,3240.,-120., 221.,   0.,   0.
-     >,3250., .54250,3240.,-121., 110.,   0.,   0.
-     >,3250., .57300,3240.,-121., 220.,   0.,   0.
-     >,3250., .60350,3240.,-121., 111.,   0.,   0.
-     >,3250., .63400,3240.,-121., 221.,   0.,   0.
-     >,3250., .66450,2341.,-120., 110.,   0.,   0.
-     >,3250., .69500,2341.,-120., 220.,   0.,   0.
-     >,3250., .72550,2341.,-120., 111.,   0.,   0.
-     >,3250., .75600,2341.,-120., 221.,   0.,   0.
-     >,3250., .78650,2341.,-121., 110.,   0.,   0.
-     >,3250., .81700,2341.,-121., 220.,   0.,   0.
-     >,3250., .84750,2341.,-121., 111.,   0.,   0./
+     * 3250., .36850,3240., 341.,   0.,   0.,   0.
+     *,3250., .37925,2341., 340.,   0.,   0.,   0.
+     *,3250., .39000,2341., 341.,   0.,   0.,   0.
+     *,3250., .42050,3240.,-120., 110.,   0.,   0.
+     *,3250., .45100,3240.,-120., 220.,   0.,   0.
+     *,3250., .48150,3240.,-120., 111.,   0.,   0.
+     *,3250., .51200,3240.,-120., 221.,   0.,   0.
+     *,3250., .54250,3240.,-121., 110.,   0.,   0.
+     *,3250., .57300,3240.,-121., 220.,   0.,   0.
+     *,3250., .60350,3240.,-121., 111.,   0.,   0.
+     *,3250., .63400,3240.,-121., 221.,   0.,   0.
+     *,3250., .66450,2341.,-120., 110.,   0.,   0.
+     *,3250., .69500,2341.,-120., 220.,   0.,   0.
+     *,3250., .72550,2341.,-120., 111.,   0.,   0.
+     *,3250., .75600,2341.,-120., 221.,   0.,   0.
+     *,3250., .78650,2341.,-121., 110.,   0.,   0.
+     *,3250., .81700,2341.,-121., 220.,   0.,   0.
+     *,3250., .84750,2341.,-121., 111.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=793,810)/
-     > 3250., .87800,2341.,-121., 221.,   0.,   0.
-     >,3250., .89325,3240.,-130., 230.,   0.,   0.
-     >,3250., .90850,3240.,-130., 231.,   0.,   0.
-     >,3250., .92375,3240.,-131., 230.,   0.,   0.
-     >,3250., .93900,3240.,-131., 231.,   0.,   0.
-     >,3250., .95425,2341.,-130., 230.,   0.,   0.
-     >,3250., .96950,2341.,-130., 231.,   0.,   0.
-     >,3250., .98475,2341.,-131., 230.,   0.,   0.
-     >,3250.,1.00000,2341.,-131., 231.,   0.,   0.
-     >,3350., .06000,  12., -11.,3340.,   0.,   0.
-     >,3350., .12000,  12., -11.,3341.,   0.,   0.
-     >,3350., .18000,  14., -13.,3340.,   0.,   0.
-     >,3350., .24000,  14., -13.,3341.,   0.,   0.
-     >,3350., .25500,  16., -15.,3340.,   0.,   0.
-     >,3350., .27000,  16., -15.,3341.,   0.,   0.
-     >,3350., .28925,3340.,-120.,   0.,   0.,   0.
-     >,3350., .30850,3340.,-121.,   0.,   0.,   0.
-     >,3350., .32775,3341.,-120.,   0.,   0.,   0./
+     * 3250., .87800,2341.,-121., 221.,   0.,   0.
+     *,3250., .89325,3240.,-130., 230.,   0.,   0.
+     *,3250., .90850,3240.,-130., 231.,   0.,   0.
+     *,3250., .92375,3240.,-131., 230.,   0.,   0.
+     *,3250., .93900,3240.,-131., 231.,   0.,   0.
+     *,3250., .95425,2341.,-130., 230.,   0.,   0.
+     *,3250., .96950,2341.,-130., 231.,   0.,   0.
+     *,3250., .98475,2341.,-131., 230.,   0.,   0.
+     *,3250.,1.00000,2341.,-131., 231.,   0.,   0.
+     *,3350., .06000,  12., -11.,3340.,   0.,   0.
+     *,3350., .12000,  12., -11.,3341.,   0.,   0.
+     *,3350., .18000,  14., -13.,3340.,   0.,   0.
+     *,3350., .24000,  14., -13.,3341.,   0.,   0.
+     *,3350., .25500,  16., -15.,3340.,   0.,   0.
+     *,3350., .27000,  16., -15.,3341.,   0.,   0.
+     *,3350., .28925,3340.,-120.,   0.,   0.,   0.
+     *,3350., .30850,3340.,-121.,   0.,   0.,   0.
+     *,3350., .32775,3341.,-120.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=811,828)/
-     > 3350., .34700,3341.,-121.,   0.,   0.,   0.
-     >,3350., .35775,3340., 340.,   0.,   0.,   0.
-     >,3350., .36850,3340., 341.,   0.,   0.,   0.
-     >,3350., .37925,3341., 340.,   0.,   0.,   0.
-     >,3350., .39000,3341., 341.,   0.,   0.,   0.
-     >,3350., .42050,3340.,-120., 110.,   0.,   0.
-     >,3350., .45100,3340.,-120., 220.,   0.,   0.
-     >,3350., .48150,3340.,-120., 111.,   0.,   0.
-     >,3350., .51200,3340.,-120., 221.,   0.,   0.
-     >,3350., .54250,3340.,-121., 110.,   0.,   0.
-     >,3350., .57300,3340.,-121., 220.,   0.,   0.
-     >,3350., .60350,3340.,-121., 111.,   0.,   0.
-     >,3350., .63400,3340.,-121., 221.,   0.,   0.
-     >,3350., .66450,3341.,-120., 110.,   0.,   0.
-     >,3350., .69500,3341.,-120., 220.,   0.,   0.
-     >,3350., .72550,3341.,-120., 111.,   0.,   0.
-     >,3350., .75600,3341.,-120., 221.,   0.,   0.
-     >,3350., .78650,3341.,-121., 110.,   0.,   0./
+     * 3350., .34700,3341.,-121.,   0.,   0.,   0.
+     *,3350., .35775,3340., 340.,   0.,   0.,   0.
+     *,3350., .36850,3340., 341.,   0.,   0.,   0.
+     *,3350., .37925,3341., 340.,   0.,   0.,   0.
+     *,3350., .39000,3341., 341.,   0.,   0.,   0.
+     *,3350., .42050,3340.,-120., 110.,   0.,   0.
+     *,3350., .45100,3340.,-120., 220.,   0.,   0.
+     *,3350., .48150,3340.,-120., 111.,   0.,   0.
+     *,3350., .51200,3340.,-120., 221.,   0.,   0.
+     *,3350., .54250,3340.,-121., 110.,   0.,   0.
+     *,3350., .57300,3340.,-121., 220.,   0.,   0.
+     *,3350., .60350,3340.,-121., 111.,   0.,   0.
+     *,3350., .63400,3340.,-121., 221.,   0.,   0.
+     *,3350., .66450,3341.,-120., 110.,   0.,   0.
+     *,3350., .69500,3341.,-120., 220.,   0.,   0.
+     *,3350., .72550,3341.,-120., 111.,   0.,   0.
+     *,3350., .75600,3341.,-120., 221.,   0.,   0.
+     *,3350., .78650,3341.,-121., 110.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=829,846)/
-     > 3350., .81700,3341.,-121., 220.,   0.,   0.
-     >,3350., .84750,3341.,-121., 111.,   0.,   0.
-     >,3350., .87800,3341.,-121., 221.,   0.,   0.
-     >,3350., .89325,3340.,-130., 230.,   0.,   0.
-     >,3350., .90850,3340.,-130., 231.,   0.,   0.
-     >,3350., .92375,3340.,-131., 230.,   0.,   0.
-     >,3350., .93900,3340.,-131., 231.,   0.,   0.
-     >,3350., .95425,3341.,-130., 230.,   0.,   0.
-     >,3350., .96950,3341.,-130., 231.,   0.,   0.
-     >,3350., .98475,3341.,-131., 230.,   0.,   0.
-     >,3350.,1.00000,3341.,-131., 231.,   0.,   0.
-     >,1160., .33300,   1.,  -2.,1500.,   0.,   0.
-     >,1160., .66700,   4.,  -3.,1500.,   0.,   0.
-     >,1160., .77800, -12.,  11.,1500.,   0.,   0.
-     >,1160., .88900, -14.,  13.,1500.,   0.,   0.
-     >,1160.,1.00000, -16.,  15.,1500.,   0.,   0.
-     >,1260., .33300,   1.,  -2.,2500.,   0.,   0.
-     >,1260., .66700,   4.,  -3.,2500.,   0.,   0./
+     * 3350., .81700,3341.,-121., 220.,   0.,   0.
+     *,3350., .84750,3341.,-121., 111.,   0.,   0.
+     *,3350., .87800,3341.,-121., 221.,   0.,   0.
+     *,3350., .89325,3340.,-130., 230.,   0.,   0.
+     *,3350., .90850,3340.,-130., 231.,   0.,   0.
+     *,3350., .92375,3340.,-131., 230.,   0.,   0.
+     *,3350., .93900,3340.,-131., 231.,   0.,   0.
+     *,3350., .95425,3341.,-130., 230.,   0.,   0.
+     *,3350., .96950,3341.,-130., 231.,   0.,   0.
+     *,3350., .98475,3341.,-131., 230.,   0.,   0.
+     *,3350.,1.00000,3341.,-131., 231.,   0.,   0.
+     *,1160., .33300,   1.,  -2.,1500.,   0.,   0.
+     *,1160., .66700,   4.,  -3.,1500.,   0.,   0.
+     *,1160., .77800, -12.,  11.,1500.,   0.,   0.
+     *,1160., .88900, -14.,  13.,1500.,   0.,   0.
+     *,1160.,1.00000, -16.,  15.,1500.,   0.,   0.
+     *,1260., .33300,   1.,  -2.,2500.,   0.,   0.
+     *,1260., .66700,   4.,  -3.,2500.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=847,864)/
-     > 1260., .77800, -12.,  11.,2500.,   0.,   0.
-     >,1260., .88900, -14.,  13.,2500.,   0.,   0.
-     >,1260.,1.00000, -16.,  15.,2500.,   0.,   0.
-     >,2260., .33300,   1.,  -2.,2500.,   0.,   0.
-     >,2260., .66700,   4.,  -3.,2500.,   0.,   0.
-     >,2260., .77800, -12.,  11.,2500.,   0.,   0.
-     >,2260., .88900, -14.,  13.,2500.,   0.,   0.
-     >,2260.,1.00000, -16.,  15.,2500.,   0.,   0.
-     >,2160., .33300,   1.,  -2.,1500.,   0.,   0.
-     >,2160., .66700,   4.,  -3.,1500.,   0.,   0.
-     >,2160., .77800, -12.,  11.,1500.,   0.,   0.
-     >,2160., .88900, -14.,  13.,1500.,   0.,   0.
-     >,2160.,1.00000, -16.,  15.,1500.,   0.,   0.
-     >,1360., .33300,   1.,  -2.,3500.,   0.,   0.
-     >,1360., .66700,   4.,  -3.,3500.,   0.,   0.
-     >,1360., .77800, -12.,  11.,3500.,   0.,   0.
-     >,1360., .88900, -14.,  13.,3500.,   0.,   0.
-     >,1360.,1.00000, -16.,  15.,3500.,   0.,   0./
+     * 1260., .77800, -12.,  11.,2500.,   0.,   0.
+     *,1260., .88900, -14.,  13.,2500.,   0.,   0.
+     *,1260.,1.00000, -16.,  15.,2500.,   0.,   0.
+     *,2260., .33300,   1.,  -2.,2500.,   0.,   0.
+     *,2260., .66700,   4.,  -3.,2500.,   0.,   0.
+     *,2260., .77800, -12.,  11.,2500.,   0.,   0.
+     *,2260., .88900, -14.,  13.,2500.,   0.,   0.
+     *,2260.,1.00000, -16.,  15.,2500.,   0.,   0.
+     *,2160., .33300,   1.,  -2.,1500.,   0.,   0.
+     *,2160., .66700,   4.,  -3.,1500.,   0.,   0.
+     *,2160., .77800, -12.,  11.,1500.,   0.,   0.
+     *,2160., .88900, -14.,  13.,1500.,   0.,   0.
+     *,2160.,1.00000, -16.,  15.,1500.,   0.,   0.
+     *,1360., .33300,   1.,  -2.,3500.,   0.,   0.
+     *,1360., .66700,   4.,  -3.,3500.,   0.,   0.
+     *,1360., .77800, -12.,  11.,3500.,   0.,   0.
+     *,1360., .88900, -14.,  13.,3500.,   0.,   0.
+     *,1360.,1.00000, -16.,  15.,3500.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=865,882)/
-     > 2360., .33300,   1.,  -2.,3500.,   0.,   0.
-     >,2360., .66700,   4.,  -3.,3500.,   0.,   0.
-     >,2360., .77800, -12.,  11.,3500.,   0.,   0.
-     >,2360., .88900, -14.,  13.,3500.,   0.,   0.
-     >,2360.,1.00000, -16.,  15.,3500.,   0.,   0.
-     >,3360., .33300,   1.,  -2.,3500.,   0.,   0.
-     >,3360., .66700,   4.,  -3.,3500.,   0.,   0.
-     >,3360., .77800, -12.,  11.,3500.,   0.,   0.
-     >,3360., .88900, -14.,  13.,3500.,   0.,   0.
-     >,3360.,1.00000, -16.,  15.,3500.,   0.,   0.
-     >,1151.,1.00000,1150.,  10.,   0.,   0.,   0.
-     >,1251.,1.00000,1250.,  10.,   0.,   0.,   0.
-     >,2251.,1.00000,2250.,  10.,   0.,   0.,   0.
-     >,1351.,1.00000,1350.,  10.,   0.,   0.,   0.
-     >,2351.,1.00000,2350.,  10.,   0.,   0.,   0.
-     >,3351.,1.00000,3350.,  10.,   0.,   0.,   0.
-     >,1161.,1.00000,1160.,  10.,   0.,   0.,   0.
-     >,1261.,1.00000,1260.,  10.,   0.,   0.,   0./
+     * 2360., .33300,   1.,  -2.,3500.,   0.,   0.
+     *,2360., .66700,   4.,  -3.,3500.,   0.,   0.
+     *,2360., .77800, -12.,  11.,3500.,   0.,   0.
+     *,2360., .88900, -14.,  13.,3500.,   0.,   0.
+     *,2360.,1.00000, -16.,  15.,3500.,   0.,   0.
+     *,3360., .33300,   1.,  -2.,3500.,   0.,   0.
+     *,3360., .66700,   4.,  -3.,3500.,   0.,   0.
+     *,3360., .77800, -12.,  11.,3500.,   0.,   0.
+     *,3360., .88900, -14.,  13.,3500.,   0.,   0.
+     *,3360.,1.00000, -16.,  15.,3500.,   0.,   0.
+     *,1151.,1.00000,1150.,  10.,   0.,   0.,   0.
+     *,1251.,1.00000,1250.,  10.,   0.,   0.,   0.
+     *,2251.,1.00000,2250.,  10.,   0.,   0.,   0.
+     *,1351.,1.00000,1350.,  10.,   0.,   0.,   0.
+     *,2351.,1.00000,2350.,  10.,   0.,   0.,   0.
+     *,3351.,1.00000,3350.,  10.,   0.,   0.,   0.
+     *,1161.,1.00000,1160.,  10.,   0.,   0.,   0.
+     *,1261.,1.00000,1260.,  10.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=883,886)/
-     > 2261.,1.00000,2260.,  10.,   0.,   0.,   0.
-     >,1361.,1.00000,1360.,  10.,   0.,   0.,   0.
-     >,2361.,1.00000,2360.,  10.,   0.,   0.,   0.
-     >,3361.,1.00000,3360.,  10.,   0.,   0.,   0./
+     * 2261.,1.00000,2260.,  10.,   0.,   0.,   0.
+     *,1361.,1.00000,1360.,  10.,   0.,   0.,   0.
+     *,2361.,1.00000,2360.,  10.,   0.,   0.,   0.
+     *,3361.,1.00000,3360.,  10.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *    delta++ resonances
 c    *---------------------------------------------
-c    *--dl++(1620)---------------------------------
-c    *--dl++(1700)---------------------------------
-c    *--dl++(1925)---------------------------------
       data ((dectab(i,j),i=1,7),j=887,900)/
-     > 1112., .30000,1120., 120.,   0.,   0.,   0.
-     >,1112., .66000,1111., 110.,   0.,   0.,   0.
-     >,1112., .90000,1121., 120.,   0.,   0.,   0.
-     >,1112.,1.00000,1120., 120., 110.,   0.,   0.
-     >,1113., .15000,1120., 120.,   0.,   0.,   0.
-     >,1113., .51000,1111., 110.,   0.,   0.,   0.
-     >,1113., .75000,1121., 120.,   0.,   0.,   0.
-     >,1113.,1.00000,1120., 120., 110.,   0.,   0.
-     >,1114., .28000,1120., 120.,   0.,   0.,   0.
-     >,1114., .40600,1111., 110.,   0.,   0.,   0.
-     >,1114., .49000,1121., 120.,   0.,   0.,   0.
-     >,1114., .69000,1120., 121.,   0.,   0.,   0.
-     >,1114., .70000,1130., 130.,   0.,   0.,   0.
-     >,1114.,1.00000,1122., 120.,   0.,   0.,   0./
+c    *--dl++(1620)---------------------------------
+     * 1112., .30000,1120., 120.,   0.,   0.,   0.
+     *,1112., .66000,1111., 110.,   0.,   0.,   0.
+     *,1112., .90000,1121., 120.,   0.,   0.,   0.
+     *,1112.,1.00000,1120., 120., 110.,   0.,   0.
+c    *--dl++(1700)---------------------------------
+     *,1113., .15000,1120., 120.,   0.,   0.,   0.
+     *,1113., .51000,1111., 110.,   0.,   0.,   0.
+     *,1113., .75000,1121., 120.,   0.,   0.,   0.
+     *,1113.,1.00000,1120., 120., 110.,   0.,   0.
+c    *--dl++(1925)---------------------------------
+     *,1114., .28000,1120., 120.,   0.,   0.,   0.
+     *,1114., .40600,1111., 110.,   0.,   0.,   0.
+     *,1114., .49000,1121., 120.,   0.,   0.,   0.
+     *,1114., .69000,1120., 121.,   0.,   0.,   0.
+     *,1114., .70000,1130., 130.,   0.,   0.,   0.
+     *,1114.,1.00000,1122., 120.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *    delta- resonances
 c    *---------------------------------------------
-c    *--dl-(1620)----------------------------------
-c    *--dl-(1700)----------------------------------
-c    *--dl-(1925)----------------------------------
       data ((dectab(i,j),i=1,7),j=901,914)/
-     > 2222., .30000,1220.,-120.,   0.,   0.,   0.
-     >,2222., .66000,2221., 110.,   0.,   0.,   0.
-     >,2222., .90000,1221.,-120.,   0.,   0.,   0.
-     >,2222.,1.00000,1220., 110.,-120.,   0.,   0.
-     >,2223., .15000,1220.,-120.,   0.,   0.,   0.
-     >,2223., .51000,2221., 110.,   0.,   0.,   0.
-     >,2223., .75000,1221.,-120.,   0.,   0.,   0.
-     >,2223.,1.00000,1220., 110.,-120.,   0.,   0.
-     >,2224., .28000,1220.,-120.,   0.,   0.,   0.
-     >,2224., .40600,2221., 110.,   0.,   0.,   0.
-     >,2224., .49000,1221.,-120.,   0.,   0.,   0.
-     >,2224., .69000,1220.,-121.,   0.,   0.,   0.
-     >,2224., .70000,2230., 230.,   0.,   0.,   0.
-     >,2224.,1.00000,1222.,-120.,   0.,   0.,   0./
+c    *--dl-(1620)----------------------------------
+     * 2222., .30000,1220.,-120.,   0.,   0.,   0.
+     *,2222., .66000,2221., 110.,   0.,   0.,   0.
+     *,2222., .90000,1221.,-120.,   0.,   0.,   0.
+     *,2222.,1.00000,1220., 110.,-120.,   0.,   0.
+c    *--dl-(1700)----------------------------------
+     *,2223., .15000,1220.,-120.,   0.,   0.,   0.
+     *,2223., .51000,2221., 110.,   0.,   0.,   0.
+     *,2223., .75000,1221.,-120.,   0.,   0.,   0.
+     *,2223.,1.00000,1220., 110.,-120.,   0.,   0.
+c    *--dl-(1925)----------------------------------
+     *,2224., .28000,1220.,-120.,   0.,   0.,   0.
+     *,2224., .40600,2221., 110.,   0.,   0.,   0.
+     *,2224., .49000,1221.,-120.,   0.,   0.,   0.
+     *,2224., .69000,1220.,-121.,   0.,   0.,   0.
+     *,2224., .70000,2230., 230.,   0.,   0.,   0.
+     *,2224.,1.00000,1222.,-120.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *    n*+ resonances + delta+ resonances
 c    *---------------------------------------------
-
-c    *--n*+(1440)----------------------------------
-c    *--n*+(1530)----------------------------------
       data ((dectab(i,j),i=1,7),j=915,931)/
-     > 1122., .20000,1120., 110.,   0.,   0.,   0.
-     >,1122., .60000,1220., 120.,   0.,   0.,   0.
-     >,1122., .68000,1111.,-120.,   0.,   0.,   0.
-     >,1122., .73000,1121., 110.,   0.,   0.,   0.
-     >,1122., .76000,1221., 120.,   0.,   0.,   0.
-     >,1122., .84000,1120., 120.,-120.,   0.,   0.
-     >,1122., .87000,1120., 110., 110.,   0.,   0.
-     >,1122.,1.00000,1220., 120., 110.,   0.,   0.
-     >,1123., .17000,1120., 110.,   0.,   0.,   0.
-     >,1123., .51000,1220., 120.,   0.,   0.,   0.
-     >,1123., .57000,1111.,-120.,   0.,   0.,   0.
-     >,1123., .61000,1121., 110.,   0.,   0.,   0.
-     >,1123., .63000,1221., 120.,   0.,   0.,   0.
-     >,1123., .67000,1120., 120.,-120.,   0.,   0.
-     >,1123., .68000,1120., 110., 110.,   0.,   0.
-     >,1123., .75000,1220., 120., 110.,   0.,   0.
-     >,1123.,1.00000,1120., 220.,   0.,   0.,   0./
-
-c    *--dl+(1620)----------------------------------
-c    *--n*+(1665)----------------------------------
+c    *--n*+(1440)----------------------------------
+     * 1122., .20000,1120., 110.,   0.,   0.,   0.
+     *,1122., .60000,1220., 120.,   0.,   0.,   0.
+     *,1122., .68000,1111.,-120.,   0.,   0.,   0.
+     *,1122., .73000,1121., 110.,   0.,   0.,   0.
+     *,1122., .76000,1221., 120.,   0.,   0.,   0.
+     *,1122., .84000,1120., 120.,-120.,   0.,   0.
+     *,1122., .87000,1120., 110., 110.,   0.,   0.
+     *,1122.,1.00000,1220., 120., 110.,   0.,   0.
+c    *--n*+(1530)----------------------------------
+     *,1123., .17000,1120., 110.,   0.,   0.,   0.
+     *,1123., .51000,1220., 120.,   0.,   0.,   0.
+     *,1123., .57000,1111.,-120.,   0.,   0.,   0.
+     *,1123., .61000,1121., 110.,   0.,   0.,   0.
+     *,1123., .63000,1221., 120.,   0.,   0.,   0.
+     *,1123., .67000,1120., 120.,-120.,   0.,   0.
+     *,1123., .68000,1120., 110., 110.,   0.,   0.
+     *,1123., .75000,1220., 120., 110.,   0.,   0.
+     *,1123.,1.00000,1120., 220.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=932,948)/
-     > 1124., .20000,1120., 110.,   0.,   0.,   0.
-     >,1124., .30000,1220., 120.,   0.,   0.,   0.
-     >,1124., .54000,1111.,-120.,   0.,   0.,   0.
-     >,1124., .58000,1121., 110.,   0.,   0.,   0.
-     >,1124., .90000,1221., 120.,   0.,   0.,   0.
-     >,1124., .96000,1120., 120.,-120.,   0.,   0.
-     >,1124.,1.00000,1220., 120., 110.,   0.,   0.
-     >,1125., .16700,1120., 110.,   0.,   0.,   0.
-     >,1125., .49970,1220., 120.,   0.,   0.,   0.
-     >,1125., .62470,1111.,-120.,   0.,   0.,   0.
-     >,1125., .70800,1121., 110.,   0.,   0.,   0.
-     >,1125., .74970,1221., 120.,   0.,   0.,   0.
-     >,1125., .82080,1120., 120.,-120.,   0.,   0.
-     >,1125., .85190,1120., 110., 110.,   0.,   0.
-     >,1125., .96300,1220., 120., 110.,   0.,   0.
-     >,1125., .97300,1120., 220.,   0.,   0.,   0.
-     >,1125.,1.00000,2130., 130.,   0.,   0.,   0./
-
-c    *--dl+(1700)----------------------------------
+c    *--dl+(1620)----------------------------------
+     * 1124., .20000,1120., 110.,   0.,   0.,   0.
+     *,1124., .30000,1220., 120.,   0.,   0.,   0.
+     *,1124., .54000,1111.,-120.,   0.,   0.,   0.
+     *,1124., .58000,1121., 110.,   0.,   0.,   0.
+     *,1124., .90000,1221., 120.,   0.,   0.,   0.
+     *,1124., .96000,1120., 120.,-120.,   0.,   0.
+     *,1124.,1.00000,1220., 120., 110.,   0.,   0.
+c    *--n*+(1665)----------------------------------
+     *,1125., .16700,1120., 110.,   0.,   0.,   0.
+     *,1125., .49970,1220., 120.,   0.,   0.,   0.
+     *,1125., .62470,1111.,-120.,   0.,   0.,   0.
+     *,1125., .70800,1121., 110.,   0.,   0.,   0.
+     *,1125., .74970,1221., 120.,   0.,   0.,   0.
+     *,1125., .82080,1120., 120.,-120.,   0.,   0.
+     *,1125., .85190,1120., 110., 110.,   0.,   0.
+     *,1125., .96300,1220., 120., 110.,   0.,   0.
+     *,1125., .97300,1120., 220.,   0.,   0.,   0.
+     *,1125.,1.00000,2130., 130.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=949,955)/
-     > 1126., .10000,1120., 110.,   0.,   0.,   0.
-     >,1126., .15000,1220., 120.,   0.,   0.,   0.
-     >,1126., .39000,1111.,-120.,   0.,   0.,   0.
-     >,1126., .43000,1121., 110.,   0.,   0.,   0.
-     >,1126., .75000,1221., 120.,   0.,   0.,   0.
-     >,1126., .91500,1120., 120.,-120.,   0.,   0.
-     >,1126.,1.00000,1220., 120., 110.,   0.,   0./
-
-c    *--n*+(1710)----------------------------------
+c    *--dl+(1700)----------------------------------
+     * 1126., .10000,1120., 110.,   0.,   0.,   0.
+     *,1126., .15000,1220., 120.,   0.,   0.,   0.
+     *,1126., .39000,1111.,-120.,   0.,   0.,   0.
+     *,1126., .43000,1121., 110.,   0.,   0.,   0.
+     *,1126., .75000,1221., 120.,   0.,   0.,   0.
+     *,1126., .91500,1120., 120.,-120.,   0.,   0.
+     *,1126.,1.00000,1220., 120., 110.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=956,969)/
-     > 1127., .04430,1120., 110.,   0.,   0.,   0.
-     >,1127., .13290,1220., 120.,   0.,   0.,   0.
-     >,1127., .23790,1111.,-120.,   0.,   0.,   0.
-     >,1127., .30790,1121., 110.,   0.,   0.,   0.
-     >,1127., .34290,1221., 120.,   0.,   0.,   0.
-     >,1127., .41190,1120., 120.,-120.,   0.,   0.
-     >,1127., .48090,1120., 110., 110.,   0.,   0.
-     >,1127., .54990,1220., 120., 110.,   0.,   0.
-     >,1127., .66070,1120., 220.,   0.,   0.,   0.
-     >,1127., .72800,2130., 130.,   0.,   0.,   0.
-     >,1127., .74930,1230., 130.,   0.,   0.,   0.
-     >,1127., .76000,1130., 230.,   0.,   0.,   0.
-     >,1127., .84000,1120., 111.,   0.,   0.,   0.
-     >,1127.,1.00000,1220., 121.,   0.,   0.,   0./
-
-c    *--dl+(1925)----------------------------------
+c    *--n*+(1710)----------------------------------
+     * 1127., .04430,1120., 110.,   0.,   0.,   0.
+     *,1127., .13290,1220., 120.,   0.,   0.,   0.
+     *,1127., .23790,1111.,-120.,   0.,   0.,   0.
+     *,1127., .30790,1121., 110.,   0.,   0.,   0.
+     *,1127., .34290,1221., 120.,   0.,   0.,   0.
+     *,1127., .41190,1120., 120.,-120.,   0.,   0.
+     *,1127., .48090,1120., 110., 110.,   0.,   0.
+     *,1127., .54990,1220., 120., 110.,   0.,   0.
+     *,1127., .66070,1120., 220.,   0.,   0.,   0.
+     *,1127., .72800,2130., 130.,   0.,   0.,   0.
+     *,1127., .74930,1230., 130.,   0.,   0.,   0.
+     *,1127., .76000,1130., 230.,   0.,   0.,   0.
+     *,1127., .84000,1120., 111.,   0.,   0.,   0.
+     *,1127.,1.00000,1220., 121.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=970,980)/
-     > 1128., .18700,1120., 110.,   0.,   0.,   0.
-     >,1128., .28000,1220., 120.,   0.,   0.,   0.
-     >,1128., .36400,1111.,-120.,   0.,   0.,   0.
-     >,1128., .37800,1121., 110.,   0.,   0.,   0.
-     >,1128., .49000,1221., 120.,   0.,   0.,   0.
-     >,1128., .62300,1120., 111.,   0.,   0.,   0.
-     >,1128., .69000,1220., 121.,   0.,   0.,   0.
-     >,1128., .69350,1130., 230.,   0.,   0.,   0.
-     >,1128., .69900,1230., 130.,   0.,   0.,   0.
-     >,1128., .89900,1122., 110.,   0.,   0.,   0.
-     >,1128.,1.00000,1222., 120.,   0.,   0.,   0./
+c    *--dl+(1925)----------------------------------
+     * 1128., .18700,1120., 110.,   0.,   0.,   0.
+     *,1128., .28000,1220., 120.,   0.,   0.,   0.
+     *,1128., .36400,1111.,-120.,   0.,   0.,   0.
+     *,1128., .37800,1121., 110.,   0.,   0.,   0.
+     *,1128., .49000,1221., 120.,   0.,   0.,   0.
+     *,1128., .62300,1120., 111.,   0.,   0.,   0.
+     *,1128., .69000,1220., 121.,   0.,   0.,   0.
+     *,1128., .69350,1130., 230.,   0.,   0.,   0.
+     *,1128., .69900,1230., 130.,   0.,   0.,   0.
+     *,1128., .89900,1122., 110.,   0.,   0.,   0.
+     *,1128.,1.00000,1222., 120.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *    n*0  resonances + delta0 resonances
 c    *---------------------------------------------
-c    *----------n*0(1440)--------------------------
-c    *----------n*0(1530)--------------------------
       data ((dectab(i,j),i=1,7),j=981,997)/
-     > 1222., .20000,1220., 110.,   0.,   0.,   0.
-     >,1222., .60000,1120.,-120.,   0.,   0.,   0.
-     >,1222., .68000,2221., 120.,   0.,   0.,   0.
-     >,1222., .73000,1221., 110.,   0.,   0.,   0.
-     >,1222., .76000,1121.,-120.,   0.,   0.,   0.
-     >,1222., .84000,1220., 120.,-120.,   0.,   0.
-     >,1222., .87000,1220., 110., 110.,   0.,   0.
-     >,1222.,1.00000,1120.,-120., 110.,   0.,   0.
-     >,1223., .17000,1220., 110.,   0.,   0.,   0.
-     >,1223., .51000,1120.,-120.,   0.,   0.,   0.
-     >,1223., .57000,2221., 120.,   0.,   0.,   0.
-     >,1223., .61000,1221., 110.,   0.,   0.,   0.
-     >,1223., .63000,1121.,-120.,   0.,   0.,   0.
-     >,1223., .67000,1220., 120.,-120.,   0.,   0.
-     >,1223., .68000,1220., 110., 110.,   0.,   0.
-     >,1223., .75000,1120.,-120., 110.,   0.,   0.
-     >,1223.,1.00000,1220., 220.,   0.,   0.,   0./
-c    *----------dl0(1620)--------------------------
-c    *----------n*0(1665)--------------------------
+c    *----------n*0(1440)--------------------------
+     * 1222., .20000,1220., 110.,   0.,   0.,   0.
+     *,1222., .60000,1120.,-120.,   0.,   0.,   0.
+     *,1222., .68000,2221., 120.,   0.,   0.,   0.
+     *,1222., .73000,1221., 110.,   0.,   0.,   0.
+     *,1222., .76000,1121.,-120.,   0.,   0.,   0.
+     *,1222., .84000,1220., 120.,-120.,   0.,   0.
+     *,1222., .87000,1220., 110., 110.,   0.,   0.
+     *,1222.,1.00000,1120.,-120., 110.,   0.,   0.
+c    *----------n*0(1530)--------------------------
+     *,1223., .17000,1220., 110.,   0.,   0.,   0.
+     *,1223., .51000,1120.,-120.,   0.,   0.,   0.
+     *,1223., .57000,2221., 120.,   0.,   0.,   0.
+     *,1223., .61000,1221., 110.,   0.,   0.,   0.
+     *,1223., .63000,1121.,-120.,   0.,   0.,   0.
+     *,1223., .67000,1220., 120.,-120.,   0.,   0.
+     *,1223., .68000,1220., 110., 110.,   0.,   0.
+     *,1223., .75000,1120.,-120., 110.,   0.,   0.
+     *,1223.,1.00000,1220., 220.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=998,1014)/
-     > 1224., .20000,1220., 110.,   0.,   0.,   0.
-     >,1224., .30000,1120.,-120.,   0.,   0.,   0.
-     >,1224., .54000,2221., 120.,   0.,   0.,   0.
-     >,1224., .58000,1221., 110.,   0.,   0.,   0.
-     >,1224., .90000,1121.,-120.,   0.,   0.,   0.
-     >,1224., .96500,1220., 120.,-120.,   0.,   0.
-     >,1224.,1.00000,1120.,-120., 110.,   0.,   0.
-     >,1225., .16700,1220., 110.,   0.,   0.,   0.
-     >,1225., .49970,1120.,-120.,   0.,   0.,   0.
-     >,1225., .62470,2221., 120.,   0.,   0.,   0.
-     >,1225., .70800,1221., 110.,   0.,   0.,   0.
-     >,1225., .74970,1121.,-120.,   0.,   0.,   0.
-     >,1225., .82080,1220., 120.,-120.,   0.,   0.
-     >,1225., .85190,1220., 110., 110.,   0.,   0.
-     >,1225., .96300,1120.,-120., 110.,   0.,   0.
-     >,1225., .97300,1220., 220.,   0.,   0.,   0.
-     >,1225.,1.00000,2130., 230.,   0.,   0.,   0./
-c    *----------dl0(1700)--------------------------
+c    *----------dl0(1620)--------------------------
+     * 1224., .20000,1220., 110.,   0.,   0.,   0.
+     *,1224., .30000,1120.,-120.,   0.,   0.,   0.
+     *,1224., .54000,2221., 120.,   0.,   0.,   0.
+     *,1224., .58000,1221., 110.,   0.,   0.,   0.
+     *,1224., .90000,1121.,-120.,   0.,   0.,   0.
+     *,1224., .96500,1220., 120.,-120.,   0.,   0.
+     *,1224.,1.00000,1120.,-120., 110.,   0.,   0.
+c    *----------n*0(1665)--------------------------
+     *,1225., .16700,1220., 110.,   0.,   0.,   0.
+     *,1225., .49970,1120.,-120.,   0.,   0.,   0.
+     *,1225., .62470,2221., 120.,   0.,   0.,   0.
+     *,1225., .70800,1221., 110.,   0.,   0.,   0.
+     *,1225., .74970,1121.,-120.,   0.,   0.,   0.
+     *,1225., .82080,1220., 120.,-120.,   0.,   0.
+     *,1225., .85190,1220., 110., 110.,   0.,   0.
+     *,1225., .96300,1120.,-120., 110.,   0.,   0.
+     *,1225., .97300,1220., 220.,   0.,   0.,   0.
+     *,1225.,1.00000,2130., 230.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1015,1021)/
-     > 1226., .10000,1220., 110.,   0.,   0.,   0.
-     >,1226., .15000,1120.,-120.,   0.,   0.,   0.
-     >,1226., .39000,2221., 120.,   0.,   0.,   0.
-     >,1226., .43000,1221., 110.,   0.,   0.,   0.
-     >,1226., .75000,1121.,-120.,   0.,   0.,   0.
-     >,1226., .91500,1220., 120.,-120.,   0.,   0.
-     >,1226.,1.00000,1120.,-120., 110.,   0.,   0./
-c    *----------n*0(1710)--------------------------
+c    *----------dl0(1700)--------------------------
+     * 1226., .10000,1220., 110.,   0.,   0.,   0.
+     *,1226., .15000,1120.,-120.,   0.,   0.,   0.
+     *,1226., .39000,2221., 120.,   0.,   0.,   0.
+     *,1226., .43000,1221., 110.,   0.,   0.,   0.
+     *,1226., .75000,1121.,-120.,   0.,   0.,   0.
+     *,1226., .91500,1220., 120.,-120.,   0.,   0.
+     *,1226.,1.00000,1120.,-120., 110.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1022,1035)/
-     > 1227., .04430,1220., 110.,   0.,   0.,   0.
-     >,1227., .13290,1120.,-120.,   0.,   0.,   0.
-     >,1227., .23790,2221., 120.,   0.,   0.,   0.
-     >,1227., .30790,1221., 110.,   0.,   0.,   0.
-     >,1227., .34290,1121.,-120.,   0.,   0.,   0.
-     >,1227., .41190,1220., 120.,-120.,   0.,   0.
-     >,1227., .48090,1220., 110., 110.,   0.,   0.
-     >,1227., .54990,1120.,-120., 110.,   0.,   0.
-     >,1227., .66070,1220., 220.,   0.,   0.,   0.
-     >,1227., .72800,2130., 230.,   0.,   0.,   0.
-     >,1227., .73870,1230., 230.,   0.,   0.,   0.
-     >,1227., .76000,2230., 130.,   0.,   0.,   0.
-     >,1227., .92000,1120.,-121.,   0.,   0.,   0.
-     >,1227.,1.00000,1220., 111.,   0.,   0.,   0./
-c    *----------dl0(1925)--------------------------
+c    *----------n*0(1710)--------------------------
+     * 1227., .04430,1220., 110.,   0.,   0.,   0.
+     *,1227., .13290,1120.,-120.,   0.,   0.,   0.
+     *,1227., .23790,2221., 120.,   0.,   0.,   0.
+     *,1227., .30790,1221., 110.,   0.,   0.,   0.
+     *,1227., .34290,1121.,-120.,   0.,   0.,   0.
+     *,1227., .41190,1220., 120.,-120.,   0.,   0.
+     *,1227., .48090,1220., 110., 110.,   0.,   0.
+     *,1227., .54990,1120.,-120., 110.,   0.,   0.
+     *,1227., .66070,1220., 220.,   0.,   0.,   0.
+     *,1227., .72800,2130., 230.,   0.,   0.,   0.
+     *,1227., .73870,1230., 230.,   0.,   0.,   0.
+     *,1227., .76000,2230., 130.,   0.,   0.,   0.
+     *,1227., .92000,1120.,-121.,   0.,   0.,   0.
+     *,1227.,1.00000,1220., 111.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1036,1046)/
-     > 1228., .18700,1220., 110.,   0.,   0.,   0.
-     >,1228., .28000,1120.,-120.,   0.,   0.,   0.
-     >,1228., .36400,2221., 120.,   0.,   0.,   0.
-     >,1228., .37800,1221., 110.,   0.,   0.,   0.
-     >,1228., .49000,1121.,-120.,   0.,   0.,   0.
-     >,1228., .55700,1220., 111.,   0.,   0.,   0.
-     >,1228., .69000,1120.,-121.,   0.,   0.,   0.
-     >,1228., .69350,2230., 130.,   0.,   0.,   0.
-     >,1228., .70000,1230., 230.,   0.,   0.,   0.
-     >,1228., .80000,1122.,-120.,   0.,   0.,   0.
-     >,1228.,1.00000,1222., 110.,   0.,   0.,   0./
+c    *----------dl0(1925)--------------------------
+     * 1228., .18700,1220., 110.,   0.,   0.,   0.
+     *,1228., .28000,1120.,-120.,   0.,   0.,   0.
+     *,1228., .36400,2221., 120.,   0.,   0.,   0.
+     *,1228., .37800,1221., 110.,   0.,   0.,   0.
+     *,1228., .49000,1121.,-120.,   0.,   0.,   0.
+     *,1228., .55700,1220., 111.,   0.,   0.,   0.
+     *,1228., .69000,1120.,-121.,   0.,   0.,   0.
+     *,1228., .69350,2230., 130.,   0.,   0.,   0.
+     *,1228., .70000,1230., 230.,   0.,   0.,   0.
+     *,1228., .80000,1122.,-120.,   0.,   0.,   0.
+     *,1228.,1.00000,1222., 110.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *   lambda resonances + sigma0 resonances
 c    *---------------------------------------------
-c    *----------lambda(1405)-----------------------
-c    *----------lambda(1520)-----------------------
       data ((dectab(i,j),i=1,7),j=1047,1059)/
-     > 1233., .33000,1230., 110.,   0.,   0.,   0.
-     >,1233., .66000,2230., 120.,   0.,   0.,   0.
-     >,1233.,1.00000,1130.,-120.,   0.,   0.,   0.
-     >,1234., .22500,1120.,-130.,   0.,   0.,   0.
-     >,1234., .48000,1220.,-230.,   0.,   0.,   0.
-     >,1234., .62000,1230., 110.,   0.,   0.,   0.
-     >,1234., .76000,2230., 120.,   0.,   0.,   0.
-     >,1234., .90000,1130.,-120.,   0.,   0.,   0.
-     >,1234., .96000,2130., 120.,-120.,   0.,   0.
-     >,1234., .99000,2130., 110., 110.,   0.,   0.
-     >,1234., .99330,1130.,-120., 110.,   0.,   0.
-     >,1234., .99660,2230., 120., 110.,   0.,   0.
-     >,1234.,1.00000,1230., 120.,-120.,   0.,   0./
-c    *----------lambda(1645)-----------------------
-c    *----------sigma0(1665)-----------------------
+c    *----------lambda(1405)-----------------------
+     * 1233., .33000,1230., 110.,   0.,   0.,   0.
+     *,1233., .66000,2230., 120.,   0.,   0.,   0.
+     *,1233.,1.00000,1130.,-120.,   0.,   0.,   0.
+c    *----------lambda(1520)-----------------------
+     *,1234., .22500,1120.,-130.,   0.,   0.,   0.
+     *,1234., .48000,1220.,-230.,   0.,   0.,   0.
+     *,1234., .62000,1230., 110.,   0.,   0.,   0.
+     *,1234., .76000,2230., 120.,   0.,   0.,   0.
+     *,1234., .90000,1130.,-120.,   0.,   0.,   0.
+     *,1234., .96000,2130., 120.,-120.,   0.,   0.
+     *,1234., .99000,2130., 110., 110.,   0.,   0.
+     *,1234., .99330,1130.,-120., 110.,   0.,   0.
+     *,1234., .99660,2230., 120., 110.,   0.,   0.
+     *,1234.,1.00000,1230., 120.,-120.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1060,1075)/
-     > 1235., .10000,1120.,-130.,   0.,   0.,   0.
-     >,1235., .20000,1220.,-230.,   0.,   0.,   0.
-     >,1235., .35000,1230., 110.,   0.,   0.,   0.
-     >,1235., .50000,2230., 120.,   0.,   0.,   0.
-     >,1235., .65000,1130.,-120.,   0.,   0.,   0.
-     >,1235., .75000,2130., 120.,-120.,   0.,   0.
-     >,1235., .80000,2130., 110., 110.,   0.,   0.
-     >,1235., .84500,1130.,-120., 110.,   0.,   0.
-     >,1235., .89000,2230., 120., 110.,   0.,   0.
-     >,1235., .93500,1230., 120.,-120.,   0.,   0.
-     >,1235.,1.00000,2130., 220.,   0.,   0.,   0.
-     >,1236., .10000,1120.,-130.,   0.,   0.,   0.
-     >,1236., .20000,1220.,-230.,   0.,   0.,   0.
-     >,1236., .40000,2230., 120.,   0.,   0.,   0.
-     >,1236., .60000,1130.,-120.,   0.,   0.,   0.
-     >,1236.,1.00000,2130., 110.,   0.,   0.,   0./
-c    *----------sigma0(1776)-----------------------
+c    *----------lambda(1645)-----------------------
+     * 1235., .10000,1120.,-130.,   0.,   0.,   0.
+     *,1235., .20000,1220.,-230.,   0.,   0.,   0.
+     *,1235., .35000,1230., 110.,   0.,   0.,   0.
+     *,1235., .50000,2230., 120.,   0.,   0.,   0.
+     *,1235., .65000,1130.,-120.,   0.,   0.,   0.
+     *,1235., .75000,2130., 120.,-120.,   0.,   0.
+     *,1235., .80000,2130., 110., 110.,   0.,   0.
+     *,1235., .84500,1130.,-120., 110.,   0.,   0.
+     *,1235., .89000,2230., 120., 110.,   0.,   0.
+     *,1235., .93500,1230., 120.,-120.,   0.,   0.
+     *,1235.,1.00000,2130., 220.,   0.,   0.,   0.
+c    *----------sigma0(1665)-----------------------
+     *,1236., .10000,1120.,-130.,   0.,   0.,   0.
+     *,1236., .20000,1220.,-230.,   0.,   0.,   0.
+     *,1236., .40000,2230., 120.,   0.,   0.,   0.
+     *,1236., .60000,1130.,-120.,   0.,   0.,   0.
+     *,1236.,1.00000,2130., 110.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1076,1084)/
-     > 1237., .17500,1120.,-130.,   0.,   0.,   0.
-     >,1237., .35000,1220.,-230.,   0.,   0.,   0.
-     >,1237., .38750,2230., 120.,   0.,   0.,   0.
-     >,1237., .42500,1130.,-120.,   0.,   0.,   0.
-     >,1237., .57500,2130., 110.,   0.,   0.,   0.
-     >,1237., .60000,2231., 120.,   0.,   0.,   0.
-     >,1237., .62500,1131.,-120.,   0.,   0.,   0.
-     >,1237., .75000,1234., 110.,   0.,   0.,   0.
-     >,1237.,1.00000,1230., 220.,   0.,   0.,   0./
-c    *----------lambda(1845)-----------------------
+c    *----------sigma0(1776)-----------------------
+     * 1237., .17500,1120.,-130.,   0.,   0.,   0.
+     *,1237., .35000,1220.,-230.,   0.,   0.,   0.
+     *,1237., .38750,2230., 120.,   0.,   0.,   0.
+     *,1237., .42500,1130.,-120.,   0.,   0.,   0.
+     *,1237., .57500,2130., 110.,   0.,   0.,   0.
+     *,1237., .60000,2231., 120.,   0.,   0.,   0.
+     *,1237., .62500,1131.,-120.,   0.,   0.,   0.
+     *,1237., .75000,1234., 110.,   0.,   0.,   0.
+     *,1237.,1.00000,1230., 220.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1085,1094)/
-     > 1238., .17000,1120.,-130.,   0.,   0.,   0.
-     >,1238., .34000,1220.,-230.,   0.,   0.,   0.
-     >,1238., .44000,1230., 110.,   0.,   0.,   0.
-     >,1238., .54000,2230., 120.,   0.,   0.,   0.
-     >,1238., .64000,1130.,-120.,   0.,   0.,   0.
-     >,1238., .70000,1231., 110.,   0.,   0.,   0.
-     >,1238., .76000,2231., 120.,   0.,   0.,   0.
-     >,1238., .82000,1131.,-120.,   0.,   0.,   0.
-     >,1238., .91000,1120.,-131.,   0.,   0.,   0.
-     >,1238.,1.00000,1220.,-231.,   0.,   0.,   0./
-c    *----------sigma0(1930)-----------------------
+c    *----------lambda(1845)-----------------------
+     * 1238., .17000,1120.,-130.,   0.,   0.,   0.
+     *,1238., .34000,1220.,-230.,   0.,   0.,   0.
+     *,1238., .44000,1230., 110.,   0.,   0.,   0.
+     *,1238., .54000,2230., 120.,   0.,   0.,   0.
+     *,1238., .64000,1130.,-120.,   0.,   0.,   0.
+     *,1238., .70000,1231., 110.,   0.,   0.,   0.
+     *,1238., .76000,2231., 120.,   0.,   0.,   0.
+     *,1238., .82000,1131.,-120.,   0.,   0.,   0.
+     *,1238., .91000,1120.,-131.,   0.,   0.,   0.
+     *,1238.,1.00000,1220.,-231.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1095,1106)/
-     > 1239., .07500,1120.,-130.,   0.,   0.,   0.
-     >,1239., .15000,1220.,-230.,   0.,   0.,   0.
-     >,1239., .20000,1121.,-130.,   0.,   0.,   0.
-     >,1239., .25000,1221.,-230.,   0.,   0.,   0.
-     >,1239., .32500,1120.,-131.,   0.,   0.,   0.
-     >,1239., .40000,1220.,-231.,   0.,   0.,   0.
-     >,1239., .47500,2230., 120.,   0.,   0.,   0.
-     >,1239., .55000,1130.,-120.,   0.,   0.,   0.
-     >,1239., .70000,2130., 110.,   0.,   0.,   0.
-     >,1239., .77500,2231., 120.,   0.,   0.,   0.
-     >,1239., .85000,1131.,-120.,   0.,   0.,   0.
-     >,1239.,1.00000,1234., 110.,   0.,   0.,   0./
+c    *----------sigma0(1930)-----------------------
+     * 1239., .07500,1120.,-130.,   0.,   0.,   0.
+     *,1239., .15000,1220.,-230.,   0.,   0.,   0.
+     *,1239., .20000,1121.,-130.,   0.,   0.,   0.
+     *,1239., .25000,1221.,-230.,   0.,   0.,   0.
+     *,1239., .32500,1120.,-131.,   0.,   0.,   0.
+     *,1239., .40000,1220.,-231.,   0.,   0.,   0.
+     *,1239., .47500,2230., 120.,   0.,   0.,   0.
+     *,1239., .55000,1130.,-120.,   0.,   0.,   0.
+     *,1239., .70000,2130., 110.,   0.,   0.,   0.
+     *,1239., .77500,2231., 120.,   0.,   0.,   0.
+     *,1239., .85000,1131.,-120.,   0.,   0.,   0.
+     *,1239.,1.00000,1234., 110.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *            sigma+ resonances
 c    *---------------------------------------------
-c    *----------sigma+(1665)-----------------------
-c    *----------sigma+(1776)-----------------------
       data ((dectab(i,j),i=1,7),j=1107,1118)/
-     > 1132., .20000,1120.,-230.,   0.,   0.,   0.
-     >,1132., .40000,1130., 110.,   0.,   0.,   0.
-     >,1132., .60000,1230., 120.,   0.,   0.,   0.
-     >,1132.,1.00000,2130., 120.,   0.,   0.,   0.
-     >,1133., .35000,1120.,-230.,   0.,   0.,   0.
-     >,1133., .38750,1130., 110.,   0.,   0.,   0.
-     >,1133., .42500,1230., 120.,   0.,   0.,   0.
-     >,1133., .57500,2130., 120.,   0.,   0.,   0.
-     >,1133., .60000,1131., 110.,   0.,   0.,   0.
-     >,1133., .62500,1231., 120.,   0.,   0.,   0.
-     >,1133., .75000,1234., 120.,   0.,   0.,   0.
-     >,1133.,1.00000,1130., 220.,   0.,   0.,   0./
-c    *----------sigma+(1930)-----------------------
+c    *----------sigma+(1665)-----------------------
+     * 1132., .20000,1120.,-230.,   0.,   0.,   0.
+     *,1132., .40000,1130., 110.,   0.,   0.,   0.
+     *,1132., .60000,1230., 120.,   0.,   0.,   0.
+     *,1132.,1.00000,2130., 120.,   0.,   0.,   0.
+c    *----------sigma+(1776)-----------------------
+     *,1133., .35000,1120.,-230.,   0.,   0.,   0.
+     *,1133., .38750,1130., 110.,   0.,   0.,   0.
+     *,1133., .42500,1230., 120.,   0.,   0.,   0.
+     *,1133., .57500,2130., 120.,   0.,   0.,   0.
+     *,1133., .60000,1131., 110.,   0.,   0.,   0.
+     *,1133., .62500,1231., 120.,   0.,   0.,   0.
+     *,1133., .75000,1234., 120.,   0.,   0.,   0.
+     *,1133.,1.00000,1130., 220.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1119,1128)/
-     > 1134., .15000,1120.,-230.,   0.,   0.,   0.
-     >,1134., .22500,1111.,-130.,   0.,   0.,   0.
-     >,1134., .25000,1121.,-230.,   0.,   0.,   0.
-     >,1134., .40000,1120.,-231.,   0.,   0.,   0.
-     >,1134., .47500,1130., 110.,   0.,   0.,   0.
-     >,1134., .55000,1230., 120.,   0.,   0.,   0.
-     >,1134., .70000,2130., 120.,   0.,   0.,   0.
-     >,1134., .77500,1131., 110.,   0.,   0.,   0.
-     >,1134., .85000,1231., 120.,   0.,   0.,   0.
-     >,1134.,1.00000,1234., 120.,   0.,   0.,   0./
+c    *----------sigma+(1930)-----------------------
+     * 1134., .15000,1120.,-230.,   0.,   0.,   0.
+     *,1134., .22500,1111.,-130.,   0.,   0.,   0.
+     *,1134., .25000,1121.,-230.,   0.,   0.,   0.
+     *,1134., .40000,1120.,-231.,   0.,   0.,   0.
+     *,1134., .47500,1130., 110.,   0.,   0.,   0.
+     *,1134., .55000,1230., 120.,   0.,   0.,   0.
+     *,1134., .70000,2130., 120.,   0.,   0.,   0.
+     *,1134., .77500,1131., 110.,   0.,   0.,   0.
+     *,1134., .85000,1231., 120.,   0.,   0.,   0.
+     *,1134.,1.00000,1234., 120.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *            sigma- resonances
 c    *---------------------------------------------
-c    *----------sigma-(1665)-----------------------
-c    *----------sigma-(1776)-----------------------
       data ((dectab(i,j),i=1,7),j=1129,1140)/
-     > 2232., .20000,1220.,-130.,   0.,   0.,   0.
-     >,2232., .40000,2230., 110.,   0.,   0.,   0.
-     >,2232., .60000,1230.,-120.,   0.,   0.,   0.
-     >,2232.,1.00000,2130.,-120.,   0.,   0.,   0.
-     >,2233., .35000,1220.,-130.,   0.,   0.,   0.
-     >,2233., .38750,2230., 110.,   0.,   0.,   0.
-     >,2233., .42500,1230.,-120.,   0.,   0.,   0.
-     >,2233., .57500,2130.,-120.,   0.,   0.,   0.
-     >,2233., .60000,2231., 110.,   0.,   0.,   0.
-     >,2233., .62500,1231.,-120.,   0.,   0.,   0.
-     >,2233., .75000,1234.,-120.,   0.,   0.,   0.
-     >,2233.,1.00000,2230., 220.,   0.,   0.,   0./
-c    *----------sigma-(1930)-----------------------
+c    *----------sigma-(1665)-----------------------
+     * 2232., .20000,1220.,-130.,   0.,   0.,   0.
+     *,2232., .40000,2230., 110.,   0.,   0.,   0.
+     *,2232., .60000,1230.,-120.,   0.,   0.,   0.
+     *,2232.,1.00000,2130.,-120.,   0.,   0.,   0.
+c    *----------sigma-(1776)-----------------------
+     *,2233., .35000,1220.,-130.,   0.,   0.,   0.
+     *,2233., .38750,2230., 110.,   0.,   0.,   0.
+     *,2233., .42500,1230.,-120.,   0.,   0.,   0.
+     *,2233., .57500,2130.,-120.,   0.,   0.,   0.
+     *,2233., .60000,2231., 110.,   0.,   0.,   0.
+     *,2233., .62500,1231.,-120.,   0.,   0.,   0.
+     *,2233., .75000,1234.,-120.,   0.,   0.,   0.
+     *,2233.,1.00000,2230., 220.,   0.,   0.,   0./
       data ((dectab(i,j),i=1,7),j=1141,1150)/
-     > 2234., .15000,1220.,-130.,   0.,   0.,   0.
-     >,2234., .17500,1221.,-130.,   0.,   0.,   0.
-     >,2234., .25000,2221.,-230.,   0.,   0.,   0.
-     >,2234., .40000,1220.,-131.,   0.,   0.,   0.
-     >,2234., .47500,2230., 110.,   0.,   0.,   0.
-     >,2234., .55000,1230.,-120.,   0.,   0.,   0.
-     >,2234., .70000,2130.,-120.,   0.,   0.,   0.
-     >,2234., .77500,2231., 110.,   0.,   0.,   0.
-     >,2234., .85000,1231.,-120.,   0.,   0.,   0.
-     >,2234.,1.00000,1234.,-120.,   0.,   0.,   0./
+c    *----------sigma-(1930)-----------------------
+     * 2234., .15000,1220.,-130.,   0.,   0.,   0.
+     *,2234., .17500,1221.,-130.,   0.,   0.,   0.
+     *,2234., .25000,2221.,-230.,   0.,   0.,   0.
+     *,2234., .40000,1220.,-131.,   0.,   0.,   0.
+     *,2234., .47500,2230., 110.,   0.,   0.,   0.
+     *,2234., .55000,1230.,-120.,   0.,   0.,   0.
+     *,2234., .70000,2130.,-120.,   0.,   0.,   0.
+     *,2234., .77500,2231., 110.,   0.,   0.,   0.
+     *,2234., .85000,1231.,-120.,   0.,   0.,   0.
+     *,2234.,1.00000,1234.,-120.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *      additional mesonresonances
 c    *---------------------------------------------
-c    *-----------f0(975)---------------------------
-c    *-----------a0(980)---------------------------
-c    *-----------a+(980)---------------------------
       data ((dectab(i,j),i=1,7),j=1151,1159)/
-     >  332., .50000, 120.,-120.,   0.,   0.,   0.
-     >, 332., .75000, 110., 110.,   0.,   0.,   0.
-     >, 332., .87500, 130.,-130.,   0.,   0.,   0.
-     >, 332.,1.00000, 230.,-230.,   0.,   0.,   0.
-     >, 112., .56000, 110., 220.,   0.,   0.,   0.
-     >, 112., .78000, 130.,-130.,   0.,   0.,   0.
-     >, 112.,1.00000, 230.,-230.,   0.,   0.,   0.
-     >, 122., .60000, 120., 220.,   0.,   0.,   0.
-     >, 122.,1.00000, 130.,-230.,   0.,   0.,   0./
+c    *-----------f0(975)---------------------------
+     *  332., .50000, 120.,-120.,   0.,   0.,   0.
+     *, 332., .75000, 110., 110.,   0.,   0.,   0.
+     *, 332., .87500, 130.,-130.,   0.,   0.,   0.
+     *, 332.,1.00000, 230.,-230.,   0.,   0.,   0.
+c    *-----------a0(980)---------------------------
+     *, 112., .56000, 110., 220.,   0.,   0.,   0.
+     *, 112., .78000, 130.,-130.,   0.,   0.,   0.
+     *, 112.,1.00000, 230.,-230.,   0.,   0.,   0.
+c    *-----------a+(980)---------------------------
+     *, 122., .60000, 120., 220.,   0.,   0.,   0.
+     *, 122.,1.00000, 130.,-230.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *      weak baryon decays
 c    *---------------------------------------------
-c    *-----------lambda(1116)----------------------
-c    *-----------sigma+(1180)----------------------
-c    *-----------sigma-(1180)----------------------
-c    *---------kaskade-(1360)----------------------
-c    *---------kaskade0(1360)----------------------
-c    *---------omega-(1680)------------------------
       data ((dectab(i,j),i=1,7),j=1160,1169)/
-     > 2130.,0.64200,1120.,-120.,   0.,   0.,   0.
-     >,2130.,1.00000,1220., 110.,   0.,   0.,   0.
-     >,1130.,0.51580,1120., 110.,   0.,   0.,   0.
-     >,1130.,1.00000,1220., 120.,   0.,   0.,   0.
-     >,2230.,1.00000,1220.,-120.,   0.,   0.,   0.
-     >,2330.,1.00000,2130.,-120.,   0.,   0.,   0.
-     >,1330.,1.00000,2130., 110.,   0.,   0.,   0.
-     >,3331.,0.68000,2130.,-130.,   0.,   0.,   0.
-     >,3331.,0.82000,1330.,-120.,   0.,   0.,   0.
-     >,3331.,1.00000,2330., 110.,   0.,   0.,   0./
+c    *-----------lambda(1116)----------------------
+     * 2130.,0.64200,1120.,-120.,   0.,   0.,   0.
+     *,2130.,1.00000,1220., 110.,   0.,   0.,   0.
+c    *-----------sigma+(1180)----------------------
+     *,1130.,0.51580,1120., 110.,   0.,   0.,   0.
+     *,1130.,1.00000,1220., 120.,   0.,   0.,   0.
+c    *-----------sigma-(1180)----------------------
+     *,2230.,1.00000,1220.,-120.,   0.,   0.,   0.
+c    *---------kaskade-(1360)----------------------
+     *,2330.,1.00000,2130.,-120.,   0.,   0.,   0.
+c    *---------kaskade0(1360)----------------------
+     *,1330.,1.00000,2130., 110.,   0.,   0.,   0.
+c    *---------omega-(1680)------------------------
+     *,3331.,0.68000,2130.,-130.,   0.,   0.,   0.
+     *,3331.,0.82000,1330.,-120.,   0.,   0.,   0.
+     *,3331.,1.00000,2330., 110.,   0.,   0.,   0./
 c    *---------------------------------------------
 c    *      weak meson decays
 c    *---------------------------------------------
-c    *-----------k0s(975)--------------------------
       data ((dectab(i,j),i=1,7),j=1170,1171)/
-     >   20., .68610, 120.,-120.,   0.,   0.,   0.
-     >,  20.,1.00000, 110., 110.,   0.,   0.,   0./
+c    *-----------k0s(975)--------------------------
+     *   20., .68610, 120.,-120.,   0.,   0.,   0.
+     *,  20.,1.00000, 110., 110.,   0.,   0.,   0./
 c    *---------------------------------------------
       end
  
@@ -9292,29 +9275,29 @@ c     processes strings
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       logical revers
       parameter (nflav=6)
       integer ic1(2),ic2(2),jc(nflav,2),jc1(nflav,2),jc2(nflav,2)
@@ -9325,9 +9308,9 @@ c-----------------------------------------------------------------------
       common/cproja/iproj,itarg,kproja(nha,mamx),ktarga(nha,mamx)
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       common/cpzstr/pzstrl,estrl,istrl,isea
  
       ier=0
@@ -9361,9 +9344,8 @@ c     ------
       kproja(3,1)=1    !
       ktarga(3,1)=1    !
       kol=1            !
-      do i=1,4         !this leads to xorstr()=0
-        coord(i,1)=0   !
-      enddo
+      do 1 i=1,4         !this leads to xorstr()=0
+1     coord(i,1)=0       !
       call iddeco(ic1,jc1)
       npa1=0
       do 2 n=1,nflav
@@ -9404,7 +9386,7 @@ c     ------
       if(ish.ge.91)then
       write(ifch,110)('-',l=1,79),ipage,('-',l=1,79)
 110   format(1x,79a1/1x,i5,'.page            '
-     >,'string generation'/1x,79a1/)
+     *,'string generation'/1x,79a1/)
       write(ifch,105)(stro(i,1),i=1,4),(nint(stro(i,1)),i=5,6)
       write(ifch,104)(stro(i,2),i=1,4),(nint(stro(i,2)),i=5,6)
 105   format(' str: ',4f11.5,2i8)
@@ -9417,7 +9399,7 @@ c     ------
       if(isplt.eq.-1)goto9001
       if(isplt.eq.-3)goto9001
       if(isplt.eq.-4)
-     >call utstop('jestpr: isplt=-4                        ')
+     *call utstop('jestpr: isplt=-4                        ')
       if(isplt.eq.-5)goto17
       if(isplt.gt.0)goto14
  
@@ -9437,31 +9419,31 @@ c     generates strings
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       common/partnr/summas,iptnr,ic4,px4,py4,js4,pex,pey,pezet,pe0,nps
-     >/cntevm/ntevm
+     */cntevm/ntevm
       common /clep/icinpu,idscat
       integer ic1(2),ic2(2),ic4(2)
       parameter (nsi=6,nsix=100)
@@ -9471,23 +9453,23 @@ c-----------------------------------------------------------------------
       integer icstri(4,18)
  
       data ((icstri(i,j),i=1,4),j=1,8)/
-     >100000,000000,110000,000000,
-     >010000,000000,200000,000000,
-     >100000,000000,210000,100000,
-     >010000,000000,210000,010000,
-     >001000,000000,210000,001000,
-     >000000,100000,310000,000000,
-     >000000,010000,220000,000000,
-     >000000,001000,211000,000000/
+     *100000,000000,110000,000000,
+     *010000,000000,200000,000000,
+     *100000,000000,210000,100000,
+     *010000,000000,210000,010000,
+     *001000,000000,210000,001000,
+     *000000,100000,310000,000000,
+     *000000,010000,220000,000000,
+     *000000,001000,211000,000000/
       data ((icstri(i,j),i=1,4),j=11,18)/
-     >100000,000000,020000,000000,
-     >010000,000000,110000,000000,
-     >100000,000000,120000,100000,
-     >010000,000000,120000,010000,
-     >001000,000000,120000,001000,
-     >000000,100000,220000,000000,
-     >000000,010000,130000,000000,
-     >000000,001000,121000,000000/
+     *100000,000000,020000,000000,
+     *010000,000000,110000,000000,
+     *100000,000000,120000,100000,
+     *010000,000000,120000,010000,
+     *001000,000000,120000,001000,
+     *000000,100000,220000,000000,
+     *000000,010000,130000,000000,
+     *000000,001000,121000,000000/
  
       ish0=ish
       if(ishsub/100.eq.2)ish=mod(ishsub,100)
@@ -9511,7 +9493,7 @@ c-----------------------------------------------------------------------
       cosang=1-qsq/2/elepti/elepto
       if(ish.ge.93)write(ifch,*)'elepti,elepto,rnu: ',elepti,elepto,rnu
       if(ish.ge.93)write(ifch,*)'xbj,qsq,cosang=1-qsq/2/elepti/elepto: '
-     >,xbj,qsq,cosang
+     *,xbj,qsq,cosang
       if(rnu.gt.elepti)then
       if(ish.ge.93)write(ifch,*)'*****  q0 too large: ',rnu
       goto3
@@ -9526,7 +9508,7 @@ c-----------------------------------------------------------------------
       write(ifch,*)'*****  cosang out of range'
       write(ifch,*)'elepti,elepto,rnu: ',elepti,elepto,rnu
       write(ifch,*)'xbj,qsq,cosang=1-qsq/2/elepti/elepto: '
-     >,xbj,qsq,cosano
+     *,xbj,qsq,cosano
       write(ifch,*)'cosang_new: ',cosang
       call utmsgf
       endif
@@ -9545,11 +9527,10 @@ c-----------------------------------------------------------------------
            if(icinpu.eq.0)then
       r=rangen()
       ps=0
-      do k=1,99
-        ps=ps+prob(k)
-        if(r.le.ps)goto2
-      enddo
-
+      do 1 k=1,99
+      ps=ps+prob(k)
+      if(r.le.ps)goto2
+1     continue
       call utstop('jetgen: no k found                      ')
 2     ic1(1)=icfor(k,1)
       ic1(2)=icfor(k,2)
@@ -9577,40 +9558,40 @@ c-----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer iacptl(mxptl)
       common/c2ptl/iaaptl(mxptl),radptl(mxptl),amiptl(mxptl)
       common/c3ptl/desptl(mxptl),dezptl(mxptl)
       real xptl(mxptl),yptl(mxptl),zptl(mxptl),tptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
 
       common/partnr/summas,iptnr,ic4,px4,py4,js4,pex,pey,pezet,pe0,nps
-     >/didib/ndidib /cnfr/nrfra
+     */didib/ndidib /cnfr/nrfra
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
       parameter (mxlook=10000,mxdky=2000)
       common/dkytab/look(mxlook),cbr(mxdky),mode(5,mxdky)
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
@@ -9623,9 +9604,9 @@ c-----------------------------------------------------------------------
       common/cproja/iproj,itarg,kproja(nha,mamx),ktarga(nha,mamx)
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       parameter (nptq=129)
       common /cptq/xptq(nptq),qptq(nptq),qpth(nptq),wptq(nptq)
       double precision ppfus(5)
@@ -9633,7 +9614,7 @@ c-----------------------------------------------------------------------
       real psum(5),u(5),pei(5),pej(5)
       parameter (nflav=6)
       integer jci(nflav,2),jcj(nflav,2),jc(nflav,2)
-     >,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
+     *,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
       character dash*1,chadec*5
 
 c     initialization
@@ -9666,11 +9647,11 @@ c     -----
       call utpage
       if(ish.ge.91)write(ifch,110)('-',l=1,79),ipage,('-',l=1,79)
 110   format(1x,79a1/1x,i5,'.page            '
-     >,'strings before rescaling'/1x,79a1/)
+     *,'strings before rescaling'/1x,79a1/)
       do 9 j=1,nstr
       if(ish.ge.91)write(ifch,109)j,(icstr(k,j)/100,k=1,4)
-     >,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j),pstr(5,j)
-     >,irlstr(j)
+     *,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j),pstr(5,j)
+     *,irlstr(j)
 9     continue
 109   format(' /cstr/',i4,3x,4i5,2x,3(1x,e9.3),i4)
  
@@ -9685,7 +9666,7 @@ c     ----------------
       else
       psum(3)=(npjevt-ntgevt)*pnllx
       psum(4)=npjevt*sqrt(amproj**2+pnllx**2)
-     >+ntgevt*sqrt(amtarg**2+pnllx**2)
+     *+ntgevt*sqrt(amtarg**2+pnllx**2)
       endif
       psum(5)=sqrt(psum(4)**2-psum(3)**2)
       call hrescl(1,nstr,psum,ifail)
@@ -9697,11 +9678,11 @@ c     -----
       call utpage
       if(ish.ge.91)write(ifch,111)('-',l=1,79),ipage,('-',l=1,79)
 111   format(/1x,79a1/1x,i5,'.page            '
-     >,'strings after rescaling'/1x,79a1/)
+     *,'strings after rescaling'/1x,79a1/)
       do 10 j=1,nstr
       if(ish.ge.91)write(ifch,109)j,(icstr(k,j)/100,k=1,4)
-     >,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j),pstr(5,j)
-     >,irlstr(j)
+     *,sqrt(pstr(1,j)**2+pstr(2,j)**2),pstr(3,j),pstr(5,j)
+     *,irlstr(j)
 10    continue
  
 c     fragmentation
@@ -9711,10 +9692,10 @@ c     -------------
       do 3 j=1,nstr
       call utpage
       if(ish.ge.91)write(ifch,102)('-',l=1,79),ipage,j
-     >,(icstr(k,j),k=1,4),sqrt(pstr(1,j)**2+pstr(2,j)**2
-     >+pstr(3,j)**2),pstr(4,j),pstr(5,j),('-',l=1,79)
+     *,(icstr(k,j),k=1,4),sqrt(pstr(1,j)**2+pstr(2,j)**2
+     *+pstr(3,j)**2),pstr(4,j),pstr(5,j),('-',l=1,79)
 102   format(/1x,79a1
-     >/1x,i5,'.page  str:',i3,4i7,1x,3(e8.2,1x)/1x,79a1/)
+     */1x,i5,'.page  str:',i3,4i7,1x,3(e8.2,1x)/1x,79a1/)
       call jamfra(j,newevt)
       if(newevt.eq.1)goto10011
 3     continue
@@ -9727,11 +9708,11 @@ c     ------------
       if(ish.ge.91)then
       write(ifch,104)('-',l=1,79),ipage,('-',l=1,79)
 104   format(/1x,79a1/1x,i5,'.page            '
-     >,'ptls after fragmentation'/1x,79a1/)
+     *,'ptls after fragmentation'/1x,79a1/)
       do 18 n=1,nptl
       if(n.gt.nptlpt.or.istptl(n).ne.0)
-     >write(ifch,116)iorptl(n),jorptl(n),n,ifrptl(1,n),ifrptl(2,n)
-     >,idptl(n),pptl(3,n),pptl(4,n),pptl(5,n),istptl(n)
+     *write(ifch,116)iorptl(n),jorptl(n),n,ifrptl(1,n),ifrptl(2,n)
+     *,idptl(n),pptl(3,n),pptl(4,n),pptl(5,n),istptl(n)
 18    continue
       endif
  
@@ -9750,7 +9731,7 @@ c     -------------
       if(ish.ge.91)then
       write(ifch,119)('-',l=1,79),ipage,sngl(ttaus),('-',l=1,79)
 119   format(/1x,79a1/1x,i5,'.page            '
-     >,'decay before tau =',e10.3/1x,79a1/)
+     *,'decay before tau =',e10.3/1x,79a1/)
       endif
       np1=1
 21    np2=nptl
@@ -9772,7 +9753,7 @@ c     ---------------------
            if(ish.ge.91)then
       write(ifch,118)('-',l=1,79),ipage,('-',l=1,79)
 118   format(/1x,79a1/1x,i5,'.page            '
-     >,'interactions and decay'/1x,79a1/)
+     *,'interactions and decay'/1x,79a1/)
            endif
       do 23 nt=1,numtau
       ntc=nt
@@ -9805,7 +9786,7 @@ c     -----------
       if(ish.ge.91)then
       write(ifch,120)('-',l=1,79),ipage,('-',l=1,79)
 120   format(/1x,79a1/1x,i5,'.page            '
-     >,'final decay'/1x,79a1/)
+     *,'final decay'/1x,79a1/)
       endif
       nbef=nptl
       n0bef=nptl0
@@ -9851,14 +9832,14 @@ c     ------------
       if(ish.ge.91)then
       write(ifch,117)('-',l=1,79),ipage,('-',l=1,79)
 117   format(/1x,79a1/1x,i5,'.page            '
-     >,'ptls after performing interactions'/1x,79a1/
-     >1x,' ior',' jor',4x,'   n',4x,'ifr1ifr2',10x,'id',3x,
-     >5x,'ptr',7x,'pz',4x,'mass ','ist'/)
+     *,'ptls after performing interactions'/1x,79a1/
+     *1x,' ior',' jor',4x,'   n',4x,'ifr1ifr2',10x,'id',3x,
+     *5x,'ptr',7x,'pz',4x,'mass ','ist'/)
       do 34 n=1,nptl
       if(n.gt.nptlpt.or.istptl(n).ne.0)
-     >write(ifch,116)iorptl(n),jorptl(n),n,ifrptl(1,n),ifrptl(2,n)
-     >,idptl(n),sqrt(pptl(1,n)**2+pptl(2,n)**2),pptl(3,n),pptl(5,n)
-     >,istptl(n),iaaptl(n)
+     *write(ifch,116)iorptl(n),jorptl(n),n,ifrptl(1,n),ifrptl(2,n)
+     *,idptl(n),sqrt(pptl(1,n)**2+pptl(2,n)**2),pptl(3,n),pptl(5,n)
+     *,istptl(n),iaaptl(n)
 34    continue
 116   format(1x,i4,i4,4x,i4,4x,i4,i4,i12,3x,3(e8.2,1x),i2,i2)
       endif
@@ -9883,7 +9864,7 @@ c     ------
       call utpage
       if(ish.ge.91)write(ifch,113)('-',l=1,79),ipage,('-',l=1,79)
 113   format(/1x,79a1/1x,i5,'.page            '
-     >,'particle production finished'/1x,79a1/)
+     *,'particle production finished'/1x,79a1/)
       if(ish.eq.13)call uttima('               ')
       goto1000
  
@@ -9892,7 +9873,7 @@ c     ------
       call utmsg('jfrade')
       write(ifch,*)'*****  fragmentation not possible'
       write(ifch,112)j,(icstr(k,j)/100,k=1,4)
-     >,(pstr(l,j),l=1,5)
+     *,(pstr(l,j),l=1,5)
 112   format( ' str:',3x,i3,3x,3x,4i5,5f7.2,f7.2)
       call utmsgf
       endif
@@ -9924,25 +9905,25 @@ c----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer iacptl(mxptl)
       common/c2ptl/iaaptl(mxptl),radptl(mxptl),amiptl(mxptl)
       common/c3ptl/desptl(mxptl),dezptl(mxptl)
@@ -9951,15 +9932,15 @@ c----------------------------------------------------------------------
       real xptl(mxptl),yptl(mxptl),zptl(mxptl),tptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
 
       common/partnr/summas,iptnr,ic4,px4,py4,js4,pex,pey,pezet,pe0,nps
-     >/didib/ndidib /cnfr/nrfra
+     */didib/ndidib /cnfr/nrfra
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
       parameter (mxlook=10000,mxdky=2000)
       common/dkytab/look(mxlook),cbr(mxdky),mode(5,mxdky)
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
@@ -9972,9 +9953,9 @@ c----------------------------------------------------------------------
       common/cproja/iproj,itarg,kproja(nha,mamx),ktarga(nha,mamx)
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       parameter (nptq=129)
       common /cptq/xptq(nptq),qptq(nptq),qpth(nptq),wptq(nptq)
       common/cjint/nptl0,rnup,rnut,velp,velt,bx,by,xaver(4)
@@ -9983,7 +9964,7 @@ c----------------------------------------------------------------------
       real psum(5),u(5),pei(5),pej(5)
       parameter (nflav=6)
       integer jci(nflav,2),jcj(nflav,2),jc(nflav,2)
-     >,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
+     *,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
       integer ifr(mxifr)
       real proj(nsi,nha),targ(nsi,nha)
       double precision arp(5),arm(5),arq(5),rot(3),boo(5)
@@ -10047,7 +10028,7 @@ c     ---------------------------
       call uttain(i,x,y,z,t,n,0)
       if(n.eq.1.or.n.eq.2.or.n.eq.9)iacptl(i)=0
       if(nclean.gt.0
-     >.and.mod(nt,nclean).eq.0.and.n.eq.2)istptl(i)=2
+     *.and.mod(nt,nclean).eq.0.and.n.eq.2)istptl(i)=2
       if(istptl(i).eq.2)iacptl(i)=0
       if(iaaptl(i).eq.0)iacptl(i)=0
       if(iabs(idptl(i)).lt.100.and.iabs(idptl(i)).ne.20)iacptl(i)=0
@@ -10058,7 +10039,7 @@ c     ---------------------------
       tptl(i)=t
       if(overlp.ge.0..and.maproj.ne.0.and.matarg.ne.0)then
       if((x-bx/2)**2+(y-by/2)**2+(z-velp*taus)**2.lt.rnup**2.and.
-     >(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(i)=0
+     *(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(i)=0
       endif
 44    continue
       nptl0=nptl
@@ -10088,10 +10069,10 @@ c     -------------
       gam2i=1-pde**2
       if(gam2i.eq.0.)goto25
       if((zptl(i)-zptl(j)-(tptl(i)-tptl(j))*pde)**2
-     >.gt.radsqr*gam2i)goto25
+     *.gt.radsqr*gam2i)goto25
       if((xptl(i)-xptl(j))**2+(yptl(i)-yptl(j))**2+
-     >1/gam2i*(zptl(i)-zptl(j)-(tptl(i)-tptl(j))*pde)**2
-     >.gt.radsqr)goto25
+     *1/gam2i*(zptl(i)-zptl(j)-(tptl(i)-tptl(j))*pde)**2
+     *.gt.radsqr)goto25
       call jintcc(i,j,iret)  !check children
       if(iret.eq.1)goto25                   
 
@@ -10150,7 +10131,7 @@ c     -------------
       tptl(n)=t
       if(overlp.ge.0..and.maproj.ne.0.and.matarg.ne.0)then
       if((x-bx/2)**2+(y-by/2)**2+(z-velp*taus)**2.lt.rnup**2.and.
-     >(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(n)=0
+     *(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(n)=0
       endif
       enddo
       goto24                   
@@ -10215,43 +10196,43 @@ c----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer iacptl(mxptl)
       common/c2ptl/iaaptl(mxptl),radptl(mxptl),amiptl(mxptl)
       common/c3ptl/desptl(mxptl),dezptl(mxptl)
       parameter (mxifr=mxptl)
       common/cifrij/ifrij(mxifr)
       real xptl(mxptl),yptl(mxptl),zptl(mxptl),tptl(mxptl)
-     >,optl(mxptl),uptl(mxptl)
+     *,optl(mxptl),uptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
 
       common/partnr/summas,iptnr,ic4,px4,py4,js4,pex,pey,pezet,pe0,nps
-     >/didib/ndidib /cnfr/nrfra
+     */didib/ndidib /cnfr/nrfra
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
       parameter (mxlook=10000,mxdky=2000)
       common/dkytab/look(mxlook),cbr(mxdky),mode(5,mxdky)
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
@@ -10264,9 +10245,9 @@ c----------------------------------------------------------------------
       common/cproja/iproj,itarg,kproja(nha,mamx),ktarga(nha,mamx)
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       parameter (nptq=129)
       common /cptq/xptq(nptq),qptq(nptq),qpth(nptq),wptq(nptq)
       common/cjint/nptl0,rnup,rnut,velp,velt,bx,by,xaver(4)
@@ -10275,7 +10256,7 @@ c----------------------------------------------------------------------
       real psum(5),u(5),pei(5),pej(5)
       parameter (nflav=6)
       integer jci(nflav,2),jcj(nflav,2),jc(nflav,2)
-     >,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
+     *,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
       integer ifr(mxifr)
       real proj(nsi,nha),targ(nsi,nha)
       double precision arp(5),arm(5),arq(5),rot(3),boo(5)
@@ -10353,7 +10334,7 @@ c     ---------------------------
       call uttain(i,x,y,z,t,n,0)
       if(n.eq.1.or.n.eq.2.or.n.eq.9)iacptl(i)=0
       if(nclean.gt.0
-     >.and.mod(nt,nclean).eq.0.and.n.eq.2)istptl(i)=2
+     *.and.mod(nt,nclean).eq.0.and.n.eq.2)istptl(i)=2
       if(istptl(i).eq.2)iacptl(i)=0
       if(iaaptl(i).eq.0)iacptl(i)=0
       if(iabs(idptl(i)).lt.100.and.iabs(idptl(i)).ne.20)iacptl(i)=0
@@ -10367,7 +10348,7 @@ c     ---------------------------
       uptl(i)=sz-desptl(i)
       if(overlp.ge.0..and.maproj.ne.0.and.matarg.ne.0)then
       if((x-bx/2)**2+(y-by/2)**2+(z-velp*taus)**2.lt.rnup**2.and.
-     >(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(i)=0
+     *(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(i)=0
       endif
 44    continue
       nptl0=nptl
@@ -10460,7 +10441,7 @@ c     -------------
       uptl(n)=sz-desptl(n)
       if(overlp.ge.0..and.maproj.ne.0.and.matarg.ne.0)then
       if((x-bx/2)**2+(y-by/2)**2+(z-velp*taus)**2.lt.rnup**2.and.
-     >(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(n)=0
+     *(x+bx/2)**2+(y+by/2)**2+(z-velt*taus)**2.lt.rnut**2)iacptl(n)=0
       endif
       enddo
       goto24                   
@@ -10516,9 +10497,9 @@ c     -------------
            if(ish.eq.23.and.pptl(5,nptl).ge.amprif)then
       n=nptl
       call jintfp(i,j,n,
-     >xptl(i),yptl(i),radptl(i),optl(i),uptl(i),
-     >xptl(j),yptl(j),radptl(j),optl(j),uptl(j),
-     >xptl(n),yptl(n),radptl(n),optl(n),uptl(n))
+     *xptl(i),yptl(i),radptl(i),optl(i),uptl(i),
+     *xptl(j),yptl(j),radptl(j),optl(j),uptl(j),
+     *xptl(n),yptl(n),radptl(n),optl(n),uptl(n))
            endif
       goto24
 
@@ -10556,8 +10537,8 @@ c  iret=0 else
 c---------------------------------------------------------------------
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer iacptl(mxptl)
       common/c2ptl/iaaptl(mxptl),radptl(mxptl),amiptl(mxptl)
       common/c3ptl/desptl(mxptl),dezptl(mxptl)
@@ -10580,7 +10561,7 @@ c---------------------------------------------------------------------
       if(k.eq.m)goto1001
       k2=k2+1
       if(k2.gt.mxifr)
-     >call utstop('jintcc: k2 > mxifr                      ')
+     *call utstop('jintcc: k2 > mxifr                      ')
 56    ifr(k2)=k
            endif
       k1=k1+1
@@ -10609,40 +10590,40 @@ c----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer iacptl(mxptl)
       common/c2ptl/iaaptl(mxptl),radptl(mxptl),amiptl(mxptl)
       common/c3ptl/desptl(mxptl),dezptl(mxptl)
       real xptl(mxptl),yptl(mxptl),zptl(mxptl),tptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
 
       common/partnr/summas,iptnr,ic4,px4,py4,js4,pex,pey,pezet,pe0,nps
-     >/didib/ndidib /cnfr/nrfra
+     */didib/ndidib /cnfr/nrfra
       parameter (mxindx=1000,mxre=100,mxma=11,mxmx=6)
       common/crema/indx(mxindx),rema(mxre,mxma),rewi(mxre,mxma)
-     >,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
+     *,idmx(mxma,mxmx),icre1(mxre,mxma),icre2(mxre,mxma)
       parameter (mxlook=10000,mxdky=2000)
       common/dkytab/look(mxlook),cbr(mxdky),mode(5,mxdky)
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
@@ -10655,9 +10636,9 @@ c----------------------------------------------------------------------
       common/cproja/iproj,itarg,kproja(nha,mamx),ktarga(nha,mamx)
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       parameter (nptq=129)
       common /cptq/xptq(nptq),qptq(nptq),qpth(nptq),wptq(nptq)
       common/cjint/nptl0,rnup,rnut,velp,velt,bx,by,xaver(4)
@@ -10666,7 +10647,7 @@ c----------------------------------------------------------------------
       real psum(5),u(5),pei(5),pej(5)
       parameter (nflav=6)
       integer jci(nflav,2),jcj(nflav,2),jc(nflav,2)
-     >,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
+     *,ici(2),icj(2),ic(2),ic4(2),jcx(nflav,2),jcdu(nflav,2)
       parameter (mxifr=mxptl)
       integer ifr(mxifr),ifrx(mxifr)
       real proj(nsi,nha),targ(nsi,nha)
@@ -10694,8 +10675,8 @@ c     -----------------------------------
       raj=0.5*alog((1+vej)/(1-vej))
       endif
       if(.not.(amf.gt.amim+delamf.and.abs(rai-raj).gt.delrap
-     >.and.iabs(idptl(i)).lt.10000
-     >.and.iabs(idptl(j)).lt.10000))goto1000
+     *.and.iabs(idptl(i)).lt.10000
+     *.and.iabs(idptl(j)).lt.10000))goto1000
       iactn=1
 
 c     print
@@ -10704,16 +10685,16 @@ c     -----
       if(ish.ge.91)write(ifch,101)ntc,taus
       if(ish.ge.92)write(ifch,*)' '
       if(ish.ge.91)write(ifch,115)i,idptl(i)
-     >,(pptl(k,i),k=3,5),(xorptl(k,i),k=3,4)
+     *,(pptl(k,i),k=3,5),(xorptl(k,i),k=3,4)
       if(ish.ge.91)write(ifch,115)j,idptl(j)
-     >,(pptl(k,j),k=3,5),(xorptl(k,j),k=3,4)
+     *,(pptl(k,j),k=3,5),(xorptl(k,j),k=3,4)
       if(ish.ge.92)write(ifch,*)' '
       if(ish.ge.92)write(ifch,*)'amf,amim: ',amf,amim
       if(ish.ge.92)write(ifch,*)'rai,raj:  ',rai,raj
       if(ish.ge.92)write(ifch,*)' '
 101   format(1x,'co.ex. interaction --- nt=',i3,' --- taus=',f6.2)
 115   format(1x,'/cptl/',i6,i10
-     >,3x,2(e8.2,1x),e8.3,3x,2(e8.2,1x),2x,i4)
+     *,3x,2(e8.2,1x),e8.3,3x,2(e8.2,1x),2x,i4)
 
 c     initialization      
 c     --------------
@@ -10744,17 +10725,17 @@ c     --------------
 c     boosts into i-j cm
 c     ------------------
       call utlob2(1,boo(1),boo(2),boo(3),boo(4),boo(5)    
-     >,arp(1),arp(2),arp(3),arp(4))
+     *,arp(1),arp(2),arp(3),arp(4))
       call utlob2(1,boo(1),boo(2),boo(3),boo(4),boo(5)    
-     >,arm(1),arm(2),arm(3),arm(4))
+     *,arm(1),arm(2),arm(3),arm(4))
       if(arp(3).lt.0.)then
       idq=idm
       idm=idp
       idp=idq
       do l=1,5
-       arq(l)=arm(l)
-       arm(l)=arp(l)
-       arp(l)=arq(l)
+      arq(l)=arm(l)
+      arm(l)=arp(l)
+      arp(l)=arq(l)
       enddo
       endif
       pnllx=arp(3)
@@ -10762,9 +10743,9 @@ c     ------------------
       rot(2)=(arp(2)-arm(2))/2
       rot(3)=(arp(3)-arm(3))/2
       call utrot2(1,rot(1),rot(2),rot(3)
-     >,arp(1),arp(2),arp(3))
+     *,arp(1),arp(2),arp(3))
       call utrot2(1,rot(1),rot(2),rot(3)
-     >,arm(1),arm(2),arm(3))
+     *,arm(1),arm(2),arm(3))
 
 c     checks
 c     ------
@@ -10779,7 +10760,7 @@ c     ------
       goto10025
            endif
            if(abs(sngl(arp(4)+arm(4))-sqrt(s)).gt.
-     >2.e-2*sqrt(s))then
+     *2.e-2*sqrt(s))then
       if(ish.ge. 0)then
       call utmsg('jintce')
       write(ifch,*)'*****  arp(4)+arm(4)-sqrt(s) nonzero'
@@ -10873,8 +10854,8 @@ c     -------------
 123   format(/1x,'strings before rescaling'/)
       do l=nstr00+1,nstr
       if(ish.ge.92)write(ifch,109)l,(icstr(k,l)/100,k=1,4)
-     >,sqrt(pstr(1,l)**2+pstr(2,l)**2),pstr(3,l),pstr(5,l)
-     >,irlstr(l)
+     *,sqrt(pstr(1,l)**2+pstr(2,l)**2),pstr(3,l),pstr(5,l)
+     *,irlstr(l)
       enddo
 109   format(' /cstr/',i4,3x,4i5,2x,3(1x,e9.3),i4)
  
@@ -10894,14 +10875,14 @@ c     -------------
 124   format(/1x,'strings after rescaling'/)
       do l=nstr00+1,nstr
       if(ish.ge.92)write(ifch,109)l,(icstr(k,l)/100,k=1,4)
-     >,sqrt(pstr(1,l)**2+pstr(2,l)**2),pstr(3,l),pstr(5,l)
-     >,irlstr(l)
+     *,sqrt(pstr(1,l)**2+pstr(2,l)**2),pstr(3,l),pstr(5,l)
+     *,irlstr(l)
       enddo
   
       do l=nstr00+1,nstr
       if(ish.ge.92)write(ifch,122)l
-     >,(icstr(k,l),k=1,4)
-     >,sqrt(pstr(1,l)**2+pstr(2,l)**2),pstr(3,l),pstr(5,l)
+     *,(icstr(k,l),k=1,4)
+     *,sqrt(pstr(1,l)**2+pstr(2,l)**2),pstr(3,l),pstr(5,l)
 122   format(/'str:',i7,4i7,1x,3(e8.2,1x)/)
       ish=ish-2
       call jamfra(l,newevt)
@@ -10925,9 +10906,9 @@ c     -----------------------------------------
       arp(l)=pptl(l,n)
       enddo
       call utrot2(-1,rot(1),rot(2),rot(3)
-     >,arp(1),arp(2),arp(3))
+     *,arp(1),arp(2),arp(3))
       call utlob2(-1,boo(1),boo(2),boo(3),boo(4),boo(5)    
-     >,arp(1),arp(2),arp(3),arp(4))
+     *,arp(1),arp(2),arp(3),arp(4))
       do l=1,5
       pptl(l,n)=arp(l)
       enddo
@@ -10939,7 +10920,7 @@ c     -----------------------------------------
 
       if(ish.ge.91)then
       write(ifch,115)n,idptl(n)
-     >,(pptl(k,n),k=3,5),(xorptl(k,n),k=3,4),istptl(n)
+     *,(pptl(k,n),k=3,5),(xorptl(k,n),k=3,4),istptl(n)
       endif
 
            enddo
@@ -10950,15 +10931,15 @@ c     -----------------------------------------
       endif
                
       if(ish.ge.90.and.
-     >   (abs(boo(1)-psum(1)).gt.5.e-3*abs(boo(1))
-     >.or.abs(boo(2)-psum(2)).gt.5.e-3*abs(boo(2))
-     >.or.abs(boo(3)-psum(3)).gt.5.e-3*abs(boo(3))
-     >.or.abs(boo(4)-psum(4)).gt.1.e-1*abs(boo(4)))
-     >.and.
-     >   (abs(boo(1)-psum(1)).gt.5.e-3
-     >.or.abs(boo(2)-psum(2)).gt.5.e-3
-     >.or.abs(boo(3)-psum(3)).gt.5.e-3
-     >.or.abs(boo(4)-psum(4)).gt.1.e-1))then
+     *   (abs(boo(1)-psum(1)).gt.5.e-3*abs(boo(1))
+     *.or.abs(boo(2)-psum(2)).gt.5.e-3*abs(boo(2))
+     *.or.abs(boo(3)-psum(3)).gt.5.e-3*abs(boo(3))
+     *.or.abs(boo(4)-psum(4)).gt.1.e-1*abs(boo(4)))
+     *.and.
+     *   (abs(boo(1)-psum(1)).gt.5.e-3
+     *.or.abs(boo(2)-psum(2)).gt.5.e-3
+     *.or.abs(boo(3)-psum(3)).gt.5.e-3
+     *.or.abs(boo(4)-psum(4)).gt.1.e-1))then
       call utmsg('jintce')
       write(ifch,*)'*****  p_ini /= p_fin'
       write(ifch,*)'final particles:'
@@ -11015,15 +10996,15 @@ c----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter (mxifr=mxptl)
       common/cifrij/ifrij(mxifr)
 
@@ -11038,7 +11019,7 @@ c----------------------------------------------------------------------
       do 30 k=ifrptl(1,n),ifrptl(2,n)
       kmax=kmax+1
       if(kmax.gt.mxifr)
-     >call utstop('jintch: kmax > mxifr                    ')
+     *call utstop('jintch: kmax > mxifr                    ')
 30    ifrij(kmax)=k
            endif
       if(loop.eq.1)goto31
@@ -11059,20 +11040,20 @@ c---------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro5/delvol,deleps
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/nevnt/nevnt /cvsn/iversn
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
 
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
       common/cttaus/tpro,zpro,ttar,ztar,ttaus,detap,detat 
@@ -11085,29 +11066,29 @@ c MAB      parameter (mxtau=4,mxvol=10,mxeps=10)
       tau=sngl(ttaus)
       itau=1+alog(tau)/alog(2.)
 
-      if(iac.eq.0)goto17
+      if(iac.eq.0)goto1
 
       vol=(o-u)*rad**2*pi
       ivol=1+vol/delvol
       eps=pptl(5,i)/vol
       ieps=1+eps/deleps
       if(itau.ge.1.and.itau.le.mxtau
-     >.and.ivol.ge.1.and.ivol.le.mxvol
-     >.and.ieps.ge.1.and.ieps.le.mxeps)
-     >clust(itau,ivol,ieps)=clust(itau,ivol,ieps)+1
+     *.and.ivol.ge.1.and.ivol.le.mxvol
+     *.and.ieps.ge.1.and.ieps.le.mxeps)
+     *clust(itau,ivol,ieps)=clust(itau,ivol,ieps)+1
 
- 17   continue
+1     continue
       if(i.lt.nptl.or.nrevt+1.lt.nevnt)goto1000
 
       if(itau.eq.1)write(ifch,105)maproj,matarg,engy,iversn/100.
 105   format(/1x,'proj=',i3,3x,'targ=',i3,3x,'engy=',f7.2
-     >,3x,'VENUS ',f4.2)
+     *,3x,'VENUS ',f4.2)
       write(ifch,100)tau,itau,nevnt,delvol,deleps
 100   format(/1x,'tau=',f5.2,3x,'itau=',i1
-     >,3x,'nevnt=',i4,3x,'delvol=',f5.1,3x,'deleps=',f5.1/)
+     *,3x,'nevnt=',i4,3x,'delvol=',f5.1,3x,'deleps=',f5.1/)
       write(ifch,101)
 101   format(9x,'ivol=1 ivol=2 ivol=3 ivol=4 ivol=5 '
-     >,'ivol=6 ivol=7 ivol=8 ivol=9 ivol=10 ')
+     *,'ivol=6 ivol=7 ivol=8 ivol=9 ivol=10 ')
       do ie=1,mxeps
       if(ie.le.9)write(ax,102)ie
 102   format('0',i1)
@@ -11131,23 +11112,23 @@ c----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       common/cjint/nptl0,rnup,rnut,velp,velt,bx,by,xaver(4)
 
       parameter (nptq=129)
@@ -11171,11 +11152,11 @@ c     -----
       write(ifch,101)ntc,sngl(ttaus)
 101   format(1x,'elastic scattering --- nt=',i3,' --- taus=',f6.2)
       write(ifch,115)i,idptl(i)
-     >,(pptl(k,i),k=3,5),(xorptl(k,i),k=3,4)
+     *,(pptl(k,i),k=3,5),(xorptl(k,i),k=3,4)
       write(ifch,115)j,idptl(j)
-     >,(pptl(k,j),k=3,5),(xorptl(k,i),k=3,4)
+     *,(pptl(k,j),k=3,5),(xorptl(k,i),k=3,4)
 115   format(1x,'/cptl/',i6,i10
-     >,3x,2(e8.2,1x),e8.3,3x,2(e8.2,1x),2x,i4)
+     *,3x,2(e8.2,1x),e8.3,3x,2(e8.2,1x),2x,i4)
       endif
 
 c     initialization
@@ -11192,7 +11173,7 @@ c     -------------------------------------------------
       call utmsg('jintel')
       write(ifch,132)p(5),pptl(5,i)+pptl(5,j)
 132   format(1x,'*****  m_fus < m_i+m_j ---> qcm set zero    ( '
-     >,2f10.3,' )')
+     *,2f10.3,' )')
       write(ifch,133)'p_i:  ',(pptl(k,i),k=1,5)
       write(ifch,133)'p_j:  ',(pptl(k,j),k=1,5)
       write(ifch,133)'p_fus:',(p(k),k=1,5)
@@ -11241,9 +11222,9 @@ c-c47 pej(k)=-u(k)*ivt
       pei(5)=pptl(5,i)
       pej(5)=pptl(5,j)
       call utlobo(-1,p(1),p(2),p(3),p(4),p(5)
-     >,pei(1),pei(2),pei(3),pei(4))
+     *,pei(1),pei(2),pei(3),pei(4))
       call utlobo(-1,p(1),p(2),p(3),p(4),p(5)
-     >,pej(1),pej(2),pej(3),pej(4))
+     *,pej(1),pej(2),pej(3),pej(4))
 
 c     fill /cptl/
 c     -----------
@@ -11275,7 +11256,7 @@ c     -----------
       iclptl(nptl)=iclptl(ij)
       nqjptl(nptl)=nqjptl(ij)
       if(ish.ge.91)write(ifch,115)nptl,idptl(nptl)
-     >,(pptl(k,nptl),k=3,5),(xorptl(k,nptl),k=3,4)
+     *,(pptl(k,nptl),k=3,5),(xorptl(k,nptl),k=3,4)
 49    continue
 
 1000  return
@@ -11283,9 +11264,9 @@ c     -----------
 
 c----------------------------------------------------------------------
       subroutine jintfp(i,j,n,
-     >xpl1,ypl1,radpl1,opl1,upl1,
-     >xpl2,ypl2,radpl2,opl2,upl2,
-     >xpl3,ypl3,radpl3,opl3,upl3)
+     *xpl1,ypl1,radpl1,opl1,upl1,
+     *xpl2,ypl2,radpl2,opl2,upl2,
+     *xpl3,ypl3,radpl3,opl3,upl3)
 c----------------------------------------------------------------------
 c  printout
 c----------------------------------------------------------------------
@@ -11295,8 +11276,8 @@ c----------------------------------------------------------------------
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
 
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
       common/cttaus/tpro,zpro,ttar,ztar,ttaus,detap,detat 
@@ -11334,7 +11315,7 @@ c----------------------------------------------------------------------
       write(ifch,105)'incoming:',j,idptl(j),pptl(5,j),v2,pptl(5,j)/v2
       write(ifch,105)'fused:   ',n,idptl(n),pptl(5,n),v3,pptl(5,n)/v3
 105   format(1x,a9,2x,'nr=',i6,2x,'id=',i9,2x,'mass=',f5.1,2x
-     >,'vol=',f5.1,2x,'eps=',f4.1)
+     *,'vol=',f5.1,2x,'eps=',f4.1)
 
       do mm=1,3
       if(mm.eq.1)txt(1:2)='s/'
@@ -11344,7 +11325,7 @@ c----------------------------------------------------------------------
       ax='---------!'
       write(ifch,100)txt,(ax,l=1,6)
 100   format(2x,a8,3x,'-3',8x,'-2',8x,'-1',9x,'0',9x,'1',9x,'2',9x,'3'
-     >      /13x,' !',6a10)
+     *      /13x,' !',6a10)
       do k=1,3
       do l=1,59
       wo=-3+l*0.1 + 0.05
@@ -11385,22 +11366,22 @@ c          ppfus() written to pptl(,nptl+1)
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       common/cjint/nptl0,rnup,rnut,velp,velt,bx,by,xaver(4)
       parameter (nflav=6)
       integer jci(nflav,2),jcj(nflav,2),jc(nflav,2),jcx(nflav,2)
@@ -11424,7 +11405,7 @@ c----------------------------------------------------------------------
            endif
       ppfus(5)=dsqrt(pp52)
       if(nptl+1.gt.mxptl)
-     >call utstop('jintfs: nptl>mxptl                      ')
+     *call utstop('jintfs: nptl>mxptl                      ')
       do 36 k=1,5
 36    pptl(k,nptl+1)=ppfus(k)
       amf=ppfus(5)
@@ -11458,15 +11439,15 @@ c----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
 
       parameter (mxlook=10000,mxdky=2000)
       common/dkytab/look(mxlook),cbr(mxdky),mode(5,mxdky)
@@ -11483,11 +11464,11 @@ c     -----
       write(ifch,101)ntc,sngl(ttaus)
 101   format(1x,'fusion interaction --- nt=',i3,' --- taus=',f6.2)
       write(ifch,115)i,idptl(i)
-     >,(pptl(k,i),k=3,5),(xorptl(k,i),k=3,4)
+     *,(pptl(k,i),k=3,5),(xorptl(k,i),k=3,4)
       write(ifch,115)j,idptl(j)
-     >,(pptl(k,j),k=3,5),(xorptl(k,i),k=3,4)
+     *,(pptl(k,j),k=3,5),(xorptl(k,i),k=3,4)
 115   format(1x,'/cptl/',i6,i10
-     >,3x,2(e8.2,1x),e8.3,3x,2(e8.2,1x),2x,i4)
+     *,3x,2(e8.2,1x),e8.3,3x,2(e8.2,1x),2x,i4)
       endif
 
 c     initialization
@@ -11506,23 +11487,23 @@ c     ----------------------
            if(idr/10**8.ne.7)then
       call idenco(jc,ic,ireten)
       if(ireten.eq.1)
-     >call utstop('jintfu: idenco ret code = 1             ')
+     *call utstop('jintfu: idenco ret code = 1             ')
       id=idtra(ic,0,0,3)
 43    amc=amf
       call idres(id,amc,idr,iadj)
            if(idr.ne.0)then
       lid=look(iabs(idr))
       if((lid.le.0.or.lid.gt.0.and.mode(2,lid).eq.0)
-     >.and.pptl(5,nptl).gt.amc+1e-3)then
+     *.and.pptl(5,nptl).gt.amc+1e-3)then
       amf=amf+0.010
       goto43
       endif
       if((lid.le.0.or.lid.gt.0.and.mode(2,lid).eq.0)
-     >.and.abs(amc-pptl(5,nptl)).gt.1e-3)then
+     *.and.abs(amc-pptl(5,nptl)).gt.1e-3)then
       if(ish.ge.90)then
       call utmsg('jintfu')
       write(ifch,*)'*****  not on mass shell after fusion: '
-     >,pptl(5,nptl),amc
+     *,pptl(5,nptl),amc
       call utmsgf
       endif
       endif
@@ -11537,8 +11518,8 @@ c     ----------------------
            else
       call idtrbi(jc,ib(1),ib(2),ib(3),ib(4))
       idr=idr
-     >+mod(jc(1,1)+jc(2,1)+jc(3,1)+jc(4,1),10**4)*10**4
-     >+mod(jc(1,2)+jc(2,2)+jc(3,2)+jc(4,2),10**4)
+     *+mod(jc(1,1)+jc(2,1)+jc(3,1)+jc(4,1),10**4)*10**4
+     *+mod(jc(1,2)+jc(2,2)+jc(3,2)+jc(4,2),10**4)
       if(ish.ge.93)write(ifch,*)'ib:',(ib(kk),kk=1,4)
            endif
 
@@ -11567,7 +11548,7 @@ c     --------------
       if(ish.ge.91)then
       n=nptl
       write(ifch,115)n,idptl(n)
-     >,(pptl(k,n),k=3,5),(xorptl(k,n),k=3,4)
+     *,(pptl(k,n),k=3,5),(xorptl(k,n),k=3,4)
       endif
       return
       end
@@ -11581,15 +11562,15 @@ c----------------------------------------------------------------------
 
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
 
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       common/c2ptl/iaaptl(mxptl),radptl(mxptl),amiptl(mxptl)
       common/c3ptl/desptl(mxptl),dezptl(mxptl)
       parameter (mxifr=mxptl)
@@ -11604,7 +11585,7 @@ c----------------------------------------------------------------------
            if(iorptl(n).gt.0)then
       if(ish.ge.92)write(ifch,*)n,' <--- ',iorptl(n),jorptl(n)
       if(kmax+2.gt.mxifr)
-     >call utstop('jintpa: kmax+2 > mxifr                  ')
+     *call utstop('jintpa: kmax+2 > mxifr                  ')
       if(iaaptl(iorptl(n)).ne.0)then
       kmax=kmax+1
       ifrij(kmax)=iorptl(n)
@@ -11623,7 +11604,7 @@ c----------------------------------------------------------------------
       if(kcur.le.kmax)then
       n=ifrij(kcur)
       if(iaaptl(n).ne.0)
-     >call utstop('jintpa: should not happen               ')
+     *call utstop('jintpa: should not happen               ')
       goto12
       endif
 
@@ -11636,16 +11617,16 @@ c     rescales ptl momenta of ptls j1-j2 to have total mom psum.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       dimension psum(5),beta(3)
       double precision ppsum(5),padd(5),pp(5)
       data errlim/.001/
@@ -11658,7 +11639,7 @@ c-----------------------------------------------------------------------
       enddo
 
       if(j1.ge.j2)
-     >call utstop('jrescl: j1 .ge. j2                      ')
+     *call utstop('jrescl: j1 .ge. j2                      ')
 
       do 100 k=1,5
 100   padd(k)=0.
@@ -11670,9 +11651,9 @@ c-----------------------------------------------------------------------
       if(ish.ge.90)then
       call utmsg('jrescl')
       write(ifch,*)'*****  sum of ptl masses .ge. ppsum(5)'
-      do  j=j1,j2
-       write(ifch,109)j,idptl(j),(pptl(l,j),l=3,5)
-      enddo
+      do 1 j=j1,j2
+1     write(ifch,109)j,idptl(j)
+     *,(pptl(l,j),l=3,5)
 109   format(' /cptl/',i6,i10,3x,3(1x,e9.3))
       write(ifch,*)'ppsum(345):',(sngl(ppsum(k)),k=3,5)
       call utmsgf
@@ -11695,7 +11676,7 @@ c     ------------------
       pp(k)=pptl(k,j)
       enddo 
       call utlob2(1,padd(1),padd(2),padd(3),padd(4),padd(5)    
-     >,pp(1),pp(2),pp(3),pp(4))
+     *,pp(1),pp(2),pp(3),pp(4))
       do k=1,4
       pptl(k,j)=pp(k)
       enddo 
@@ -11710,7 +11691,7 @@ c     -----------------------------
       do 320 k=1,3
 320   pptl(k,j)=scal*pptl(k,j)
       pptl(4,j)=sqrt(pptl(1,j)**2+pptl(2,j)**2+pptl(3,j)**2
-     >+pptl(5,j)**2)
+     *+pptl(5,j)**2)
       sum=sum+pptl(4,j)
 310   continue
       scal=psum(5)/sum
@@ -11730,7 +11711,7 @@ c     ---------------------
       pp(k)=pptl(k,j)
       enddo 
       call utlob2(-1,ppsum(1),ppsum(2),ppsum(3),ppsum(4),ppsum(5)    
-     >,pp(1),pp(2),pp(3),pp(4))
+     *,pp(1),pp(2),pp(3),pp(4))
       do k=1,4
       pptl(k,j)=pp(k)
       enddo 
@@ -11750,21 +11731,21 @@ c  ier=3: again with new apart, epart
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (nptf=129)
       common /cptf/xptf(nptf),wptf(nptf)
-     >,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
+     *,qptfu(nptf),qptfs(nptf),qptfuu(nptf),qptfus(nptf),qptfss(nptf)
       parameter (nptq=129)
       common /cptq/xptq(nptq),qptq(nptq),qpth(nptq),wptq(nptq)
       parameter (nsi=6,nsix=100)
@@ -11776,13 +11757,13 @@ c-----------------------------------------------------------------------
       common/cjspli/jpart,nscc,nsccx,apart,epart,alead,elead,sgnsil
       parameter (nsplit=129)
       common /csplit/xsplit(nsplit),qsplit(nsplit),qsplix(nsplit)
-     >,wsplit(nsplit)
+     *,wsplit(nsplit)
       common/cpzstr/pzstrl,estrl,istrl,isea
 
       real stro(nsi,nsix+1),stro0(nsi,nsix+1),str(nsi,2)
       double precision sstr(nsi,2),po(5),po123,a,d,pnl3,pnl4
-     >,pox,poy,pot,pop,pom,pux,puy,put,pup,pum,pap,pam,pep,pem,pyp,pym
-     >,pip,pim,pp,pm
+     *,pox,poy,pot,pop,pom,pux,puy,put,pup,pum,pap,pam,pep,pem,pyp,pym
+     *,pip,pim,pp,pm
 
       pudx=pud*.945
       ish0=ish
@@ -11877,7 +11858,7 @@ c     -------------------------------------------------------
 c-c   x=sqrt(1-sqrt(r))                !f(x)=x-x**3
       x=utinvt(nsplit,xsplit,qsplit,r*qsplit(nsplit))
       if(nsccx.ge.2)
-     >x=utinvt(nsplit,xsplit,qsplix,r*qsplix(nsplit))
+     *x=utinvt(nsplit,xsplit,qsplix,r*qsplix(nsplit))
       ystrl=.5*alog((estrl+pzstrl)/(estrl-pzstrl))
       xunter=abs(0.94*sinh(ystrl))/epart
       if(xunter.gt.1)xunter=1.
@@ -11924,7 +11905,7 @@ c-c   po(3)=sgnsil*sqrt(en**2-at**2)
 2     stro(i,kmax)=0.
       yld=100
       if(po(4)-dabs(po(3)).ne.0.)
-     >yld=0.5*dlog((po(4)+dabs(po(3)))/(po(4)-dabs(po(3))))
+     *yld=0.5*dlog((po(4)+dabs(po(3)))/(po(4)-dabs(po(3))))
  
 c     determine split string (momenta)
 c     --------------------------------
@@ -11963,7 +11944,7 @@ c     --------------------------------
       pnl4=sstr(4,1)+sstr(4,2)
       ynl=100
       if(pnl4-dabs(pnl3).ne.0.)
-     >ynl=0.5*dlog((pnl4+dabs(pnl3))/(pnl4-dabs(pnl3)))
+     *ynl=0.5*dlog((pnl4+dabs(pnl3))/(pnl4-dabs(pnl3)))
       do n=1,4
       do i=1,2
       str(n,i)=sstr(n,i)
@@ -11994,27 +11975,27 @@ c     ------
       call utmsgf
       endif
       if(dabs(sstr(4,1)**2
-     >-sstr(1,1)**2-sstr(2,1)**2-sstr(3,1)**2).gt.1e-4)then
+     *-sstr(1,1)**2-sstr(2,1)**2-sstr(3,1)**2).gt.1e-4)then
       call utmsg('jsplit')
       write(ifch,*)'*****  mass**2 of string end 1 nonzero'
       write(ifch,*)'mass**2=',sstr(4,1)**2
-     >-sstr(1,1)**2-sstr(2,1)**2-sstr(3,1)**2
+     *-sstr(1,1)**2-sstr(2,1)**2-sstr(3,1)**2
       call utmsgf
       endif
       if(dabs(sstr(4,2)**2
-     >-sstr(1,2)**2-sstr(2,2)**2-sstr(3,2)**2).gt.1e-4)then
+     *-sstr(1,2)**2-sstr(2,2)**2-sstr(3,2)**2).gt.1e-4)then
       call utmsg('jsplit')
       write(ifch,*)'*****  mass**2 of string end 2 nonzero'
       write(ifch,*)'mass**2=',sstr(4,2)**2
-     >-sstr(1,2)**2-sstr(2,2)**2-sstr(3,2)**2
+     *-sstr(1,2)**2-sstr(2,2)**2-sstr(3,2)**2
       call utmsgf
       endif
       do 14 n=1,4
       if(abs(str(n,1)+stro(n,1)-stro0(n,1)
-     >+str(n,2)+stro(n,kmax)-stro0(n,kmax)).gt.1e-4
-     >.and.abs(str(n,1)+stro(n,1)-stro0(n,1)
-     >+str(n,2)+stro(n,kmax)-stro0(n,kmax))
-     >.gt.1e-4*abs(stro0(n,1)+stro0(n,kmax)))goto15
+     *+str(n,2)+stro(n,kmax)-stro0(n,kmax)).gt.1e-4
+     *.and.abs(str(n,1)+stro(n,1)-stro0(n,1)
+     *+str(n,2)+stro(n,kmax)-stro0(n,kmax))
+     *.gt.1e-4*abs(stro0(n,1)+stro0(n,kmax)))goto15
 14    continue
       goto16
 15    continue
@@ -12049,9 +12030,8 @@ c     ------
  
 c     flavour
 c     -------
-      do i=1,2
-        ic(i)=nint(abs(stro(4+i,kmax)))
-      enddo
+      do 1 i=1,2
+1     ic(i)=nint(abs(stro(4+i,kmax)))
       do 3 i=1,2
 3     str(4+i,2)=ic(i)
       do 4 n=1,nflav
@@ -12063,14 +12043,14 @@ c     -------
       if(ic(1).gt.0.and.nqu.eq.2)m=1
       if(ic(2).gt.0.and.nqu.eq.2)m=2
       if(m.eq.0)
-     >call utstop('jsplit: m = 0                           ')
+     *call utstop('jsplit: m = 0                           ')
       do 25 n=1,nqu
       if(n.eq.1)nfl=mod(iflto,10)
       if(n.eq.2)nfl=iflto/10
 25    jcx(nfl,m)=jcx(nfl,m)+1
       call idenco(jcx,icx,ireten)
       if(ireten.eq.1)
-     >call utstop('jsplit: idenco ret code = 1             ')
+     *call utstop('jsplit: idenco ret code = 1             ')
       do 5 i=1,2
 5     str(4+i,1)=icx(i)
            call utamst(str,am,amin,iret)
@@ -12160,7 +12140,7 @@ c     ----------
       if(ish.ge.90)then
       call utmsg('jsplit')
       write(ifch,*)'*****  idenco ret code = 1'
-     >,'   (after absorption)'
+     *,'   (after absorption)'
       write(ifch,*)'jc:'
       write(ifch,*)jc
       call utmsgf
@@ -12221,15 +12201,15 @@ c     strips hadron idhad off jet jc. isame=1: zero flavor required
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (nflav=6)
       integer jc(nflav,2),ic(2),jcx(nflav,2),icx(2),icp(2),jcp(nflav,2)
-     >,ic1(2),jc1(nflav,2),ic2(2),jc2(nflav,2)
+     *,ic1(2),jc1(nflav,2),ic2(2),jc2(nflav,2)
       ier=0
       call randfl(jc,ipa1,ii,ic1,isame)
       if(ii.eq.0)goto9999
@@ -12249,7 +12229,7 @@ c-----------------------------------------------------------------------
       endif
       call idenco(jcp,icp,ireten)
       if(ireten.eq.1)
-     >call utstop('jstrij: idenco ret code = 1             ')
+     *call utstop('jstrij: idenco ret code = 1             ')
       idhad=idtra(icp,1,0,3)
       if(idhad.eq.0)goto9998
       return
@@ -12288,7 +12268,7 @@ c-----------------------------------------------------------------------
       call jstrij(ipa1,ipa2,jc,idhad,jcx,ier,isame,ierrc)
       call idenco(jcx,icx,ireten)
       if(ireten.eq.1)
-     >call utstop('jstrip: idenco ret code = 1             ')
+     *call utstop('jstrip: idenco ret code = 1             ')
       return
       end
  
@@ -12304,35 +12284,35 @@ c-----------------------------------------------------------------------
       equivalence (xq(1,1),vxq(1))
  
       data vxq/
-     >         1304.02,   366.40,    19.84,    10.79,     6.42,
-     >            4.54,     4.15,     3.38,     2.03,     1.56,
-     >          241.63,  1637.26,   427.36,   164.51,    73.72,
-     >           43.07,    20.73,    12.78,     9.34,     5.83,
-     >            0.01,   724.66,   563.79,   275.08,   176.13,
-     >          106.44,    85.82,    54.52,    37.12,    28.65,
-     >            0.01,   202.40,   491.10,   245.13,   157.07,
-     >          104.43,    61.05,    49.42,    37.84,    26.79,
-     >            0.01,     3.77,   316.38,   226.92,   133.45,
-     >           90.30,    63.67,    48.42,    35.73,    28.04,
-     >            0.01,     0.01,   153.74,   213.09,   114.14,
-     >           76.26,    60.02,    43.15,    43.47,    25.60,
-     >            0.01,     0.01,    39.31,   185.74,   108.56,
-     >           88.40,    47.29,    39.35,    31.80,    22.91,
-     >            0.01,     0.01,     0.01,   104.61,   107.01,
-     >           66.24,    45.34,    37.45,    33.44,    23.78,
-     >            0.01,     0.01,     0.01,    56.58,    99.39,
-     >           67.78,    43.28,    35.98,    34.63,    18.31,
-     >            0.01,     0.01,     0.01,    13.56,    76.25,
-     >           64.30,    42.80,    28.56,    21.19,    20.75 /
+     &         1304.02,   366.40,    19.84,    10.79,     6.42,
+     &            4.54,     4.15,     3.38,     2.03,     1.56,
+     &          241.63,  1637.26,   427.36,   164.51,    73.72,
+     &           43.07,    20.73,    12.78,     9.34,     5.83,
+     &            0.01,   724.66,   563.79,   275.08,   176.13,
+     &          106.44,    85.82,    54.52,    37.12,    28.65,
+     &            0.01,   202.40,   491.10,   245.13,   157.07,
+     &          104.43,    61.05,    49.42,    37.84,    26.79,
+     &            0.01,     3.77,   316.38,   226.92,   133.45,
+     &           90.30,    63.67,    48.42,    35.73,    28.04,
+     &            0.01,     0.01,   153.74,   213.09,   114.14,
+     &           76.26,    60.02,    43.15,    43.47,    25.60,
+     &            0.01,     0.01,    39.31,   185.74,   108.56,
+     &           88.40,    47.29,    39.35,    31.80,    22.91,
+     &            0.01,     0.01,     0.01,   104.61,   107.01,
+     &           66.24,    45.34,    37.45,    33.44,    23.78,
+     &            0.01,     0.01,     0.01,    56.58,    99.39,
+     &           67.78,    43.28,    35.98,    34.63,    18.31,
+     &            0.01,     0.01,     0.01,    13.56,    76.25,
+     &           64.30,    42.80,    28.56,    21.19,    20.75 /
  
       data init/0/
       init=init+1
       if(init.eq.1) then
       n=nxbj*nqsq
       sum=0.
-      do i=1,n
+      do 1 i=1,n
       sum=sum+vxq(i)
-      enddo
+1     continue
       do 2 i=2,n
 2     vxq(i)=vxq(i)+vxq(i-1)
       do 3 i=1,n
@@ -12444,22 +12424,22 @@ c     initializes nucleon-momenta.
 c     writes nucleons on /cptl/ (p,ifr,icl).
 c-----------------------------------------------------------------------
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter (nsi=6,nsix=100,mamx=250)
       parameter (nha=nsix+2)
       real nuc(nsi,nha,mamx)
@@ -12468,11 +12448,11 @@ c-----------------------------------------------------------------------
       character opt*3
       nhax=3
       if(nha.lt.nhax)
-     >call utstop('nucini: nha too small                   ')
+     *call utstop('nucini: nha too small                   ')
       las=0
       mas=0
  
-      do l=1,ma
+      do 1 l=1,ma
  
       do 2 m=1,nha
       do 2 n=1,nsi
@@ -12521,7 +12501,7 @@ c-----------------------------------------------------------------------
       nuc(6,2,l)=ic2
       nptl=nptl+1
       if(nptl.ne.nnnptl(nptl))
-     >call utstop('nucini: nptl and nnnptl dont match      ')
+     *call utstop('nucini: nptl and nnnptl dont match      ')
       idptl(nptl)=id
       pptl(1,nptl)=p1
       pptl(2,nptl)=p2
@@ -12532,7 +12512,7 @@ c-----------------------------------------------------------------------
       ifrptl(2,nptl)=0
       iclptl(nptl)=1
       nqjptl(nptl)=0
-      enddo
+1     continue
       return
       end
  
@@ -12542,33 +12522,33 @@ c     calculates coordinates of the nucleons in a nucleus.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter (ndep=129,ndet=129,kollmx=5000)
       common /col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       real x(n),y(n),z(n)
       if(massnr.eq.0)return
       if(massnr.gt.n)
-     >call utstop('nuclco: massnr.gt.n                     ')
+     *call utstop('nuclco: massnr.gt.n                     ')
       if(massnr.eq.1)then
       x(1)=0
       y(1)=0
@@ -12580,7 +12560,7 @@ c-----------------------------------------------------------------------
       if(massnr.eq.maproj)r=utinvt(ndep,xdep,qdep,rangen()*qdep(ndep))
       if(massnr.eq.matarg)r=utinvt(ndet,xdet,qdet,rangen()*qdet(ndet))
       if(massnr.ne.maproj.and.massnr.ne.matarg)
-     >call utstop('nuclco: nucleus neither proj nor targ   ')
+     *call utstop('nuclco: nucleus neither proj nor targ   ')
       theta=acos(1-2*rangen())
       phi=-pi+2*pi*rangen()
       x(i)=r*sin(theta)*cos(phi)
@@ -12609,36 +12589,36 @@ c       if maproj>0.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (ndep=129,ndet=129,kollmx=5000)
       common /col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       parameter (mamx=250)
       common /cncl/xproj(mamx),yproj(mamx),zproj(mamx)
-     >,xtarg(mamx),ytarg(mamx),ztarg(mamx)
+     *,xtarg(mamx),ytarg(mamx),ztarg(mamx)
       parameter (mamx2=mamx*2)
       common/cnnn/nnnptl(mamx2)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       if(ish.eq.17)write(ifch,*)' '
       if(ish.eq.17)write(ifch,*)'nucoge (entry)'
       vel=tanh(ypjtl-yhaha)+tanh(yhaha)
@@ -12663,19 +12643,19 @@ c-----------------------------------------------------------------------
       iorptl(nptl)=-1
       jorptl(nptl)=0
       nnnptl(nptl)=nptl
-      do k=1,koll
-       nrproj(k)=1
-       nrtarg(k)=k
-       nptl=nptl+1
-       do 4 i=1,4
-4      xorptl(i,nptl)=0
-       tivptl(1,nptl)=-ainfin
-       tivptl(2,nptl)=0
-       istptl(nptl)=1
-       iorptl(nptl)=-1
-       jorptl(nptl)=0
-       nnnptl(nptl)=nptl
-      enddo
+      do 1 k=1,koll
+      nrproj(k)=1
+      nrtarg(k)=k
+      nptl=nptl+1
+      do 4 i=1,4
+4     xorptl(i,nptl)=0
+      tivptl(1,nptl)=-ainfin
+      tivptl(2,nptl)=0
+      istptl(nptl)=1
+      iorptl(nptl)=-1
+      jorptl(nptl)=0
+      nnnptl(nptl)=nptl
+1     continue
       goto9999
  
       elseif(maproj.eq.1.and.matarg.eq.1)then
@@ -12705,7 +12685,7 @@ c-----------------------------------------------------------------------
       b1=bminim
       b2=amin1(rmproj+rmtarg,bmaxim)
       if(b1.gt.b2)
-     >call utstop('nucoge: bmin > bmax                     ')
+     *call utstop('nucoge: bmin > bmax                     ')
       bimp=sqrt(b1**2+(b2**2-b1**2)*rangen())
       phi=rangen()*2*pi
       else
@@ -12744,7 +12724,7 @@ c-----------------------------------------------------------------------
       do 12 i=1,maproj
       do 12 j=1,matarg
       if((xproj(i)+bx-xtarg(j))**2
-     >+(yproj(i)+by-ytarg(j))**2.gt.sigppi/pi)goto12
+     *+(yproj(i)+by-ytarg(j))**2.gt.sigppi/pi)goto12
            if(koll.gt.0)then
       kp=0
       kt=0
@@ -12758,12 +12738,12 @@ c-----------------------------------------------------------------------
       if(kt.eq.1)ftr=ftr*ftrsig
       if(kp.eq.1.or.kt.eq.1)then
       if((xproj(i)+bx-xtarg(j))**2
-     >+(yproj(i)+by-ytarg(j))**2.gt.ftr*sigppi/pi)goto12
+     *+(yproj(i)+by-ytarg(j))**2.gt.ftr*sigppi/pi)goto12
       endif
            endif
       koll=koll+1
       if(koll.gt.kollmx)
-     >call utstop('nucoge: kollmx too small                ')
+     *call utstop('nucoge: kollmx too small                ')
       nrproj(koll)=i
       nrtarg(koll)=j
       distce(koll)=ztarg(j)-zproj(i)
@@ -12825,45 +12805,45 @@ c     performs a  nucleus-nucleus collision (incl. nucleon-nucleon)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       real kolbad(kollmx)
       common/civ/ivp0,ivp,ivt0,ivt /cntevm/ntevm
-     >/cnew/kotri,newico,newcol
+     */cnew/kotri,newico,newcol
       parameter (nsi=6,nsix=100)
       parameter (nha=nsix+2)
       real proj(nsi,nha),targ(nsi,nha)
-     >,proj2(nsi,nha),targ2(nsi,nha)
+     *,proj2(nsi,nha),targ2(nsi,nha)
       parameter(nprbms=20)
       common /cprbms/prbms(nprbms)
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       common/partnr/summas,iptnr,ic4,px4,py4,js4,pex,pey,pezet,pe0,nps
-     >/cnce/nces,ncolex /cnfr/nrfra /ckol/kol
+     */cnce/nces,ncolex /cnfr/nrfra /ckol/kol
       parameter (mamx=250)
       real proja(nsi,nha,mamx),targa(nsi,nha,mamx)
       integer ncopj(mamx),ncotg(mamx),ic4(2)
@@ -12885,8 +12865,8 @@ c-----------------------------------------------------------------------
       if(koll.lt.ko1ko2/10000.or.koll.gt.mod(ko1ko2,10000))goto1000
       colevt=koll
       amsev=sqrt((npjevt*sqrt(amproj**2+pnllx**2)
-     >+ntgevt*sqrt(amtarg**2+pnllx**2))**2
-     >-((npjevt-ntgevt)*pnllx)**2)
+     *+ntgevt*sqrt(amtarg**2+pnllx**2))**2
+     *-((npjevt-ntgevt)*pnllx)**2)
       if(ishsub/100.eq.7)ish=ish0
  
       itry=0
@@ -12995,21 +12975,21 @@ c     -----------------------
       call utpage
       if(ish.ge.91)then
       write(ifch,101)(dash,l=1,79),ipage,kol,nce
-     >,nrproj(nord(kol)),nrtarg(nord(kol)),(dash,l=1,79)
+     *,nrproj(nord(kol)),nrtarg(nord(kol)),(dash,l=1,79)
 101   format(/1x,79a1/1x,i5,'.page             col: ',i2
-     >,'   cex: ',i2,'   prj: ',i3,'   trg: ',i3/1x,79a1/)
+     *,'   cex: ',i2,'   prj: ',i3,'   trg: ',i3/1x,79a1/)
       endif
       istorp=0
       istort=0
       if(nrecop.eq.0)istorp=1
       if(nrecot.eq.0)istort=1
       call hahabs(proj,targ
-     >,istorp*(nce/ncolex),istort*(nce/ncolex),iskip,irethh)
+     *,istorp*(nce/ncolex),istort*(nce/ncolex),iskip,irethh)
       if(iskip.ge.2)goto9997
       if(irethh.eq.1)goto3
       if(irescl.eq.1.and.amsac.gt.amsev)goto9998
       sumpt2=sumpt2+
-     >proj(1,2)**2+proj(2,2)**2+targ(1,2)**2+targ(2,2)**2
+     *proj(1,2)**2+proj(2,2)**2+targ(1,2)**2+targ(2,2)**2
       if(ish.eq.11)write(ifch,*)'sumpt2:',nrevt,kol,nce,sumpt2
       iskip=0
 31    continue
@@ -13045,7 +13025,7 @@ c------------------
  
 9999  inoiac=inoiac+1
       if(ish.ge.91
-     >.or.ish.eq.11)then
+     *.or.ish.eq.11)then
       call utmsg('nucoll')
       write(ifch,*)'*****  no interaction. redo nucoll'
       call utmsgf
@@ -13054,14 +13034,13 @@ c------------------
  
 9998  ilamas=ilamas+1
       if(ish.ge.91
-     >.or.ish.eq.12)then
+     *.or.ish.eq.12)then
       call utmsg('nucoll')
       write(ifch,*)'*****  amsac>amsev: ',amsac,amsev
-     >,' . redo nucoll'
-      do ns=1,nstr
-        write(ifch,109)ns,(icstr(l,ns)/100,l=1,4)
-     >                   ,(pstr(l,ns),l=3,5)
-      enddo
+     *,' . redo nucoll'
+      do 1 ns=1,nstr
+1     write(ifch,109)ns,(icstr(l,ns)/100,l=1,4)
+     *,(pstr(l,ns),l=3,5)
 109   format(1x,i3,3x,4i5,2x,3(1x,e9.3))
       call utmsgf
       endif
@@ -13083,18 +13062,18 @@ c     performes x and p trafos for nucleons for string decay in nucleus
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       common /clep/icinpu,idscat
       if(matarg.ne.nptl)
-     >call utstop('nucstr: matarg /= nptl                  ')
+     *call utstop('nucstr: matarg /= nptl                  ')
       ncnt=0
 3     ncnt=ncnt+1
       if(ncnt.ge.10)goto1001
@@ -13104,9 +13083,8 @@ c-----------------------------------------------------------------------
       iorptl(n0)=-1
       tivptl(2,n0)=0
       do 2 n=1,nptl
-      do j=1,3
-        xorptl(j,n)=xorptl(j,n)-xorptl(j,n0)
-      enddo
+      do 1 j=1,3
+1     xorptl(j,n)=xorptl(j,n)-xorptl(j,n0)
       phi=rangen()*2*pi
       p1=-elepto*sin(angmue)*sin(phi)
       p2=-elepto*sin(angmue)*cos(phi)
@@ -13117,9 +13095,9 @@ c-----------------------------------------------------------------------
       p2=0
       p4=prom+elepti-elepto
       call utlobo(1,p1,p2,p3,p4,sqrt(p4**2-p3**2-p2**2-p1**2)
-     >,xorptl(1,n),xorptl(2,n),xorptl(3,n),xorptl(4,n))
+     *,xorptl(1,n),xorptl(2,n),xorptl(3,n),xorptl(4,n))
 2     call utlobo(1,p1,p2,p3,p4,sqrt(p4**2-p3**2-p2**2-p1**2)
-     >,pptl(1,n),pptl(2,n),pptl(3,n),pptl(4,n))
+     *,pptl(1,n),pptl(2,n),pptl(3,n),pptl(4,n))
  
       ier=0
       return
@@ -13139,32 +13117,32 @@ c     forms a jpsi
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/cnsta/pi,prom,piom,ainfin
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       parameter (ndep=129,ndet=129,kollmx=5000)
       common/col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       common/ckol/kol
       parameter (nptj=129)
       common /cptj/xptj(nptj),qptj(nptj),wptj(nptj)
@@ -13187,7 +13165,7 @@ c-----------------------------------------------------------------------
       call utpage
       if(ish.ge.91)write(ifch,110)('-',l=1,79),ipage,('-',l=1,79)
 110   format(1x,79a1/1x,i5,'.page            '
-     >,'jpsi formation'/1x,79a1/)
+     *,'jpsi formation'/1x,79a1/)
  
 5000  loop=loop+1
       if(loop.gt.100)then
@@ -13210,11 +13188,11 @@ c     ------------
       px=pt*cos(phi)
       py=pt*sin(phi)
       lo=0
- 7    lo=lo+1
+1     lo=lo+1
       if(lo.gt.10)
-     >call utstop('pvjpsf: lo > 10                         ')
+     *call utstop('pvjpsf: lo > 10                         ')
       z=pax*utinvt(ngau,xgau,qgau,rangen()*qgau(ngau))
-      if(z.gt.1.)goto 7
+      if(z.gt.1.)goto1
       pz=z*pnllx*ransig()
       e=sqrt(s+px**2+py**2+pz**2)
       pp=e+pz
@@ -13266,7 +13244,7 @@ c     jpsi string
 c     -----------
       nstr=nstr+1
       if(nstr.gt.mxstr)
-     >call utstop('pvjpsf: nstr>mxstr                      ')
+     *call utstop('pvjpsf: nstr>mxstr                      ')
       iorstr(nstr)=-kol
       icstr(1,nstr)=000100
       icstr(2,nstr)=0
@@ -13285,7 +13263,7 @@ c     -----------
            if(ish.ge.91)then
       j=nstr
       write(ifch,100)j,(icstr(k,j)/100,k=1,4)
-     >,pstr(3,j),pstr(4,j),pstr(5,j)
+     *,pstr(3,j),pstr(4,j),pstr(5,j)
 100   format(' /cstr/',i4,3x,4i5,2x,3(1x,e9.3))
            endif
  
@@ -13307,24 +13285,24 @@ c     ------
       call utmsgf
       endif
       if(abs(proj(4,2)**2
-     >-proj(1,2)**2-proj(2,2)**2-proj(3,2)**2).gt.1e-4)then
+     *-proj(1,2)**2-proj(2,2)**2-proj(3,2)**2).gt.1e-4)then
       call utmsg('pvjpsf')
       write(ifch,*)'*****  mass**2 of proj nonzero'
       write(ifch,*)'mass**2=',proj(4,2)**2
-     >-proj(1,2)**2-proj(2,2)**2-proj(3,2)**2
+     *-proj(1,2)**2-proj(2,2)**2-proj(3,2)**2
       call utmsgf
       endif
       if(abs(targ(4,2)**2
-     >-targ(1,2)**2-targ(2,2)**2-targ(3,2)**2).gt.1e-4)then
+     *-targ(1,2)**2-targ(2,2)**2-targ(3,2)**2).gt.1e-4)then
       call utmsg('pvjpsf')
       write(ifch,*)'*****  mass**2 of targ nonzero'
       write(ifch,*)'mass**2=',targ(4,2)**2
-     >-targ(1,2)**2-targ(2,2)**2-targ(3,2)**2
+     *-targ(1,2)**2-targ(2,2)**2-targ(3,2)**2
       call utmsgf
       endif
       do 14 n=1,4
-      if(abs(pr(n)+tg(n)-proj(n,2)-targ(n,2)-pstr(n,nstr))
-     >       .gt.1e-4)goto15
+      if(abs(pr(n)+tg(n)
+     *-proj(n,2)-targ(n,2)-pstr(n,nstr)).gt.1e-4)goto15
 14    continue
       goto16
 15    continue
@@ -13354,19 +13332,19 @@ c       multi pomeron cuts acc to gribov (for typ = gri).
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
-     >,icmtst
+     *,icmtst
       common/paro4/grigam,grirsq,gridel,grislo,gricel
       common/cnsta/pi,prom,piom,ainfin
       real acprob(n)
@@ -13456,7 +13434,7 @@ c     -----
       write(ifch,*)' '
       write(ifch,100)('-',ic=1,79)
       write(ifch,*)'   cross sections and',
-     >' cut-pomeron weights acc to gribov-regge-theory'
+     *' cut-pomeron weights acc to gribov-regge-theory'
       write(ifch,100)('-',ic=1,79)
       write(ifch,*)'   cms-energy [gev]:',engy
       write(ifch,100)('-',ic=1,79)
@@ -13491,17 +13469,16 @@ c     -------
            elseif(typ.eq.'poi')then
       z=qmu
       if(z.ge.n-1.)
-     >call utstop('racpro: z >= n-1.                       ')
+     *call utstop('racpro: z >= n-1.                       ')
       k=amax1(0.,z-(n-1-z))+1
       if(k.ge.n)
-     >call utstop('racpro: k >= n.                         ')
+     *call utstop('racpro: k >= n.                         ')
            if(k.eq.1)then
       prbab=exp(-z)
       acprob(1)=prbab
-      do i=2,n
-       prbab=prbab*z/(i-1)
-       acprob(i)=acprob(i-1)+prbab
-      enddo
+      do 1 i=2,n
+      prbab=prbab*z/(i-1)
+1     acprob(i)=acprob(i-1)+prbab
            elseif(k.gt.1)then
       x=z*exp(-z/(k-1.))
       prbab=1
@@ -13537,10 +13514,10 @@ c     returns random flavour ic(2) (iqa0=1:quark,2:antiquark,11:diquark)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (nflav=6)
       real probab(nflav),probsu(nflav+1)
       integer jc(nflav,2),jc0(nflav,2),ic(2)
@@ -13587,7 +13564,7 @@ c-----------------------------------------------------------------------
       if(isame.eq.1)jc0(iflav,3-iqa)=jc0(iflav,3-iqa)+1
       call idenco(jc0,ic,ireten)
       if(ireten.eq.1)
-     >call utstop('randfl: idenco ret code = 1             ')
+     *call utstop('randfl: idenco ret code = 1             ')
       if(ish.ge.95)then
       write(ifch,*)'probab:'
       write(ifch,*)probab
@@ -13607,17 +13584,17 @@ c     generates a random number
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
- 10   rangen=rndm(-1)
-      if(rangen.le.0.)goto 10
-      if(rangen.ge.1.)goto 10
+     *,inoiac,ilamas
+1     rangen=rndm(-1)
+      if(rangen.le.0.)goto1
+      if(rangen.ge.1.)goto1
       if(ish.eq.17)write(ifch,*)'   rangen()= ',rangen
-     >,'    es: ',nrevt+1
+     *,'    es: ',nrevt+1
       return
       entry rangel(xmax)
 2     rangel=rndm(-1)*xmax
@@ -13653,17 +13630,17 @@ c-----------------------------------------------------------------------
       endif
 c
 c          generate z according to (1-z)**2/((1-z)**2+eps*z)**2
- 10   continue
+1     continue
       y=rangen()
       z=1.-y**pow
 c
       d0z=(1.-z)**2/((1.-z)**2+eps)**2*pow*y**(pow-1.)
-      if(d0z.lt.rangen()*d0mx) goto 10
+      if(d0z.lt.rangen()*d0mx) goto1
 c
 c          check remaining factors
       d1=z
       d2=(((1.-z)**2+eps)/((1.-z)**2+eps*z))**2
-      if(d1*d2.lt.rangen()*d2mx) goto 10
+      if(d1*d2.lt.rangen()*d2mx) goto1
 c
 c          good x
       x=z
@@ -13686,7 +13663,7 @@ c       with x>=xmin
 c-----------------------------------------------------------------------
       parameter (nstru=2049)
       common/stru/xstru(nstru),wstru(nstru)
-     >,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
+     *,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
       character xfl*3
       if(xfl.eq.'vap')ranstc=ranxq(nstru,xstru,qvap,xmin)
       if(xfl.eq.'sep')ranstc=ranxq(nstru,xstru,qsep,xmin)
@@ -13705,7 +13682,7 @@ c-----------------------------------------------------------------------
       if(xmin.eq.0.)goto3
       i1=1
       i2=n
-2     i=i1+(i2-i1)/2
+1     i=i1+(i2-i1)/2
       if(x(i).lt.xmin)then
       i1=i
       elseif(x(i).gt.xmin)then
@@ -13714,7 +13691,7 @@ c-----------------------------------------------------------------------
       imin=i
       goto3
       endif
-      if(i2-i1.gt.1)goto2
+      if(i2-i1.gt.1)goto1
       imin=i2
 3     continue
       if(q(imin).gt.q(n)*.9999)then
@@ -13762,16 +13739,16 @@ c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       dimension c(13)
       data c
-     >/ 0.00053 96989 58808, 0.00261 93072 82746, 0.02044 96308 23590,
-     >  0.07309 48364 14370, 0.27964 36915 78538, 0.55338 76923 85769,
-     >  0.99999 99999 99998,-0.00083 27247 08684, 0.00469 86580 79622,
-     >  0.02252 38347 47260,-0.17044 79328 74746,-0.05681 03350 86194,
-     >  1.13060 33572 86556/
+     1/ 0.00053 96989 58808, 0.00261 93072 82746, 0.02044 96308 23590,
+     2  0.07309 48364 14370, 0.27964 36915 78538, 0.55338 76923 85769,
+     3  0.99999 99999 99998,-0.00083 27247 08684, 0.00469 86580 79622,
+     4  0.02252 38347 47260,-0.17044 79328 74746,-0.05681 03350 86194,
+     5  1.13060 33572 86556/
       z=x
-      if(x .gt. 0.0) goto 9
+      if(x .gt. 0.0) goto1
       if(x .eq. aint(x)) goto5
       z=1.0-z
- 9    f=1.0/z
+    1 f=1.0/z
       if(z .le. 1.0) goto4
       f=1.0
     2 continue
@@ -13781,8 +13758,8 @@ c-----------------------------------------------------------------------
       goto2
     3 z=z-1.0
     4 sgam=
-     > f*((((((c(1)*z+c(2))*z+c(3))*z+c(4))*z+c(5))*z+c(6))*z+c(7))/
-     >   ((((((c(8)*z+c(9))*z+c(10))*z+c(11))*z+c(12))*z+c(13))*z+1.0)
+     1 f*((((((c(1)*z+c(2))*z+c(3))*z+c(4))*z+c(5))*z+c(6))*z+c(7))/
+     2   ((((((c(8)*z+c(9))*z+c(10))*z+c(11))*z+c(12))*z+c(13))*z+1.0)
       if(x .gt. 0.0) return
       sgam=3.141592653589793/(sin(3.141592653589793*x)*sgam)
       return
@@ -13806,1808 +13783,1807 @@ c----------------------------------------------------------------------
       common/csjcen/ent(16000)	
       real en(16000)	
       data (en(i),i=     1,   171)/
-     >  0.00,  8.90, 13.15, 16.70, 19.94, 22.97, 25.83, 28.56, 31.18,
-     > 33.77, 36.25, 38.70, 41.05, 43.39, 45.71, 48.00, 50.17, 52.31,
-     > 54.50, 56.64, 58.74, 60.80, 62.82, 64.86, 66.84, 68.85, 70.84,
-     > 72.72, 74.72, 76.54, 78.52, 80.37, 82.19, 84.03, 85.90, 87.73,
-     > 89.48, 91.34, 93.04, 94.81, 96.61,  0.00,  9.28, 13.30, 16.72,
-     > 19.89, 22.86, 25.71, 28.41, 31.06, 33.62, 36.12, 38.53, 40.96,
-     > 43.27, 45.57, 47.80, 50.02, 52.18, 54.39, 56.51, 58.59, 60.65,
-     > 62.79, 64.75, 66.71, 68.78, 70.72, 72.65, 74.57, 76.46, 78.37,
-     > 80.29, 82.15, 84.06, 85.80, 87.60, 89.39, 91.25, 93.01, 94.72,
-     > 96.49,  0.00,  9.39, 13.39, 16.84, 20.05, 23.06, 25.90, 28.66,
-     > 31.28, 33.88, 36.44, 38.88, 41.25, 43.59, 45.87, 48.21, 50.36,
-     > 52.64, 54.79, 56.89, 58.97, 61.07, 63.15, 65.13, 67.18, 69.09,
-     > 70.90, 73.07, 74.93, 76.90, 78.75, 80.67, 82.46, 84.31, 86.18,
-     > 88.01, 89.77, 91.60, 93.30, 95.13, 96.86,  0.00,  9.14, 13.57,
-     > 17.25, 20.58, 23.68, 26.57, 29.40, 32.04, 34.69, 37.20, 39.63,
-     > 42.04, 44.39, 46.76, 49.01, 51.25, 53.40, 55.53, 57.68, 59.80,
-     > 61.84, 63.89, 65.89, 67.97, 69.90, 71.84, 73.77, 75.79, 77.62,
-     > 79.53, 81.38, 83.25, 85.10, 86.98, 88.80, 90.56, 92.38, 94.14,
-     > 95.98, 97.65,  0.00, 10.73, 15.45, 19.30, 22.72, 25.89, 28.81/
+     *  0.00,  8.90, 13.15, 16.70, 19.94, 22.97, 25.83, 28.56, 31.18,
+     * 33.77, 36.25, 38.70, 41.05, 43.39, 45.71, 48.00, 50.17, 52.31,
+     * 54.50, 56.64, 58.74, 60.80, 62.82, 64.86, 66.84, 68.85, 70.84,
+     * 72.72, 74.72, 76.54, 78.52, 80.37, 82.19, 84.03, 85.90, 87.73,
+     * 89.48, 91.34, 93.04, 94.81, 96.61,  0.00,  9.28, 13.30, 16.72,
+     * 19.89, 22.86, 25.71, 28.41, 31.06, 33.62, 36.12, 38.53, 40.96,
+     * 43.27, 45.57, 47.80, 50.02, 52.18, 54.39, 56.51, 58.59, 60.65,
+     * 62.79, 64.75, 66.71, 68.78, 70.72, 72.65, 74.57, 76.46, 78.37,
+     * 80.29, 82.15, 84.06, 85.80, 87.60, 89.39, 91.25, 93.01, 94.72,
+     * 96.49,  0.00,  9.39, 13.39, 16.84, 20.05, 23.06, 25.90, 28.66,
+     * 31.28, 33.88, 36.44, 38.88, 41.25, 43.59, 45.87, 48.21, 50.36,
+     * 52.64, 54.79, 56.89, 58.97, 61.07, 63.15, 65.13, 67.18, 69.09,
+     * 70.90, 73.07, 74.93, 76.90, 78.75, 80.67, 82.46, 84.31, 86.18,
+     * 88.01, 89.77, 91.60, 93.30, 95.13, 96.86,  0.00,  9.14, 13.57,
+     * 17.25, 20.58, 23.68, 26.57, 29.40, 32.04, 34.69, 37.20, 39.63,
+     * 42.04, 44.39, 46.76, 49.01, 51.25, 53.40, 55.53, 57.68, 59.80,
+     * 61.84, 63.89, 65.89, 67.97, 69.90, 71.84, 73.77, 75.79, 77.62,
+     * 79.53, 81.38, 83.25, 85.10, 86.98, 88.80, 90.56, 92.38, 94.14,
+     * 95.98, 97.65,  0.00, 10.73, 15.45, 19.30, 22.72, 25.89, 28.81/
       data (en(i),i=   172,   342)/
-     > 31.64, 34.31, 36.91, 39.42, 41.83, 44.26, 46.58, 48.87, 51.10,
-     > 53.30, 55.47, 57.60, 59.68, 61.76, 63.79, 65.87, 67.88, 69.86,
-     > 71.79, 73.78, 75.66, 77.54, 79.49, 81.34, 83.21, 85.03, 86.87,
-     > 88.71, 90.48, 92.38, 94.09, 95.86, 97.64, 99.38,  0.00, 11.36,
-     > 15.90, 19.62, 22.92, 25.99, 28.88, 31.60, 34.23, 36.77, 39.28,
-     > 41.68, 44.03, 46.39, 48.56, 50.88, 53.07, 55.17, 57.36, 59.43,
-     > 61.54, 63.53, 65.62, 67.55, 69.52, 71.51, 73.45, 75.49, 77.25,
-     > 79.18, 81.03, 82.96, 84.79, 86.58, 88.45, 90.17, 92.03, 93.85,
-     > 95.50, 97.26, 99.12,  0.00, 11.76, 16.34, 20.00, 23.24, 26.25,
-     > 29.09, 31.78, 34.41, 36.93, 39.40, 41.78, 44.11, 46.44, 48.72,
-     > 50.90, 53.15, 55.27, 57.40, 59.48, 61.57, 63.60, 65.71, 67.67,
-     > 69.58, 71.64, 73.54, 75.43, 77.36, 79.27, 81.11, 82.97, 84.85,
-     > 86.59, 88.38, 90.21, 92.06, 93.85, 95.71, 97.39, 99.14,  0.00,
-     > 11.95, 16.59, 20.22, 23.43, 26.44, 29.27, 31.98, 34.57, 37.11,
-     > 39.58, 41.98, 44.28, 46.59, 48.89, 51.12, 53.31, 55.45, 57.61,
-     > 59.63, 61.77, 63.82, 65.84, 67.87, 69.82, 71.80, 73.75, 75.71,
-     > 77.53, 79.49, 81.33, 83.19, 85.05, 86.96, 88.64, 90.45, 92.32,
-     > 94.06, 95.78, 97.62, 99.37,  0.00, 12.00, 16.65, 20.31, 23.55,
-     > 26.55, 29.41, 32.14, 34.75, 37.33, 39.84, 42.21, 44.58, 46.93/
+     * 31.64, 34.31, 36.91, 39.42, 41.83, 44.26, 46.58, 48.87, 51.10,
+     * 53.30, 55.47, 57.60, 59.68, 61.76, 63.79, 65.87, 67.88, 69.86,
+     * 71.79, 73.78, 75.66, 77.54, 79.49, 81.34, 83.21, 85.03, 86.87,
+     * 88.71, 90.48, 92.38, 94.09, 95.86, 97.64, 99.38,  0.00, 11.36,
+     * 15.90, 19.62, 22.92, 25.99, 28.88, 31.60, 34.23, 36.77, 39.28,
+     * 41.68, 44.03, 46.39, 48.56, 50.88, 53.07, 55.17, 57.36, 59.43,
+     * 61.54, 63.53, 65.62, 67.55, 69.52, 71.51, 73.45, 75.49, 77.25,
+     * 79.18, 81.03, 82.96, 84.79, 86.58, 88.45, 90.17, 92.03, 93.85,
+     * 95.50, 97.26, 99.12,  0.00, 11.76, 16.34, 20.00, 23.24, 26.25,
+     * 29.09, 31.78, 34.41, 36.93, 39.40, 41.78, 44.11, 46.44, 48.72,
+     * 50.90, 53.15, 55.27, 57.40, 59.48, 61.57, 63.60, 65.71, 67.67,
+     * 69.58, 71.64, 73.54, 75.43, 77.36, 79.27, 81.11, 82.97, 84.85,
+     * 86.59, 88.38, 90.21, 92.06, 93.85, 95.71, 97.39, 99.14,  0.00,
+     * 11.95, 16.59, 20.22, 23.43, 26.44, 29.27, 31.98, 34.57, 37.11,
+     * 39.58, 41.98, 44.28, 46.59, 48.89, 51.12, 53.31, 55.45, 57.61,
+     * 59.63, 61.77, 63.82, 65.84, 67.87, 69.82, 71.80, 73.75, 75.71,
+     * 77.53, 79.49, 81.33, 83.19, 85.05, 86.96, 88.64, 90.45, 92.32,
+     * 94.06, 95.78, 97.62, 99.37,  0.00, 12.00, 16.65, 20.31, 23.55,
+     * 26.55, 29.41, 32.14, 34.75, 37.33, 39.84, 42.21, 44.58, 46.93/
       data (en(i),i=   343,   513)/
-     > 49.22, 51.47, 53.65, 55.82, 57.93, 60.02, 62.14, 64.22, 66.21,
-     > 68.27, 70.16, 72.11, 74.05, 76.04, 77.95, 79.79, 81.77, 83.53,
-     > 85.39, 87.18, 89.11, 90.94, 92.61, 94.44, 96.27, 98.04, 99.73,
-     >  0.00, 11.85, 16.47, 20.18, 23.53, 26.65, 29.56, 32.36, 35.06,
-     > 37.66, 40.22, 42.66, 45.01, 47.35, 49.71, 51.94, 54.15, 56.31,
-     > 58.46, 60.60, 62.66, 64.72, 66.73, 68.77, 70.79, 72.77, 74.71,
-     > 76.65, 78.57, 80.46, 82.34, 84.18, 86.10, 87.89, 89.73, 91.49,
-     > 93.34, 95.07, 96.81, 98.62,100.33,  0.00, 11.22, 16.20, 20.26,
-     > 23.82, 27.06, 30.11, 32.95, 35.68, 38.37, 40.91, 43.41, 45.80,
-     > 48.16, 50.49, 52.73, 54.96, 57.16, 59.34, 61.41, 63.56, 65.65,
-     > 67.62, 69.72, 71.62, 73.67, 75.62, 77.53, 79.47, 81.37, 83.22,
-     > 85.08, 86.91, 88.82, 90.56, 92.35, 94.13, 95.96, 97.72, 99.51,
-     >101.20,  0.00, 12.10, 17.25, 21.36, 24.99, 28.30, 31.38, 34.28,
-     > 37.04, 39.73, 42.26, 44.77, 47.23, 49.59, 51.88, 54.11, 56.33,
-     > 58.54, 60.68, 62.78, 64.91, 66.98, 68.97, 70.98, 72.98, 74.91,
-     > 76.87, 78.79, 80.68, 82.64, 84.52, 86.39, 88.14, 89.98, 91.87,
-     > 93.67, 95.42, 97.18, 98.98,100.71,102.48,  0.00, 12.82, 17.88,
-     > 21.83, 25.35, 28.56, 31.56, 34.39, 37.09, 39.71, 42.25, 44.71,
-     > 47.10, 49.49, 51.74, 54.01, 56.17, 58.35, 60.53, 62.61, 64.62/
+     * 49.22, 51.47, 53.65, 55.82, 57.93, 60.02, 62.14, 64.22, 66.21,
+     * 68.27, 70.16, 72.11, 74.05, 76.04, 77.95, 79.79, 81.77, 83.53,
+     * 85.39, 87.18, 89.11, 90.94, 92.61, 94.44, 96.27, 98.04, 99.73,
+     *  0.00, 11.85, 16.47, 20.18, 23.53, 26.65, 29.56, 32.36, 35.06,
+     * 37.66, 40.22, 42.66, 45.01, 47.35, 49.71, 51.94, 54.15, 56.31,
+     * 58.46, 60.60, 62.66, 64.72, 66.73, 68.77, 70.79, 72.77, 74.71,
+     * 76.65, 78.57, 80.46, 82.34, 84.18, 86.10, 87.89, 89.73, 91.49,
+     * 93.34, 95.07, 96.81, 98.62,100.33,  0.00, 11.22, 16.20, 20.26,
+     * 23.82, 27.06, 30.11, 32.95, 35.68, 38.37, 40.91, 43.41, 45.80,
+     * 48.16, 50.49, 52.73, 54.96, 57.16, 59.34, 61.41, 63.56, 65.65,
+     * 67.62, 69.72, 71.62, 73.67, 75.62, 77.53, 79.47, 81.37, 83.22,
+     * 85.08, 86.91, 88.82, 90.56, 92.35, 94.13, 95.96, 97.72, 99.51,
+     *101.20,  0.00, 12.10, 17.25, 21.36, 24.99, 28.30, 31.38, 34.28,
+     * 37.04, 39.73, 42.26, 44.77, 47.23, 49.59, 51.88, 54.11, 56.33,
+     * 58.54, 60.68, 62.78, 64.91, 66.98, 68.97, 70.98, 72.98, 74.91,
+     * 76.87, 78.79, 80.68, 82.64, 84.52, 86.39, 88.14, 89.98, 91.87,
+     * 93.67, 95.42, 97.18, 98.98,100.71,102.48,  0.00, 12.82, 17.88,
+     * 21.83, 25.35, 28.56, 31.56, 34.39, 37.09, 39.71, 42.25, 44.71,
+     * 47.10, 49.49, 51.74, 54.01, 56.17, 58.35, 60.53, 62.61, 64.62/
       data (en(i),i=   514,   684)/
-     > 66.73, 68.73, 70.66, 72.71, 74.58, 76.59, 78.56, 80.36, 82.34,
-     > 84.14, 86.04, 87.91, 89.66, 91.52, 93.25, 95.04, 96.88, 98.61,
-     >100.33,102.11,  0.00, 13.26, 18.39, 22.39, 25.86, 28.99, 31.97,
-     > 34.73, 37.44, 40.00, 42.48, 44.93, 47.24, 49.58, 51.89, 54.10,
-     > 56.30, 58.40, 60.56, 62.56, 64.66, 66.64, 68.70, 70.75, 72.69,
-     > 74.66, 76.62, 78.48, 80.40, 82.19, 84.09, 85.96, 87.77, 89.62,
-     > 91.48, 93.20, 94.99, 96.80, 98.50,100.28,102.05,  0.00, 13.54,
-     > 18.77, 22.80, 26.23, 29.41, 32.31, 35.08, 37.69, 40.25, 42.68,
-     > 45.12, 47.45, 49.74, 52.01, 54.25, 56.41, 58.54, 60.71, 62.78,
-     > 64.77, 66.84, 68.88, 70.86, 72.77, 74.73, 76.68, 78.62, 80.52,
-     > 82.35, 84.24, 86.02, 87.90, 89.69, 91.46, 93.28, 95.12, 96.81,
-     > 98.57,100.30,102.04,  0.00, 13.73, 19.04, 23.09, 26.55, 29.67,
-     > 32.57, 35.30, 37.95, 40.49, 42.96, 45.38, 47.70, 49.99, 52.24,
-     > 54.37, 56.62, 58.72, 60.85, 62.96, 65.02, 67.02, 69.11, 71.02,
-     > 72.99, 74.95, 76.83, 78.73, 80.68, 82.48, 84.35, 86.27, 88.08,
-     > 89.94, 91.64, 93.46, 95.15, 97.05, 98.73,100.49,102.23,  0.00,
-     > 13.86, 19.17, 23.24, 26.69, 29.84, 32.70, 35.50, 38.09, 40.66,
-     > 43.15, 45.52, 47.85, 50.21, 52.44, 54.65, 56.81, 58.98, 61.05,
-     > 63.14, 65.21, 67.22, 69.30, 71.23, 73.25, 75.15, 77.02, 79.03/
+     * 66.73, 68.73, 70.66, 72.71, 74.58, 76.59, 78.56, 80.36, 82.34,
+     * 84.14, 86.04, 87.91, 89.66, 91.52, 93.25, 95.04, 96.88, 98.61,
+     *100.33,102.11,  0.00, 13.26, 18.39, 22.39, 25.86, 28.99, 31.97,
+     * 34.73, 37.44, 40.00, 42.48, 44.93, 47.24, 49.58, 51.89, 54.10,
+     * 56.30, 58.40, 60.56, 62.56, 64.66, 66.64, 68.70, 70.75, 72.69,
+     * 74.66, 76.62, 78.48, 80.40, 82.19, 84.09, 85.96, 87.77, 89.62,
+     * 91.48, 93.20, 94.99, 96.80, 98.50,100.28,102.05,  0.00, 13.54,
+     * 18.77, 22.80, 26.23, 29.41, 32.31, 35.08, 37.69, 40.25, 42.68,
+     * 45.12, 47.45, 49.74, 52.01, 54.25, 56.41, 58.54, 60.71, 62.78,
+     * 64.77, 66.84, 68.88, 70.86, 72.77, 74.73, 76.68, 78.62, 80.52,
+     * 82.35, 84.24, 86.02, 87.90, 89.69, 91.46, 93.28, 95.12, 96.81,
+     * 98.57,100.30,102.04,  0.00, 13.73, 19.04, 23.09, 26.55, 29.67,
+     * 32.57, 35.30, 37.95, 40.49, 42.96, 45.38, 47.70, 49.99, 52.24,
+     * 54.37, 56.62, 58.72, 60.85, 62.96, 65.02, 67.02, 69.11, 71.02,
+     * 72.99, 74.95, 76.83, 78.73, 80.68, 82.48, 84.35, 86.27, 88.08,
+     * 89.94, 91.64, 93.46, 95.15, 97.05, 98.73,100.49,102.23,  0.00,
+     * 13.86, 19.17, 23.24, 26.69, 29.84, 32.70, 35.50, 38.09, 40.66,
+     * 43.15, 45.52, 47.85, 50.21, 52.44, 54.65, 56.81, 58.98, 61.05,
+     * 63.14, 65.21, 67.22, 69.30, 71.23, 73.25, 75.15, 77.02, 79.03/
       data (en(i),i=   685,   855)/
-     > 80.96, 82.83, 84.70, 86.45, 88.35, 90.21, 92.00, 93.74, 95.47,
-     > 97.21, 99.02,100.83,102.45,  0.00, 13.89, 19.20, 23.29, 26.74,
-     > 29.89, 32.79, 35.60, 38.25, 40.82, 43.30, 45.69, 48.09, 50.37,
-     > 52.65, 54.86, 57.08, 59.24, 61.34, 63.45, 65.53, 67.52, 69.55,
-     > 71.53, 73.61, 75.53, 77.43, 79.39, 81.19, 83.05, 85.05, 86.88,
-     > 88.71, 90.55, 92.30, 94.18, 95.96, 97.69, 99.38,101.16,102.87,
-     >  0.00, 13.81, 19.11, 23.17, 26.66, 29.81, 32.78, 35.62, 38.33,
-     > 40.92, 43.43, 45.91, 48.33, 50.64, 52.91, 55.22, 57.37, 59.61,
-     > 61.71, 63.86, 65.93, 67.97, 70.07, 72.02, 73.98, 75.93, 77.86,
-     > 79.77, 81.72, 83.57, 85.48, 87.27, 89.19, 90.91, 92.85, 94.58,
-     > 96.39, 98.07, 99.90,101.66,103.42,  0.00, 13.59, 18.81, 22.87,
-     > 26.43, 29.73, 32.79, 35.68, 38.47, 41.08, 43.73, 46.21, 48.65,
-     > 51.03, 53.33, 55.59, 57.89, 60.00, 62.23, 64.35, 66.43, 68.47,
-     > 70.56, 72.55, 74.54, 76.53, 78.52, 80.35, 82.34, 84.19, 86.00,
-     > 87.91, 89.81, 91.59, 93.41, 95.21, 97.07, 98.86,100.56,102.37,
-     >104.00,  0.00, 12.85, 18.26, 22.64, 26.46, 29.92, 33.12, 36.10,
-     > 38.97, 41.69, 44.32, 46.88, 49.33, 51.76, 54.08, 56.40, 58.68,
-     > 60.84, 63.03, 65.18, 67.26, 69.35, 71.42, 73.41, 75.39, 77.42,
-     > 79.33, 81.31, 83.26, 85.09, 86.97, 88.89, 90.68, 92.52, 94.38/
+     * 80.96, 82.83, 84.70, 86.45, 88.35, 90.21, 92.00, 93.74, 95.47,
+     * 97.21, 99.02,100.83,102.45,  0.00, 13.89, 19.20, 23.29, 26.74,
+     * 29.89, 32.79, 35.60, 38.25, 40.82, 43.30, 45.69, 48.09, 50.37,
+     * 52.65, 54.86, 57.08, 59.24, 61.34, 63.45, 65.53, 67.52, 69.55,
+     * 71.53, 73.61, 75.53, 77.43, 79.39, 81.19, 83.05, 85.05, 86.88,
+     * 88.71, 90.55, 92.30, 94.18, 95.96, 97.69, 99.38,101.16,102.87,
+     *  0.00, 13.81, 19.11, 23.17, 26.66, 29.81, 32.78, 35.62, 38.33,
+     * 40.92, 43.43, 45.91, 48.33, 50.64, 52.91, 55.22, 57.37, 59.61,
+     * 61.71, 63.86, 65.93, 67.97, 70.07, 72.02, 73.98, 75.93, 77.86,
+     * 79.77, 81.72, 83.57, 85.48, 87.27, 89.19, 90.91, 92.85, 94.58,
+     * 96.39, 98.07, 99.90,101.66,103.42,  0.00, 13.59, 18.81, 22.87,
+     * 26.43, 29.73, 32.79, 35.68, 38.47, 41.08, 43.73, 46.21, 48.65,
+     * 51.03, 53.33, 55.59, 57.89, 60.00, 62.23, 64.35, 66.43, 68.47,
+     * 70.56, 72.55, 74.54, 76.53, 78.52, 80.35, 82.34, 84.19, 86.00,
+     * 87.91, 89.81, 91.59, 93.41, 95.21, 97.07, 98.86,100.56,102.37,
+     *104.00,  0.00, 12.85, 18.26, 22.64, 26.46, 29.92, 33.12, 36.10,
+     * 38.97, 41.69, 44.32, 46.88, 49.33, 51.76, 54.08, 56.40, 58.68,
+     * 60.84, 63.03, 65.18, 67.26, 69.35, 71.42, 73.41, 75.39, 77.42,
+     * 79.33, 81.31, 83.26, 85.09, 86.97, 88.89, 90.68, 92.52, 94.38/
       data (en(i),i=   856,  1026)/
-     > 96.13, 98.00, 99.71,101.46,103.28,104.95,  0.00, 13.22, 18.77,
-     > 23.14, 26.94, 30.35, 33.55, 36.58, 39.45, 42.19, 44.82, 47.38,
-     > 49.90, 52.29, 54.67, 56.95, 59.18, 61.41, 63.63, 65.77, 67.87,
-     > 69.93, 72.02, 74.04, 76.03, 78.03, 79.97, 81.89, 83.78, 85.71,
-     > 87.56, 89.43, 91.31, 93.11, 94.91, 96.78, 98.48,100.36,102.07,
-     >103.80,105.60,  0.00, 13.97, 19.47, 23.74, 27.43, 30.77, 33.91,
-     > 36.83, 39.63, 42.35, 44.95, 47.48, 49.88, 52.25, 54.57, 56.86,
-     > 59.14, 61.34, 63.45, 65.56, 67.66, 69.78, 71.83, 73.76, 75.71,
-     > 77.77, 79.72, 81.60, 83.50, 85.38, 87.25, 89.19, 91.00, 92.74,
-     > 94.64, 96.37, 98.14,100.08,101.72,103.48,105.15,  0.00, 14.42,
-     > 20.05, 24.35, 28.00, 31.32, 34.40, 37.31, 40.08, 42.73, 45.23,
-     > 47.74, 50.13, 52.51, 54.79, 57.08, 59.29, 61.43, 63.62, 65.73,
-     > 67.75, 69.79, 71.83, 73.81, 75.79, 77.75, 79.66, 81.63, 83.44,
-     > 85.32, 87.18, 89.12, 90.99, 92.77, 94.51, 96.31, 98.14, 99.81,
-     >101.65,103.32,105.07,  0.00, 14.74, 20.47, 24.80, 28.49, 31.79,
-     > 34.88, 37.76, 40.45, 43.09, 45.62, 48.08, 50.46, 52.83, 55.07,
-     > 57.29, 59.50, 61.65, 63.76, 65.89, 67.92, 69.94, 71.98, 73.94,
-     > 75.88, 77.81, 79.87, 81.72, 83.62, 85.47, 87.34, 89.18, 90.95,
-     > 92.82, 94.56, 96.35, 98.21, 99.93,101.72,103.43,105.08,  0.00/
+     * 96.13, 98.00, 99.71,101.46,103.28,104.95,  0.00, 13.22, 18.77,
+     * 23.14, 26.94, 30.35, 33.55, 36.58, 39.45, 42.19, 44.82, 47.38,
+     * 49.90, 52.29, 54.67, 56.95, 59.18, 61.41, 63.63, 65.77, 67.87,
+     * 69.93, 72.02, 74.04, 76.03, 78.03, 79.97, 81.89, 83.78, 85.71,
+     * 87.56, 89.43, 91.31, 93.11, 94.91, 96.78, 98.48,100.36,102.07,
+     *103.80,105.60,  0.00, 13.97, 19.47, 23.74, 27.43, 30.77, 33.91,
+     * 36.83, 39.63, 42.35, 44.95, 47.48, 49.88, 52.25, 54.57, 56.86,
+     * 59.14, 61.34, 63.45, 65.56, 67.66, 69.78, 71.83, 73.76, 75.71,
+     * 77.77, 79.72, 81.60, 83.50, 85.38, 87.25, 89.19, 91.00, 92.74,
+     * 94.64, 96.37, 98.14,100.08,101.72,103.48,105.15,  0.00, 14.42,
+     * 20.05, 24.35, 28.00, 31.32, 34.40, 37.31, 40.08, 42.73, 45.23,
+     * 47.74, 50.13, 52.51, 54.79, 57.08, 59.29, 61.43, 63.62, 65.73,
+     * 67.75, 69.79, 71.83, 73.81, 75.79, 77.75, 79.66, 81.63, 83.44,
+     * 85.32, 87.18, 89.12, 90.99, 92.77, 94.51, 96.31, 98.14, 99.81,
+     *101.65,103.32,105.07,  0.00, 14.74, 20.47, 24.80, 28.49, 31.79,
+     * 34.88, 37.76, 40.45, 43.09, 45.62, 48.08, 50.46, 52.83, 55.07,
+     * 57.29, 59.50, 61.65, 63.76, 65.89, 67.92, 69.94, 71.98, 73.94,
+     * 75.88, 77.81, 79.87, 81.72, 83.62, 85.47, 87.34, 89.18, 90.95,
+     * 92.82, 94.56, 96.35, 98.21, 99.93,101.72,103.43,105.08,  0.00/
       data (en(i),i=  1027,  1197)/
-     > 14.95, 20.86, 25.24, 28.96, 32.26, 35.29, 38.15, 40.81, 43.45,
-     > 45.98, 48.37, 50.78, 53.06, 55.36, 57.55, 59.75, 61.92, 64.00,
-     > 66.13, 68.10, 70.14, 72.22, 74.15, 76.16, 78.09, 80.00, 81.83,
-     > 83.69, 85.63, 87.45, 89.34, 91.08, 92.95, 94.71, 96.50, 98.30,
-     >100.05,101.77,103.49,105.24,  0.00, 15.13, 21.02, 25.44, 29.20,
-     > 32.54, 35.55, 38.43, 41.12, 43.71, 46.23, 48.64, 51.01, 53.29,
-     > 55.55, 57.76, 59.94, 62.08, 64.20, 66.31, 68.30, 70.34, 72.30,
-     > 74.39, 76.34, 78.25, 80.20, 82.01, 83.90, 85.79, 87.63, 89.47,
-     > 91.33, 93.16, 94.85, 96.77, 98.43,100.30,101.98,103.67,105.40,
-     >  0.00, 15.31, 21.19, 25.64, 29.44, 32.73, 35.79, 38.65, 41.33,
-     > 43.92, 46.42, 48.85, 51.19, 53.51, 55.78, 57.98, 60.15, 62.31,
-     > 64.40, 66.50, 68.55, 70.58, 72.58, 74.51, 76.48, 78.47, 80.38,
-     > 82.26, 84.16, 86.06, 87.85, 89.64, 91.53, 93.30, 95.15, 96.88,
-     > 98.65,100.44,102.21,103.94,105.65,  0.00, 15.35, 21.30, 25.75,
-     > 29.54, 32.88, 35.94, 38.75, 41.49, 44.10, 46.56, 49.00, 51.40,
-     > 53.70, 55.99, 58.21, 60.39, 62.49, 64.62, 66.74, 68.72, 70.83,
-     > 72.78, 74.79, 76.70, 78.69, 80.59, 82.52, 84.35, 86.30, 88.06,
-     > 89.98, 91.72, 93.51, 95.39, 97.14, 98.90,100.65,102.41,104.20,
-     >105.83,  0.00, 15.38, 21.28, 25.80, 29.56, 32.91, 35.98, 38.83/
+     * 14.95, 20.86, 25.24, 28.96, 32.26, 35.29, 38.15, 40.81, 43.45,
+     * 45.98, 48.37, 50.78, 53.06, 55.36, 57.55, 59.75, 61.92, 64.00,
+     * 66.13, 68.10, 70.14, 72.22, 74.15, 76.16, 78.09, 80.00, 81.83,
+     * 83.69, 85.63, 87.45, 89.34, 91.08, 92.95, 94.71, 96.50, 98.30,
+     *100.05,101.77,103.49,105.24,  0.00, 15.13, 21.02, 25.44, 29.20,
+     * 32.54, 35.55, 38.43, 41.12, 43.71, 46.23, 48.64, 51.01, 53.29,
+     * 55.55, 57.76, 59.94, 62.08, 64.20, 66.31, 68.30, 70.34, 72.30,
+     * 74.39, 76.34, 78.25, 80.20, 82.01, 83.90, 85.79, 87.63, 89.47,
+     * 91.33, 93.16, 94.85, 96.77, 98.43,100.30,101.98,103.67,105.40,
+     *  0.00, 15.31, 21.19, 25.64, 29.44, 32.73, 35.79, 38.65, 41.33,
+     * 43.92, 46.42, 48.85, 51.19, 53.51, 55.78, 57.98, 60.15, 62.31,
+     * 64.40, 66.50, 68.55, 70.58, 72.58, 74.51, 76.48, 78.47, 80.38,
+     * 82.26, 84.16, 86.06, 87.85, 89.64, 91.53, 93.30, 95.15, 96.88,
+     * 98.65,100.44,102.21,103.94,105.65,  0.00, 15.35, 21.30, 25.75,
+     * 29.54, 32.88, 35.94, 38.75, 41.49, 44.10, 46.56, 49.00, 51.40,
+     * 53.70, 55.99, 58.21, 60.39, 62.49, 64.62, 66.74, 68.72, 70.83,
+     * 72.78, 74.79, 76.70, 78.69, 80.59, 82.52, 84.35, 86.30, 88.06,
+     * 89.98, 91.72, 93.51, 95.39, 97.14, 98.90,100.65,102.41,104.20,
+     *105.83,  0.00, 15.38, 21.28, 25.80, 29.56, 32.91, 35.98, 38.83/
       data (en(i),i=  1198,  1368)/
-     > 41.53, 44.17, 46.69, 49.12, 51.53, 53.87, 56.12, 58.33, 60.54,
-     > 62.71, 64.85, 66.90, 69.00, 71.00, 72.99, 75.06, 77.03, 78.88,
-     > 80.85, 82.80, 84.71, 86.58, 88.41, 90.27, 92.13, 93.91, 95.68,
-     > 97.42, 99.28,101.19,102.73,104.47,106.07,  0.00, 15.34, 21.24,
-     > 25.70, 29.49, 32.84, 35.89, 38.81, 41.53, 44.17, 46.71, 49.23,
-     > 51.63, 53.93, 56.25, 58.49, 60.72, 62.88, 65.07, 67.16, 69.19,
-     > 71.30, 73.34, 75.28, 77.27, 79.28, 81.64, 83.09, 85.07, 86.93,
-     > 88.81, 90.69, 92.53, 94.22, 96.05, 97.90, 99.65,101.41,103.22,
-     >104.93,106.70,  0.00, 15.25, 21.07, 25.51, 29.30, 32.64, 35.76,
-     > 38.70, 41.48, 44.17, 46.79, 49.26, 51.75, 54.11, 56.46, 58.72,
-     > 61.03, 63.16, 65.34, 67.44, 69.55, 71.68, 73.70, 75.74, 77.66,
-     > 79.62, 81.59, 83.61, 85.42, 87.29, 89.24, 91.05, 92.95, 94.80,
-     > 96.56, 98.40,100.08,101.95,103.64,105.44,107.21,  0.00, 14.99,
-     > 20.73, 25.13, 28.92, 32.37, 35.56, 38.61, 41.46, 44.25, 46.90,
-     > 49.44, 52.00, 54.44, 56.79, 59.14, 61.34, 63.57, 65.76, 67.94,
-     > 70.05, 72.14, 74.23, 76.27, 78.19, 80.20, 82.22, 84.20, 86.11,
-     > 87.98, 89.76, 91.64, 93.56, 95.30, 97.20, 99.01,100.80,102.51,
-     >104.32,105.99,107.80,  0.00, 14.19, 20.02, 24.67, 28.70, 32.35,
-     > 35.70, 38.87, 41.85, 44.66, 47.40, 50.01, 52.53, 55.05, 57.43/
+     * 41.53, 44.17, 46.69, 49.12, 51.53, 53.87, 56.12, 58.33, 60.54,
+     * 62.71, 64.85, 66.90, 69.00, 71.00, 72.99, 75.06, 77.03, 78.88,
+     * 80.85, 82.80, 84.71, 86.58, 88.41, 90.27, 92.13, 93.91, 95.68,
+     * 97.42, 99.28,101.19,102.73,104.47,106.07,  0.00, 15.34, 21.24,
+     * 25.70, 29.49, 32.84, 35.89, 38.81, 41.53, 44.17, 46.71, 49.23,
+     * 51.63, 53.93, 56.25, 58.49, 60.72, 62.88, 65.07, 67.16, 69.19,
+     * 71.30, 73.34, 75.28, 77.27, 79.28, 81.64, 83.09, 85.07, 86.93,
+     * 88.81, 90.69, 92.53, 94.22, 96.05, 97.90, 99.65,101.41,103.22,
+     *104.93,106.70,  0.00, 15.25, 21.07, 25.51, 29.30, 32.64, 35.76,
+     * 38.70, 41.48, 44.17, 46.79, 49.26, 51.75, 54.11, 56.46, 58.72,
+     * 61.03, 63.16, 65.34, 67.44, 69.55, 71.68, 73.70, 75.74, 77.66,
+     * 79.62, 81.59, 83.61, 85.42, 87.29, 89.24, 91.05, 92.95, 94.80,
+     * 96.56, 98.40,100.08,101.95,103.64,105.44,107.21,  0.00, 14.99,
+     * 20.73, 25.13, 28.92, 32.37, 35.56, 38.61, 41.46, 44.25, 46.90,
+     * 49.44, 52.00, 54.44, 56.79, 59.14, 61.34, 63.57, 65.76, 67.94,
+     * 70.05, 72.14, 74.23, 76.27, 78.19, 80.20, 82.22, 84.20, 86.11,
+     * 87.98, 89.76, 91.64, 93.56, 95.30, 97.20, 99.01,100.80,102.51,
+     *104.32,105.99,107.80,  0.00, 14.19, 20.02, 24.67, 28.70, 32.35,
+     * 35.70, 38.87, 41.85, 44.66, 47.40, 50.01, 52.53, 55.05, 57.43/
       data (en(i),i=  1369,  1539)/
-     > 59.75, 62.03, 64.28, 66.48, 68.68, 70.78, 72.96, 74.98, 77.01,
-     > 79.05, 81.02, 83.00, 84.97, 86.92, 88.80, 90.71, 92.59, 94.39,
-     > 96.27, 98.08, 99.88,101.75,103.52,105.29,106.98,108.72,  0.00,
-     > 14.19, 20.05, 24.68, 28.68, 32.24, 35.54, 38.64, 41.60, 44.42,
-     > 47.16, 49.77, 52.31, 54.78, 57.20, 59.54, 61.88, 64.10, 66.36,
-     > 68.52, 70.65, 72.77, 74.79, 76.87, 78.91, 80.89, 82.85, 84.80,
-     > 86.73, 88.68, 90.60, 92.43, 94.28, 96.12, 97.94, 99.78,101.59,
-     >103.35,105.17,106.88,108.67,  0.00, 14.94, 20.82, 25.37, 29.23,
-     > 32.71, 35.97, 38.96, 41.89, 44.66, 47.38, 49.91, 52.46, 54.87,
-     > 57.19, 59.61, 61.87, 64.03, 66.26, 68.40, 70.52, 72.65, 74.66,
-     > 76.72, 78.77, 80.70, 82.66, 84.59, 86.57, 88.40, 90.21, 92.09,
-     > 94.00, 95.81, 97.62, 99.47,101.26,102.99,104.83,106.50,108.34,
-     >  0.00, 15.41, 21.41, 26.01, 29.88, 33.16, 36.55, 39.57, 42.42,
-     > 45.17, 47.75, 50.31, 52.80, 55.19, 57.52, 59.80, 62.06, 64.30,
-     > 66.42, 68.57, 70.69, 72.79, 74.80, 76.85, 78.84, 80.79, 82.76,
-     > 84.64, 86.57, 88.45, 90.14, 92.16, 94.02, 95.84, 97.68, 99.45,
-     >101.20,103.00,104.79,106.48,108.24,  0.00, 15.73, 21.89, 26.55,
-     > 30.44, 33.92, 37.10, 40.09, 42.95, 45.65, 48.22, 50.72, 53.19,
-     > 55.56, 57.87, 60.12, 62.40, 64.55, 66.69, 68.82, 70.95, 73.01/
+     * 59.75, 62.03, 64.28, 66.48, 68.68, 70.78, 72.96, 74.98, 77.01,
+     * 79.05, 81.02, 83.00, 84.97, 86.92, 88.80, 90.71, 92.59, 94.39,
+     * 96.27, 98.08, 99.88,101.75,103.52,105.29,106.98,108.72,  0.00,
+     * 14.19, 20.05, 24.68, 28.68, 32.24, 35.54, 38.64, 41.60, 44.42,
+     * 47.16, 49.77, 52.31, 54.78, 57.20, 59.54, 61.88, 64.10, 66.36,
+     * 68.52, 70.65, 72.77, 74.79, 76.87, 78.91, 80.89, 82.85, 84.80,
+     * 86.73, 88.68, 90.60, 92.43, 94.28, 96.12, 97.94, 99.78,101.59,
+     *103.35,105.17,106.88,108.67,  0.00, 14.94, 20.82, 25.37, 29.23,
+     * 32.71, 35.97, 38.96, 41.89, 44.66, 47.38, 49.91, 52.46, 54.87,
+     * 57.19, 59.61, 61.87, 64.03, 66.26, 68.40, 70.52, 72.65, 74.66,
+     * 76.72, 78.77, 80.70, 82.66, 84.59, 86.57, 88.40, 90.21, 92.09,
+     * 94.00, 95.81, 97.62, 99.47,101.26,102.99,104.83,106.50,108.34,
+     *  0.00, 15.41, 21.41, 26.01, 29.88, 33.16, 36.55, 39.57, 42.42,
+     * 45.17, 47.75, 50.31, 52.80, 55.19, 57.52, 59.80, 62.06, 64.30,
+     * 66.42, 68.57, 70.69, 72.79, 74.80, 76.85, 78.84, 80.79, 82.76,
+     * 84.64, 86.57, 88.45, 90.14, 92.16, 94.02, 95.84, 97.68, 99.45,
+     *101.20,103.00,104.79,106.48,108.24,  0.00, 15.73, 21.89, 26.55,
+     * 30.44, 33.92, 37.10, 40.09, 42.95, 45.65, 48.22, 50.72, 53.19,
+     * 55.56, 57.87, 60.12, 62.40, 64.55, 66.69, 68.82, 70.95, 73.01/
       data (en(i),i=  1540,  1710)/
-     > 75.02, 76.98, 78.98, 80.98, 82.81, 84.83, 86.67, 88.55, 90.40,
-     > 92.27, 94.13, 95.98, 97.74, 99.54,101.08,103.02,104.80,106.54,
-     >108.21,  0.00, 16.00, 22.20, 27.11, 30.86, 34.36, 37.56, 40.55,
-     > 43.33, 45.88, 48.66, 51.14, 53.53, 55.92, 58.26, 60.47, 62.66,
-     > 64.84, 67.03, 69.05, 71.17, 73.21, 75.21, 77.20, 79.17, 81.19,
-     > 83.09, 84.98, 86.87, 88.68, 90.61, 92.42, 94.22, 96.03, 97.85,
-     > 99.64,101.38,103.12,104.91,106.70,108.36,  0.00, 16.19, 22.51,
-     > 27.26, 31.22, 34.77, 37.95, 40.95, 43.73, 46.42, 48.96, 51.49,
-     > 53.95, 56.30, 58.55, 60.79, 62.96, 65.08, 67.27, 69.37, 71.45,
-     > 73.46, 75.49, 77.45, 79.50, 81.36, 83.26, 85.24, 87.06, 88.86,
-     > 90.80, 92.58, 94.40, 96.14, 98.03, 99.81,101.58,103.29,104.99,
-     >106.73,108.49,  0.00, 16.35, 22.69, 27.53, 31.50, 35.04, 38.24,
-     > 41.23, 44.06, 46.73, 49.31, 51.79, 54.18, 56.53, 58.80, 61.06,
-     > 63.25, 65.43, 67.53, 69.64, 71.65, 73.69, 75.65, 77.64, 79.62,
-     > 81.50, 83.45, 85.36, 87.25, 89.08, 90.97, 92.80, 94.62, 96.48,
-     > 98.23, 99.97,101.68,103.53,105.29,106.94,108.67,  0.00, 16.44,
-     > 22.88, 27.71, 31.71, 35.28, 38.50, 41.51, 44.31, 47.00, 49.54,
-     > 52.05, 54.42, 56.76, 59.06, 61.31, 63.48, 65.60, 67.72, 69.84,
-     > 71.89, 73.86, 75.90, 77.88, 79.84, 81.74, 83.67, 85.51, 87.50/
+     * 75.02, 76.98, 78.98, 80.98, 82.81, 84.83, 86.67, 88.55, 90.40,
+     * 92.27, 94.13, 95.98, 97.74, 99.54,101.08,103.02,104.80,106.54,
+     *108.21,  0.00, 16.00, 22.20, 27.11, 30.86, 34.36, 37.56, 40.55,
+     * 43.33, 45.88, 48.66, 51.14, 53.53, 55.92, 58.26, 60.47, 62.66,
+     * 64.84, 67.03, 69.05, 71.17, 73.21, 75.21, 77.20, 79.17, 81.19,
+     * 83.09, 84.98, 86.87, 88.68, 90.61, 92.42, 94.22, 96.03, 97.85,
+     * 99.64,101.38,103.12,104.91,106.70,108.36,  0.00, 16.19, 22.51,
+     * 27.26, 31.22, 34.77, 37.95, 40.95, 43.73, 46.42, 48.96, 51.49,
+     * 53.95, 56.30, 58.55, 60.79, 62.96, 65.08, 67.27, 69.37, 71.45,
+     * 73.46, 75.49, 77.45, 79.50, 81.36, 83.26, 85.24, 87.06, 88.86,
+     * 90.80, 92.58, 94.40, 96.14, 98.03, 99.81,101.58,103.29,104.99,
+     *106.73,108.49,  0.00, 16.35, 22.69, 27.53, 31.50, 35.04, 38.24,
+     * 41.23, 44.06, 46.73, 49.31, 51.79, 54.18, 56.53, 58.80, 61.06,
+     * 63.25, 65.43, 67.53, 69.64, 71.65, 73.69, 75.65, 77.64, 79.62,
+     * 81.50, 83.45, 85.36, 87.25, 89.08, 90.97, 92.80, 94.62, 96.48,
+     * 98.23, 99.97,101.68,103.53,105.29,106.94,108.67,  0.00, 16.44,
+     * 22.88, 27.71, 31.71, 35.28, 38.50, 41.51, 44.31, 47.00, 49.54,
+     * 52.05, 54.42, 56.76, 59.06, 61.31, 63.48, 65.60, 67.72, 69.84,
+     * 71.89, 73.86, 75.90, 77.88, 79.84, 81.74, 83.67, 85.51, 87.50/
       data (en(i),i=  1711,  1881)/
-     > 89.38, 91.13, 92.97, 94.83, 96.63, 98.42,100.23,101.88,103.66,
-     >105.44,107.18,108.93,  0.00, 16.58, 23.01, 27.83, 31.85, 35.45,
-     > 38.67, 41.66, 44.48, 47.17, 49.75, 52.24, 54.61, 56.97, 59.23,
-     > 61.46, 63.67, 65.86, 67.91, 70.02, 72.09, 74.12, 76.09, 78.08,
-     > 80.02, 82.01, 83.89, 85.76, 87.66, 89.52, 91.38, 93.19, 95.09,
-     > 96.83, 98.68,100.41,102.15,103.93,105.69,107.40,109.12,  0.00,
-     > 16.62, 23.04, 27.91, 31.97, 35.54, 38.80, 41.80, 44.63, 47.30,
-     > 49.85, 52.34, 54.75, 57.09, 59.41, 61.65, 63.83, 65.98, 68.10,
-     > 70.21, 72.29, 74.31, 76.31, 78.24, 80.26, 82.21, 84.06, 85.97,
-     > 87.84, 89.71, 91.66, 93.44, 95.22, 97.04, 98.83,100.72,102.37,
-     >104.19,105.89,107.62,109.31,  0.00, 16.66, 23.05, 27.93, 32.01,
-     > 35.60, 38.84, 41.81, 44.67, 47.33, 49.91, 52.40, 54.85, 57.20,
-     > 59.48, 61.73, 63.95, 66.11, 68.25, 70.31, 72.47, 74.47, 76.53,
-     > 78.53, 80.49, 82.44, 84.34, 86.17, 88.18, 89.97, 91.86, 93.68,
-     > 95.56, 97.29, 99.09,100.91,102.70,104.48,106.27,107.91,109.59,
-     >  0.00, 16.62, 23.02, 27.89, 31.93, 35.51, 38.78, 41.80, 44.61,
-     > 47.36, 49.90, 52.45, 54.87, 57.24, 59.52, 61.84, 64.05, 66.22,
-     > 68.45, 70.51, 72.62, 74.60, 76.67, 78.72, 80.71, 82.61, 84.63,
-     > 86.52, 88.27, 90.30, 92.18, 94.01, 95.78, 97.61, 99.46,101.16/
+     * 89.38, 91.13, 92.97, 94.83, 96.63, 98.42,100.23,101.88,103.66,
+     *105.44,107.18,108.93,  0.00, 16.58, 23.01, 27.83, 31.85, 35.45,
+     * 38.67, 41.66, 44.48, 47.17, 49.75, 52.24, 54.61, 56.97, 59.23,
+     * 61.46, 63.67, 65.86, 67.91, 70.02, 72.09, 74.12, 76.09, 78.08,
+     * 80.02, 82.01, 83.89, 85.76, 87.66, 89.52, 91.38, 93.19, 95.09,
+     * 96.83, 98.68,100.41,102.15,103.93,105.69,107.40,109.12,  0.00,
+     * 16.62, 23.04, 27.91, 31.97, 35.54, 38.80, 41.80, 44.63, 47.30,
+     * 49.85, 52.34, 54.75, 57.09, 59.41, 61.65, 63.83, 65.98, 68.10,
+     * 70.21, 72.29, 74.31, 76.31, 78.24, 80.26, 82.21, 84.06, 85.97,
+     * 87.84, 89.71, 91.66, 93.44, 95.22, 97.04, 98.83,100.72,102.37,
+     *104.19,105.89,107.62,109.31,  0.00, 16.66, 23.05, 27.93, 32.01,
+     * 35.60, 38.84, 41.81, 44.67, 47.33, 49.91, 52.40, 54.85, 57.20,
+     * 59.48, 61.73, 63.95, 66.11, 68.25, 70.31, 72.47, 74.47, 76.53,
+     * 78.53, 80.49, 82.44, 84.34, 86.17, 88.18, 89.97, 91.86, 93.68,
+     * 95.56, 97.29, 99.09,100.91,102.70,104.48,106.27,107.91,109.59,
+     *  0.00, 16.62, 23.02, 27.89, 31.93, 35.51, 38.78, 41.80, 44.61,
+     * 47.36, 49.90, 52.45, 54.87, 57.24, 59.52, 61.84, 64.05, 66.22,
+     * 68.45, 70.51, 72.62, 74.60, 76.67, 78.72, 80.71, 82.61, 84.63,
+     * 86.52, 88.27, 90.30, 92.18, 94.01, 95.78, 97.61, 99.46,101.16/
       data (en(i),i=  1882,  2052)/
-     >102.93,104.81,106.46,108.21,110.01,  0.00, 16.57, 22.92, 27.73,
-     > 31.82, 35.37, 38.61, 41.64, 44.55, 47.25, 49.88, 52.41, 54.85,
-     > 57.26, 59.66, 61.95, 64.21, 66.39, 68.54, 70.67, 72.80, 74.86,
-     > 76.93, 78.91, 80.95, 82.93, 84.82, 86.85, 88.68, 90.64, 92.46,
-     > 94.31, 96.22, 98.03, 99.81,101.60,103.28,105.22,106.93,108.68,
-     >110.46,  0.00, 16.47, 22.71, 27.51, 31.54, 35.11, 38.38, 41.43,
-     > 44.37, 47.09, 49.82, 52.40, 54.97, 57.35, 59.76, 62.09, 64.36,
-     > 66.60, 68.77, 70.98, 73.10, 75.19, 77.21, 79.29, 81.34, 83.21,
-     > 85.21, 87.15, 89.04, 90.97, 92.89, 94.73, 96.56, 98.45,100.33,
-     >102.04,103.90,105.61,107.36,109.22,110.86,  0.00, 16.19, 22.33,
-     > 27.09, 31.11, 34.68, 38.05, 41.22, 44.65, 47.06, 49.82, 52.47,
-     > 55.04, 57.50, 59.97, 62.35, 64.64, 66.92, 69.18, 71.36, 73.52,
-     > 75.56, 77.66, 79.76, 81.78, 83.77, 85.74, 87.75, 89.66, 91.52,
-     > 93.45, 95.36, 97.23, 99.09,100.81,102.71,104.51,106.33,108.03,
-     >109.83,111.59,  0.00, 15.39, 21.54, 26.45, 30.70, 34.51, 38.01,
-     > 41.31, 44.39, 47.36, 50.17, 52.85, 55.51, 58.02, 60.50, 62.90,
-     > 65.27, 67.56, 69.77, 72.01, 74.15, 76.32, 78.46, 80.47, 82.52,
-     > 84.57, 86.58, 88.55, 90.47, 92.40, 94.26, 96.17, 98.06, 99.87,
-     >101.78,103.53,105.32,107.15,108.94,110.67,112.51,  0.00, 15.07/
+     *102.93,104.81,106.46,108.21,110.01,  0.00, 16.57, 22.92, 27.73,
+     * 31.82, 35.37, 38.61, 41.64, 44.55, 47.25, 49.88, 52.41, 54.85,
+     * 57.26, 59.66, 61.95, 64.21, 66.39, 68.54, 70.67, 72.80, 74.86,
+     * 76.93, 78.91, 80.95, 82.93, 84.82, 86.85, 88.68, 90.64, 92.46,
+     * 94.31, 96.22, 98.03, 99.81,101.60,103.28,105.22,106.93,108.68,
+     *110.46,  0.00, 16.47, 22.71, 27.51, 31.54, 35.11, 38.38, 41.43,
+     * 44.37, 47.09, 49.82, 52.40, 54.97, 57.35, 59.76, 62.09, 64.36,
+     * 66.60, 68.77, 70.98, 73.10, 75.19, 77.21, 79.29, 81.34, 83.21,
+     * 85.21, 87.15, 89.04, 90.97, 92.89, 94.73, 96.56, 98.45,100.33,
+     *102.04,103.90,105.61,107.36,109.22,110.86,  0.00, 16.19, 22.33,
+     * 27.09, 31.11, 34.68, 38.05, 41.22, 44.65, 47.06, 49.82, 52.47,
+     * 55.04, 57.50, 59.97, 62.35, 64.64, 66.92, 69.18, 71.36, 73.52,
+     * 75.56, 77.66, 79.76, 81.78, 83.77, 85.74, 87.75, 89.66, 91.52,
+     * 93.45, 95.36, 97.23, 99.09,100.81,102.71,104.51,106.33,108.03,
+     *109.83,111.59,  0.00, 15.39, 21.54, 26.45, 30.70, 34.51, 38.01,
+     * 41.31, 44.39, 47.36, 50.17, 52.85, 55.51, 58.02, 60.50, 62.90,
+     * 65.27, 67.56, 69.77, 72.01, 74.15, 76.32, 78.46, 80.47, 82.52,
+     * 84.57, 86.58, 88.55, 90.47, 92.40, 94.26, 96.17, 98.06, 99.87,
+     *101.78,103.53,105.32,107.15,108.94,110.67,112.51,  0.00, 15.07/
       data (en(i),i=  2053,  2223)/
-     > 21.20, 26.05, 30.23, 33.94, 37.37, 40.57, 43.57, 46.49, 49.28,
-     > 51.94, 54.57, 57.09, 59.57, 61.98, 64.30, 66.62, 68.88, 71.08,
-     > 73.28, 75.38, 77.50, 79.59, 81.66, 83.65, 85.66, 87.58, 89.58,
-     > 91.53, 93.41, 95.32, 97.16, 99.04,100.91,102.70,104.50,106.29,
-     >108.06,109.87,111.56,  0.00, 15.86, 22.00, 26.78, 30.90, 34.36,
-     > 37.96, 40.96, 44.02, 46.79, 49.54, 52.20, 54.71, 57.27, 59.70,
-     > 62.03, 64.39, 66.64, 68.85, 71.07, 73.20, 75.38, 77.46, 79.52,
-     > 81.48, 83.50, 85.58, 87.46, 89.35, 91.32, 93.24, 95.06, 96.98,
-     > 98.84,100.60,102.53,104.25,106.13,107.84,109.59,111.31,  0.00,
-     > 16.29, 22.60, 27.45, 31.53, 35.18, 38.48, 41.56, 44.51, 47.35,
-     > 50.04, 52.70, 55.20, 57.66, 60.03, 62.41, 64.65, 66.92, 69.15,
-     > 71.32, 73.46, 75.49, 77.52, 79.62, 81.63, 83.62, 85.64, 87.62,
-     > 89.48, 91.36, 93.31, 95.10, 96.96, 98.77,100.67,102.46,104.20,
-     >106.03,107.73,109.52,111.27,  0.00, 16.63, 23.07, 27.97, 32.11,
-     > 35.77, 39.05, 42.15, 45.08, 47.88, 50.58, 53.16, 55.67, 58.10,
-     > 60.40, 62.78, 65.05, 67.26, 69.45, 71.57, 73.69, 75.82, 77.90,
-     > 79.82, 81.90, 83.87, 85.78, 87.72, 89.61, 91.50, 93.44, 95.22,
-     > 97.10, 98.91,100.77,102.53,104.35,106.07,107.88,109.60,111.40,
-     >  0.00, 16.93, 23.44, 28.45, 32.59, 36.27, 39.55, 42.67, 45.62/
+     * 21.20, 26.05, 30.23, 33.94, 37.37, 40.57, 43.57, 46.49, 49.28,
+     * 51.94, 54.57, 57.09, 59.57, 61.98, 64.30, 66.62, 68.88, 71.08,
+     * 73.28, 75.38, 77.50, 79.59, 81.66, 83.65, 85.66, 87.58, 89.58,
+     * 91.53, 93.41, 95.32, 97.16, 99.04,100.91,102.70,104.50,106.29,
+     *108.06,109.87,111.56,  0.00, 15.86, 22.00, 26.78, 30.90, 34.36,
+     * 37.96, 40.96, 44.02, 46.79, 49.54, 52.20, 54.71, 57.27, 59.70,
+     * 62.03, 64.39, 66.64, 68.85, 71.07, 73.20, 75.38, 77.46, 79.52,
+     * 81.48, 83.50, 85.58, 87.46, 89.35, 91.32, 93.24, 95.06, 96.98,
+     * 98.84,100.60,102.53,104.25,106.13,107.84,109.59,111.31,  0.00,
+     * 16.29, 22.60, 27.45, 31.53, 35.18, 38.48, 41.56, 44.51, 47.35,
+     * 50.04, 52.70, 55.20, 57.66, 60.03, 62.41, 64.65, 66.92, 69.15,
+     * 71.32, 73.46, 75.49, 77.52, 79.62, 81.63, 83.62, 85.64, 87.62,
+     * 89.48, 91.36, 93.31, 95.10, 96.96, 98.77,100.67,102.46,104.20,
+     *106.03,107.73,109.52,111.27,  0.00, 16.63, 23.07, 27.97, 32.11,
+     * 35.77, 39.05, 42.15, 45.08, 47.88, 50.58, 53.16, 55.67, 58.10,
+     * 60.40, 62.78, 65.05, 67.26, 69.45, 71.57, 73.69, 75.82, 77.90,
+     * 79.82, 81.90, 83.87, 85.78, 87.72, 89.61, 91.50, 93.44, 95.22,
+     * 97.10, 98.91,100.77,102.53,104.35,106.07,107.88,109.60,111.40,
+     *  0.00, 16.93, 23.44, 28.45, 32.59, 36.27, 39.55, 42.67, 45.62/
       data (en(i),i=  2224,  2394)/
-     > 48.37, 51.06, 53.63, 56.19, 58.55, 60.87, 63.21, 65.44, 67.62,
-     > 69.77, 71.92, 74.05, 76.14, 78.11, 80.15, 82.10, 84.08, 86.08,
-     > 88.00, 89.85, 91.82, 93.57, 95.40, 97.29, 99.11,100.91,102.71,
-     >104.49,106.21,108.03,109.75,111.47,  0.00, 17.11, 23.75, 28.78,
-     > 33.01, 36.67, 40.03, 43.11, 46.05, 48.83, 51.50, 54.06, 56.56,
-     > 58.96, 61.30, 63.53, 65.80, 68.02, 70.11, 72.30, 74.34, 76.40,
-     > 78.40, 80.47, 82.40, 84.33, 86.32, 88.22, 90.17, 91.95, 93.90,
-     > 95.76, 97.47, 99.28,101.12,102.89,104.63,106.42,108.19,110.00,
-     >111.61,  0.00, 17.27, 24.00, 29.05, 33.29, 37.04, 40.38, 43.51,
-     > 46.43, 49.23, 51.88, 54.46, 56.87, 59.31, 61.62, 63.93, 66.09,
-     > 68.28, 70.43, 72.59, 74.61, 76.65, 78.77, 80.69, 82.72, 84.60,
-     > 86.55, 88.43, 90.36, 92.20, 94.07, 95.88, 97.74, 99.46,101.33,
-     >103.14,104.90,106.69,108.36,110.13,111.87,  0.00, 17.73, 24.36,
-     > 29.30, 33.56, 37.32, 40.68, 43.94, 46.76, 49.53, 52.19, 54.75,
-     > 57.22, 59.68, 62.02, 64.26, 66.45, 68.61, 70.78, 72.94, 74.88,
-     > 76.93, 78.95, 81.00, 82.91, 84.87, 86.88, 88.78, 90.63, 92.48,
-     > 94.29, 96.20, 98.05, 99.81,101.59,103.31,105.13,106.95,108.68,
-     >110.24,112.00,  0.00, 17.56, 24.32, 29.48, 33.81, 37.53, 40.96,
-     > 44.08, 47.02, 49.83, 52.47, 55.02, 57.48, 59.85, 62.20, 64.46/
+     * 48.37, 51.06, 53.63, 56.19, 58.55, 60.87, 63.21, 65.44, 67.62,
+     * 69.77, 71.92, 74.05, 76.14, 78.11, 80.15, 82.10, 84.08, 86.08,
+     * 88.00, 89.85, 91.82, 93.57, 95.40, 97.29, 99.11,100.91,102.71,
+     *104.49,106.21,108.03,109.75,111.47,  0.00, 17.11, 23.75, 28.78,
+     * 33.01, 36.67, 40.03, 43.11, 46.05, 48.83, 51.50, 54.06, 56.56,
+     * 58.96, 61.30, 63.53, 65.80, 68.02, 70.11, 72.30, 74.34, 76.40,
+     * 78.40, 80.47, 82.40, 84.33, 86.32, 88.22, 90.17, 91.95, 93.90,
+     * 95.76, 97.47, 99.28,101.12,102.89,104.63,106.42,108.19,110.00,
+     *111.61,  0.00, 17.27, 24.00, 29.05, 33.29, 37.04, 40.38, 43.51,
+     * 46.43, 49.23, 51.88, 54.46, 56.87, 59.31, 61.62, 63.93, 66.09,
+     * 68.28, 70.43, 72.59, 74.61, 76.65, 78.77, 80.69, 82.72, 84.60,
+     * 86.55, 88.43, 90.36, 92.20, 94.07, 95.88, 97.74, 99.46,101.33,
+     *103.14,104.90,106.69,108.36,110.13,111.87,  0.00, 17.73, 24.36,
+     * 29.30, 33.56, 37.32, 40.68, 43.94, 46.76, 49.53, 52.19, 54.75,
+     * 57.22, 59.68, 62.02, 64.26, 66.45, 68.61, 70.78, 72.94, 74.88,
+     * 76.93, 78.95, 81.00, 82.91, 84.87, 86.88, 88.78, 90.63, 92.48,
+     * 94.29, 96.20, 98.05, 99.81,101.59,103.31,105.13,106.95,108.68,
+     *110.24,112.00,  0.00, 17.56, 24.32, 29.48, 33.81, 37.53, 40.96,
+     * 44.08, 47.02, 49.83, 52.47, 55.02, 57.48, 59.85, 62.20, 64.46/
       data (en(i),i=  2395,  2565)/
-     > 66.70, 68.88, 70.98, 73.08, 75.18, 77.20, 79.17, 81.17, 83.20,
-     > 85.09, 86.98, 88.93, 90.81, 92.63, 94.54, 96.32, 98.13, 99.97,
-     >101.72,103.55,105.24,107.01,108.72,110.55,112.24,  0.00, 17.67,
-     > 24.45, 29.65, 33.95, 37.72, 41.15, 44.28, 47.25, 50.00, 52.69,
-     > 55.22, 57.67, 60.01, 62.38, 64.66, 66.90, 69.06, 71.18, 73.32,
-     > 75.36, 77.38, 79.43, 81.37, 83.40, 85.34, 87.28, 89.08, 90.99,
-     > 92.88, 94.72, 96.57, 98.39,100.19,101.91,103.72,105.44,107.22,
-     >108.92,110.68,112.41,  0.00, 17.73, 24.53, 29.73, 34.09, 37.86,
-     > 41.28, 44.46, 47.40, 50.17, 52.85, 55.39, 57.87, 60.27, 62.53,
-     > 64.84, 67.05, 69.25, 71.40, 73.45, 75.56, 77.60, 79.58, 81.59,
-     > 83.56, 85.48, 87.45, 89.33, 91.19, 93.04, 94.95, 96.79, 98.54,
-     >100.42,102.17,103.96,105.65,107.48,109.28,110.94,112.70,  0.00,
-     > 17.74, 24.58, 29.81, 34.11, 37.94, 41.36, 44.54, 47.49, 50.27,
-     > 52.92, 55.49, 57.94, 60.34, 62.69, 64.96, 67.22, 69.42, 71.53,
-     > 73.62, 75.74, 77.76, 79.77, 81.78, 83.73, 85.71, 87.60, 89.54,
-     > 91.39, 93.23, 94.95, 96.92, 98.82,100.56,102.41,104.11,105.94,
-     >107.63,109.43,111.15,112.85,  0.00, 17.79, 24.62, 29.80, 34.15,
-     > 37.96, 41.40, 44.56, 47.53, 50.32, 53.00, 55.56, 58.04, 60.41,
-     > 62.75, 65.04, 67.28, 69.50, 71.62, 73.73, 75.86, 77.88, 79.94/
+     * 66.70, 68.88, 70.98, 73.08, 75.18, 77.20, 79.17, 81.17, 83.20,
+     * 85.09, 86.98, 88.93, 90.81, 92.63, 94.54, 96.32, 98.13, 99.97,
+     *101.72,103.55,105.24,107.01,108.72,110.55,112.24,  0.00, 17.67,
+     * 24.45, 29.65, 33.95, 37.72, 41.15, 44.28, 47.25, 50.00, 52.69,
+     * 55.22, 57.67, 60.01, 62.38, 64.66, 66.90, 69.06, 71.18, 73.32,
+     * 75.36, 77.38, 79.43, 81.37, 83.40, 85.34, 87.28, 89.08, 90.99,
+     * 92.88, 94.72, 96.57, 98.39,100.19,101.91,103.72,105.44,107.22,
+     *108.92,110.68,112.41,  0.00, 17.73, 24.53, 29.73, 34.09, 37.86,
+     * 41.28, 44.46, 47.40, 50.17, 52.85, 55.39, 57.87, 60.27, 62.53,
+     * 64.84, 67.05, 69.25, 71.40, 73.45, 75.56, 77.60, 79.58, 81.59,
+     * 83.56, 85.48, 87.45, 89.33, 91.19, 93.04, 94.95, 96.79, 98.54,
+     *100.42,102.17,103.96,105.65,107.48,109.28,110.94,112.70,  0.00,
+     * 17.74, 24.58, 29.81, 34.11, 37.94, 41.36, 44.54, 47.49, 50.27,
+     * 52.92, 55.49, 57.94, 60.34, 62.69, 64.96, 67.22, 69.42, 71.53,
+     * 73.62, 75.74, 77.76, 79.77, 81.78, 83.73, 85.71, 87.60, 89.54,
+     * 91.39, 93.23, 94.95, 96.92, 98.82,100.56,102.41,104.11,105.94,
+     *107.63,109.43,111.15,112.85,  0.00, 17.79, 24.62, 29.80, 34.15,
+     * 37.96, 41.40, 44.56, 47.53, 50.32, 53.00, 55.56, 58.04, 60.41,
+     * 62.75, 65.04, 67.28, 69.50, 71.62, 73.73, 75.86, 77.88, 79.94/
       data (en(i),i=  2566,  2736)/
-     > 81.89, 83.90, 85.84, 87.77, 89.69, 91.59, 93.44, 95.31, 97.16,
-     > 98.97,100.84,102.61,104.35,106.17,107.95,109.68,111.34,113.15,
-     >  0.00, 17.83, 24.58, 29.75, 34.11, 37.90, 41.38, 44.52, 47.49,
-     > 50.30, 52.93, 55.55, 58.01, 60.48, 62.77, 65.05, 67.34, 69.54,
-     > 71.70, 73.88, 75.92, 78.04, 80.08, 82.14, 84.03, 86.05, 87.99,
-     > 89.90, 91.82, 93.65, 95.57, 97.43, 99.22,101.05,102.82,104.66,
-     >106.41,108.17,109.99,111.67,113.42,  0.00, 17.74, 24.58, 29.67,
-     > 34.00, 37.81, 41.25, 44.41, 47.36, 50.19, 52.90, 55.48, 57.97,
-     > 60.40, 62.80, 65.11, 67.36, 69.60, 71.79, 73.91, 76.06, 78.14,
-     > 80.16, 82.25, 84.28, 86.24, 88.11, 90.06, 92.01, 93.93, 95.81,
-     > 97.68, 99.53,101.36,103.16,104.95,106.65,108.51,110.25,112.00,
-     >113.67,  0.00, 17.64, 24.38, 29.51, 33.81, 37.59, 41.04, 44.21,
-     > 47.18, 50.02, 52.75, 55.34, 57.88, 60.38, 62.80, 65.12, 67.47,
-     > 69.64, 71.87, 74.06, 76.19, 78.30, 80.39, 82.41, 84.43, 86.43,
-     > 88.38, 90.32, 92.27, 94.19, 96.07, 97.92, 99.82,101.66,103.52,
-     >105.28,107.01,108.85,110.63,112.37,114.07,  0.00, 17.49, 24.15,
-     > 29.25, 33.52, 37.30, 40.73, 43.92, 46.93, 49.81, 52.53, 55.25,
-     > 57.80, 60.34, 62.77, 65.18, 67.48, 69.75, 71.97, 74.19, 76.42,
-     > 78.53, 80.58, 82.70, 84.75, 86.69, 88.72, 90.68, 92.65, 94.53/
+     * 81.89, 83.90, 85.84, 87.77, 89.69, 91.59, 93.44, 95.31, 97.16,
+     * 98.97,100.84,102.61,104.35,106.17,107.95,109.68,111.34,113.15,
+     *  0.00, 17.83, 24.58, 29.75, 34.11, 37.90, 41.38, 44.52, 47.49,
+     * 50.30, 52.93, 55.55, 58.01, 60.48, 62.77, 65.05, 67.34, 69.54,
+     * 71.70, 73.88, 75.92, 78.04, 80.08, 82.14, 84.03, 86.05, 87.99,
+     * 89.90, 91.82, 93.65, 95.57, 97.43, 99.22,101.05,102.82,104.66,
+     *106.41,108.17,109.99,111.67,113.42,  0.00, 17.74, 24.58, 29.67,
+     * 34.00, 37.81, 41.25, 44.41, 47.36, 50.19, 52.90, 55.48, 57.97,
+     * 60.40, 62.80, 65.11, 67.36, 69.60, 71.79, 73.91, 76.06, 78.14,
+     * 80.16, 82.25, 84.28, 86.24, 88.11, 90.06, 92.01, 93.93, 95.81,
+     * 97.68, 99.53,101.36,103.16,104.95,106.65,108.51,110.25,112.00,
+     *113.67,  0.00, 17.64, 24.38, 29.51, 33.81, 37.59, 41.04, 44.21,
+     * 47.18, 50.02, 52.75, 55.34, 57.88, 60.38, 62.80, 65.12, 67.47,
+     * 69.64, 71.87, 74.06, 76.19, 78.30, 80.39, 82.41, 84.43, 86.43,
+     * 88.38, 90.32, 92.27, 94.19, 96.07, 97.92, 99.82,101.66,103.52,
+     *105.28,107.01,108.85,110.63,112.37,114.07,  0.00, 17.49, 24.15,
+     * 29.25, 33.52, 37.30, 40.73, 43.92, 46.93, 49.81, 52.53, 55.25,
+     * 57.80, 60.34, 62.77, 65.18, 67.48, 69.75, 71.97, 74.19, 76.42,
+     * 78.53, 80.58, 82.70, 84.75, 86.69, 88.72, 90.68, 92.65, 94.53/
       data (en(i),i=  2737,  2907)/
-     > 96.50, 98.31,100.19,102.08,103.91,105.73,107.55,109.28,111.06,
-     >112.86,114.62,  0.00, 17.24, 23.78, 28.81, 33.02, 36.84, 40.28,
-     > 43.56, 46.67, 49.60, 52.43, 55.18, 57.83, 60.35, 62.88, 65.32,
-     > 67.70, 70.02, 72.30, 74.50, 76.68, 78.83, 80.95, 83.06, 85.13,
-     > 87.14, 89.20, 91.22, 93.14, 95.01, 97.01, 98.84,100.69,102.56,
-     >104.38,106.27,108.08,109.88,111.65,113.40,115.26,  0.00, 16.45,
-     > 22.92, 28.05, 32.48, 36.44, 40.09, 43.50, 46.71, 49.76, 52.69,
-     > 55.47, 58.17, 60.77, 63.35, 65.79, 68.18, 70.58, 72.84, 75.10,
-     > 77.36, 79.53, 81.63, 83.79, 85.84, 87.86, 89.91, 91.90, 93.84,
-     > 95.84, 97.78, 99.66,101.57,103.36,105.23,107.07,108.90,110.74,
-     >112.48,114.23,116.01,  0.00, 15.89, 22.26, 27.29, 31.62, 35.46,
-     > 39.03, 42.35, 45.46, 48.41, 51.22, 53.99, 56.68, 59.25, 61.75,
-     > 64.22, 66.60, 68.92, 71.24, 73.46, 75.70, 77.84, 80.00, 82.08,
-     > 84.17, 86.24, 88.26, 90.29, 92.19, 94.21, 96.10, 98.02, 99.90,
-     >101.85,103.66,105.55,107.35,109.14,110.97,112.77,114.48,  0.00,
-     > 16.48, 23.07, 28.06, 32.34, 36.13, 39.59, 42.81, 45.88, 48.77,
-     > 52.68, 54.54, 56.93, 59.43, 61.94, 64.32, 66.69, 69.07, 71.27,
-     > 73.48, 75.69, 77.84, 79.95, 82.01, 84.08, 86.18, 88.14, 90.18,
-     > 92.13, 94.03, 95.93, 97.87, 99.79,101.64,103.40,105.31,107.06/
+     * 96.50, 98.31,100.19,102.08,103.91,105.73,107.55,109.28,111.06,
+     *112.86,114.62,  0.00, 17.24, 23.78, 28.81, 33.02, 36.84, 40.28,
+     * 43.56, 46.67, 49.60, 52.43, 55.18, 57.83, 60.35, 62.88, 65.32,
+     * 67.70, 70.02, 72.30, 74.50, 76.68, 78.83, 80.95, 83.06, 85.13,
+     * 87.14, 89.20, 91.22, 93.14, 95.01, 97.01, 98.84,100.69,102.56,
+     *104.38,106.27,108.08,109.88,111.65,113.40,115.26,  0.00, 16.45,
+     * 22.92, 28.05, 32.48, 36.44, 40.09, 43.50, 46.71, 49.76, 52.69,
+     * 55.47, 58.17, 60.77, 63.35, 65.79, 68.18, 70.58, 72.84, 75.10,
+     * 77.36, 79.53, 81.63, 83.79, 85.84, 87.86, 89.91, 91.90, 93.84,
+     * 95.84, 97.78, 99.66,101.57,103.36,105.23,107.07,108.90,110.74,
+     *112.48,114.23,116.01,  0.00, 15.89, 22.26, 27.29, 31.62, 35.46,
+     * 39.03, 42.35, 45.46, 48.41, 51.22, 53.99, 56.68, 59.25, 61.75,
+     * 64.22, 66.60, 68.92, 71.24, 73.46, 75.70, 77.84, 80.00, 82.08,
+     * 84.17, 86.24, 88.26, 90.29, 92.19, 94.21, 96.10, 98.02, 99.90,
+     *101.85,103.66,105.55,107.35,109.14,110.97,112.77,114.48,  0.00,
+     * 16.48, 23.07, 28.06, 32.34, 36.13, 39.59, 42.81, 45.88, 48.77,
+     * 52.68, 54.54, 56.93, 59.43, 61.94, 64.32, 66.69, 69.07, 71.27,
+     * 73.48, 75.69, 77.84, 79.95, 82.01, 84.08, 86.18, 88.14, 90.18,
+     * 92.13, 94.03, 95.93, 97.87, 99.79,101.64,103.40,105.31,107.06/
       data (en(i),i=  2908,  3078)/
-     >108.93,110.63,112.44,114.11,  0.00, 17.09, 23.71, 28.79, 33.05,
-     > 36.83, 40.26, 43.49, 46.47, 49.37, 52.16, 54.80, 57.46, 59.93,
-     > 62.40, 64.74, 67.04, 69.41, 71.62, 73.82, 76.04, 78.14, 80.24,
-     > 82.26, 84.29, 86.36, 88.32, 90.27, 92.29, 94.20, 96.11, 97.94,
-     > 99.85,101.71,103.56,105.29,107.12,108.99,110.66,112.49,114.21,
-     >  0.00, 17.44, 24.16, 29.32, 33.63, 37.47, 40.92, 44.07, 47.04,
-     > 49.95, 52.72, 55.38, 57.91, 60.40, 62.87, 65.20, 67.58, 69.83,
-     > 72.00, 74.16, 76.32, 78.52, 80.50, 82.58, 84.65, 86.61, 88.58,
-     > 90.54, 92.47, 94.37, 96.25, 98.14, 99.99,101.83,103.68,105.52,
-     >107.25,109.05,110.89,112.54,114.29,  0.00, 17.70, 24.51, 29.74,
-     > 34.10, 37.99, 41.43, 44.63, 47.58, 50.49, 53.25, 55.87, 58.43,
-     > 60.93, 63.32, 65.67, 67.94, 70.23, 72.42, 74.61, 76.69, 78.87,
-     > 80.83, 82.90, 84.95, 86.93, 88.88, 90.81, 92.72, 94.66, 96.49,
-     > 98.44,100.28,102.08,103.91,105.74,107.49,109.21,111.03,112.72,
-     >114.53,  0.00, 17.94, 24.83, 30.14, 34.56, 38.43, 41.90, 45.11,
-     > 48.12, 51.00, 53.69, 56.36, 58.91, 61.36, 63.74, 66.12, 68.42,
-     > 70.65, 72.84, 74.98, 77.11, 79.18, 81.25, 83.24, 85.24, 87.20,
-     > 89.19, 91.09, 93.09, 94.97, 96.82, 98.68,100.49,102.36,104.17,
-     >105.90,107.69,109.47,111.25,112.99,114.67,  0.00, 18.11, 25.10/
+     *108.93,110.63,112.44,114.11,  0.00, 17.09, 23.71, 28.79, 33.05,
+     * 36.83, 40.26, 43.49, 46.47, 49.37, 52.16, 54.80, 57.46, 59.93,
+     * 62.40, 64.74, 67.04, 69.41, 71.62, 73.82, 76.04, 78.14, 80.24,
+     * 82.26, 84.29, 86.36, 88.32, 90.27, 92.29, 94.20, 96.11, 97.94,
+     * 99.85,101.71,103.56,105.29,107.12,108.99,110.66,112.49,114.21,
+     *  0.00, 17.44, 24.16, 29.32, 33.63, 37.47, 40.92, 44.07, 47.04,
+     * 49.95, 52.72, 55.38, 57.91, 60.40, 62.87, 65.20, 67.58, 69.83,
+     * 72.00, 74.16, 76.32, 78.52, 80.50, 82.58, 84.65, 86.61, 88.58,
+     * 90.54, 92.47, 94.37, 96.25, 98.14, 99.99,101.83,103.68,105.52,
+     *107.25,109.05,110.89,112.54,114.29,  0.00, 17.70, 24.51, 29.74,
+     * 34.10, 37.99, 41.43, 44.63, 47.58, 50.49, 53.25, 55.87, 58.43,
+     * 60.93, 63.32, 65.67, 67.94, 70.23, 72.42, 74.61, 76.69, 78.87,
+     * 80.83, 82.90, 84.95, 86.93, 88.88, 90.81, 92.72, 94.66, 96.49,
+     * 98.44,100.28,102.08,103.91,105.74,107.49,109.21,111.03,112.72,
+     *114.53,  0.00, 17.94, 24.83, 30.14, 34.56, 38.43, 41.90, 45.11,
+     * 48.12, 51.00, 53.69, 56.36, 58.91, 61.36, 63.74, 66.12, 68.42,
+     * 70.65, 72.84, 74.98, 77.11, 79.18, 81.25, 83.24, 85.24, 87.20,
+     * 89.19, 91.09, 93.09, 94.97, 96.82, 98.68,100.49,102.36,104.17,
+     *105.90,107.69,109.47,111.25,112.99,114.67,  0.00, 18.11, 25.10/
       data (en(i),i=  3079,  3249)/
-     > 30.44, 34.92, 38.78, 42.29, 45.52, 48.55, 51.46, 54.17, 56.82,
-     > 59.39, 61.76, 64.17, 66.51, 68.81, 71.02, 73.17, 75.31, 77.46,
-     > 79.52, 81.56, 83.56, 85.63, 87.56, 89.46, 91.43, 93.28, 95.22,
-     > 97.10, 98.97,100.80,102.58,104.34,106.13,107.91,109.71,111.45,
-     >113.19,114.87,  0.00, 18.26, 25.30, 30.69, 35.20, 39.12, 42.62,
-     > 45.87, 48.92, 51.80, 54.56, 57.18, 59.72, 62.17, 64.55, 66.88,
-     > 69.14, 71.39, 73.53, 75.67, 77.81, 79.91, 81.91, 83.91, 85.91,
-     > 87.83, 89.79, 91.66, 93.61, 95.47, 97.35, 99.16,100.99,102.77,
-     >104.66,106.44,108.18,109.93,111.68,113.36,115.11,  0.00, 18.43,
-     > 25.49, 30.92, 35.44, 39.41, 42.94, 46.21, 49.27, 52.14, 54.90,
-     > 57.52, 60.06, 62.53, 64.87, 67.20, 69.49, 71.69, 73.87, 76.03,
-     > 78.08, 80.11, 82.19, 84.20, 86.18, 88.09, 90.07, 91.96, 93.81,
-     > 95.69, 97.57, 99.40,101.23,103.04,104.88,106.58,108.39,110.13,
-     >111.90,113.69,115.34,  0.00, 18.53, 25.65, 31.08, 35.65, 39.64,
-     > 43.17, 46.44, 49.54, 52.44, 55.18, 57.78, 60.33, 62.80, 65.15,
-     > 67.48, 69.77, 71.96, 74.16, 76.23, 78.37, 80.39, 82.46, 84.47,
-     > 86.44, 88.41, 90.27, 92.17, 94.13, 95.97, 97.82, 99.65,101.41,
-     >103.34,105.14,106.89,108.59,110.43,112.12,113.82,115.57,  0.00,
-     > 18.62, 25.75, 31.25, 35.81, 39.79, 43.37, 46.66, 49.75, 52.69/
+     * 30.44, 34.92, 38.78, 42.29, 45.52, 48.55, 51.46, 54.17, 56.82,
+     * 59.39, 61.76, 64.17, 66.51, 68.81, 71.02, 73.17, 75.31, 77.46,
+     * 79.52, 81.56, 83.56, 85.63, 87.56, 89.46, 91.43, 93.28, 95.22,
+     * 97.10, 98.97,100.80,102.58,104.34,106.13,107.91,109.71,111.45,
+     *113.19,114.87,  0.00, 18.26, 25.30, 30.69, 35.20, 39.12, 42.62,
+     * 45.87, 48.92, 51.80, 54.56, 57.18, 59.72, 62.17, 64.55, 66.88,
+     * 69.14, 71.39, 73.53, 75.67, 77.81, 79.91, 81.91, 83.91, 85.91,
+     * 87.83, 89.79, 91.66, 93.61, 95.47, 97.35, 99.16,100.99,102.77,
+     *104.66,106.44,108.18,109.93,111.68,113.36,115.11,  0.00, 18.43,
+     * 25.49, 30.92, 35.44, 39.41, 42.94, 46.21, 49.27, 52.14, 54.90,
+     * 57.52, 60.06, 62.53, 64.87, 67.20, 69.49, 71.69, 73.87, 76.03,
+     * 78.08, 80.11, 82.19, 84.20, 86.18, 88.09, 90.07, 91.96, 93.81,
+     * 95.69, 97.57, 99.40,101.23,103.04,104.88,106.58,108.39,110.13,
+     *111.90,113.69,115.34,  0.00, 18.53, 25.65, 31.08, 35.65, 39.64,
+     * 43.17, 46.44, 49.54, 52.44, 55.18, 57.78, 60.33, 62.80, 65.15,
+     * 67.48, 69.77, 71.96, 74.16, 76.23, 78.37, 80.39, 82.46, 84.47,
+     * 86.44, 88.41, 90.27, 92.17, 94.13, 95.97, 97.82, 99.65,101.41,
+     *103.34,105.14,106.89,108.59,110.43,112.12,113.82,115.57,  0.00,
+     * 18.62, 25.75, 31.25, 35.81, 39.79, 43.37, 46.66, 49.75, 52.69/
       data (en(i),i=  3250,  3420)/
-     > 55.43, 58.04, 60.57, 63.06, 65.42, 67.73, 70.00, 72.24, 74.40,
-     > 76.48, 78.55, 80.63, 82.68, 84.65, 86.58, 88.58, 90.52, 92.43,
-     > 94.34, 96.21, 98.05, 99.83,101.71,103.54,105.29,107.10,108.86,
-     >110.62,112.31,114.01,115.71,  0.00, 18.71, 25.88, 31.36, 35.95,
-     > 39.92, 43.52, 46.85, 49.92, 52.82, 55.59, 58.23, 60.77, 63.26,
-     > 65.62, 67.92, 70.14, 72.38, 74.54, 76.69, 78.77, 80.84, 82.84,
-     > 84.85, 86.84, 88.79, 90.70, 92.55, 94.59, 96.37, 98.26,100.00,
-     >101.86,103.66,105.53,107.31,109.00,110.74,112.54,114.21,115.96,
-     >  0.00, 18.73, 25.96, 31.45, 36.03, 40.01, 43.62, 46.96, 50.04,
-     > 52.96, 55.75, 58.35, 60.90, 63.36, 65.74, 68.07, 70.31, 72.57,
-     > 74.73, 76.81, 78.95, 80.98, 83.04, 85.04, 87.00, 88.99, 90.96,
-     > 92.75, 94.70, 96.57, 98.42,100.23,102.08,103.86,105.67,107.40,
-     >109.16,110.89,112.73,114.44,116.17,  0.00, 18.81, 25.97, 31.47,
-     > 36.05, 40.07, 43.70, 47.04, 50.15, 53.04, 55.82, 58.45, 60.98,
-     > 63.46, 65.86, 68.15, 70.46, 72.67, 74.90, 76.93, 79.04, 81.17,
-     > 83.13, 85.15, 87.20, 89.12, 91.07, 92.93, 94.83, 96.72, 98.63,
-     >100.41,102.25,104.09,105.91,107.66,109.40,111.19,112.93,114.62,
-     >116.33,  0.00, 18.82, 25.99, 31.73, 36.07, 40.08, 43.73, 47.08,
-     > 50.14, 53.07, 55.86, 58.48, 61.04, 63.49, 65.89, 68.21, 70.49/
+     * 55.43, 58.04, 60.57, 63.06, 65.42, 67.73, 70.00, 72.24, 74.40,
+     * 76.48, 78.55, 80.63, 82.68, 84.65, 86.58, 88.58, 90.52, 92.43,
+     * 94.34, 96.21, 98.05, 99.83,101.71,103.54,105.29,107.10,108.86,
+     *110.62,112.31,114.01,115.71,  0.00, 18.71, 25.88, 31.36, 35.95,
+     * 39.92, 43.52, 46.85, 49.92, 52.82, 55.59, 58.23, 60.77, 63.26,
+     * 65.62, 67.92, 70.14, 72.38, 74.54, 76.69, 78.77, 80.84, 82.84,
+     * 84.85, 86.84, 88.79, 90.70, 92.55, 94.59, 96.37, 98.26,100.00,
+     *101.86,103.66,105.53,107.31,109.00,110.74,112.54,114.21,115.96,
+     *  0.00, 18.73, 25.96, 31.45, 36.03, 40.01, 43.62, 46.96, 50.04,
+     * 52.96, 55.75, 58.35, 60.90, 63.36, 65.74, 68.07, 70.31, 72.57,
+     * 74.73, 76.81, 78.95, 80.98, 83.04, 85.04, 87.00, 88.99, 90.96,
+     * 92.75, 94.70, 96.57, 98.42,100.23,102.08,103.86,105.67,107.40,
+     *109.16,110.89,112.73,114.44,116.17,  0.00, 18.81, 25.97, 31.47,
+     * 36.05, 40.07, 43.70, 47.04, 50.15, 53.04, 55.82, 58.45, 60.98,
+     * 63.46, 65.86, 68.15, 70.46, 72.67, 74.90, 76.93, 79.04, 81.17,
+     * 83.13, 85.15, 87.20, 89.12, 91.07, 92.93, 94.83, 96.72, 98.63,
+     *100.41,102.25,104.09,105.91,107.66,109.40,111.19,112.93,114.62,
+     *116.33,  0.00, 18.82, 25.99, 31.73, 36.07, 40.08, 43.73, 47.08,
+     * 50.14, 53.07, 55.86, 58.48, 61.04, 63.49, 65.89, 68.21, 70.49/
       data (en(i),i=  3421,  3591)/
-     > 72.74, 74.91, 77.07, 79.16, 81.20, 83.24, 85.31, 87.26, 89.22,
-     > 91.15, 93.10, 95.00, 96.86, 98.78,100.56,102.46,104.25,106.02,
-     >107.83,109.65,111.39,113.14,114.82,116.59,  0.00, 18.80, 25.97,
-     > 31.48, 36.06, 40.08, 43.70, 47.02, 50.13, 53.04, 55.81, 58.49,
-     > 61.02, 63.51, 65.90, 68.26, 70.52, 72.75, 74.95, 77.11, 79.23,
-     > 81.33, 83.34, 85.41, 87.41, 89.39, 91.35, 93.24, 95.18, 97.03,
-     > 98.94,100.75,102.69,104.41,106.27,108.01,109.84,111.57,113.39,
-     >115.08,116.88,  0.00, 18.78, 25.91, 31.38, 35.95, 40.00, 43.63,
-     > 46.95, 50.04, 52.93, 55.73, 58.39, 60.96, 63.46, 65.86, 68.23,
-     > 70.51, 72.80, 74.95, 77.11, 79.27, 81.36, 83.48, 85.48, 87.45,
-     > 89.47, 91.43, 93.44, 95.34, 97.18, 99.06,101.04,102.82,104.60,
-     >106.48,108.23,110.09,111.84,113.56,115.38,117.12,  0.00, 18.74,
-     > 25.81, 31.26, 35.83, 39.85, 43.46, 46.75, 49.86, 52.79, 55.59,
-     > 58.25, 60.83, 63.36, 65.77, 68.16, 70.50, 72.74, 74.97, 77.20,
-     > 79.33, 81.45, 83.55, 85.56, 87.65, 89.57, 91.58, 93.52, 95.53,
-     > 97.39, 99.32,101.15,103.02,104.91,106.72,108.55,110.33,112.08,
-     >113.79,115.58,117.41,  0.00, 18.65, 25.68, 31.04, 35.61, 39.62,
-     > 43.21, 46.53, 49.62, 52.54, 55.39, 58.03, 60.69, 63.20, 65.68,
-     > 68.09, 70.43, 72.74, 75.01, 77.21, 79.37, 81.51, 83.59, 85.64/
+     * 72.74, 74.91, 77.07, 79.16, 81.20, 83.24, 85.31, 87.26, 89.22,
+     * 91.15, 93.10, 95.00, 96.86, 98.78,100.56,102.46,104.25,106.02,
+     *107.83,109.65,111.39,113.14,114.82,116.59,  0.00, 18.80, 25.97,
+     * 31.48, 36.06, 40.08, 43.70, 47.02, 50.13, 53.04, 55.81, 58.49,
+     * 61.02, 63.51, 65.90, 68.26, 70.52, 72.75, 74.95, 77.11, 79.23,
+     * 81.33, 83.34, 85.41, 87.41, 89.39, 91.35, 93.24, 95.18, 97.03,
+     * 98.94,100.75,102.69,104.41,106.27,108.01,109.84,111.57,113.39,
+     *115.08,116.88,  0.00, 18.78, 25.91, 31.38, 35.95, 40.00, 43.63,
+     * 46.95, 50.04, 52.93, 55.73, 58.39, 60.96, 63.46, 65.86, 68.23,
+     * 70.51, 72.80, 74.95, 77.11, 79.27, 81.36, 83.48, 85.48, 87.45,
+     * 89.47, 91.43, 93.44, 95.34, 97.18, 99.06,101.04,102.82,104.60,
+     *106.48,108.23,110.09,111.84,113.56,115.38,117.12,  0.00, 18.74,
+     * 25.81, 31.26, 35.83, 39.85, 43.46, 46.75, 49.86, 52.79, 55.59,
+     * 58.25, 60.83, 63.36, 65.77, 68.16, 70.50, 72.74, 74.97, 77.20,
+     * 79.33, 81.45, 83.55, 85.56, 87.65, 89.57, 91.58, 93.52, 95.53,
+     * 97.39, 99.32,101.15,103.02,104.91,106.72,108.55,110.33,112.08,
+     *113.79,115.58,117.41,  0.00, 18.65, 25.68, 31.04, 35.61, 39.62,
+     * 43.21, 46.53, 49.62, 52.54, 55.39, 58.03, 60.69, 63.20, 65.68,
+     * 68.09, 70.43, 72.74, 75.01, 77.21, 79.37, 81.51, 83.59, 85.64/
       data (en(i),i=  3592,  3762)/
-     > 87.79, 89.80, 91.78, 93.74, 95.70, 97.65, 99.53,101.43,103.29,
-     >105.19,106.99,108.76,110.64,112.51,114.11,115.98,117.80,  0.00,
-     > 18.48, 25.44, 30.80, 35.28, 39.25, 42.84, 46.16, 49.28, 52.27,
-     > 55.10, 57.87, 60.51, 63.09, 65.61, 68.04, 70.44, 72.74, 75.06,
-     > 77.32, 79.50, 81.65, 83.78, 85.89, 87.91, 90.00, 92.05, 94.04,
-     > 96.00, 97.90, 99.87,101.76,103.60,105.54,107.37,109.16,110.97,
-     >112.79,114.66,116.46,118.16,  0.00, 18.20, 25.05, 30.34, 34.77,
-     > 38.72, 42.33, 45.72, 48.88, 51.95, 54.89, 57.70, 60.42, 63.03,
-     > 65.57, 68.11, 70.53, 72.93, 75.20, 77.47, 79.70, 81.94, 84.07,
-     > 86.22, 88.30, 90.36, 92.44, 94.44, 96.37, 98.40,100.28,102.19,
-     >104.11,105.94,107.87,109.73,111.57,113.32,115.19,116.96,118.66,
-     >  0.00, 17.44, 24.17, 29.50, 34.12, 38.24, 42.06, 45.55, 48.87,
-     > 52.00, 54.99, 57.89, 60.69, 63.34, 65.96, 68.52, 70.96, 73.36,
-     > 75.72, 78.02, 80.31, 82.54, 84.68, 86.89, 88.93, 91.00, 93.10,
-     > 95.09, 97.11, 99.11,101.02,102.95,104.90,106.81,108.66,110.49,
-     >112.39,114.19,115.92,117.80,119.61,  0.00, 16.63, 23.23, 28.45,
-     > 32.93, 36.93, 40.58, 43.98, 47.19, 50.21, 53.09, 55.88, 58.58,
-     > 61.25, 63.82, 66.28, 68.75, 71.14, 73.46, 75.76, 78.01, 80.18,
-     > 82.37, 84.54, 86.63, 88.68, 90.73, 92.80, 94.73, 96.74, 98.72/
+     * 87.79, 89.80, 91.78, 93.74, 95.70, 97.65, 99.53,101.43,103.29,
+     *105.19,106.99,108.76,110.64,112.51,114.11,115.98,117.80,  0.00,
+     * 18.48, 25.44, 30.80, 35.28, 39.25, 42.84, 46.16, 49.28, 52.27,
+     * 55.10, 57.87, 60.51, 63.09, 65.61, 68.04, 70.44, 72.74, 75.06,
+     * 77.32, 79.50, 81.65, 83.78, 85.89, 87.91, 90.00, 92.05, 94.04,
+     * 96.00, 97.90, 99.87,101.76,103.60,105.54,107.37,109.16,110.97,
+     *112.79,114.66,116.46,118.16,  0.00, 18.20, 25.05, 30.34, 34.77,
+     * 38.72, 42.33, 45.72, 48.88, 51.95, 54.89, 57.70, 60.42, 63.03,
+     * 65.57, 68.11, 70.53, 72.93, 75.20, 77.47, 79.70, 81.94, 84.07,
+     * 86.22, 88.30, 90.36, 92.44, 94.44, 96.37, 98.40,100.28,102.19,
+     *104.11,105.94,107.87,109.73,111.57,113.32,115.19,116.96,118.66,
+     *  0.00, 17.44, 24.17, 29.50, 34.12, 38.24, 42.06, 45.55, 48.87,
+     * 52.00, 54.99, 57.89, 60.69, 63.34, 65.96, 68.52, 70.96, 73.36,
+     * 75.72, 78.02, 80.31, 82.54, 84.68, 86.89, 88.93, 91.00, 93.10,
+     * 95.09, 97.11, 99.11,101.02,102.95,104.90,106.81,108.66,110.49,
+     *112.39,114.19,115.92,117.80,119.61,  0.00, 16.63, 23.23, 28.45,
+     * 32.93, 36.93, 40.58, 43.98, 47.19, 50.21, 53.09, 55.88, 58.58,
+     * 61.25, 63.82, 66.28, 68.75, 71.14, 73.46, 75.76, 78.01, 80.18,
+     * 82.37, 84.54, 86.63, 88.68, 90.73, 92.80, 94.73, 96.74, 98.72/
       data (en(i),i=  3763,  3933)/
-     >100.69,102.52,104.42,106.34,108.16,110.05,111.83,113.72,115.45,
-     >117.24,  0.00, 17.35, 24.11, 29.26, 33.64, 37.61, 41.19, 44.52,
-     > 47.62, 50.62, 53.44, 56.23, 58.95, 61.52, 63.36, 66.50, 68.93,
-     > 71.21, 73.55, 75.86, 78.04, 80.19, 82.42, 84.52, 86.57, 88.67,
-     > 90.64, 92.75, 94.67, 96.34, 98.58,100.53,102.43,104.25,106.19,
-     >108.00,109.87,111.70,113.42,115.31,116.99,  0.00, 17.95, 24.68,
-     > 29.93, 34.41, 38.33, 41.91, 45.21, 48.28, 51.26, 54.03, 56.80,
-     > 59.43, 62.08, 64.54, 66.99, 69.35, 71.69, 73.98, 76.20, 78.40,
-     > 80.60, 82.67, 84.78, 86.86, 88.94, 90.97, 92.93, 94.83, 96.81,
-     > 98.72,100.63,102.58,104.47,106.24,108.15,109.90,111.71,113.49,
-     >115.31,117.05,  0.00, 18.31, 25.16, 30.50, 35.06, 38.98, 42.57,
-     > 45.85, 49.03, 51.90, 54.74, 57.43, 60.06, 62.66, 65.11, 67.46,
-     > 69.86, 72.16, 74.45, 76.65, 78.84, 80.98, 83.11, 85.26, 87.22,
-     > 89.33, 91.29, 93.24, 95.18, 97.06, 99.03,100.95,102.79,104.60,
-     >106.44,108.29,110.06,111.95,113.69,115.49,117.34,  0.00, 18.53,
-     > 25.54, 30.95, 35.52, 39.52, 43.11, 46.45, 49.52, 52.45, 55.27,
-     > 57.99, 60.62, 63.12, 65.62, 68.04, 70.36, 72.61, 74.93, 77.12,
-     > 79.25, 81.37, 83.43, 85.59, 87.57, 89.60, 91.58, 93.55, 95.46,
-     > 97.39, 99.34,101.22,103.05,104.92,106.70,108.51,110.34,112.12/
+     *100.69,102.52,104.42,106.34,108.16,110.05,111.83,113.72,115.45,
+     *117.24,  0.00, 17.35, 24.11, 29.26, 33.64, 37.61, 41.19, 44.52,
+     * 47.62, 50.62, 53.44, 56.23, 58.95, 61.52, 63.36, 66.50, 68.93,
+     * 71.21, 73.55, 75.86, 78.04, 80.19, 82.42, 84.52, 86.57, 88.67,
+     * 90.64, 92.75, 94.67, 96.34, 98.58,100.53,102.43,104.25,106.19,
+     *108.00,109.87,111.70,113.42,115.31,116.99,  0.00, 17.95, 24.68,
+     * 29.93, 34.41, 38.33, 41.91, 45.21, 48.28, 51.26, 54.03, 56.80,
+     * 59.43, 62.08, 64.54, 66.99, 69.35, 71.69, 73.98, 76.20, 78.40,
+     * 80.60, 82.67, 84.78, 86.86, 88.94, 90.97, 92.93, 94.83, 96.81,
+     * 98.72,100.63,102.58,104.47,106.24,108.15,109.90,111.71,113.49,
+     *115.31,117.05,  0.00, 18.31, 25.16, 30.50, 35.06, 38.98, 42.57,
+     * 45.85, 49.03, 51.90, 54.74, 57.43, 60.06, 62.66, 65.11, 67.46,
+     * 69.86, 72.16, 74.45, 76.65, 78.84, 80.98, 83.11, 85.26, 87.22,
+     * 89.33, 91.29, 93.24, 95.18, 97.06, 99.03,100.95,102.79,104.60,
+     *106.44,108.29,110.06,111.95,113.69,115.49,117.34,  0.00, 18.53,
+     * 25.54, 30.95, 35.52, 39.52, 43.11, 46.45, 49.52, 52.45, 55.27,
+     * 57.99, 60.62, 63.12, 65.62, 68.04, 70.36, 72.61, 74.93, 77.12,
+     * 79.25, 81.37, 83.43, 85.59, 87.57, 89.60, 91.58, 93.55, 95.46,
+     * 97.39, 99.34,101.22,103.05,104.92,106.70,108.51,110.34,112.12/
       data (en(i),i=  3934,  4104)/
-     >113.98,115.66,117.47,  0.00, 18.68, 26.29, 31.36, 36.24, 39.97,
-     > 43.62, 46.95, 50.27, 52.98, 55.79, 58.53, 61.15, 63.65, 66.12,
-     > 68.65, 70.84, 73.04, 75.30, 77.48, 79.64, 81.77, 83.90, 86.05,
-     > 87.98, 90.13, 91.89, 93.90, 95.78, 97.76, 99.58,101.49,103.52,
-     >105.22,107.03,108.84,110.62,112.43,114.08,115.92,117.67,  0.00,
-     > 18.91, 26.20, 31.75, 36.34, 40.39, 44.03, 47.42, 50.54, 53.48,
-     > 56.30, 59.02, 61.68, 64.09, 66.56, 68.95, 71.29, 73.51, 75.73,
-     > 77.99, 80.15, 82.25, 84.24, 86.31, 88.30, 90.36, 92.27, 94.22,
-     > 96.21, 98.08, 99.94,101.81,103.67,105.51,107.34,109.13,110.83,
-     >112.65,114.45,116.12,117.99,  0.00, 19.00, 26.32, 31.92, 36.64,
-     > 40.72, 44.38, 47.73, 50.91, 53.85, 56.72, 59.44, 62.04, 64.54,
-     > 66.93, 69.34, 71.69, 73.93, 76.17, 78.32, 80.49, 82.56, 84.61,
-     > 86.65, 88.66, 90.64, 92.63, 94.57, 96.48, 98.43,100.27,102.15,
-     >103.92,105.76,107.52,109.36,111.11,112.87,114.74,116.37,118.11,
-     >  0.00, 19.15, 26.53, 32.20, 36.87, 41.03, 44.72, 48.13, 51.24,
-     > 54.26, 57.05, 59.80, 62.42, 64.88, 67.39, 69.76, 72.06, 74.30,
-     > 76.52, 78.71, 80.79, 82.90, 84.94, 87.00, 89.02, 91.00, 92.95,
-     > 94.88, 96.74, 98.66,100.55,102.32,104.20,106.02,107.90,109.68,
-     >111.38,113.16,114.97,116.70,118.36,  0.00, 19.29, 26.69, 32.39/
+     *113.98,115.66,117.47,  0.00, 18.68, 26.29, 31.36, 36.24, 39.97,
+     * 43.62, 46.95, 50.27, 52.98, 55.79, 58.53, 61.15, 63.65, 66.12,
+     * 68.65, 70.84, 73.04, 75.30, 77.48, 79.64, 81.77, 83.90, 86.05,
+     * 87.98, 90.13, 91.89, 93.90, 95.78, 97.76, 99.58,101.49,103.52,
+     *105.22,107.03,108.84,110.62,112.43,114.08,115.92,117.67,  0.00,
+     * 18.91, 26.20, 31.75, 36.34, 40.39, 44.03, 47.42, 50.54, 53.48,
+     * 56.30, 59.02, 61.68, 64.09, 66.56, 68.95, 71.29, 73.51, 75.73,
+     * 77.99, 80.15, 82.25, 84.24, 86.31, 88.30, 90.36, 92.27, 94.22,
+     * 96.21, 98.08, 99.94,101.81,103.67,105.51,107.34,109.13,110.83,
+     *112.65,114.45,116.12,117.99,  0.00, 19.00, 26.32, 31.92, 36.64,
+     * 40.72, 44.38, 47.73, 50.91, 53.85, 56.72, 59.44, 62.04, 64.54,
+     * 66.93, 69.34, 71.69, 73.93, 76.17, 78.32, 80.49, 82.56, 84.61,
+     * 86.65, 88.66, 90.64, 92.63, 94.57, 96.48, 98.43,100.27,102.15,
+     *103.92,105.76,107.52,109.36,111.11,112.87,114.74,116.37,118.11,
+     *  0.00, 19.15, 26.53, 32.20, 36.87, 41.03, 44.72, 48.13, 51.24,
+     * 54.26, 57.05, 59.80, 62.42, 64.88, 67.39, 69.76, 72.06, 74.30,
+     * 76.52, 78.71, 80.79, 82.90, 84.94, 87.00, 89.02, 91.00, 92.95,
+     * 94.88, 96.74, 98.66,100.55,102.32,104.20,106.02,107.90,109.68,
+     *111.38,113.16,114.97,116.70,118.36,  0.00, 19.29, 26.69, 32.39/
       data (en(i),i=  4105,  4275)/
-     > 37.12, 41.24, 45.03, 48.40, 51.56, 54.56, 57.40, 60.13, 62.77,
-     > 65.27, 67.71, 70.08, 72.40, 74.62, 76.82, 79.02, 81.09, 83.21,
-     > 85.27, 87.28, 89.36, 91.30, 93.23, 95.15, 97.08, 98.96,100.80,
-     >102.63,104.54,106.27,108.15,109.86,111.65,113.45,115.25,116.96,
-     >118.68,  0.00, 19.45, 26.82, 32.54, 37.31, 41.47, 45.25, 48.65,
-     > 51.77, 54.84, 57.66, 60.43, 63.05, 65.59, 67.98, 70.39, 72.70,
-     > 74.92, 77.12, 79.29, 81.40, 83.55, 85.60, 87.63, 89.54, 91.62,
-     > 93.49, 95.41, 97.42, 99.19,101.05,102.99,104.73,106.54,108.33,
-     >110.18,111.87,113.65,115.43,117.17,118.86,  0.00, 19.52, 26.98,
-     > 32.72, 37.50, 41.70, 45.43, 48.86, 52.05, 55.11, 57.96, 60.67,
-     > 63.28, 65.83, 68.27, 70.62, 72.96, 75.23, 77.40, 79.55, 81.68,
-     > 83.80, 85.80, 87.80, 89.81, 91.80, 93.81, 95.68, 97.51, 99.40,
-     >101.28,103.18,105.00,106.77,108.62,110.31,112.11,113.86,115.61,
-     >117.36,119.15,  0.00, 19.63, 27.09, 32.82, 37.65, 41.82, 45.59,
-     > 49.01, 52.22, 55.30, 58.13, 60.86, 63.50, 66.01, 68.48, 70.82,
-     > 73.16, 75.43, 77.57, 79.76, 81.91, 83.95, 86.04, 88.07, 90.06,
-     > 92.03, 93.96, 95.86, 97.78, 99.61,101.50,103.42,105.20,106.98,
-     >108.85,110.53,112.32,114.15,115.77,117.61,119.25,  0.00, 19.65,
-     > 27.17, 32.89, 37.74, 41.95, 45.73, 49.16, 52.38, 55.45, 58.33/
+     * 37.12, 41.24, 45.03, 48.40, 51.56, 54.56, 57.40, 60.13, 62.77,
+     * 65.27, 67.71, 70.08, 72.40, 74.62, 76.82, 79.02, 81.09, 83.21,
+     * 85.27, 87.28, 89.36, 91.30, 93.23, 95.15, 97.08, 98.96,100.80,
+     *102.63,104.54,106.27,108.15,109.86,111.65,113.45,115.25,116.96,
+     *118.68,  0.00, 19.45, 26.82, 32.54, 37.31, 41.47, 45.25, 48.65,
+     * 51.77, 54.84, 57.66, 60.43, 63.05, 65.59, 67.98, 70.39, 72.70,
+     * 74.92, 77.12, 79.29, 81.40, 83.55, 85.60, 87.63, 89.54, 91.62,
+     * 93.49, 95.41, 97.42, 99.19,101.05,102.99,104.73,106.54,108.33,
+     *110.18,111.87,113.65,115.43,117.17,118.86,  0.00, 19.52, 26.98,
+     * 32.72, 37.50, 41.70, 45.43, 48.86, 52.05, 55.11, 57.96, 60.67,
+     * 63.28, 65.83, 68.27, 70.62, 72.96, 75.23, 77.40, 79.55, 81.68,
+     * 83.80, 85.80, 87.80, 89.81, 91.80, 93.81, 95.68, 97.51, 99.40,
+     *101.28,103.18,105.00,106.77,108.62,110.31,112.11,113.86,115.61,
+     *117.36,119.15,  0.00, 19.63, 27.09, 32.82, 37.65, 41.82, 45.59,
+     * 49.01, 52.22, 55.30, 58.13, 60.86, 63.50, 66.01, 68.48, 70.82,
+     * 73.16, 75.43, 77.57, 79.76, 81.91, 83.95, 86.04, 88.07, 90.06,
+     * 92.03, 93.96, 95.86, 97.78, 99.61,101.50,103.42,105.20,106.98,
+     *108.85,110.53,112.32,114.15,115.77,117.61,119.25,  0.00, 19.65,
+     * 27.17, 32.89, 37.74, 41.95, 45.73, 49.16, 52.38, 55.45, 58.33/
       data (en(i),i=  4276,  4446)/
-     > 61.03, 63.67, 66.20, 68.65, 71.01, 73.33, 75.56, 77.80, 79.97,
-     > 82.07, 84.18, 86.23, 88.24, 90.26, 92.21, 94.10, 96.10, 97.99,
-     > 99.89,101.73,103.57,105.36,107.18,108.97,110.83,112.64,114.25,
-     >116.04,117.81,119.48,  0.00, 19.73, 27.24, 32.95, 37.81, 42.02,
-     > 45.76, 49.27, 52.48, 55.56, 58.42, 61.14, 63.79, 66.33, 68.79,
-     > 71.15, 73.46, 75.73, 77.94, 80.11, 82.23, 84.31, 86.34, 88.37,
-     > 90.35, 92.33, 94.28, 96.26, 98.16,100.02,101.90,103.71,105.58,
-     >107.35,109.11,110.98,112.75,114.49,116.20,117.93,119.69,  0.00,
-     > 19.74, 27.24, 33.02, 37.85, 42.06, 45.81, 49.31, 52.59, 55.62,
-     > 58.50, 61.25, 63.83, 66.42, 68.87, 71.20, 73.55, 75.80, 78.04,
-     > 80.17, 82.34, 84.39, 86.45, 88.47, 90.47, 92.50, 94.47, 96.42,
-     > 98.35,100.13,102.05,103.85,105.74,107.61,109.31,111.08,112.93,
-     >114.60,116.41,118.14,119.88,  0.00, 19.79, 27.24, 32.99, 37.86,
-     > 42.05, 45.86, 49.33, 52.58, 55.62, 58.52, 61.24, 63.88, 66.43,
-     > 68.86, 71.25, 73.59, 75.87, 78.10, 80.24, 82.40, 84.50, 86.58,
-     > 88.63, 90.58, 92.57, 94.57, 96.44, 98.42,100.35,102.15,103.97,
-     >105.88,107.68,109.47,111.24,113.09,114.79,116.51,118.36,120.08,
-     >  0.00, 19.75, 27.27, 33.02, 37.81, 42.01, 45.82, 49.31, 52.54,
-     > 55.59, 58.46, 61.21, 63.88, 66.38, 68.87, 71.25, 73.58, 75.88/
+     * 61.03, 63.67, 66.20, 68.65, 71.01, 73.33, 75.56, 77.80, 79.97,
+     * 82.07, 84.18, 86.23, 88.24, 90.26, 92.21, 94.10, 96.10, 97.99,
+     * 99.89,101.73,103.57,105.36,107.18,108.97,110.83,112.64,114.25,
+     *116.04,117.81,119.48,  0.00, 19.73, 27.24, 32.95, 37.81, 42.02,
+     * 45.76, 49.27, 52.48, 55.56, 58.42, 61.14, 63.79, 66.33, 68.79,
+     * 71.15, 73.46, 75.73, 77.94, 80.11, 82.23, 84.31, 86.34, 88.37,
+     * 90.35, 92.33, 94.28, 96.26, 98.16,100.02,101.90,103.71,105.58,
+     *107.35,109.11,110.98,112.75,114.49,116.20,117.93,119.69,  0.00,
+     * 19.74, 27.24, 33.02, 37.85, 42.06, 45.81, 49.31, 52.59, 55.62,
+     * 58.50, 61.25, 63.83, 66.42, 68.87, 71.20, 73.55, 75.80, 78.04,
+     * 80.17, 82.34, 84.39, 86.45, 88.47, 90.47, 92.50, 94.47, 96.42,
+     * 98.35,100.13,102.05,103.85,105.74,107.61,109.31,111.08,112.93,
+     *114.60,116.41,118.14,119.88,  0.00, 19.79, 27.24, 32.99, 37.86,
+     * 42.05, 45.86, 49.33, 52.58, 55.62, 58.52, 61.24, 63.88, 66.43,
+     * 68.86, 71.25, 73.59, 75.87, 78.10, 80.24, 82.40, 84.50, 86.58,
+     * 88.63, 90.58, 92.57, 94.57, 96.44, 98.42,100.35,102.15,103.97,
+     *105.88,107.68,109.47,111.24,113.09,114.79,116.51,118.36,120.08,
+     *  0.00, 19.75, 27.27, 33.02, 37.81, 42.01, 45.82, 49.31, 52.54,
+     * 55.59, 58.46, 61.21, 63.88, 66.38, 68.87, 71.25, 73.58, 75.88/
       data (en(i),i=  4447,  4617)/
-     > 78.09, 80.26, 82.45, 84.54, 86.61, 88.69, 90.68, 92.64, 94.65,
-     > 96.57, 98.49,100.37,102.25,104.13,105.97,107.86,109.60,111.48,
-     >113.25,115.00,116.78,118.47,120.23,  0.00, 19.75, 27.21, 32.94,
-     > 37.73, 41.96, 45.78, 49.26, 52.47, 55.54, 58.41, 61.14, 63.81,
-     > 66.36, 68.84, 71.21, 73.57, 75.83, 78.12, 80.27, 82.42, 84.60,
-     > 86.67, 88.71, 90.73, 92.76, 94.69, 96.67, 98.64,100.47,102.44,
-     >104.29,106.16,107.98,109.81,111.60,113.41,115.16,116.94,118.73,
-     >120.45,  0.00, 19.72, 27.12, 32.87, 37.65, 41.83, 45.63, 49.10,
-     > 52.36, 55.38, 58.27, 61.01, 63.64, 66.25, 68.69, 71.11, 73.47,
-     > 75.76, 78.04, 80.23, 82.43, 84.57, 86.65, 88.67, 90.78, 92.78,
-     > 94.75, 96.78, 98.68,100.66,102.53,104.44,106.28,108.15,109.93,
-     >111.71,113.57,115.38,117.12,118.86,120.72,  0.00, 19.62, 27.02,
-     > 32.69, 37.47, 41.69, 45.49, 48.92, 52.16, 55.15, 58.16, 60.84,
-     > 63.52, 66.08, 68.58, 71.05, 73.37, 75.71, 78.00, 80.20, 82.44,
-     > 84.59, 86.71, 88.78, 90.85, 92.82, 94.91, 96.85, 98.82,100.77,
-     >102.65,104.64,106.41,108.34,110.13,111.96,113.80,115.63,117.44,
-     >119.17,120.95,  0.00, 19.54, 26.89, 32.51, 37.22, 41.41, 45.15,
-     > 48.66, 51.86, 54.92, 57.80, 60.56, 63.25, 65.86, 68.37, 70.82,
-     > 73.24, 75.57, 77.94, 80.14, 82.40, 84.59, 86.73, 88.80, 90.91/
+     * 78.09, 80.26, 82.45, 84.54, 86.61, 88.69, 90.68, 92.64, 94.65,
+     * 96.57, 98.49,100.37,102.25,104.13,105.97,107.86,109.60,111.48,
+     *113.25,115.00,116.78,118.47,120.23,  0.00, 19.75, 27.21, 32.94,
+     * 37.73, 41.96, 45.78, 49.26, 52.47, 55.54, 58.41, 61.14, 63.81,
+     * 66.36, 68.84, 71.21, 73.57, 75.83, 78.12, 80.27, 82.42, 84.60,
+     * 86.67, 88.71, 90.73, 92.76, 94.69, 96.67, 98.64,100.47,102.44,
+     *104.29,106.16,107.98,109.81,111.60,113.41,115.16,116.94,118.73,
+     *120.45,  0.00, 19.72, 27.12, 32.87, 37.65, 41.83, 45.63, 49.10,
+     * 52.36, 55.38, 58.27, 61.01, 63.64, 66.25, 68.69, 71.11, 73.47,
+     * 75.76, 78.04, 80.23, 82.43, 84.57, 86.65, 88.67, 90.78, 92.78,
+     * 94.75, 96.78, 98.68,100.66,102.53,104.44,106.28,108.15,109.93,
+     *111.71,113.57,115.38,117.12,118.86,120.72,  0.00, 19.62, 27.02,
+     * 32.69, 37.47, 41.69, 45.49, 48.92, 52.16, 55.15, 58.16, 60.84,
+     * 63.52, 66.08, 68.58, 71.05, 73.37, 75.71, 78.00, 80.20, 82.44,
+     * 84.59, 86.71, 88.78, 90.85, 92.82, 94.91, 96.85, 98.82,100.77,
+     *102.65,104.64,106.41,108.34,110.13,111.96,113.80,115.63,117.44,
+     *119.17,120.95,  0.00, 19.54, 26.89, 32.51, 37.22, 41.41, 45.15,
+     * 48.66, 51.86, 54.92, 57.80, 60.56, 63.25, 65.86, 68.37, 70.82,
+     * 73.24, 75.57, 77.94, 80.14, 82.40, 84.59, 86.73, 88.80, 90.91/
       data (en(i),i=  4618,  4788)/
-     > 92.98, 94.98, 96.99, 99.01,100.87,102.89,104.75,106.67,108.57,
-     >110.38,112.24,114.02,115.88,117.65,119.42,121.20,  0.00, 19.38,
-     > 26.62, 32.21, 36.90, 41.03, 44.77, 48.22, 51.47, 54.54, 57.47,
-     > 60.29, 63.00, 65.65, 68.22, 70.71, 73.14, 75.53, 77.89, 80.20,
-     > 82.41, 84.63, 86.82, 88.95, 91.08, 93.09, 95.15, 97.22, 99.24,
-     >101.20,103.17,105.01,107.00,108.82,110.72,112.52,114.35,116.17,
-     >118.03,119.87,121.65,  0.00, 19.08, 26.21, 31.74, 36.39, 40.48,
-     > 44.24, 47.69, 51.00, 54.14, 57.11, 60.02, 62.85, 65.55, 68.13,
-     > 70.69, 73.21, 75.60, 78.03, 80.35, 82.61, 84.81, 87.00, 89.17,
-     > 91.32, 93.43, 95.47, 97.53, 99.54,101.57,103.57,105.44,107.36,
-     >109.31,111.17,112.99,114.91,116.68,118.58,120.32,122.12,  0.00,
-     > 18.33, 25.33, 30.88, 35.63, 39.89, 43.83, 47.46, 50.88, 54.09,
-     > 57.21, 60.17, 63.04, 65.76, 68.43, 71.04, 73.55, 76.01, 78.42,
-     > 80.81, 83.08, 85.32, 87.56, 89.78, 91.89, 94.02, 96.12, 98.18,
-     >100.24,102.19,104.25,106.15,108.06,110.03,111.88,113.76,115.65,
-     >117.45,119.31,121.12,122.86,  0.00, 17.32, 24.15, 29.50, 34.13,
-     > 38.25, 41.96, 45.52, 48.78, 51.88, 54.85, 57.77, 60.49, 63.15,
-     > 65.71, 68.32, 70.76, 73.17, 75.60, 77.89, 80.19, 82.40, 84.64,
-     > 86.78, 88.95, 91.05, 93.13, 95.18, 97.16, 99.18,101.18,103.08/
+     * 92.98, 94.98, 96.99, 99.01,100.87,102.89,104.75,106.67,108.57,
+     *110.38,112.24,114.02,115.88,117.65,119.42,121.20,  0.00, 19.38,
+     * 26.62, 32.21, 36.90, 41.03, 44.77, 48.22, 51.47, 54.54, 57.47,
+     * 60.29, 63.00, 65.65, 68.22, 70.71, 73.14, 75.53, 77.89, 80.20,
+     * 82.41, 84.63, 86.82, 88.95, 91.08, 93.09, 95.15, 97.22, 99.24,
+     *101.20,103.17,105.01,107.00,108.82,110.72,112.52,114.35,116.17,
+     *118.03,119.87,121.65,  0.00, 19.08, 26.21, 31.74, 36.39, 40.48,
+     * 44.24, 47.69, 51.00, 54.14, 57.11, 60.02, 62.85, 65.55, 68.13,
+     * 70.69, 73.21, 75.60, 78.03, 80.35, 82.61, 84.81, 87.00, 89.17,
+     * 91.32, 93.43, 95.47, 97.53, 99.54,101.57,103.57,105.44,107.36,
+     *109.31,111.17,112.99,114.91,116.68,118.58,120.32,122.12,  0.00,
+     * 18.33, 25.33, 30.88, 35.63, 39.89, 43.83, 47.46, 50.88, 54.09,
+     * 57.21, 60.17, 63.04, 65.76, 68.43, 71.04, 73.55, 76.01, 78.42,
+     * 80.81, 83.08, 85.32, 87.56, 89.78, 91.89, 94.02, 96.12, 98.18,
+     *100.24,102.19,104.25,106.15,108.06,110.03,111.88,113.76,115.65,
+     *117.45,119.31,121.12,122.86,  0.00, 17.32, 24.15, 29.50, 34.13,
+     * 38.25, 41.96, 45.52, 48.78, 51.88, 54.85, 57.77, 60.49, 63.15,
+     * 65.71, 68.32, 70.76, 73.17, 75.60, 77.89, 80.19, 82.40, 84.64,
+     * 86.78, 88.95, 91.05, 93.13, 95.18, 97.16, 99.18,101.18,103.08/
       data (en(i),i=  4789,  4959)/
-     >105.05,106.99,108.90,110.78,112.60,114.45,116.34,118.10,119.96,
-     >  0.00, 18.06, 24.87, 30.34, 34.89, 38.93, 42.62, 46.08, 49.29,
-     > 52.36, 55.26, 58.06, 60.80, 64.11, 66.03, 68.51, 70.74, 73.36,
-     > 75.76, 78.09, 80.33, 82.52, 84.67, 86.79, 88.93, 91.11, 93.14,
-     > 95.18, 97.21, 99.37,101.11,103.06,105.00,106.88,108.80,110.65,
-     >112.45,114.26,116.11,117.91,119.74,  0.00, 18.62, 25.65, 31.11,
-     > 35.73, 39.80, 43.41, 46.84, 50.03, 53.06, 55.89, 58.76, 61.40,
-     > 64.05, 66.54, 68.95, 71.46, 73.75, 76.14, 78.49, 80.73, 82.95,
-     > 85.06, 87.20, 89.34, 91.37, 93.39, 95.36, 97.39, 99.42,101.38,
-     >103.24,105.17,106.99,108.95,110.84,112.62,114.51,116.27,118.05,
-     >119.81,  0.00, 18.84, 26.01, 31.59, 36.26, 40.34, 44.05, 47.52,
-     > 50.67, 53.67, 56.58, 59.30, 62.01, 64.63, 67.15, 69.61, 72.02,
-     > 74.40, 76.68, 78.90, 81.14, 83.30, 85.45, 87.58, 89.68, 91.68,
-     > 93.74, 95.69, 97.71, 99.68,101.57,103.54,105.44,107.28,109.13,
-     >110.99,112.88,114.72,116.45,118.28,119.99,  0.00, 19.16, 26.45,
-     > 32.02, 36.76, 40.91, 44.65, 48.10, 51.30, 54.33, 57.15, 59.92,
-     > 62.59, 65.17, 67.72, 70.20, 72.55, 74.91, 77.21, 79.41, 81.57,
-     > 83.75, 85.89, 88.05, 90.11, 92.11, 94.16, 96.09, 98.15,100.05,
-     >101.98,103.88,105.80,107.59,109.48,111.28,113.08,114.94,116.68/
+     *105.05,106.99,108.90,110.78,112.60,114.45,116.34,118.10,119.96,
+     *  0.00, 18.06, 24.87, 30.34, 34.89, 38.93, 42.62, 46.08, 49.29,
+     * 52.36, 55.26, 58.06, 60.80, 64.11, 66.03, 68.51, 70.74, 73.36,
+     * 75.76, 78.09, 80.33, 82.52, 84.67, 86.79, 88.93, 91.11, 93.14,
+     * 95.18, 97.21, 99.37,101.11,103.06,105.00,106.88,108.80,110.65,
+     *112.45,114.26,116.11,117.91,119.74,  0.00, 18.62, 25.65, 31.11,
+     * 35.73, 39.80, 43.41, 46.84, 50.03, 53.06, 55.89, 58.76, 61.40,
+     * 64.05, 66.54, 68.95, 71.46, 73.75, 76.14, 78.49, 80.73, 82.95,
+     * 85.06, 87.20, 89.34, 91.37, 93.39, 95.36, 97.39, 99.42,101.38,
+     *103.24,105.17,106.99,108.95,110.84,112.62,114.51,116.27,118.05,
+     *119.81,  0.00, 18.84, 26.01, 31.59, 36.26, 40.34, 44.05, 47.52,
+     * 50.67, 53.67, 56.58, 59.30, 62.01, 64.63, 67.15, 69.61, 72.02,
+     * 74.40, 76.68, 78.90, 81.14, 83.30, 85.45, 87.58, 89.68, 91.68,
+     * 93.74, 95.69, 97.71, 99.68,101.57,103.54,105.44,107.28,109.13,
+     *110.99,112.88,114.72,116.45,118.28,119.99,  0.00, 19.16, 26.45,
+     * 32.02, 36.76, 40.91, 44.65, 48.10, 51.30, 54.33, 57.15, 59.92,
+     * 62.59, 65.17, 67.72, 70.20, 72.55, 74.91, 77.21, 79.41, 81.57,
+     * 83.75, 85.89, 88.05, 90.11, 92.11, 94.16, 96.09, 98.15,100.05,
+     *101.98,103.88,105.80,107.59,109.48,111.28,113.08,114.94,116.68/
       data (en(i),i=  4960,  5130)/
-     >118.53,120.21,  0.00, 19.38, 26.76, 32.43, 37.25, 41.40, 45.15,
-     > 48.68, 51.83, 54.87, 57.75, 60.46, 63.15, 65.75, 68.25, 70.67,
-     > 73.09, 75.40, 77.66, 79.92, 82.14, 84.31, 86.33, 88.48, 90.51,
-     > 92.52, 94.52, 96.57, 98.49,100.38,102.33,104.17,106.05,107.90,
-     >109.81,111.64,113.41,115.29,117.03,118.81,120.50,  0.00, 19.56,
-     > 27.00, 32.77, 37.58, 41.83, 45.61, 49.09, 52.30, 55.34, 58.23,
-     > 60.97, 63.69, 66.27, 68.73, 71.17, 73.59, 75.87, 78.17, 80.40,
-     > 82.55, 84.73, 86.78, 88.89, 90.94, 92.93, 94.92, 96.89, 98.86,
-     >100.75,102.66,104.53,106.44,108.30,110.09,111.98,113.71,115.57,
-     >117.27,119.04,120.75,  0.00, 19.82, 27.24, 33.07, 37.91, 42.16,
-     > 45.99, 49.51, 52.76, 55.76, 58.66, 61.44, 64.16, 66.74, 69.25,
-     > 71.70, 74.07, 76.36, 78.58, 80.86, 82.97, 85.15, 87.17, 89.28,
-     > 91.24, 93.37, 95.31, 97.27, 99.21,101.11,103.02,104.92,106.84,
-     >108.56,110.49,112.24,114.05,115.80,117.57,119.30,121.10,  0.00,
-     > 19.89, 27.50, 33.30, 38.20, 42.52, 46.36, 49.85, 53.10, 56.18,
-     > 35.51, 40.10, 44.19, 67.16, 51.27, 72.06, 57.42, 60.28, 63.00,
-     > 81.21, 83.38, 70.71, 87.62, 89.72, 77.75, 79.95, 82.15, 97.67,
-     > 86.44,101.50,103.34, 92.55, 94.53,108.92,110.78,100.40,114.33,
-     >116.11,106.05,119.62,121.38,  0.00, 20.04, 27.64, 33.49, 38.46/
+     *118.53,120.21,  0.00, 19.38, 26.76, 32.43, 37.25, 41.40, 45.15,
+     * 48.68, 51.83, 54.87, 57.75, 60.46, 63.15, 65.75, 68.25, 70.67,
+     * 73.09, 75.40, 77.66, 79.92, 82.14, 84.31, 86.33, 88.48, 90.51,
+     * 92.52, 94.52, 96.57, 98.49,100.38,102.33,104.17,106.05,107.90,
+     *109.81,111.64,113.41,115.29,117.03,118.81,120.50,  0.00, 19.56,
+     * 27.00, 32.77, 37.58, 41.83, 45.61, 49.09, 52.30, 55.34, 58.23,
+     * 60.97, 63.69, 66.27, 68.73, 71.17, 73.59, 75.87, 78.17, 80.40,
+     * 82.55, 84.73, 86.78, 88.89, 90.94, 92.93, 94.92, 96.89, 98.86,
+     *100.75,102.66,104.53,106.44,108.30,110.09,111.98,113.71,115.57,
+     *117.27,119.04,120.75,  0.00, 19.82, 27.24, 33.07, 37.91, 42.16,
+     * 45.99, 49.51, 52.76, 55.76, 58.66, 61.44, 64.16, 66.74, 69.25,
+     * 71.70, 74.07, 76.36, 78.58, 80.86, 82.97, 85.15, 87.17, 89.28,
+     * 91.24, 93.37, 95.31, 97.27, 99.21,101.11,103.02,104.92,106.84,
+     *108.56,110.49,112.24,114.05,115.80,117.57,119.30,121.10,  0.00,
+     * 19.89, 27.50, 33.30, 38.20, 42.52, 46.36, 49.85, 53.10, 56.18,
+     * 35.51, 40.10, 44.19, 67.16, 51.27, 72.06, 57.42, 60.28, 63.00,
+     * 81.21, 83.38, 70.71, 87.62, 89.72, 77.75, 79.95, 82.15, 97.67,
+     * 86.44,101.50,103.34, 92.55, 94.53,108.92,110.78,100.40,114.33,
+     *116.11,106.05,119.62,121.38,  0.00, 20.04, 27.64, 33.49, 38.46/
       data (en(i),i=  5131,  5301)/
-     > 42.79, 46.62, 50.17, 53.43, 56.50, 59.46, 62.23, 64.94, 67.53,
-     > 70.05, 72.48, 74.79, 77.09, 79.38, 81.59, 83.77, 85.90, 87.93,
-     > 90.01, 92.06, 94.04, 96.03, 97.95, 99.89,101.81,103.71,103.77,
-     >107.45,109.25,111.10,112.78,114.60,116.44,118.13,119.86,121.66,
-     >  0.00, 20.17, 27.83, 33.70, 38.66, 43.00, 46.90, 50.44, 53.75,
-     > 56.79, 59.78, 61.30, 65.26, 67.85, 70.36, 72.82, 75.16, 77.49,
-     > 79.70, 81.91, 84.11, 86.19, 88.31, 90.34, 92.36, 94.38, 96.34,
-     > 98.27,100.22,102.13,103.95,105.84,107.66,109.53,111.36,113.16,
-     >114.91,116.65,118.41,120.19,121.96,  0.00, 20.25, 27.95, 33.89,
-     > 38.89, 43.22, 47.13, 50.68, 53.99, 57.09, 60.04, 62.86, 65.59,
-     > 68.18, 70.68, 73.10, 75.46, 77.83, 79.99, 82.20, 84.41, 86.50,
-     > 88.59, 90.61, 92.69, 94.68, 96.63, 98.58,100.48,102.43,104.27,
-     >106.11,107.96,109.76,111.57,113.40,115.11,116.89,118.70,120.37,
-     >122.14,  0.00, 20.37, 28.07, 34.02, 39.01, 43.42, 47.33, 50.93,
-     > 54.19, 57.32, 60.31, 63.10, 65.81, 68.44, 70.95, 73.37, 75.76,
-     > 78.03, 80.33, 82.49, 84.65, 86.79, 88.84, 90.88, 92.88, 94.93,
-     > 96.90, 98.83,100.70,102.59,104.56,106.41,108.22,109.98,111.81,
-     >113.56,115.39,117.17,118.97,120.67,122.32,  0.00, 20.65, 28.18,
-     > 34.14, 39.18, 43.55, 47.46, 51.08, 54.39, 57.56, 60.51, 63.33/
+     * 42.79, 46.62, 50.17, 53.43, 56.50, 59.46, 62.23, 64.94, 67.53,
+     * 70.05, 72.48, 74.79, 77.09, 79.38, 81.59, 83.77, 85.90, 87.93,
+     * 90.01, 92.06, 94.04, 96.03, 97.95, 99.89,101.81,103.71,103.77,
+     *107.45,109.25,111.10,112.78,114.60,116.44,118.13,119.86,121.66,
+     *  0.00, 20.17, 27.83, 33.70, 38.66, 43.00, 46.90, 50.44, 53.75,
+     * 56.79, 59.78, 61.30, 65.26, 67.85, 70.36, 72.82, 75.16, 77.49,
+     * 79.70, 81.91, 84.11, 86.19, 88.31, 90.34, 92.36, 94.38, 96.34,
+     * 98.27,100.22,102.13,103.95,105.84,107.66,109.53,111.36,113.16,
+     *114.91,116.65,118.41,120.19,121.96,  0.00, 20.25, 27.95, 33.89,
+     * 38.89, 43.22, 47.13, 50.68, 53.99, 57.09, 60.04, 62.86, 65.59,
+     * 68.18, 70.68, 73.10, 75.46, 77.83, 79.99, 82.20, 84.41, 86.50,
+     * 88.59, 90.61, 92.69, 94.68, 96.63, 98.58,100.48,102.43,104.27,
+     *106.11,107.96,109.76,111.57,113.40,115.11,116.89,118.70,120.37,
+     *122.14,  0.00, 20.37, 28.07, 34.02, 39.01, 43.42, 47.33, 50.93,
+     * 54.19, 57.32, 60.31, 63.10, 65.81, 68.44, 70.95, 73.37, 75.76,
+     * 78.03, 80.33, 82.49, 84.65, 86.79, 88.84, 90.88, 92.88, 94.93,
+     * 96.90, 98.83,100.70,102.59,104.56,106.41,108.22,109.98,111.81,
+     *113.56,115.39,117.17,118.97,120.67,122.32,  0.00, 20.65, 28.18,
+     * 34.14, 39.18, 43.55, 47.46, 51.08, 54.39, 57.56, 60.51, 63.33/
       data (en(i),i=  5302,  5472)/
-     > 66.07, 68.64, 71.20, 73.61, 75.96, 78.25, 80.50, 82.70, 84.88,
-     > 87.00, 89.07, 91.21, 93.16, 95.15, 97.12, 99.07,101.02,102.89,
-     >104.78,106.59,108.43,110.22,112.04,113.90,115.61,117.34,119.08,
-     >120.89,122.55,  0.00, 20.54, 28.25, 34.27, 39.27, 43.69, 47.61,
-     > 51.19, 54.56, 57.71, 60.70, 63.55, 66.23, 68.83, 71.37, 73.77,
-     > 76.15, 78.45, 80.72, 82.89, 85.08, 87.22, 89.29, 91.38, 93.34,
-     > 95.37, 97.28, 99.28,101.14,103.05,104.92,106.77,108.67,110.48,
-     >112.22,113.98,115.84,117.60,119.37,121.03,122.81,  0.00, 20.57,
-     > 28.33, 34.32, 39.38, 43.74, 47.72, 51.33, 54.69, 57.84, 60.82,
-     > 63.65, 66.36, 69.00, 71.49, 73.94, 76.29, 78.63, 80.89, 83.10,
-     > 85.24, 87.39, 89.43, 91.53, 93.55, 95.50, 97.46, 99.41,101.35,
-     >103.25,105.09,106.96,108.85,110.66,112.46,114.28,116.03,117.82,
-     >119.48,121.25,122.99,  0.00, 20.59, 28.41, 34.41, 39.41, 43.83,
-     > 47.78, 51.41, 54.76, 57.94, 60.91, 63.76, 66.51, 69.10, 71.61,
-     > 74.06, 76.41, 78.73, 81.01, 83.20, 85.36, 87.42, 89.53, 91.65,
-     > 93.64, 95.66, 97.64, 99.53,101.52,103.43,105.29,107.15,109.01,
-     >110.73,112.63,114.36,116.20,118.00,119.66,121.39,123.15,  0.00,
-     > 20.67, 28.37, 34.43, 39.51, 43.83, 47.84, 51.45, 54.80, 57.97,
-     > 60.99, 63.83, 66.52, 69.14, 71.64, 74.13, 76.53, 78.82, 81.10/
+     * 66.07, 68.64, 71.20, 73.61, 75.96, 78.25, 80.50, 82.70, 84.88,
+     * 87.00, 89.07, 91.21, 93.16, 95.15, 97.12, 99.07,101.02,102.89,
+     *104.78,106.59,108.43,110.22,112.04,113.90,115.61,117.34,119.08,
+     *120.89,122.55,  0.00, 20.54, 28.25, 34.27, 39.27, 43.69, 47.61,
+     * 51.19, 54.56, 57.71, 60.70, 63.55, 66.23, 68.83, 71.37, 73.77,
+     * 76.15, 78.45, 80.72, 82.89, 85.08, 87.22, 89.29, 91.38, 93.34,
+     * 95.37, 97.28, 99.28,101.14,103.05,104.92,106.77,108.67,110.48,
+     *112.22,113.98,115.84,117.60,119.37,121.03,122.81,  0.00, 20.57,
+     * 28.33, 34.32, 39.38, 43.74, 47.72, 51.33, 54.69, 57.84, 60.82,
+     * 63.65, 66.36, 69.00, 71.49, 73.94, 76.29, 78.63, 80.89, 83.10,
+     * 85.24, 87.39, 89.43, 91.53, 93.55, 95.50, 97.46, 99.41,101.35,
+     *103.25,105.09,106.96,108.85,110.66,112.46,114.28,116.03,117.82,
+     *119.48,121.25,122.99,  0.00, 20.59, 28.41, 34.41, 39.41, 43.83,
+     * 47.78, 51.41, 54.76, 57.94, 60.91, 63.76, 66.51, 69.10, 71.61,
+     * 74.06, 76.41, 78.73, 81.01, 83.20, 85.36, 87.42, 89.53, 91.65,
+     * 93.64, 95.66, 97.64, 99.53,101.52,103.43,105.29,107.15,109.01,
+     *110.73,112.63,114.36,116.20,118.00,119.66,121.39,123.15,  0.00,
+     * 20.67, 28.37, 34.43, 39.51, 43.83, 47.84, 51.45, 54.80, 57.97,
+     * 60.99, 63.83, 66.52, 69.14, 71.64, 74.13, 76.53, 78.82, 81.10/
       data (en(i),i=  5473,  5643)/
-     > 83.27, 85.44, 87.57, 89.64, 91.74, 93.76, 95.80, 97.74, 99.66,
-     >101.61,103.53,105.42,107.27,109.13,110.95,112.78,114.56,116.30,
-     >118.13,119.88,121.57,123.33,  0.00, 20.69, 28.45, 34.44, 39.45,
-     > 43.87, 47.83, 51.46, 54.84, 58.03, 61.01, 63.80, 66.57, 69.16,
-     > 71.69, 74.17, 76.52, 78.90, 81.13, 83.35, 85.54, 87.65, 89.73,
-     > 91.77, 93.81, 95.80, 97.80, 99.80,101.70,103.63,105.49,107.39,
-     >109.24,111.06,112.91,114.67,116.48,118.23,119.99,121.73,123.50,
-     >  0.00, 20.68, 28.39, 34.43, 39.47, 43.84, 47.80, 51.44, 54.83,
-     > 57.96, 60.99, 63.85, 66.53, 69.15, 71.68, 74.15, 76.55, 78.83,
-     > 81.11, 83.36, 85.56, 87.70, 89.77, 91.85, 93.88, 95.90, 97.88,
-     > 99.88,101.80,103.67,105.58,107.48,109.36,111.20,112.96,114.82,
-     >116.56,118.42,120.10,121.94,123.59,  0.00, 20.67, 28.38, 34.40,
-     > 39.39, 43.80, 47.71, 51.38, 54.76, 57.95, 60.89, 63.75, 66.49,
-     > 69.07, 71.61, 74.08, 76.50, 78.84, 81.08, 83.30, 85.55, 87.64,
-     > 89.76, 91.83, 93.89, 95.93, 97.89, 99.89,101.83,103.76,105.69,
-     >107.57,109.45,111.29,113.07,114.89,116.76,118.47,120.26,122.04,
-     >123.73,  0.00, 20.60, 28.32, 34.29, 39.31, 43.68, 47.62, 51.28,
-     > 54.64, 57.79, 60.77, 63.63, 66.38, 68.99, 71.51, 73.99, 76.38,
-     > 78.76, 81.05, 83.28, 85.45, 87.64, 89.74, 91.74, 93.90, 95.91/
+     * 83.27, 85.44, 87.57, 89.64, 91.74, 93.76, 95.80, 97.74, 99.66,
+     *101.61,103.53,105.42,107.27,109.13,110.95,112.78,114.56,116.30,
+     *118.13,119.88,121.57,123.33,  0.00, 20.69, 28.45, 34.44, 39.45,
+     * 43.87, 47.83, 51.46, 54.84, 58.03, 61.01, 63.80, 66.57, 69.16,
+     * 71.69, 74.17, 76.52, 78.90, 81.13, 83.35, 85.54, 87.65, 89.73,
+     * 91.77, 93.81, 95.80, 97.80, 99.80,101.70,103.63,105.49,107.39,
+     *109.24,111.06,112.91,114.67,116.48,118.23,119.99,121.73,123.50,
+     *  0.00, 20.68, 28.39, 34.43, 39.47, 43.84, 47.80, 51.44, 54.83,
+     * 57.96, 60.99, 63.85, 66.53, 69.15, 71.68, 74.15, 76.55, 78.83,
+     * 81.11, 83.36, 85.56, 87.70, 89.77, 91.85, 93.88, 95.90, 97.88,
+     * 99.88,101.80,103.67,105.58,107.48,109.36,111.20,112.96,114.82,
+     *116.56,118.42,120.10,121.94,123.59,  0.00, 20.67, 28.38, 34.40,
+     * 39.39, 43.80, 47.71, 51.38, 54.76, 57.95, 60.89, 63.75, 66.49,
+     * 69.07, 71.61, 74.08, 76.50, 78.84, 81.08, 83.30, 85.55, 87.64,
+     * 89.76, 91.83, 93.89, 95.93, 97.89, 99.89,101.83,103.76,105.69,
+     *107.57,109.45,111.29,113.07,114.89,116.76,118.47,120.26,122.04,
+     *123.73,  0.00, 20.60, 28.32, 34.29, 39.31, 43.68, 47.62, 51.28,
+     * 54.64, 57.79, 60.77, 63.63, 66.38, 68.99, 71.51, 73.99, 76.38,
+     * 78.76, 81.05, 83.28, 85.45, 87.64, 89.74, 91.74, 93.90, 95.91/
       data (en(i),i=  5644,  5814)/
-     > 97.95, 99.95,101.89,103.81,105.72,107.68,109.55,111.39,113.24,
-     >115.02,116.83,118.64,120.39,122.13,123.96,  0.00, 20.57, 28.25,
-     > 34.20, 39.15, 43.52, 47.47, 51.11, 54.48, 57.62, 60.61, 63.49,
-     > 66.17, 68.82, 71.36, 73.84, 76.28, 78.64, 80.96, 83.15, 85.40,
-     > 87.56, 89.69, 91.81, 93.91, 95.92, 97.97,100.00,101.93,103.93,
-     >105.82,107.75,109.59,111.47,113.29,115.21,116.93,118.77,120.54,
-     >122.34,124.09,  0.00, 20.50, 28.16, 34.06, 38.97, 43.34, 47.28,
-     > 50.88, 54.23, 57.37, 60.37, 63.24, 65.95, 68.59, 71.17, 73.71,
-     > 76.08, 78.47, 80.81, 83.11, 85.30, 87.54, 89.65, 91.81, 93.88,
-     > 95.91, 97.95,100.02,102.00,103.94,105.93,107.86,109.74,111.56,
-     >113.45,115.34,117.14,118.93,120.75,122.53,124.32,  0.00, 20.37,
-     > 27.99, 33.80, 38.72, 43.09, 46.99, 50.58, 53.92, 57.07, 60.05,
-     > 62.92, 65.67, 68.38, 70.97, 73.48, 75.95, 78.32, 80.64, 82.99,
-     > 85.23, 87.43, 89.67, 91.76, 93.90, 96.00, 98.00,100.04,102.08,
-     >104.11,106.02,107.94,109.92,111.79,113.69,115.50,117.37,119.23,
-     >121.01,122.85,124.55,  0.00, 20.20, 27.70, 33.50, 38.41, 42.66,
-     > 46.55, 50.17, 53.51, 56.64, 59.68, 62.55, 65.37, 68.07, 70.69,
-     > 73.23, 75.75, 78.18, 80.58, 82.88, 85.22, 87.46, 89.66, 91.86,
-     > 93.96, 96.12, 98.14,100.27,102.27,104.27,106.20,108.15,110.10/
+     * 97.95, 99.95,101.89,103.81,105.72,107.68,109.55,111.39,113.24,
+     *115.02,116.83,118.64,120.39,122.13,123.96,  0.00, 20.57, 28.25,
+     * 34.20, 39.15, 43.52, 47.47, 51.11, 54.48, 57.62, 60.61, 63.49,
+     * 66.17, 68.82, 71.36, 73.84, 76.28, 78.64, 80.96, 83.15, 85.40,
+     * 87.56, 89.69, 91.81, 93.91, 95.92, 97.97,100.00,101.93,103.93,
+     *105.82,107.75,109.59,111.47,113.29,115.21,116.93,118.77,120.54,
+     *122.34,124.09,  0.00, 20.50, 28.16, 34.06, 38.97, 43.34, 47.28,
+     * 50.88, 54.23, 57.37, 60.37, 63.24, 65.95, 68.59, 71.17, 73.71,
+     * 76.08, 78.47, 80.81, 83.11, 85.30, 87.54, 89.65, 91.81, 93.88,
+     * 95.91, 97.95,100.02,102.00,103.94,105.93,107.86,109.74,111.56,
+     *113.45,115.34,117.14,118.93,120.75,122.53,124.32,  0.00, 20.37,
+     * 27.99, 33.80, 38.72, 43.09, 46.99, 50.58, 53.92, 57.07, 60.05,
+     * 62.92, 65.67, 68.38, 70.97, 73.48, 75.95, 78.32, 80.64, 82.99,
+     * 85.23, 87.43, 89.67, 91.76, 93.90, 96.00, 98.00,100.04,102.08,
+     *104.11,106.02,107.94,109.92,111.79,113.69,115.50,117.37,119.23,
+     *121.01,122.85,124.55,  0.00, 20.20, 27.70, 33.50, 38.41, 42.66,
+     * 46.55, 50.17, 53.51, 56.64, 59.68, 62.55, 65.37, 68.07, 70.69,
+     * 73.23, 75.75, 78.18, 80.58, 82.88, 85.22, 87.46, 89.66, 91.86,
+     * 93.96, 96.12, 98.14,100.27,102.27,104.27,106.20,108.15,110.10/
       data (en(i),i=  5815,  5985)/
-     >112.04,113.89,115.83,117.64,119.55,121.29,123.17,124.94,  0.00,
-     > 19.96, 27.08, 33.02, 37.90, 42.14, 45.99, 49.59, 52.98, 56.19,
-     > 59.23, 62.20, 65.09, 67.87, 70.50, 73.16, 75.67, 78.17, 80.61,
-     > 82.95, 85.30, 87.64, 89.81, 92.04, 94.23, 96.32, 98.44,100.52,
-     >102.54,104.55,106.57,108.54,110.50,112.43,114.35,116.22,118.03,
-     >119.99,121.75,123.64,125.38,  0.00, 19.20, 26.43, 32.17, 37.06,
-     > 41.45, 45.46, 49.24, 52.74, 56.07, 59.23, 62.26, 65.18, 68.01,
-     > 70.77, 73.41, 75.99, 78.51, 80.98, 83.40, 85.74, 88.05, 90.35,
-     > 92.52, 94.69, 96.91, 98.99,101.06,103.15,105.19,107.20,109.21,
-     >111.16,113.11,115.06,116.88,118.79,120.64,122.55,124.31,126.13,
-     >  0.00, 17.94, 24.97, 30.52, 35.23, 39.48, 43.35, 46.93, 50.32,
-     > 53.51, 56.54, 59.43, 62.27, 64.97, 67.61, 70.16, 72.70, 75.13,
-     > 77.59, 79.94, 82.25, 84.53, 86.75, 88.98, 91.16, 93.27, 95.32,
-     > 97.48, 99.54,101.58,103.52,105.54,107.43,109.44,111.32,113.25,
-     >115.10,116.96,118.87,120.64,122.47,  0.00, 18.70, 25.83, 31.32,
-     > 36.04, 40.24, 44.05, 47.56, 50.90, 54.00, 57.04, 59.89, 62.65,
-     > 65.30, 67.93, 70.30, 72.95, 75.28, 77.76, 80.11, 82.43, 84.62,
-     > 86.89, 89.12, 91.17, 93.34, 95.42, 97.45, 99.55,101.51,103.50,
-     >105.46,107.48,109.26,111.25,113.13,115.06,116.90,118.69,120.49/
+     *112.04,113.89,115.83,117.64,119.55,121.29,123.17,124.94,  0.00,
+     * 19.96, 27.08, 33.02, 37.90, 42.14, 45.99, 49.59, 52.98, 56.19,
+     * 59.23, 62.20, 65.09, 67.87, 70.50, 73.16, 75.67, 78.17, 80.61,
+     * 82.95, 85.30, 87.64, 89.81, 92.04, 94.23, 96.32, 98.44,100.52,
+     *102.54,104.55,106.57,108.54,110.50,112.43,114.35,116.22,118.03,
+     *119.99,121.75,123.64,125.38,  0.00, 19.20, 26.43, 32.17, 37.06,
+     * 41.45, 45.46, 49.24, 52.74, 56.07, 59.23, 62.26, 65.18, 68.01,
+     * 70.77, 73.41, 75.99, 78.51, 80.98, 83.40, 85.74, 88.05, 90.35,
+     * 92.52, 94.69, 96.91, 98.99,101.06,103.15,105.19,107.20,109.21,
+     *111.16,113.11,115.06,116.88,118.79,120.64,122.55,124.31,126.13,
+     *  0.00, 17.94, 24.97, 30.52, 35.23, 39.48, 43.35, 46.93, 50.32,
+     * 53.51, 56.54, 59.43, 62.27, 64.97, 67.61, 70.16, 72.70, 75.13,
+     * 77.59, 79.94, 82.25, 84.53, 86.75, 88.98, 91.16, 93.27, 95.32,
+     * 97.48, 99.54,101.58,103.52,105.54,107.43,109.44,111.32,113.25,
+     *115.10,116.96,118.87,120.64,122.47,  0.00, 18.70, 25.83, 31.32,
+     * 36.04, 40.24, 44.05, 47.56, 50.90, 54.00, 57.04, 59.89, 62.65,
+     * 65.30, 67.93, 70.30, 72.95, 75.28, 77.76, 80.11, 82.43, 84.62,
+     * 86.89, 89.12, 91.17, 93.34, 95.42, 97.45, 99.55,101.51,103.50,
+     *105.46,107.48,109.26,111.25,113.13,115.06,116.90,118.69,120.49/
       data (en(i),i=  5986,  6156)/
-     >122.31,  0.00, 19.13, 26.43, 31.03, 36.80, 40.25, 44.09, 47.65,
-     > 51.59, 54.73, 57.68, 60.54, 62.73, 65.87, 68.61, 70.36, 73.44,
-     > 75.38, 77.64, 80.58, 82.87, 85.10, 86.81, 89.06, 91.56, 93.65,
-     > 95.77, 97.42, 99.91,101.37,103.74,105.69,107.67,109.18,111.44,
-     >113.27,115.21,117.06,118.85,120.26,122.14,  0.00, 19.48, 26.91,
-     > 32.61, 37.44, 41.66, 45.51, 49.02, 52.31, 55.39, 58.38, 61.19,
-     > 63.92, 66.51, 69.14, 71.59, 74.15, 76.48, 78.83, 81.15, 83.36,
-     > 85.53, 87.72, 89.95, 91.99, 94.08, 96.11, 98.12,100.24,102.19,
-     >104.06,106.09,107.99,109.83,111.71,113.65,115.44,117.23,119.07,
-     >120.90,122.78,  0.00, 19.78, 27.28, 33.04, 37.94, 42.21, 46.03,
-     > 49.64, 52.94, 56.06, 58.98, 61.79, 64.49, 67.12, 69.72, 72.20,
-     > 74.68, 77.02, 79.36, 81.62, 83.90, 86.06, 88.25, 90.33, 92.50,
-     > 94.47, 96.59, 98.64,100.65,102.54,104.47,106.38,108.36,110.23,
-     >112.11,113.94,115.74,117.58,119.37,121.17,122.98,  0.00, 20.04,
-     > 27.62, 33.46, 38.40, 42.68, 46.57, 50.19, 53.51, 56.60, 59.52,
-     > 62.40, 65.04, 67.71, 70.29, 72.78, 75.23, 77.60, 79.89, 82.20,
-     > 84.42, 86.61, 88.75, 90.87, 92.98, 94.92, 97.05, 99.00,101.05,
-     >102.95,104.85,106.85,108.72,110.53,112.47,114.32,116.14,117.94,
-     >119.75,121.46,123.27,  0.00, 20.22, 27.86, 33.86, 38.78, 43.12/
+     *122.31,  0.00, 19.13, 26.43, 31.03, 36.80, 40.25, 44.09, 47.65,
+     * 51.59, 54.73, 57.68, 60.54, 62.73, 65.87, 68.61, 70.36, 73.44,
+     * 75.38, 77.64, 80.58, 82.87, 85.10, 86.81, 89.06, 91.56, 93.65,
+     * 95.77, 97.42, 99.91,101.37,103.74,105.69,107.67,109.18,111.44,
+     *113.27,115.21,117.06,118.85,120.26,122.14,  0.00, 19.48, 26.91,
+     * 32.61, 37.44, 41.66, 45.51, 49.02, 52.31, 55.39, 58.38, 61.19,
+     * 63.92, 66.51, 69.14, 71.59, 74.15, 76.48, 78.83, 81.15, 83.36,
+     * 85.53, 87.72, 89.95, 91.99, 94.08, 96.11, 98.12,100.24,102.19,
+     *104.06,106.09,107.99,109.83,111.71,113.65,115.44,117.23,119.07,
+     *120.90,122.78,  0.00, 19.78, 27.28, 33.04, 37.94, 42.21, 46.03,
+     * 49.64, 52.94, 56.06, 58.98, 61.79, 64.49, 67.12, 69.72, 72.20,
+     * 74.68, 77.02, 79.36, 81.62, 83.90, 86.06, 88.25, 90.33, 92.50,
+     * 94.47, 96.59, 98.64,100.65,102.54,104.47,106.38,108.36,110.23,
+     *112.11,113.94,115.74,117.58,119.37,121.17,122.98,  0.00, 20.04,
+     * 27.62, 33.46, 38.40, 42.68, 46.57, 50.19, 53.51, 56.60, 59.52,
+     * 62.40, 65.04, 67.71, 70.29, 72.78, 75.23, 77.60, 79.89, 82.20,
+     * 84.42, 86.61, 88.75, 90.87, 92.98, 94.92, 97.05, 99.00,101.05,
+     *102.95,104.85,106.85,108.72,110.53,112.47,114.32,116.14,117.94,
+     *119.75,121.46,123.27,  0.00, 20.22, 27.86, 33.86, 38.78, 43.12/
       data (en(i),i=  6157,  6327)/
-     > 47.09, 50.63, 54.07, 57.16, 60.06, 62.90, 65.64, 68.31, 70.82,
-     > 73.35, 75.75, 78.15, 80.38, 82.63, 84.92, 87.12, 89.26, 91.30,
-     > 93.45, 95.47, 97.52, 99.44,101.43,103.34,105.33,107.21,109.10,
-     >111.03,112.76,114.69,116.53,118.23,120.03,121.81,123.56,  0.00,
-     > 20.39, 28.20, 34.10, 39.10, 43.51, 47.51, 51.11, 54.49, 57.61,
-     > 60.53, 63.37, 66.10, 68.80, 71.36, 73.82, 76.25, 78.58, 80.89,
-     > 83.22, 85.37, 87.56, 89.71, 91.83, 93.87, 95.83, 97.86, 99.81,
-     >101.84,103.77,105.69,107.57,109.50,111.30,113.19,115.02,116.75,
-     >118.61,120.38,122.17,123.90,  0.00, 20.57, 28.37, 34.37, 39.41,
-     > 43.83, 47.82, 51.49, 54.84, 58.00, 60.96, 63.85, 66.55, 69.20,
-     > 71.77, 74.27, 76.70, 79.06, 81.35, 83.59, 85.80, 87.98, 90.08,
-     > 92.16, 94.26, 96.29, 98.30,100.29,102.19,104.16,106.06,107.97,
-     >109.87,111.70,113.53,115.32,117.14,118.90,120.67,122.45,124.13,
-     >  0.00, 20.70, 28.55, 34.57, 39.68, 44.12, 48.11, 51.80, 55.21,
-     > 58.34, 61.34, 64.21, 66.98, 69.61, 72.18, 74.70, 77.08, 79.43,
-     > 81.74, 83.99, 86.23, 88.35, 90.47, 92.58, 94.66, 96.67, 98.66,
-     >100.65,102.58,104.53,106.44,108.27,110.21,112.08,113.86,115.72,
-     >117.47,119.22,120.99,122.82,124.53,  0.00, 20.95, 28.54, 34.85,
-     > 39.94, 44.37, 48.43, 52.13, 55.50, 58.67, 61.71, 64.60, 67.31/
+     * 47.09, 50.63, 54.07, 57.16, 60.06, 62.90, 65.64, 68.31, 70.82,
+     * 73.35, 75.75, 78.15, 80.38, 82.63, 84.92, 87.12, 89.26, 91.30,
+     * 93.45, 95.47, 97.52, 99.44,101.43,103.34,105.33,107.21,109.10,
+     *111.03,112.76,114.69,116.53,118.23,120.03,121.81,123.56,  0.00,
+     * 20.39, 28.20, 34.10, 39.10, 43.51, 47.51, 51.11, 54.49, 57.61,
+     * 60.53, 63.37, 66.10, 68.80, 71.36, 73.82, 76.25, 78.58, 80.89,
+     * 83.22, 85.37, 87.56, 89.71, 91.83, 93.87, 95.83, 97.86, 99.81,
+     *101.84,103.77,105.69,107.57,109.50,111.30,113.19,115.02,116.75,
+     *118.61,120.38,122.17,123.90,  0.00, 20.57, 28.37, 34.37, 39.41,
+     * 43.83, 47.82, 51.49, 54.84, 58.00, 60.96, 63.85, 66.55, 69.20,
+     * 71.77, 74.27, 76.70, 79.06, 81.35, 83.59, 85.80, 87.98, 90.08,
+     * 92.16, 94.26, 96.29, 98.30,100.29,102.19,104.16,106.06,107.97,
+     *109.87,111.70,113.53,115.32,117.14,118.90,120.67,122.45,124.13,
+     *  0.00, 20.70, 28.55, 34.57, 39.68, 44.12, 48.11, 51.80, 55.21,
+     * 58.34, 61.34, 64.21, 66.98, 69.61, 72.18, 74.70, 77.08, 79.43,
+     * 81.74, 83.99, 86.23, 88.35, 90.47, 92.58, 94.66, 96.67, 98.66,
+     *100.65,102.58,104.53,106.44,108.27,110.21,112.08,113.86,115.72,
+     *117.47,119.22,120.99,122.82,124.53,  0.00, 20.95, 28.54, 34.85,
+     * 39.94, 44.37, 48.43, 52.13, 55.50, 58.67, 61.71, 64.60, 67.31/
       data (en(i),i=  6328,  6498)/
-     > 70.03, 72.58, 75.05, 77.49, 79.79, 82.11, 84.36, 86.56, 88.77,
-     > 90.85, 93.00, 94.99, 97.04, 99.03,100.98,102.96,104.90,106.72,
-     >108.67,110.50,112.40,114.13,115.97,117.76,119.63,121.36,123.11,
-     >124.85,  0.00, 20.93, 28.81, 34.98, 40.10, 44.61, 48.65, 52.37,
-     > 55.75, 59.00, 61.99, 64.90, 67.66, 70.30, 72.88, 75.42, 77.82,
-     > 80.18, 82.51, 84.73, 86.92, 89.05, 91.20, 93.32, 95.37, 97.38,
-     > 99.31,101.33,103.25,105.18,107.10,108.98,110.80,112.67,114.50,
-     >116.35,118.09,119.87,121.69,123.41,125.07,  0.00, 21.07, 29.01,
-     > 35.17, 40.28, 44.80, 48.88, 52.58, 56.03, 59.27, 62.28, 65.15,
-     > 67.95, 70.64, 73.23, 75.71, 78.15, 80.53, 82.80, 85.03, 87.30,
-     > 89.39, 91.53, 93.64, 95.63, 97.65, 99.65,101.65,103.54,105.47,
-     >107.37,109.24,111.11,112.93,114.74,116.56,118.32,120.14,121.94,
-     >123.68,125.38,  0.00, 21.16, 29.12, 35.25, 40.44, 44.98, 49.05,
-     > 52.84, 56.23, 59.49, 62.47, 65.42, 68.21, 70.93, 73.50, 76.00,
-     > 78.40, 80.76, 83.07, 85.33, 87.52, 89.69, 91.77, 93.90, 95.96,
-     > 97.92, 99.90,101.89,103.81,105.77,107.65,109.49,111.39,113.17,
-     >114.98,116.81,118.64,120.41,122.11,123.83,125.64,  0.00, 21.29,
-     > 29.22, 35.41, 40.59, 45.14, 49.24, 52.99, 56.43, 59.65, 62.69,
-     > 65.63, 68.45, 71.15, 73.74, 76.21, 78.64, 81.00, 83.30, 85.55/
+     * 70.03, 72.58, 75.05, 77.49, 79.79, 82.11, 84.36, 86.56, 88.77,
+     * 90.85, 93.00, 94.99, 97.04, 99.03,100.98,102.96,104.90,106.72,
+     *108.67,110.50,112.40,114.13,115.97,117.76,119.63,121.36,123.11,
+     *124.85,  0.00, 20.93, 28.81, 34.98, 40.10, 44.61, 48.65, 52.37,
+     * 55.75, 59.00, 61.99, 64.90, 67.66, 70.30, 72.88, 75.42, 77.82,
+     * 80.18, 82.51, 84.73, 86.92, 89.05, 91.20, 93.32, 95.37, 97.38,
+     * 99.31,101.33,103.25,105.18,107.10,108.98,110.80,112.67,114.50,
+     *116.35,118.09,119.87,121.69,123.41,125.07,  0.00, 21.07, 29.01,
+     * 35.17, 40.28, 44.80, 48.88, 52.58, 56.03, 59.27, 62.28, 65.15,
+     * 67.95, 70.64, 73.23, 75.71, 78.15, 80.53, 82.80, 85.03, 87.30,
+     * 89.39, 91.53, 93.64, 95.63, 97.65, 99.65,101.65,103.54,105.47,
+     *107.37,109.24,111.11,112.93,114.74,116.56,118.32,120.14,121.94,
+     *123.68,125.38,  0.00, 21.16, 29.12, 35.25, 40.44, 44.98, 49.05,
+     * 52.84, 56.23, 59.49, 62.47, 65.42, 68.21, 70.93, 73.50, 76.00,
+     * 78.40, 80.76, 83.07, 85.33, 87.52, 89.69, 91.77, 93.90, 95.96,
+     * 97.92, 99.90,101.89,103.81,105.77,107.65,109.49,111.39,113.17,
+     *114.98,116.81,118.64,120.41,122.11,123.83,125.64,  0.00, 21.29,
+     * 29.22, 35.41, 40.59, 45.14, 49.24, 52.99, 56.43, 59.65, 62.69,
+     * 65.63, 68.45, 71.15, 73.74, 76.21, 78.64, 81.00, 83.30, 85.55/
       data (en(i),i=  6499,  6669)/
-     > 87.75, 89.92, 92.07, 94.15, 96.16, 98.18,100.21,102.13,104.07,
-     >105.97,107.86,109.74,111.58,113.47,115.26,117.02,118.88,120.58,
-     >122.37,124.15,125.93,  0.00, 21.32, 29.34, 35.48, 40.72, 45.27,
-     > 49.40, 53.14, 56.56, 59.81, 62.89, 65.81, 68.62, 71.35, 73.92,
-     > 76.41, 78.88, 81.21, 83.51, 85.77, 87.99, 90.15, 92.24, 94.36,
-     > 96.39, 98.40,100.43,102.37,104.27,106.21,108.07,109.98,111.82,
-     >113.70,115.51,117.25,119.06,120.85,122.58,124.39,126.07,  0.00,
-     > 21.38, 29.36, 35.59, 40.79, 45.40, 49.47, 53.24, 56.70, 59.98,
-     > 63.04, 65.98, 68.81, 71.52, 74.07, 76.62, 79.01, 81.42, 83.69,
-     > 85.94, 88.16, 90.32, 92.46, 94.51, 96.58, 98.59,100.61,102.56,
-     >104.44,106.37,108.32,110.20,112.02,113.81,115.63,117.50,119.25,
-     >121.04,122.80,124.52,126.22,  0.00, 21.45, 29.46, 35.68, 40.88,
-     > 45.45, 49.58, 53.32, 56.82, 60.08, 63.15, 66.11, 68.91, 71.62,
-     > 74.20, 76.73, 79.15, 81.52, 83.81, 86.11, 88.28, 90.48, 92.58,
-     > 94.66, 96.79, 98.70,100.71,102.66,104.66,106.58,108.42,110.32,
-     >112.16,113.96,115.81,117.64,119.32,121.21,122.96,124.76,126.42,
-     >  0.00, 21.47, 29.50, 35.75, 40.91, 45.53, 49.59, 53.37, 56.90,
-     > 60.15, 63.28, 66.18, 69.00, 71.71, 74.31, 76.85, 79.25, 81.63,
-     > 83.96, 86.18, 88.38, 90.60, 92.72, 94.77, 96.82, 98.85,100.82/
+     * 87.75, 89.92, 92.07, 94.15, 96.16, 98.18,100.21,102.13,104.07,
+     *105.97,107.86,109.74,111.58,113.47,115.26,117.02,118.88,120.58,
+     *122.37,124.15,125.93,  0.00, 21.32, 29.34, 35.48, 40.72, 45.27,
+     * 49.40, 53.14, 56.56, 59.81, 62.89, 65.81, 68.62, 71.35, 73.92,
+     * 76.41, 78.88, 81.21, 83.51, 85.77, 87.99, 90.15, 92.24, 94.36,
+     * 96.39, 98.40,100.43,102.37,104.27,106.21,108.07,109.98,111.82,
+     *113.70,115.51,117.25,119.06,120.85,122.58,124.39,126.07,  0.00,
+     * 21.38, 29.36, 35.59, 40.79, 45.40, 49.47, 53.24, 56.70, 59.98,
+     * 63.04, 65.98, 68.81, 71.52, 74.07, 76.62, 79.01, 81.42, 83.69,
+     * 85.94, 88.16, 90.32, 92.46, 94.51, 96.58, 98.59,100.61,102.56,
+     *104.44,106.37,108.32,110.20,112.02,113.81,115.63,117.50,119.25,
+     *121.04,122.80,124.52,126.22,  0.00, 21.45, 29.46, 35.68, 40.88,
+     * 45.45, 49.58, 53.32, 56.82, 60.08, 63.15, 66.11, 68.91, 71.62,
+     * 74.20, 76.73, 79.15, 81.52, 83.81, 86.11, 88.28, 90.48, 92.58,
+     * 94.66, 96.79, 98.70,100.71,102.66,104.66,106.58,108.42,110.32,
+     *112.16,113.96,115.81,117.64,119.32,121.21,122.96,124.76,126.42,
+     *  0.00, 21.47, 29.50, 35.75, 40.91, 45.53, 49.59, 53.37, 56.90,
+     * 60.15, 63.28, 66.18, 69.00, 71.71, 74.31, 76.85, 79.25, 81.63,
+     * 83.96, 86.18, 88.38, 90.60, 92.72, 94.77, 96.82, 98.85,100.82/
       data (en(i),i=  6670,  6840)/
-     >102.81,104.79,106.64,108.55,110.45,112.33,114.16,115.97,117.81,
-     >119.55,121.30,123.13,124.82,126.57,  0.00, 21.48, 29.49, 35.71,
-     > 40.98, 45.53, 49.64, 53.39, 56.89, 60.17, 63.31, 66.23, 69.09,
-     > 71.75, 74.34, 76.87, 79.34, 81.70, 84.02, 86.29, 88.46, 90.67,
-     > 92.76, 94.88, 96.89, 98.92,100.96,102.92,104.78,106.78,108.75,
-     >110.59,112.44,114.26,116.06,117.86,119.68,121.49,123.26,125.02,
-     >126.73,  0.00, 21.52, 29.53, 35.76, 40.97, 45.56, 49.66, 53.42,
-     > 56.94, 60.23, 63.28, 66.26, 69.08, 71.78, 74.40, 76.90, 79.36,
-     > 81.73, 84.02, 86.32, 88.49, 90.69, 92.86, 94.92, 97.02, 99.00,
-     >101.06,102.98,104.96,106.91,108.73,110.70,112.49,114.41,116.24,
-     >117.95,119.84,121.64,123.39,125.14,126.83,  0.00, 21.48, 29.52,
-     > 35.76, 40.96, 45.51, 49.65, 53.39, 56.90, 60.17, 63.31, 66.26,
-     > 69.08, 71.75, 74.36, 76.91, 79.36, 81.72, 84.03, 86.32, 88.50,
-     > 90.69, 92.86, 94.93, 96.97, 99.07,101.06,103.05,105.02,106.96,
-     >108.86,110.74,112.58,114.43,116.29,118.13,119.95,121.67,123.49,
-     >125.27,126.93,  0.00, 21.49, 29.47, 35.71, 40.93, 45.49, 49.57,
-     > 53.34, 56.89, 60.17, 63.24, 66.17, 69.04, 71.71, 74.32, 76.88,
-     > 79.31, 81.65, 83.96, 86.25, 88.49, 90.70, 92.81, 95.00, 97.05,
-     > 99.04,101.06,103.08,105.00,106.99,108.92,110.82,112.69,114.52/
+     *102.81,104.79,106.64,108.55,110.45,112.33,114.16,115.97,117.81,
+     *119.55,121.30,123.13,124.82,126.57,  0.00, 21.48, 29.49, 35.71,
+     * 40.98, 45.53, 49.64, 53.39, 56.89, 60.17, 63.31, 66.23, 69.09,
+     * 71.75, 74.34, 76.87, 79.34, 81.70, 84.02, 86.29, 88.46, 90.67,
+     * 92.76, 94.88, 96.89, 98.92,100.96,102.92,104.78,106.78,108.75,
+     *110.59,112.44,114.26,116.06,117.86,119.68,121.49,123.26,125.02,
+     *126.73,  0.00, 21.52, 29.53, 35.76, 40.97, 45.56, 49.66, 53.42,
+     * 56.94, 60.23, 63.28, 66.26, 69.08, 71.78, 74.40, 76.90, 79.36,
+     * 81.73, 84.02, 86.32, 88.49, 90.69, 92.86, 94.92, 97.02, 99.00,
+     *101.06,102.98,104.96,106.91,108.73,110.70,112.49,114.41,116.24,
+     *117.95,119.84,121.64,123.39,125.14,126.83,  0.00, 21.48, 29.52,
+     * 35.76, 40.96, 45.51, 49.65, 53.39, 56.90, 60.17, 63.31, 66.26,
+     * 69.08, 71.75, 74.36, 76.91, 79.36, 81.72, 84.03, 86.32, 88.50,
+     * 90.69, 92.86, 94.93, 96.97, 99.07,101.06,103.05,105.02,106.96,
+     *108.86,110.74,112.58,114.43,116.29,118.13,119.95,121.67,123.49,
+     *125.27,126.93,  0.00, 21.49, 29.47, 35.71, 40.93, 45.49, 49.57,
+     * 53.34, 56.89, 60.17, 63.24, 66.17, 69.04, 71.71, 74.32, 76.88,
+     * 79.31, 81.65, 83.96, 86.25, 88.49, 90.70, 92.81, 95.00, 97.05,
+     * 99.04,101.06,103.08,105.00,106.99,108.92,110.82,112.69,114.52/
       data (en(i),i=  6841,  7011)/
-     >116.41,118.16,119.97,121.81,123.61,125.39,127.15,  0.00, 21.50,
-     > 29.49, 35.62, 40.84, 45.42, 49.49, 53.25, 56.76, 60.02, 63.16,
-     > 66.10, 68.90, 71.60, 74.25, 76.75, 79.20, 81.62, 83.90, 86.23,
-     > 88.41, 90.65, 92.79, 94.87, 97.01, 98.92,100.96,103.09,105.04,
-     >106.97,108.90,110.84,112.67,114.61,116.47,118.22,120.07,121.87,
-     >123.75,125.46,127.21,  0.00, 21.42, 29.41, 35.57, 40.71, 45.28,
-     > 49.34, 53.12, 56.62, 59.91, 62.96, 65.95, 68.74, 71.47, 74.07,
-     > 76.61, 79.07, 81.47, 83.82, 86.09, 88.32, 90.50, 92.74, 94.80,
-     > 96.95, 98.99,101.02,103.03,105.06,106.98,108.89,110.82,112.78,
-     >114.64,116.51,118.35,120.18,121.97,123.84,125.53,127.34,  0.00,
-     > 21.37, 29.33, 35.45, 40.57, 45.10, 49.19, 52.99, 56.42, 59.71,
-     > 62.45, 65.72, 68.56, 71.28, 73.89, 76.44, 78.88, 81.29, 83.69,
-     > 85.99, 88.18, 90.44, 92.62, 94.76, 96.82, 98.94,100.99,103.05,
-     >105.05,107.04,108.94,110.87,112.83,114.75,116.58,118.46,120.29,
-     >122.06,123.92,125.70,127.51,  0.00, 21.30, 29.14, 35.27, 40.41,
-     > 44.87, 48.98, 52.72, 56.15, 59.46, 62.53, 65.45, 68.29, 71.01,
-     > 73.65, 76.22, 78.67, 81.05, 83.49, 85.81, 88.10, 90.33, 92.51,
-     > 94.69, 96.77, 98.92,100.97,103.02,104.99,106.99,109.02,110.97,
-     >112.83,114.78,116.71,118.54,120.43,122.22,124.06,125.87,127.64/
+     *116.41,118.16,119.97,121.81,123.61,125.39,127.15,  0.00, 21.50,
+     * 29.49, 35.62, 40.84, 45.42, 49.49, 53.25, 56.76, 60.02, 63.16,
+     * 66.10, 68.90, 71.60, 74.25, 76.75, 79.20, 81.62, 83.90, 86.23,
+     * 88.41, 90.65, 92.79, 94.87, 97.01, 98.92,100.96,103.09,105.04,
+     *106.97,108.90,110.84,112.67,114.61,116.47,118.22,120.07,121.87,
+     *123.75,125.46,127.21,  0.00, 21.42, 29.41, 35.57, 40.71, 45.28,
+     * 49.34, 53.12, 56.62, 59.91, 62.96, 65.95, 68.74, 71.47, 74.07,
+     * 76.61, 79.07, 81.47, 83.82, 86.09, 88.32, 90.50, 92.74, 94.80,
+     * 96.95, 98.99,101.02,103.03,105.06,106.98,108.89,110.82,112.78,
+     *114.64,116.51,118.35,120.18,121.97,123.84,125.53,127.34,  0.00,
+     * 21.37, 29.33, 35.45, 40.57, 45.10, 49.19, 52.99, 56.42, 59.71,
+     * 62.45, 65.72, 68.56, 71.28, 73.89, 76.44, 78.88, 81.29, 83.69,
+     * 85.99, 88.18, 90.44, 92.62, 94.76, 96.82, 98.94,100.99,103.05,
+     *105.05,107.04,108.94,110.87,112.83,114.75,116.58,118.46,120.29,
+     *122.06,123.92,125.70,127.51,  0.00, 21.30, 29.14, 35.27, 40.41,
+     * 44.87, 48.98, 52.72, 56.15, 59.46, 62.53, 65.45, 68.29, 71.01,
+     * 73.65, 76.22, 78.67, 81.05, 83.49, 85.81, 88.10, 90.33, 92.51,
+     * 94.69, 96.77, 98.92,100.97,103.02,104.99,106.99,109.02,110.97,
+     *112.83,114.78,116.71,118.54,120.43,122.22,124.06,125.87,127.64/
       data (en(i),i=  7012,  7182)/
-     >  0.00, 21.16, 28.98, 35.04, 40.14, 44.58, 48.65, 52.36, 55.84,
-     > 59.07, 62.17, 65.13, 67.98, 70.67, 73.35, 75.92, 78.43, 80.90,
-     > 83.28, 85.61, 87.91, 90.25, 92.40, 94.62, 96.76, 98.91,100.95,
-     >103.06,105.09,107.05,109.07,111.04,112.94,114.91,116.84,118.72,
-     >120.56,122.42,124.23,126.03,127.85,  0.00, 20.98, 28.75, 34.76,
-     > 39.76, 44.19, 48.24, 51.96, 55.42, 58.61, 61.76, 64.74, 67.58,
-     > 70.36, 73.00, 75.66, 78.17, 80.70, 83.09, 85.50, 87.83, 90.10,
-     > 92.40, 94.57, 96.80, 98.90,101.03,103.10,105.15,107.26,109.25,
-     >111.20,113.22,115.10,117.00,118.89,120.78,122.64,124.54,126.37,
-     >128.14,  0.00, 20.71, 28.32, 34.28, 39.19, 43.69, 47.64, 51.33,
-     > 54.84, 58.11, 61.30, 64.31, 67.26, 70.05, 72.75, 75.48, 78.07,
-     > 80.61, 83.12, 85.53, 87.89, 90.18, 92.49, 94.71, 96.88, 99.13,
-     >101.24,103.37,105.42,107.46,109.50,111.54,113.50,115.44,117.44,
-     >119.27,121.21,123.09,124.87,126.75,128.62,  0.00, 19.96, 27.47,
-     > 33.32, 38.39, 42.90, 47.03, 50.89, 54.47, 57.90, 61.17, 64.24,
-     > 67.24, 70.13, 72.95, 75.65, 78.31, 80.86, 83.37, 85.85, 88.25,
-     > 90.59, 92.94, 95.16, 97.42, 99.60,101.79,103.84,105.96,108.09,
-     >110.11,112.10,114.09,116.04,118.00,119.91,121.83,123.73,125.62,
-     >127.48,129.33,  0.00, 18.59, 25.81, 31.47, 36.33, 40.63, 44.62/
+     *  0.00, 21.16, 28.98, 35.04, 40.14, 44.58, 48.65, 52.36, 55.84,
+     * 59.07, 62.17, 65.13, 67.98, 70.67, 73.35, 75.92, 78.43, 80.90,
+     * 83.28, 85.61, 87.91, 90.25, 92.40, 94.62, 96.76, 98.91,100.95,
+     *103.06,105.09,107.05,109.07,111.04,112.94,114.91,116.84,118.72,
+     *120.56,122.42,124.23,126.03,127.85,  0.00, 20.98, 28.75, 34.76,
+     * 39.76, 44.19, 48.24, 51.96, 55.42, 58.61, 61.76, 64.74, 67.58,
+     * 70.36, 73.00, 75.66, 78.17, 80.70, 83.09, 85.50, 87.83, 90.10,
+     * 92.40, 94.57, 96.80, 98.90,101.03,103.10,105.15,107.26,109.25,
+     *111.20,113.22,115.10,117.00,118.89,120.78,122.64,124.54,126.37,
+     *128.14,  0.00, 20.71, 28.32, 34.28, 39.19, 43.69, 47.64, 51.33,
+     * 54.84, 58.11, 61.30, 64.31, 67.26, 70.05, 72.75, 75.48, 78.07,
+     * 80.61, 83.12, 85.53, 87.89, 90.18, 92.49, 94.71, 96.88, 99.13,
+     *101.24,103.37,105.42,107.46,109.50,111.54,113.50,115.44,117.44,
+     *119.27,121.21,123.09,124.87,126.75,128.62,  0.00, 19.96, 27.47,
+     * 33.32, 38.39, 42.90, 47.03, 50.89, 54.47, 57.90, 61.17, 64.24,
+     * 67.24, 70.13, 72.95, 75.65, 78.31, 80.86, 83.37, 85.85, 88.25,
+     * 90.59, 92.94, 95.16, 97.42, 99.60,101.79,103.84,105.96,108.09,
+     *110.11,112.10,114.09,116.04,118.00,119.91,121.83,123.73,125.62,
+     *127.48,129.33,  0.00, 18.59, 25.81, 31.47, 36.33, 40.63, 44.62/
       data (en(i),i=  7183,  7353)/
-     > 48.28, 51.74, 54.97, 58.09, 61.11, 63.98, 66.75, 69.40, 72.02,
-     > 74.58, 77.02, 79.49, 81.85, 84.21, 86.54, 88.77, 91.06, 93.23,
-     > 95.38, 97.51, 99.69,101.76,103.77,105.75,107.79,109.79,111.77,
-     >113.73,115.57,117.52,119.40,121.23,123.05,124.96,  0.00, 19.31,
-     > 26.65, 32.32, 37.15, 41.48, 45.33, 48.96, 52.33, 55.55, 58.66,
-     > 61.57, 64.36, 67.10, 69.74, 72.38, 74.85, 77.31, 79.76, 82.11,
-     > 84.43, 86.77, 89.00, 91.16, 93.36, 95.47, 97.67, 99.66,101.75,
-     >103.80,105.85,107.81,109.77,111.72,113.65,115.58,117.42,119.33,
-     >121.18,122.97,124.78,  0.00, 19.76, 27.20, 33.02, 37.89, 42.29,
-     > 46.16, 49.72, 53.09, 56.28, 59.35, 62.24, 65.02, 67.76, 70.42,
-     > 72.91, 75.44, 77.89, 80.27, 82.65, 84.88, 87.24, 89.36, 91.61,
-     > 93.75, 95.91, 97.99,100.03,102.13,104.10,106.16,108.04,110.07,
-     >112.03,113.91,115.76,117.66,119.52,121.33,123.20,124.98,  0.00,
-     > 20.07, 27.72, 33.53, 38.49, 42.90, 46.80, 50.44, 53.61, 56.97,
-     > 60.02, 62.90, 63.43, 68.41, 70.99, 73.49, 75.97, 78.47, 80.88,
-     > 83.19, 85.48, 87.77, 89.90, 92.07, 94.27, 96.35, 98.40,100.45,
-     >102.46,104.50,106.51,108.49,110.37,112.33,114.15,116.05,117.93,
-     >119.84,121.65,123.44,125.20,  0.00, 20.37, 28.09, 34.06, 39.05,
-     > 43.41, 47.40, 51.11, 54.51, 57.66, 60.67, 63.64, 66.44, 69.03/
+     * 48.28, 51.74, 54.97, 58.09, 61.11, 63.98, 66.75, 69.40, 72.02,
+     * 74.58, 77.02, 79.49, 81.85, 84.21, 86.54, 88.77, 91.06, 93.23,
+     * 95.38, 97.51, 99.69,101.76,103.77,105.75,107.79,109.79,111.77,
+     *113.73,115.57,117.52,119.40,121.23,123.05,124.96,  0.00, 19.31,
+     * 26.65, 32.32, 37.15, 41.48, 45.33, 48.96, 52.33, 55.55, 58.66,
+     * 61.57, 64.36, 67.10, 69.74, 72.38, 74.85, 77.31, 79.76, 82.11,
+     * 84.43, 86.77, 89.00, 91.16, 93.36, 95.47, 97.67, 99.66,101.75,
+     *103.80,105.85,107.81,109.77,111.72,113.65,115.58,117.42,119.33,
+     *121.18,122.97,124.78,  0.00, 19.76, 27.20, 33.02, 37.89, 42.29,
+     * 46.16, 49.72, 53.09, 56.28, 59.35, 62.24, 65.02, 67.76, 70.42,
+     * 72.91, 75.44, 77.89, 80.27, 82.65, 84.88, 87.24, 89.36, 91.61,
+     * 93.75, 95.91, 97.99,100.03,102.13,104.10,106.16,108.04,110.07,
+     *112.03,113.91,115.76,117.66,119.52,121.33,123.20,124.98,  0.00,
+     * 20.07, 27.72, 33.53, 38.49, 42.90, 46.80, 50.44, 53.61, 56.97,
+     * 60.02, 62.90, 63.43, 68.41, 70.99, 73.49, 75.97, 78.47, 80.88,
+     * 83.19, 85.48, 87.77, 89.90, 92.07, 94.27, 96.35, 98.40,100.45,
+     *102.46,104.50,106.51,108.49,110.37,112.33,114.15,116.05,117.93,
+     *119.84,121.65,123.44,125.20,  0.00, 20.37, 28.09, 34.06, 39.05,
+     * 43.41, 47.40, 51.11, 54.51, 57.66, 60.67, 63.64, 66.44, 69.03/
       data (en(i),i=  7354,  7524)/
-     > 71.60, 74.17, 76.61, 79.06, 81.45, 83.78, 86.04, 88.27, 90.47,
-     > 92.56, 94.72, 96.79, 98.88,101.00,102.96,104.95,106.96,108.93,
-     >110.83,112.72,114.59,116.49,118.33,120.16,121.99,123.75,125.57,
-     >  0.00, 20.59, 28.38, 34.43, 39.45, 43.93, 47.92, 51.64, 55.04,
-     > 58.24, 61.26, 64.21, 66.92, 69.63, 72.18, 74.76, 77.24, 79.64,
-     > 82.02, 84.31, 86.55, 88.80, 90.95, 93.14, 95.23, 97.35, 99.35,
-     >101.43,103.39,105.41,107.35,109.27,111.19,113.16,115.03,116.85,
-     >118.67,120.55,122.27,124.19,125.90,  0.00, 20.75, 28.69, 34.72,
-     > 39.85, 44.38, 48.36, 52.13, 55.56, 58.77, 61.81, 64.68, 67.52,
-     > 70.15, 72.75, 75.30, 77.76, 80.25, 82.54, 84.83, 87.11, 89.34,
-     > 91.49, 93.62, 95.74, 97.79, 99.85,101.92,103.85,105.85,107.82,
-     >109.74,111.65,113.49,115.42,117.29,119.08,120.92,122.69,124.57,
-     >126.33,  0.00, 21.05, 28.94, 35.08, 40.20, 44.73, 48.78, 52.52,
-     > 55.98, 59.23, 62.31, 65.23, 67.96, 70.68, 73.26, 75.79, 78.31,
-     > 80.68, 83.04, 85.37, 87.62, 89.85, 91.99, 94.10, 96.25, 98.27,
-     >100.27,102.33,104.33,106.27,108.20,110.17,112.00,113.94,115.85,
-     >117.60,119.51,121.28,123.11,124.90,126.61,  0.00, 21.19, 29.27,
-     > 35.42, 40.45, 45.08, 49.13, 52.92, 56.44, 59.63, 62.73, 65.61,
-     > 68.45, 71.16, 73.78, 76.34, 78.77, 81.20, 83.48, 85.82, 88.10/
+     * 71.60, 74.17, 76.61, 79.06, 81.45, 83.78, 86.04, 88.27, 90.47,
+     * 92.56, 94.72, 96.79, 98.88,101.00,102.96,104.95,106.96,108.93,
+     *110.83,112.72,114.59,116.49,118.33,120.16,121.99,123.75,125.57,
+     *  0.00, 20.59, 28.38, 34.43, 39.45, 43.93, 47.92, 51.64, 55.04,
+     * 58.24, 61.26, 64.21, 66.92, 69.63, 72.18, 74.76, 77.24, 79.64,
+     * 82.02, 84.31, 86.55, 88.80, 90.95, 93.14, 95.23, 97.35, 99.35,
+     *101.43,103.39,105.41,107.35,109.27,111.19,113.16,115.03,116.85,
+     *118.67,120.55,122.27,124.19,125.90,  0.00, 20.75, 28.69, 34.72,
+     * 39.85, 44.38, 48.36, 52.13, 55.56, 58.77, 61.81, 64.68, 67.52,
+     * 70.15, 72.75, 75.30, 77.76, 80.25, 82.54, 84.83, 87.11, 89.34,
+     * 91.49, 93.62, 95.74, 97.79, 99.85,101.92,103.85,105.85,107.82,
+     *109.74,111.65,113.49,115.42,117.29,119.08,120.92,122.69,124.57,
+     *126.33,  0.00, 21.05, 28.94, 35.08, 40.20, 44.73, 48.78, 52.52,
+     * 55.98, 59.23, 62.31, 65.23, 67.96, 70.68, 73.26, 75.79, 78.31,
+     * 80.68, 83.04, 85.37, 87.62, 89.85, 91.99, 94.10, 96.25, 98.27,
+     *100.27,102.33,104.33,106.27,108.20,110.17,112.00,113.94,115.85,
+     *117.60,119.51,121.28,123.11,124.90,126.61,  0.00, 21.19, 29.27,
+     * 35.42, 40.45, 45.08, 49.13, 52.92, 56.44, 59.63, 62.73, 65.61,
+     * 68.45, 71.16, 73.78, 76.34, 78.77, 81.20, 83.48, 85.82, 88.10/
       data (en(i),i=  7525,  7695)/
-     > 90.27, 92.45, 94.55, 96.70, 98.67,100.81,102.72,104.77,106.72,
-     >108.68,110.64,112.49,114.32,116.19,118.03,119.77,121.63,123.40,
-     >125.22,126.97,  0.00, 21.40, 29.35, 35.57, 40.74, 45.35, 49.50,
-     > 53.29, 56.77, 60.09, 63.15, 66.06, 68.89, 71.55, 74.20, 76.75,
-     > 79.25, 81.64, 83.95, 86.28, 88.49, 90.75, 92.87, 94.99, 97.11,
-     > 99.17,101.15,103.21,105.18,107.11,109.07,110.93,112.84,114.70,
-     >116.58,118.38,120.22,121.96,123.76,125.58,127.37,  0.00, 21.53,
-     > 29.54, 35.79, 41.00, 45.67, 49.79, 53.63, 57.14, 60.42, 63.50,
-     > 66.44, 69.27, 71.95, 74.61, 77.19, 79.68, 82.06, 84.38, 86.67,
-     > 88.91, 91.11, 93.30, 95.40, 97.51, 99.53,101.61,103.54,105.54,
-     >107.47,109.38,111.37,113.16,115.10,116.88,118.79,120.54,122.37,
-     >124.13,125.83,127.70,  0.00, 21.63, 29.72, 35.96, 41.25, 45.90,
-     > 50.05, 53.89, 57.43, 60.73, 63.79, 66.78, 69.60, 72.32, 74.98,
-     > 77.54, 79.98, 82.42, 84.77, 87.08, 89.30, 91.54, 93.69, 95.78,
-     > 97.83, 99.90,101.98,103.96,105.91,107.82,109.73,111.72,113.51,
-     >115.38,117.22,119.07,120.84,122.64,124.40,126.21,127.99,  0.00,
-     > 21.76, 29.90, 36.12, 41.49, 46.07, 50.32, 54.15, 57.69, 61.02,
-     > 64.12, 67.08, 69.89, 72.66, 75.34, 77.89, 80.40, 82.75, 85.15,
-     > 87.41, 89.68, 91.87, 93.99, 96.16, 98.23,100.23,102.21,104.30/
+     * 90.27, 92.45, 94.55, 96.70, 98.67,100.81,102.72,104.77,106.72,
+     *108.68,110.64,112.49,114.32,116.19,118.03,119.77,121.63,123.40,
+     *125.22,126.97,  0.00, 21.40, 29.35, 35.57, 40.74, 45.35, 49.50,
+     * 53.29, 56.77, 60.09, 63.15, 66.06, 68.89, 71.55, 74.20, 76.75,
+     * 79.25, 81.64, 83.95, 86.28, 88.49, 90.75, 92.87, 94.99, 97.11,
+     * 99.17,101.15,103.21,105.18,107.11,109.07,110.93,112.84,114.70,
+     *116.58,118.38,120.22,121.96,123.76,125.58,127.37,  0.00, 21.53,
+     * 29.54, 35.79, 41.00, 45.67, 49.79, 53.63, 57.14, 60.42, 63.50,
+     * 66.44, 69.27, 71.95, 74.61, 77.19, 79.68, 82.06, 84.38, 86.67,
+     * 88.91, 91.11, 93.30, 95.40, 97.51, 99.53,101.61,103.54,105.54,
+     *107.47,109.38,111.37,113.16,115.10,116.88,118.79,120.54,122.37,
+     *124.13,125.83,127.70,  0.00, 21.63, 29.72, 35.96, 41.25, 45.90,
+     * 50.05, 53.89, 57.43, 60.73, 63.79, 66.78, 69.60, 72.32, 74.98,
+     * 77.54, 79.98, 82.42, 84.77, 87.08, 89.30, 91.54, 93.69, 95.78,
+     * 97.83, 99.90,101.98,103.96,105.91,107.82,109.73,111.72,113.51,
+     *115.38,117.22,119.07,120.84,122.64,124.40,126.21,127.99,  0.00,
+     * 21.76, 29.90, 36.12, 41.49, 46.07, 50.32, 54.15, 57.69, 61.02,
+     * 64.12, 67.08, 69.89, 72.66, 75.34, 77.89, 80.40, 82.75, 85.15,
+     * 87.41, 89.68, 91.87, 93.99, 96.16, 98.23,100.23,102.21,104.30/
       data (en(i),i=  7696,  7866)/
-     >106.24,108.19,110.12,112.00,113.86,115.75,117.56,119.40,121.25,
-     >122.96,124.74,126.58,128.21,  0.00, 21.87, 29.97, 36.32, 41.65,
-     > 46.33, 50.52, 54.36, 57.96, 61.28, 64.40, 67.34, 70.21, 72.99,
-     > 75.59, 78.17, 80.65, 83.08, 85.44, 87.70, 90.00, 92.19, 94.33,
-     > 96.42, 98.54,100.55,102.56,104.59,106.57,108.52,110.44,112.30,
-     >114.22,116.05,117.88,119.60,121.46,123.30,125.03,126.78,128.49,
-     >  0.00, 21.95, 30.11, 36.46, 41.80, 46.49, 50.70, 54.57, 58.14,
-     > 61.47, 64.62, 67.60, 70.43, 73.21, 75.92, 78.47, 80.92, 83.38,
-     > 85.70, 88.01, 90.24, 92.45, 94.63, 96.76, 98.82,100.89,102.87,
-     >104.82,106.86,108.75,110.69,112.57,114.47,116.33,118.16,119.94,
-     >121.73,123.57,125.32,127.08,128.86,  0.00, 22.01, 30.19, 36.59,
-     > 41.91, 46.59, 50.88, 54.77, 58.31, 61.65, 64.82, 67.83, 70.70,
-     > 73.48, 76.16, 78.69, 81.18, 83.58, 85.97, 88.31, 90.50, 92.74,
-     > 94.88, 97.02, 99.10,101.12,103.17,105.16,107.07,109.01,110.93,
-     >112.87,114.65,116.58,118.36,120.23,122.04,123.74,125.51,127.28,
-     >129.00,  0.00, 23.22, 31.13, 36.68, 42.09, 46.77, 50.99, 54.89,
-     > 58.90, 61.82, 64.99, 68.00, 70.87, 73.66, 76.36, 79.21, 81.38,
-     > 83.85, 86.21, 88.75, 91.01, 93.18, 95.14, 97.49, 99.31,101.60,
-     >103.59,105.37,107.50,109.27,111.15,113.03,115.14,116.74,118.83/
+     *106.24,108.19,110.12,112.00,113.86,115.75,117.56,119.40,121.25,
+     *122.96,124.74,126.58,128.21,  0.00, 21.87, 29.97, 36.32, 41.65,
+     * 46.33, 50.52, 54.36, 57.96, 61.28, 64.40, 67.34, 70.21, 72.99,
+     * 75.59, 78.17, 80.65, 83.08, 85.44, 87.70, 90.00, 92.19, 94.33,
+     * 96.42, 98.54,100.55,102.56,104.59,106.57,108.52,110.44,112.30,
+     *114.22,116.05,117.88,119.60,121.46,123.30,125.03,126.78,128.49,
+     *  0.00, 21.95, 30.11, 36.46, 41.80, 46.49, 50.70, 54.57, 58.14,
+     * 61.47, 64.62, 67.60, 70.43, 73.21, 75.92, 78.47, 80.92, 83.38,
+     * 85.70, 88.01, 90.24, 92.45, 94.63, 96.76, 98.82,100.89,102.87,
+     *104.82,106.86,108.75,110.69,112.57,114.47,116.33,118.16,119.94,
+     *121.73,123.57,125.32,127.08,128.86,  0.00, 22.01, 30.19, 36.59,
+     * 41.91, 46.59, 50.88, 54.77, 58.31, 61.65, 64.82, 67.83, 70.70,
+     * 73.48, 76.16, 78.69, 81.18, 83.58, 85.97, 88.31, 90.50, 92.74,
+     * 94.88, 97.02, 99.10,101.12,103.17,105.16,107.07,109.01,110.93,
+     *112.87,114.65,116.58,118.36,120.23,122.04,123.74,125.51,127.28,
+     *129.00,  0.00, 23.22, 31.13, 36.68, 42.09, 46.77, 50.99, 54.89,
+     * 58.90, 61.82, 64.99, 68.00, 70.87, 73.66, 76.36, 79.21, 81.38,
+     * 83.85, 86.21, 88.75, 91.01, 93.18, 95.14, 97.49, 99.31,101.60,
+     *103.59,105.37,107.50,109.27,111.15,113.03,115.14,116.74,118.83/
       data (en(i),i=  7867,  8037)/
-     >120.62,122.23,123.99,126.00,127.57,129.24,  0.00, 22.26, 30.49,
-     > 36.84, 42.20, 46.92, 51.21, 55.09, 58.62, 61.95, 65.14, 68.15,
-     > 71.06, 73.85, 76.52, 79.11, 81.62, 84.01, 86.43, 88.73, 90.90,
-     > 93.15, 95.30, 97.45, 99.49,101.55,103.63,105.56,107.56,109.48,
-     >111.36,113.29,115.15,117.05,118.82,120.64,122.43,124.19,126.00,
-     >127.73,129.44,  0.00, 22.15, 30.48, 36.82, 42.23, 46.94, 51.18,
-     > 55.13, 58.73, 62.10, 65.24, 68.32, 71.16, 73.98, 76.66, 79.24,
-     > 81.74, 84.18, 86.56, 88.82, 91.07, 93.25, 95.45, 97.55, 99.64,
-     >101.74,103.73,105.71,107.68,109.65,111.56,113.45,115.30,117.10,
-     >118.96,120.78,122.58,124.42,126.13,127.89,129.63,  0.00, 22.20,
-     > 30.52, 36.89, 42.32, 47.07, 51.29, 55.22, 58.79, 62.17, 65.35,
-     > 68.44, 71.29, 74.10, 76.76, 79.35, 81.88, 84.30, 86.62, 88.94,
-     > 91.21, 93.46, 95.63, 97.71, 99.74,101.84,103.89,105.90,107.85,
-     >109.78,111.69,113.59,115.50,117.33,119.14,120.95,122.77,124.50,
-     >126.31,128.10,129.86,  0.00, 22.20, 30.50, 36.95, 42.34, 47.10,
-     > 51.34, 55.25, 58.85, 62.20, 65.45, 68.46, 71.40, 74.15, 76.82,
-     > 79.46, 81.90, 84.38, 86.76, 89.06, 91.30, 93.55, 95.73, 97.83,
-     > 99.91,101.94,104.00,105.97,107.96,109.88,111.79,113.69,115.58,
-     >117.47,119.31,121.11,122.93,124.65,126.48,128.16,130.00,  0.00/
+     *120.62,122.23,123.99,126.00,127.57,129.24,  0.00, 22.26, 30.49,
+     * 36.84, 42.20, 46.92, 51.21, 55.09, 58.62, 61.95, 65.14, 68.15,
+     * 71.06, 73.85, 76.52, 79.11, 81.62, 84.01, 86.43, 88.73, 90.90,
+     * 93.15, 95.30, 97.45, 99.49,101.55,103.63,105.56,107.56,109.48,
+     *111.36,113.29,115.15,117.05,118.82,120.64,122.43,124.19,126.00,
+     *127.73,129.44,  0.00, 22.15, 30.48, 36.82, 42.23, 46.94, 51.18,
+     * 55.13, 58.73, 62.10, 65.24, 68.32, 71.16, 73.98, 76.66, 79.24,
+     * 81.74, 84.18, 86.56, 88.82, 91.07, 93.25, 95.45, 97.55, 99.64,
+     *101.74,103.73,105.71,107.68,109.65,111.56,113.45,115.30,117.10,
+     *118.96,120.78,122.58,124.42,126.13,127.89,129.63,  0.00, 22.20,
+     * 30.52, 36.89, 42.32, 47.07, 51.29, 55.22, 58.79, 62.17, 65.35,
+     * 68.44, 71.29, 74.10, 76.76, 79.35, 81.88, 84.30, 86.62, 88.94,
+     * 91.21, 93.46, 95.63, 97.71, 99.74,101.84,103.89,105.90,107.85,
+     *109.78,111.69,113.59,115.50,117.33,119.14,120.95,122.77,124.50,
+     *126.31,128.10,129.86,  0.00, 22.20, 30.50, 36.95, 42.34, 47.10,
+     * 51.34, 55.25, 58.85, 62.20, 65.45, 68.46, 71.40, 74.15, 76.82,
+     * 79.46, 81.90, 84.38, 86.76, 89.06, 91.30, 93.55, 95.73, 97.83,
+     * 99.91,101.94,104.00,105.97,107.96,109.88,111.79,113.69,115.58,
+     *117.47,119.31,121.11,122.93,124.65,126.48,128.16,130.00,  0.00/
       data (en(i),i=  8038,  8208)/
-     > 22.28, 30.42, 36.88, 42.35, 47.03, 51.36, 55.28, 58.90, 62.25,
-     > 65.50, 68.53, 71.46, 74.25, 76.88, 79.49, 81.99, 84.43, 86.79,
-     > 89.11, 91.40, 93.61, 95.74, 97.91, 99.95,102.03,104.07,106.03,
-     >108.15,109.98,111.86,113.78,115.66,117.51,119.37,121.17,123.00,
-     >124.80,126.53,128.32,130.07,  0.00, 22.31, 30.57, 37.02, 42.39,
-     > 47.14, 51.38, 55.30, 58.88, 62.27, 65.51, 68.54, 71.48, 74.29,
-     > 76.94, 79.49, 82.02, 84.47, 86.85, 89.13, 91.41, 93.65, 95.79,
-     > 97.95, 99.99,102.11,104.11,106.10,108.12,110.07,111.98,113.86,
-     >115.80,117.65,119.48,121.29,123.08,124.92,126.68,128.46,130.18,
-     >  0.00, 22.28, 30.56, 36.99, 42.38, 47.10, 51.37, 55.27, 58.84,
-     > 62.25, 65.45, 68.51, 71.42, 74.24, 76.94, 79.49, 82.03, 84.45,
-     > 86.84, 89.18, 91.39, 93.62, 95.79, 97.91,100.01,102.11,104.17,
-     >106.15,108.13,110.12,112.00,113.90,115.81,117.67,119.52,121.39,
-     >123.26,124.94,126.81,128.54,130.30,  0.00, 22.31, 30.57, 36.92,
-     > 42.34, 47.04, 51.30, 55.21, 58.80, 62.25, 65.46, 68.48, 71.36,
-     > 74.19, 76.89, 79.42, 81.97, 84.44, 86.79, 89.14, 91.37, 93.61,
-     > 95.83, 97.90,100.06,102.10,104.15,106.15,108.17,110.10,112.02,
-     >113.94,115.84,117.68,119.56,121.48,123.22,125.09,126.89,128.64,
-     >130.38,  0.00, 22.27, 30.50, 36.93, 42.25, 47.03, 51.19, 55.14/
+     * 22.28, 30.42, 36.88, 42.35, 47.03, 51.36, 55.28, 58.90, 62.25,
+     * 65.50, 68.53, 71.46, 74.25, 76.88, 79.49, 81.99, 84.43, 86.79,
+     * 89.11, 91.40, 93.61, 95.74, 97.91, 99.95,102.03,104.07,106.03,
+     *108.15,109.98,111.86,113.78,115.66,117.51,119.37,121.17,123.00,
+     *124.80,126.53,128.32,130.07,  0.00, 22.31, 30.57, 37.02, 42.39,
+     * 47.14, 51.38, 55.30, 58.88, 62.27, 65.51, 68.54, 71.48, 74.29,
+     * 76.94, 79.49, 82.02, 84.47, 86.85, 89.13, 91.41, 93.65, 95.79,
+     * 97.95, 99.99,102.11,104.11,106.10,108.12,110.07,111.98,113.86,
+     *115.80,117.65,119.48,121.29,123.08,124.92,126.68,128.46,130.18,
+     *  0.00, 22.28, 30.56, 36.99, 42.38, 47.10, 51.37, 55.27, 58.84,
+     * 62.25, 65.45, 68.51, 71.42, 74.24, 76.94, 79.49, 82.03, 84.45,
+     * 86.84, 89.18, 91.39, 93.62, 95.79, 97.91,100.01,102.11,104.17,
+     *106.15,108.13,110.12,112.00,113.90,115.81,117.67,119.52,121.39,
+     *123.26,124.94,126.81,128.54,130.30,  0.00, 22.31, 30.57, 36.92,
+     * 42.34, 47.04, 51.30, 55.21, 58.80, 62.25, 65.46, 68.48, 71.36,
+     * 74.19, 76.89, 79.42, 81.97, 84.44, 86.79, 89.14, 91.37, 93.61,
+     * 95.83, 97.90,100.06,102.10,104.15,106.15,108.17,110.10,112.02,
+     *113.94,115.84,117.68,119.56,121.48,123.22,125.09,126.89,128.64,
+     *130.38,  0.00, 22.27, 30.50, 36.93, 42.25, 47.03, 51.19, 55.14/
       data (en(i),i=  8209,  8379)/
-     > 58.76, 62.16, 65.35, 68.41, 71.26, 74.07, 76.76, 79.40, 81.90,
-     > 84.31, 86.73, 89.05, 91.32, 93.55, 95.69, 97.89, 99.99,102.03,
-     >104.07,106.17,108.04,110.10,112.07,114.00,115.91,117.79,119.62,
-     >121.46,123.34,125.06,126.95,128.71,130.46,  0.00, 22.27, 30.48,
-     > 36.62, 42.16, 46.90, 51.13, 54.89, 58.65, 62.00, 65.10, 68.15,
-     > 71.17, 73.92, 76.61, 79.24, 81.78, 84.13, 86.57, 88.90, 91.20,
-     > 93.38, 95.63, 97.76, 99.93,102.02,104.06,106.11,108.06,109.98,
-     >111.99,113.95,115.83,117.76,119.63,121.51,123.35,125.10,126.84,
-     >128.76,130.57,  0.00, 22.18, 30.42, 36.75, 42.10, 46.72, 50.96,
-     > 54.87, 58.48, 61.89, 65.02, 68.11, 71.01, 73.74, 76.47, 79.07,
-     > 81.56, 84.01, 86.44, 88.73, 91.09, 93.35, 95.54, 97.68, 99.77,
-     >101.91,104.02,105.99,108.08,110.05,111.99,113.92,115.90,117.81,
-     >119.68,121.55,123.39,125.19,126.97,128.80,130.61,  0.00, 22.12,
-     > 30.26, 36.60, 41.90, 46.56, 50.80, 54.66, 58.27, 61.66, 64.85,
-     > 67.84, 70.73, 73.57, 76.22, 78.84, 81.37, 83.81, 86.24, 88.56,
-     > 90.88, 93.13, 95.40, 97.53, 99.70,101.80,103.90,105.95,107.97,
-     >109.99,112.00,113.92,115.90,117.77,119.65,121.60,123.45,125.27,
-     >127.08,128.95,130.73,  0.00, 22.31, 30.11, 36.42, 41.70, 46.34,
-     > 50.54, 54.38, 57.98, 61.45, 64.55, 67.55, 70.47, 73.24, 75.97/
+     * 58.76, 62.16, 65.35, 68.41, 71.26, 74.07, 76.76, 79.40, 81.90,
+     * 84.31, 86.73, 89.05, 91.32, 93.55, 95.69, 97.89, 99.99,102.03,
+     *104.07,106.17,108.04,110.10,112.07,114.00,115.91,117.79,119.62,
+     *121.46,123.34,125.06,126.95,128.71,130.46,  0.00, 22.27, 30.48,
+     * 36.62, 42.16, 46.90, 51.13, 54.89, 58.65, 62.00, 65.10, 68.15,
+     * 71.17, 73.92, 76.61, 79.24, 81.78, 84.13, 86.57, 88.90, 91.20,
+     * 93.38, 95.63, 97.76, 99.93,102.02,104.06,106.11,108.06,109.98,
+     *111.99,113.95,115.83,117.76,119.63,121.51,123.35,125.10,126.84,
+     *128.76,130.57,  0.00, 22.18, 30.42, 36.75, 42.10, 46.72, 50.96,
+     * 54.87, 58.48, 61.89, 65.02, 68.11, 71.01, 73.74, 76.47, 79.07,
+     * 81.56, 84.01, 86.44, 88.73, 91.09, 93.35, 95.54, 97.68, 99.77,
+     *101.91,104.02,105.99,108.08,110.05,111.99,113.92,115.90,117.81,
+     *119.68,121.55,123.39,125.19,126.97,128.80,130.61,  0.00, 22.12,
+     * 30.26, 36.60, 41.90, 46.56, 50.80, 54.66, 58.27, 61.66, 64.85,
+     * 67.84, 70.73, 73.57, 76.22, 78.84, 81.37, 83.81, 86.24, 88.56,
+     * 90.88, 93.13, 95.40, 97.53, 99.70,101.80,103.90,105.95,107.97,
+     *109.99,112.00,113.92,115.90,117.77,119.65,121.60,123.45,125.27,
+     *127.08,128.95,130.73,  0.00, 22.31, 30.11, 36.42, 41.70, 46.34,
+     * 50.54, 54.38, 57.98, 61.45, 64.55, 67.55, 70.47, 73.24, 75.97/
       data (en(i),i=  8380,  8550)/
-     > 78.62, 81.13, 83.67, 86.00, 88.39, 90.69, 93.04, 95.30, 97.50,
-     > 99.65,101.75,103.80,105.95,107.91,109.97,112.00,113.99,115.88,
-     >117.85,119.74,121.63,123.50,125.41,127.24,129.03,130.96,  0.00,
-     > 21.94, 29.93, 36.17, 41.41, 46.07, 50.24, 54.08, 57.61, 61.00,
-     > 64.14, 67.16, 70.12, 72.88, 75.59, 78.24, 80.84, 83.32, 85.70,
-     > 88.17, 90.49, 92.76, 95.05, 97.26, 99.49,101.67,103.76,105.84,
-     >107.90,109.99,112.02,113.97,115.98,117.92,119.81,121.71,123.60,
-     >125.45,127.32,129.16,131.08,  0.00, 21.79, 29.72, 35.88, 41.04,
-     > 45.71, 49.82, 53.64, 57.19, 60.51, 63.72, 66.75, 69.70, 72.53,
-     > 75.23, 77.88, 80.54, 83.04, 85.55, 87.96, 90.35, 92.72, 94.96,
-     > 97.28, 99.47,101.67,103.78,105.93,108.02,110.07,112.08,114.09,
-     >116.11,118.01,120.06,121.96,123.79,125.69,127.56,129.43,131.33,
-     >  0.00, 21.52, 29.33, 35.40, 40.53, 45.09, 49.08, 53.02, 56.58,
-     > 59.94, 63.18, 66.29, 69.23, 72.18, 74.92, 77.69, 80.32, 82.92,
-     > 85.42, 87.90, 90.34, 92.67, 94.99, 97.31, 99.56,101.73,103.96,
-     >106.06,108.19,110.29,112.33,114.36,116.38,118.34,120.27,122.25,
-     >124.23,126.04,127.99,129.80,131.66,  0.00, 20.76, 28.40, 34.48,
-     > 39.67, 44.30, 48.49, 52.45, 56.16, 59.67, 62.96, 66.13, 69.25,
-     > 72.17, 75.04, 77.82, 80.51, 83.09, 85.65, 88.16, 90.66, 93.02/
+     * 78.62, 81.13, 83.67, 86.00, 88.39, 90.69, 93.04, 95.30, 97.50,
+     * 99.65,101.75,103.80,105.95,107.91,109.97,112.00,113.99,115.88,
+     *117.85,119.74,121.63,123.50,125.41,127.24,129.03,130.96,  0.00,
+     * 21.94, 29.93, 36.17, 41.41, 46.07, 50.24, 54.08, 57.61, 61.00,
+     * 64.14, 67.16, 70.12, 72.88, 75.59, 78.24, 80.84, 83.32, 85.70,
+     * 88.17, 90.49, 92.76, 95.05, 97.26, 99.49,101.67,103.76,105.84,
+     *107.90,109.99,112.02,113.97,115.98,117.92,119.81,121.71,123.60,
+     *125.45,127.32,129.16,131.08,  0.00, 21.79, 29.72, 35.88, 41.04,
+     * 45.71, 49.82, 53.64, 57.19, 60.51, 63.72, 66.75, 69.70, 72.53,
+     * 75.23, 77.88, 80.54, 83.04, 85.55, 87.96, 90.35, 92.72, 94.96,
+     * 97.28, 99.47,101.67,103.78,105.93,108.02,110.07,112.08,114.09,
+     *116.11,118.01,120.06,121.96,123.79,125.69,127.56,129.43,131.33,
+     *  0.00, 21.52, 29.33, 35.40, 40.53, 45.09, 49.08, 53.02, 56.58,
+     * 59.94, 63.18, 66.29, 69.23, 72.18, 74.92, 77.69, 80.32, 82.92,
+     * 85.42, 87.90, 90.34, 92.67, 94.99, 97.31, 99.56,101.73,103.96,
+     *106.06,108.19,110.29,112.33,114.36,116.38,118.34,120.27,122.25,
+     *124.23,126.04,127.99,129.80,131.66,  0.00, 20.76, 28.40, 34.48,
+     * 39.67, 44.30, 48.49, 52.45, 56.16, 59.67, 62.96, 66.13, 69.25,
+     * 72.17, 75.04, 77.82, 80.51, 83.09, 85.65, 88.16, 90.66, 93.02/
       data (en(i),i=  8551,  8721)/
-     > 95.37, 97.73, 99.97,102.23,104.37,106.57,108.68,110.77,112.88,
-     >114.89,116.90,118.89,120.91,122.84,124.79,126.68,128.57,130.43,
-     >132.33,  0.00, 19.17, 26.54, 32.33, 37.33, 41.71, 45.90, 49.55,
-     > 53.08, 56.45, 59.58, 62.66, 65.57, 68.43, 71.15, 73.80, 76.42,
-     > 78.88, 81.32, 83.74, 86.09, 88.45, 90.73, 93.01, 95.30, 97.45,
-     > 99.64,101.73,103.91,105.91,107.96,110.04,112.06,113.98,115.96,
-     >117.93,119.77,121.66,123.60,125.45,127.34,  0.00, 19.90, 27.39,
-     > 33.23, 38.16, 42.60, 46.53, 50.24, 53.71, 57.01, 60.17, 63.12,
-     > 66.03, 68.81, 71.49, 74.11, 76.63, 79.20, 81.57, 84.01, 86.34,
-     > 88.68, 90.95, 93.23, 95.32, 97.60, 99.71,101.86,103.92,105.97,
-     >108.06,110.05,112.06,113.92,115.89,117.91,119.83,121.69,123.48,
-     >125.44,127.20,  0.00, 20.31, 27.97, 33.89, 38.95, 43.34, 47.34,
-     > 51.04, 54.47, 57.75, 60.84, 63.91, 66.76, 69.48, 72.18, 74.76,
-     > 77.28, 79.72, 82.19, 84.55, 86.84, 89.21, 91.47, 93.70, 95.81,
-     > 98.01,100.15,102.27,104.23,106.33,108.40,110.35,112.38,114.25,
-     >116.25,118.09,120.04,121.90,123.80,125.56,127.42,  0.00, 20.66,
-     > 28.43, 34.45, 39.52, 44.03, 48.04, 51.78, 55.22, 58.50, 61.64,
-     > 64.55, 67.45, 70.21, 72.83, 75.35, 77.88, 80.34, 82.80, 85.15,
-     > 87.48, 89.70, 91.98, 94.20, 96.37, 98.45,100.66,102.70,104.71/
+     * 95.37, 97.73, 99.97,102.23,104.37,106.57,108.68,110.77,112.88,
+     *114.89,116.90,118.89,120.91,122.84,124.79,126.68,128.57,130.43,
+     *132.33,  0.00, 19.17, 26.54, 32.33, 37.33, 41.71, 45.90, 49.55,
+     * 53.08, 56.45, 59.58, 62.66, 65.57, 68.43, 71.15, 73.80, 76.42,
+     * 78.88, 81.32, 83.74, 86.09, 88.45, 90.73, 93.01, 95.30, 97.45,
+     * 99.64,101.73,103.91,105.91,107.96,110.04,112.06,113.98,115.96,
+     *117.93,119.77,121.66,123.60,125.45,127.34,  0.00, 19.90, 27.39,
+     * 33.23, 38.16, 42.60, 46.53, 50.24, 53.71, 57.01, 60.17, 63.12,
+     * 66.03, 68.81, 71.49, 74.11, 76.63, 79.20, 81.57, 84.01, 86.34,
+     * 88.68, 90.95, 93.23, 95.32, 97.60, 99.71,101.86,103.92,105.97,
+     *108.06,110.05,112.06,113.92,115.89,117.91,119.83,121.69,123.48,
+     *125.44,127.20,  0.00, 20.31, 27.97, 33.89, 38.95, 43.34, 47.34,
+     * 51.04, 54.47, 57.75, 60.84, 63.91, 66.76, 69.48, 72.18, 74.76,
+     * 77.28, 79.72, 82.19, 84.55, 86.84, 89.21, 91.47, 93.70, 95.81,
+     * 98.01,100.15,102.27,104.23,106.33,108.40,110.35,112.38,114.25,
+     *116.25,118.09,120.04,121.90,123.80,125.56,127.42,  0.00, 20.66,
+     * 28.43, 34.45, 39.52, 44.03, 48.04, 51.78, 55.22, 58.50, 61.64,
+     * 64.55, 67.45, 70.21, 72.83, 75.35, 77.88, 80.34, 82.80, 85.15,
+     * 87.48, 89.70, 91.98, 94.20, 96.37, 98.45,100.66,102.70,104.71/
       data (en(i),i=  8722,  8892)/
-     >106.81,108.82,110.77,112.68,114.72,116.60,118.47,120.42,122.22,
-     >124.12,125.90,127.77,  0.00, 20.97, 28.84, 34.93, 40.07, 44.61,
-     > 48.61, 52.43, 55.88, 59.16, 62.31, 65.24, 68.11, 70.77, 73.43,
-     > 76.00, 78.51, 80.99, 83.41, 85.78, 88.11, 90.27, 92.57, 94.73,
-     > 96.84, 99.05,101.12,103.16,105.27,107.26,109.26,111.18,113.16,
-     >115.08,117.03,118.86,120.78,122.60,124.45,126.25,128.08,  0.00,
-     > 21.23, 29.13, 35.38, 40.50, 45.05, 49.20, 52.99, 56.45, 59.75,
-     > 62.91, 65.89, 68.73, 71.45, 74.08, 76.64, 79.12, 81.55, 84.02,
-     > 86.33, 88.66, 90.94, 93.07, 95.31, 97.48, 99.60,101.61,103.68,
-     >105.71,107.76,109.70,111.71,113.56,115.57,117.45,119.31,121.21,
-     >123.09,124.82,126.68,128.54,  0.00, 21.40, 29.47, 35.67, 40.87,
-     > 45.52, 49.63, 53.45, 57.00, 60.34, 63.46, 66.41, 69.27, 71.98,
-     > 74.61, 77.20, 79.68, 82.17, 84.57, 86.91, 89.15, 91.46, 93.71,
-     > 95.86, 98.00,100.07,102.21,104.23,106.24,108.22,110.20,112.16,
-     >114.03,115.97,117.85,119.77,121.60,123.43,125.26,127.08,128.84,
-     >  0.00, 21.65, 29.70, 35.96, 41.26, 45.91, 50.06, 53.89, 57.45,
-     > 60.79, 63.94, 66.93, 69.81, 72.56, 75.20, 77.75, 80.27, 82.69,
-     > 85.13, 87.46, 89.73, 92.00, 94.21, 96.33, 98.51,100.61,102.66,
-     >104.72,106.71,108.72,110.70,112.60,114.55,116.46,118.28,120.14/
+     *106.81,108.82,110.77,112.68,114.72,116.60,118.47,120.42,122.22,
+     *124.12,125.90,127.77,  0.00, 20.97, 28.84, 34.93, 40.07, 44.61,
+     * 48.61, 52.43, 55.88, 59.16, 62.31, 65.24, 68.11, 70.77, 73.43,
+     * 76.00, 78.51, 80.99, 83.41, 85.78, 88.11, 90.27, 92.57, 94.73,
+     * 96.84, 99.05,101.12,103.16,105.27,107.26,109.26,111.18,113.16,
+     *115.08,117.03,118.86,120.78,122.60,124.45,126.25,128.08,  0.00,
+     * 21.23, 29.13, 35.38, 40.50, 45.05, 49.20, 52.99, 56.45, 59.75,
+     * 62.91, 65.89, 68.73, 71.45, 74.08, 76.64, 79.12, 81.55, 84.02,
+     * 86.33, 88.66, 90.94, 93.07, 95.31, 97.48, 99.60,101.61,103.68,
+     *105.71,107.76,109.70,111.71,113.56,115.57,117.45,119.31,121.21,
+     *123.09,124.82,126.68,128.54,  0.00, 21.40, 29.47, 35.67, 40.87,
+     * 45.52, 49.63, 53.45, 57.00, 60.34, 63.46, 66.41, 69.27, 71.98,
+     * 74.61, 77.20, 79.68, 82.17, 84.57, 86.91, 89.15, 91.46, 93.71,
+     * 95.86, 98.00,100.07,102.21,104.23,106.24,108.22,110.20,112.16,
+     *114.03,115.97,117.85,119.77,121.60,123.43,125.26,127.08,128.84,
+     *  0.00, 21.65, 29.70, 35.96, 41.26, 45.91, 50.06, 53.89, 57.45,
+     * 60.79, 63.94, 66.93, 69.81, 72.56, 75.20, 77.75, 80.27, 82.69,
+     * 85.13, 87.46, 89.73, 92.00, 94.21, 96.33, 98.51,100.61,102.66,
+     *104.72,106.71,108.72,110.70,112.60,114.55,116.46,118.28,120.14/
       data (en(i),i=  8893,  9063)/
-     >122.05,123.88,125.65,127.40,129.21,  0.00, 21.78, 29.91, 36.25,
-     > 41.58, 46.26, 50.46, 54.31, 57.89, 61.25, 64.42, 67.38, 70.27,
-     > 73.01, 75.67, 78.22, 80.74, 83.24, 85.57, 87.94, 90.22, 92.49,
-     > 94.70, 96.83, 98.98,101.08,103.15,105.15,107.15,109.13,111.14,
-     >113.05,114.93,116.90,118.77,120.57,122.41,124.31,126.10,127.88,
-     >129.68,  0.00, 21.94, 30.09, 36.51, 41.82, 46.60, 51.03, 54.88,
-     > 58.29, 61.65, 64.86, 67.82, 70.72, 73.61, 76.08, 78.71, 81.24,
-     > 83.67, 86.09, 88.37, 90.70, 93.05, 95.13, 97.32, 99.40,101.51,
-     >103.61,105.62,107.71,109.54,111.56,113.43,115.39,117.38,119.13,
-     >120.97,122.90,124.56,126.45,128.20,130.04,  0.00, 22.13, 30.34,
-     > 36.71, 42.12, 46.81, 51.13, 55.04, 58.64, 62.02, 65.22, 68.24,
-     > 71.12, 73.91, 76.54, 79.10, 81.65, 84.15, 86.51, 88.89, 91.11,
-     > 93.40, 95.55, 97.71, 99.83,101.92,104.02,106.05,107.99,110.02,
-     >111.94,113.85,115.74,117.69,119.48,121.34,123.18,125.05,126.85,
-     >128.67,130.36,  0.00, 22.25, 30.50, 36.92, 42.32, 47.08, 51.38,
-     > 55.30, 58.93, 62.38, 65.59, 68.61, 71.46, 74.26, 76.96, 79.51,
-     > 82.13, 84.52, 86.92, 89.27, 91.60, 93.83, 96.00, 98.16,100.24,
-     >102.39,104.37,106.47,108.46,110.40,112.41,114.35,116.26,118.09,
-     >119.94,121.73,123.55,125.43,127.17,129.00,130.71,  0.00, 22.38/
+     *122.05,123.88,125.65,127.40,129.21,  0.00, 21.78, 29.91, 36.25,
+     * 41.58, 46.26, 50.46, 54.31, 57.89, 61.25, 64.42, 67.38, 70.27,
+     * 73.01, 75.67, 78.22, 80.74, 83.24, 85.57, 87.94, 90.22, 92.49,
+     * 94.70, 96.83, 98.98,101.08,103.15,105.15,107.15,109.13,111.14,
+     *113.05,114.93,116.90,118.77,120.57,122.41,124.31,126.10,127.88,
+     *129.68,  0.00, 21.94, 30.09, 36.51, 41.82, 46.60, 51.03, 54.88,
+     * 58.29, 61.65, 64.86, 67.82, 70.72, 73.61, 76.08, 78.71, 81.24,
+     * 83.67, 86.09, 88.37, 90.70, 93.05, 95.13, 97.32, 99.40,101.51,
+     *103.61,105.62,107.71,109.54,111.56,113.43,115.39,117.38,119.13,
+     *120.97,122.90,124.56,126.45,128.20,130.04,  0.00, 22.13, 30.34,
+     * 36.71, 42.12, 46.81, 51.13, 55.04, 58.64, 62.02, 65.22, 68.24,
+     * 71.12, 73.91, 76.54, 79.10, 81.65, 84.15, 86.51, 88.89, 91.11,
+     * 93.40, 95.55, 97.71, 99.83,101.92,104.02,106.05,107.99,110.02,
+     *111.94,113.85,115.74,117.69,119.48,121.34,123.18,125.05,126.85,
+     *128.67,130.36,  0.00, 22.25, 30.50, 36.92, 42.32, 47.08, 51.38,
+     * 55.30, 58.93, 62.38, 65.59, 68.61, 71.46, 74.26, 76.96, 79.51,
+     * 82.13, 84.52, 86.92, 89.27, 91.60, 93.83, 96.00, 98.16,100.24,
+     *102.39,104.37,106.47,108.46,110.40,112.41,114.35,116.26,118.09,
+     *119.94,121.73,123.55,125.43,127.17,129.00,130.71,  0.00, 22.38/
       data (en(i),i=  9064,  9234)/
-     > 30.63, 37.12, 42.51, 47.34, 51.65, 55.53, 59.23, 62.62, 65.88,
-     > 68.95, 71.81, 74.56, 77.25, 79.91, 82.46, 84.91, 87.28, 89.69,
-     > 91.88, 94.17, 96.32, 98.54,100.64,102.75,104.76,106.82,108.81,
-     >110.77,112.69,114.61,116.57,118.43,120.23,122.06,123.96,125.75,
-     >127.49,129.29,131.09,  0.00, 22.50, 30.80, 37.25, 42.65, 47.60,
-     > 51.87, 55.84, 59.48, 62.91, 66.15, 69.21, 72.11, 74.89, 77.63,
-     > 80.25, 82.76, 85.23, 87.64, 90.02, 92.30, 94.54, 96.73, 98.88,
-     >101.02,103.07,105.11,107.15,109.11,111.06,113.05,114.94,116.81,
-     >118.70,120.57,122.41,124.22,126.03,127.81,129.62,131.41,  0.00,
-     > 22.61, 30.89, 37.42, 42.90, 47.71, 52.07, 56.03, 59.73, 63.14,
-     > 66.37, 69.44, 72.36, 75.19, 77.88, 80.54, 83.07, 85.56, 87.98,
-     > 90.29, 92.62, 94.87, 97.07, 99.21,101.32,103.38,105.46,107.48,
-     >109.50,111.41,113.39,115.27,117.14,119.03,120.89,122.71,124.54,
-     >126.30,128.18,129.92,131.64,  0.00, 22.72, 31.07, 37.61, 43.06,
-     > 47.94, 52.21, 56.23, 59.96, 63.44, 66.61, 69.71, 72.62, 75.47,
-     > 78.18, 80.77, 83.38, 85.88, 88.24, 90.59, 92.90, 95.18, 97.32,
-     > 99.46,101.62,103.71,105.72,107.75,109.73,111.69,113.63,115.59,
-     >117.44,119.32,121.18,123.01,124.86,126.68,128.40,130.16,132.01,
-     >  0.00, 22.74, 31.16, 37.69, 43.13, 48.03, 52.43, 56.38, 60.08/
+     * 30.63, 37.12, 42.51, 47.34, 51.65, 55.53, 59.23, 62.62, 65.88,
+     * 68.95, 71.81, 74.56, 77.25, 79.91, 82.46, 84.91, 87.28, 89.69,
+     * 91.88, 94.17, 96.32, 98.54,100.64,102.75,104.76,106.82,108.81,
+     *110.77,112.69,114.61,116.57,118.43,120.23,122.06,123.96,125.75,
+     *127.49,129.29,131.09,  0.00, 22.50, 30.80, 37.25, 42.65, 47.60,
+     * 51.87, 55.84, 59.48, 62.91, 66.15, 69.21, 72.11, 74.89, 77.63,
+     * 80.25, 82.76, 85.23, 87.64, 90.02, 92.30, 94.54, 96.73, 98.88,
+     *101.02,103.07,105.11,107.15,109.11,111.06,113.05,114.94,116.81,
+     *118.70,120.57,122.41,124.22,126.03,127.81,129.62,131.41,  0.00,
+     * 22.61, 30.89, 37.42, 42.90, 47.71, 52.07, 56.03, 59.73, 63.14,
+     * 66.37, 69.44, 72.36, 75.19, 77.88, 80.54, 83.07, 85.56, 87.98,
+     * 90.29, 92.62, 94.87, 97.07, 99.21,101.32,103.38,105.46,107.48,
+     *109.50,111.41,113.39,115.27,117.14,119.03,120.89,122.71,124.54,
+     *126.30,128.18,129.92,131.64,  0.00, 22.72, 31.07, 37.61, 43.06,
+     * 47.94, 52.21, 56.23, 59.96, 63.44, 66.61, 69.71, 72.62, 75.47,
+     * 78.18, 80.77, 83.38, 85.88, 88.24, 90.59, 92.90, 95.18, 97.32,
+     * 99.46,101.62,103.71,105.72,107.75,109.73,111.69,113.63,115.59,
+     *117.44,119.32,121.18,123.01,124.86,126.68,128.40,130.16,132.01,
+     *  0.00, 22.74, 31.16, 37.69, 43.13, 48.03, 52.43, 56.38, 60.08/
       data (en(i),i=  9235,  9405)/
-     > 63.56, 66.80, 69.89, 72.81, 75.66, 78.33, 81.03, 83.64, 86.08,
-     > 88.52, 90.85, 93.13, 95.37, 97.61, 99.75,101.89,103.95,105.97,
-     >108.03,110.02,111.94,113.88,115.86,117.70,119.53,121.46,123.30,
-     >125.12,126.88,128.71,130.46,132.22,  0.00, 22.82, 31.19, 37.75,
-     > 43.27, 48.11, 52.54, 56.54, 60.24, 63.73, 66.94, 70.07, 73.03,
-     > 75.87, 78.62, 81.31, 83.79, 86.32, 88.75, 91.05, 93.35, 95.64,
-     > 97.83,100.00,102.10,104.18,106.25,108.29,110.22,112.24,114.17,
-     >116.03,117.97,119.81,121.68,123.50,125.30,127.10,128.93,130.68,
-     >132.37,  0.00, 22.85, 31.33, 37.91, 43.39, 48.27, 52.66, 56.69,
-     > 60.40, 63.87, 67.15, 70.20, 73.21, 76.07, 78.82, 81.48, 84.06,
-     > 86.48, 88.93, 91.31, 93.58, 95.83, 98.05,100.20,102.30,104.36,
-     >106.44,108.45,110.48,112.45,114.38,116.31,118.19,120.04,121.86,
-     >123.73,125.57,127.36,129.13,130.86,132.59,  0.00, 23.11, 31.33,
-     > 37.97, 43.53, 48.35, 52.77, 56.80, 60.53, 63.99, 67.24, 70.41,
-     > 73.35, 76.20, 78.96, 81.65, 84.20, 86.70, 89.09, 91.46, 93.76,
-     > 96.03, 98.20,100.38,102.48,104.58,106.67,108.62,110.64,112.60,
-     >114.53,116.43,118.36,120.25,122.09,123.93,125.77,127.51,129.30,
-     >131.10,132.80,  0.00, 22.99, 31.45, 38.03, 43.58, 48.48, 52.88,
-     > 56.91, 60.59, 64.09, 67.38, 70.48, 73.43, 76.32, 79.08, 81.74/
+     * 63.56, 66.80, 69.89, 72.81, 75.66, 78.33, 81.03, 83.64, 86.08,
+     * 88.52, 90.85, 93.13, 95.37, 97.61, 99.75,101.89,103.95,105.97,
+     *108.03,110.02,111.94,113.88,115.86,117.70,119.53,121.46,123.30,
+     *125.12,126.88,128.71,130.46,132.22,  0.00, 22.82, 31.19, 37.75,
+     * 43.27, 48.11, 52.54, 56.54, 60.24, 63.73, 66.94, 70.07, 73.03,
+     * 75.87, 78.62, 81.31, 83.79, 86.32, 88.75, 91.05, 93.35, 95.64,
+     * 97.83,100.00,102.10,104.18,106.25,108.29,110.22,112.24,114.17,
+     *116.03,117.97,119.81,121.68,123.50,125.30,127.10,128.93,130.68,
+     *132.37,  0.00, 22.85, 31.33, 37.91, 43.39, 48.27, 52.66, 56.69,
+     * 60.40, 63.87, 67.15, 70.20, 73.21, 76.07, 78.82, 81.48, 84.06,
+     * 86.48, 88.93, 91.31, 93.58, 95.83, 98.05,100.20,102.30,104.36,
+     *106.44,108.45,110.48,112.45,114.38,116.31,118.19,120.04,121.86,
+     *123.73,125.57,127.36,129.13,130.86,132.59,  0.00, 23.11, 31.33,
+     * 37.97, 43.53, 48.35, 52.77, 56.80, 60.53, 63.99, 67.24, 70.41,
+     * 73.35, 76.20, 78.96, 81.65, 84.20, 86.70, 89.09, 91.46, 93.76,
+     * 96.03, 98.20,100.38,102.48,104.58,106.67,108.62,110.64,112.60,
+     *114.53,116.43,118.36,120.25,122.09,123.93,125.77,127.51,129.30,
+     *131.10,132.80,  0.00, 22.99, 31.45, 38.03, 43.58, 48.48, 52.88,
+     * 56.91, 60.59, 64.09, 67.38, 70.48, 73.43, 76.32, 79.08, 81.74/
       data (en(i),i=  9406,  9576)/
-     > 84.32, 86.82, 89.27, 91.60, 93.89, 96.13, 98.40,100.54,102.63,
-     >104.71,106.79,108.83,110.77,112.79,114.68,116.63,118.53,120.38,
-     >122.21,124.11,125.92,127.74,129.47,131.32,133.04,  0.00, 23.02,
-     > 31.51, 38.05, 43.64, 48.50, 52.91, 56.96, 60.66, 64.16, 67.43,
-     > 70.56, 73.58, 76.45, 79.20, 81.88, 84.44, 86.94, 89.33, 91.78,
-     > 94.04, 96.26, 98.49,100.63,102.72,104.83,106.93,108.98,110.96,
-     >112.85,114.83,116.77,118.66,120.54,122.40,124.19,126.06,127.85,
-     >129.64,131.40,133.13,  0.00, 23.07, 31.51, 38.10, 43.65, 48.57,
-     > 52.99, 56.97, 60.70, 64.19, 67.50, 70.66, 73.62, 76.51, 79.22,
-     > 81.91, 84.49, 87.03, 89.46, 91.79, 94.12, 96.38, 98.55,100.73,
-     >102.82,104.93,107.05,109.04,111.05,113.00,114.93,116.90,118.80,
-     >120.64,122.53,124.34,126.13,128.00,129.72,131.49,133.33,  0.00,
-     > 23.06, 31.57, 38.10, 43.72, 48.61, 53.05, 57.06, 60.81, 64.28,
-     > 67.53, 70.71, 73.68, 76.61, 79.36, 82.00, 84.55, 87.05, 89.49,
-     > 91.87, 94.21, 96.40, 98.62,100.80,102.93,104.99,107.09,109.13,
-     >111.14,113.12,114.99,116.95,118.88,120.80,122.59,124.49,126.30,
-     >128.09,129.83,131.67,133.37,  0.00, 23.09, 31.51, 38.15, 43.71,
-     > 48.61, 53.01, 57.03, 60.74, 64.21, 67.57, 70.71, 73.71, 76.59,
-     > 79.33, 82.03, 84.60, 87.07, 89.49, 91.84, 94.19, 96.47, 98.67/
+     * 84.32, 86.82, 89.27, 91.60, 93.89, 96.13, 98.40,100.54,102.63,
+     *104.71,106.79,108.83,110.77,112.79,114.68,116.63,118.53,120.38,
+     *122.21,124.11,125.92,127.74,129.47,131.32,133.04,  0.00, 23.02,
+     * 31.51, 38.05, 43.64, 48.50, 52.91, 56.96, 60.66, 64.16, 67.43,
+     * 70.56, 73.58, 76.45, 79.20, 81.88, 84.44, 86.94, 89.33, 91.78,
+     * 94.04, 96.26, 98.49,100.63,102.72,104.83,106.93,108.98,110.96,
+     *112.85,114.83,116.77,118.66,120.54,122.40,124.19,126.06,127.85,
+     *129.64,131.40,133.13,  0.00, 23.07, 31.51, 38.10, 43.65, 48.57,
+     * 52.99, 56.97, 60.70, 64.19, 67.50, 70.66, 73.62, 76.51, 79.22,
+     * 81.91, 84.49, 87.03, 89.46, 91.79, 94.12, 96.38, 98.55,100.73,
+     *102.82,104.93,107.05,109.04,111.05,113.00,114.93,116.90,118.80,
+     *120.64,122.53,124.34,126.13,128.00,129.72,131.49,133.33,  0.00,
+     * 23.06, 31.57, 38.10, 43.72, 48.61, 53.05, 57.06, 60.81, 64.28,
+     * 67.53, 70.71, 73.68, 76.61, 79.36, 82.00, 84.55, 87.05, 89.49,
+     * 91.87, 94.21, 96.40, 98.62,100.80,102.93,104.99,107.09,109.13,
+     *111.14,113.12,114.99,116.95,118.88,120.80,122.59,124.49,126.30,
+     *128.09,129.83,131.67,133.37,  0.00, 23.09, 31.51, 38.15, 43.71,
+     * 48.61, 53.01, 57.03, 60.74, 64.21, 67.57, 70.71, 73.71, 76.59,
+     * 79.33, 82.03, 84.60, 87.07, 89.49, 91.84, 94.19, 96.47, 98.67/
       data (en(i),i=  9577,  9747)/
-     >100.84,102.96,105.10,107.15,109.19,111.21,113.13,115.11,117.04,
-     >118.89,120.81,122.66,124.51,126.34,128.13,129.97,131.70,133.50,
-     >  0.00, 23.06, 31.55, 38.10, 43.67, 48.59, 52.97, 57.02, 60.75,
-     > 64.19, 67.50, 70.66, 73.66, 76.57, 79.30, 82.00, 84.54, 87.10,
-     > 89.49, 91.85, 94.19, 96.45, 98.66,100.83,103.02,105.10,107.13,
-     >109.21,111.17,113.16,115.12,117.08,119.01,120.84,122.67,124.54,
-     >126.42,128.25,130.00,131.76,133.51,  0.00, 23.06, 31.55, 38.14,
-     > 43.65, 48.53, 52.95, 56.97, 60.64, 64.19, 67.51, 70.62, 73.61,
-     > 76.53, 79.29, 81.93, 84.50, 87.00, 89.47, 91.84, 94.13, 96.40,
-     > 98.61,100.80,102.98,105.05,107.16,109.16,111.17,113.14,115.11,
-     >117.07,118.95,120.89,122.76,124.62,126.41,128.23,130.02,131.82,
-     >133.64,  0.00, 23.04, 31.48, 38.06, 43.59, 48.51, 52.88, 56.87,
-     > 60.61, 64.13, 67.40, 70.58, 73.55, 76.40, 79.22, 81.87, 84.47,
-     > 86.94, 89.36, 91.76, 94.09, 96.35, 98.59,100.75,102.92,105.00,
-     >107.06,109.12,111.18,113.12,115.13,117.06,119.01,120.83,122.79,
-     >124.65,126.42,128.33,130.12,131.91,133.67,  0.00, 23.01, 31.46,
-     > 37.95, 43.55, 48.43, 52.80, 56.75, 60.44, 64.01, 67.25, 70.44,
-     > 73.46, 76.30, 79.07, 81.76, 84.34, 86.86, 89.25, 91.63, 93.94,
-     > 96.21, 98.48,100.65,102.86,104.91,107.02,109.04,110.29,113.09/
+     *100.84,102.96,105.10,107.15,109.19,111.21,113.13,115.11,117.04,
+     *118.89,120.81,122.66,124.51,126.34,128.13,129.97,131.70,133.50,
+     *  0.00, 23.06, 31.55, 38.10, 43.67, 48.59, 52.97, 57.02, 60.75,
+     * 64.19, 67.50, 70.66, 73.66, 76.57, 79.30, 82.00, 84.54, 87.10,
+     * 89.49, 91.85, 94.19, 96.45, 98.66,100.83,103.02,105.10,107.13,
+     *109.21,111.17,113.16,115.12,117.08,119.01,120.84,122.67,124.54,
+     *126.42,128.25,130.00,131.76,133.51,  0.00, 23.06, 31.55, 38.14,
+     * 43.65, 48.53, 52.95, 56.97, 60.64, 64.19, 67.51, 70.62, 73.61,
+     * 76.53, 79.29, 81.93, 84.50, 87.00, 89.47, 91.84, 94.13, 96.40,
+     * 98.61,100.80,102.98,105.05,107.16,109.16,111.17,113.14,115.11,
+     *117.07,118.95,120.89,122.76,124.62,126.41,128.23,130.02,131.82,
+     *133.64,  0.00, 23.04, 31.48, 38.06, 43.59, 48.51, 52.88, 56.87,
+     * 60.61, 64.13, 67.40, 70.58, 73.55, 76.40, 79.22, 81.87, 84.47,
+     * 86.94, 89.36, 91.76, 94.09, 96.35, 98.59,100.75,102.92,105.00,
+     *107.06,109.12,111.18,113.12,115.13,117.06,119.01,120.83,122.79,
+     *124.65,126.42,128.33,130.12,131.91,133.67,  0.00, 23.01, 31.46,
+     * 37.95, 43.55, 48.43, 52.80, 56.75, 60.44, 64.01, 67.25, 70.44,
+     * 73.46, 76.30, 79.07, 81.76, 84.34, 86.86, 89.25, 91.63, 93.94,
+     * 96.21, 98.48,100.65,102.86,104.91,107.02,109.04,110.29,113.09/
       data (en(i),i=  9748,  9918)/
-     >115.04,117.01,118.94,120.87,122.73,124.64,126.45,128.32,130.10,
-     >131.94,133.69,  0.00, 22.99, 31.40, 37.98, 43.48, 48.31, 52.66,
-     > 56.64, 60.37, 63.87, 67.21, 70.28, 73.31, 76.16, 78.90, 81.56,
-     > 84.18, 86.66, 89.10, 91.46, 93.81, 96.13, 98.29,100.55,102.67,
-     >104.79,106.91,108.96,111.04,113.06,115.03,116.99,118.94,120.85,
-     >122.73,124.57,126.49,128.29,130.14,131.98,133.77,  0.00, 22.91,
-     > 31.29, 37.81, 43.30, 48.12, 52.50, 56.49, 60.19, 63.68, 67.02,
-     > 70.10, 73.07, 75.94, 78.70, 81.32, 83.99, 86.44, 88.92, 91.34,
-     > 93.63, 95.92, 98.15,100.39,102.60,104.70,106.79,108.90,110.95,
-     >112.96,114.94,116.90,118.84,120.77,122.67,124.57,126.49,128.36,
-     >130.12,132.01,133.83,  0.00, 22.85, 31.24, 37.70, 43.14, 47.97,
-     > 52.25, 56.29, 59.97, 63.45, 66.73, 69.88, 72.83, 75.72, 78.48,
-     > 81.13, 83.71, 86.23, 88.68, 91.11, 93.44, 95.73, 98.06,100.17,
-     >102.37,104.58,106.70,108.76,110.79,112.83,114.89,116.79,118.84,
-     >120.81,122.67,124.57,126.51,128.32,130.13,132.01,133.91,  0.00,
-     > 22.76, 31.04, 37.50, 42.95, 47.73, 52.02, 56.05, 59.68, 63.15,
-     > 66.37, 69.54, 72.48, 75.39, 78.14, 80.83, 83.38, 85.99, 88.39,
-     > 90.81, 93.19, 95.49, 97.74,100.00,102.31,104.40,106.47,108.64,
-     >110.77,112.81,114.81,116.77,118.75,120.79,122.72,124.58,126.48/
+     *115.04,117.01,118.94,120.87,122.73,124.64,126.45,128.32,130.10,
+     *131.94,133.69,  0.00, 22.99, 31.40, 37.98, 43.48, 48.31, 52.66,
+     * 56.64, 60.37, 63.87, 67.21, 70.28, 73.31, 76.16, 78.90, 81.56,
+     * 84.18, 86.66, 89.10, 91.46, 93.81, 96.13, 98.29,100.55,102.67,
+     *104.79,106.91,108.96,111.04,113.06,115.03,116.99,118.94,120.85,
+     *122.73,124.57,126.49,128.29,130.14,131.98,133.77,  0.00, 22.91,
+     * 31.29, 37.81, 43.30, 48.12, 52.50, 56.49, 60.19, 63.68, 67.02,
+     * 70.10, 73.07, 75.94, 78.70, 81.32, 83.99, 86.44, 88.92, 91.34,
+     * 93.63, 95.92, 98.15,100.39,102.60,104.70,106.79,108.90,110.95,
+     *112.96,114.94,116.90,118.84,120.77,122.67,124.57,126.49,128.36,
+     *130.12,132.01,133.83,  0.00, 22.85, 31.24, 37.70, 43.14, 47.97,
+     * 52.25, 56.29, 59.97, 63.45, 66.73, 69.88, 72.83, 75.72, 78.48,
+     * 81.13, 83.71, 86.23, 88.68, 91.11, 93.44, 95.73, 98.06,100.17,
+     *102.37,104.58,106.70,108.76,110.79,112.83,114.89,116.79,118.84,
+     *120.81,122.67,124.57,126.51,128.32,130.13,132.01,133.91,  0.00,
+     * 22.76, 31.04, 37.50, 42.95, 47.73, 52.02, 56.05, 59.68, 63.15,
+     * 66.37, 69.54, 72.48, 75.39, 78.14, 80.83, 83.38, 85.99, 88.39,
+     * 90.81, 93.19, 95.49, 97.74,100.00,102.31,104.40,106.47,108.64,
+     *110.77,112.81,114.81,116.77,118.75,120.79,122.72,124.58,126.48/
       data (en(i),i=  9919, 10089)/
-     >128.40,130.21,132.13,133.93,  0.00, 22.59, 30.89, 37.23, 42.63,
-     > 47.43, 51.73, 55.68, 59.33, 62.76, 66.05, 69.13, 72.16, 74.99,
-     > 77.79, 80.44, 83.06, 85.60, 88.10, 90.56, 92.97, 95.26, 97.54,
-     > 99.88,102.05,104.22,106.45,108.60,110.67,112.74,114.80,116.83,
-     >118.77,120.74,122.73,124.70,126.52,128.48,130.36,132.24,134.06,
-     >  0.00, 22.47, 30.61, 36.95, 42.28, 47.05, 51.28, 55.17, 58.83,
-     > 62.28, 65.55, 68.69, 71.64, 74.57, 77.32, 80.07, 82.74, 85.30,
-     > 87.86, 90.30, 92.69, 95.13, 97.46, 99.73,101.96,104.19,106.39,
-     >108.55,110.69,112.76,114.85,116.90,118.88,120.85,122.87,124.78,
-     >126.78,128.69,130.55,132.38,134.22,  0.00, 22.27, 30.26, 36.46,
-     > 41.72, 46.39, 50.64, 54.59, 58.24, 61.70, 64.93, 68.14, 71.25,
-     > 74.12, 77.00, 79.75, 82.42, 85.09, 87.65, 90.14, 92.64, 95.04,
-     > 97.40, 99.76,102.00,104.31,106.46,108.72,110.79,112.91,114.99,
-     >117.06,119.14,121.14,123.07,125.11,126.98,128.98,130.86,132.83,
-     >134.67,  0.00, 21.48, 29.34, 35.51, 40.87, 45.58, 49.93, 53.97,
-     > 57.75, 61.29, 64.69, 67.92, 71.09, 74.08, 77.03, 79.85, 82.62,
-     > 85.25, 87.86, 90.44, 92.95, 95.37, 97.76,100.09,102.39,104.65,
-     >106.93,109.12,111.26,113.42,115.50,117.59,119.63,121.65,123.69,
-     >125.61,127.59,129.54,131.43,133.37,135.23,  0.00, 19.71, 27.23/
+     *128.40,130.21,132.13,133.93,  0.00, 22.59, 30.89, 37.23, 42.63,
+     * 47.43, 51.73, 55.68, 59.33, 62.76, 66.05, 69.13, 72.16, 74.99,
+     * 77.79, 80.44, 83.06, 85.60, 88.10, 90.56, 92.97, 95.26, 97.54,
+     * 99.88,102.05,104.22,106.45,108.60,110.67,112.74,114.80,116.83,
+     *118.77,120.74,122.73,124.70,126.52,128.48,130.36,132.24,134.06,
+     *  0.00, 22.47, 30.61, 36.95, 42.28, 47.05, 51.28, 55.17, 58.83,
+     * 62.28, 65.55, 68.69, 71.64, 74.57, 77.32, 80.07, 82.74, 85.30,
+     * 87.86, 90.30, 92.69, 95.13, 97.46, 99.73,101.96,104.19,106.39,
+     *108.55,110.69,112.76,114.85,116.90,118.88,120.85,122.87,124.78,
+     *126.78,128.69,130.55,132.38,134.22,  0.00, 22.27, 30.26, 36.46,
+     * 41.72, 46.39, 50.64, 54.59, 58.24, 61.70, 64.93, 68.14, 71.25,
+     * 74.12, 77.00, 79.75, 82.42, 85.09, 87.65, 90.14, 92.64, 95.04,
+     * 97.40, 99.76,102.00,104.31,106.46,108.72,110.79,112.91,114.99,
+     *117.06,119.14,121.14,123.07,125.11,126.98,128.98,130.86,132.83,
+     *134.67,  0.00, 21.48, 29.34, 35.51, 40.87, 45.58, 49.93, 53.97,
+     * 57.75, 61.29, 64.69, 67.92, 71.09, 74.08, 77.03, 79.85, 82.62,
+     * 85.25, 87.86, 90.44, 92.95, 95.37, 97.76,100.09,102.39,104.65,
+     *106.93,109.12,111.26,113.42,115.50,117.59,119.63,121.65,123.69,
+     *125.61,127.59,129.54,131.43,133.37,135.23,  0.00, 19.71, 27.23/
       data (en(i),i= 10090, 10260)/
-     > 33.17, 38.31, 42.79, 46.94, 50.77, 54.37, 57.78, 61.00, 64.14,
-     > 67.15, 70.00, 72.77, 75.50, 78.11, 80.68, 83.13, 85.65, 88.00,
-     > 90.34, 92.64, 94.92, 97.21, 99.44,101.59,103.76,105.90,107.96,
-     >110.06,112.11,114.10,116.14,118.16,120.10,122.04,123.99,125.92,
-     >127.75,129.64,  0.00, 20.46, 28.12, 34.09, 39.14, 43.63, 47.73,
-     > 51.51, 55.04, 58.40, 61.58, 64.66, 67.56, 70.42, 73.20, 75.83,
-     > 78.49, 81.02, 83.41, 85.84, 88.20, 90.58, 92.88, 95.20, 97.41,
-     > 99.55,101.72,103.89,106.04,108.05,110.18,112.18,114.20,116.18,
-     >118.19,120.10,122.00,123.88,125.75,127.68,129.59,  0.00, 20.90,
-     > 20.52, 34.74, 39.91, 39.72, 48.52, 52.34, 55.85, 59.21, 62.35,
-     > 65.40, 68.31, 71.11, 73.86, 76.50, 78.01, 81.61, 83.99, 85.69,
-     > 87.75, 88.72, 93.35, 93.31, 95.58, 97.76, 99.99,102.08,106.37,
-     >108.48,110.50,112.54,114.58,116.55,116.47,120.37,122.32,122.27,
-     >126.14,128.01,129.86,  0.00, 21.20, 29.12, 35.29, 40.51, 45.08,
-     > 49.27, 53.04, 56.59, 59.93, 63.16, 66.12, 69.08, 71.84, 74.54,
-     > 77.19, 79.69, 82.20, 84.65, 86.98, 89.34, 91.71, 93.99, 96.22,
-     > 98.36,100.52,102.77,104.79,106.87,108.97,111.08,112.96,114.94,
-     >116.98,118.90,120.80,122.67,124.61,126.44,128.39,130.18,  0.00,
-     > 21.75, 29.52, 35.76, 41.16, 45.67, 49.80, 53.72, 57.40, 60.60/
+     * 33.17, 38.31, 42.79, 46.94, 50.77, 54.37, 57.78, 61.00, 64.14,
+     * 67.15, 70.00, 72.77, 75.50, 78.11, 80.68, 83.13, 85.65, 88.00,
+     * 90.34, 92.64, 94.92, 97.21, 99.44,101.59,103.76,105.90,107.96,
+     *110.06,112.11,114.10,116.14,118.16,120.10,122.04,123.99,125.92,
+     *127.75,129.64,  0.00, 20.46, 28.12, 34.09, 39.14, 43.63, 47.73,
+     * 51.51, 55.04, 58.40, 61.58, 64.66, 67.56, 70.42, 73.20, 75.83,
+     * 78.49, 81.02, 83.41, 85.84, 88.20, 90.58, 92.88, 95.20, 97.41,
+     * 99.55,101.72,103.89,106.04,108.05,110.18,112.18,114.20,116.18,
+     *118.19,120.10,122.00,123.88,125.75,127.68,129.59,  0.00, 20.90,
+     * 20.52, 34.74, 39.91, 39.72, 48.52, 52.34, 55.85, 59.21, 62.35,
+     * 65.40, 68.31, 71.11, 73.86, 76.50, 78.01, 81.61, 83.99, 85.69,
+     * 87.75, 88.72, 93.35, 93.31, 95.58, 97.76, 99.99,102.08,106.37,
+     *108.48,110.50,112.54,114.58,116.55,116.47,120.37,122.32,122.27,
+     *126.14,128.01,129.86,  0.00, 21.20, 29.12, 35.29, 40.51, 45.08,
+     * 49.27, 53.04, 56.59, 59.93, 63.16, 66.12, 69.08, 71.84, 74.54,
+     * 77.19, 79.69, 82.20, 84.65, 86.98, 89.34, 91.71, 93.99, 96.22,
+     * 98.36,100.52,102.77,104.79,106.87,108.97,111.08,112.96,114.94,
+     *116.98,118.90,120.80,122.67,124.61,126.44,128.39,130.18,  0.00,
+     * 21.75, 29.52, 35.76, 41.16, 45.67, 49.80, 53.72, 57.40, 60.60/
       data (en(i),i= 10261, 10431)/
-     > 63.78, 66.84, 69.81, 72.49, 75.34, 77.91, 80.42, 82.92, 85.28,
-     > 87.69, 90.11, 92.35, 94.59, 96.90, 98.95,101.19,103.19,105.45,
-     >107.38,109.47,111.50,113.44,115.42,117.41,119.35,121.26,123.15,
-     >124.99,126.85,128.72,130.57,  0.00, 21.81, 29.91, 36.16, 41.44,
-     > 46.18, 50.38, 54.24, 57.85, 61.22, 64.44, 67.49, 70.42, 73.15,
-     > 75.49, 78.47, 80.96, 83.45, 85.91, 88.28, 90.65, 92.91, 95.15,
-     > 97.40, 99.53,101.73,103.82,105.86,107.96,109.94,112.04,113.93,
-     >115.96,117.89,119.81,121.68,123.60,125.46,127.31,129.17,130.93,
-     >  0.00, 22.00, 30.13, 36.51, 41.87, 46.56, 50.87, 54.73, 58.38,
-     > 61.76, 64.98, 68.02, 70.99, 73.75, 76.42, 79.03, 81.56, 84.01,
-     > 86.50, 88.86, 91.22, 93.53, 95.68, 97.94,100.14,102.22,104.36,
-     >106.39,108.50,110.53,112.56,114.47,116.42,118.36,120.25,122.16,
-     >124.06,125.88,127.68,129.57,131.31,  0.00, 22.19, 30.43, 36.78,
-     > 42.22, 46.99, 51.36, 55.22, 58.85, 62.27, 65.50, 68.54, 71.46,
-     > 74.29, 77.03, 79.59, 82.16, 84.63, 87.02, 89.43, 91.78, 94.03,
-     > 96.29, 98.46,100.65,102.78,104.88,106.97,109.00,111.00,113.00,
-     >114.94,116.89,118.81,120.68,122.56,124.49,126.30,128.24,129.94,
-     >131.76,  0.00, 22.37, 30.65, 37.16, 42.56, 47.38, 51.71, 55.62,
-     > 59.29, 62.71, 65.99, 69.12, 71.96, 74.80, 77.54, 80.14, 82.65/
+     * 63.78, 66.84, 69.81, 72.49, 75.34, 77.91, 80.42, 82.92, 85.28,
+     * 87.69, 90.11, 92.35, 94.59, 96.90, 98.95,101.19,103.19,105.45,
+     *107.38,109.47,111.50,113.44,115.42,117.41,119.35,121.26,123.15,
+     *124.99,126.85,128.72,130.57,  0.00, 21.81, 29.91, 36.16, 41.44,
+     * 46.18, 50.38, 54.24, 57.85, 61.22, 64.44, 67.49, 70.42, 73.15,
+     * 75.49, 78.47, 80.96, 83.45, 85.91, 88.28, 90.65, 92.91, 95.15,
+     * 97.40, 99.53,101.73,103.82,105.86,107.96,109.94,112.04,113.93,
+     *115.96,117.89,119.81,121.68,123.60,125.46,127.31,129.17,130.93,
+     *  0.00, 22.00, 30.13, 36.51, 41.87, 46.56, 50.87, 54.73, 58.38,
+     * 61.76, 64.98, 68.02, 70.99, 73.75, 76.42, 79.03, 81.56, 84.01,
+     * 86.50, 88.86, 91.22, 93.53, 95.68, 97.94,100.14,102.22,104.36,
+     *106.39,108.50,110.53,112.56,114.47,116.42,118.36,120.25,122.16,
+     *124.06,125.88,127.68,129.57,131.31,  0.00, 22.19, 30.43, 36.78,
+     * 42.22, 46.99, 51.36, 55.22, 58.85, 62.27, 65.50, 68.54, 71.46,
+     * 74.29, 77.03, 79.59, 82.16, 84.63, 87.02, 89.43, 91.78, 94.03,
+     * 96.29, 98.46,100.65,102.78,104.88,106.97,109.00,111.00,113.00,
+     *114.94,116.89,118.81,120.68,122.56,124.49,126.30,128.24,129.94,
+     *131.76,  0.00, 22.37, 30.65, 37.16, 42.56, 47.38, 51.71, 55.62,
+     * 59.29, 62.71, 65.99, 69.12, 71.96, 74.80, 77.54, 80.14, 82.65/
       data (en(i),i= 10432, 10602)/
-     > 85.10, 87.61, 89.92, 92.29, 94.59, 96.81, 99.00,101.17,103.31,
-     >105.40,107.45,109.45,111.51,113.47,115.47,117.33,119.28,121.26,
-     >123.11,124.97,126.78,128.59,130.44,132.20,  0.00, 22.53, 30.89,
-     > 37.39, 42.86, 47.67, 52.09, 55.99, 59.69, 63.15, 66.39, 69.50,
-     > 72.41, 75.25, 77.94, 80.61, 83.11, 85.60, 88.04, 90.45, 92.75,
-     > 95.06, 97.29, 99.50,101.63,103.73,105.82,107.88,109.96,111.96,
-     >113.91,115.83,117.79,119.72,121.63,123.43,125.37,127.22,129.02,
-     >130.77,132.59,  0.00, 22.71, 31.03, 37.59, 43.12, 47.97, 52.30,
-     > 56.33, 60.04, 63.51, 66.73, 69.90, 72.79, 75.67, 78.39, 80.98,
-     > 83.61, 86.05, 88.53, 90.89, 93.28, 95.49, 97.78, 99.93,102.08,
-     >104.21,106.33,108.37,110.37,112.40,114.38,116.31,118.25,120.15,
-     >121.98,123.94,125.73,127.57,129.46,131.24,133.04,  0.00, 22.79,
-     > 31.17, 37.75, 43.36, 48.17, 52.57, 56.64, 60.31, 63.85, 67.10,
-     > 70.27, 73.23, 76.05, 78.79, 81.41, 84.02, 86.48, 88.92, 91.33,
-     > 93.66, 95.91, 98.19,100.41,102.56,104.63,106.76,108.83,110.85,
-     >112.79,114.74,116.75,118.68,120.55,122.40,124.30,126.13,127.99,
-     >129.75,131.59,133.39,  0.00, 22.92, 31.51, 37.98, 43.57, 48.44,
-     > 52.85, 56.89, 60.62, 64.16, 67.46, 70.56, 73.55, 76.45, 79.16,
-     > 81.77, 84.40, 86.92, 89.35, 91.74, 94.07, 96.35, 98.62,100.76/
+     * 85.10, 87.61, 89.92, 92.29, 94.59, 96.81, 99.00,101.17,103.31,
+     *105.40,107.45,109.45,111.51,113.47,115.47,117.33,119.28,121.26,
+     *123.11,124.97,126.78,128.59,130.44,132.20,  0.00, 22.53, 30.89,
+     * 37.39, 42.86, 47.67, 52.09, 55.99, 59.69, 63.15, 66.39, 69.50,
+     * 72.41, 75.25, 77.94, 80.61, 83.11, 85.60, 88.04, 90.45, 92.75,
+     * 95.06, 97.29, 99.50,101.63,103.73,105.82,107.88,109.96,111.96,
+     *113.91,115.83,117.79,119.72,121.63,123.43,125.37,127.22,129.02,
+     *130.77,132.59,  0.00, 22.71, 31.03, 37.59, 43.12, 47.97, 52.30,
+     * 56.33, 60.04, 63.51, 66.73, 69.90, 72.79, 75.67, 78.39, 80.98,
+     * 83.61, 86.05, 88.53, 90.89, 93.28, 95.49, 97.78, 99.93,102.08,
+     *104.21,106.33,108.37,110.37,112.40,114.38,116.31,118.25,120.15,
+     *121.98,123.94,125.73,127.57,129.46,131.24,133.04,  0.00, 22.79,
+     * 31.17, 37.75, 43.36, 48.17, 52.57, 56.64, 60.31, 63.85, 67.10,
+     * 70.27, 73.23, 76.05, 78.79, 81.41, 84.02, 86.48, 88.92, 91.33,
+     * 93.66, 95.91, 98.19,100.41,102.56,104.63,106.76,108.83,110.85,
+     *112.79,114.74,116.75,118.68,120.55,122.40,124.30,126.13,127.99,
+     *129.75,131.59,133.39,  0.00, 22.92, 31.51, 37.98, 43.57, 48.44,
+     * 52.85, 56.89, 60.62, 64.16, 67.46, 70.56, 73.55, 76.45, 79.16,
+     * 81.77, 84.40, 86.92, 89.35, 91.74, 94.07, 96.35, 98.62,100.76/
       data (en(i),i= 10603, 10773)/
-     >102.97,105.05,107.17,109.26,111.20,113.21,115.18,117.05,119.00,
-     >120.97,122.86,124.68,126.56,128.39,130.11,131.97,133.77,  0.00,
-     > 23.03, 31.53, 38.15, 43.77, 48.67, 53.12, 57.19, 60.92, 64.43,
-     > 67.77, 70.88, 73.90, 76.70, 79.52, 82.15, 84.76, 87.26, 89.73,
-     > 92.08, 94.48, 96.74, 98.93,101.19,103.29,105.42,107.51,109.55,
-     >111.58,113.65,115.54,117.49,119.40,121.31,123.15,125.03,126.91,
-     >128.76,130.54,132.34,134.09,  0.00, 23.19, 31.70, 38.32, 43.92,
-     > 49.17, 53.33, 57.36, 61.21, 64.69, 68.04, 71.20, 74.21, 77.04,
-     > 79.79, 82.43, 85.11, 87.61, 90.04, 92.42, 94.78, 97.07, 99.35,
-     >101.54,103.70,105.77,107.89,109.92,111.96,113.95,115.92,117.79,
-     >119.80,121.65,123.58,125.37,127.25,129.08,130.84,132.66,134.42,
-     >  0.00, 23.26, 31.82, 38.45, 44.12, 49.05, 53.56, 57.58, 61.39,
-     > 64.96, 68.28, 71.42, 74.47, 77.31, 80.09, 82.80, 85.40, 87.94,
-     > 90.40, 92.73, 95.19, 97.40, 99.66,101.88,104.02,106.13,108.23,
-     >110.29,112.28,114.28,116.25,118.19,120.10,121.96,123.79,125.77,
-     >127.53,129.29,131.17,132.96,134.73,  0.00, 23.35, 31.91, 38.60,
-     > 44.26, 49.24, 53.67, 57.82, 61.61, 65.13, 68.49, 71.66, 74.67,
-     > 77.57, 80.30, 83.05, 85.64, 88.23, 90.64, 93.07, 95.42, 97.73,
-     > 99.92,102.13,104.29,106.40,108.54,110.59,112.55,114.56,116.56/
+     *102.97,105.05,107.17,109.26,111.20,113.21,115.18,117.05,119.00,
+     *120.97,122.86,124.68,126.56,128.39,130.11,131.97,133.77,  0.00,
+     * 23.03, 31.53, 38.15, 43.77, 48.67, 53.12, 57.19, 60.92, 64.43,
+     * 67.77, 70.88, 73.90, 76.70, 79.52, 82.15, 84.76, 87.26, 89.73,
+     * 92.08, 94.48, 96.74, 98.93,101.19,103.29,105.42,107.51,109.55,
+     *111.58,113.65,115.54,117.49,119.40,121.31,123.15,125.03,126.91,
+     *128.76,130.54,132.34,134.09,  0.00, 23.19, 31.70, 38.32, 43.92,
+     * 49.17, 53.33, 57.36, 61.21, 64.69, 68.04, 71.20, 74.21, 77.04,
+     * 79.79, 82.43, 85.11, 87.61, 90.04, 92.42, 94.78, 97.07, 99.35,
+     *101.54,103.70,105.77,107.89,109.92,111.96,113.95,115.92,117.79,
+     *119.80,121.65,123.58,125.37,127.25,129.08,130.84,132.66,134.42,
+     *  0.00, 23.26, 31.82, 38.45, 44.12, 49.05, 53.56, 57.58, 61.39,
+     * 64.96, 68.28, 71.42, 74.47, 77.31, 80.09, 82.80, 85.40, 87.94,
+     * 90.40, 92.73, 95.19, 97.40, 99.66,101.88,104.02,106.13,108.23,
+     *110.29,112.28,114.28,116.25,118.19,120.10,121.96,123.79,125.77,
+     *127.53,129.29,131.17,132.96,134.73,  0.00, 23.35, 31.91, 38.60,
+     * 44.26, 49.24, 53.67, 57.82, 61.61, 65.13, 68.49, 71.66, 74.67,
+     * 77.57, 80.30, 83.05, 85.64, 88.23, 90.64, 93.07, 95.42, 97.73,
+     * 99.92,102.13,104.29,106.40,108.54,110.59,112.55,114.56,116.56/
       data (en(i),i= 10774, 10944)/
-     >118.46,120.38,122.28,124.11,126.03,127.81,129.63,131.39,133.20,
-     >134.99,  0.00, 23.43, 32.01, 38.73, 44.37, 49.39, 53.87, 57.95,
-     > 61.76, 65.34, 68.71, 71.89, 74.89, 77.79, 80.55, 83.35, 85.90,
-     > 88.43, 90.95, 93.36, 95.69, 97.95,100.18,102.43,104.60,106.70,
-     >108.79,110.84,112.85,114.85,116.77,118.77,120.63,122.58,124.46,
-     >126.31,128.09,129.90,131.75,133.47,135.28,  0.00, 23.52, 32.14,
-     > 38.78, 44.50, 49.48, 53.99, 58.13, 61.92, 65.50, 68.87, 72.08,
-     > 75.08, 78.00, 80.81, 83.52, 86.14, 88.70, 91.13, 93.57, 95.94,
-     > 98.20,100.42,102.65,104.84,106.93,109.02,111.13,113.06,115.09,
-     >117.06,118.95,120.89,122.75,124.73,126.48,128.36,130.17,131.97,
-     >133.79,135.53,  0.00, 23.53, 32.21, 38.93, 44.59, 49.63, 54.11,
-     > 58.28, 62.09, 65.69, 69.00, 72.19, 75.25, 78.17, 80.99, 83.68,
-     > 86.34, 88.89, 91.35, 93.75, 96.15, 98.43,100.69,102.90,105.04,
-     >107.17,109.22,111.31,113.33,115.28,117.23,119.19,121.14,123.02,
-     >124.87,126.78,128.57,130.36,132.16,133.96,135.75,  0.00, 23.58,
-     > 32.21, 39.01, 44.67, 49.69, 54.25, 58.36, 62.20, 65.79, 69.15,
-     > 72.34, 75.41, 78.31, 81.15, 83.88, 86.53, 89.07, 91.53, 93.94,
-     > 96.33, 98.57,100.89,103.04,105.23,107.33,109.46,111.52,113.49,
-     >115.49,117.43,119.40,121.33,123.24,125.10,126.94,128.75,130.62/
+     *118.46,120.38,122.28,124.11,126.03,127.81,129.63,131.39,133.20,
+     *134.99,  0.00, 23.43, 32.01, 38.73, 44.37, 49.39, 53.87, 57.95,
+     * 61.76, 65.34, 68.71, 71.89, 74.89, 77.79, 80.55, 83.35, 85.90,
+     * 88.43, 90.95, 93.36, 95.69, 97.95,100.18,102.43,104.60,106.70,
+     *108.79,110.84,112.85,114.85,116.77,118.77,120.63,122.58,124.46,
+     *126.31,128.09,129.90,131.75,133.47,135.28,  0.00, 23.52, 32.14,
+     * 38.78, 44.50, 49.48, 53.99, 58.13, 61.92, 65.50, 68.87, 72.08,
+     * 75.08, 78.00, 80.81, 83.52, 86.14, 88.70, 91.13, 93.57, 95.94,
+     * 98.20,100.42,102.65,104.84,106.93,109.02,111.13,113.06,115.09,
+     *117.06,118.95,120.89,122.75,124.73,126.48,128.36,130.17,131.97,
+     *133.79,135.53,  0.00, 23.53, 32.21, 38.93, 44.59, 49.63, 54.11,
+     * 58.28, 62.09, 65.69, 69.00, 72.19, 75.25, 78.17, 80.99, 83.68,
+     * 86.34, 88.89, 91.35, 93.75, 96.15, 98.43,100.69,102.90,105.04,
+     *107.17,109.22,111.31,113.33,115.28,117.23,119.19,121.14,123.02,
+     *124.87,126.78,128.57,130.36,132.16,133.96,135.75,  0.00, 23.58,
+     * 32.21, 39.01, 44.67, 49.69, 54.25, 58.36, 62.20, 65.79, 69.15,
+     * 72.34, 75.41, 78.31, 81.15, 83.88, 86.53, 89.07, 91.53, 93.94,
+     * 96.33, 98.57,100.89,103.04,105.23,107.33,109.46,111.52,113.49,
+     *115.49,117.43,119.40,121.33,123.24,125.10,126.94,128.75,130.62/
       data (en(i),i= 10945, 11115)/
-     >132.40,134.17,135.94,  0.00, 23.67, 32.36, 39.12, 44.72, 49.78,
-     > 54.30, 58.45, 62.32, 65.92, 69.30, 72.45, 75.51, 78.48, 81.24,
-     > 84.00, 86.68, 89.22, 91.68, 94.11, 96.45, 98.79,100.99,103.25,
-     >105.41,107.51,109.53,111.64,113.72,115.58,117.64,119.55,121.54,
-     >123.42,125.27,127.12,128.98,130.80,132.53,134.34,136.13,  0.00,
-     > 23.72, 32.35, 39.16, 44.83, 49.84, 54.40, 58.55, 62.40, 65.97,
-     > 69.35, 72.52, 75.61, 78.58, 81.41, 84.15, 86.77, 89.31, 91.85,
-     > 94.27, 96.60, 98.89,101.17,103.39,105.54,107.66,109.77,111.83,
-     >113.79,115.80,117.77,119.74,121.63,123.54,125.39,127.30,129.15,
-     >130.95,132.77,134.49,136.26,  0.00, 23.75, 32.41, 39.21, 44.89,
-     > 49.89, 54.49, 58.63, 62.45, 66.01, 69.44, 72.61, 75.69, 78.67,
-     > 81.48, 84.19, 86.87, 89.47, 91.87, 94.36, 96.70, 99.00,101.24,
-     >103.49,105.63,107.76,109.82,111.95,113.93,115.97,117.90,119.82,
-     >121.81,123.67,125.55,127.35,129.26,131.08,132.88,134.62,136.41,
-     >  0.00, 23.80, 32.43, 39.20, 44.94, 49.92, 54.49, 58.63, 62.52,
-     > 66.08, 69.48, 72.65, 75.74, 78.73, 81.58, 84.30, 86.93, 89.47,
-     > 92.01, 94.40, 96.79, 99.10,101.34,103.57,105.74,107.87,109.95,
-     >112.01,114.03,116.00,118.03,119.93,121.90,123.79,125.68,127.50,
-     >129.39,131.23,132.96,134.77,136.55,  0.00, 23.78, 32.44, 39.24/
+     *132.40,134.17,135.94,  0.00, 23.67, 32.36, 39.12, 44.72, 49.78,
+     * 54.30, 58.45, 62.32, 65.92, 69.30, 72.45, 75.51, 78.48, 81.24,
+     * 84.00, 86.68, 89.22, 91.68, 94.11, 96.45, 98.79,100.99,103.25,
+     *105.41,107.51,109.53,111.64,113.72,115.58,117.64,119.55,121.54,
+     *123.42,125.27,127.12,128.98,130.80,132.53,134.34,136.13,  0.00,
+     * 23.72, 32.35, 39.16, 44.83, 49.84, 54.40, 58.55, 62.40, 65.97,
+     * 69.35, 72.52, 75.61, 78.58, 81.41, 84.15, 86.77, 89.31, 91.85,
+     * 94.27, 96.60, 98.89,101.17,103.39,105.54,107.66,109.77,111.83,
+     *113.79,115.80,117.77,119.74,121.63,123.54,125.39,127.30,129.15,
+     *130.95,132.77,134.49,136.26,  0.00, 23.75, 32.41, 39.21, 44.89,
+     * 49.89, 54.49, 58.63, 62.45, 66.01, 69.44, 72.61, 75.69, 78.67,
+     * 81.48, 84.19, 86.87, 89.47, 91.87, 94.36, 96.70, 99.00,101.24,
+     *103.49,105.63,107.76,109.82,111.95,113.93,115.97,117.90,119.82,
+     *121.81,123.67,125.55,127.35,129.26,131.08,132.88,134.62,136.41,
+     *  0.00, 23.80, 32.43, 39.20, 44.94, 49.92, 54.49, 58.63, 62.52,
+     * 66.08, 69.48, 72.65, 75.74, 78.73, 81.58, 84.30, 86.93, 89.47,
+     * 92.01, 94.40, 96.79, 99.10,101.34,103.57,105.74,107.87,109.95,
+     *112.01,114.03,116.00,118.03,119.93,121.90,123.79,125.68,127.50,
+     *129.39,131.23,132.96,134.77,136.55,  0.00, 23.78, 32.44, 39.24/
       data (en(i),i= 11116, 11286)/
-     > 44.93, 49.98, 54.52, 58.67, 62.50, 66.10, 69.49, 72.70, 75.78,
-     > 78.75, 81.61, 84.36, 87.00, 89.57, 92.05, 94.49, 96.85, 99.14,
-     >101.42,103.60,105.77,107.94,109.88,112.04,114.06,116.08,118.12,
-     >120.05,122.02,123.84,125.77,127.60,129.45,131.30,133.04,134.87,
-     >136.67,  0.00, 23.80, 32.47, 39.29, 44.98, 49.99, 54.51, 58.68,
-     > 62.50, 66.14, 69.53, 72.73, 75.81, 78.79, 81.62, 84.33, 86.99,
-     > 89.56, 92.05, 94.52, 96.84, 99.16,101.42,103.66,105.80,107.95,
-     >110.03,112.12,114.14,116.16,118.14,120.06,121.97,123.95,125.80,
-     >127.68,129.53,131.35,133.12,134.97,136.74,  0.00, 23.84, 32.46,
-     > 39.24, 44.96, 49.97, 54.53, 58.64, 62.47, 66.11, 69.49, 72.74,
-     > 75.82, 78.76, 81.57, 84.32, 87.00, 89.62, 92.09, 94.49, 96.87,
-     > 99.15,101.45,103.62,105.83,107.92,110.06,112.13,114.17,116.14,
-     >118.15,120.13,122.05,123.97,125.82,127.73,129.58,131.42,133.23,
-     >134.98,136.80,  0.00, 23.85, 32.45, 39.24, 44.93, 49.95, 54.47,
-     > 58.64, 62.48, 66.02, 69.41, 72.71, 75.77, 78.71, 81.56, 84.28,
-     > 86.96, 89.50, 92.03, 94.45, 96.84, 99.11,101.41,103.64,105.82,
-     >107.93,110.04,112.09,114.12,116.14,118.12,120.14,122.04,123.99,
-     >125.88,127.73,129.55,131.43,133.23,135.07,136.83,  0.00, 23.78,
-     > 32.43, 39.16, 44.87, 49.88, 54.39, 58.59, 62.35, 65.96, 69.33/
+     * 44.93, 49.98, 54.52, 58.67, 62.50, 66.10, 69.49, 72.70, 75.78,
+     * 78.75, 81.61, 84.36, 87.00, 89.57, 92.05, 94.49, 96.85, 99.14,
+     *101.42,103.60,105.77,107.94,109.88,112.04,114.06,116.08,118.12,
+     *120.05,122.02,123.84,125.77,127.60,129.45,131.30,133.04,134.87,
+     *136.67,  0.00, 23.80, 32.47, 39.29, 44.98, 49.99, 54.51, 58.68,
+     * 62.50, 66.14, 69.53, 72.73, 75.81, 78.79, 81.62, 84.33, 86.99,
+     * 89.56, 92.05, 94.52, 96.84, 99.16,101.42,103.66,105.80,107.95,
+     *110.03,112.12,114.14,116.16,118.14,120.06,121.97,123.95,125.80,
+     *127.68,129.53,131.35,133.12,134.97,136.74,  0.00, 23.84, 32.46,
+     * 39.24, 44.96, 49.97, 54.53, 58.64, 62.47, 66.11, 69.49, 72.74,
+     * 75.82, 78.76, 81.57, 84.32, 87.00, 89.62, 92.09, 94.49, 96.87,
+     * 99.15,101.45,103.62,105.83,107.92,110.06,112.13,114.17,116.14,
+     *118.15,120.13,122.05,123.97,125.82,127.73,129.58,131.42,133.23,
+     *134.98,136.80,  0.00, 23.85, 32.45, 39.24, 44.93, 49.95, 54.47,
+     * 58.64, 62.48, 66.02, 69.41, 72.71, 75.77, 78.71, 81.56, 84.28,
+     * 86.96, 89.50, 92.03, 94.45, 96.84, 99.11,101.41,103.64,105.82,
+     *107.93,110.04,112.09,114.12,116.14,118.12,120.14,122.04,123.99,
+     *125.88,127.73,129.55,131.43,133.23,135.07,136.83,  0.00, 23.78,
+     * 32.43, 39.16, 44.87, 49.88, 54.39, 58.59, 62.35, 65.96, 69.33/
       data (en(i),i= 11287, 11457)/
-     > 72.61, 75.69, 78.63, 81.51, 84.22, 86.91, 89.43, 91.96, 94.39,
-     > 96.76, 99.07,101.34,103.55,105.72,107.92,109.96,112.07,114.13,
-     >116.15,118.12,120.05,122.02,123.88,125.84,127.74,129.54,131.43,
-     >133.21,135.02,136.82,  0.00, 23.80, 32.38, 39.17, 44.85, 49.80,
-     > 54.33, 58.49, 62.30, 65.89, 69.34, 72.54, 75.59, 78.55, 81.39,
-     > 84.11, 86.72, 89.36, 91.82, 94.31, 96.62, 98.94,101.26,103.52,
-     >105.67,107.82,109.93,112.00,114.00,116.09,118.03,119.99,121.97,
-     >123.87,125.82,127.66,129.61,131.41,133.23,135.07,136.89,  0.00,
-     > 23.73, 32.37, 39.06, 44.77, 49.76, 54.22, 58.34, 62.19, 65.78,
-     > 69.17, 72.43, 75.45, 78.40, 81.26, 83.99, 86.67, 89.20, 91.71,
-     > 94.13, 96.53, 98.84,101.13,103.32,105.54,107.71,109.76,111.92,
-     >113.96,116.01,117.96,119.94,121.92,123.86,125.77,127.68,129.54,
-     >131.41,133.25,135.03,136.85,  0.00, 23.72, 32.30, 38.94, 44.63,
-     > 49.64, 54.05, 58.19, 62.03, 65.62, 68.99, 72.23, 75.29, 78.20,
-     > 81.08, 83.78, 86.45, 89.00, 91.51, 93.95, 96.31, 98.66,100.92,
-     >103.19,105.35,107.52,109.67,111.72,113.85,115.88,117.89,119.84,
-     >121.81,123.81,125.72,127.56,129.48,131.32,133.18,135.02,136.89,
-     >  0.00, 23.66, 32.22, 38.87, 44.52, 49.47, 53.90, 58.03, 61.84,
-     > 65.42, 68.83, 71.99, 75.08, 77.99, 80.87, 83.53, 86.19, 88.81/
+     * 72.61, 75.69, 78.63, 81.51, 84.22, 86.91, 89.43, 91.96, 94.39,
+     * 96.76, 99.07,101.34,103.55,105.72,107.92,109.96,112.07,114.13,
+     *116.15,118.12,120.05,122.02,123.88,125.84,127.74,129.54,131.43,
+     *133.21,135.02,136.82,  0.00, 23.80, 32.38, 39.17, 44.85, 49.80,
+     * 54.33, 58.49, 62.30, 65.89, 69.34, 72.54, 75.59, 78.55, 81.39,
+     * 84.11, 86.72, 89.36, 91.82, 94.31, 96.62, 98.94,101.26,103.52,
+     *105.67,107.82,109.93,112.00,114.00,116.09,118.03,119.99,121.97,
+     *123.87,125.82,127.66,129.61,131.41,133.23,135.07,136.89,  0.00,
+     * 23.73, 32.37, 39.06, 44.77, 49.76, 54.22, 58.34, 62.19, 65.78,
+     * 69.17, 72.43, 75.45, 78.40, 81.26, 83.99, 86.67, 89.20, 91.71,
+     * 94.13, 96.53, 98.84,101.13,103.32,105.54,107.71,109.76,111.92,
+     *113.96,116.01,117.96,119.94,121.92,123.86,125.77,127.68,129.54,
+     *131.41,133.25,135.03,136.85,  0.00, 23.72, 32.30, 38.94, 44.63,
+     * 49.64, 54.05, 58.19, 62.03, 65.62, 68.99, 72.23, 75.29, 78.20,
+     * 81.08, 83.78, 86.45, 89.00, 91.51, 93.95, 96.31, 98.66,100.92,
+     *103.19,105.35,107.52,109.67,111.72,113.85,115.88,117.89,119.84,
+     *121.81,123.81,125.72,127.56,129.48,131.32,133.18,135.02,136.89,
+     *  0.00, 23.66, 32.22, 38.87, 44.52, 49.47, 53.90, 58.03, 61.84,
+     * 65.42, 68.83, 71.99, 75.08, 77.99, 80.87, 83.53, 86.19, 88.81/
       data (en(i),i= 11458, 11628)/
-     > 91.29, 93.76, 96.06, 98.43,100.75,103.01,105.20,107.34,109.47,
-     >111.53,113.68,115.72,117.75,119.76,121.69,123.72,125.62,127.54,
-     >129.47,131.34,133.16,135.08,136.84,  0.00, 23.54, 32.06, 38.74,
-     > 44.33, 49.28, 53.73, 57.79, 61.58, 65.19, 68.56, 71.73, 74.75,
-     > 77.75, 80.54, 83.32, 85.97, 88.50, 91.04, 93.48, 95.85, 98.23,
-     >100.53,102.75,105.02,107.17,109.35,111.44,113.53,115.63,117.67,
-     >119.67,121.67,123.60,125.62,127.50,129.37,131.26,133.18,135.01,
-     >136.83,  0.00, 23.44, 31.90, 38.50, 44.08, 49.01, 53.42, 57.48,
-     > 61.31, 64.88, 68.20, 71.44, 74.45, 77.41, 80.24, 82.95, 85.63,
-     > 88.22, 90.70, 93.17, 95.57, 97.95,100.25,102.51,104.75,106.98,
-     >109.18,111.29,113.39,115.52,117.52,119.54,121.63,123.54,125.54,
-     >127.44,129.38,131.32,133.21,135.07,136.89,  0.00, 23.36, 31.70,
-     > 38.31, 43.78, 48.69, 53.08, 57.17, 60.94, 64.49, 67.85, 70.96,
-     > 74.04, 77.01, 79.81, 82.56, 85.26, 87.87, 90.39, 92.85, 95.27,
-     > 97.70,100.03,102.32,104.59,106.78,108.98,111.13,113.27,115.38,
-     >117.50,119.52,121.57,123.53,125.55,127.52,129.38,131.37,133.22,
-     >135.07,137.00,  0.00, 23.16, 31.52, 37.94, 43.48, 48.29, 52.70,
-     > 56.68, 60.46, 63.96, 67.29, 70.50, 73.59, 76.51, 79.36, 82.16,
-     > 84.82, 87.47, 90.05, 92.55, 95.03, 97.44, 99.80,102.12,104.46/
+     * 91.29, 93.76, 96.06, 98.43,100.75,103.01,105.20,107.34,109.47,
+     *111.53,113.68,115.72,117.75,119.76,121.69,123.72,125.62,127.54,
+     *129.47,131.34,133.16,135.08,136.84,  0.00, 23.54, 32.06, 38.74,
+     * 44.33, 49.28, 53.73, 57.79, 61.58, 65.19, 68.56, 71.73, 74.75,
+     * 77.75, 80.54, 83.32, 85.97, 88.50, 91.04, 93.48, 95.85, 98.23,
+     *100.53,102.75,105.02,107.17,109.35,111.44,113.53,115.63,117.67,
+     *119.67,121.67,123.60,125.62,127.50,129.37,131.26,133.18,135.01,
+     *136.83,  0.00, 23.44, 31.90, 38.50, 44.08, 49.01, 53.42, 57.48,
+     * 61.31, 64.88, 68.20, 71.44, 74.45, 77.41, 80.24, 82.95, 85.63,
+     * 88.22, 90.70, 93.17, 95.57, 97.95,100.25,102.51,104.75,106.98,
+     *109.18,111.29,113.39,115.52,117.52,119.54,121.63,123.54,125.54,
+     *127.44,129.38,131.32,133.21,135.07,136.89,  0.00, 23.36, 31.70,
+     * 38.31, 43.78, 48.69, 53.08, 57.17, 60.94, 64.49, 67.85, 70.96,
+     * 74.04, 77.01, 79.81, 82.56, 85.26, 87.87, 90.39, 92.85, 95.27,
+     * 97.70,100.03,102.32,104.59,106.78,108.98,111.13,113.27,115.38,
+     *117.50,119.52,121.57,123.53,125.55,127.52,129.38,131.37,133.22,
+     *135.07,137.00,  0.00, 23.16, 31.52, 37.94, 43.48, 48.29, 52.70,
+     * 56.68, 60.46, 63.96, 67.29, 70.50, 73.59, 76.51, 79.36, 82.16,
+     * 84.82, 87.47, 90.05, 92.55, 95.03, 97.44, 99.80,102.12,104.46/
       data (en(i),i= 11629, 11799)/
-     >106.67,108.89,111.10,113.23,115.37,117.45,119.52,121.64,123.58,
-     >125.59,127.56,129.51,131.48,133.45,135.30,137.16,  0.00, 22.91,
-     > 31.07, 37.34, 42.79, 47.69, 51.96, 56.07, 59.73, 63.26, 66.69,
-     > 69.85, 73.00, 75.97, 78.90, 81.77, 84.48, 87.19, 89.86, 92.35,
-     > 94.85, 97.35, 99.73,102.05,104.41,106.73,109.02,111.17,113.38,
-     >115.43,117.57,119.65,121.71,123.78,125.85,127.83,129.74,131.77,
-     >133.68,135.56,137.35,  0.00, 22.15, 30.18, 36.56, 41.97, 46.86,
-     > 51.31, 55.35, 59.22, 62.88, 66.37, 69.67, 72.85, 75.95, 78.92,
-     > 81.77, 84.57, 87.30, 90.02, 92.56, 95.08, 97.56,100.01,102.42,
-     >104.72,107.06,109.29,111.59,113.79,115.95,118.10,120.19,122.28,
-     >124.37,126.32,128.40,130.31,132.31,134.25,136.18,138.03,  0.00,
-     > 20.24, 27.94, 33.99, 39.20, 43.80, 48.01, 51.94, 55.61, 59.07,
-     > 62.39, 65.53, 68.56, 71.52, 74.32, 77.06, 79.75, 82.37, 84.96,
-     > 87.37, 89.83, 92.22, 94.52, 96.79, 99.09,101.31,103.53,105.75,
-     >107.85,110.02,112.07,114.20,116.25,118.22,120.22,122.26,124.14,
-     >126.11,128.08,129.93,131.88,  0.00, 20.99, 28.73, 34.86, 40.05,
-     > 44.69, 48.75, 52.82, 56.29, 59.75, 63.92, 66.13, 69.11, 72.04,
-     > 74.76, 77.51, 80.14, 82.77, 85.24, 87.56, 90.06, 92.43, 94.77,
-     > 97.02, 99.33,101.47,103.69,105.89,107.96,110.14,112.24,114.29/
+     *106.67,108.89,111.10,113.23,115.37,117.45,119.52,121.64,123.58,
+     *125.59,127.56,129.51,131.48,133.45,135.30,137.16,  0.00, 22.91,
+     * 31.07, 37.34, 42.79, 47.69, 51.96, 56.07, 59.73, 63.26, 66.69,
+     * 69.85, 73.00, 75.97, 78.90, 81.77, 84.48, 87.19, 89.86, 92.35,
+     * 94.85, 97.35, 99.73,102.05,104.41,106.73,109.02,111.17,113.38,
+     *115.43,117.57,119.65,121.71,123.78,125.85,127.83,129.74,131.77,
+     *133.68,135.56,137.35,  0.00, 22.15, 30.18, 36.56, 41.97, 46.86,
+     * 51.31, 55.35, 59.22, 62.88, 66.37, 69.67, 72.85, 75.95, 78.92,
+     * 81.77, 84.57, 87.30, 90.02, 92.56, 95.08, 97.56,100.01,102.42,
+     *104.72,107.06,109.29,111.59,113.79,115.95,118.10,120.19,122.28,
+     *124.37,126.32,128.40,130.31,132.31,134.25,136.18,138.03,  0.00,
+     * 20.24, 27.94, 33.99, 39.20, 43.80, 48.01, 51.94, 55.61, 59.07,
+     * 62.39, 65.53, 68.56, 71.52, 74.32, 77.06, 79.75, 82.37, 84.96,
+     * 87.37, 89.83, 92.22, 94.52, 96.79, 99.09,101.31,103.53,105.75,
+     *107.85,110.02,112.07,114.20,116.25,118.22,120.22,122.26,124.14,
+     *126.11,128.08,129.93,131.88,  0.00, 20.99, 28.73, 34.86, 40.05,
+     * 44.69, 48.75, 52.82, 56.29, 59.75, 63.92, 66.13, 69.11, 72.04,
+     * 74.76, 77.51, 80.14, 82.77, 85.24, 87.56, 90.06, 92.43, 94.77,
+     * 97.02, 99.33,101.47,103.69,105.89,107.96,110.14,112.24,114.29/
       data (en(i),i= 11800, 11970)/
-     >116.33,118.32,120.26,122.32,124.23,126.15,128.02,129.93,131.87,
-     >  0.00, 21.37, 29.33, 35.57, 40.78, 45.00, 49.67, 53.53, 57.08,
-     > 60.53, 63.76, 66.89, 69.87, 72.72, 75.53, 78.22, 80.82, 83.31,
-     > 85.84, 88.28, 90.70, 92.97, 95.24, 97.59, 99.78,102.00,104.15,
-     >106.36,108.41,110.55,112.59,114.62,116.66,118.67,120.66,122.63,
-     >124.60,126.47,128.33,130.22,132.15,  0.00, 21.74, 29.84, 36.09,
-     > 41.44, 46.14, 50.40, 54.28, 57.90, 61.33, 64.57, 67.67, 70.56,
-     > 73.48, 76.23, 78.81, 81.47, 84.06, 86.50, 88.91, 91.26, 93.63,
-     > 95.86, 98.11,100.35,102.53,104.75,106.82,108.97,111.03,113.15,
-     >115.15,117.18,119.13,121.13,123.04,124.92,126.89,128.83,130.64,
-     >132.48,  0.00, 22.06, 30.23, 36.59, 41.97, 46.72, 50.98, 54.93,
-     > 58.60, 62.04, 65.22, 68.32, 71.29, 74.20, 76.91, 79.60, 82.12,
-     > 84.67, 87.12, 89.51, 91.86, 94.20, 96.55, 98.74,100.93,103.17,
-     >105.38,107.48,109.55,111.62,113.60,115.60,117.68,119.60,121.58,
-     >123.45,125.47,127.22,129.21,131.03,132.88,  0.00, 22.30, 30.60,
-     > 36.99, 42.40, 47.18, 51.51, 55.45, 59.16, 62.60, 65.85, 68.99,
-     > 71.98, 74.83, 77.53, 80.21, 82.79, 85.28, 87.73, 90.11, 92.49,
-     > 94.83, 97.06, 99.41,101.56,103.78,105.84,108.02,110.06,112.16,
-     >114.12,116.20,118.14,120.06,122.09,123.92,125.90,127.76,129.60/
+     *116.33,118.32,120.26,122.32,124.23,126.15,128.02,129.93,131.87,
+     *  0.00, 21.37, 29.33, 35.57, 40.78, 45.00, 49.67, 53.53, 57.08,
+     * 60.53, 63.76, 66.89, 69.87, 72.72, 75.53, 78.22, 80.82, 83.31,
+     * 85.84, 88.28, 90.70, 92.97, 95.24, 97.59, 99.78,102.00,104.15,
+     *106.36,108.41,110.55,112.59,114.62,116.66,118.67,120.66,122.63,
+     *124.60,126.47,128.33,130.22,132.15,  0.00, 21.74, 29.84, 36.09,
+     * 41.44, 46.14, 50.40, 54.28, 57.90, 61.33, 64.57, 67.67, 70.56,
+     * 73.48, 76.23, 78.81, 81.47, 84.06, 86.50, 88.91, 91.26, 93.63,
+     * 95.86, 98.11,100.35,102.53,104.75,106.82,108.97,111.03,113.15,
+     *115.15,117.18,119.13,121.13,123.04,124.92,126.89,128.83,130.64,
+     *132.48,  0.00, 22.06, 30.23, 36.59, 41.97, 46.72, 50.98, 54.93,
+     * 58.60, 62.04, 65.22, 68.32, 71.29, 74.20, 76.91, 79.60, 82.12,
+     * 84.67, 87.12, 89.51, 91.86, 94.20, 96.55, 98.74,100.93,103.17,
+     *105.38,107.48,109.55,111.62,113.60,115.60,117.68,119.60,121.58,
+     *123.45,125.47,127.22,129.21,131.03,132.88,  0.00, 22.30, 30.60,
+     * 36.99, 42.40, 47.18, 51.51, 55.45, 59.16, 62.60, 65.85, 68.99,
+     * 71.98, 74.83, 77.53, 80.21, 82.79, 85.28, 87.73, 90.11, 92.49,
+     * 94.83, 97.06, 99.41,101.56,103.78,105.84,108.02,110.06,112.16,
+     *114.12,116.20,118.14,120.06,122.09,123.92,125.90,127.76,129.60/
       data (en(i),i= 11971, 12141)/
-     >131.48,133.35,  0.00, 22.57, 30.83, 37.49, 42.80, 47.65, 52.07,
-     > 56.08, 59.74, 63.25, 66.49, 69.55, 72.54, 75.46, 78.10, 80.86,
-     > 83.41, 85.96, 88.34, 90.78, 93.12, 95.42, 97.69, 99.99,102.18,
-     >104.32,106.50,108.61,110.64,112.69,114.67,116.67,118.69,120.66,
-     >122.62,124.51,126.38,128.25,130.17,132.03,133.75,  0.00, 22.74,
-     > 31.11, 37.65, 43.12, 48.06, 52.38, 56.43, 60.16, 63.67, 66.97,
-     > 70.11, 73.05, 75.97, 78.67, 81.41, 83.98, 86.49, 88.95, 91.33,
-     > 93.65, 96.03, 98.27,100.54,102.76,104.86,107.00,109.12,111.20,
-     >113.16,115.25,117.22,119.20,121.09,123.02,124.99,126.82,128.75,
-     >130.62,132.37,134.24,  0.00, 22.92, 31.33, 37.90, 43.49, 48.36,
-     > 52.78, 56.82, 60.57, 64.13, 67.42, 70.57, 73.57, 76.47, 79.19,
-     > 81.88, 84.49, 87.00, 89.45, 91.83, 94.22, 96.53, 98.84,101.09,
-     >103.27,105.37,107.55,109.60,111.67,113.70,115.70,117.73,119.65,
-     >121.65,123.52,125.44,127.35,129.20,131.09,132.90,134.61,  0.00,
-     > 23.11, 31.58, 38.20, 43.76, 48.71, 53.15, 57.23, 60.99, 64.52,
-     > 67.86, 71.06, 74.06, 76.92, 79.71, 82.42, 85.00, 87.49, 89.94,
-     > 92.38, 94.79, 97.08, 99.38,101.55,103.76,105.91,108.05,110.11,
-     >112.13,114.20,116.23,118.23,120.14,122.07,124.02,125.85,127.77,
-     >129.68,131.49,133.30,135.09,  0.00, 23.24, 31.84, 38.49, 44.13/
+     *131.48,133.35,  0.00, 22.57, 30.83, 37.49, 42.80, 47.65, 52.07,
+     * 56.08, 59.74, 63.25, 66.49, 69.55, 72.54, 75.46, 78.10, 80.86,
+     * 83.41, 85.96, 88.34, 90.78, 93.12, 95.42, 97.69, 99.99,102.18,
+     *104.32,106.50,108.61,110.64,112.69,114.67,116.67,118.69,120.66,
+     *122.62,124.51,126.38,128.25,130.17,132.03,133.75,  0.00, 22.74,
+     * 31.11, 37.65, 43.12, 48.06, 52.38, 56.43, 60.16, 63.67, 66.97,
+     * 70.11, 73.05, 75.97, 78.67, 81.41, 83.98, 86.49, 88.95, 91.33,
+     * 93.65, 96.03, 98.27,100.54,102.76,104.86,107.00,109.12,111.20,
+     *113.16,115.25,117.22,119.20,121.09,123.02,124.99,126.82,128.75,
+     *130.62,132.37,134.24,  0.00, 22.92, 31.33, 37.90, 43.49, 48.36,
+     * 52.78, 56.82, 60.57, 64.13, 67.42, 70.57, 73.57, 76.47, 79.19,
+     * 81.88, 84.49, 87.00, 89.45, 91.83, 94.22, 96.53, 98.84,101.09,
+     *103.27,105.37,107.55,109.60,111.67,113.70,115.70,117.73,119.65,
+     *121.65,123.52,125.44,127.35,129.20,131.09,132.90,134.61,  0.00,
+     * 23.11, 31.58, 38.20, 43.76, 48.71, 53.15, 57.23, 60.99, 64.52,
+     * 67.86, 71.06, 74.06, 76.92, 79.71, 82.42, 85.00, 87.49, 89.94,
+     * 92.38, 94.79, 97.08, 99.38,101.55,103.76,105.91,108.05,110.11,
+     *112.13,114.20,116.23,118.23,120.14,122.07,124.02,125.85,127.77,
+     *129.68,131.49,133.30,135.09,  0.00, 23.24, 31.84, 38.49, 44.13/
       data (en(i),i= 12142, 12312)/
-     > 48.99, 53.46, 57.57, 61.36, 64.93, 68.31, 71.45, 74.47, 77.41,
-     > 80.17, 82.87, 85.43, 87.94, 90.45, 92.86, 95.24, 97.61, 99.86,
-     >102.13,104.23,106.41,108.50,110.56,112.70,114.72,116.65,118.65,
-     >120.60,122.54,124.45,126.35,128.22,130.05,131.91,133.77,135.53,
-     >  0.00, 23.36, 31.96, 38.61, 44.29, 49.28, 53.75, 57.87, 61.72,
-     > 65.25, 68.64, 71.80, 74.89, 77.76, 80.57, 83.27, 85.87, 88.39,
-     > 90.90, 93.31, 95.67, 98.01,100.30,102.49,104.68,106.82,109.00,
-     >111.09,113.08,115.17,117.16,119.18,121.08,122.97,124.90,126.76,
-     >128.64,130.45,132.36,134.16,135.89,  0.00, 23.49, 32.17, 38.83,
-     > 44.45, 49.51, 54.00, 58.18, 61.98, 65.57, 68.99, 72.15, 75.23,
-     > 78.14, 80.93, 83.67, 86.31, 88.80, 91.31, 93.76, 96.09, 98.47,
-     >100.76,102.93,105.12,107.29,109.43,111.46,113.51,115.58,117.59,
-     >119.49,121.45,123.40,125.29,127.22,129.07,130.94,132.70,134.57,
-     >136.36,  0.00, 23.64, 32.12, 39.10, 44.74, 49.73, 54.24, 58.45,
-     > 62.30, 65.88, 69.30, 72.50, 75.55, 78.52, 81.34, 84.11, 86.69,
-     > 89.17, 91.74, 94.12, 96.53, 98.86,101.13,103.32,105.55,107.73,
-     >109.83,111.91,113.96,116.02,117.90,119.93,121.85,123.74,125.76,
-     >127.57,129.45,131.30,133.14,134.87,136.72,  0.00, 23.79, 32.40,
-     > 39.15, 44.92, 49.90, 54.51, 58.71, 62.58, 66.17, 69.58, 72.78/
+     * 48.99, 53.46, 57.57, 61.36, 64.93, 68.31, 71.45, 74.47, 77.41,
+     * 80.17, 82.87, 85.43, 87.94, 90.45, 92.86, 95.24, 97.61, 99.86,
+     *102.13,104.23,106.41,108.50,110.56,112.70,114.72,116.65,118.65,
+     *120.60,122.54,124.45,126.35,128.22,130.05,131.91,133.77,135.53,
+     *  0.00, 23.36, 31.96, 38.61, 44.29, 49.28, 53.75, 57.87, 61.72,
+     * 65.25, 68.64, 71.80, 74.89, 77.76, 80.57, 83.27, 85.87, 88.39,
+     * 90.90, 93.31, 95.67, 98.01,100.30,102.49,104.68,106.82,109.00,
+     *111.09,113.08,115.17,117.16,119.18,121.08,122.97,124.90,126.76,
+     *128.64,130.45,132.36,134.16,135.89,  0.00, 23.49, 32.17, 38.83,
+     * 44.45, 49.51, 54.00, 58.18, 61.98, 65.57, 68.99, 72.15, 75.23,
+     * 78.14, 80.93, 83.67, 86.31, 88.80, 91.31, 93.76, 96.09, 98.47,
+     *100.76,102.93,105.12,107.29,109.43,111.46,113.51,115.58,117.59,
+     *119.49,121.45,123.40,125.29,127.22,129.07,130.94,132.70,134.57,
+     *136.36,  0.00, 23.64, 32.12, 39.10, 44.74, 49.73, 54.24, 58.45,
+     * 62.30, 65.88, 69.30, 72.50, 75.55, 78.52, 81.34, 84.11, 86.69,
+     * 89.17, 91.74, 94.12, 96.53, 98.86,101.13,103.32,105.55,107.73,
+     *109.83,111.91,113.96,116.02,117.90,119.93,121.85,123.74,125.76,
+     *127.57,129.45,131.30,133.14,134.87,136.72,  0.00, 23.79, 32.40,
+     * 39.15, 44.92, 49.90, 54.51, 58.71, 62.58, 66.17, 69.58, 72.78/
       data (en(i),i= 12313, 12483)/
-     > 75.90, 78.86, 81.66, 84.34, 86.98, 89.55, 92.08, 94.52, 96.89,
-     > 99.20,101.45,103.70,105.93,108.06,110.17,112.23,114.33,116.31,
-     >118.30,120.26,122.20,124.11,126.05,127.93,129.80,131.61,133.42,
-     >135.26,137.09,  0.00, 23.86, 32.57, 39.37, 45.06, 50.13, 54.72,
-     > 58.88, 62.80, 66.43, 69.81, 73.08, 76.17, 79.14, 81.96, 84.65,
-     > 87.23, 89.87, 92.35, 94.84, 97.24, 99.54,101.84,104.05,106.29,
-     >108.41,110.54,112.60,114.64,116.74,118.68,120.63,122.57,124.54,
-     >126.41,128.33,130.20,132.02,133.83,135.64,137.37,  0.00, 23.91,
-     > 32.63, 39.46, 45.21, 50.29, 54.99, 59.10, 62.96, 66.62, 70.10,
-     > 73.35, 76.42, 79.36, 82.23, 84.94, 87.60, 90.17, 92.66, 95.10,
-     > 97.57, 99.90,102.18,104.38,106.53,108.72,110.88,112.91,114.97,
-     >117.06,118.97,120.92,122.94,124.84,126.72,128.58,130.45,132.31,
-     >134.13,135.91,137.67,  0.00, 24.05, 33.08, 39.61, 45.41, 50.45,
-     > 55.06, 59.26, 63.22, 66.86, 70.26, 73.54, 76.63, 79.55, 82.43,
-     > 85.21, 87.87, 90.44, 92.98, 95.40, 97.84,100.15,102.44,104.63,
-     >106.86,109.02,111.15,113.28,115.29,117.35,119.27,121.29,123.16,
-     >125.15,127.07,128.88,130.75,132.63,134.41,136.20,138.03,  0.00,
-     > 24.08, 32.91, 39.74, 45.53, 50.56, 55.21, 59.40, 63.35, 67.00,
-     > 70.49, 73.74, 76.84, 79.80, 82.64, 85.43, 88.14, 90.70, 93.23/
+     * 75.90, 78.86, 81.66, 84.34, 86.98, 89.55, 92.08, 94.52, 96.89,
+     * 99.20,101.45,103.70,105.93,108.06,110.17,112.23,114.33,116.31,
+     *118.30,120.26,122.20,124.11,126.05,127.93,129.80,131.61,133.42,
+     *135.26,137.09,  0.00, 23.86, 32.57, 39.37, 45.06, 50.13, 54.72,
+     * 58.88, 62.80, 66.43, 69.81, 73.08, 76.17, 79.14, 81.96, 84.65,
+     * 87.23, 89.87, 92.35, 94.84, 97.24, 99.54,101.84,104.05,106.29,
+     *108.41,110.54,112.60,114.64,116.74,118.68,120.63,122.57,124.54,
+     *126.41,128.33,130.20,132.02,133.83,135.64,137.37,  0.00, 23.91,
+     * 32.63, 39.46, 45.21, 50.29, 54.99, 59.10, 62.96, 66.62, 70.10,
+     * 73.35, 76.42, 79.36, 82.23, 84.94, 87.60, 90.17, 92.66, 95.10,
+     * 97.57, 99.90,102.18,104.38,106.53,108.72,110.88,112.91,114.97,
+     *117.06,118.97,120.92,122.94,124.84,126.72,128.58,130.45,132.31,
+     *134.13,135.91,137.67,  0.00, 24.05, 33.08, 39.61, 45.41, 50.45,
+     * 55.06, 59.26, 63.22, 66.86, 70.26, 73.54, 76.63, 79.55, 82.43,
+     * 85.21, 87.87, 90.44, 92.98, 95.40, 97.84,100.15,102.44,104.63,
+     *106.86,109.02,111.15,113.28,115.29,117.35,119.27,121.29,123.16,
+     *125.15,127.07,128.88,130.75,132.63,134.41,136.20,138.03,  0.00,
+     * 24.08, 32.91, 39.74, 45.53, 50.56, 55.21, 59.40, 63.35, 67.00,
+     * 70.49, 73.74, 76.84, 79.80, 82.64, 85.43, 88.14, 90.70, 93.23/
       data (en(i),i= 12484, 12654)/
-     > 95.72, 98.13,100.41,102.70,104.97,107.15,109.36,111.46,113.52,
-     >115.60,117.63,119.57,121.52,123.50,125.40,127.27,129.20,131.03,
-     >132.87,134.70,136.54,138.30,  0.00, 24.21, 32.98, 39.86, 45.67,
-     > 50.74, 55.39, 59.58, 63.47, 67.18, 70.65, 73.91, 77.06, 80.02,
-     > 82.90, 85.61, 88.36, 90.94, 93.49, 95.94, 98.32,100.70,102.98,
-     >105.24,107.41,109.55,111.69,113.74,115.84,117.84,119.87,121.78,
-     >123.74,125.70,127.61,129.41,131.27,133.17,134.99,136.72,138.53,
-     >  0.00, 24.25, 33.00, 39.90, 45.74, 50.80, 55.49, 59.71, 63.66,
-     > 67.31, 70.81, 74.07, 77.20, 80.20, 83.07, 85.83, 88.56, 91.17,
-     > 93.68, 96.16, 98.59,100.91,103.19,105.40,107.64,109.78,111.95,
-     >114.01,116.05,118.04,120.04,122.02,124.01,125.92,127.81,129.71,
-     >131.49,133.39,135.17,136.95,138.76,  0.00, 24.42, 33.10, 40.00,
-     > 45.86, 51.01, 55.63, 59.87, 63.83, 67.48, 71.00, 74.30, 77.41,
-     > 80.32, 83.23, 86.05, 88.73, 91.36, 93.87, 96.31, 98.74,101.10,
-     >103.42,105.65,107.85,110.09,112.15,114.23,116.26,118.36,120.30,
-     >122.29,124.28,126.12,128.00,129.88,131.77,133.57,135.42,137.26,
-     >138.98,  0.00, 24.26, 33.18, 40.05, 45.96, 51.01, 55.70, 59.95,
-     > 63.91, 67.58, 71.07, 74.35, 77.48, 80.50, 83.37, 86.14, 88.88,
-     > 91.52, 94.04, 96.49, 98.93,101.26,103.57,105.85,108.05,110.21/
+     * 95.72, 98.13,100.41,102.70,104.97,107.15,109.36,111.46,113.52,
+     *115.60,117.63,119.57,121.52,123.50,125.40,127.27,129.20,131.03,
+     *132.87,134.70,136.54,138.30,  0.00, 24.21, 32.98, 39.86, 45.67,
+     * 50.74, 55.39, 59.58, 63.47, 67.18, 70.65, 73.91, 77.06, 80.02,
+     * 82.90, 85.61, 88.36, 90.94, 93.49, 95.94, 98.32,100.70,102.98,
+     *105.24,107.41,109.55,111.69,113.74,115.84,117.84,119.87,121.78,
+     *123.74,125.70,127.61,129.41,131.27,133.17,134.99,136.72,138.53,
+     *  0.00, 24.25, 33.00, 39.90, 45.74, 50.80, 55.49, 59.71, 63.66,
+     * 67.31, 70.81, 74.07, 77.20, 80.20, 83.07, 85.83, 88.56, 91.17,
+     * 93.68, 96.16, 98.59,100.91,103.19,105.40,107.64,109.78,111.95,
+     *114.01,116.05,118.04,120.04,122.02,124.01,125.92,127.81,129.71,
+     *131.49,133.39,135.17,136.95,138.76,  0.00, 24.42, 33.10, 40.00,
+     * 45.86, 51.01, 55.63, 59.87, 63.83, 67.48, 71.00, 74.30, 77.41,
+     * 80.32, 83.23, 86.05, 88.73, 91.36, 93.87, 96.31, 98.74,101.10,
+     *103.42,105.65,107.85,110.09,112.15,114.23,116.26,118.36,120.30,
+     *122.29,124.28,126.12,128.00,129.88,131.77,133.57,135.42,137.26,
+     *138.98,  0.00, 24.26, 33.18, 40.05, 45.96, 51.01, 55.70, 59.95,
+     * 63.91, 67.58, 71.07, 74.35, 77.48, 80.50, 83.37, 86.14, 88.88,
+     * 91.52, 94.04, 96.49, 98.93,101.26,103.57,105.85,108.05,110.21/
       data (en(i),i= 12655, 12825)/
-     >112.30,114.41,116.42,118.47,120.65,122.41,124.42,126.29,128.19,
-     >130.10,131.94,133.81,135.55,137.45,139.17,  0.00, 24.46, 33.22,
-     > 40.15, 45.98, 51.12, 55.81, 60.08, 64.01, 67.67, 71.18, 74.49,
-     > 77.62, 80.60, 83.49, 86.30, 89.04, 91.61, 94.17, 96.66, 99.08,
-     >101.39,103.74,106.00,108.19,110.36,112.49,114.56,116.59,118.66,
-     >120.66,122.64,124.54,126.49,128.37,130.27,132.12,133.97,135.74,
-     >137.54,139.39,  0.00, 24.50, 33.32, 40.22, 46.05, 51.25, 55.87,
-     > 60.16, 64.04, 67.75, 71.26, 74.54, 77.68, 80.69, 83.64, 86.35,
-     > 89.11, 91.73, 94.27, 96.77, 99.19,101.52,103.85,106.05,108.31,
-     >110.48,112.60,114.68,116.73,118.80,120.75,122.77,124.73,126.63,
-     >128.53,130.41,132.22,134.05,135.94,137.71,139.51,  0.00, 24.51,
-     > 33.28, 40.26, 46.06, 51.22, 55.92, 60.14, 64.10, 67.81, 71.27,
-     > 74.59, 77.77, 80.77, 83.64, 86.51, 89.18, 91.81, 94.40, 96.84,
-     > 99.27,101.66,103.96,106.21,108.43,110.55,112.69,114.80,116.91,
-     >118.88,120.91,122.86,124.81,126.74,128.63,130.53,132.39,134.18,
-     >135.99,137.80,139.58,  0.00, 24.55, 33.43, 40.30, 46.16, 51.30,
-     > 55.97, 60.25, 64.13, 67.87, 71.35, 74.66, 77.78, 80.82, 83.77,
-     > 86.55, 89.25, 91.88, 94.44, 96.93, 99.32,101.73,103.98,106.29,
-     >108.52,110.63,112.80,114.89,116.94,118.98,120.95,122.93,124.93/
+     *112.30,114.41,116.42,118.47,120.65,122.41,124.42,126.29,128.19,
+     *130.10,131.94,133.81,135.55,137.45,139.17,  0.00, 24.46, 33.22,
+     * 40.15, 45.98, 51.12, 55.81, 60.08, 64.01, 67.67, 71.18, 74.49,
+     * 77.62, 80.60, 83.49, 86.30, 89.04, 91.61, 94.17, 96.66, 99.08,
+     *101.39,103.74,106.00,108.19,110.36,112.49,114.56,116.59,118.66,
+     *120.66,122.64,124.54,126.49,128.37,130.27,132.12,133.97,135.74,
+     *137.54,139.39,  0.00, 24.50, 33.32, 40.22, 46.05, 51.25, 55.87,
+     * 60.16, 64.04, 67.75, 71.26, 74.54, 77.68, 80.69, 83.64, 86.35,
+     * 89.11, 91.73, 94.27, 96.77, 99.19,101.52,103.85,106.05,108.31,
+     *110.48,112.60,114.68,116.73,118.80,120.75,122.77,124.73,126.63,
+     *128.53,130.41,132.22,134.05,135.94,137.71,139.51,  0.00, 24.51,
+     * 33.28, 40.26, 46.06, 51.22, 55.92, 60.14, 64.10, 67.81, 71.27,
+     * 74.59, 77.77, 80.77, 83.64, 86.51, 89.18, 91.81, 94.40, 96.84,
+     * 99.27,101.66,103.96,106.21,108.43,110.55,112.69,114.80,116.91,
+     *118.88,120.91,122.86,124.81,126.74,128.63,130.53,132.39,134.18,
+     *135.99,137.80,139.58,  0.00, 24.55, 33.43, 40.30, 46.16, 51.30,
+     * 55.97, 60.25, 64.13, 67.87, 71.35, 74.66, 77.78, 80.82, 83.77,
+     * 86.55, 89.25, 91.88, 94.44, 96.93, 99.32,101.73,103.98,106.29,
+     *108.52,110.63,112.80,114.89,116.94,118.98,120.95,122.93,124.93/
       data (en(i),i= 12826, 12996)/
-     >126.82,128.70,130.65,132.50,134.33,136.11,137.92,139.78,  0.00,
-     > 24.51, 33.39, 40.33, 46.14, 51.31, 55.96, 60.20, 64.19, 67.90,
-     > 71.42, 74.68, 77.82, 80.85, 83.78, 86.59, 89.30, 91.91, 94.46,
-     > 96.93, 99.38,101.75,104.10,106.33,108.50,110.72,112.87,114.90,
-     >117.00,119.04,121.01,123.03,124.99,126.92,128.81,130.63,132.58,
-     >134.39,136.24,137.99,139.77,  0.00, 24.54, 33.42, 40.31, 46.20,
-     > 51.32, 55.99, 60.20, 64.21, 67.87, 71.37, 74.67, 77.85, 80.90,
-     > 83.77, 86.57, 89.36, 91.92, 94.54, 97.01, 99.43,101.75,104.07,
-     >106.35,108.58,110.70,112.90,114.98,117.02,119.08,121.03,123.03,
-     >125.01,126.93,128.86,130.76,132.64,134.45,136.33,138.07,139.87,
-     >  0.00, 24.50, 33.36, 40.33, 46.19, 51.22, 55.97, 60.25, 64.21,
-     > 67.87, 71.37, 74.65, 77.81, 80.85, 83.81, 86.57, 89.28, 91.92,
-     > 94.47, 97.00, 99.43,101.80,104.04,106.36,108.59,110.75,112.85,
-     >114.92,117.06,119.23,121.03,123.05,125.00,126.93,128.87,130.78,
-     >132.58,134.51,136.27,138.11,139.96,  0.00, 24.55, 33.37, 40.30,
-     > 46.11, 51.30, 55.94, 60.18, 64.12, 67.84, 71.30, 74.63, 77.80,
-     > 80.86, 83.76, 86.52, 89.28, 91.90, 94.47, 96.95, 99.36,101.70,
-     >104.03,106.31,108.51,110.67,112.82,114.95,117.02,119.04,121.04,
-     >123.08,125.05,126.94,128.85,130.74,132.62,134.48,136.36,138.13/
+     *126.82,128.70,130.65,132.50,134.33,136.11,137.92,139.78,  0.00,
+     * 24.51, 33.39, 40.33, 46.14, 51.31, 55.96, 60.20, 64.19, 67.90,
+     * 71.42, 74.68, 77.82, 80.85, 83.78, 86.59, 89.30, 91.91, 94.46,
+     * 96.93, 99.38,101.75,104.10,106.33,108.50,110.72,112.87,114.90,
+     *117.00,119.04,121.01,123.03,124.99,126.92,128.81,130.63,132.58,
+     *134.39,136.24,137.99,139.77,  0.00, 24.54, 33.42, 40.31, 46.20,
+     * 51.32, 55.99, 60.20, 64.21, 67.87, 71.37, 74.67, 77.85, 80.90,
+     * 83.77, 86.57, 89.36, 91.92, 94.54, 97.01, 99.43,101.75,104.07,
+     *106.35,108.58,110.70,112.90,114.98,117.02,119.08,121.03,123.03,
+     *125.01,126.93,128.86,130.76,132.64,134.45,136.33,138.07,139.87,
+     *  0.00, 24.50, 33.36, 40.33, 46.19, 51.22, 55.97, 60.25, 64.21,
+     * 67.87, 71.37, 74.65, 77.81, 80.85, 83.81, 86.57, 89.28, 91.92,
+     * 94.47, 97.00, 99.43,101.80,104.04,106.36,108.59,110.75,112.85,
+     *114.92,117.06,119.23,121.03,123.05,125.00,126.93,128.87,130.78,
+     *132.58,134.51,136.27,138.11,139.96,  0.00, 24.55, 33.37, 40.30,
+     * 46.11, 51.30, 55.94, 60.18, 64.12, 67.84, 71.30, 74.63, 77.80,
+     * 80.86, 83.76, 86.52, 89.28, 91.90, 94.47, 96.95, 99.36,101.70,
+     *104.03,106.31,108.51,110.67,112.82,114.95,117.02,119.04,121.04,
+     *123.08,125.05,126.94,128.85,130.74,132.62,134.48,136.36,138.13/
       data (en(i),i= 12997, 13167)/
-     >140.00,  0.00, 24.41, 33.35, 40.22, 46.07, 51.28, 55.86, 60.18,
-     > 64.05, 67.79, 71.24, 74.57, 77.71, 80.76, 83.71, 86.48, 89.22,
-     > 91.85, 94.37, 96.88, 99.27,101.63,103.97,106.28,108.47,110.64,
-     >112.82,114.90,117.01,118.98,121.04,123.06,125.02,126.97,128.84,
-     >130.72,132.63,134.53,136.31,138.11,139.95,  0.00, 24.68, 33.33,
-     > 40.27, 46.04, 51.20, 55.83, 60.07, 64.01, 67.69, 71.16, 74.51,
-     > 77.63, 80.68, 83.58, 86.42, 89.12, 91.74, 94.33, 96.80, 99.20,
-     >101.57,103.87,106.13,108.37,110.59,112.67,114.85,116.91,118.98,
-     >120.95,122.96,124.95,126.86,128.81,130.70,132.57,134.48,136.29,
-     >138.19,139.92,  0.00, 24.45, 33.29, 40.17, 45.99, 51.07, 55.75,
-     > 59.92, 63.87, 67.56, 71.01, 74.39, 77.53, 80.58, 83.45, 86.26,
-     > 88.99, 91.63, 94.14, 96.67, 99.07,101.38,103.74,106.02,108.25,
-     >110.44,112.59,114.74,116.79,118.88,120.91,122.92,124.88,126.80,
-     >128.73,130.65,132.57,134.36,136.28,138.09,139.97,  0.00, 24.44,
-     > 33.19, 40.08, 45.86, 50.98, 55.59, 59.84, 63.71, 67.41, 70.87,
-     > 74.20, 77.36, 80.41, 83.29, 86.08, 88.78, 91.44, 94.00, 96.48,
-     > 98.92,101.29,103.61,105.89,108.10,110.29,112.43,114.58,116.66,
-     >118.71,120.77,122.74,124.75,126.69,128.68,130.60,132.46,134.39,
-     >136.22,138.07,139.86,  0.00, 24.40, 33.22, 39.97, 45.83, 50.85/
+     *140.00,  0.00, 24.41, 33.35, 40.22, 46.07, 51.28, 55.86, 60.18,
+     * 64.05, 67.79, 71.24, 74.57, 77.71, 80.76, 83.71, 86.48, 89.22,
+     * 91.85, 94.37, 96.88, 99.27,101.63,103.97,106.28,108.47,110.64,
+     *112.82,114.90,117.01,118.98,121.04,123.06,125.02,126.97,128.84,
+     *130.72,132.63,134.53,136.31,138.11,139.95,  0.00, 24.68, 33.33,
+     * 40.27, 46.04, 51.20, 55.83, 60.07, 64.01, 67.69, 71.16, 74.51,
+     * 77.63, 80.68, 83.58, 86.42, 89.12, 91.74, 94.33, 96.80, 99.20,
+     *101.57,103.87,106.13,108.37,110.59,112.67,114.85,116.91,118.98,
+     *120.95,122.96,124.95,126.86,128.81,130.70,132.57,134.48,136.29,
+     *138.19,139.92,  0.00, 24.45, 33.29, 40.17, 45.99, 51.07, 55.75,
+     * 59.92, 63.87, 67.56, 71.01, 74.39, 77.53, 80.58, 83.45, 86.26,
+     * 88.99, 91.63, 94.14, 96.67, 99.07,101.38,103.74,106.02,108.25,
+     *110.44,112.59,114.74,116.79,118.88,120.91,122.92,124.88,126.80,
+     *128.73,130.65,132.57,134.36,136.28,138.09,139.97,  0.00, 24.44,
+     * 33.19, 40.08, 45.86, 50.98, 55.59, 59.84, 63.71, 67.41, 70.87,
+     * 74.20, 77.36, 80.41, 83.29, 86.08, 88.78, 91.44, 94.00, 96.48,
+     * 98.92,101.29,103.61,105.89,108.10,110.29,112.43,114.58,116.66,
+     *118.71,120.77,122.74,124.75,126.69,128.68,130.60,132.46,134.39,
+     *136.22,138.07,139.86,  0.00, 24.40, 33.22, 39.97, 45.83, 50.85/
       data (en(i),i= 13168, 13338)/
-     > 55.47, 59.65, 63.62, 67.29, 70.74, 74.01, 77.21, 80.24, 83.10,
-     > 85.90, 88.58, 91.24, 93.81, 96.28, 98.75,101.08,103.39,105.67,
-     >107.96,110.16,112.30,114.39,116.54,118.60,120.62,122.68,124.67,
-     >126.65,128.58,130.48,132.44,134.26,136.19,138.07,139.87,  0.00,
-     > 24.32, 33.03, 39.84, 45.58, 50.63, 55.29, 59.49, 63.38, 67.04,
-     > 70.50, 73.83, 76.97, 79.93, 82.83, 85.66, 88.37, 90.95, 93.53,
-     > 96.06, 98.45,100.84,103.21,105.47,107.68,109.96,112.14,114.24,
-     >116.32,118.45,120.48,122.52,124.49,126.48,128.49,130.42,132.36,
-     >134.22,136.12,137.91,139.77,  0.00, 24.23, 32.91, 39.72, 45.42,
-     > 50.46, 55.01, 59.22, 63.12, 66.78, 70.26, 73.53, 76.64, 79.69,
-     > 82.54, 85.37, 88.03, 90.67, 93.21, 95.75, 98.16,100.55,102.90,
-     >105.21,107.49,109.71,111.85,114.04,116.12,118.25,120.33,122.35,
-     >124.36,126.41,128.37,130.27,132.26,134.12,136.10,137.89,139.74,
-     >  0.00, 24.10, 32.73, 39.51, 45.21, 50.26, 54.77, 58.99, 62.86,
-     > 66.50, 69.92, 73.17, 76.30, 79.33, 82.17, 84.98, 87.75, 90.35,
-     > 92.94, 95.42, 97.91,100.26,102.66,104.95,107.22,109.51,111.67,
-     >113.81,116.00,118.10,120.16,122.21,124.24,126.25,128.28,130.28,
-     >132.22,134.10,136.04,137.97,139.76,  0.00, 23.96, 32.56, 39.27,
-     > 44.92, 49.90, 54.43, 58.56, 62.49, 66.06, 69.50, 72.79, 75.87/
+     * 55.47, 59.65, 63.62, 67.29, 70.74, 74.01, 77.21, 80.24, 83.10,
+     * 85.90, 88.58, 91.24, 93.81, 96.28, 98.75,101.08,103.39,105.67,
+     *107.96,110.16,112.30,114.39,116.54,118.60,120.62,122.68,124.67,
+     *126.65,128.58,130.48,132.44,134.26,136.19,138.07,139.87,  0.00,
+     * 24.32, 33.03, 39.84, 45.58, 50.63, 55.29, 59.49, 63.38, 67.04,
+     * 70.50, 73.83, 76.97, 79.93, 82.83, 85.66, 88.37, 90.95, 93.53,
+     * 96.06, 98.45,100.84,103.21,105.47,107.68,109.96,112.14,114.24,
+     *116.32,118.45,120.48,122.52,124.49,126.48,128.49,130.42,132.36,
+     *134.22,136.12,137.91,139.77,  0.00, 24.23, 32.91, 39.72, 45.42,
+     * 50.46, 55.01, 59.22, 63.12, 66.78, 70.26, 73.53, 76.64, 79.69,
+     * 82.54, 85.37, 88.03, 90.67, 93.21, 95.75, 98.16,100.55,102.90,
+     *105.21,107.49,109.71,111.85,114.04,116.12,118.25,120.33,122.35,
+     *124.36,126.41,128.37,130.27,132.26,134.12,136.10,137.89,139.74,
+     *  0.00, 24.10, 32.73, 39.51, 45.21, 50.26, 54.77, 58.99, 62.86,
+     * 66.50, 69.92, 73.17, 76.30, 79.33, 82.17, 84.98, 87.75, 90.35,
+     * 92.94, 95.42, 97.91,100.26,102.66,104.95,107.22,109.51,111.67,
+     *113.81,116.00,118.10,120.16,122.21,124.24,126.25,128.28,130.28,
+     *132.22,134.10,136.04,137.97,139.76,  0.00, 23.96, 32.56, 39.27,
+     * 44.92, 49.90, 54.43, 58.56, 62.49, 66.06, 69.50, 72.79, 75.87/
       data (en(i),i= 13339, 13509)/
-     > 78.85, 81.79, 84.57, 87.30, 90.00, 92.53, 95.10, 97.58, 99.98,
-     >102.34,104.67,106.97,109.24,111.48,113.69,115.80,117.95,120.09,
-     >122.19,124.23,126.20,128.25,130.17,132.16,134.06,136.08,138.00,
-     >139.88,  0.00, 23.81, 32.36, 38.90, 44.54, 49.52, 53.98, 58.11,
-     > 61.93, 65.56, 68.98, 72.28, 75.41, 78.39, 81.28, 84.11, 86.87,
-     > 89.53, 92.13, 94.70, 97.21, 99.75,102.06,104.46,106.78,109.03,
-     >111.38,113.58,115.73,117.91,119.99,122.08,124.20,126.28,128.27,
-     >130.31,132.27,134.18,136.15,138.08,140.01,  0.00, 23.54, 31.93,
-     > 38.48, 44.06, 48.96, 53.36, 57.49, 61.33, 64.90, 68.33, 71.62,
-     > 74.81, 77.85, 80.83, 83.67, 86.48, 89.21, 91.91, 94.46, 97.01,
-     > 99.54,101.95,104.36,106.72,109.06,111.37,113.55,115.82,117.98,
-     >120.09,122.21,124.36,126.42,128.44,130.42,132.48,134.43,136.36,
-     >138.35,140.22,  0.00, 22.84, 31.04, 37.54, 43.05, 48.06, 52.55,
-     > 56.75, 60.69, 64.42, 67.97, 71.33, 74.56, 77.72, 80.76, 83.69,
-     > 86.51, 89.27, 91.97, 94.62, 97.19, 99.75,102.23,104.65,107.02,
-     >109.33,111.69,113.93,116.19,118.38,120.56,122.67,124.78,126.84,
-     >128.89,130.94,132.91,134.93,136.97,138.84,140.84,  0.00, 20.76,
-     > 28.61, 34.79, 40.09, 44.76, 49.11, 53.09, 56.88, 60.35, 63.66,
-     > 66.90, 69.95, 72.97, 75.88, 78.60, 81.39, 84.03, 86.62, 89.11/
+     * 78.85, 81.79, 84.57, 87.30, 90.00, 92.53, 95.10, 97.58, 99.98,
+     *102.34,104.67,106.97,109.24,111.48,113.69,115.80,117.95,120.09,
+     *122.19,124.23,126.20,128.25,130.17,132.16,134.06,136.08,138.00,
+     *139.88,  0.00, 23.81, 32.36, 38.90, 44.54, 49.52, 53.98, 58.11,
+     * 61.93, 65.56, 68.98, 72.28, 75.41, 78.39, 81.28, 84.11, 86.87,
+     * 89.53, 92.13, 94.70, 97.21, 99.75,102.06,104.46,106.78,109.03,
+     *111.38,113.58,115.73,117.91,119.99,122.08,124.20,126.28,128.27,
+     *130.31,132.27,134.18,136.15,138.08,140.01,  0.00, 23.54, 31.93,
+     * 38.48, 44.06, 48.96, 53.36, 57.49, 61.33, 64.90, 68.33, 71.62,
+     * 74.81, 77.85, 80.83, 83.67, 86.48, 89.21, 91.91, 94.46, 97.01,
+     * 99.54,101.95,104.36,106.72,109.06,111.37,113.55,115.82,117.98,
+     *120.09,122.21,124.36,126.42,128.44,130.42,132.48,134.43,136.36,
+     *138.35,140.22,  0.00, 22.84, 31.04, 37.54, 43.05, 48.06, 52.55,
+     * 56.75, 60.69, 64.42, 67.97, 71.33, 74.56, 77.72, 80.76, 83.69,
+     * 86.51, 89.27, 91.97, 94.62, 97.19, 99.75,102.23,104.65,107.02,
+     *109.33,111.69,113.93,116.19,118.38,120.56,122.67,124.78,126.84,
+     *128.89,130.94,132.91,134.93,136.97,138.84,140.84,  0.00, 20.76,
+     * 28.61, 34.79, 40.09, 44.76, 49.11, 53.09, 56.88, 60.35, 63.66,
+     * 66.90, 69.95, 72.97, 75.88, 78.60, 81.39, 84.03, 86.62, 89.11/
       data (en(i),i= 13510, 13680)/
-     > 91.56, 93.94, 96.30, 98.66,100.91,103.20,105.41,107.57,109.79,
-     >111.91,114.04,116.15,118.24,120.31,122.33,124.30,126.28,128.23,
-     >130.13,132.12,133.97,  0.00, 21.51, 29.42, 35.68, 40.95, 45.65,
-     > 49.87, 53.85, 57.50, 61.02, 64.34, 67.49, 70.51, 73.52, 76.30,
-     > 79.06, 81.67, 84.36, 86.97, 88.36, 91.57, 94.24, 96.64, 98.86,
-     >101.10,103.38,105.56,107.81,109.93,112.14,114.18,116.23,118.36,
-     >120.39,122.39,124.38,126.32,128.29,130.25,132.15,133.99,  0.00,
-     > 13.22, 30.05, 36.37, 36.45, 41.79, 50.75, 54.65, 58.31, 58.40,
-     > 65.16, 68.29, 71.31, 74.24, 74.29, 77.07, 82.41, 82.46, 87.59,
-     > 90.00, 92.41, 94.82, 96.64, 99.38,101.58,101.68,103.98,108.32,
-     >110.44,112.48,114.71,116.75,116.75,120.75,122.71,124.68,126.70,
-     >128.57,130.51,130.56,134.35,  0.00, 22.19, 21.19, 29.68, 36.25,
-     > 47.07, 46.63, 55.40, 55.00, 62.56, 65.89, 69.04, 71.99, 75.05,
-     > 77.80, 80.57, 83.14, 82.90, 85.48, 90.74, 93.11, 92.82, 97.76,
-     >100.01, 99.80,102.05,106.65,106.48,108.61,113.14,115.17,117.16,
-     >119.24,121.24,123.26,125.17,124.98,126.92,130.90,130.70,132.66,
-     >  0.00, 22.71, 30.91, 37.42, 42.91, 47.68, 52.01, 56.05, 59.78,
-     > 63.27, 66.72, 69.73, 72.79, 75.67, 78.55, 81.19, 83.85, 86.42,
-     > 88.89, 91.31, 93.69, 96.04, 98.35,100.70,102.91,105.07,107.31/
+     * 91.56, 93.94, 96.30, 98.66,100.91,103.20,105.41,107.57,109.79,
+     *111.91,114.04,116.15,118.24,120.31,122.33,124.30,126.28,128.23,
+     *130.13,132.12,133.97,  0.00, 21.51, 29.42, 35.68, 40.95, 45.65,
+     * 49.87, 53.85, 57.50, 61.02, 64.34, 67.49, 70.51, 73.52, 76.30,
+     * 79.06, 81.67, 84.36, 86.97, 88.36, 91.57, 94.24, 96.64, 98.86,
+     *101.10,103.38,105.56,107.81,109.93,112.14,114.18,116.23,118.36,
+     *120.39,122.39,124.38,126.32,128.29,130.25,132.15,133.99,  0.00,
+     * 13.22, 30.05, 36.37, 36.45, 41.79, 50.75, 54.65, 58.31, 58.40,
+     * 65.16, 68.29, 71.31, 74.24, 74.29, 77.07, 82.41, 82.46, 87.59,
+     * 90.00, 92.41, 94.82, 96.64, 99.38,101.58,101.68,103.98,108.32,
+     *110.44,112.48,114.71,116.75,116.75,120.75,122.71,124.68,126.70,
+     *128.57,130.51,130.56,134.35,  0.00, 22.19, 21.19, 29.68, 36.25,
+     * 47.07, 46.63, 55.40, 55.00, 62.56, 65.89, 69.04, 71.99, 75.05,
+     * 77.80, 80.57, 83.14, 82.90, 85.48, 90.74, 93.11, 92.82, 97.76,
+     *100.01, 99.80,102.05,106.65,106.48,108.61,113.14,115.17,117.16,
+     *119.24,121.24,123.26,125.17,124.98,126.92,130.90,130.70,132.66,
+     *  0.00, 22.71, 30.91, 37.42, 42.91, 47.68, 52.01, 56.05, 59.78,
+     * 63.27, 66.72, 69.73, 72.79, 75.67, 78.55, 81.19, 83.85, 86.42,
+     * 88.89, 91.31, 93.69, 96.04, 98.35,100.70,102.91,105.07,107.31/
       data (en(i),i= 13681, 13851)/
-     >109.43,111.59,113.66,115.67,117.71,119.78,121.78,123.75,125.71,
-     >127.65,129.52,131.44,133.25,135.16,  0.00, 22.77, 31.18, 37.73,
-     > 43.30, 48.04, 52.53, 56.61, 60.38, 63.87, 67.22, 70.40, 73.45,
-     > 76.32, 79.11, 81.85, 84.56, 87.04, 89.63, 92.01, 94.35, 96.68,
-     > 98.92,101.28,103.48,105.72,107.86,109.99,112.12,114.25,116.30,
-     >118.29,120.28,122.23,124.22,126.22,128.15,129.98,131.89,133.71,
-     >135.62,  0.00, 23.00, 31.48, 38.11, 43.63, 48.56, 53.04, 57.12,
-     > 60.86, 64.47, 67.78, 71.04, 74.07, 76.97, 79.76, 82.47, 85.16,
-     > 87.66, 90.21, 92.61, 94.91, 97.30, 99.56,101.90,104.14,106.32,
-     >108.50,110.63,112.67,114.79,116.78,118.87,120.80,122.83,124.79,
-     >126.70,128.62,130.59,132.40,134.25,136.11,  0.00, 23.19, 31.74,
-     > 38.42, 44.03, 49.02, 53.47, 57.55, 61.37, 64.93, 68.33, 71.56,
-     > 74.64, 77.52, 80.35, 83.08, 85.73, 88.31, 90.78, 93.17, 95.54,
-     > 97.86,100.23,102.45,104.66,106.90,108.99,111.18,113.28,115.30,
-     >117.39,119.34,121.33,123.31,125.31,127.22,129.12,131.05,132.88,
-     >134.77,136.64,  0.00, 23.38, 32.03, 38.70, 44.49, 49.33, 53.83,
-     > 58.00, 61.89, 65.48, 68.83, 72.08, 75.12, 78.06, 80.88, 83.64,
-     > 86.26, 88.85, 91.28, 93.80, 96.17, 98.50,100.83,102.99,105.27,
-     >107.42,109.58,111.73,113.86,115.87,117.92,119.94,121.94,123.83/
+     *109.43,111.59,113.66,115.67,117.71,119.78,121.78,123.75,125.71,
+     *127.65,129.52,131.44,133.25,135.16,  0.00, 22.77, 31.18, 37.73,
+     * 43.30, 48.04, 52.53, 56.61, 60.38, 63.87, 67.22, 70.40, 73.45,
+     * 76.32, 79.11, 81.85, 84.56, 87.04, 89.63, 92.01, 94.35, 96.68,
+     * 98.92,101.28,103.48,105.72,107.86,109.99,112.12,114.25,116.30,
+     *118.29,120.28,122.23,124.22,126.22,128.15,129.98,131.89,133.71,
+     *135.62,  0.00, 23.00, 31.48, 38.11, 43.63, 48.56, 53.04, 57.12,
+     * 60.86, 64.47, 67.78, 71.04, 74.07, 76.97, 79.76, 82.47, 85.16,
+     * 87.66, 90.21, 92.61, 94.91, 97.30, 99.56,101.90,104.14,106.32,
+     *108.50,110.63,112.67,114.79,116.78,118.87,120.80,122.83,124.79,
+     *126.70,128.62,130.59,132.40,134.25,136.11,  0.00, 23.19, 31.74,
+     * 38.42, 44.03, 49.02, 53.47, 57.55, 61.37, 64.93, 68.33, 71.56,
+     * 74.64, 77.52, 80.35, 83.08, 85.73, 88.31, 90.78, 93.17, 95.54,
+     * 97.86,100.23,102.45,104.66,106.90,108.99,111.18,113.28,115.30,
+     *117.39,119.34,121.33,123.31,125.31,127.22,129.12,131.05,132.88,
+     *134.77,136.64,  0.00, 23.38, 32.03, 38.70, 44.49, 49.33, 53.83,
+     * 58.00, 61.89, 65.48, 68.83, 72.08, 75.12, 78.06, 80.88, 83.64,
+     * 86.26, 88.85, 91.28, 93.80, 96.17, 98.50,100.83,102.99,105.27,
+     *107.42,109.58,111.73,113.86,115.87,117.92,119.94,121.94,123.83/
       data (en(i),i= 13852, 14022)/
-     >125.89,127.67,129.59,131.49,133.35,135.19,137.01,  0.00, 23.58,
-     > 32.24, 38.96, 44.69, 49.66, 54.25, 58.40, 62.22, 65.86, 69.23,
-     > 72.48, 75.61, 78.52, 81.35, 84.13, 86.74, 89.32, 91.85, 94.21,
-     > 96.62, 98.98,101.32,103.56,105.81,107.99,110.13,112.22,114.37,
-     >116.41,118.44,120.46,122.38,124.37,126.32,128.21,130.17,132.04,
-     >133.88,135.65,137.55,  0.00, 23.70, 32.43, 39.24, 44.95, 49.95,
-     > 54.52, 58.72, 62.61, 66.25, 69.63, 72.94, 76.03, 78.99, 81.85,
-     > 84.57, 87.27, 89.80, 92.29, 94.66, 97.19, 99.50,101.80,104.11,
-     >106.27,108.50,110.64,112.70,114.77,116.88,118.87,120.90,122.86,
-     >124.82,126.80,128.71,130.56,132.44,134.30,136.10,137.93,  0.00,
-     > 23.86, 32.66, 39.46, 45.17, 50.27, 54.83, 59.07, 62.96, 66.62,
-     > 69.99, 73.28, 76.42, 79.43, 82.27, 85.02, 87.65, 90.26, 92.80,
-     > 95.17, 97.62, 99.98,102.28,104.53,106.76,108.95,111.08,113.22,
-     >115.28,117.34,119.42,121.33,123.33,125.30,127.25,129.18,131.03,
-     >132.88,134.72,136.56,138.43,  0.00, 24.03, 32.81, 39.65, 45.38,
-     > 50.51, 55.11, 59.34, 63.22, 66.97, 70.42, 73.66, 76.76, 79.77,
-     > 82.62, 85.37, 88.08, 90.67, 93.21, 95.60, 98.06,100.42,102.73,
-     >104.98,107.21,109.39,111.55,113.64,115.78,117.79,119.78,121.81,
-     >123.79,125.71,127.68,129.52,131.46,133.34,135.22,137.02,138.85/
+     *125.89,127.67,129.59,131.49,133.35,135.19,137.01,  0.00, 23.58,
+     * 32.24, 38.96, 44.69, 49.66, 54.25, 58.40, 62.22, 65.86, 69.23,
+     * 72.48, 75.61, 78.52, 81.35, 84.13, 86.74, 89.32, 91.85, 94.21,
+     * 96.62, 98.98,101.32,103.56,105.81,107.99,110.13,112.22,114.37,
+     *116.41,118.44,120.46,122.38,124.37,126.32,128.21,130.17,132.04,
+     *133.88,135.65,137.55,  0.00, 23.70, 32.43, 39.24, 44.95, 49.95,
+     * 54.52, 58.72, 62.61, 66.25, 69.63, 72.94, 76.03, 78.99, 81.85,
+     * 84.57, 87.27, 89.80, 92.29, 94.66, 97.19, 99.50,101.80,104.11,
+     *106.27,108.50,110.64,112.70,114.77,116.88,118.87,120.90,122.86,
+     *124.82,126.80,128.71,130.56,132.44,134.30,136.10,137.93,  0.00,
+     * 23.86, 32.66, 39.46, 45.17, 50.27, 54.83, 59.07, 62.96, 66.62,
+     * 69.99, 73.28, 76.42, 79.43, 82.27, 85.02, 87.65, 90.26, 92.80,
+     * 95.17, 97.62, 99.98,102.28,104.53,106.76,108.95,111.08,113.22,
+     *115.28,117.34,119.42,121.33,123.33,125.30,127.25,129.18,131.03,
+     *132.88,134.72,136.56,138.43,  0.00, 24.03, 32.81, 39.65, 45.38,
+     * 50.51, 55.11, 59.34, 63.22, 66.97, 70.42, 73.66, 76.76, 79.77,
+     * 82.62, 85.37, 88.08, 90.67, 93.21, 95.60, 98.06,100.42,102.73,
+     *104.98,107.21,109.39,111.55,113.64,115.78,117.79,119.78,121.81,
+     *123.79,125.71,127.68,129.52,131.46,133.34,135.22,137.02,138.85/
       data (en(i),i= 14023, 14193)/
-     >  0.00, 24.15, 32.96, 39.82, 45.64, 50.77, 55.37, 59.67, 63.53,
-     > 67.25, 70.75, 74.04, 77.15, 80.17, 83.04, 85.82, 88.49, 91.01,
-     > 93.60, 96.07, 98.47,100.85,103.16,105.42,107.63,109.86,111.96,
-     >114.08,116.15,118.24,120.23,122.27,124.24,126.18,128.06,129.97,
-     >131.90,133.77,135.61,137.37,139.24,  0.00, 24.37, 33.09, 40.02,
-     > 45.87, 50.99, 55.63, 59.93, 63.85, 67.58, 70.99, 74.38, 77.47,
-     > 80.47, 83.34, 86.17, 88.81, 91.42, 93.93, 96.40, 98.89,101.22,
-     >103.55,105.83,108.06,110.22,112.36,114.51,116.60,118.61,120.66,
-     >122.66,124.64,126.56,128.46,130.38,132.24,134.14,135.99,137.76,
-     >139.60,  0.00, 24.40, 33.25, 40.17, 45.99, 51.14, 55.85, 60.07,
-     > 64.04, 67.82, 71.28, 74.60, 77.78, 80.77, 83.67, 86.48, 89.18,
-     > 91.75, 94.30, 96.75, 99.24,101.56,103.93,106.18,108.44,110.61,
-     >112.79,114.88,117.01,118.99,121.02,123.02,124.98,126.92,128.86,
-     >130.72,132.61,134.50,136.32,138.12,139.96,  0.00, 24.33, 33.38,
-     > 40.29, 46.08, 51.33, 56.00, 60.28, 64.27, 68.05, 71.56, 74.86,
-     > 78.03, 80.99, 84.00, 86.75, 89.47, 92.09, 94.59, 97.08, 99.53,
-     >101.92,104.22,106.49,108.73,110.90,113.14,115.23,117.24,119.37,
-     >121.39,123.37,125.34,127.32,129.15,131.12,132.99,134.80,136.73,
-     >138.51,140.34,  0.00, 24.68, 33.48, 40.46, 46.31, 51.56, 56.22/
+     *  0.00, 24.15, 32.96, 39.82, 45.64, 50.77, 55.37, 59.67, 63.53,
+     * 67.25, 70.75, 74.04, 77.15, 80.17, 83.04, 85.82, 88.49, 91.01,
+     * 93.60, 96.07, 98.47,100.85,103.16,105.42,107.63,109.86,111.96,
+     *114.08,116.15,118.24,120.23,122.27,124.24,126.18,128.06,129.97,
+     *131.90,133.77,135.61,137.37,139.24,  0.00, 24.37, 33.09, 40.02,
+     * 45.87, 50.99, 55.63, 59.93, 63.85, 67.58, 70.99, 74.38, 77.47,
+     * 80.47, 83.34, 86.17, 88.81, 91.42, 93.93, 96.40, 98.89,101.22,
+     *103.55,105.83,108.06,110.22,112.36,114.51,116.60,118.61,120.66,
+     *122.66,124.64,126.56,128.46,130.38,132.24,134.14,135.99,137.76,
+     *139.60,  0.00, 24.40, 33.25, 40.17, 45.99, 51.14, 55.85, 60.07,
+     * 64.04, 67.82, 71.28, 74.60, 77.78, 80.77, 83.67, 86.48, 89.18,
+     * 91.75, 94.30, 96.75, 99.24,101.56,103.93,106.18,108.44,110.61,
+     *112.79,114.88,117.01,118.99,121.02,123.02,124.98,126.92,128.86,
+     *130.72,132.61,134.50,136.32,138.12,139.96,  0.00, 24.33, 33.38,
+     * 40.29, 46.08, 51.33, 56.00, 60.28, 64.27, 68.05, 71.56, 74.86,
+     * 78.03, 80.99, 84.00, 86.75, 89.47, 92.09, 94.59, 97.08, 99.53,
+     *101.92,104.22,106.49,108.73,110.90,113.14,115.23,117.24,119.37,
+     *121.39,123.37,125.34,127.32,129.15,131.12,132.99,134.80,136.73,
+     *138.51,140.34,  0.00, 24.68, 33.48, 40.46, 46.31, 51.56, 56.22/
       data (en(i),i= 14194, 14364)/
-     > 60.55, 64.46, 68.24, 71.81, 75.11, 78.31, 81.38, 84.27, 87.07,
-     > 89.72, 92.35, 94.93, 97.45, 99.85,102.23,104.59,106.85,109.06,
-     >111.32,113.47,115.57,117.62,119.68,121.68,123.70,125.65,127.63,
-     >129.57,131.46,133.29,135.17,137.04,138.88,140.68,  0.00, 24.68,
-     > 33.56, 40.63, 46.50, 51.69, 56.38, 60.68, 64.73, 68.46, 71.95,
-     > 75.33, 78.57, 81.54, 84.51, 87.32, 89.97, 92.66, 95.19, 97.70,
-     >100.14,102.53,104.88,107.15,109.41,111.62,113.74,115.89,117.97,
-     >119.99,122.05,124.01,126.00,127.96,129.85,131.73,133.59,135.51,
-     >137.34,139.15,140.96,  0.00, 22.28, 31.99, 39.25, 46.61, 51.84,
-     > 56.51, 60.90, 64.86, 68.66, 72.18, 75.51, 78.07, 81.78, 84.70,
-     > 87.53, 90.24, 92.87, 95.48, 97.94, 99.89,102.29,105.20,106.96,
-     >109.18,111.90,114.03,116.14,118.22,120.25,121.82,124.32,126.25,
-     >127.76,130.16,132.06,133.93,135.35,137.16,139.07,141.21,  0.00,
-     > 24.81, 33.76, 40.76, 46.74, 51.98, 56.69, 61.04, 65.04, 68.81,
-     > 72.32, 75.73, 78.90, 81.97, 84.89, 87.69, 90.42, 93.13, 95.72,
-     > 98.21,100.70,103.05,105.39,107.70,109.94,112.11,114.27,116.44,
-     >118.51,120.49,122.57,124.60,126.53,128.50,130.38,132.27,134.18,
-     >136.03,137.83,139.71,141.48,  0.00, 24.87, 33.83, 40.87, 46.85,
-     > 52.08, 56.85, 61.14, 65.19, 68.94, 72.49, 75.84, 79.12, 82.13/
+     * 60.55, 64.46, 68.24, 71.81, 75.11, 78.31, 81.38, 84.27, 87.07,
+     * 89.72, 92.35, 94.93, 97.45, 99.85,102.23,104.59,106.85,109.06,
+     *111.32,113.47,115.57,117.62,119.68,121.68,123.70,125.65,127.63,
+     *129.57,131.46,133.29,135.17,137.04,138.88,140.68,  0.00, 24.68,
+     * 33.56, 40.63, 46.50, 51.69, 56.38, 60.68, 64.73, 68.46, 71.95,
+     * 75.33, 78.57, 81.54, 84.51, 87.32, 89.97, 92.66, 95.19, 97.70,
+     *100.14,102.53,104.88,107.15,109.41,111.62,113.74,115.89,117.97,
+     *119.99,122.05,124.01,126.00,127.96,129.85,131.73,133.59,135.51,
+     *137.34,139.15,140.96,  0.00, 22.28, 31.99, 39.25, 46.61, 51.84,
+     * 56.51, 60.90, 64.86, 68.66, 72.18, 75.51, 78.07, 81.78, 84.70,
+     * 87.53, 90.24, 92.87, 95.48, 97.94, 99.89,102.29,105.20,106.96,
+     *109.18,111.90,114.03,116.14,118.22,120.25,121.82,124.32,126.25,
+     *127.76,130.16,132.06,133.93,135.35,137.16,139.07,141.21,  0.00,
+     * 24.81, 33.76, 40.76, 46.74, 51.98, 56.69, 61.04, 65.04, 68.81,
+     * 72.32, 75.73, 78.90, 81.97, 84.89, 87.69, 90.42, 93.13, 95.72,
+     * 98.21,100.70,103.05,105.39,107.70,109.94,112.11,114.27,116.44,
+     *118.51,120.49,122.57,124.60,126.53,128.50,130.38,132.27,134.18,
+     *136.03,137.83,139.71,141.48,  0.00, 24.87, 33.83, 40.87, 46.85,
+     * 52.08, 56.85, 61.14, 65.19, 68.94, 72.49, 75.84, 79.12, 82.13/
       data (en(i),i= 14365, 14535)/
-     > 85.09, 87.94, 90.65, 93.32, 95.94, 98.41,100.91,103.28,105.63,
-     >107.93,110.18,112.39,114.50,116.61,118.74,120.78,122.81,124.77,
-     >126.80,128.73,130.62,132.56,134.40,136.30,138.12,139.94,141.77,
-     >  0.00, 24.94, 34.24, 40.99, 46.94, 52.18, 56.99, 61.26, 65.34,
-     > 69.08, 72.67, 76.03, 79.23, 82.27, 85.25, 88.04, 90.79, 93.47,
-     > 96.11, 98.60,101.08,103.46,105.79,108.09,110.35,112.57,114.77,
-     >116.84,118.94,121.01,123.05,125.01,127.06,128.96,130.85,132.74,
-     >134.59,136.52,138.33,140.16,141.93,  0.00, 25.05, 34.00, 41.07,
-     > 47.03, 52.26, 57.03, 61.35, 65.48, 69.18, 72.73, 76.12, 79.38,
-     > 82.40, 85.38, 88.22, 90.99, 93.67, 96.26, 98.77,101.24,103.67,
-     >105.98,108.29,110.54,112.77,114.90,117.06,119.13,121.18,123.21,
-     >125.17,127.18,129.12,131.09,132.99,134.83,136.68,138.57,140.33,
-     >142.19,  0.00, 25.05, 34.05, 41.08, 47.17, 52.36, 57.10, 61.52,
-     > 65.54, 69.29, 72.86, 76.23, 79.48, 82.60, 85.51, 88.32, 91.10,
-     > 93.82, 96.43, 98.92,101.42,103.81,106.15,108.50,110.75,112.95,
-     >115.09,117.23,119.30,121.36,123.42,125.41,127.39,129.35,131.19,
-     >133.16,134.97,136.85,138.74,140.52,142.36,  0.00, 25.06, 34.18,
-     > 41.18, 47.15, 52.40, 57.13, 61.54, 65.59, 69.42, 73.01, 76.37,
-     > 79.57, 82.65, 85.61, 88.43, 91.26, 93.93, 96.53, 99.09,101.52/
+     * 85.09, 87.94, 90.65, 93.32, 95.94, 98.41,100.91,103.28,105.63,
+     *107.93,110.18,112.39,114.50,116.61,118.74,120.78,122.81,124.77,
+     *126.80,128.73,130.62,132.56,134.40,136.30,138.12,139.94,141.77,
+     *  0.00, 24.94, 34.24, 40.99, 46.94, 52.18, 56.99, 61.26, 65.34,
+     * 69.08, 72.67, 76.03, 79.23, 82.27, 85.25, 88.04, 90.79, 93.47,
+     * 96.11, 98.60,101.08,103.46,105.79,108.09,110.35,112.57,114.77,
+     *116.84,118.94,121.01,123.05,125.01,127.06,128.96,130.85,132.74,
+     *134.59,136.52,138.33,140.16,141.93,  0.00, 25.05, 34.00, 41.07,
+     * 47.03, 52.26, 57.03, 61.35, 65.48, 69.18, 72.73, 76.12, 79.38,
+     * 82.40, 85.38, 88.22, 90.99, 93.67, 96.26, 98.77,101.24,103.67,
+     *105.98,108.29,110.54,112.77,114.90,117.06,119.13,121.18,123.21,
+     *125.17,127.18,129.12,131.09,132.99,134.83,136.68,138.57,140.33,
+     *142.19,  0.00, 25.05, 34.05, 41.08, 47.17, 52.36, 57.10, 61.52,
+     * 65.54, 69.29, 72.86, 76.23, 79.48, 82.60, 85.51, 88.32, 91.10,
+     * 93.82, 96.43, 98.92,101.42,103.81,106.15,108.50,110.75,112.95,
+     *115.09,117.23,119.30,121.36,123.42,125.41,127.39,129.35,131.19,
+     *133.16,134.97,136.85,138.74,140.52,142.36,  0.00, 25.06, 34.18,
+     * 41.18, 47.15, 52.40, 57.13, 61.54, 65.59, 69.42, 73.01, 76.37,
+     * 79.57, 82.65, 85.61, 88.43, 91.26, 93.93, 96.53, 99.09,101.52/
       data (en(i),i= 14536, 14706)/
-     >103.91,106.34,108.62,110.84,113.08,115.26,117.35,119.50,121.50,
-     >123.61,125.53,127.52,129.44,131.40,133.33,135.10,137.04,138.94,
-     >140.71,142.46,  0.00, 25.16, 34.16, 41.24, 47.20, 52.46, 57.22,
-     > 61.64, 65.64, 69.43, 73.04, 76.41, 79.63, 82.74, 85.84, 88.56,
-     > 91.33, 94.02, 96.65, 99.17,101.65,104.04,106.42,108.73,110.97,
-     >113.19,115.36,117.49,119.60,121.66,123.69,125.78,127.63,129.60,
-     >131.54,133.41,135.35,137.14,139.02,140.86,142.59,  0.00, 25.15,
-     > 34.15, 41.23, 47.23, 52.56, 57.26, 61.65, 65.68, 69.55, 73.09,
-     > 76.52, 79.71, 82.81, 85.72, 88.66, 91.44, 94.31, 96.68, 99.25,
-     >101.77,104.12,106.50,108.82,111.07,113.25,115.45,117.57,119.67,
-     >121.73,123.74,125.74,127.78,129.72,131.58,133.55,135.40,137.26,
-     >139.15,140.97,142.76,  0.00, 25.13, 34.18, 41.27, 47.25, 52.56,
-     > 57.28, 61.72, 65.77, 69.59, 73.14, 76.53, 79.73, 82.81, 85.79,
-     > 88.69, 91.49, 94.14, 96.77, 99.33,101.80,104.24,106.56,108.89,
-     >111.16,113.36,115.50,117.64,119.78,121.83,123.84,125.84,127.85,
-     >129.81,131.72,133.66,135.48,137.36,139.19,141.03,142.87,  0.00,
-     > 25.20, 34.20, 41.28, 47.26, 52.61, 57.33, 61.75, 65.80, 69.56,
-     > 73.18, 76.53, 79.76, 82.89, 85.82, 88.69, 91.54, 94.22, 96.86,
-     > 99.40,101.84,104.28,106.63,108.90,111.17,113.35,115.59,117.74/
+     *103.91,106.34,108.62,110.84,113.08,115.26,117.35,119.50,121.50,
+     *123.61,125.53,127.52,129.44,131.40,133.33,135.10,137.04,138.94,
+     *140.71,142.46,  0.00, 25.16, 34.16, 41.24, 47.20, 52.46, 57.22,
+     * 61.64, 65.64, 69.43, 73.04, 76.41, 79.63, 82.74, 85.84, 88.56,
+     * 91.33, 94.02, 96.65, 99.17,101.65,104.04,106.42,108.73,110.97,
+     *113.19,115.36,117.49,119.60,121.66,123.69,125.78,127.63,129.60,
+     *131.54,133.41,135.35,137.14,139.02,140.86,142.59,  0.00, 25.15,
+     * 34.15, 41.23, 47.23, 52.56, 57.26, 61.65, 65.68, 69.55, 73.09,
+     * 76.52, 79.71, 82.81, 85.72, 88.66, 91.44, 94.31, 96.68, 99.25,
+     *101.77,104.12,106.50,108.82,111.07,113.25,115.45,117.57,119.67,
+     *121.73,123.74,125.74,127.78,129.72,131.58,133.55,135.40,137.26,
+     *139.15,140.97,142.76,  0.00, 25.13, 34.18, 41.27, 47.25, 52.56,
+     * 57.28, 61.72, 65.77, 69.59, 73.14, 76.53, 79.73, 82.81, 85.79,
+     * 88.69, 91.49, 94.14, 96.77, 99.33,101.80,104.24,106.56,108.89,
+     *111.16,113.36,115.50,117.64,119.78,121.83,123.84,125.84,127.85,
+     *129.81,131.72,133.66,135.48,137.36,139.19,141.03,142.87,  0.00,
+     * 25.20, 34.20, 41.28, 47.26, 52.61, 57.33, 61.75, 65.80, 69.56,
+     * 73.18, 76.53, 79.76, 82.89, 85.82, 88.69, 91.54, 94.22, 96.86,
+     * 99.40,101.84,104.28,106.63,108.90,111.17,113.35,115.59,117.74/
       data (en(i),i= 14707, 14877)/
-     >119.85,121.87,123.92,125.93,127.87,129.83,131.76,133.71,135.61,
-     >137.48,139.28,141.16,142.91,  0.00, 25.17, 34.22, 41.28, 47.29,
-     > 52.56, 57.36, 61.71, 65.77, 69.58, 73.17, 76.56, 79.73, 82.90,
-     > 85.87, 88.74, 91.54, 94.20, 96.80, 99.39,101.88,104.28,106.65,
-     >108.96,111.23,113.44,115.62,117.74,119.85,121.90,123.93,125.98,
-     >127.95,129.84,131.86,133.74,135.64,137.48,139.34,141.13,142.97,
-     >  0.00, 25.19, 34.30, 41.31, 47.32, 52.62, 57.36, 61.74, 65.75,
-     > 69.55, 73.11, 76.55, 79.76, 82.84, 85.88, 88.74, 91.54, 94.19,
-     > 96.84, 99.41,101.86,104.29,106.60,108.93,111.28,113.43,115.61,
-     >117.70,119.82,121.95,123.93,125.99,127.98,129.94,131.86,133.73,
-     >135.67,137.53,139.38,141.17,142.96,  0.00, 25.25, 34.20, 41.33,
-     > 47.28, 52.57, 57.29, 61.68, 65.76, 69.51, 73.07, 76.46, 79.73,
-     > 82.86, 85.80, 88.72, 91.53, 94.16, 96.81, 99.35,101.84,104.23,
-     >106.60,108.93,111.19,113.37,115.54,117.70,119.83,121.89,123.91,
-     >125.96,127.90,129.93,131.73,133.71,135.64,137.54,139.38,141.16,
-     >143.00,  0.00, 25.20, 34.24, 41.29, 47.20, 52.51, 57.30, 61.62,
-     > 65.69, 69.51, 73.01, 76.40, 79.71, 82.76, 85.80, 88.63, 91.44,
-     > 94.12, 96.73, 99.23,101.77,104.21,106.52,108.87,111.07,113.34,
-     >115.49,117.64,119.76,121.83,123.87,125.91,127.92,129.83,131.77/
+     *119.85,121.87,123.92,125.93,127.87,129.83,131.76,133.71,135.61,
+     *137.48,139.28,141.16,142.91,  0.00, 25.17, 34.22, 41.28, 47.29,
+     * 52.56, 57.36, 61.71, 65.77, 69.58, 73.17, 76.56, 79.73, 82.90,
+     * 85.87, 88.74, 91.54, 94.20, 96.80, 99.39,101.88,104.28,106.65,
+     *108.96,111.23,113.44,115.62,117.74,119.85,121.90,123.93,125.98,
+     *127.95,129.84,131.86,133.74,135.64,137.48,139.34,141.13,142.97,
+     *  0.00, 25.19, 34.30, 41.31, 47.32, 52.62, 57.36, 61.74, 65.75,
+     * 69.55, 73.11, 76.55, 79.76, 82.84, 85.88, 88.74, 91.54, 94.19,
+     * 96.84, 99.41,101.86,104.29,106.60,108.93,111.28,113.43,115.61,
+     *117.70,119.82,121.95,123.93,125.99,127.98,129.94,131.86,133.73,
+     *135.67,137.53,139.38,141.17,142.96,  0.00, 25.25, 34.20, 41.33,
+     * 47.28, 52.57, 57.29, 61.68, 65.76, 69.51, 73.07, 76.46, 79.73,
+     * 82.86, 85.80, 88.72, 91.53, 94.16, 96.81, 99.35,101.84,104.23,
+     *106.60,108.93,111.19,113.37,115.54,117.70,119.83,121.89,123.91,
+     *125.96,127.90,129.93,131.73,133.71,135.64,137.54,139.38,141.16,
+     *143.00,  0.00, 25.20, 34.24, 41.29, 47.20, 52.51, 57.30, 61.62,
+     * 65.69, 69.51, 73.01, 76.40, 79.71, 82.76, 85.80, 88.63, 91.44,
+     * 94.12, 96.73, 99.23,101.77,104.21,106.52,108.87,111.07,113.34,
+     *115.49,117.64,119.76,121.83,123.87,125.91,127.92,129.83,131.77/
       data (en(i),i= 14878, 15048)/
-     >133.70,135.64,137.48,139.35,141.20,143.04,  0.00, 25.05, 34.16,
-     > 41.20, 47.29, 52.47, 57.20, 61.51, 65.64, 69.40, 72.91, 76.32,
-     > 79.57, 82.70, 85.69, 88.54, 91.39, 94.06, 96.63, 99.19,101.68,
-     >104.06,106.42,108.72,111.07,113.23,115.46,117.54,119.68,121.77,
-     >123.85,125.85,127.82,129.77,131.73,133.61,135.58,137.46,139.34,
-     >141.13,143.00,  0.00, 25.17, 34.18, 41.21, 47.15, 52.42, 57.11,
-     > 61.50, 65.53, 69.27, 72.79, 76.23, 79.52, 82.61, 85.59, 88.44,
-     > 91.23, 93.95, 96.51, 99.11,101.55,103.99,106.35,108.64,110.88,
-     >113.13,115.35,117.47,119.61,121.64,123.75,125.74,127.74,129.69,
-     >131.63,133.59,135.51,137.37,139.24,141.16,142.91,  0.00, 25.10,
-     > 34.06, 41.01, 47.02, 52.27, 56.94, 61.34, 65.41, 69.13, 72.73,
-     > 76.15, 79.31, 82.47, 85.44, 88.34, 91.05, 93.74, 96.40, 98.94,
-     >101.40,103.82,106.14,108.49,110.74,113.02,115.20,117.35,119.47,
-     >121.54,123.62,125.62,127.63,129.65,131.58,133.54,135.45,137.31,
-     >139.21,141.08,142.93,  0.00, 25.09, 34.06, 41.04, 46.92, 52.20,
-     > 56.94, 61.19, 65.28, 69.00, 72.57, 75.95, 79.20, 82.31, 85.26,
-     > 88.10, 90.93, 93.61, 96.19, 98.75,101.23,103.61,105.98,108.31,
-     >110.60,112.82,115.03,117.16,119.27,121.43,123.40,125.47,127.46,
-     >129.48,131.43,133.40,135.31,137.25,139.11,141.00,142.87,  0.00/
+     *133.70,135.64,137.48,139.35,141.20,143.04,  0.00, 25.05, 34.16,
+     * 41.20, 47.29, 52.47, 57.20, 61.51, 65.64, 69.40, 72.91, 76.32,
+     * 79.57, 82.70, 85.69, 88.54, 91.39, 94.06, 96.63, 99.19,101.68,
+     *104.06,106.42,108.72,111.07,113.23,115.46,117.54,119.68,121.77,
+     *123.85,125.85,127.82,129.77,131.73,133.61,135.58,137.46,139.34,
+     *141.13,143.00,  0.00, 25.17, 34.18, 41.21, 47.15, 52.42, 57.11,
+     * 61.50, 65.53, 69.27, 72.79, 76.23, 79.52, 82.61, 85.59, 88.44,
+     * 91.23, 93.95, 96.51, 99.11,101.55,103.99,106.35,108.64,110.88,
+     *113.13,115.35,117.47,119.61,121.64,123.75,125.74,127.74,129.69,
+     *131.63,133.59,135.51,137.37,139.24,141.16,142.91,  0.00, 25.10,
+     * 34.06, 41.01, 47.02, 52.27, 56.94, 61.34, 65.41, 69.13, 72.73,
+     * 76.15, 79.31, 82.47, 85.44, 88.34, 91.05, 93.74, 96.40, 98.94,
+     *101.40,103.82,106.14,108.49,110.74,113.02,115.20,117.35,119.47,
+     *121.54,123.62,125.62,127.63,129.65,131.58,133.54,135.45,137.31,
+     *139.21,141.08,142.93,  0.00, 25.09, 34.06, 41.04, 46.92, 52.20,
+     * 56.94, 61.19, 65.28, 69.00, 72.57, 75.95, 79.20, 82.31, 85.26,
+     * 88.10, 90.93, 93.61, 96.19, 98.75,101.23,103.61,105.98,108.31,
+     *110.60,112.82,115.03,117.16,119.27,121.43,123.40,125.47,127.46,
+     *129.48,131.43,133.40,135.31,137.25,139.11,141.00,142.87,  0.00/
       data (en(i),i= 15049, 15219)/
-     > 25.01, 33.92, 40.93, 46.80, 52.07, 56.76, 61.05, 65.06, 68.83,
-     > 72.41, 75.73, 78.97, 82.08, 85.07, 87.87, 90.68, 93.36, 95.94,
-     > 98.51,101.01,103.43,105.76,108.07,110.38,112.58,114.79,117.00,
-     >119.10,121.20,123.30,125.33,127.38,129.39,131.34,133.33,135.18,
-     >137.11,139.08,140.87,142.78,  0.00, 24.96, 33.84, 40.80, 46.68,
-     > 51.87, 56.59, 60.83, 64.81, 68.57, 72.17, 75.52, 78.70, 81.80,
-     > 84.79, 87.63, 90.38, 93.10, 95.71, 98.23,100.71,103.14,105.51,
-     >107.82,110.15,112.39,114.55,116.76,118.94,121.05,123.15,125.18,
-     >127.19,129.23,131.18,133.22,135.09,136.94,138.97,140.80,142.67,
-     >  0.00, 24.92, 33.73, 40.67, 46.47, 51.63, 56.35, 60.59, 64.55,
-     > 68.35, 71.84, 75.22, 78.46, 81.52, 84.50, 87.32, 90.05, 92.79,
-     > 95.37, 97.97,100.41,102.84,105.28,107.61,109.88,112.09,114.35,
-     >116.56,118.72,120.83,122.89,124.95,127.01,129.06,131.02,133.05,
-     >135.00,136.94,138.83,140.76,142.56,  0.00, 24.74, 33.56, 40.48,
-     > 46.25, 51.40, 56.03, 60.29, 64.27, 67.99, 71.57, 74.86, 78.08,
-     > 81.17, 84.12, 86.95, 89.69, 92.43, 95.03, 97.58,100.07,102.52,
-     >104.93,107.31,109.62,111.86,114.13,116.24,118.50,120.60,122.77,
-     >124.79,126.85,128.91,130.91,132.90,134.87,136.88,138.76,140.69,
-     >142.66,  0.00, 24.62, 33.36, 40.16, 45.98, 51.05, 55.68, 59.97/
+     * 25.01, 33.92, 40.93, 46.80, 52.07, 56.76, 61.05, 65.06, 68.83,
+     * 72.41, 75.73, 78.97, 82.08, 85.07, 87.87, 90.68, 93.36, 95.94,
+     * 98.51,101.01,103.43,105.76,108.07,110.38,112.58,114.79,117.00,
+     *119.10,121.20,123.30,125.33,127.38,129.39,131.34,133.33,135.18,
+     *137.11,139.08,140.87,142.78,  0.00, 24.96, 33.84, 40.80, 46.68,
+     * 51.87, 56.59, 60.83, 64.81, 68.57, 72.17, 75.52, 78.70, 81.80,
+     * 84.79, 87.63, 90.38, 93.10, 95.71, 98.23,100.71,103.14,105.51,
+     *107.82,110.15,112.39,114.55,116.76,118.94,121.05,123.15,125.18,
+     *127.19,129.23,131.18,133.22,135.09,136.94,138.97,140.80,142.67,
+     *  0.00, 24.92, 33.73, 40.67, 46.47, 51.63, 56.35, 60.59, 64.55,
+     * 68.35, 71.84, 75.22, 78.46, 81.52, 84.50, 87.32, 90.05, 92.79,
+     * 95.37, 97.97,100.41,102.84,105.28,107.61,109.88,112.09,114.35,
+     *116.56,118.72,120.83,122.89,124.95,127.01,129.06,131.02,133.05,
+     *135.00,136.94,138.83,140.76,142.56,  0.00, 24.74, 33.56, 40.48,
+     * 46.25, 51.40, 56.03, 60.29, 64.27, 67.99, 71.57, 74.86, 78.08,
+     * 81.17, 84.12, 86.95, 89.69, 92.43, 95.03, 97.58,100.07,102.52,
+     *104.93,107.31,109.62,111.86,114.13,116.24,118.50,120.60,122.77,
+     *124.79,126.85,128.91,130.91,132.90,134.87,136.88,138.76,140.69,
+     *142.66,  0.00, 24.62, 33.36, 40.16, 45.98, 51.05, 55.68, 59.97/
       data (en(i),i= 15220, 15390)/
-     > 63.87, 67.64, 71.10, 74.45, 77.67, 80.69, 83.69, 86.53, 89.30,
-     > 92.02, 94.64, 97.20, 99.74,102.21,104.56,106.94,109.30,111.56,
-     >113.83,116.03,118.27,120.40,122.61,124.71,126.72,128.82,130.88,
-     >132.88,134.88,136.79,138.78,140.74,142.56,  0.00, 24.39, 33.13,
-     > 39.89, 45.65, 50.71, 55.29, 59.50, 63.38, 67.13, 70.70, 73.93,
-     > 77.13, 80.18, 83.10, 86.03, 88.86, 91.53, 94.24, 96.79, 99.33,
-     >101.85,104.31,106.64,109.03,111.36,113.69,115.88,118.14,120.34,
-     >122.45,124.64,126.74,128.76,130.87,132.90,134.88,136.85,138.79,
-     >140.76,142.73,  0.00, 24.16, 32.73, 39.42, 45.08, 50.10, 54.63,
-     > 58.86, 62.72, 66.40, 69.90, 73.24, 76.53, 79.63, 82.58, 85.52,
-     > 88.39, 91.15, 93.87, 96.48, 99.06,101.58,104.14,106.57,108.91,
-     >111.29,113.63,115.90,118.12,120.36,122.50,124.66,126.81,128.96,
-     >131.00,133.02,135.01,137.06,139.04,141.01,142.95,  0.00, 23.49,
-     > 31.81, 38.47, 44.14, 49.16, 53.81, 58.06, 62.07, 65.89, 69.45,
-     > 72.94, 76.24, 79.38, 82.50, 85.48, 88.40, 91.16, 93.93, 96.59,
-     > 99.25,101.79,104.33,106.81,109.21,111.59,113.92,116.16,118.46,
-     >120.66,122.89,125.05,127.17,129.34,131.43,133.49,135.46,137.54,
-     >139.47,141.50,143.46,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,
-     >  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00/
-      do i=1,16000
-        ent(i)=en(i)
-      enddo
+     * 63.87, 67.64, 71.10, 74.45, 77.67, 80.69, 83.69, 86.53, 89.30,
+     * 92.02, 94.64, 97.20, 99.74,102.21,104.56,106.94,109.30,111.56,
+     *113.83,116.03,118.27,120.40,122.61,124.71,126.72,128.82,130.88,
+     *132.88,134.88,136.79,138.78,140.74,142.56,  0.00, 24.39, 33.13,
+     * 39.89, 45.65, 50.71, 55.29, 59.50, 63.38, 67.13, 70.70, 73.93,
+     * 77.13, 80.18, 83.10, 86.03, 88.86, 91.53, 94.24, 96.79, 99.33,
+     *101.85,104.31,106.64,109.03,111.36,113.69,115.88,118.14,120.34,
+     *122.45,124.64,126.74,128.76,130.87,132.90,134.88,136.85,138.79,
+     *140.76,142.73,  0.00, 24.16, 32.73, 39.42, 45.08, 50.10, 54.63,
+     * 58.86, 62.72, 66.40, 69.90, 73.24, 76.53, 79.63, 82.58, 85.52,
+     * 88.39, 91.15, 93.87, 96.48, 99.06,101.58,104.14,106.57,108.91,
+     *111.29,113.63,115.90,118.12,120.36,122.50,124.66,126.81,128.96,
+     *131.00,133.02,135.01,137.06,139.04,141.01,142.95,  0.00, 23.49,
+     * 31.81, 38.47, 44.14, 49.16, 53.81, 58.06, 62.07, 65.89, 69.45,
+     * 72.94, 76.24, 79.38, 82.50, 85.48, 88.40, 91.16, 93.93, 96.59,
+     * 99.25,101.79,104.33,106.81,109.21,111.59,113.92,116.16,118.46,
+     *120.66,122.89,125.05,127.17,129.34,131.43,133.49,135.46,137.54,
+     *139.47,141.50,143.46,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,
+     *  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00,  0.00/
+      do 1 i=1,16000
+1     ent(i)=en(i)
       return
       end
  
@@ -15621,10 +15597,10 @@ c     initial call of sjcen0 required!!!
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/csjcen/ent(16000)	
  
       sjcen4 = 0
@@ -15651,12 +15627,11 @@ c----------------------------------------------------------------------
       endif
  
       if(mod(k,3).ne.0)
-     >call utstop('sjcen4: noninteger baryon number        ')
+     *call utstop('sjcen4: noninteger baryon number        ')
  
       ik=0
-      do i=3,k-3,3
-       ik=ik+i+1       		
-      enddo
+      do 1 i=3,k-3,3
+1     ik=ik+i+1       		
       if(u.lt.10)then
       du=mod(u,.25)
       iu=int(u/.25)+1
@@ -15686,21 +15661,21 @@ c     iopent=5: hagedorn
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (kparx=15,nquax=12)
       common/centro/entro(1+kparx,1+nquax)
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
-     >,icmtst
+     *,icmtst
       iop=mod(iopent,10)
  
       sjcent=0
@@ -15713,12 +15688,12 @@ c----------------------------------------------------------------------
  
       if(k.le.kentro)return
       if(mod(k,3).ne.0)
-     >call utstop('sjcent: k must be multiple of 3         ')
+     *call utstop('sjcent: k must be multiple of 3         ')
       e=u/omega
       if(k.gt.kparx)goto5001
       n=int(e)
       if(n.lt.0)
-     >call utstop('sjcent: negative energy                 ')
+     *call utstop('sjcent: negative energy                 ')
       if(n.ge.nquax)n=nquax-1
       sjcent=entro(1+k,1+n)+(e-n)*(entro(1+k,1+n+1)-entro(1+k,1+n))
       if(k.le.3)return
@@ -15793,16 +15768,16 @@ c     ama: cluster mass;  amo: hadron mass;  po: hadron momentum
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/cnsta/pi,prom,piom,ainfin
       common/csjcga/amnull,nsuha(7),asuha(7),entrpy,amegam,nopha
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
-     >,icmtst
+     *,icmtst
       common/centex/entexp
       sjcgam=0.
       entrpy=-99.9
@@ -15823,8 +15798,8 @@ c----------------------------------------------------------------------
       if(mox.eq.1)entexp=entrpy
       entrpy=entrpy-entexp
       sjcgam=1./8./pi**2/ama*
-     >exp(entrpy)*
-     >po**2/sqrt(amo**2+po**2)
+     *exp(entrpy)*
+     *po**2/sqrt(amo**2+po**2)
       return
       end
  
@@ -15854,7 +15829,7 @@ c-----------------------------------------------------------------------
       ymin=ym*a
       zmin=cz/(dz/a+zm/a**(1./3.))
       smass=epsi*a+as*a**(2./3.)+(ac/a**(1./3.)+dz/a/2.)*(z-zmin)**2
-     >+dy/a/2.*(y-ymin)**2
+     *+dy/a/2.*(y-ymin)**2
       return
       end
  
@@ -15879,18 +15854,18 @@ c-----------------------------------------------------------------------
       cs=astr/si
       cz=-astr/si*(  (  .5*(1+co**3)  )**(1./3.)-1  )
       sigma=6./8./pi*(astr/si)**3*(co**2/6.-si**2*(1-si)/3.-
-     >1./3./pi*(pi/2.-theta-sin(2*theta)+si**3*alog((1+co)/si)))
+     *1./3./pi*(pi/2.-theta-sin(2*theta)+si**3*alog((1+co)/si)))
  
       epsi=astr*((.5*(1+co**3))**(1./3.)+2)/si
       as=4*pi*sigma*rzero**2
       ac=3./5.*alp/rzero
       dz=astr/si*bet**(1./3.)*co**2*
-     >(co**4*(1+bet**(2./3.))+(1+bet)**2)/
-     >(  (2*co**2+bet**(1./3.))*(co**4*(1+bet**(2./3.))+(1+bet)**2)-
-     >(co**4+bet**(1./3.)*(1+bet))*((2*bet**(2./3.)-1)*co**2+1+bet)  )
+     *(co**4*(1+bet**(2./3.))+(1+bet)**2)/
+     *(  (2*co**2+bet**(1./3.))*(co**4*(1+bet**(2./3.))+(1+bet)**2)-
+     *(co**4+bet**(1./3.)*(1+bet))*((2*bet**(2./3.)-1)*co**2+1+bet)  )
       dy=astr/6.*(1+co**3)**3/si*
-     >(  1+(1+co)/(4*(1+co**3))**(2./3.)  )/
-     >(co**6+co+co*(.5*(1+co**3))**(4./3.))
+     *(  1+(1+co)/(4*(1+co**3))**(2./3.)  )/
+     *(co**6+co+co*(.5*(1+co**3))**(4./3.))
       zm=6*alp/(5*rzero)
       ym=(1-co**3)/(1+co**3)
  
@@ -16011,12 +15986,12 @@ c-----------------------------------------------------------------------
 c     returns pt-distribution for fragmentation
 c-----------------------------------------------------------------------
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/cnsta/pi,prom,piom,ainfin
       common /cquama/quama
       if(ioptf.eq.1)sptf=x*exp(-2/ptf*sqrt(x**2+quama**2))
@@ -16029,12 +16004,12 @@ c-----------------------------------------------------------------------
 c     returns pt-distribution for hard scattering
 c-----------------------------------------------------------------------
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       spth=pth**2*2.*x/(x**2+pth**2)**3
       return
       end
@@ -16055,12 +16030,12 @@ c-----------------------------------------------------------------------
 c     returns pt-distribution of quarks in nucleons
 c-----------------------------------------------------------------------
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/cnsta/pi,prom,piom,ainfin
       if(ioptq.eq.1)sptq=4./ptq**2*x*exp(-2/ptq*x)
       if(ioptq.eq.2)sptq=pi/2./ptq**2*x*exp(-pi/4*x**2/ptq**2)
@@ -16100,12 +16075,12 @@ c-----------------------------------------------------------------------
       subroutine staa(x,q2i,z,s)
 c     initialization
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       z=sqrt(x**2+xcut**2)
       q2=amax1(4.00001,q2i)
       s=alog(alog(q2/.2**2)/alog(4/.2**2))
@@ -16155,12 +16130,12 @@ c     glue structure fctn
       if(x.eq.0.)return
       call staa(x,q2,z,s)
       stoglu=(1.56-1.71*s+.638*abs(s)**2)*
-     >x**(-.949*s+.325*abs(s)**2)*
-     >(1-x)**(6.0+1.44*s-1.05*abs(s)**2)*
-     >(1+(9.0-7.19*s+.255*abs(s)**2)*x
-     >+(-16.5*s+10.9*abs(s)**2)*x**2
-     >+(15.3*s-10.1*abs(s)**2)*x**3)
-     >/z
+     *x**(-.949*s+.325*abs(s)**2)*
+     *(1-x)**(6.0+1.44*s-1.05*abs(s)**2)*
+     *(1+(9.0-7.19*s+.255*abs(s)**2)*x
+     *+(-16.5*s+10.9*abs(s)**2)*x**2
+     *+(15.3*s-10.1*abs(s)**2)*x**3)
+     */z
       return
       end
  
@@ -16179,12 +16154,12 @@ c     glue structure fctn
       if(x.eq.0.)return
       call staa(x,q2,z,s)
       stospr=(1.265-1.132*s+.293*abs(s)**2)*
-     >x**(-.372*s-.029*abs(s)**2)*
-     >(1-x)**(8.05+1.59*s-.153*abs(s)**2)*
-     >(1+(6.31*s-.273*abs(s)**2)*x
-     >+(-10.5*s-3.17*abs(s)**2)*x**2
-     >+(14.7*s+9.80*abs(s)**2)*x**3)
-     >/z
+     *x**(-.372*s-.029*abs(s)**2)*
+     *(1-x)**(8.05+1.59*s-.153*abs(s)**2)*
+     *(1+(6.31*s-.273*abs(s)**2)*x
+     *+(-10.5*s-3.17*abs(s)**2)*x**2
+     *+(14.7*s+9.80*abs(s)**2)*x**3)
+     */z
       return
       end
  
@@ -16263,14 +16238,14 @@ c     from glueck, hoffmann, reya, z. phys. c13 (1982) 119.
       function stxzne(x,q2)
 c     structure function of neutron
       stxzne=(4.*stxd(x,q2) + stxu(x,q2) +
-     >10.*stxus(x,q2) + 2.*stxs(x,q2))/9.
+     *10.*stxus(x,q2) + 2.*stxs(x,q2))/9.
       return
       end
  
       function stxzpr(x,q2)
 c     structure function of proton
       stxzpr=(4.*stxu(x,q2) + stxd(x,q2) +
-     >10.*stxus(x,q2) + 2.*stxs(x,q2))/9.
+     *10.*stxus(x,q2) + 2.*stxs(x,q2))/9.
       return
       end
  
@@ -16306,10 +16281,10 @@ c     returns acos(x) for -1 <= x <= 1 , acos(+-1) else
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       argum=x
       if(x.lt.-1.)then
       if(ish.ge.90)then
@@ -16340,29 +16315,28 @@ c     kecx: net c quark number
 c     modus:0,1,2,3,4,5,6
 c----------------------------------------------------------------------
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/cnsta/pi,prom,piom,ainfin
       common/csjcga/amnull,nsuha(7),asuha(7),entrpy,amegam,nopha
       common/paro3/iwzzzz,uentro,sigppe,sigppd,asuhax(7),asuhay(7),omega
-     >,icmtst
+     *,icmtst
       amnull=0.
  
-      do i=1,7
-       if(modus.eq.0)asuha(i)=asuhay(i)
-       if(modus.eq.1.and.nopha.ge.1)asuha(i)=asuhay(i)
-       if(modus.eq.1.and.nopha.eq.0)asuha(i)=asuhax(i)
-       if(modus.eq.2)asuha(i)=asuhay(i)
-       if(modus.eq.3)asuha(i)=asuhay(i)
-       if(modus.eq.4)asuha(i)=asuhax(i)    !two lowest multiplets
-       if(modus.eq.5)asuha(i)=asuhay(i)    !lowest multiplet
-       if(modus.eq.6)asuha(i)=sqrt(asuhay(i)**2+delmss**2)
-       nsuha(i)=0
-      enddo
+      do 1 i=1,7
+      if(modus.eq.0)asuha(i)=asuhay(i)
+      if(modus.eq.1.and.nopha.ge.1)asuha(i)=asuhay(i)
+      if(modus.eq.1.and.nopha.eq.0)asuha(i)=asuhax(i)
+      if(modus.eq.2)asuha(i)=asuhay(i)
+      if(modus.eq.3)asuha(i)=asuhay(i)
+      if(modus.eq.4)asuha(i)=asuhax(i)    !two lowest multiplets
+      if(modus.eq.5)asuha(i)=asuhay(i)    !lowest multiplet
+      if(modus.eq.6)asuha(i)=sqrt(asuhay(i)**2+delmss**2)
+1     nsuha(i)=0
       ke=iabs(keux+kedx+kesx+kecx)
  
       if(keux+kedx+kesx+kecx.ge.0)then
@@ -16441,7 +16415,7 @@ c----------------------------------------------------------------------
       endif
  
       if(keu+ked+kes+kec.ne.ke)
-     >call utstop('utamnu: sum_kei /= ke                   ')
+     *call utstop('utamnu: sum_kei /= ke                   ')
       keq=keu+ked
       keqx=keq
  
@@ -16460,9 +16434,9 @@ c----------------------------------------------------------------------
       kes=kes-i
       keq=keq-3+i
       if(kes.lt.0)
-     >call utstop('utamnu: negative kes                     ')
+     *call utstop('utamnu: negative kes                     ')
       if(keq.lt.0)
-     >call utstop('utamnu: negative keq                     ')
+     *call utstop('utamnu: negative keq                     ')
       goto3
       endif
       if(i.gt.1)goto2
@@ -16477,27 +16451,27 @@ c----------------------------------------------------------------------
 8     continue
       endif
       if(keu+ked.ne.keq)
-     >call utstop('utamnu: keu+ked /= keq                   ')
+     *call utstop('utamnu: keu+ked /= keq                   ')
  
 9     continue
       if(keu.gt.2*ked)then
       amnux=amnux+asuha(7)
       keu=keu-3
       if(keu.lt.0)
-     >call utstop('utamnu: negative keu                     ')
+     *call utstop('utamnu: negative keu                     ')
       goto9
       endif
       if(ked.gt.2*keu)then
       amnux=amnux+asuha(7)
       ked=ked-3
       if(ked.lt.0)
-     >call utstop('utamnu: negative ked                     ')
+     *call utstop('utamnu: negative ked                     ')
       goto9
       endif
  
       keq=keu+ked
       if(mod(keq,3).ne.0)
-     >call utstop('utamnu: mod(keq,3) /= 0                  ')
+     *call utstop('utamnu: mod(keq,3) /= 0                  ')
       amnux=amnux+asuha(1)*keq/3
  
       amnu=amnux
@@ -16520,7 +16494,7 @@ c-----------------------------------------------------------------------
  
       do i=1,nflav
       do j=1,2
-      if(jcp(i,j).ne.0)goto11
+      if(jcp(i,j).ne.0)goto1
       enddo
       enddo
       keu=jcm(1,1)-jcm(1,2)
@@ -16529,7 +16503,7 @@ c-----------------------------------------------------------------------
       kec=jcm(4,1)-jcm(4,2)
       utamnx=utamnu(keu,ked,kes,kec,5)
       return
- 11   continue
+1     continue
  
       do i=1,nflav
       do j=1,2
@@ -16614,30 +16588,29 @@ c             amin  = minimum mass
 c             iret  = return code (=3 if am**2.lt.amin**2, 0 else)
 c-----------------------------------------------------------------------
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       parameter (nsi=6,nflav=6)
       real sts(nsi,2)
       integer ic1(2),ic2(2),jc1(nflav,2),jc2(nflav,2),jc(nflav,2)
       iret=0
       am2= (sts(4,1)+sts(4,2))**2 - (sts(3,1)+sts(3,2))**2 -
-     > (sts(2,1)+sts(2,2))**2 - (sts(1,1)+sts(1,2))**2
+     * (sts(2,1)+sts(2,2))**2 - (sts(1,1)+sts(1,2))**2
       am=-am2
-      do  i=1,2
-       ic1(i)=nint(sts(4+i,1))
-       ic2(i)=nint(sts(4+i,2))
-      enddo
+      do 1 i=1,2
+      ic1(i)=nint(sts(4+i,1))
+1     ic2(i)=nint(sts(4+i,2))
       call iddeco(ic1,jc1)
       call iddeco(ic2,jc2)
       do 2 nf=1,nflav
       jc(nf,1)=jc1(nf,1)+jc2(nf,1)
       jc(nf,2)=jc1(nf,2)+jc2(nf,2)
       if(nf.gt.4.and.(jc(nf,1).ne.0.or.jc(nf,2).ne.0))
-     >call utstop('utamst: flavour > 4                     ')
+     *call utstop('utamst: flavour > 4                     ')
 2     continue
       keu=jc(1,1)-jc(1,2)
       ked=jc(2,1)-jc(2,2)
@@ -16658,8 +16631,8 @@ c-----------------------------------------------------------------------
 c     returns the array xx with xx(1)=x0 <= xx(i) <= xx(i3)=x3
 c-----------------------------------------------------------------------
       real xx(i3)
-      do 9 i=1,i1-1
-  9   xx(i)=x0+(i-1.)/(i1-1.)*(x1-x0)
+      do 1 i=1,i1-1
+  1   xx(i)=x0+(i-1.)/(i1-1.)*(x1-x0)
       do 2 i=i1,i2-1
   2   xx(i)=x1+(i-i1*1.)/(i2-i1*1.)*(x2-x1)
       do 3 i=i2,i3
@@ -16674,8 +16647,8 @@ c---------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt                                     
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       a1=0
       a2=0
       a3=1
@@ -16716,15 +16689,15 @@ c     checks whether arp**2=0 and arm**2=0.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       double precision arp(4),arm(4),difp,difm
       difp=arp(4)**2-arp(1)**2-arp(2)**2-arp(3)**2
       difm=arm(4)**2-arm(1)**2-arm(2)**2-arm(3)**2
       if(dabs(difp).gt.1e-3*arp(4)**2
-     >.or.dabs(difm).gt.1e-3*arm(4)**2)then
+     *.or.dabs(difm).gt.1e-3*arm(4)**2)then
       call utmsg('utchm ')
       write(ifch,*)'*****  mass non zero  -  ',ii
       write(ifch,*)'jet-mass**2`s:    ',difp,difm
@@ -16742,14 +16715,14 @@ c     overwrites istptl=2 particles in /cptl/, reduces so nptl.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer newptl(mxptl),oldptl(mxptl),ii(mxptl)
  
       ish0=ish
@@ -16761,19 +16734,19 @@ c-----------------------------------------------------------------------
       write(ifch,*)('-',l=1,68)
       do 34 n=1,nptl
       write(ifch,116)iorptl(n),jorptl(n),n,ifrptl(1,n),ifrptl(2,n)
-     >,idptl(n),sqrt(pptl(1,n)**2+pptl(2,n)**2),pptl(3,n),pptl(5,n)
-     >,istptl(n)
+     *,idptl(n),sqrt(pptl(1,n)**2+pptl(2,n)**2),pptl(3,n),pptl(5,n)
+     *,istptl(n)
 34    continue
 116   format(1x,i4,i4,4x,i4,4x,i4,i4,i12,3x,3(e8.2,1x),i2,i2)
       endif
  
       i=0
- 7    i=i+1
+1     i=i+1
       if(i.gt.nptl)goto1000
       if(istptl(i).eq.2)goto2
       newptl(i)=i
       oldptl(i)=i
-      goto 7
+      goto1
  
 2     i=i-1
       j=i
@@ -16844,8 +16817,8 @@ c-----------------------------------------------------------------------
       write(ifch,*)('-',l=1,68)
       do 35 n=1,nptl
       write(ifch,116)iorptl(n),jorptl(n),n,ifrptl(1,n),ifrptl(2,n)
-     >,idptl(n),sqrt(pptl(1,n)**2+pptl(2,n)**2),pptl(3,n),pptl(5,n)
-     >,istptl(n)
+     *,idptl(n),sqrt(pptl(1,n)**2+pptl(2,n)**2),pptl(3,n),pptl(5,n)
+     *,istptl(n)
 35    continue
       write(ifch,*)('-',l=1,79)
       endif
@@ -16862,10 +16835,9 @@ c     output : sts = string (single)
 c----------------------------------------------------------------------
       parameter (nsi=6)
       real sia(nsi),sib(nsi),sts(nsi,2)
-      do  n=1,nsi
-       sts(n,1)=sia(n)
-       sts(n,2)=sib(n)
-      enddo
+      do 1 n=1,nsi
+      sts(n,1)=sia(n)
+1     sts(n,2)=sib(n)
       return
       end
  
@@ -16881,9 +16853,9 @@ c----------------------------------------------------------------------
       write(ifch,100)('-',i=1,69)
 100   format(1x,1h',69a1,1h')
       write(ifch,101)x1,x2,0.,y1,y2,0.,'_____',0
-     >,'___',lity,'___','_______',lilo,0.,3,n,0.
+     *,'___',lity,'___','_______',lilo,0.,3,n,0.
 101   format(1x,6f8.2,2x,1h',a5,1h',i11
-     >/4x,1h',a3,1h',3x,1h',a3,a3,1h',3x,1h',a7,a6,1h',f8.2,2i6,f10.4)
+     */4x,1h',a3,1h',3x,1h',a3,a3,1h',3x,1h',a7,a6,1h',f8.2,2i6,f10.4)
       write(ifch,100)('-',i=1,69)
       write(ifch,102)0.,0.,text1
       write(ifch,102)0.,0.,text2
@@ -16902,7 +16874,7 @@ c  creates histogram of sea structure function
 c-----------------------------------------------------------------------
       parameter (nstru=2049)
       common/stru/xstru(nstru),wstru(nstru)
-     >,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
+     *,qvap(nstru),qvat(nstru),qsep(nstru),qset(nstru)
       real xar(1000),yar(1000)
       dx=1
       x1=-1
@@ -16912,15 +16884,15 @@ c-----------------------------------------------------------------------
       do 2 n=1,1000
       yar(n)=0
 2     xar(n)=-dx/2+n*dx
-      do  i=1,100000
-       x=utinvt(nstru,xstru,qsep,rangen()*qsep(nstru))
-       n=1+x/dx
-       if(n.le.1000)yar(n)=yar(n)+1
-      enddo
+      do 1 i=1,100000
+      x=utinvt(nstru,xstru,qsep,rangen()*qsep(nstru))
+      n=1+x/dx
+      if(n.le.1000)yar(n)=yar(n)+1
+1     continue
       call uthist(x1,x1+4,0.,5.,1000,xar,yar,'poc','loglog'
-     >,'xaxis x                         $                 '
-     >,'yaxis counts                    $                 '
-     >,'title sea quark structure function                ')
+     *,'xaxis x                         $                 '
+     *,'yaxis counts                    $                 '
+     *,'title sea quark structure function                ')
 3     continue
       return
       end
@@ -16931,16 +16903,16 @@ c     returns x with y=q(x)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cutinv/lutinv
       real x(n),q(n)
       if(q(n).eq.0.)
-     >call utstop('utinvt: q(n)=0                          ')
+     *call utstop('utinvt: q(n)=0                          ')
            if(y.lt.0.)then
       if(ish.ge.90)then
       call utmsg('utinvt')
@@ -16958,7 +16930,7 @@ c-----------------------------------------------------------------------
            endif
       lu=1
       lo=n
- 7    lz=(lo+lu)/2
+1     lz=(lo+lu)/2
       if((q(lu).le.y).and.(y.le.q(lz)))then
       lo=lz
       elseif((q(lz).lt.y).and.(y.le.q(lo)))then
@@ -16970,9 +16942,9 @@ c-----------------------------------------------------------------------
       write(ifch,*)'q(lu),q(lz),q(lo):',q(lu),q(lz),q(lo)
       call utstop('utinvt: no interval found               ')
       endif
-      if((lo-lu).ge.2) goto 7
+      if((lo-lu).ge.2) goto1
       if(lo.le.lu)
-     >call utstop('utinvt: lo.le.lu                        ')
+     *call utstop('utinvt: lo.le.lu                        ')
       utinvt=x(lu)+(y-q(lu))*(x(lo)-x(lu))/(q(lo)-q(lu))
       lutinv=lu
       return
@@ -17029,24 +17001,24 @@ c     performs a lorentz boost, double prec.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       double precision beta(4),z(4),p1,p2,p3,p4,p5,pp,bp,x1,x2,x3,x4
-     >,xx0,xx1,x10,x20,x30,x40,x4x
+     *,xx0,xx1,x10,x20,x30,x40,x4x
            if(ish.ge.90)then
       if(ish.ge.93)then
       write(ifch,*)' '
       write(ifch,101)sngl(x1),sngl(x2),sngl(x3),sngl(x4)
-     >,sngl(x4**2-x3**2-x2**2-x1**2)
+     *,sngl(x4**2-x3**2-x2**2-x1**2)
 101   format(' utlob2:',f9.5,4f11.5)
       endif
       pp=p4**2-p3**2-p2**2-p1**2
@@ -17083,20 +17055,20 @@ c-----------------------------------------------------------------------
 220   bp=bp+z(k)*isig*beta(k)
       do 230 k=1,3
 230   z(k)=z(k)+isig*beta(k)*z(4)
-     >+isig*beta(k)*bp/(beta(4)+1.)
+     *+isig*beta(k)*bp/(beta(4)+1.)
       z(4)=beta(4)*z(4)+bp
       x1=z(1)
       x2=z(2)
       x3=z(3)
       x4=z(4)
       if(ish.ge.93)
-     >write(ifch,101)sngl(x1),sngl(x2),sngl(x3),sngl(x4)
-     >,sngl(x4**2-x3**2-x2**2-x1**2)
+     *write(ifch,101)sngl(x1),sngl(x2),sngl(x3),sngl(x4)
+     *,sngl(x4**2-x3**2-x2**2-x1**2)
       x4x=x4
       x4=dsqrt(xx0+x1**2+x2**2+x3**2)
       if(ish.ge.93)then
       write(ifch,101)sngl(x1),sngl(x2),sngl(x3),sngl(x4)
-     >,sngl(x4**2-x3**2-x2**2-x1**2)
+     *,sngl(x4**2-x3**2-x2**2-x1**2)
       write(ifch,*)' '
       endif
            if(ish.ge.90)then
@@ -17105,11 +17077,11 @@ c-----------------------------------------------------------------------
       write(ifch,*)'*****  x**2_ini .ne. x**2_fin.'
       write(ifch,*)'x1 x2 x3 x4 x**2 (initial/final/corrected):'
       write(ifch,101)sngl(x10),sngl(x20),sngl(x30),sngl(x40)
-     >,sngl(x40**2-x30**2-x20**2-x10**2)
+     *,sngl(x40**2-x30**2-x20**2-x10**2)
       write(ifch,101)sngl(x1),sngl(x2),sngl(x3),sngl(x4x)
-     >,sngl(x4x**2-x3**2-x2**2-x1**2)
+     *,sngl(x4x**2-x3**2-x2**2-x1**2)
       write(ifch,101)sngl(x1),sngl(x2),sngl(x3),sngl(x4)
-     >,sngl(x4**2-x3**2-x2**2-x1**2)
+     *,sngl(x4**2-x3**2-x2**2-x1**2)
       call utmsgf
       endif
            endif
@@ -17142,7 +17114,7 @@ c-----------------------------------------------------------------------
 220   bp=bp+z(k)*isig*beta(k)
       do 230 k=1,3
 230   z(k)=z(k)+isig*beta(k)*z(4)
-     >+isig*beta(k)*bp/(beta(4)+1.)
+     *+isig*beta(k)*bp/(beta(4)+1.)
       z(4)=beta(4)*z(4)+bp
       x1=z(1)
       x2=z(2)
@@ -17155,10 +17127,10 @@ c-----------------------------------------------------------------------
       subroutine utloc(ar,n,a,l)
 c-----------------------------------------------------------------------
       real ar(n)
-      do i=1,n
-       l=i-1
-       if(a.lt.ar(i))return
-      enddo
+      do 1 i=1,n
+      l=i-1
+      if(a.lt.ar(i))return
+1     continue
       l=n
       return
       end
@@ -17200,9 +17172,8 @@ c-----------------------------------------------------------------------
       subroutine utlow3(cthree)
 c-----------------------------------------------------------------------
       character cthree*3
-      do i=1,3
-       call utlow(cthree(i:i))
-      enddo
+      do 1 i=1,3
+1     call utlow(cthree(i:i))
       return
       end
  
@@ -17210,9 +17181,8 @@ c-----------------------------------------------------------------------
       subroutine utlow6(csix)
 c-----------------------------------------------------------------------
       character csix*6
-      do i=1,6
-        call utlow(csix(i:i))
-      enddo
+      do 1 i=1,6
+1     call utlow(csix(i:i))
       return
       end
  
@@ -17222,11 +17192,10 @@ c     calculates kth moment for f(x) with q(i)=int[0,x(i)]f(z)dz
 c-----------------------------------------------------------------------
       real x(n),q(n)
       if(n.lt.2)
-     >call utstop('utmom : dimension too small             ')
+     *call utstop('utmom : dimension too small             ')
       utmom=0
-      do i=2,n
-        utmom=utmom+((x(i)+x(i-1))/2)**k*(q(i)-q(i-1))
-      enddo
+      do 1 i=2,n
+1     utmom=utmom+((x(i)+x(i-1))/2)**k*(q(i)-q(i-1))
       utmom=utmom/q(n)
       return
       end
@@ -17239,17 +17208,16 @@ c     ovel(1+i,1+j)=alog(i!/j!/(j-i)!)      i>=0 j>=0
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (iovmax=100,jovmax=100)
       common/covel/ovel(1+iovmax,1+jovmax)
  
-      do  i=0,iovmax
-       ovel(1+i,1)=0.
-       ovel(1+i,1+i)=0.
-      enddo
+      do 1 i=0,iovmax
+      ovel(1+i,1)=0.
+1     ovel(1+i,1+i)=0.
       do 2 j=1,jovmax-1
       do 3 i=j+1,iovmax
 3     ovel(1+i,1+j)=ovel(1+i,j)+alog((i-j+1.)/j)
@@ -17259,7 +17227,7 @@ c----------------------------------------------------------------------
       do 5 j=1,49
       do 5 i=j+1,50
       relerr=abs((exp(ovel(1+i,1+j))
-     >-exp(ovel(i,j))-exp(ovel(i,1+j)))/exp(ovel(1+i,1+j)))
+     *-exp(ovel(i,j))-exp(ovel(i,1+j)))/exp(ovel(1+i,1+j)))
       if(relerr.gt.1e-4)then
       call utmsg('utovel')
       write(ifch,*)'*****  ovel(,) violates recurrence relation'
@@ -17285,12 +17253,12 @@ c-----------------------------------------------------------------------
 c     increases ipage by 1, changes ish
 c-----------------------------------------------------------------------
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cishi/ishi
       ipage=ipage+1
       if(ipagi.le.0)return
@@ -17310,10 +17278,10 @@ c     fills array ipart(n,j) containing the partitions of n.
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (nquax=12)
       parameter (kpamax=nquax)
       parameter (jpamax=nquax*nquax*nquax)
@@ -17329,15 +17297,15 @@ c----------------------------------------------------------------------
       do 6 n=1,nquax
       partx(1,n)=1
 6     part(1,n)=1
-      do k=2,kpamax
-       do 2 n=1,nquax
-        u=0
-        do 3 i=0,n/k
-         if(n-i*k.eq.0)u=u+1
-3        if(n-i*k.ne.0)u=u+partx(k-1,n-i*k)
-        partx(k,n)=u
-2      continue
-      enddo
+      do 1 k=2,kpamax
+      do 2 n=1,nquax
+      u=0
+      do 3 i=0,n/k
+      if(n-i*k.eq.0)u=u+1
+3     if(n-i*k.ne.0)u=u+partx(k-1,n-i*k)
+      partx(k,n)=u
+2     continue
+1     continue
       do 7 n=1,nquax
       parta(n)=part(1,n)
       do 7 k=2,kpamax
@@ -17384,17 +17352,17 @@ c     -----------------------------------------
       k1max=-ipart(n1,1)
       k2max=-ipart(n2,1)
       if(k1max.lt.0.or.k2max.lt.0)
-     >call utstop('utpart: kimax negative                  ')
+     *call utstop('utpart: kimax negative                  ')
       j1=2
       do 13 k1=1,k1max
       l1=-ipart(n1,j1)
       if(l1.lt.0)
-     >call utstop('utpart: l1 negative (1)                 ')
+     *call utstop('utpart: l1 negative (1)                 ')
       j2=2
       do 15 k2=1,k2max
       l2=-ipart(n2,j2)
       if(l2.lt.0)
-     >call utstop('utpart: l2 negative (1)                 ')
+     *call utstop('utpart: l2 negative (1)                 ')
  
       ipart(n,1)=ipart(n,1)-1
       ii=ii+1
@@ -17442,7 +17410,7 @@ c     -----------------------------------------
       do 28 kx=1,-ipart(n,1)-1
       lx=-ipart(n,jx)
       if(lx.lt.0)
-     >call utstop('utpart: lx negative                     ')
+     *call utstop('utpart: lx negative                     ')
       if(lx.eq.l1+l2)then
       do 22 l=1,lx
       if(ipart(n,jx+l).ne.ipart(n,ii0-1+l))goto23
@@ -17479,17 +17447,17 @@ c     ordering
 c     --------
       km=-ipart(n,1)
       if(km.lt.0)
-     >call utstop('utpart: km negative                     ')
+     *call utstop('utpart: km negative                     ')
       j1=2
       do 20 k1=1,km-1
       l1=-ipart(n,j1)
       if(l1.lt.0)
-     >call utstop('utpart: l1 negative (2)                 ')
+     *call utstop('utpart: l1 negative (2)                 ')
       j2=2
       do 21 k2=1,km
       l2=-ipart(n,j2)
       if(l2.lt.0)
-     >call utstop('utpart: l2 negative (2)                 ')
+     *call utstop('utpart: l2 negative (2)                 ')
       if(k2.le.k1)goto21
       if(l1.gt.l2)then
       do 24 l=1,l2+1
@@ -17501,7 +17469,7 @@ c     --------
 26    ipart(n,j1-1+l)=iswap(l)
       l1=-ipart(n,j1)
       if(l1.lt.0)
-     >call utstop('utpart: l1 negative (2)                 ')
+     *call utstop('utpart: l1 negative (2)                 ')
       if(ish.ge.95)then
       write(ifch,*)' '
       write(ifch,*)'order changed.      k1,k2=',k1,k2
@@ -17527,7 +17495,7 @@ c     --------
 27    jy=jy+ly+1
       endif
       if(-ipart(n,1).ne.nint(parta(n)))
-     >call utstop('utpart: # of partitions wrong           ')
+     *call utstop('utpart: # of partitions wrong           ')
 11    continue
  
       return
@@ -17560,9 +17528,8 @@ c     performs an integration according to simpson
 c-----------------------------------------------------------------------
       real x(m),f(m)
       utquad=0
-      do i=1,k-1
-       utquad=utquad+(f(i)+f(i+1))/2*(x(i+1)-x(i))
-      enddo
+      do 1 i=1,k-1
+  1   utquad=utquad+(f(i)+f(i+1))/2*(x(i+1)-x(i))
       return
       end
  
@@ -17572,12 +17539,12 @@ c     returns q(i) = integral [x(1)->x(i)] fu(x) dx
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
 c MAB
       external fu
       real x(n),q(n),wo(n)
@@ -17608,18 +17575,18 @@ c     remembers nevt,nstr,nptl,proj,targ
 c-----------------------------------------------------------------------
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       parameter(mxstr=20000)
       common/cstr/nstr,pstr(5,mxstr),icstr(4,mxstr),iorstr(mxstr)
-     >,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
+     *,irlstr(mxstr),rotstr(3,mxstr),xorstr(4,mxstr)
       common/cevt/phievt,nevt,bimevt,kolevt,colevt,pmxevt,egyevt
-     >,npjevt,ntgevt
+     *,npjevt,ntgevt
       parameter (nsi=6,nsix=100)
       parameter (nha=nsix+2)
       real proj(nsi,nha),targ(nsi,nha)
       common/cremb/nevtre(2),nstrre(2),nptlre(2)
-     >,projre(2,nsi,nha),targre(2,nsi,nha)
+     *,projre(2,nsi,nha),targre(2,nsi,nha)
  
       nevtre(ii)=nevt
       nstrre(ii)=nstr
@@ -17671,13 +17638,12 @@ c     i is replaced by j in /cptl/
 c-----------------------------------------------------------------------
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       common/c2ptl/iaaptl(mxptl),radptl(mxptl),amiptl(mxptl)
       common/c3ptl/desptl(mxptl),dezptl(mxptl)
-      do  k=1,5
-       pptl(k,i)  =pptl(k,j)
-      enddo
+      do 1 k=1,5
+1     pptl(k,i)  =pptl(k,j)
       iorptl(i)  =iorptl(j)
       idptl(i)   =idptl(j)
       istptl(i)  =istptl(j)
@@ -17725,14 +17691,14 @@ c     performs a rotation, double prec.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       double precision ax,ay,az,x,y,z,rx,ry,rz
-     >,alp,bet,cosa,sina,cosb,sinb,xs,ys,zs
+     *,alp,bet,cosa,sina,cosb,sinb,xs,ys,zs
          if(ax**2.eq.0.and.ay**2.eq.0.and.az**2.eq.0.)then
       write(ifch,*)' '
       write(ifch,*)'ax**2,ay**2,az**2:',ax**2,ay**2,az**2
@@ -17751,8 +17717,8 @@ c-----------------------------------------------------------------------
       if(rz**2+ry**2.ne.0.)then
       alp=dabs(dacos(rz/dsqrt(rz**2+ry**2)))*sign(1.,sngl(ry))
       bet=
-     >dabs(dacos(dsqrt(rz**2+ry**2)/dsqrt(rz**2+ry**2+rx**2)))*
-     >sign(1.,sngl(rx))
+     *dabs(dacos(dsqrt(rz**2+ry**2)/dsqrt(rz**2+ry**2+rx**2)))*
+     *sign(1.,sngl(rx))
       else
       alp=3.1415927/2
       bet=3.1415927/2
@@ -17791,7 +17757,7 @@ c-----------------------------------------------------------------------
          endif
       alp=abs(utacos(rz/sqrt(rz**2+ry**2)))*sign(1.,ry)
       bet=
-     >abs(utacos(sqrt(rz**2+ry**2)/sqrt(rz**2+ry**2+rx**2)))*sign(1.,rx)
+     *abs(utacos(sqrt(rz**2+ry**2)/sqrt(rz**2+ry**2+rx**2)))*sign(1.,rx)
       cosa=cos(alp)
       sina=sin(alp)
       cosb=cos(bet)
@@ -17817,9 +17783,8 @@ c-----------------------------------------------------------------------
       parameter (nsi=6)
       real sil(nsi)
       utsqsi=0
-      do n=1,ns
-       utsqsi=utsqsi+sil(n)**2
-      enddo
+      do 1 n=1,nsi
+1     utsqsi=utsqsi+sil(n)**2
       return
       end
  
@@ -17830,9 +17795,8 @@ c-----------------------------------------------------------------------
       parameter (nha=nsix+2)
       real str(nsi,2)
       utsqst=0
-      do n=1,nsi
-       utsqst=utsqst+str(n,1)**2+str(n,2)**2
-      enddo
+      do 1 n=1,nsi
+1     utsqst=utsqst+str(n,1)**2+str(n,2)**2
       return
       end
  
@@ -17843,7 +17807,7 @@ c-----------------------------------------------------------------------
       parameter (nsi=6)
       real str(nsi,2)
       utsstr=(str(4,1)+str(4,2))**2-(str(1,1)+str(1,2))**2
-     >-(str(2,1)+str(2,2))**2-(str(3,1)+str(3,2))**2
+     *-(str(2,1)+str(2,2))**2-(str(3,1)+str(3,2))**2
       return
       end
  
@@ -17853,25 +17817,24 @@ c     returns error message and stops execution
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       character text*40,star*1,txt*6
       star='*'
-      do i=1,2
-       if(i.eq.1)ifi=ifch
-       if(i.eq.2)ifi=ifmt
-       write(ifi,*)' '
-       write(ifi,*)(star,j=1,77)
-       write(ifi,*)'***** stop in ',text
-       write(ifi,*)'***** current event number: ',nrevt+1
-       write(ifi,*)'***** current page number: ',ipage
-       write(ifi,*)(star,j=1,77)
-       write(ifi,*)' '
-      enddo
+      do 1 i=1,2
+      if(i.eq.1)ifi=ifch
+      if(i.eq.2)ifi=ifmt
+      write(ifi,*)' '
+      write(ifi,*)(star,j=1,77)
+      write(ifi,*)'***** stop in ',text
+      write(ifi,*)'***** current event number: ',nrevt+1
+      write(ifi,*)'***** current page number: ',ipage
+      write(ifi,*)(star,j=1,77)
+1     write(ifi,*)' '
       stop
       entry utmsg(txt)
       imsg=imsg+1
@@ -17895,16 +17858,16 @@ c     iopt=0: formation time considered, iopt=1 if not
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
       common/cttaus/tpro,zpro,ttar,ztar,ttaus,detap,detat /ctain/mtain
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       double precision vv,zza,zz,tt,xo3,xo4,ti1,ti2,derr,dd
       double precision ttp,zzp,ttt,zzt,vvt,vvp
  
@@ -18035,14 +17998,14 @@ c        zor, tor double precision.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       double precision tor,zor,tors,zors,vv,cc,dd,ttau,derr,tt,zz
       common/cnsta/pi,prom,piom,ainfin
       derr=1e-3
@@ -18080,8 +18043,8 @@ c-----------------------------------------------------------------------
            endif
       zz=cc+tt*vv
       if(dabs(ttau**2-(tt+zz)*(tt-zz)).gt.derr*ttau**2
-     >.and.dabs(ttau**2-(tt+zz)*(tt-zz)).gt.derr
-     >.and.tors**2-zors**2.lt.1e6)then
+     *.and.dabs(ttau**2-(tt+zz)*(tt-zz)).gt.derr
+     *.and.tors**2-zors**2.lt.1e6)then
       if(ish.ge.90)then
       call utmsg('uttaix')
       write(ifch,*)'*****  ttau**2 .ne. (tt+zz)*(tt-zz)'
@@ -18106,10 +18069,10 @@ c     returns time tz and inv z-coord sz corresponding to ttaus and z.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
       common/cttaus/tpro,zpro,ttar,ztar,ttaus,detap,detat 
       double precision zz
@@ -18153,10 +18116,10 @@ c     returns time.
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       character*15 text
       timaa=0
       tima=0
@@ -18188,10 +18151,10 @@ c     double precision tucl.
 c----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       double precision tucl,dd
       parameter (ktumax=100,ntumax=100)
       common/ctucl/tucl(1+ktumax,1+ntumax)
@@ -18202,22 +18165,22 @@ c----------------------------------------------------------------------
       do 7 k=2,ktumax
 7     tucl(1+k,1)=0
       do 2 n=1,ntumax
-      do k=2,ktumax
-       dd=(n+k-1.)/(k-1.)
-       tucl(1+k,1+n)=tucl(k,1+n)+dlog(dd)
-      enddo
+      do 1 k=2,ktumax
+      dd=(n+k-1.)/(k-1.)
+      tucl(1+k,1+n)=tucl(k,1+n)+dlog(dd)
+1     continue
 2     continue
  
       if(ish.ge.93)then
       do 5 k=2,50
       do 5 n=1,50
       relerr=dabs((dexp(tucl(1+k,1+n))
-     >-dexp(tucl(1+k,n))-dexp(tucl(k,1+n)))/dexp(tucl(1+k,1+n)))
+     *-dexp(tucl(1+k,n))-dexp(tucl(k,1+n)))/dexp(tucl(1+k,1+n)))
       if(relerr.gt.1e-4)then
       call utmsg('uttucl')
       write(ifch,*)'*****  tucl(,) violates recurrence relation'
       write(ifch,*)sngl(dexp(tucl(1+k,1+n)))
-     >,sngl(dexp(tucl(1+k,n))+dexp(tucl(k,1+n)))
+     *,sngl(dexp(tucl(1+k,n))+dexp(tucl(k,1+n)))
       call utmsgf
       endif
 5     continue
@@ -18228,10 +18191,10 @@ c----------------------------------------------------------------------
       write(ifch,*)' '
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   degeneracy of energy levels of k-dimensional'
-     >,' oscillator'
+     *,' oscillator'
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   =='
-     >,'     number of k-tupels of length n (sum_i n_i = n)'
+     *,'     number of k-tupels of length n (sum_i n_i = n)'
       write(ifch,121)('-',ic=1,79)
       write(ifch,*)'   k:','   1','   2','   3','   4'
       write(ifch,121)('-',ic=1,79)
@@ -18244,31 +18207,31 @@ c----------------------------------------------------------------------
  
 c-----------------------------------------------------------------------
       subroutine veanif(in,io,im,ic,ih,id,si,ls,te,en,pl
-     >,px,yp,is,ii,nt,na,bm,pp,pr,ai,lp,mp
-     >,lt,mt,pb,jb,jf,iv,iu,np,pv,pc,ne)
+     *,px,yp,is,ii,nt,na,bm,pp,pr,ai,lp,mp
+     *,lt,mt,pb,jb,jf,iv,iu,np,pv,pc,ne)
 c     transfers variables to veanly
 c-----------------------------------------------------------------------
       common/cvsn/iversn
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (ndep=129,ndet=129,kollmx=5000)
       common /col/rmproj,rmtarg,bmax,bimp,koll,nproj,ntarg
-     >,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
-     >,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
-     >,coord(4,kollmx)
+     *,xdep(ndep),qdep(ndep),wdep(ndep),xdet(ndet),qdet(ndet),wdet(ndet)
+     *,nrproj(kollmx),nrtarg(kollmx),distce(kollmx),nord(kollmx)
+     *,coord(4,kollmx)
       common/cnsta/pi,prom,piom,ainfin
       parameter(mxpar=99)
       character*6 parcha(mxpar),pc(mxpar)
@@ -18301,13 +18264,11 @@ c-----------------------------------------------------------------------
       mp=maproj
       lt=latarg
       mt=matarg
-      do i=1,99
-       pb(i)=prob(i)
-       do j=1,2
-        jb(i,j)=icbac(i,j)
-        jf(i,j)=icfor(i,j)
-       enddo
-      enddo
+      do 1 i=1,99
+      pb(i)=prob(i)
+      do 1 j=1,2
+      jb(i,j)=icbac(i,j)
+1     jf(i,j)=icfor(i,j)
       iv=ivi
       iu=isup
       np=npar
@@ -18329,7 +18290,7 @@ c-----------------------------------------------------------------------
       parameter(mxpar=99,nflav=6,kmaxmx=10000,mxscat=5000)
       parameter (mxtxt=mxpar,mxtrig=mxpar,mxidp=mxpar)
       character das*1,expmt*5,xobsrv*6,yobsrv*6,ili*6,lilo*3,mde*3
-     >,cone*1,fch*1
+     *,cone*1,fch*1
       character*6 parcha(mxpar)
       double precision parval(mxpar)
       real parfi(mxpar)
@@ -18347,9 +18308,9 @@ c-----------------------------------------------------------------------
       real facmo(5)
       dimension prob(99),icbac(99,2),icfor(99,2)
       call veanif(iversn,ifop,ifmt,ifch,ifhi,ifdt,sigppi,labsys,tensn
-     >,engy,pnll,pnllx,yhaha,ish,ichoic,ntevt,naevt,bmax,pi,prom,ainfin
-     >,laproj,maproj,latarg,matarg,prob,icbac,icfor,ivi,isup,npar,parval
-     >,parcha,nrevt)
+     *,engy,pnll,pnllx,yhaha,ish,ichoic,ntevt,naevt,bmax,pi,prom,ainfin
+     *,laproj,maproj,latarg,matarg,prob,icbac,icfor,ivi,isup,npar,parval
+     *,parcha,nrevt)
       ish0=ish
       ifhi0=ifhi
       das='-'
@@ -18366,7 +18327,7 @@ c-----------------------------------------------------------------------
       crofac=1
       pltfac=1
       if(isup.ne.1)write(ifmt,*)
-     >'analysis: sup or nos or ret or ren or stp?'
+     *'analysis: sup or nos or ret or ren or stp?'
       read(ifop,*)modana
       call utlow3(modana)
       if(isup.ne.1.and.ivi.eq.1)write(ifmt,*)modana
@@ -18378,11 +18339,9 @@ c-----------------------------------------------------------------------
       do 10 k=1,kmaxmx
       zactot(k)=0
 10    yactot(k)=0
-      do  k=1,kmaxmx
-      do  l=1,5
-        ar(k,l)=0
-      enddo
-      enddo
+      do 1 k=1,kmaxmx
+      do 1 l=1,5
+1     ar(k,l)=0
       do 6 i=1,mxidp
 6     idptl(i)=0
       do 38 i=1,mxtrig
@@ -18394,13 +18353,13 @@ c     options
 c     -------
 3     continue
       if(modana.ne.'sup')write(ifmt,*)'x-observ?[a6;hlp]  '
-     >,'y-observ?[a6;hlp]  #trig?[i]  #had?[i]'
+     *,'y-observ?[a6;hlp]  #trig?[i]  #had?[i]'
       read(ifop,fmt=*,err=3)xobsrv,yobsrv,ntrig,nidp
       do 90 i=1,6
       call utlow(xobsrv(i:i))
 90    call utlow(yobsrv(i:i))
       if(ivi.eq.1.and.modana.ne.'sup')
-     >write(ifmt,1030)xobsrv,yobsrv,ntrig,nidp
+     *write(ifmt,1030)xobsrv,yobsrv,ntrig,nidp
 1030  format(1x,a6,1x,a6,i2,i2)
       if(xobsrv.eq.'stp   '.or.xobsrv.eq.'stop  ')return
       if(xobsrv.eq.'hlp   '.or.xobsrv.eq.'help  ')write(ifmt,104)
@@ -18422,102 +18381,102 @@ c     -------
       if(yobsrv.eq.'hlppar')write(ifmt,120)
       if(yobsrv.eq.'hlppar')goto3
       if(xobsrv(4:6).ne.yobsrv(4:6))write(ifmt,*)
-     >'x-observable and y-observable have to be of the same type'
+     *'x-observable and y-observable have to be of the same type'
       if(xobsrv(4:6).ne.yobsrv(4:6))goto3
 104   format(
-     > ' !----------------------------------------------------------!'
-     >/' ! observ/trig [format:character(a6)]                       !'
-     >/' !----------------------------------------------------------!'
-     >/' !   stp/stop ..... stop  (for observ)                      !'
-     >/' !   xxxptl ....... particle observ. (type hlpptl for help) !'
-     >/' !   xxxevt ....... event observabl. (type hlpevt for help) !'
-     >/' !   parxxx ....... parameters       (type hlppar for help) !'
-     >/' !   trjptl ....... ptl trajectories (xobsrv, yobsrv=xxxptl)!'
-     >/' !----------------------------------------------------------!')
+     * ' !----------------------------------------------------------!'
+     */' ! observ/trig [format:character(a6)]                       !'
+     */' !----------------------------------------------------------!'
+     */' !   stp/stop ..... stop  (for observ)                      !'
+     */' !   xxxptl ....... particle observ. (type hlpptl for help) !'
+     */' !   xxxevt ....... event observabl. (type hlpevt for help) !'
+     */' !   parxxx ....... parameters       (type hlppar for help) !'
+     */' !   trjptl ....... ptl trajectories (xobsrv, yobsrv=xxxptl)!'
+     */' !----------------------------------------------------------!')
 108   format(
-     > ' !----------------------------------------------------------!'
-     >/' !   numptl ... number of ptls  (=1)                        !'
-     >/' !   nufptl ... number of ptls in forw hemisph              !'
-     >/' !   nubptl ... number of ptls in backw hemisph             !'
-     >/' !   nldptl ... number of lambdas                           !'
-     >/' !   nalptl ... number of alambdas                          !'
-     >/' !   nksptl ... number of k_shorts                          !'
-     >/' !   nngptl ... number of negatives                         !'
-     >/' !   npmptl ... number of ptls * 0+1-1 (zero/pos/neg chrg)  !'
-     >/' !   npaptl ... number of ptls * +1-1 (ptl/antiptl)         !'
-     >/' !   r.cptl ... hadronization point in pp cm (x,y,z,0)      !'
-     >/' !   yinptl ... space-time rapidity at hadr. point          !'
-     >/' !   tinptl ... proper time at hadr. point                  !'
-     >/' !   tmeptl ... time                                        !'
-     >/' !   tauptl ... eigentime                                   !'
-     >/' !   r.tptl ... space time (x,y,z,0)                        !'
-     >/' !   rttptl ... transverse space time                       !'
-     >/' !   xcmptl ... longitud. momentum fraction of ptl in pp cm !'
-     >/' !   xenptl ... energy fraction of ptl in pp cm             !'
-     >/' !   xelptl ... energy fraction of ptl in lab sys           !'
-     >/' !   xpcptl ... momentum fraction in cm                     !'
-     >/' !   xpaptl ... momentum fraction absolute in cm            !'
-     >/' !   xpeptl ... z-momentum (cm) / engy/2                    !'
-     >/' !   sobptl ... s / beta of ptl in pp cm                    !')
+     * ' !----------------------------------------------------------!'
+     */' !   numptl ... number of ptls  (=1)                        !'
+     */' !   nufptl ... number of ptls in forw hemisph              !'
+     */' !   nubptl ... number of ptls in backw hemisph             !'
+     */' !   nldptl ... number of lambdas                           !'
+     */' !   nalptl ... number of alambdas                          !'
+     */' !   nksptl ... number of k_shorts                          !'
+     */' !   nngptl ... number of negatives                         !'
+     */' !   npmptl ... number of ptls * 0+1-1 (zero/pos/neg chrg)  !'
+     */' !   npaptl ... number of ptls * +1-1 (ptl/antiptl)         !'
+     */' !   r.cptl ... hadronization point in pp cm (x,y,z,0)      !'
+     */' !   yinptl ... space-time rapidity at hadr. point          !'
+     */' !   tinptl ... proper time at hadr. point                  !'
+     */' !   tmeptl ... time                                        !'
+     */' !   tauptl ... eigentime                                   !'
+     */' !   r.tptl ... space time (x,y,z,0)                        !'
+     */' !   rttptl ... transverse space time                       !'
+     */' !   xcmptl ... longitud. momentum fraction of ptl in pp cm !'
+     */' !   xenptl ... energy fraction of ptl in pp cm             !'
+     */' !   xelptl ... energy fraction of ptl in lab sys           !'
+     */' !   xpcptl ... momentum fraction in cm                     !'
+     */' !   xpaptl ... momentum fraction absolute in cm            !'
+     */' !   xpeptl ... z-momentum (cm) / engy/2                    !'
+     */' !   sobptl ... s / beta of ptl in pp cm                    !')
 107   format(
-     > ' !   xlbptl ... longitud. momentum fraction of ptl in lab   !'
-     >/' !   ycmptl ... rapdity of ptl in pp cm                     !'
-     >/' !   ycnptl ... -rapdity of ptl in pp cm                    !'
-     >/' !   yacptl ... /rapdity/ of ptl in pp cm                   !'
-     >/' !   yrcptl ... space time rapdity of ptl in pp cm          !'
-     >/' !   ylbptl ... rapdity of ptl in lab                       !'
-     >/' !   gcmptl ... pseudo rapdity of ptl in pp cm              !'
-     >/' !   glbptl ... pseudo rapdity of ptl in lab                !'
-     >/' !   ptrptl ... transverse momentum of ptl                  !'
-     >/' !   plbptl ... momentum of ptl (lab)                       !'
-     >/' !   etlptl ... transverse energy of ptl                    !'
-     >/' !   pt2ptl ... transverse momentum squared of ptl          !'
-     >/' !   amtptl ... transverse mass of ptl                      !'
-     >/' !   amsptl ... mass of ptl                                 !'
-     >/' !   amlptl ... log10(mass) of ptl                          !'
-     >/' !   phlptl ... azimuthal angle (lab)                       !'
-     >/' !   alsptl ... log s of evt                                !'
-     >/' !   nqjptl ... quark numbers of jets                       !'
-     >/' !   iorptl ... origin of ptl                               !'
-     >/' !----------------------------------------------------------!')
+     * ' !   xlbptl ... longitud. momentum fraction of ptl in lab   !'
+     */' !   ycmptl ... rapdity of ptl in pp cm                     !'
+     */' !   ycnptl ... -rapdity of ptl in pp cm                    !'
+     */' !   yacptl ... /rapdity/ of ptl in pp cm                   !'
+     */' !   yrcptl ... space time rapdity of ptl in pp cm          !'
+     */' !   ylbptl ... rapdity of ptl in lab                       !'
+     */' !   gcmptl ... pseudo rapdity of ptl in pp cm              !'
+     */' !   glbptl ... pseudo rapdity of ptl in lab                !'
+     */' !   ptrptl ... transverse momentum of ptl                  !'
+     */' !   plbptl ... momentum of ptl (lab)                       !'
+     */' !   etlptl ... transverse energy of ptl                    !'
+     */' !   pt2ptl ... transverse momentum squared of ptl          !'
+     */' !   amtptl ... transverse mass of ptl                      !'
+     */' !   amsptl ... mass of ptl                                 !'
+     */' !   amlptl ... log10(mass) of ptl                          !'
+     */' !   phlptl ... azimuthal angle (lab)                       !'
+     */' !   alsptl ... log s of evt                                !'
+     */' !   nqjptl ... quark numbers of jets                       !'
+     */' !   iorptl ... origin of ptl                               !'
+     */' !----------------------------------------------------------!')
 109   format(
-     > ' !----------------------------------------------------------!'
-     >/' !   numevt ... number of evts  (=1)                        !'
-     >/' !   xlbevt ... momentum fraction of evt in pp cm           !'
-     >/' !   enlevt ... total energy of evt                         !'
-     >/' !   ev4evt ... zero degree energy of evt, eta>4            !'
-     >/' !   ev6evt ... zero degree energy of evt, eta>6            !'
-     >/' !   eplevt ... total eff energy of evt + proj.spect.energy !'
-     >/' !   etoevt ... total energy of evt + spect.energy          !'
-     >/' !   alsevt ... log s                                       !'
-     >/' !   etlevt ... transverve energy of evt                    !'
-     >/' !   ezlevt ... neutral energy of evt                       !'
-     >/' !   mulevt ... multiplicity of evt                         !'
-     >/' !   mufevt ... forw multiplicity of evt (rin1<y<rin2)      !'
-     >/' !   mubevt ... backw multiplicity of evt (-rin2<y<-rin1)   !'
-     >/' !   mbfevt ... mubevt*mufevt                               !'
-     >/' !   mldevt ... lambda multiplicity of evt                  !'
-     >/' !   malevt ... alambda multiplicity of evt                 !'
-     >/' !   mksevt ... k_short multiplicity of evt                 !'
-     >/' !   mngevt ... neg ptl multiplicity of evt (full phas sp)  !'
-     >/' !   rlnevt ... lambda/neg multiplicity of evt              !'
-     >/' !   ranevt ... alambda/neg multiplicity of evt             !'
-     >/' !   rknevt ... k_short/neg multiplicity of evt             !'
-     >/' !   bimevt ... impact parameter                            !'
-     >/' !   kolevt ... number of collisions                        !'
-     >/' !   colevt ... effective number of collisions              !'
-     >/' !   egyevt ... string energy (for choic=str)               !'
-     >/' !   npjevt ... number of involved projectile nucleons      !'
-     >/' !   ntgevt ... number of involved target nucleons          !'
-     >/' !----------------------------------------------------------!')
+     * ' !----------------------------------------------------------!'
+     */' !   numevt ... number of evts  (=1)                        !'
+     */' !   xlbevt ... momentum fraction of evt in pp cm           !'
+     */' !   enlevt ... total energy of evt                         !'
+     */' !   ev4evt ... zero degree energy of evt, eta>4            !'
+     */' !   ev6evt ... zero degree energy of evt, eta>6            !'
+     */' !   eplevt ... total eff energy of evt + proj.spect.energy !'
+     */' !   etoevt ... total energy of evt + spect.energy          !'
+     */' !   alsevt ... log s                                       !'
+     */' !   etlevt ... transverve energy of evt                    !'
+     */' !   ezlevt ... neutral energy of evt                       !'
+     */' !   mulevt ... multiplicity of evt                         !'
+     */' !   mufevt ... forw multiplicity of evt (rin1<y<rin2)      !'
+     */' !   mubevt ... backw multiplicity of evt (-rin2<y<-rin1)   !'
+     */' !   mbfevt ... mubevt*mufevt                               !'
+     */' !   mldevt ... lambda multiplicity of evt                  !'
+     */' !   malevt ... alambda multiplicity of evt                 !'
+     */' !   mksevt ... k_short multiplicity of evt                 !'
+     */' !   mngevt ... neg ptl multiplicity of evt (full phas sp)  !'
+     */' !   rlnevt ... lambda/neg multiplicity of evt              !'
+     */' !   ranevt ... alambda/neg multiplicity of evt             !'
+     */' !   rknevt ... k_short/neg multiplicity of evt             !'
+     */' !   bimevt ... impact parameter                            !'
+     */' !   kolevt ... number of collisions                        !'
+     */' !   colevt ... effective number of collisions              !'
+     */' !   egyevt ... string energy (for choic=str)               !'
+     */' !   npjevt ... number of involved projectile nucleons      !'
+     */' !   ntgevt ... number of involved target nucleons          !'
+     */' !----------------------------------------------------------!')
 120   format(
-     > ' !----------------------------------------------------------!'
-     >/' !   parp12 ... parameter par1,par2                         !'
-     >/' !   parp34 ... parameter par3,par4                         !'
-     >/' !   parpbi ... individual (pp) probability                 !'
-     >/' !   parrin ... rapidity interval                           !'
-     >/' !   parish ... ish                                         !'
-     >/' !----------------------------------------------------------!')
+     * ' !----------------------------------------------------------!'
+     */' !   parp12 ... parameter par1,par2                         !'
+     */' !   parp34 ... parameter par3,par4                         !'
+     */' !   parpbi ... individual (pp) probability                 !'
+     */' !   parrin ... rapidity interval                           !'
+     */' !   parish ... ish                                         !'
+     */' !----------------------------------------------------------!')
       par1=0
       par2=0
       par3=0
@@ -18539,7 +18498,7 @@ c     -------
       do 92 i=1,6
 92    call utlow(trig(nt)(i:i))
       if(ivi.eq.1.and.modana.ne.'sup')
-     >write(ifmt,1031)trig(nt),trig1(nt),trig2(nt)
+     *write(ifmt,1031)trig(nt),trig1(nt),trig2(nt)
 1031  format(7x,a6,f7.2,f7.2)
       if(trig(nt).eq.'hlp')write(ifmt,101)
       if(trig(nt).eq.'hlp')goto5
@@ -18575,12 +18534,12 @@ c     -------
  
 8     continue
       if(modana.ne.'sup')
-     >write(ifmt,*)'interv?[2f]   #steps?[i]   mode?[a3]   axes?[6f]'
+     *write(ifmt,*)'interv?[2f]   #steps?[i]   mode?[a3]   axes?[6f]'
       read(ifop,fmt=*,err=8)x1,x2,kmax,mde,z1,z2,zi,y1,y2,yi
       do 91 i=1,3
 91    call utlow(mde(i:i))
       if(ivi.eq.1.and.modana.ne.'sup')
-     >write(ifmt,1033)x1,x2,kmax,mde,z1,z2,zi,y1,y2,yi
+     *write(ifmt,1033)x1,x2,kmax,mde,z1,z2,zi,y1,y2,yi
 1033  format(1x,2f7.2,i4,3x,a3,6f7.2)
       if(kmax.lt.0)then
       write(ifmt,*)'kmax negative'
@@ -18600,9 +18559,9 @@ c     -------
       if(mde(1:1).eq.'p')then
 9     continue
       if(modana.ne.'sup')write(ifmt,*)'opt?[i,<0]  fct?[f]  '
-     >,'line?[a6]  opt/dsp?[a13]  shft?[f]  #txt?[i]  expmt?[a5;i]'
+     *,'line?[a6]  opt/dsp?[a13]  shft?[f]  #txt?[i]  expmt?[a5;i]'
       read(ifop,fmt=*,err=9)
-     >ioptn,crofac,ili,muopt,shift,ntxt,expmt,idpexp
+     *ioptn,crofac,ili,muopt,shift,ntxt,expmt,idpexp
       do 93 i=1,6
 93    call utlow(ili(i:i))
       do 94 i=1,13
@@ -18610,34 +18569,34 @@ c     -------
       do 89 i=1,5
 89    call utlow(expmt(i:i))
       if(ivi.eq.1.and.modana.ne.'sup')write(ifmt,1034)
-     >ioptn,crofac,ili,muopt,shift,ntxt,expmt,idpexp
+     *ioptn,crofac,ili,muopt,shift,ntxt,expmt,idpexp
 1034  format(1x,i3,f6.2,2x,a6,2x,a13,f5.1,i3,2x,a5,i9)
       if(ioptn.lt.0)write(ifmt,105)
       if(ioptn.lt.0)write(ifmt,115)
       if(ioptn.lt.0)goto9
 105   format(
-     > ' !----------------------------------------------------------!'
-     >/' ! option [format:integer]                                  !'
-     >/' !----------------------------------------------------------!'
-     >/' !   __0   *1                                               !'
-     >/' !   __1   / # of events                                    !'
-     >/' !   __2   / # of valid events                              !'
-     >/' !   __3   / # of counts (normalized to one)                !'
-     >/' !   __4   / # of counts per bin                            !'
-     >/' !   __5   / # of all events (incl trigger exclusions)      !'
-     >/' !   __6   / integral(y) (normalized to one)                !'
-     >/' !----------------------------------------------------------!')
+     * ' !----------------------------------------------------------!'
+     */' ! option [format:integer]                                  !'
+     */' !----------------------------------------------------------!'
+     */' !   __0   *1                                               !'
+     */' !   __1   / # of events                                    !'
+     */' !   __2   / # of valid events                              !'
+     */' !   __3   / # of counts (normalized to one)                !'
+     */' !   __4   / # of counts per bin                            !'
+     */' !   __5   / # of all events (incl trigger exclusions)      !'
+     */' !   __6   / integral(y) (normalized to one)                !'
+     */' !----------------------------------------------------------!')
 115   format(
-     > ' !   _0_   *1                                               !'
-     >/' !   _1_   / bin size                                       !'
-     >/' !   _2_   / bin size * sigppi(prt-ncl)                     !'
-     >/' !----------------------------------------------------------!'
-     >/' !   0__   *1                                               !'
-     >/' !   1__   * x                                              !'
-     >/' !   2__   / (2pi*x)                                        !'
-     >/' !   3__   * <x> ,  x/<x>  (kno-representation)             !'
-     >/' !   4__   scatter plot                                     !'
-     >/' !----------------------------------------------------------!')
+     * ' !   _0_   *1                                               !'
+     */' !   _1_   / bin size                                       !'
+     */' !   _2_   / bin size * sigppi(prt-ncl)                     !'
+     */' !----------------------------------------------------------!'
+     */' !   0__   *1                                               !'
+     */' !   1__   * x                                              !'
+     */' !   2__   / (2pi*x)                                        !'
+     */' !   3__   * <x> ,  x/<x>  (kno-representation)             !'
+     */' !   4__   scatter plot                                     !'
+     */' !----------------------------------------------------------!')
       ioptn1=mod(ioptn,10)
       ioptn2=mod(ioptn/10,10)
       ioptn3=mod(ioptn/100,10)
@@ -18663,7 +18622,7 @@ c     -------
       do 12 n=1,ntxt
       read(ifop,*)xt(n),yt(n),txt(n)
       if(ivi.eq.1.and.modana.ne.'sup')
-     >write(ifmt,1007)xt(n),yt(n),txt(n)
+     *write(ifmt,1007)xt(n),yt(n),txt(n)
 12    continue
       endif
       endif
@@ -18674,7 +18633,7 @@ c     --------------------------
       if(xobsrv.eq.'noanly'.or.yobsrv.eq.'noanly')goto95
       if(xobsrv(4:6).eq.'his'.or.yobsrv(4:6).eq.'his')goto95
       if(ish.ge.91
-     >.or.ish.eq.15.or.ish.eq.20)write(ifch,106)
+     *.or.ish.eq.15.or.ish.eq.20)write(ifch,106)
 106   format(/' veanly: read from ifdt'/)
       rewind ifdt
       nevt=0
@@ -18688,9 +18647,9 @@ c     --------------------------
       nacevt(k)=0
 29    yacevt(k)=0
       read(ifdt,end=98)levts,nevts,nptevt,bimevt,kolevt,colevt,pmxevt
-     >,egyevt,npjevt,ntgevt
+     *,egyevt,npjevt,ntgevt
       if(ish.ge.91)write(ifch,103)nevts,nptevt,bimevt
-     >,kolevt,npjevt,ntgevt
+     *,kolevt,npjevt,ntgevt
 103   format(' evt:',i2,i4,f9.2,3i5)
       if(levts.ne.levt)stop'***** label mismatch during read evt'
       if(nevts.ne.nevt)stop'***** evt# mismatch during read evt'
@@ -18719,8 +18678,8 @@ c     --------------------------
       do 97 npts=1,nptevt
       nptl=nptl+1
       read(ifdt)lptls,nevts,nptls,nptlo,idp
-     >,pxlptl,pylptl,pzlptl,p0lptl,amsptl,iorptl,jorptl,istptl
-     >,xo1ptl,xo2ptl,xo3ptl,xo4ptl,t1ptl,t2ptl,nqjptl
+     *,pxlptl,pylptl,pzlptl,p0lptl,amsptl,iorptl,jorptl,istptl
+     *,xo1ptl,xo2ptl,xo3ptl,xo4ptl,t1ptl,t2ptl,nqjptl
       if(lptls.ne.lptl)stop'***** label mismatch during read ptl'
       if(nevts.ne.nevt)stop'***** evt# mismatch during read ptl'
       if(nptls.ne.nptl)stop'***** ptl# mismatch during read ptl'
@@ -18733,10 +18692,10 @@ c     --------------------------
       if(idp.eq.20)nksptl=1
       nngptl=0
       if(idp.eq.-120.or.idp.eq.-130.or.idp.eq.-1120.or.idp.eq.-1130
-     >.or.idp.eq.2230.or.idp.eq.2330.or.idp.eq.3331)nngptl=1
+     *.or.idp.eq.2230.or.idp.eq.2330.or.idp.eq.3331)nngptl=1
       chrg=0
       if(iabs(idp).le.9999.and.mod(iabs(idp),10).le.1)
-     >call idchrg(idp,chrg)
+     *call idchrg(idp,chrg)
       if(chrg.eq.0.)then
       npmptl=0
       else
@@ -18756,7 +18715,7 @@ c     --------------------------
       glbptl=sign(1.,pzlptl)*1e+6
       else
       glbptl=sign(1.,pzlptl)*
-     >alog((sqrt(pzlptl**2+ptrptl**2)+abs(pzlptl))/ptrptl)
+     *alog((sqrt(pzlptl**2+ptrptl**2)+abs(pzlptl))/ptrptl)
       endif
       amlptl=-1
       if(amsptl.gt.0.)amlptl=alog10(amsptl)
@@ -18773,7 +18732,7 @@ c     --------------------------
       gcmptl=sign(1.,pc3ptl)*1e+6
       else
       gcmptl=sign(1.,pc3ptl)*
-     >alog((sqrt(pc3ptl**2+ptrptl**2)+abs(pc3ptl))/ptrptl)
+     *alog((sqrt(pc3ptl**2+ptrptl**2)+abs(pc3ptl))/ptrptl)
       endif
       xlbptl=pzlptl/pmxevt
       xcmptl=xlbptl
@@ -18788,7 +18747,7 @@ c     --------------------------
       xpeptl=2*pc3ptl/engy
       sobptl=ainfin
       if(sqrt(pc3ptl**2+pc2ptl**2+pc1ptl**2).ne.0)
-     >sobptl=engy**2/sqrt(pc3ptl**2+pc2ptl**2+pc1ptl**2)*pc4ptl
+     *sobptl=engy**2/sqrt(pc3ptl**2+pc2ptl**2+pc1ptl**2)*pc4ptl
       eefptl=p0lptl
       if(idp.ge.1000)eefptl=eefptl-prom
       if(idp.le.-1000)eefptl=eefptl+prom
@@ -18796,7 +18755,7 @@ c     --------------------------
       if(glbptl.gt.6.)ev6evt=ev6evt+eefptl
       etlptl=0
       if(ptrptl.ne.0)
-     >etlptl=eefptl*ptrptl/sqrt(pzlptl**2+ptrptl**2)
+     *etlptl=eefptl*ptrptl/sqrt(pzlptl**2+ptrptl**2)
       vel=sqrt(pzlptl**2+ptrptl**2)/p0lptl
       if(idp.eq.10)ezlptl=p0lptl
       if(abs(chrg).gt.0.99.and.vel.gt.0.80)ezlptl=.500
@@ -18804,9 +18763,9 @@ c     --------------------------
       nufptl=0
       nubptl=0
       if(idp.eq.120 .or.idp.eq.-120.or.idp.eq.130 .or.idp.eq.-130
-     >.or.idp.eq.1120.or.idp.eq.-1120.or.idp.eq.1130.or.idp.eq.-1130
-     >.or.idp.eq.2230.or.idp.eq.-2230.or.idp.eq.2330.or.idp.eq.-2330
-     >.or.idp.eq.3331.or.idp.eq.-3331)then
+     *.or.idp.eq.1120.or.idp.eq.-1120.or.idp.eq.1130.or.idp.eq.-1130
+     *.or.idp.eq.2230.or.idp.eq.-2230.or.idp.eq.2330.or.idp.eq.-2330
+     *.or.idp.eq.3331.or.idp.eq.-3331)then
       if(ycmptl.ge.rin1.and.ycmptl.le.rin2)nufptl=1
       if(ycmptl.ge.-rin2.and.ycmptl.le.-rin1)nubptl=1
       endif
@@ -18820,15 +18779,15 @@ c     --------------------------
       if(idp.ne.20 .and.idp.ne.-20.and.iabs(idp).lt.100)goto20
       elseif(idptl(1).eq.9970)then
       if(idp.ne.120 .and.idp.ne.-120.and.idp.ne.130 .and.idp.ne.-130
-     >.and.idp.ne.1120.and.idp.ne.-1120.and.idp.ne.1130.and.idp.ne.-1130
-     >.and.idp.ne.2230.and.idp.ne.-2230.and.idp.ne.2330.and.idp.ne.-2330
-     >.and.idp.ne.3331.and.idp.ne.-3331)goto20
+     *.and.idp.ne.1120.and.idp.ne.-1120.and.idp.ne.1130.and.idp.ne.-1130
+     *.and.idp.ne.2230.and.idp.ne.-2230.and.idp.ne.2330.and.idp.ne.-2330
+     *.and.idp.ne.3331.and.idp.ne.-3331)goto20
       elseif(idptl(1).eq.9960)then
       if(idp.ne.120 .and.idp.ne.130 .and.idp.ne.1120.and.idp.ne.1130
-     >.and.idp.ne.-2230.and.idp.ne.-2330.and.idp.ne.-3331)goto20
+     *.and.idp.ne.-2230.and.idp.ne.-2330.and.idp.ne.-3331)goto20
       elseif(idptl(1).eq.-9960)then
       if(idp.ne.-120.and.idp.ne.-130.and.idp.ne.-1120.and.idp.ne.-1130
-     >.and.idp.ne.2230.and.idp.ne.2330.and.idp.ne.3331)goto20
+     *.and.idp.ne.2230.and.idp.ne.2330.and.idp.ne.3331)goto20
       elseif(idptl(1).eq.9950)then
       if(istptl.ne.0)goto20
       if(iabs(idp).lt.1000)goto20
@@ -18966,8 +18925,8 @@ c     --------------------------
       mksevt=mksevt+nksptl
       itrptl=1
       if(ish.ge.91
-     >.or.ish.eq.15)write(ifch,101)
-     >nevt,nptlo,idp,ycmptl,amsptl,istptl,iorptl
+     *.or.ish.eq.15)write(ifch,101)
+     *nevt,nptlo,idp,ycmptl,amsptl,istptl,iorptl
 101   format(1x,i5,i5,i11,f7.1,2x,e8.2,i4,i10)
       mscat=min(mxscat,nint(mxscat*crofac))
       if(xobsrv(4:6).eq.'ptl'.and.ioptn3.eq.4.and.nscat.lt.mscat)then
@@ -19111,8 +19070,8 @@ c     -----------------
       endif
  
       if((xobsrv(4:6).eq.'ptl'.and.itrptl.eq.1
-     >.or.xobsrv(4:6).eq.'evt'.and.itrevt.eq.1.and.lptevt.eq.1)
-     >.and.ioptn3.ne.4)then
+     *.or.xobsrv(4:6).eq.'evt'.and.itrevt.eq.1.and.lptevt.eq.1)
+     *.and.ioptn3.ne.4)then
       if(x.ge.x1.and.x.le.x2)then
       if(ioptn3.eq.1)y=y*x
       if(ioptn3.eq.2)y=y/(2*pi*x)
@@ -19177,18 +19136,18 @@ c     -----------------
  
 c     write head
 c     ----------
-95    write(ifhi,9013)fch,
-     >(das,i=1,68),float(iversn)/100,engy,laproj,maproj,latarg,matarg
-9013  format(1x,1h',69a1,1h'/1x,2h'h,4x,f4.2,4x,f9.3,4x,4i4,27x,1h')
+95    write(ifhi,1013)fch,
+     *(das,i=1,68),float(iversn)/100,engy,laproj,maproj,latarg,matarg
+1013  format(1x,1h',69a1,1h'/1x,2h'h,4x,f4.2,4x,f9.3,4x,4i4,27x,1h')
       if(maproj.eq.0)then
       do 48 n=1,99
       if(prob(n).eq.0.)goto47
-48    write(ifhi,9014)prob(n)*100
-     >,icbac(n,1),icbac(n,2),icfor(n,1),icfor(n,2)
-9014  format(1x,1h',5x,f6.2,4x,2i8,4x,2i8,18x,1h')
+48    write(ifhi,1014)prob(n)*100
+     *,icbac(n,1),icbac(n,2),icfor(n,1),icfor(n,2)
+1014  format(1x,1h',5x,f6.2,4x,2i8,4x,2i8,18x,1h')
       endif
-47    write(ifhi,9012)xobsrv,yobsrv,ntrig,nidp,npar
-9012  format(1x,1h',5x,a6,4x,a6,4x,i2,4x,i2,4x,i2,30x,1h')
+47    write(ifhi,1012)xobsrv,yobsrv,ntrig,nidp,npar
+1012  format(1x,1h',5x,a6,4x,a6,4x,i2,4x,i2,4x,i2,30x,1h')
       nmx=max0(ntrig,nidp)
       nmx=max0(nmx,npar)
       if(nmx.gt.0)then
@@ -19196,36 +19155,36 @@ c     ----------
       parv=parval(n)
       if(parval(n).ge.1000.)parv=parval(n)/1000
       if(n.le.ntrig.and.n.le.nidp.and.n.le.npar)then
-      write(ifhi,9021)trig(n),trig1(n),trig2(n),idptl(n),parcha(n)
-     >,parv
-9021  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,i5,4x,a6,f8.3,9x,1h')
+      write(ifhi,1021)trig(n),trig1(n),trig2(n),idptl(n),parcha(n)
+     *,parv
+1021  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,i5,4x,a6,f8.3,9x,1h')
       elseif(n.le.ntrig.and.n.le.nidp)then
-      write(ifhi,9022)trig(n),trig1(n),trig2(n),idptl(n)
-9022  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,i5,4x,14x    ,9x,1h')
+      write(ifhi,1022)trig(n),trig1(n),trig2(n),idptl(n)
+1022  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,i5,4x,14x    ,9x,1h')
       elseif(n.le.ntrig.and.n.le.npar)then
-      write(ifhi,9023)trig(n),trig1(n),trig2(n),parcha(n),parv
-9023  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,5x,4x,a6,f8.3,9x,1h')
+      write(ifhi,1023)trig(n),trig1(n),trig2(n),parcha(n),parv
+1023  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,5x,4x,a6,f8.3,9x,1h')
       elseif(n.le.nidp.and.n.le.npar)then
-      write(ifhi,9024)idptl(n),parcha(n),parv
-9024  format(1x,1h',5x,28x         ,4x,i5,4x,a6,f8.3,9x,1h')
+      write(ifhi,1024)idptl(n),parcha(n),parv
+1024  format(1x,1h',5x,28x         ,4x,i5,4x,a6,f8.3,9x,1h')
       elseif(n.le.ntrig)then
-      write(ifhi,9025)trig(n),trig1(n),trig2(n)
-9025  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,5x,4x,14x    ,9x,1h')
+      write(ifhi,1025)trig(n),trig1(n),trig2(n)
+1025  format(1x,1h',5x,a6,1x,e10.4,1x,e10.4,4x,5x,4x,14x    ,9x,1h')
       elseif(n.le.nidp)then
-      write(ifhi,9026)idptl(n)
-9026  format(1x,1h',5x,28x         ,4x,i5,4x,14x    ,9x,1h')
+      write(ifhi,1026)idptl(n)
+1026  format(1x,1h',5x,28x         ,4x,i5,4x,14x    ,9x,1h')
       elseif(n.le.npar)then
-      write(ifhi,9027)parcha(n),parv
-9027  format(1x,1h',5x,28x         ,4x,5x,4x,a6,f8.3,9x,1h')
+      write(ifhi,1027)parcha(n),parv
+1027  format(1x,1h',5x,28x         ,4x,5x,4x,a6,f8.3,9x,1h')
       endif
 34    continue
       endif
       write(ifhi,1003)1.*nrevt,zevt0,zcount,ioptn,crofac,first,varnce
 1003  format(1x,2h'm,4x,e9.4,1x,e9.4,1x,e9.4,2x,i3,f8.2,2f9.3,4x,1h')
       if(modana.ne.'sup')write(ifmt,1002)1.*nevt,zevt0,zcount
-     >,first,varnce
+     *,first,varnce
 1002  format(1x,'=========>   ',e9.4,1x,e9.4,1x,e9.4,1x,f9.3,1x,f9.3
-     >,'   <=========')
+     *,'   <=========')
       fch='+'
       if(mde(1:1).ne.'p')goto99
       fch='-'
@@ -19235,20 +19194,20 @@ c     --------------
       kmx=kmax
       if(ioptn3.eq.4)kmx=nscat
       if(xobsrv.eq.'iwzzzz'
-     >.or.yobsrv.eq.'iwzzzz')call wzzzzf(ioptn,kmx)
+     *.or.yobsrv.eq.'iwzzzz')call wzzzzf(ioptn,kmx)
       if(xobsrv.eq.'imihis'
-     >.or.yobsrv.eq.'imihis')call wimino(ioptn,kmx)
+     *.or.yobsrv.eq.'imihis')call wimino(ioptn,kmx)
       if(xobsrv.eq.'isphis'
-     >.or.yobsrv.eq.'isphis')call wspafi(ioptn,kmx)
+     *.or.yobsrv.eq.'isphis')call wspafi(ioptn,kmx)
       if(xobsrv.eq.'iclhis'
-     >.or.yobsrv.eq.'iclhis')call wclufi(ioptn,kmx)
+     *.or.yobsrv.eq.'iclhis')call wclufi(ioptn,kmx)
       if(xobsrv.eq.'ijphis'
-     >.or.yobsrv.eq.'ijphis')call wjpsif(ioptn,kmx)
+     *.or.yobsrv.eq.'ijphis')call wjpsif(ioptn,kmx)
       write(ifhi,1004)(das,i=1,69)
-     >,z1,z2,zi,y1,y2,yi,expmt,idpexp
-     >,mde,ili,muopt,shift,ntxt,kmx,pltfac
+     *,z1,z2,zi,y1,y2,yi,expmt,idpexp
+     *,mde,ili,muopt,shift,ntxt,kmx,pltfac
 1004  format(1x,1h',69a1,1h'/1x,6f8.2,2x,1h',a5,1h',i11
-     >/4x,1h',a3,1h',3x,1h',a6,1h',3x,1h',a13,1h',f8.2,2i6,f10.4)
+     */4x,1h',a3,1h',3x,1h',a6,1h',3x,1h',a13,1h',f8.2,2i6,f10.4)
       if(expmt(1:2).eq.'fi')then
       write(ifhi,1006)(das,i=1,69)
 1006  format(1x,1h',69a1,1h')
@@ -19266,7 +19225,7 @@ c     --------------
       zer=0
       do 36 k=1,kmx
       if(ioptn3.eq.4
-     >.and.xobsrv(4:6).ne.'his'.and.yobsrv(4:6).ne.'his')then
+     *.and.xobsrv(4:6).ne.'his'.and.yobsrv(4:6).ne.'his')then
       write(ifhi,1005)k,arscat(k,1),zer,arscat(k,2),zer,zer
       else
       write(ifhi,1005)k,(ar(k,j),j=1,5)
@@ -19305,16 +19264,16 @@ c          n=37,60:  # of clusters corr to n=13,36 (for norm.)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer ifuptl(mxptl)
       parameter(nclu=60,kclu=25)
       common/cclu/arclu(nclu,kclu),aclu(kclu)
@@ -19333,12 +19292,12 @@ c-----------------------------------------------------------------------
 44    arclu(n,k)=0
       endif
  
-      do 11 i=1,nptl
+      do 1 i=1,nptl
       ifuptl(i)=0
-      if(istptl(i).ne.1.or.iorptl(i).eq.-1)goto11
+      if(istptl(i).ne.1.or.iorptl(i).eq.-1)goto1
          if(ifrptl(1,i).ne.0.and.istptl(ifrptl(1,i)).ne.2)then
       if(ifrptl(2,i).lt.ifrptl(1,i))
-     >call utstop('wclu: ifrptl2<ifrptl1                   ')
+     *call utstop('wclu: ifrptl2<ifrptl1                   ')
       en=pptl(4,i)
       do 2 j=ifrptl(1,i),ifrptl(2,i)
 2     en=en-pptl(4,j)
@@ -19353,14 +19312,14 @@ c-----------------------------------------------------------------------
          else
       ifuptl(i)=2
          endif
- 11   continue
+1     continue
  
       if(ish.eq.10)then
       write(ifch,101)('-',i=1,16)
 101   format(/1x,'ptl list in wclu'/1x,16a1/)
       do 10 i=1,nptl
 10    write(ifch,100)i,idptl(i),ifuptl(i)
-     >,iorptl(i),jorptl(i),ifrptl(1,i),ifrptl(2,i),istptl(i)
+     *,iorptl(i),jorptl(i),ifrptl(1,i),ifrptl(2,i),istptl(i)
 100   format(1x,i4,i10,i6,7x,2i4,7x,2i4,i8)
       write(ifch,*)' '
       endif
@@ -19385,42 +19344,42 @@ c-----------------------------------------------------------------------
          if(k.ge.1.and.k.le.kclu)then
       if(nqi.eq.0.and.nqj.eq.0)       arclu( 1,k)=arclu( 1,k)+1
       if(nqi.eq.0.and.nqj.eq.3
-     >.or.nqj.eq.0.and.nqi.eq.3)      arclu( 2,k)=arclu( 2,k)+1
+     *.or.nqj.eq.0.and.nqi.eq.3)      arclu( 2,k)=arclu( 2,k)+1
       if(nqi.eq.3.and.nqj.eq.3)       arclu( 3,k)=arclu( 3,k)+1
       if(nqi.eq.0.and.nqj.eq.-3
-     >.or.nqj.eq.0.and.nqi.eq.-3)     arclu( 4,k)=arclu( 4,k)+1
+     *.or.nqj.eq.0.and.nqi.eq.-3)     arclu( 4,k)=arclu( 4,k)+1
       if(nqi.eq.3.and.nqj.eq.-3
-     >.or.nqj.eq.3.and.nqi.eq.-3)     arclu( 5,k)=arclu( 5,k)+1
+     *.or.nqj.eq.3.and.nqi.eq.-3)     arclu( 5,k)=arclu( 5,k)+1
       if(idi.eq.1120.and.idj.eq.1120) arclu( 6,k)=arclu( 6,k)+1
       if(idi.eq.1120.and.idj.eq.2130
-     >.or.idj.eq.1120.and.idi.eq.2130)arclu( 7,k)=arclu( 7,k)+1
+     *.or.idj.eq.1120.and.idi.eq.2130)arclu( 7,k)=arclu( 7,k)+1
       if(nqi.eq.0.and.nsi.eq.1
-     >.and.nqj.eq.3.and.nsj.eq.0
-     >.or.nqj.eq.0.and.nsj.eq.1
-     >.and.nqi.eq.3.and.nsi.eq.0)     arclu( 8,k)=arclu( 8,k)+1
+     *.and.nqj.eq.3.and.nsj.eq.0
+     *.or.nqj.eq.0.and.nsj.eq.1
+     *.and.nqi.eq.3.and.nsi.eq.0)     arclu( 8,k)=arclu( 8,k)+1
       if(nqi.eq.0.and.nsi.eq.0
-     >.and.nqj.eq.3.and.nsj.eq.1
-     >.or.nqj.eq.0.and.nsj.eq.0
-     >.and.nqi.eq.3.and.nsi.eq.1)     arclu( 9,k)=arclu( 9,k)+1
+     *.and.nqj.eq.3.and.nsj.eq.1
+     *.or.nqj.eq.0.and.nsj.eq.0
+     *.and.nqi.eq.3.and.nsi.eq.1)     arclu( 9,k)=arclu( 9,k)+1
       if(nqi.eq.0.and.nsi.eq.0
-     >.and.nqj.eq.-3.and.nsj.eq.-1
-     >.or.nqj.eq.0.and.nsj.eq.0
-     >.and.nqi.eq.-3.and.nsi.eq.-1)   arclu(10,k)=arclu(10,k)+1
+     *.and.nqj.eq.-3.and.nsj.eq.-1
+     *.or.nqj.eq.0.and.nsj.eq.0
+     *.and.nqi.eq.-3.and.nsi.eq.-1)   arclu(10,k)=arclu(10,k)+1
       if(nqi.eq.0.and.nsi.eq.-1
-     >.and.nqj.eq.-3.and.nsj.eq.0
-     >.or.nqj.eq.0.and.nsj.eq.-1
-     >.and.nqi.eq.-3.and.nsi.eq.0)    arclu(11,k)=arclu(11,k)+1
+     *.and.nqj.eq.-3.and.nsj.eq.0
+     *.or.nqj.eq.0.and.nsj.eq.-1
+     *.and.nqi.eq.-3.and.nsi.eq.0)    arclu(11,k)=arclu(11,k)+1
       if(nqi.eq.0.and.nsi.eq.0
-     >.and.nqj.eq.-3.and.nsj.eq.0
-     >.or.nqj.eq.0.and.nsj.eq.0
-     >.and.nqi.eq.-3.and.nsi.eq.0)    arclu(12,k)=arclu(12,k)+1
+     *.and.nqj.eq.-3.and.nsj.eq.0
+     *.or.nqj.eq.0.and.nsj.eq.0
+     *.and.nqi.eq.-3.and.nsi.eq.0)    arclu(12,k)=arclu(12,k)+1
          endif
 3     continue
  
       do 4 i=1,nptl
       if(ifuptl(i).eq.0)goto4
       if(ish.ge.90
-     >.or.ish.eq.10)then
+     *.or.ish.eq.10)then
       call utmsg('jclu  ')
       write(ifch,*)'*****  ifuptl .ne. 0.'
       write(ifch,*)'i,ifuptl(i): ',i,ifuptl(i)
@@ -19473,7 +19432,7 @@ c-----------------------------------------------------------------------
       do 6 j=ifrptl(1,ipo),ifrptl(2,ipo)
       nco=nco+1
       if(nco.gt.ncomx)
-     >call utstop('wclu: ncomx too small. increase dim.    ')
+     *call utstop('wclu: ncomx too small. increase dim.    ')
 6     iar(nco)=j
       goto7
          else
@@ -19500,14 +19459,14 @@ c     analysis. cluster (resonance) formation and decay. normalization.
 c     0 <= n <= 36, meaning of n see initial comment in subr wclu.
 c-----------------------------------------------------------------------
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter(nclu=60,kclu=25)
       common/cclu/arclu(nclu,kclu),aclu(kclu)
       parameter(kmaxmx=10000)
       common/canar/ar(kmaxmx,5)
       kmx=kclu
       da=aclu(2)-aclu(1)
-      do  k=1,kclu
+      do 1 k=1,kclu
       ar(k,1)=aclu(k)
       if(n.ge.1.and.n.le.12.and.arclu(n,k).gt.0.)then
       ar(k,3)=arclu(n,k)/nrevt/da
@@ -19518,7 +19477,7 @@ c-----------------------------------------------------------------------
       elseif(arclu(n,k).gt.0.)then
       call utstop('wclufi: only optn 1-36 possible.        ')
       endif
-      enddo
+1     continue
       return
       end
  
@@ -19527,19 +19486,19 @@ c-----------------------------------------------------------------------
 c     analysis. calculates factorial moments.
 c-----------------------------------------------------------------------
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       integer nhis(32)
       double precision afacmo,dfacmo
       common /cfacmo/afacmo(5,32)
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       common/cwimiy/ymin,ymax
       integer ifacmo(5)
       ymin=-ymximi
@@ -19583,7 +19542,7 @@ c-----------------------------------------------------------------------
 c     analysis. normalizes factorial moments.
 c-----------------------------------------------------------------------
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cnsta/pi,prom,piom,ainfin
       double precision afacmo,f1,fm
       common /cfacmo/afacmo(5,32)
@@ -19606,18 +19565,18 @@ c-----------------------------------------------------------------------
 c     jpsi analysis.
 c-----------------------------------------------------------------------
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter (njpsi=50)
       common /cjpsi/xjpsi(njpsi),yjpsi(njpsi),zjpsi(njpsi)
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       double precision tpro,zpro,ttar,ztar,ttaus,detap,detat
       common/cttaus/tpro,zpro,ttar,ztar,ttaus,detap,detat /ctain/mtain
       detap=(ypjtl-yhaha)*.6667
@@ -19639,9 +19598,9 @@ c-----------------------------------------------------------------------
 4     zjpsi(nt)=0
       endif
  
-      do i=1,nptl
-       if(idptl(i).eq.441)j=i
-      enddo
+      do 1 i=1,nptl
+      if(idptl(i).eq.441)j=i
+1     continue
  
       do 2 nt=1,njpsi
       ttaus=xjpsi(nt)
@@ -19656,7 +19615,7 @@ c-----------------------------------------------------------------------
       gam2i=1-pde**2
       if(gam2i.eq.0.)goto3
       if((x-xj)**2+(y-yj)**2+1/gam2i*(z-zj-(t-tj)*pde)**2
-     >.gt.radsqr)goto3
+     *.gt.radsqr)goto3
       yjpsi(nt)=yjpsi(nt)+1
 3     continue
 2     continue
@@ -19669,21 +19628,21 @@ c-----------------------------------------------------------------------
 c     jpsi analysis. normalized histogram -> /canar/
 c-----------------------------------------------------------------------
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter(kmaxmx=10000)
       common/canar/ar(kmaxmx,5)
       parameter (njpsi=50)
       common /cjpsi/xjpsi(njpsi),yjpsi(njpsi),zjpsi(njpsi)
  
-      do i=1,njpsi
+      do 1 i=1,njpsi
       ar(i,1)=xjpsi(i)
       ar(i,2)=0
       if(zjpsi(i).eq.0.)ar(i,3)=0.
       if(zjpsi(i).ne.0.)ar(i,3)=yjpsi(i)/zjpsi(i)
       ar(i,4)=0
       ar(i,5)=zjpsi(i)/nrevt
-      enddo
-
+1     continue
+ 
       kmx=njpsi
  
       return
@@ -19702,29 +19661,29 @@ c        k: meson (1) or baryon (2)  (for iwcent=1: only k=1 filled)
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       common/cnsta/pi,prom,piom,ainfin
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/paro2/nevent,modsho,engy,pnll,pnllx,yhaha,ish,ichoic,prosea
-     >,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
-     >,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
-     >,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
-     >,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
+     *,laproj,maproj,latarg,matarg,prob(99),icbac(99,2),icfor(99,2),ivi
+     *,istmax,ipagi,jpsi,jpsifi,isup,ndecay,elepti,elepto,angmue,ishsub
+     *,idproj,idtarg,amproj,amtarg,ypjtl,imihis,isphis,rhophi,iclhis
+     *,ijphis,ientro,kutdiq,ishevt,idpm,taurea,ispall,ymximi,ndecax
       parameter (nspaz=51,nspat=9)
       common /cspati/dspa(nspaz,nspat,2),cspa(nspaz,nspat,2)
-     >,espa(nspaz,nspat,2),pspa(nspaz,nspat,2),tspa(nspaz,nspat,2)
-     >,aspa(nspaz,nspat,2),px2spa(nspaz,nspat,2),py2spa(nspaz,nspat,2)
-     >,zspa(nspaz),sspa(nspaz,nspat,2),atra,dznull
+     *,espa(nspaz,nspat,2),pspa(nspaz,nspat,2),tspa(nspaz,nspat,2)
+     *,aspa(nspaz,nspat,2),px2spa(nspaz,nspat,2),py2spa(nspaz,nspat,2)
+     *,zspa(nspaz),sspa(nspaz,nspat,2),atra,dznull
       parameter (mxptl=150000)
       common/cptl/nptl,pptl(5,mxptl),iorptl(mxptl),idptl(mxptl)
-     >,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
-     >,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
+     *,istptl(mxptl),tivptl(2,mxptl),ifrptl(2,mxptl),jorptl(mxptl)
+     *,xorptl(4,mxptl),ibptl(4,mxptl),iclptl(mxptl),nqjptl(mxptl)
       integer ibaptl(mxptl),iacptl(mxptl),ntbptl(mxptl),ntsptl(mxptl)
       real amiptl(mxptl)
       parameter (nflav=6)
@@ -19847,7 +19806,7 @@ c     ------------------
       if(k1.le.k2)then
       n=ifr(k1)
       if(iacptl(n).ne.0)
-     >call utstop('wspa  : should not happen               ')
+     *call utstop('wspa  : should not happen               ')
       goto31
       endif
  
@@ -19893,7 +19852,7 @@ c     -----------------
       if(k1.le.k2)then
       n=ifr(k1)
       if(iacptl(n).ne.0)
-     >call utstop('wspa  : should not happen (2)           ')
+     *call utstop('wspa  : should not happen (2)           ')
       goto12
       endif
  
@@ -19914,21 +19873,21 @@ c               dc:time
 c-----------------------------------------------------------------------
       common/files/ifop,ifmt,ifch,ifhi,ifdt
       common/paro1/ptmx,gaumx,sigppi,core,fctrmx,neqmn,iaqu,qmust,cutmsq
-     >,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
-     >,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
-     >,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
-     >,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
-     >,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
-     >,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
+     *,taunll,maxres,ptf,ptq,xcut,ioptq,irescl,ko1ko2,kentro,labsys
+     *,ntrymx,delmss,pud,pspinl,pspinh,pispn,ncolmx,tensn,bmaxim,bminim
+     *,cutmss,qvapc,qvatc,qsepc,qsetc,rstras,neqmx,taumx,nsttau,sigj
+     *,pdiqua,parea,delrem,taumin,taumax,numtau,overlp,iopenu,iopent
+     *,themas,amsiac,wproj,wtarg,iopbrk,ndecaw,radiac,radias,nclean
+     *,ifrade,amprif,iojint,pth,pvalen,wtmini,wtstep,iwcent,phard,ioptf
       common/accum/imsg,jerr,ntevt,nrevt,naevt,nrstr,nrptl,amsac,ipage
-     >,inoiac,ilamas
+     *,inoiac,ilamas
       parameter(kmaxmx=10000)
       common/canar/ar(kmaxmx,5)
       parameter (nspaz=51,nspat=9)
       common /cspati/dspa(nspaz,nspat,2),cspa(nspaz,nspat,2)
-     >,espa(nspaz,nspat,2),pspa(nspaz,nspat,2),tspa(nspaz,nspat,2)
-     >,aspa(nspaz,nspat,2),px2spa(nspaz,nspat,2),py2spa(nspaz,nspat,2)
-     >,zspa(nspaz),sspa(nspaz,nspat,2),atra,dznull
+     *,espa(nspaz,nspat,2),pspa(nspaz,nspat,2),tspa(nspaz,nspat,2)
+     *,aspa(nspaz,nspat,2),px2spa(nspaz,nspat,2),py2spa(nspaz,nspat,2)
+     *,zspa(nspaz),sspa(nspaz,nspat,2),atra,dznull
       real vav(nspaz),rav(nspaz),pz2(nspaz)
  
       kmx=nspaz
@@ -19947,12 +19906,12 @@ c-----------------------------------------------------------------------
 44    continue
  
       rewind ifdt
- 10   read(ifdt,end=2)nr,i,js,ks,ps,es
+1     read(ifdt,end=2)nr,i,js,ks,ps,es
       if(js.eq.j.and.ks.eq.k)then
       p=-sinh(rav(i))*es+cosh(rav(i))*ps
       pz2(i)=pz2(i)+p**2
       endif
-      goto 10
+      goto1
 2     continue
  
       do 45 i=1,nspaz
@@ -19965,7 +19924,7 @@ c-----------------------------------------------------------------------
       gma=1./sqrt(1-vav(i)**2)
       den=(dspa(i,j,k)-cspa(i,j,k)*vav(i))*gma*ano
       ede=(espa(i,j,k)-2*pspa(i,j,k)*vav(i)+tspa(i,j,k)*vav(i)**2)*
-     >gma**2*ano
+     *gma**2*ano
       if(m.eq.1)ar(i,3)=vav(i)
       if(m.eq.2)ar(i,3)=rav(i)
       if(m.eq.3)ar(i,3)=den

@@ -1,6 +1,6 @@
       Subroutine track_gen(gpid,N,model_type,T,sigma,expvel,
-     >     pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
-     >     phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
+     1     pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
+     2     phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
       implicit none
 #include "multi_gen.inc"
       Common/track/ pout(npid,3,factorial_max)
@@ -37,7 +37,7 @@ CCC  Determine maximum value of model distribution in (pt,eta) range:
             eta = eta_cut_min + deta*float(ieta - 1)
             y   = rapidity(mass,pt,eta)
             dNdp = dNdpty(1.0,pt,eta,y,mass,T,sigma,expvel,
-     >                    model_type,1,pid)
+     1                    model_type,1,pid)
             if(dNdp .gt. facmax) facmax = dNdp
          end do
       end do
@@ -62,11 +62,11 @@ CCC Start Random Track Selection:
       eta_trial=rndm(-1)*(eta_cut_max-eta_cut_min)+eta_cut_min
       y_trial = rapidity(mass,pt_trial,eta_trial)
       dNdp = dNdpty(1.0,pt_trial,eta_trial,y_trial,mass,T,sigma,
-     >       expvel,model_type,1,pid)/facmax 
+     1       expvel,model_type,1,pid)/facmax 
       if(rndm(-1) .le. dNdp) then
          Track_count = Track_count + 1
          phi = (rndm(-1)*(phi_cut_max - phi_cut_min) + 
-     >         phi_cut_min)/rad
+     1         phi_cut_min)/rad
          Call kinematics(mass,pt_trial,y_trial,phi,Track_count,pid)
          if(Track_count .lt. N) then
             go to 100
@@ -231,7 +231,7 @@ CCC   If kind = 2, then eta bin number is located.
          index_locate = n_pt_bins(pid)
          write(8,10) pid,arg
 10       Format(//10x,'In Function index_locate, for pid = ',I5,
-     >   'pt  =',E15.6,' is out of range - use last bin #')
+     1   'pt  =',E15.6,' is out of range - use last bin #')
          Return
 
       else if(kind .eq. 2) then
@@ -245,7 +245,7 @@ CCC   If kind = 2, then eta bin number is located.
          index_locate = n_eta_bins(pid)
          write(8,11) pid,arg
 11       Format(//10x,'In Function index_locate, for pid = ',I5,
-     >   'eta =',E15.6,' is out of range - use last bin #')
+     1   'eta =',E15.6,' is out of range - use last bin #')
          Return
 
       end if
@@ -263,7 +263,7 @@ CCC   If kind = 2, then eta bin number is located.
          expR = exp(x)
       end if
 10    Format(///10x,'Func. expR(x) called with x = ',E15.6,
-     >    ', gt 69.0 - STOP')
+     1    ', gt 69.0 - STOP')
       Return
       END
 
@@ -409,13 +409,13 @@ C
       GO TO 240
   200 CONTINUE
       DO 210 N=1,NFS
-  210 Y(N)=CM2*VAL(N,N0-2)+CM1*VAL(N,N0-1)+C0*VAL(N,N0)+C1*VAL(N,N0+1)+
-     >     C2*VAL(N,N0+2)
+  210 Y(N)=CM2*VAL(N,N0-2)+CM1*VAL(N,N0-1)+C0*VAL(N,N0)+C1*VAL(N,N0+1)+C
+     12*VAL(N,N0+2)
       GO TO 240
   220 CONTINUE
       DO 230 N=1,NFS
-  230 Y(N)=CM2*VAL(N,N0-2)+CM1*VAL(N,N0-1)+C0*VAL(N,N0)+C1*VAL(N,N0+1)+
-     >     C2*VAL(N,N0+2)+C3*VAL(N,N0+3)
+  230 Y(N)=CM2*VAL(N,N0-2)+CM1*VAL(N,N0-1)+C0*VAL(N,N0)+C1*VAL(N,N0+1)+C
+     12*VAL(N,N0+2)+C3*VAL(N,N0+3)
   240 RETURN
 C
       END
@@ -486,7 +486,7 @@ CCC   Compute Poisson distribution from n = min to max:
       do i = 1,nsteps
       n = (i - 1) + min
       Poisson_dist(i) = expR(-mean_real + float(n)*mean_real_log
-     >      - FACLOG(n+1))
+     1      - FACLOG(n+1))
       end do
 
 CCC   Integrate the Poisson distribution:

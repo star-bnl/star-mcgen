@@ -1,7 +1,7 @@
-* $Id: begcosm.F,v 1.3 1999/10/08 22:24:09 nevski Exp $
+* $Id: begcosm.F,v 1.4 1999/10/09 22:38:03 nevski Exp $
 * $Log: begcosm.F,v $
-* Revision 1.3  1999/10/08 22:24:09  nevski
-* pgf->g77
+* Revision 1.4  1999/10/09 22:38:03  nevski
+* pgf-> g77 cleanup
 *
 * Revision 1.2  1998/02/14 23:02:38  fisyak
 * Split Fortran sources
@@ -20,7 +20,7 @@
       Implicit none
 *..Include:
 *..Input:
-      Integer D_Mode            ! Data mode (2 or 23=event (See hemicosm.F)
+      Integer D_Mode            ! Data mode (2 or 23=event, See hemicosm.F)
       Integer P_Mode            ! Momentum mode            (See hemicosm.F)
       Real*4 P_Min,P_Max        ! Momentum range           (See hemicosm.F)
       Real*4 Det_Len,Det_Rad,Det_Off ! Detector dimensions (See hemicosm.F)
@@ -57,7 +57,7 @@
             
         C1p  ='COSM'            !Function routine indentafier
         Imo  =-97               !Process ID Number        
-        Hepid=(-13)*Charge      !+13 for muons (mu-)  -13 for Antimuons (mu+)
+        Hepid=(-13)*Charge      !+13 for muons (mu-), -13 for Antimuons (mu+)
         Ptot =p                 !Total Momemtum
         Cost =Cos(Theta)        !Trajectory in Cosine Theta 
         Phir =Phi               !Trajectory in Phi(Radians)
