@@ -1,7 +1,10 @@
 *
-* $Id: headpss.inc,v 1.3 1998/04/03 18:58:46 longacre Exp $
+* $Id: headpss.inc,v 1.4 1998/04/22 13:24:53 longacre Exp $
 *
 * $Log: headpss.inc,v $
+* Revision 1.4  1998/04/22 13:24:53  longacre
+* correcting headpss.inc
+*
 * Revision 1.3  1998/04/03 18:58:46  longacre
 * change order of ifirst in headpss.inc
 *
@@ -40,13 +43,13 @@
 * 70 VNI     : NOAFTER : MINBIAS 
 * 71 VNI     : AFTER   : MINBIAS 
 * 72 VNI     : NOAFTER : CENTRAL 
-* 73 VNI     : NOAFTER : CENTRAL 
+* 73 VNI     : AFTER   : CENTRAL 
 * 74 VNI     : NOAFTER : JET
-* 75 VNI     : NOAFTER : JET
+* 75 VNI     : AFTER   : JET
 * 76 VNI     : NOAFTER : PHOTON
-* 77 VNI     : NOAFTER : PHOTON
+* 77 VNI     : AFTER   : PHOTON
 * 78 VNI     : NOAFTER : CHIRAL
-* 79 VNI     : NOAFTER : CHIRAL
+* 79 VNI     : AFTER   : CHIRAL
 * 80 VNI     : CENTRAL : MEV
 * PSSHEP(4) = ENERGY OF N N CMS
 * PSSHEP(5) = Awest.Aeast  p p  =  1.1 or Au Au = 197.197
