@@ -63,10 +63,8 @@ CCC#include "headpss.inc"
 *
 *       open ( lout, file=output_file, status='unknown'
 *
-       PSSHEP(1) = float(iap)
-       PSSHEP(2) = float(izp)
-       PSSHEP(3) = float(iat)
-       PSSHEP(4) = float(izt)
+       PSSHEP(2) = float(iap)
+       PSSHEP(4) = float(iat)
        PSSHEP(5) = efrm
 
 *

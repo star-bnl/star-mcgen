@@ -1,11 +1,11 @@
 '  ====================================================== '   
 '  =====         Hijing Control file                ===== '   
 '  ====================================================== ' 
-' Events                          '  1
+' Events                          '  1000
 ' Frame/Energy                    '  'CMS'  200.              
-' Projectile  type/A/Z            '  'A'  197 79              
+' Projectile  type/A/Z            '  'A'  2 1              
 ' Target      type/Z/Z            '  'A'  197 79         
-' Impact parameter min/max (fm)   '  0.   1.                  
+' Impact parameter min/max (fm)   '  0.   6.                  
 ' Jet quenching (1=yes/0=no)      '  0                        
 ' Hard scattering/pt jet          '  0   2.0                   
 ' Max # jets per nucleon (D=10)   '  10                        
