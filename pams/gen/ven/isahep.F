@@ -13,9 +13,14 @@ C Returns the HEP ID of stable particles starting with ISEJET ID
         ISIGN = 1
         IAISA = IABS(IDISA)
         IF(IAISA.NE.IDISA) ISIGN = -1
-        IF(IAISA.LT.99) THEN
+        IF(IAISA.LT.19) THEN
           IOFF = -9
           GO TO 1000
+        ENDIF
+        IF(IAISA.EQ.20) THEN
+          ISAHEP=130
+          IF(ISIGN.LT.0) ISAHEP=310
+          RETURN
         ENDIF
         IF(IAISA.LT.199) THEN
           IOFF = -102
