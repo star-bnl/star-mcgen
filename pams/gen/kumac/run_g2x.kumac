@@ -3,10 +3,8 @@
 * * contains kumacs for the pam: g2x
 * **********************************************
  macro run
- macro/global/import *   
 
  ami/module/call gst2xdf_
-   [evgen]/particle
+   /dui/evgen/particle
  return
-
 * ****************************************

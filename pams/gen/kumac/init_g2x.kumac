@@ -4,9 +4,8 @@
 * **********************************************
  
  macro init
- macro/global/import *   
    
- cd [evgen]
+ cd /dui/evgen
  
   tdm/newtable particle particle 30000
 

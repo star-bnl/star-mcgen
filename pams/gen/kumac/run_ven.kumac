@@ -3,8 +3,7 @@
 * * contains kumacs for the pam: ven
 * **********************************************
  macro run
- macro/global/import *
  ami/module/call venus_
-   [evgen]/particle
+   /dui/evgen/particle
  return
 * ****************************************

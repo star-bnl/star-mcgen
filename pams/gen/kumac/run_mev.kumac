@@ -3,8 +3,7 @@
 * * contains kumacs for the pam: mev
 * **********************************************
  macro run
- macro/global/import *
  ami/module/call mevsim_
-   [evgen]/particle
+   /dui/evgen/particle
  return
 * *******************************************

@@ -3,10 +3,8 @@
 * * contains kumacs for the pam: hij
 * **********************************************
  macro run 
- macro/global/import *
  ami/module/call hijjet_
-   [evgen]/particle
+   /dui/evgen/particle
  return
-
  
 * ************************************************
