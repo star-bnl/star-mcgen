@@ -1,5 +1,8 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
+*Revision 1.6  1999/08/14 00:02:46  fisyak
+*unify hepevt
+*
 *Revision 1.5  1998/04/03 20:14:32  longacre
 *change how tells too many particles
 *
@@ -223,7 +226,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 *: ROUTINE:    MEVSIM
 *:>--------------------------------------------------------------------
 #include "mevsim.inc"
-#include "mevcdes/hepevt.inc"
+#include "hepevt.inc"
 #include "mevcdes/headpss.inc"
 C---------------------------------------------------------------------
       DOUBLE PRECISION HEPMASS
