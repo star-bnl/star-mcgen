@@ -1,5 +1,8 @@
-* $Id: hijjet.f,v 1.6 2003/05/05 16:10:37 longacre Exp $
+* $Id: hijjet.f,v 1.7 2003/05/05 20:25:22 longacre Exp $
 * $Log: hijjet.f,v $
+* Revision 1.7  2003/05/05 20:25:22  longacre
+* put bin. coll wounded proj wounded targ in ipdg=999996
+*
 * Revision 1.6  2003/05/05 16:10:37  longacre
 * resonance istat code were 11 now are 2
 *
@@ -63,7 +66,7 @@ CCCC#include "himevt2.inc"
       REAL px, py, pz, theta, HMEMOR, PP(4) 
       INTEGER I, J, IK, IP, id, imo(2), idau(2), matt,ksptt
 *
-      INTEGER ii, nd1, nd2, mm, ll, km, ISTAT, jj
+      INTEGER ii, nd1, nd2, mm, ll, km, ISTAT, jj, ISPP
       INTEGER nd3, nd4, nd5, nd6, nd7, nd8, idtst
       INTEGER nd9, nd10, nd11, nd12, njets, njetp
 C
@@ -341,13 +344,28 @@ CCCCC          WRITE(6,888) natt
         END DO
         endif
 CCCCC          WRITE(6,888) natt
-         vsshep(3)=float(N0+N01+N10+N11)
-         PSSHEP(1)=FLOAT(NP)
-         PSSHEP(3)=FLOAT(NT)
+         vsshep(3)=njets
 C--
        CALL HEPEvent('hijing',IRUN,NATT,vsshep(1),vsshep(2),psshep(5)
       1,vsshep(3),psshep(1),psshep(2),psshep(3),psshep(4))
-        ik = 0
+CCCCCC       CALL HepInfo(N0+N01+N10+N11,NP,NT,njets)
+        ik=NATT
+        ISTAT=11
+        ISPP=999996
+        imo(1)=0
+        imo(2)=0
+        idau(1)=0
+        idau(2)=0
+        P(1)=FLOAT(N0+N01+N10+N11)
+        P(2)=FLOAT(NP)
+        P(3)=FLOAT(NT)
+        E=FLOAT(njets)       
+        V(1)  = 0.        
+        V(2)  = 0.        
+        V(3)  = 0.        
+        AMASS=3.0
+      CALL HEPPart(ik,ISTAT,ISPP,imo,idau,P,E,AMASS,V,X4) 
+        ik=0
         DO IP = 1, NATT
         ik = ik + 1
         ISTAT=katt(ip,4)
