@@ -1,0 +1,15 @@
+MACRO venus [N]=1
+RNDM  5289287  6745221
+cd /dui
+mkdir evgen
+newfilestream genout genoutput.xdf w
+cd evgen
+make gen/ven
+tdm/newtable particle particle 30000
+cd /dui
+DO I=1,[N]
+ami/mod/call venus evgen/particle
+table/print  evgen/particle
+dio/stream/putevent genout evgen
+ENDDO
+dio/stream/close genout
