@@ -9,7 +9,7 @@ C     Approximately, dn/dEgamma=int_2RtoInf(dn/dEgamma db)
       include 'D2LParam.inc'
       DOUBLE PRECISION Egamma
       DOUBLE PRECISION dide(1:100),lnE1,lnE2,dlnE,lnElt
-      DOUBLE PRECISION y1(1:100),y2(1:100),y4(1:100)
+      DOUBLE PRECISION y0(1:100),y1(1:100),y2(1:100),y4(1:100)
       DOUBLE PRECISION z1(1:100),z2(1:100)
       INTEGER Icheck
       INTEGER I,Ilt,Igt
@@ -18,7 +18,33 @@ C     Approximately, dn/dEgamma=int_2RtoInf(dn/dEgamma db)
 
       DATA Icheck/0/
 C     >> Integrated Values of dI/dEgamma
-C     >> Au+Au at RHIC
+c     >>Au+Au at RHIC(gamma=70)
+      DATA y0/	0.183314E+03,0.180394E+03,0.177475E+03,0.174555E+03,
+     $		0.171636E+03,0.168716E+03,0.165797E+03,0.162877E+03,
+     $		0.159958E+03,0.157038E+03,0.154119E+03,0.151199E+03,
+     $		0.148280E+03,0.145361E+03,0.142442E+03,0.139522E+03,
+     $		0.136603E+03,0.133685E+03,0.130766E+03,0.127847E+03,
+     $		0.124929E+03,0.122011E+03,0.119093E+03,0.116176E+03,
+     $		0.113259E+03,0.110342E+03,0.107427E+03,0.104512E+03,
+     $		0.101598E+03,0.986846E+02,0.957729E+02,0.928628E+02,
+     $		0.899544E+02,0.870483E+02,0.841447E+02,0.812442E+02,
+     $		0.783473E+02,0.754548E+02,0.725672E+02,0.696857E+02,
+     $		0.668113E+02,0.639501E+02,0.610889E+02,0.582440E+02,
+     $		0.554126E+02,0.525970E+02,0.497997E+02,0.470237E+02,
+     $		0.442725E+02,0.415499E+02,0.388604E+02,0.362088E+02,
+     $		0.336008E+02,0.310423E+02,0.285400E+02,0.261012E+02,
+     $		0.237336E+02,0.214456E+02,0.192455E+02,0.171422E+02,
+     $		0.151444E+02,0.132607E+02,0.114987E+02,0.986577E+01,
+     $		0.836753E+01,0.700825E+01,0.579023E+01,0.471361E+01,
+     $		0.377611E+01,0.297303E+01,0.229726E+01,0.173953E+01,
+     $		0.128880E+01,0.932689E+00,0.658122E+00,0.451909E+00,
+     $		0.301340E+00,0.194681E+00,0.121548E+00,0.731318E-01,
+     $		0.422708E-01,0.233904E-01,0.123427E-01,0.618431E-02,
+     $		0.292822E-02,0.130335E-02,0.542173E-03,0.209442E-03,
+     $		0.746097E-04,0.243219E-04,0.719480E-05,0.191364E-05,
+     $		0.453042E-06,0.944190E-07,0.171144E-07,0.266246E-08,
+     $		0.350347E-09,0.383777E-10,0.343902E-11,0.247332E-12/
+C     >> Au+Au at RHIC (gamma=108)
       DATA y1/0.195994E+03,0.193074E+03,0.190155E+03,0.187235E+03,
      &        0.184315E+03,0.181396E+03,0.178476E+03,0.175556E+03,
      &	      0.172637E+03,0.169717E+03,0.166798E+03,0.163878E+03,
@@ -169,14 +195,27 @@ C       >> Au at RHIC
         lnE1 = -6.85
         lnE2 =  3.22
         dlnE=(lnE2-lnE1)/100.
-        DO I=1,100
-          dide(I)=y1(I)
-        ENDDO
+	if (gamma_em.eq.70.0) then
+          DO I=1,100
+            dide(I)=y0(I)
+          ENDDO
+	elseif (gamma_em.eq.108.4) then
+          DO I=1,100
+            dide(I)=y1(I)
+          ENDDO
+	else
+	  write(*,*) "No flux parametrization for this value of gamma.
+     $    Using parametrization for gamma = 108.4."
+          DO I=1,100
+            dide(I)=y1(I)
+          ENDDO
+	endif
       ELSEIF( Z.eq.53 )THEN
 C       >> I at RHIC
         lnE1 = -6.85
         lnE2 =  3.22
         dlnE=(lnE2-lnE1)/100.
+	write(*,*) "Using flux parametrization for gamma = 108.4."
         DO I=1,100
           dide(I)=y2(I)
         ENDDO
@@ -193,6 +232,7 @@ C       >> Si at RHIC
         lnE1 = -6.85
         lnE2 =  3.22
         dlnE=(lnE2-lnE1)/100.
+	write(*,*) "Using flux parametrization for gamma = 108.4."
         DO I=1,100
           dide(I)=y4(I)
         ENDDO

@@ -112,6 +112,7 @@ c       define masses, widths and spins
 
 c	set gamma_ta and gamma_em equal
 	gamma_ta = gamma_em
+
 c	define luminosities, etc.
        	IF(Z.eq.79) THEN
            lum=2.
@@ -156,8 +157,11 @@ c	define rapidities, max photon energy
       	IF( Z.eq.79 .or. Z.eq.53 .or. Z.eq.29 .or. Z.eq.14 .or. 
      &		Z.eq.8 )THEN
 C       >> At RHIC
-           Ymin  =  -5.6
-           Ytop  =   5.6
+c           Ymin  =  -5.6
+c           Ytop  =   5.6
+c	remove hard-wired value
+           Ymin  =  -ymax
+           Ytop  =   ymax
            EgMax =  25.0
       	ENDIF
       	IF( Z.eq.82 .or. Z.eq.20 )THEN

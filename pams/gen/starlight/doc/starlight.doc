@@ -60,7 +60,8 @@ needs.
 79	// atomic number of the colliding ions (symmetric 
 	collisions are assumed)
 197	// atomic mass of the colliding ions
-100	// gamma for the colliding ions
+100	// gamma for the colliding ions (currently, only the choices of
+	108.4 and 70 and an appropriate parametrization of the photon flux)
 4.0	// maximum value for w (w is the gamma-gamma center of mass
 	energy, w = 4(E1)(E2)
 50	// number of bins for w-integration (used in cross-section
