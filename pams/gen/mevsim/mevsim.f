@@ -2247,6 +2247,12 @@ CCC   End track kinematics output.
         kmohep(2)=jmohep(2,JJ)
         kdahep(1)=jdahep(1,JJ)
         kdahep(2)=jdahep(2,JJ)
+        IF((PPP(1)**2+PPP(2)**2).GT.0.0) THEN
+        IF(ABS(PPP(3))/SQRT(PPP(1)**2+PPP(2)**2).LT.0.0005) THEN
+           PPP(3)=.001*(RANF()-0.5)*SQRT(PPP(1)**2+PPP(2)**2)
+      phep(4,JJ)=SQRT(PPP(1)**2+PPP(2)**2+PPP(3)**2+phep(5,JJ)**2)
+        ENDIF
+        ENDIF
 CCCC        WRITE(61,6116)JJ,isthep(JJ),idhep(JJ),kmohep,kdahep
 CCCC     1,PPP,phep(4,JJ),phep(5,JJ)
  6116   FORMAT(7I6,5G12.5)
