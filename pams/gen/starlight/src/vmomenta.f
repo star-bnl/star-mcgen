@@ -15,6 +15,7 @@ c     given W and Y.
       REAL Egam,Epom,tmin,pt1,pt2,phi1,phi2
       REAL px1,py1,px2,py2
       REAL E,pz,py,px,pt
+      REAL photon_spectrum
       double precision formf,t1,t2
       INTEGER tcheck
 
@@ -25,9 +26,10 @@ c     given W and Y.
 C       >> Find Egam,Epom in CM frame
         Egam = 0.5*W*EXP(Y)
         Epom = 0.5*W*EXP(-Y)
-C       >> Draw t1 according to form factor
- 202    xt = ran(ISEED)
-        t1  = 0.5*xt
+
+C       >> Draw pt1 (for the photon) according to photon pt spectrum (Ref ?)
+ 202    xt = ran(ISEED) 
+        pt1  = 0.5*xt
 C       >> Check tmin
         tmin = (Egam/gamma_em)**2
         IF(tmin.gt.0.5)THEN
@@ -36,15 +38,21 @@ C       >> Check tmin
 	  tcheck = 1
 	  return
         ENDIF
-        IF( t1 .lt. tmin )GOTO 202
         xtest = ran(ISEED)
-        IF( xtest .gt. formf(t1)*formf(t1) )GOTO 202
-        pt1 = SQRT( t1 - tmin )
-        phi1 = 6.28*ran(ISEED)
+        t1 = tmin + pt1*pt1
+        photon_spectrum = (formf(t1)*formf(t1)*pt1*pt1*pt1)/(t1*t1)
+C       >> Normalize so that photon_spectrum always is < 1
+        photon_spectrum = 16.*sqrt(tmin)*photon_spectrum/(3.*sqrt(3.))
+        IF( photon_spectrum .gt. 1.0 )THEN 
+          WRITE(*,*) 'WARNING: photon pt spectrum error,',
+     *'  photon_spectrum=',photon_spectrum
+        ENDIF
+        IF( xtest .gt. photon_spectrum )GOTO 202
+        phi1 = 2.*pi*ran(ISEED)
 
-C       >> Draw t2 according to form factor
+C       >> Draw pt2 (for the Pomeron) according to form factor
  203    xt = ran(ISEED)
-        t2  = 0.5*xt
+        pt2  = 0.5*xt
 C       >> Check tmin
         tmin = (Epom/gamma_em)**2
         IF(tmin.gt.0.5)THEN
@@ -53,11 +61,10 @@ C       >> Check tmin
           tcheck = 1
 	  return
         ENDIF
-        IF( t2 .lt. tmin )GOTO 203
         xtest = ran(ISEED)
-        IF( xtest .gt. formf(t2)*formf(t2) )GOTO 203
-        pt2 = SQRT( t2 - tmin )
-        phi2 = 6.28*ran(ISEED)
+        t2 = tmin + pt2*pt2
+        IF( xtest .gt. formf(t2)*formf(t2)*pt2 )GOTO 203
+        phi2 = 2.*pi*ran(ISEED)
 
 C       >> Compute px1,py1,px2,py2
         px1 = pt1*COS(phi1)
@@ -79,3 +86,4 @@ c	randomly choose to make pz negative 50% of the time
 	if (ran(ISEED).ge.0.5) pz = -pz
       return
       END
+
