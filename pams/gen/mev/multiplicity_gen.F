@@ -16,10 +16,13 @@
       real*4 pt_trial,eta_trial,y_trial,rndm,rad,phi
       real*4 y_cut_min,y_cut_max,pseudorapidity
       real*4 PSIr,Vn(nflowterms),dphi,facmax_phi,dNdphi
+      real*4 facmax_phi_back,dNdphi_back,sign
       real*4 cosd
+
       integer gpid,N,model_type,npt,neta,n_scan_pts,ipt,ieta
       integer Track_count,i,j,pid,status
       integer reac_plane_cntrl,iphi,phi_flag
+      integer phi_flag_back
 
       do i = 1,factorial_max
       do j = 1,3
@@ -59,28 +62,39 @@ CCC   be aborted in this instance.
          status = 1
       end if
 
-CCC   Determine the maximum value of the azimuthal model distribution
+CCC   Determine the maximum values of the azimuthal model distribution
 CCC   in phi, for case with reaction plane dependence and anisotropic flow
+CCC   Treat the y<0 and y=>0 cases separately.
 
       if(reac_plane_cntrl .gt. 1) then
          dphi = (phi_cut_max - phi_cut_min)/float(npt-1)
          facmax_phi = 0.0
+         facmax_phi_back = 0.0
          phi_flag = 0
+         phi_flag_back = 0
          do iphi  = 1,npt
             phi = phi_cut_min + dphi*float(iphi - 1)
             dNdphi = 1.0
+            dNdphi_back = 1.0
             do i = 1,nflowterms
+               sign = (-1.0)**i
                dNdphi = dNdphi + 2.0*Vn(i)*cosd(float(i)*(phi-PSIr))
+               dNdphi_back = dNdphi_back +
+     1                      2.0*Vn(i)*sign*cosd(float(i)*(phi-PSIr))
             end do
             if(dNdphi.gt.facmax_phi) facmax_phi = dNdphi 
             if(dNdphi .lt. 0.0) phi_flag = 1
+            if(dNdphi_back.gt.facmax_phi_back)
+     1          facmax_phi_back = dNdphi_back
+            if(dNdphi_back .lt. 0.0) phi_flag_back = 1
          end do
 CCC   Check facmax_phi; if 0, then event will be aborted.  Check
 CCC   dNdphi < 0, which will also cause the event to be aborted.
-         if(facmax_phi .eq. 0.0) then
+CCC   Also check the y<0 case
+         if(facmax_phi.eq.0.0 .OR. facmax_phi_back.eq.0.0) then
             status = -86
             Return
-         else if (phi_flag .eq. 1) then
+         else if (phi_flag.eq.1 .OR. phi_flag_back.eq.1) then
             status = -86
             Return
          else
@@ -91,21 +105,6 @@ CCC   dNdphi < 0, which will also cause the event to be aborted.
 CCC Start Random Track Selection:
 
       Track_count = 0
-
-CCC   Determine phi angle:
-101   continue
-      if(reac_plane_cntrl .gt. 1) then
-         phi = rndm(-1)*(phi_cut_max - phi_cut_min)+phi_cut_min
-         dNdphi = 1.0
-         do i = 1,nflowterms
-            dNdphi = dNdphi + 2.0*Vn(i)*cosd(float(i)*(phi-PSIr))
-         end do
-         if(rndm(-1).gt.(dNdphi/facmax_phi)) then
-            go to 101
-         else
-            phi = phi/rad
-         end if
-      end if
 
 100   pt_trial = rndm(-1)*(pt_cut_max - pt_cut_min)+pt_cut_min
       if(model_type.ge.1 .and. model_type.le.4) then
@@ -118,16 +117,43 @@ CCC   Determine phi angle:
          y_trial = rapidity(mass,pt_trial,eta_trial)
       end if
       dNdp = dNdpty(1.0,pt_trial,eta_trial,y_trial,mass,T,sigma,
-     1       expvel,model_type,1,pid)/facmax 
+     1       expvel,model_type,1,pid)/facmax
       if(rndm(-1) .le. dNdp) then
          Track_count = Track_count + 1
+
+CCC   Determine phi angle:
          if(reac_plane_cntrl .eq. 1) then
-            phi = (rndm(-1)*(phi_cut_max - phi_cut_min) + 
+            phi = (rndm(-1)*(phi_cut_max - phi_cut_min) +
      1            phi_cut_min)/rad
+         else if(reac_plane_cntrl .gt. 1) then
+101         phi = rndm(-1)*(phi_cut_max - phi_cut_min)+phi_cut_min
+            dNdphi = 1.0
+            do i = 1,nflowterms
+               if(y_trial .ge. 0.0) then
+                  sign = 1.0
+               else if(y_trial .lt. 0.0) then
+                  sign = (-1.0)**i
+               end if
+               dNdphi = dNdphi+2.0*Vn(i)*sign*cosd(float(i)*(phi-PSIr))
+            end do
+            if(y_trial .ge. 0.0) then
+               if(rndm(-1).gt.(dNdphi/facmax_phi)) then
+                  go to 101
+               else
+                  phi = phi/rad
+               end if
+            else if(y_trial .lt. 0.0) then
+               if(rndm(-1).gt.(dNdphi/facmax_phi_back)) then
+                  go to 101
+               else
+                  phi = phi/rad
+               end if
+            end if
          end if
+
          Call kinematics(mass,pt_trial,y_trial,phi,Track_count,pid)
          if(Track_count .lt. N) then
-            go to 101
+            go to 100
          else if(Track_count .ge. N) then
             Return
          end if

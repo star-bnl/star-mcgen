@@ -1,7 +1,7 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
-*Revision 1.10  1999/11/09 20:08:37  longacre
-*lannys update
+*Revision 1.11  2000/01/21 20:36:37  longacre
+*lannys fix
 *
 *Revision 2.0  1999/11/08 11:56:14  ray
 * correct y-distribution random sampling error;
@@ -42,6 +42,7 @@ C     momentum, pseudorapidity and azimuthal angle, the mean
 C     multiplicity for each particle type for the event run, the
 C     mean temperature, Rapidity width, etc., and the standard deviations
 C     for the event-to-event variation in the model parameters.
+C     Note that these events are produced in the c.m. frame only.
 C    
 C     Anisotropic flow may also be simulated by introducing explicit
 C     phi-dependence (azimuthal angle) in the particle distributions.  
@@ -54,6 +55,9 @@ C
 C     with up to 'nflowterms' (currently set to 6, see file
 C     Parameter_values.inc) Fourier components allowed.  Vn are
 C     coefficients and PSIr is the reaction plane angle.
+C     The algebraic signs of the Vn terms for n=odd are reversed
+C     from their input values for particles with rapidity (y) < 0
+C     as suggested in Poskanzer and Voloshin.
 C
 C     The user may select either to have the same multiplicity per
 C     particle type for each event or to let the multiplicity vary
