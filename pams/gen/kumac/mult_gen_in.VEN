@@ -14,7 +14,6 @@
    3.                   ! # of std.dev. for expansion velocity var.
    25                   ! # of integration mesh pts for param var.
    30                   ! # of pt,y scan pts for finding max val of dN/dp
-  92474                 ! Random number seed (default = 12345)
            8            ! Geant PID code number
          4000   1       ! Mean multiplicity and variance control
          0.18  0.01     ! Mean Temp (GeV) and std dev.

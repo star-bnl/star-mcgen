@@ -1,4 +1,5 @@
 MACRO mevsim [N]=1
+RNDM  184144  3450220
 cd /dui
 mkdir evgen
 newfilestream genout genoutput.xdf w
