@@ -1,0 +1,15 @@
+/*    $Id: gst2xdf.idl,v 1.1 1998/03/25 16:49:18 longacre Exp $
+      $Log: gst2xdf.idl,v $
+      Revision 1.1  1998/03/25 16:49:18  longacre
+      text2xdf tables
+
+
+*/
+#include "PAM.idl"
+#include "particle.idl"
+ 
+interface gst2xdf : amiModule{
+        STAFCV_T call
+                ( out    particle par
+                );
+};
