@@ -9,7 +9,7 @@ c     are different for this run than for the previous one
       include 'inputp.inc'
       include 'D2LParam.inc'
       logical new
-      integer Ztest,Atest,gg_or_gPtest,numwtest,numytest
+      integer Ztest,Atest,gg_or_gPtest,numwtest,numytest,ibreakuptest
       double precision Gammatest,wmintest,wmaxtest,ymaxtest
 
 c     initialize test variables to ensure that if the file starlight.dat
@@ -22,6 +22,7 @@ c     does not already exist, the parameter new will be set to TRUE
       ymaxtest = 0.
       numytest = 0
       gg_or_gPtest = 0
+      ibreakuptest=0
 
 c     open file and read in parameters from previous run
       open (unit=20,file='starlight.dat',status='unknown')
@@ -34,13 +35,15 @@ c     open file and read in parameters from previous run
       read (20,*) ymaxtest
       read (20,*) numytest
       read (20,*) gg_or_gPtest
+      read (20,*) ibreakuptest
 
 c     if parameters are not the same as before, set new to TRUE
  50      new = .not.(  (Z.eq.Ztest).and.(A.eq.Atest).and.
      &         (gamma_em.eq.Gammatest).and.(numw.eq.numwtest).and.
      &         (numy.eq.numytest).and.(wmaxtest.eq.wmax)
      &         .and.(wmintest.eq.wmin).and.
-     &         (ymaxtest.eq.ymax).and.(gg_or_gPtest.eq.gg_or_gP)  )
+     &         (ymaxtest.eq.ymax).and.(gg_or_gPtest.eq.gg_or_gP)  
+     &         .and. (ibreakup .eq. ibreakuptest) )
 
       close (unit=20)
       return
