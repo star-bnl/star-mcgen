@@ -1939,6 +1939,8 @@ C          LOOK MUST BE DIMENSIONED TO THE MAXIMUM VALUE OF INDEX.
       CHARACTER*8 IQUIT,IBLANK,LREAD(10)    
       LOGICAL LPRINT    
       DIMENSION JRES(734),JTYPE(734),BRR(734),JMODE(6,734) 
+      dimension jmode1(6,400), jmode2(6,334)
+      equivalence (jmode1(1,1),jmode(1,1)), (jmode2(1,1),jmode(1,401))
       DATA IQUIT/'////'/,IBLANK/' '/    
        DATA JRES/ 110, 110, 220, 220, 220, 220, 220, 330, 330, 
      * 330, 330, 330, 121, 111, 111, 111, 221, 221, 221, 221,
@@ -2235,7 +2237,7 @@ C          LOOK MUST BE DIMENSIONED TO THE MAXIMUM VALUE OF INDEX.
      *1.0000000,1.0000000,1.0000000,1.0000000,1.0000000,
      *1.0000000,1.0000000,1.0000000,1.0000000,1.0000000,
      *1.0000000,1.0000000,1.0000000,1.0000000/
-       DATA JMODE/10, 10,  0,  0,  0,    0,
+       DATA JMODE1/10, 10,  0,  0,  0,    0,
      *   10,   12,  -12,    0,    0,    0,
      *   10,   10,    0,    0,    0,    0,
      *  110,  110,  110,    0,    0,    0,
@@ -2634,7 +2636,8 @@ C          LOOK MUST BE DIMENSIONED TO THE MAXIMUM VALUE OF INDEX.
      *  -11,   12,   -5,    0,    0,    0,
      *  -13,   14,   -5,    0,    0,    0,
      *  -15,   16,   -5,    0,    0,    0,
-     *  150,   10,    0,    0,    0,    0,
+     *  150,   10,    0,    0,    0,    0/
+       data jmode2/
      *  250,   10,    0,    0,    0,    0,
      *  350,   10,    0,    0,    0,    0,
      *  160,   10,    0,    0,    0,    0,
