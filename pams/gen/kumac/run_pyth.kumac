@@ -1,0 +1,10 @@
+*  created 6/5/98 Kathy Turner
+* *************** run_pyth.kumac ******************
+* * contains kumacs for the pam: pyth
+* **********************************************
+ 
+ ami/mod/call pythia_
+    /dui/evgen/particle
+ 
+
+* *****************************************
