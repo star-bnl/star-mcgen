@@ -1,5 +1,8 @@
 * Id: gst2xdf.F, v 1.1 1998/03/17 14:35:30 longacre Exp $
 *$Log: gst2xdf.F,v $
+*Revision 1.8  1999/10/08 16:31:16  nevski
+*no comments anymore
+*
 *Revision 1.7  1999/10/08 15:50:10  nevski
 *pgf->g77 cleanup
 *
@@ -64,7 +67,7 @@ C           = 2   Event read and processed
       DATA IFIRST/0/, IVENT/0/, IEVTREAD/0/, ITRSAV/0/
       IF(IFIRST.EQ.0) THEN
          IFIRST=1
-         Open(UNIT=22,FILE='evgen.evt',READONLY)
+         Open(UNIT=22,FILE='evgen.evt',status='old')
       ENDIF
       par_h.nok = 0
 C      ITRSAV=ITR
