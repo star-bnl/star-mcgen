@@ -1,5 +1,8 @@
-* $Id: flight.F,v 1.1 1998/02/14 23:02:41 fisyak Exp $
+* $Id: flight.F,v 1.2 1999/09/28 15:30:27 nevski Exp $
 * $Log: flight.F,v $
+* Revision 1.2  1999/09/28 15:30:27  nevski
+* fix for pgf-m migration
+*
 * Revision 1.1  1998/02/14 23:02:41  fisyak
 * Split Fortran sources
 *
@@ -79,7 +82,7 @@
         Write (*, *) ' '
       Endif                     ! (First)
       Flag=0
-      Do While (Flag.eq.0) !Ensure that it is in the proper range
+      Do While (Flag.eq.0) ! Ensure that it is in the proper range
         If (P_Mode.eq.1) then
           Call GetP1(P_Min,P_Max,Rnum(3),P)
         Elseif (P_Mode.eq.2) then
@@ -91,10 +94,10 @@
           Flag=1
         Endif
 
-        If (P.ge.P_Min.and.P.le.P_Max) Flag=1 !Check to see that P is
+        If (P.ge.P_Min.and.P.le.P_Max) Flag=1 ! Check to see that P is
                                               !  in proper range.
         Skip=Skip+1
-        Rnum(3)=GetRan(L1+Skip) !Get a new random number in case a new
+        Rnum(3)=GetRan(L1+Skip) ! Get a new random number in case a new
                                 ! value is needed.
       Enddo
 
