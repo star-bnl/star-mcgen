@@ -15,11 +15,13 @@ c	calculation.  For reference, see STAR Note 243, Eq. 8.
 
       wdelta = mass
 
+CVM: multipy all farray() by f_max
+
 c     calculate the differential cross section and place in the sigma table
       do 300 i  = 1,numw
       do 400 j = 1, numy
         sigma (i,j) = (spin*2.+1.)*
-     &             8*pi**2.*width/(mass**3.)*farray(i,j)*hbarc**2./100.
+     &   8*pi**2.*width/(mass**3.)*f_max*farray(i,j)*hbarc**2./100.
  400  continue
  300  continue
 
@@ -41,8 +43,8 @@ c     then just set sigma to be 100 nb
         do 500 j = 1,numy-1
           sum = sum + 2.0 * (yarray(j+1) - yarray(j)) *
      &            100.0 *  10.0**(-9.) * (.1/mass) *
-     &    ( (1.-remainw)*(farray(ivalw,j)+farray(ivalw,j))/2. +
-     &    remainw*(farray(ivalw+1,j)+farray(ivalw+1,j+1))/2. )
+     & ( (1.-remainw)*f_max*(farray(ivalw,j)+farray(ivalw,j))/2. +
+     & remainw*f_max*(farray(ivalw+1,j)+farray(ivalw+1,j+1))/2. )
  500    continue
       else
 
