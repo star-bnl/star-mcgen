@@ -3,7 +3,8 @@
 * * contains kumacs for the pam: hij
 * **********************************************
  macro init 
- cd /dui/evgen
+ macro/global/import *   
+ cd [evgen]
  tdm/newtable particle particle 40000
  cd /dui
  return

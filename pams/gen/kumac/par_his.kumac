@@ -1,4 +1,5 @@
 MACRO PAR_HIS [N]=1
+macro/global/import *
 * 
 make gen/par
 * 

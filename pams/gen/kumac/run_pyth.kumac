@@ -4,9 +4,10 @@
 * **********************************************
  
  macro run
+ macro/global/import *   
    
  ami/mod/call pythia_
-    /dui/evgen/particle
+    [evgen]/particle
  
  return
 * *****************************************
