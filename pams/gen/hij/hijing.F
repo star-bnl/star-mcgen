@@ -539,17 +539,17 @@ CCCCCCCCCCCCCCCC
 		   KATT(NATT,1)=K(I,2)
 		   KATT(NATT,2)=30
 		   KATT(NATT,4)=K(I,1)
-		   KATT(NATT,3)= NATSUM + K(I,3)
+                    IF(K(I,3) .NE. 0) THEN
+		        KATT(NATT,3)= NATSUM + K(I,3)
+                    ELSE
+                        KATT(NATT,3) = 0
+                    ENDIF
                    KATT(NATT,5)= NATSUM + K(I,4)
                    KATT(NATT,6)= NATSUM + K(I,5)		     
 C                  ****** identify the mother particle
                    DO 341 J= 1,4
 		   PATT(NATT,J)=P(I,J)
-                   IF(P(I,5) .GT. 0) THEN
-                   VATT(NATT,J)=V(I,J) + V(I,5)*P(I,J)/P(I,5)
-                   ELSE
-                   VATT(NATT,J)=0.
-                   ENDIF
+                   VATT(NATT,J)=V(I,J)
  341            CONTINUE
                    PATT(NATT,5)= P(I,5)
                    VATT(NATT,5)= V(I,5)                      
@@ -595,17 +595,17 @@ C
 		   KATT(NATT,1)=K(I,2)
 		   KATT(NATT,2)=20
 		   KATT(NATT,4)=K(I,1)
-                   KATT(NATT,3)= NATSUM + K(I,3)
+                     IF(K(I,3) .NE. 0) THEN
+                         KATT(NATT,3)= NATSUM + K(I,3)
+                     ELSE
+                         KATT(NATT,3)= 0
+                     ENDIF
                    KATT(NATT,5)= NATSUM + K(I,4)
                    KATT(NATT,6)= NATSUM + K(I,5)		     
 C                  ****** identify the mother particle
                    DO 361 J= 1,4
 		   PATT(NATT,J)=P(I,J)
-                   IF(P(I,5) .GT. 0) THEN
-                   VATT(NATT,J)=V(I,J) + V(I,5)*P(I,J)/P(I,5)
-                   ELSE
-                   VATT(NATT,J)=0.
-                   ENDIF
+                   VATT(NATT,J)=V(I,J)
  361               CONTINUE
 		   EATT=EATT+P(I,4)
                    PATT(NATT,5) = P(I,5)
@@ -655,17 +655,17 @@ C
 		   KATT(NATT,1)=K(I,2)
 		   KATT(NATT,2)=NFTP
 		   KATT(NATT,4)=K(I,1)
-		   KATT(NATT,3)= NATSUM + K(I,3)
+                     IF(K(I,3) .NE. 0) THEN
+		        KATT(NATT,3)= NATSUM + K(I,3)
+                     ELSE
+                        KATT(NATT,3)= 0
+                     ENDIF
                    KATT(NATT,5)= NATSUM + K(I,4)
                    KATT(NATT,6)= NATSUM + K(I,5)
 C       ****** identify the mother particle
                    DO 391 J= 1,4
 		   PATT(NATT,J)=P(I,J)
-                   IF(P(I,5) .GT. 0)THEN
-                   VATT(NATT,J)=V(I,J) + V(I,5)*P(I,J)/P(I,5)
-                   ELSE
-                   VATT(NATT,J)=0.
-                   ENDIF
+                   VATT(NATT,J)=V(I,J)
  391               CONTINUE
 		   EATT=EATT+P(I,4)
                    PATT(NATT,5) = P(I,5)
