@@ -2368,8 +2368,8 @@ CCC   End track kinematics output.
       phep(4,JJ)=SQRT(PPP(1)**2+PPP(2)**2+PPP(3)**2+phep(5,JJ)**2)
         ENDIF
         ENDIF
-        WRITE(61,6116)JJ,isthep(JJ),idhep(JJ),kmohep,kdahep
-     1,PPP,phep(4,JJ),phep(5,JJ)
+CCCCC        WRITE(61,6116)JJ,isthep(JJ),idhep(JJ),kmohep,kdahep
+CCCCC     1,PPP,phep(4,JJ),phep(5,JJ)
  6116   FORMAT(7I6,5G12.5)
         IF(JJ.EQ.NPT) JJJ=-1
         CALL HEPPart(JJJ,isthep(JJ),idhep(JJ),kmohep,kdahep
