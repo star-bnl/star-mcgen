@@ -1,7 +1,10 @@
-* $Id: hijjet.f,v 1.4 2000/06/23 18:39:51 longacre Exp $
+* $Id: hijjet.f,v 1.5 2003/05/02 19:02:10 longacre Exp $
 * $Log: hijjet.f,v $
+* Revision 1.5  2003/05/02 19:02:10  longacre
+* added bin coll and wounded proj and targ
+*
 * Revision 1.4  2000/06/23 18:39:51  longacre
-* remove more printout
+*  remove more printout
 *
 * Revision 1.3  2000/06/22 22:53:54  longacre
 *  comment out debug code
@@ -335,7 +338,9 @@ CCCCC          WRITE(6,888) natt
         END DO
         endif
 CCCCC          WRITE(6,888) natt
-         vsshep(3)=float(njets)
+         vsshep(3)=float(N0+N01+N10+N11)
+         PSSHEP(1)=FLOAT(NP)
+         PSSHEP(3)=FLOAT(NT)
 C--
        CALL HEPEvent('hijing',IRUN,NATT,vsshep(1),vsshep(2),psshep(5)
       1,vsshep(3),psshep(1),psshep(2),psshep(3),psshep(4))
