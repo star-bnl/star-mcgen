@@ -49,8 +49,6 @@ C  gamma is in cm system
          A1=0.535
       ENDIF
 
-      SIGNN=5.0
-
       WRITE(6,12)R1,A1,SIGNN
  12   FORMAT(' Nuclear density R= ',F7.4,' fm.  thick= ',F7.4,
      *' Sigma_NN= ',F7.4)
