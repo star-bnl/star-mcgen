@@ -1,5 +1,8 @@
 * Id: gst2xdf.F, v 1.1 1998/03/17 14:35:30 longacre Exp $
 *$Log: gst2xdf.F,v $
+*Revision 1.2  1998/04/03 20:33:05  longacre
+*correct exit for too many particles
+*
 *Revision 1.1  1998/03/25 16:49:16  longacre
 *text2xdf tables
 * 
@@ -119,11 +122,12 @@ CCCCCCC               WRITE(*,1110)idhep, phep(1), phep(2), phep(3)
       GO TO 1 
 1020  WRITE(*,1130)LINE 
 1130  FORMAT(' gstar_readTXT error in line '/1X,A) 
-        GST2XDF  = STAFCV_BAD
-	Stop 'gst2xdf: Normal successful completion '
+      GST2XDF  = STAFCV_BAD
 1     CONTINUE 
       RETURN
-999   Stop 'txt2xdf: SIZE problem  '
+999   WRITE(*,1131)
+1131  FORMAT('gst2xdf: SIZE problem  ')
+      GST2XDF  = STAFCV_BAD
       End
 
 
