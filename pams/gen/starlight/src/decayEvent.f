@@ -43,9 +43,9 @@ c      decay each of the rho0's  to pi+pi-
          px0 = px /2.
          py0 = py /2.
          pz0 = pz /2.
-         call twodecay (ipid,W,px0,py0,pz0,mdec,pxdec(1),pydec(1),
+         call twodecay (ipid,E,W,px0,py0,pz0,mdec,pxdec(1),pydec(1),
      &	pzdec(1),Edec(1),pxdec(2),pydec(2),pzdec(2),Edec(2),iFbadevent)
-         call twodecay (ipid,W,px0,py0,pz0,mdec,pxdec(3),pydec(3),
+         call twodecay (ipid,E,W,px0,py0,pz0,mdec,pxdec(3),pydec(3),
      &	pzdec(3),Edec(3),pxdec(4),pydec(4),pzdec(4),Edec(4),iFbadevent)
 
         if (iout.eq.1)
@@ -61,7 +61,7 @@ c     deal with electrons, muons tauons and f0(1525) to pi+ pi-
         elseif((ip.eq.11).or.(ip.eq.13).or.(ip.eq.15).or.(ip.eq.225)
      &  .or.(ip.eq.335)) then
           iFbadevent = 0
-         call twodecay (ipid,W,px,py,pz,mdec,pxdec(1),pydec(1),
+         call twodecay (ipid,E,W,px,py,pz,mdec,pxdec(1),pydec(1),
      &	pzdec(1),Edec(1),pxdec(2),pydec(2),pzdec(2),Edec(2),iFbadevent)
           if (iFbadevent.eq.0) then
              if (iout.eq.1)
@@ -79,7 +79,7 @@ c       increment the decay counter
 c       deal with vector meson decays
         elseif((ip.eq.113).or.(ip.eq.223).or.(ip.eq.333).or.
      &          (ip.eq.443)) then
-         call twodecay (ipid,W,px,py,pz,mdec,pxdec(1),pydec(1),
+         call twodecay (ipid,E,W,px,py,pz,mdec,pxdec(1),pydec(1),
      &	pzdec(1),Edec(1),pxdec(2),pydec(2),pzdec(2),Edec(2),iFbadevent)
              if (iout.eq.1)
      &         call writeText(ievent,2,ipid,pxdec,pydec,pzdec)
