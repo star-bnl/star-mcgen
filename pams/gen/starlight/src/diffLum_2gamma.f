@@ -24,6 +24,7 @@ c     starlight.dat so that they are there for future reference.
       write (20,*) ymax
       write (20,*) numy
       write (20,*) gg_or_gP
+      write (20,*) ibreakup
 
 c     Write to starlight.dat the set of values for w used in the
 c     calculation.
