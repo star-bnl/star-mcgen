@@ -1,0 +1,132 @@
+#!/bin/csh -f
+# 
+# ref_spectra : t/csh shell script for running spectra which
+#		generates reference histograms.  Venus
+# events are generated into a file, which are then read by 
+# spectra.  Output histograms are kept in 
+# /exa/$STAR_ARCH directory for reference to future versions.
+#
+# Current implementation:
+#
+#	50 Central Au+Au events, RHIC energies.
+#	fzd format
+#	no rescattering
+#
+# Created:	Matthew Bloomer   5/14/95
+# Usage:  
+#	cd $STAR_ARCH
+#	../ref_spectra >&! ref_spectra.log &
+#
+# Tested on:  ribm00, rsgi00
+#
+#-------------------------------------------------------------
+#
+# Source star_login.csh in case STAR environment variables are
+# not setup (e.g. batch mode on SP1).
+#
+source /star/starlib/star_login.csh
+#
+# Other environment definitions:
+#   	XFLRTEOPTS : 	use "old" namelist convention
+#
+setenv XFLRTEOPTS namelist=old
+#
+# Remove previously existing files from VENUS running
+#
+if (-e check) rm check
+if (-e data)  rm data
+if (-e optns) rm optns
+if (-e histo) rm histo
+rm -f venus_egz.data
+#
+# generate input parameter file $params_file
+# (make changes to parameters here)
+# 
+set params_file = optns
+set output_file = $DST_ROOT/data5/evg/ven_ref_spectra_$STAR_ARCH.fzd
+#
+# produce runcards for VENUS running.  (See documentation in 
+# ven/doc/venus_412.doc).  AA collisions use 'had' card.
+#
+echo "'had'"				>>$params_file
+#
+# 50 events, update message every 1 events, 200 AGeV (NN center of
+# mass system specified by negative value), Au+Au.
+# Last parameter:  specifies how many parameter option lines follow 
+# first line.  Don't forget to set it correctly!!!
+#
+echo "50 1 -200.0 79 197 79 197 5" 	>>$params_file
+#
+# Do we want to store also the parents?: NO (Venus does not
+# work with istmax=1).
+#
+echo "'istmax' 0"			>>$params_file
+#
+# Do we decay all resonances in VENUS?:  SUPPRESS decay of long lived 
+# resonances
+#
+echo "'ndecay' 1111110"			>>$params_file
+#
+# Radius for rescattering cross section:  set to zero for
+# for no rescattering (otherwise it takes FOREVER...)
+#
+echo "'radiac' 0."			>>$params_file
+#
+# impact parameter = 0
+#
+echo "'bmaxim' 0"			>>$params_file
+#
+# seed value:  replace for each new set of events
+#
+echo "'seedi'  94127831"		>>$params_file
+#
+if ($STAR_ARCH == "aix") then
+#
+# KLUDGE:  KUIP prompt for frame of reference seems to want to read
+# from logical unit 5 in AIX, which unfortunately is the optns file.
+# This is in spite of any redirection at the command line. 
+# Consequently, add parameter 'CMS' here to optns file, since this
+# is where it is prompted for when writing out first event.  
+# This crummy kludge needs to worked out correctly someday.
+#
+  echo "CMS"				>>$params_file
+#
+endif
+#
+# obligatory stop cards card
+#
+echo "'stp'"				>>$params_file
+#
+# Setup symbolic line to data file (VENUS writes to 
+# default file venus_egz.data).  Remove example data file
+# if already present.
+#
+if (-e $output_file) rm $output_file
+ln -s $output_file venus_egz.data
+#
+# Run VENUS:  first parameter defines frame of reference to output
+# momenta ('CMS' or 'PROJ') (except for AIX:  see KLUDGE above).
+#
+if ($STAR_ARCH == "aix") then
+  time venus_412 < $params_file   # this is dummy means of redirection
+else
+  time venus_412 <<eof
+CMS
+eof
+#
+endif
+#
+# Now startup spectra
+#
+time spectra <<eof
+$output_file
+n
+eof
+#
+# Rename hbook file produced from spectra
+#
+mv spectra.hbook ref_spectra.hbook
+#
+# End of running
+#
+echo "That's it folks"

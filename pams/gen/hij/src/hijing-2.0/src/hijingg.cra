@@ -1,0 +1,5 @@
++USE,INCL.
++USE,$ARCH.
++USE,TITLE,P=$HIJFILE,T=EXE.
++PAM,11,          T=C,T=A.hijing.car
++QUIT.
