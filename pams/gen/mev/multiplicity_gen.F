@@ -992,7 +992,7 @@ C              Mass_xfunc_save( , ) - mass distribution mesh
 C              These are in Common/Mass/.
 
 CCC   Include files and common blocks:
-      Include 'Parameter_values.inc'
+#include "Parameter_values.inc"
       Common/Geant/geant_mass(200),geant_charge(200),
      1             geant_lifetime(200),geant_width(200)
       real*4 geant_mass,geant_charge,geant_lifetime,geant_width
@@ -1177,7 +1177,7 @@ C
 C     Output:  Mass_function = particle or resonance mass (GeV)
 
 CCC   Include files and common blocks:
-      Include 'Parameter_values.inc'
+#include "Parameter_values.inc"
       Common/Geant/geant_mass(200),geant_charge(200),
      1             geant_lifetime(200),geant_width(200)
       real*4 geant_mass,geant_charge,geant_lifetime,geant_width
