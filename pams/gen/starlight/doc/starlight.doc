@@ -1,0 +1,108 @@
+5/2/2000  J. Seger
+
+
+The STARlight Monte Carlo models 2-photon and photon-Pomeron interactions
+in peripheral heavy ion collisions.  The physics approach for the 2-photon
+interactions is described in STAR Note 243. That for the photon-Pomeron
+interactions is described in STAR Note 386.  
+
+STARlight has several input files, all of which are expected to be in the
+same directory as the starlight code.  User-specified input parameters are
+read from a file named "starlight.in"; these parameters are described
+below. The file "starlight.dat" contains a table of differential
+luminosity values.  STARlight checks this file to see whether or not a
+change in input parameters requires the values to be recalculated; if so,
+this file is over-written with the new values.  If there is no existing 
+starlight.dat file, STARlight will produce one.  The data file "jet.dat"
+contains modified branching ratios for jetset. 
+
+The output of the STARlight Monte Carlo can be written to an ascii file
+named "starlight.out". The format of the text output can be chosen so that
+it can be read by GSTAR. Alternatively, the output can be chosen to be
+placed in a zipped PAW ntuple (currently the preferred interface with
+GSTAR), "evgen.1.nt.gz".  The file can be unzipped and looked at directly
+using PAW, or converted to a root file using the h2root utility. (Type
+"h2root evgen.1.nt filenameyoulike.root"-- currently this works only in
+pro.)
+
+----------------------------
+How to use:
+
+   1)  copy contents of src directory to your own src directory
+
+   2)  copy jet.dat and starlight.in from the bin directory into your own
+bin directory
+
+   3)  edit the Makefile to use the appropriate lines depending on whether
+you are compiling on Linux or Solaris; then type "make" to compile-- the
+executable "starlight" will be placed in the bin directory
+(there are three places to edit-- one is in choosing the appropriate
+include file, another is either including or not the source ludata.F, and
+the last is in choosing the appropriate line for the target definition)
+
+   4)  edit starlight.in to reflect your preferred choice of input
+parameters-- see starlight.doc in the src directory for an explanation of
+input parameters
+
+   5)  in the bin directory, type "starlight" to run; if you selected
+either text output format, the output will be written to the file
+starlight.out in the bin directory; if you selected ntuple output, the
+output will be written to the file evgen.1.nt.gz, and will need to be
+unzipped (type "gunzip evgen.1.nt.gz") 
+
+
+----------------------------------------------------------------------------
+
+The contents of a sample starlight.in file are listed below, with 
+explanation.  The user should modify this file according to his or her
+needs.
+
+79	// atomic number of the colliding ions (symmetric 
+	collisions are assumed)
+197	// atomic mass of the colliding ions
+100	// gamma for the colliding ions
+4.0	// maximum value for w (w is the gamma-gamma center of mass
+	energy, w = 4(E1)(E2)
+50	// number of bins for w-integration (used in cross-section
+	calculation)
+3.0	// maximum value for y (y is the rapidity, y = 0.5 ln(E1/E2) )
+30	// number of bins for y-integration (used in cross-section 
+	calculation)
+1	// gg or gP switch -- A 1 here will produce 2-photon channels, a
+	// 2 here will produce vector meson channels with a narrow
+	//resonance, and a 3 here will produce vector meson channels with
+	//a wide (Breit-Wigner) resonance.
+10000	// number of events to produce
+331	// channel of interest (in PDG notation); currently supported
+	options listed below
+345738	// random number seed
+2	// This line specifies the form of the output.  A 1 here 
+	will lead to a simple text file.  A 2 here leads to a text file in 
+	the format specified by gstar.  A three leads to output in a PAW
+	ntuple.
+
+----------------------------------------------------------------------------
+
+Currently supported 2-photon channel options:
+      jetset id		particle
+   ---------------------------------
+	221		eta			
+	331		eta-prime 		
+	441		eta-c			
+	10221		f0(975)		
+	225		f2(1270)
+	115		a2(1320)
+	335		f2(1525)
+	33		rho0 pair
+	11		e+/e- pair
+	13 		mu+/mu- pair
+	15		tau+/tau- pair
+
+Currently supported vector meson options:
+      jetset id		particle
+   ---------------------------------
+
+	113		rho0
+	223		omega
+	333		phi
+	443		J/psi
