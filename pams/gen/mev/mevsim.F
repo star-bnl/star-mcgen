@@ -1,5 +1,8 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
+*Revision 1.13  2000/04/24 19:05:53  longacre
+*last version
+*
 *Revision 1.12  2000/03/14 20:32:17  longacre
 *added decays
 *
@@ -389,22 +392,23 @@ C
         COMMON/PRIMAR/NJET,SCM,HALFE,ECM,IDIN(2),NEVENT,NTRIES,NSIGMA
         COMMON/PARTCL/NPTCL,PPTCL(5,4000),IORIG(4000),IDENT(4000)
         COMMON/DEKIN/NOFILE
-        LOGICAL NOFILE
-        LOGICAL MOPI0,RHO,DELTA,KSTAR,PHI
-        SAVE MOPI0,RHO,DELTA,KSTAR,PHI
-        SAVE DEKIN
+        LOGICAL NOFILE,notbk
+
+        LOGICAL MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI
+        SAVE MOPI0,MOETA,RHO,DELTA,KSTAR,PHI,JPSI
 C
 C       RHO and DELTA Decay Common
 C
-        CHARACTER*1 CETA,CPI0,CRHO,CDELTA,CKSTAR,CPHI,CNOF
+        CHARACTER*1 CETA,CPI0,CRHO,CDELTA,CKSTAR,CPHI,CNOF,CJPSI
         COMMON/NUMLIM/NUMLO,NUMHI  
       integer itdky,itevt,itcom,itlis,numlo,numhi,ldecay,lhievt
-      integer lhipar,ifl,njet,idin,nevent,ntries,nsigma,ident
-      integer nptcl,iorig,gntsav,isttemp,idisa,id,iddhep
-      real*4 scm,halfe,ecm,pptcl,pp
-      dimension id(10),pp(5,10)
+      integer lhipar,ifl,njet,idin,nevent,ntries,nsigma,ident,ida2
+      integer nptcl,iorig,gntsav,isttemp,idisa,id,iddhep,imo1,ida1
+      real*4 scm,halfe,ecm,pptcl,pp,ppnxlv
+      dimension id(20),imo1(20),ida1(20),ida2(20),pp(5,20),ppnxlv(5)
       DOUBLE PRECISION HEPMASS
-      INTEGER IDTRAN
+      INTEGER IDTRAN, NPTCLSAV, istda, mopss, ksav, idsav, kk, nend
+      dimension istda(20)
       INTEGER II,kdahep
       dimension kdahep(2)
 #include "multi_gen.inc"
@@ -494,6 +498,8 @@ C
         NOPI0=.TRUE.
         NOETA=.FALSE.
         NODCAY=.FALSE.
+        notbk=.false.
+
 CCC   File 'mult_gen.in' is the input file for the run.
 CCC   File 'mult_gen.log' is a log file for the run.
 
@@ -620,6 +626,12 @@ CCC  Read Input:
       IF(CPI0.EQ.'N') NOPI0 = .TRUE.
       IF(CPI0.EQ.'n') NOPI0 = .TRUE.
       MOPI0=NOPI0
+      read(4,*) CETA                   ! FLAG ETA decay yes ETA DECAY
+      IF(CETA.EQ.'Y') NOETA = .FALSE.
+      IF(CETA.EQ.'y') NOETA = .FALSE.
+      IF(CETA.EQ.'N') NOETA = .TRUE.
+      IF(CETA.EQ.'n') NOETA = .TRUE.
+      MOETA=NOETA
       read(4,*) CRHO                   ! FLAG RHO decay yes RHO DECAY
       IF(CRHO.EQ.'Y') RHO = .FALSE.
       IF(CRHO.EQ.'y') RHO = .FALSE.
@@ -635,6 +647,16 @@ CCC  Read Input:
       IF(CPHI.EQ.'y') PHI = .FALSE.
       IF(CPHI.EQ.'N') PHI = .TRUE.
       IF(CPHI.EQ.'n') PHI = .TRUE.
+      read(4,*) CDELTA                 ! FLAG DELTA decay yes DELTA DECAY
+      IF(CDELTA.EQ.'Y') DELTA = .FALSE.
+      IF(CDELTA.EQ.'y') DELTA = .FALSE.
+      IF(CDELTA.EQ.'N') DELTA = .TRUE.
+      IF(CDELTA.EQ.'n') DELTA = .TRUE.
+      read(4,*) CJPSI                 ! FLAG JPSI decay yes JPSI DECAY
+      IF(CJPSI.EQ.'Y') JPSI = .FALSE.
+      IF(CJPSI.EQ.'y') JPSI = .FALSE.
+      IF(CJPSI.EQ.'N') JPSI = .TRUE.
+      IF(CJPSI.EQ.'n') JPSI = .TRUE.
         CALL SETDKY(.FALSE.)
         CALL READIN(IFL)
         CALL IDGEN
@@ -1531,20 +1553,84 @@ CCC   Output track kinematics for ievent and pid:
      1     +pptcl(5,1)**2)
            ident(1)=idisa(idhep)
            CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
            kdahep(1)=II
            kdahep(2)=II+NPTCL-2
            do k=2,NPTCL
            id(k)=iddhep(ident(K))
+           imo1(k)=II-1
            do j=1,5
            pp(j,k)=pptcl(j,k)
            enddo
            enddo
+        ENDIF
+        ENDIF
+        IF(MOETA) THEN
+        isttemp=1
+        ELSE
+          IF(idhep.eq.221) then
+           notbk=.true.
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep)
+           CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
+           kdahep(1)=II
+           kdahep(2)=II+NPTCL-2
+           do k=2,NPTCL
+           istda(k)=1
+           id(k)=iddhep(ident(K))
+           ida1(k)=0
+           ida2(k)=0
+           imo1(k)=II-1
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           enddo
+           enddo
+        ENDIF
+        IF(MOPI0) THEN
+        ELSE
+          IF(notbk) then
+          notbk=.false.
+          NEND=NPTCLSAV
+          do kk=2,NEND
+             IF(id(kk).eq.111) then
+                nptcl=1
+                ident(1)=110
+                istda(kk)=3
+                do j=1,5
+                pptcl(J,1)=pp(J,kk)
+                enddo
+                CALL DECAY(NPTCL)
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=II+kk-2
+                ida1(kk)=II+NPTCLSAV-NPTCL
+                ida2(kk)=II+NPTCLSAV-2
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+          enddo
+        ENDIF
         ENDIF
         ENDIF
         IF(RHO) THEN
         isttemp=1
         ELSE
-          IF(idhep.eq.113.or.iabs(idhep).eq.213) then
+         IF(idhep.eq.113.or.iabs(idhep).eq.213) then
+           ppnxlv(5)=0.0
            isttemp=3
            nptcl=1
            pptcl(1,1)=pout(pid,1,i)
@@ -1555,20 +1641,62 @@ CCC   Output track kinematics for ievent and pid:
      1     +pptcl(5,1)**2)
            ident(1)=idisa(idhep)
            CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
            kdahep(1)=II
            kdahep(2)=II+NPTCL-2
            do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
            id(k)=iddhep(ident(K))
+           istda(k)=1
+           imo1(k)=II-1
            do j=1,5
            pp(j,k)=pptcl(j,k)
+           IF(MOPI0) THEN
+           ELSE
+             IF(id(k).eq.111) then
+               ppnxlv(j)=pptcl(j,k)
+               ida1(k)=II+NPTCL-1
+               ksav=k
+               istda(k)=3
+               mopss=II+k-2
+             ENDIF
+           ENDIF
            enddo
            enddo
-        ENDIF
+           IF(MOPI0) THEN
+           ELSE
+             IF(ppnxlv(5).gt..001) then
+                nptcl=1
+                pptcl(1,1)=ppnxlv(1)
+                pptcl(1,1)=ppnxlv(2)
+                pptcl(1,1)=ppnxlv(3)
+                pptcl(1,1)=ppnxlv(4)
+                pptcl(1,1)=ppnxlv(5)
+                ident(1)=110
+                CALL DECAY(NPTCL)
+                ida2(ksav)=ida1(ksav)+NPTCL-2
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=mopss
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+           ENDIF
+         ENDIF
         ENDIF
         IF(PHI) THEN
         isttemp=1
         ELSE
-          IF(idhep.eq.333) then
+         IF(idhep.eq.333) then
+           notbk=.true.
+           ppnxlv(5)=0.0
            isttemp=3
            nptcl=1
            pptcl(1,1)=pout(pid,1,i)
@@ -1579,15 +1707,252 @@ CCC   Output track kinematics for ievent and pid:
      1     +pptcl(5,1)**2)
            ident(1)=idisa(idhep)
            CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
            kdahep(1)=II
            kdahep(2)=II+NPTCL-2
            do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
            id(k)=iddhep(ident(K))
+           IF(id(k).eq.311) id(k)=130
+           IF(id(k).eq.-311) id(k)=310
+           istda(k)=1
+           imo1(k)=II-1
            do j=1,5
            pp(j,k)=pptcl(j,k)
+           IF(MOETA) THEN
+           ELSE
+             IF(id(k).eq.221) then
+               ppnxlv(j)=pptcl(j,k)
+               ida1(k)=II+NPTCL-1
+               ksav=k
+               istda(k)=3
+               mopss=II+k-2
+             ENDIF
+           ENDIF
            enddo
            enddo
+           IF(MOETA) THEN
+           ELSE
+             IF(ppnxlv(5).gt..001) then
+                nptcl=1
+                pptcl(1,1)=ppnxlv(1)
+                pptcl(1,1)=ppnxlv(2)
+                pptcl(1,1)=ppnxlv(3)
+                pptcl(1,1)=ppnxlv(4)
+                pptcl(1,1)=ppnxlv(5)
+                ident(1)=220
+                CALL DECAY(NPTCL)
+                ida2(ksav)=ida1(ksav)+NPTCL-2
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=mopss
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+           ENDIF
+         ENDIF
+        IF(MOPI0) THEN
+        ELSE
+          IF(notbk) then
+          notbk=.false.
+          NEND=NPTCLSAV
+          do kk=2,NEND
+             IF(id(kk).eq.111) then
+                nptcl=1
+                ident(1)=110
+                istda(kk)=3
+                do j=1,5
+                pptcl(J,1)=pp(J,kk)
+                enddo
+                CALL DECAY(NPTCL)
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=II+kk-2
+                ida1(kk)=II+NPTCLSAV-NPTCL
+                ida2(kk)=II+NPTCLSAV-2
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+          enddo
         ENDIF
+        ENDIF
+        ENDIF
+        IF(JPSI) THEN
+        isttemp=1
+        ELSE
+         IF(idhep.eq.443) then
+           notbk=.true.
+           ppnxlv(5)=0.0
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep)
+           CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
+           kdahep(1)=II
+           kdahep(2)=II+NPTCL-2
+           do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
+           id(k)=iddhep(ident(K))
+           istda(k)=1
+           imo1(k)=II-1
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           IF(RHO) THEN
+           ELSE
+             IF(id(k).eq.113.or.iabs(id(k)).eq.213) then
+               idsav=idisa(id(k))
+               ppnxlv(j)=pptcl(j,k)
+               ida1(k)=II+NPTCL-1
+               ksav=k
+               istda(k)=3
+               mopss=II+k-2
+             ENDIF
+           ENDIF
+           enddo
+           enddo
+           IF(RHO) THEN
+           ELSE
+             IF(ppnxlv(5).gt..001) then
+                nptcl=1
+                pptcl(1,1)=ppnxlv(1)
+                pptcl(1,1)=ppnxlv(2)
+                pptcl(1,1)=ppnxlv(3)
+                pptcl(1,1)=ppnxlv(4)
+                pptcl(1,1)=ppnxlv(5)
+                ident(1)=idsav
+                CALL DECAY(NPTCL)
+                ida2(ksav)=ida1(ksav)+NPTCL-2
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=mopss
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+           ENDIF
+         ENDIF
+        IF(MOPI0) THEN
+        ELSE
+          IF(notbk) then
+          notbk=.false.
+          NEND=NPTCLSAV
+          do kk=2,NEND
+             IF(id(kk).eq.111) then
+                nptcl=1
+                ident(1)=110
+                istda(kk)=3
+                do j=1,5
+                pptcl(J,1)=pp(J,kk)
+                enddo
+                CALL DECAY(NPTCL)
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=II+kk-2
+                ida1(kk)=II+NPTCLSAV-NPTCL
+                ida2(kk)=II+NPTCLSAV-2
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+          enddo
+        ENDIF
+        ENDIF
+        ENDIF
+        IF(DELTA) THEN
+        isttemp=1
+        ELSE
+          IF(iabs(idhep).eq.1114.or.iabs(idhep).eq.2114.or
+     1    .iabs(idhep).eq.2214.or.iabs(idhep).eq.2224) then
+           ppnxlv(5)=0.0
+           isttemp=3
+           nptcl=1
+           pptcl(1,1)=pout(pid,1,i)
+           pptcl(2,1)=pout(pid,2,i)
+           pptcl(3,1)=pout(pid,3,i)
+           pptcl(5,1)=pout(pid,4,i)
+           pptcl(4,1)=sqrt(pptcl(1,1)**2+pptcl(2,1)**2+pptcl(3,1)**2
+     1     +pptcl(5,1)**2)
+           ident(1)=idisa(idhep)
+           CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
+           kdahep(1)=II
+           kdahep(2)=II+NPTCL-2
+           do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
+           id(k)=iddhep(ident(K))
+           istda(k)=1
+           imo1(k)=II-1
+           do j=1,5
+           pp(j,k)=pptcl(j,k)
+           IF(MOPI0) THEN
+           ELSE
+             IF(id(k).eq.111) then
+               ppnxlv(j)=pptcl(j,k)
+               ida1(k)=II+NPTCL-1
+               ksav=k
+               istda(k)=3
+               mopss=II+k-2
+             ENDIF
+           ENDIF
+           enddo
+           enddo
+           IF(MOPI0) THEN
+           ELSE
+             IF(ppnxlv(5).gt..001) then
+                nptcl=1
+                pptcl(1,1)=ppnxlv(1)
+                pptcl(1,1)=ppnxlv(2)
+                pptcl(1,1)=ppnxlv(3)
+                pptcl(1,1)=ppnxlv(4)
+                pptcl(1,1)=ppnxlv(5)
+                ident(1)=110
+                CALL DECAY(NPTCL)
+                ida2(ksav)=ida1(ksav)+NPTCL-2
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=mopss
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+           ENDIF
+         ENDIF
         ENDIF
         IF(idhep.eq.313) then
               if(rndm(-1).gt..5) idhep=-313
@@ -1595,7 +1960,8 @@ CCC   Output track kinematics for ievent and pid:
         IF(KSTAR) THEN
         isttemp=1
         ELSE
-          IF(iabs(idhep).eq.313.or.iabs(idhep).eq.323) then
+         IF(iabs(idhep).eq.313.or.iabs(idhep).eq.323) then
+           ppnxlv(5)=0.0
            isttemp=3
            nptcl=1
            pptcl(1,1)=pout(pid,1,i)
@@ -1606,19 +1972,59 @@ CCC   Output track kinematics for ievent and pid:
      1     +pptcl(5,1)**2)
            ident(1)=idisa(idhep)
            CALL DECAY(NPTCL)
+           NPTCLSAV=NPTCL
            kdahep(1)=II
            kdahep(2)=II+NPTCL-2
            do k=2,NPTCL
+           ida1(k)=0
+           ida2(k)=0
            id(k)=iddhep(ident(K))
+           istda(k)=1
+           imo1(k)=II-1
            IF(IABS(id(k)).EQ.311) THEN
               id(k)=310
               IF(rndm(-1).gt..5) id(k)=130
            ENDIF
            do j=1,5
            pp(j,k)=pptcl(j,k)
+           IF(MOPI0) THEN
+           ELSE
+             IF(id(k).eq.111) then
+               ppnxlv(j)=pptcl(j,k)
+               ida1(k)=II+NPTCL-1
+               ksav=k
+               istda(k)=3
+               mopss=II+k-2
+             ENDIF
+           ENDIF
            enddo
            enddo
-        ENDIF
+           IF(MOPI0) THEN
+           ELSE
+             IF(ppnxlv(5).gt..001) then
+                nptcl=1
+                pptcl(1,1)=ppnxlv(1)
+                pptcl(1,1)=ppnxlv(2)
+                pptcl(1,1)=ppnxlv(3)
+                pptcl(1,1)=ppnxlv(4)
+                pptcl(1,1)=ppnxlv(5)
+                ident(1)=110
+                CALL DECAY(NPTCL)
+                ida2(ksav)=ida1(ksav)+NPTCL-2
+                NPTCLSAV=NPTCLSAV+NPTCL-1
+                do k=2,NPTCL
+                id(k+NPTCLSAV-NPTCL)=iddhep(ident(k))
+                istda(k+NPTCLSAV-NPTCL)=1
+                imo1(k+NPTCLSAV-NPTCL)=mopss
+                ida1(k+NPTCLSAV-NPTCL)=0
+                ida2(k+NPTCLSAV-NPTCL)=0
+                do j=1,5
+                pp(j,k+NPTCLSAV-NPTCL)=pptcl(j,k)
+                enddo
+                enddo
+             ENDIF
+           ENDIF
+         ENDIF
         ENDIF
         phep(1) = pout(pid,1,i)
         phep(2) = pout(pid,2,i)
@@ -1641,7 +2047,7 @@ CCC   Use mass in pout(pid,4,i) which varies for resonances
         par(ii).phep(5)    = pout(pid,4,i) !  mass (GeV)
 C        par(ii).phep(5)    = hepmass(idhep)!  mass (GeV)  
         IF(isttemp.ne.1) then
-        do k=2,NPTCL
+        do k=2,NPTCLSAV
         II = II + 1
         idhep = id(k)
         phep(1) = pp(1,k)
@@ -1649,12 +2055,12 @@ C        par(ii).phep(5)    = hepmass(idhep)!  mass (GeV)
         phep(3) = pp(3,k)
         phep(4) = pp(4,k)
         phep(5) = pp(5,k)
-        par(ii).isthep     = 1           !  status code
+        par(ii).isthep     = istda(k)    !  status code
         par(ii).idhep      = idhep       !  particle identity
-        par(ii).jmohep(1)  = II-k        !  pointer(s) to position 
+        par(ii).jmohep(1)  = imo1(k)     !  pointer(s) to position 
         par(ii).jmohep(2)  = 0           !  where the mothers(s) stored   
-        par(ii).jdahep(1)  = 0           !  pointers to position of 
-        par(ii).jdahep(2)  = 0           !  the first/last daughter  
+        par(ii).jdahep(1)  = ida1(k)     !  pointers to position of 
+        par(ii).jdahep(2)  = ida2(k)     !  the first/last daughter  
         DO J = 1, 4
           par(ii).phep(j)  = phep(j)     !  p4 
           par(ii).vhep(j)  = 0.0         !  production vertex (mm) and time (mm/c) 
@@ -1662,8 +2068,8 @@ C        par(ii).phep(5)    = hepmass(idhep)!  mass (GeV)
         par(ii).phep(5)    = phep(5) !  mass (GeV)
         enddo
         ENDIF
-           end do
-           end do
+           enddo
+           enddo
 CCC   End track kinematics output.
       par_h.nok = II
       MEVSIM=STAFCV_OK
