@@ -1678,10 +1678,10 @@ CCC   Output track kinematics for ievent and pid:
              IF(ppnxlv(5).gt..001) then
                 nptcl=1
                 pptcl(1,1)=ppnxlv(1)
-                pptcl(1,1)=ppnxlv(2)
-                pptcl(1,1)=ppnxlv(3)
-                pptcl(1,1)=ppnxlv(4)
-                pptcl(1,1)=ppnxlv(5)
+                pptcl(2,1)=ppnxlv(2)
+                pptcl(3,1)=ppnxlv(3)
+                pptcl(4,1)=ppnxlv(4)
+                pptcl(5,1)=ppnxlv(5)
                 ident(1)=110
                 CALL DECAY(NPTCL)
                 ida2(ksav)=ida1(ksav)+NPTCL-2
@@ -1743,10 +1743,10 @@ CCC   Output track kinematics for ievent and pid:
              IF(ppnxlv(5).gt..001) then
                 nptcl=1
                 pptcl(1,1)=ppnxlv(1)
-                pptcl(1,1)=ppnxlv(2)
-                pptcl(1,1)=ppnxlv(3)
-                pptcl(1,1)=ppnxlv(4)
-                pptcl(1,1)=ppnxlv(5)
+                pptcl(2,1)=ppnxlv(2)
+                pptcl(3,1)=ppnxlv(3)
+                pptcl(4,1)=ppnxlv(4)
+                pptcl(5,1)=ppnxlv(5)
                 ident(1)=110
                 CALL DECAY(NPTCL)
                 ida2(ksav)=ida1(ksav)+NPTCL-2
@@ -2103,10 +2103,10 @@ CCC   Output track kinematics for ievent and pid:
              IF(ppnxlv(5).gt..001) then
                 nptcl=1
                 pptcl(1,1)=ppnxlv(1)
-                pptcl(1,1)=ppnxlv(2)
-                pptcl(1,1)=ppnxlv(3)
-                pptcl(1,1)=ppnxlv(4)
-                pptcl(1,1)=ppnxlv(5)
+                pptcl(2,1)=ppnxlv(2)
+                pptcl(3,1)=ppnxlv(3)
+                pptcl(4,1)=ppnxlv(4)
+                pptcl(5,1)=ppnxlv(5)
                 ident(1)=110
                 CALL DECAY(NPTCL)
                 ida2(ksav)=ida1(ksav)+NPTCL-2
@@ -2175,10 +2175,10 @@ CCC   Output track kinematics for ievent and pid:
              IF(ppnxlv(5).gt..001) then
                 nptcl=1
                 pptcl(1,1)=ppnxlv(1)
-                pptcl(1,1)=ppnxlv(2)
-                pptcl(1,1)=ppnxlv(3)
-                pptcl(1,1)=ppnxlv(4)
-                pptcl(1,1)=ppnxlv(5)
+                pptcl(2,1)=ppnxlv(2)
+                pptcl(3,1)=ppnxlv(3)
+                pptcl(4,1)=ppnxlv(4)
+                pptcl(5,1)=ppnxlv(5)
                 ident(1)=110
                 CALL DECAY(NPTCL)
                 ida2(ksav)=ida1(ksav)+NPTCL-2
