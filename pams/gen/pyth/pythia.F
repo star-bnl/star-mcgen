@@ -1,5 +1,8 @@
-* $Id: pythia.F,v 1.4 1999/08/13 23:12:41 fisyak Exp $
+* $Id: pythia.F,v 1.5 1999/08/13 23:45:12 fisyak Exp $
 * $Log: pythia.F,v $
+* Revision 1.5  1999/08/13 23:45:12  fisyak
+* introduce py_hepevt
+*
 * Revision 1.4  1999/08/13 23:12:41  fisyak
 * unify hepevt
 *
@@ -17,7 +20,7 @@
 *:>--------------------------------------------------------------------
       EXTERNAL PYDATA, PYEVNT, PYHEPC, PY_INIT
 #include "pythia.inc"
-#include "hepevt.inc"
+#include "pycdes/py_hepevt.inc"
       INTEGER I, J, LOAD
       DATA LOAD /-1/
       SAVE LOAD
