@@ -1,52 +1,48 @@
-c     this function calculates the perpendicular momentum distribution
-c     function for two-photon interactions
-c     gives a randomly chosen pp when given a photon energy
-c     uses a binary seach assuming a monotonically increasing function
-
-      real function pp(E)
-
-      implicit NONE
+      double precision function pp(E)
+C     returns one random draw from pp(E) distribution
+      implicit none
+      real E,satisfy,x,ereds
+      double precision u,test,formf,coef,Cm
 
       include 'const.inc'
-      include 'D2LParam.inc'
+      include 'D2LParam.inc' 
       include 'inputp.inc'
-      real E
-      real ranx,ptest,dp,pdis,pperpdist
-      real u0,u1,ran
-      integer i
 
-c	Calculate p_perp following Eq. 2 of
-c	M. Vidovic et al., Phys. Rev. C47, 2308 (1993).
-c
-c	p_perp ~hbar/b ~E/gamma, NOT hbar/R_A
-c	changed 11/10/2000 SRK
+      satisfy = 0.
+
+C
+      ereds=(E/gamma_em)**2
+
+C sqrt(3)*E/gamma_em is p_t where the distribution is a maximum
+
+      Cm=sqrt(3.)*E/gamma_em
+
+C the amplitude of the p_t spectrum at the maximum
+
+      Coef = 3.0*(formf(Cm**2+ereds)**2)*Cm**3/
+     * (2*pi*(ereds+ Cm**2))**2
 
 
-C  take out fix, go back to Evan's original code
-C       u0 = 2.*(E/gamma_em)**4
-      u0 =2.*(E*RNuc/(hbarc*gamma_em))**2
-      u1 =2.*(1.5)**2
-c      call ranmar(ran,1)
-      ranx = ran(iseed) * pperpdist(u0,u1)
+C pick a test value pp, and find the amplitude there
 
-c     ptest is a dimensionless pperp
-      ptest = 0.75
-      dp = ptest/2.
+      x=ran(iseed)
+      pp = x*5.*hbarc/RNuc
 
-      do 50 i = 1,10
-        u1 =2.*(ptest)**2
-        pdis = pperpdist(u0,u1)
-        if (ranx.lt.pdis) then
-          ptest = ptest - dp
-        else
-          ptest = ptest + dp
+      test = (formf(pp**2+ereds)**2)*pp**3/
+     * (2*pi*(ereds + pp**2))**2
+
+
+      do while (satisfy.eq.0.)
+        u = ran(iseed)
+C       write(76,*)u,Coef,test,Cmax,E
+        if (u*Coef.le.test) then 
+          satisfy = 1.
+        else 
+          x=ran(iseed)
+          pp = 5*hbarc/RNuc*x
+          test = (formf(pp**2+ereds)**2)*pp**3/
+     *    (2*pi*(ereds + pp**2))**2
         endif
-        dp = dp /2.
- 50   continue
-
-c	scale by E/gamma, not hbar/R
-      pp = ptest*E/gamma_em
-c      pp = ptest * hbarc / RNuc
-
+      enddo
       return
       end
