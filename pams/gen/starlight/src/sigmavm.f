@@ -150,9 +150,9 @@ C       >> The 2 accounts for the 2 beams
         dR  = 2.*dR
         int = int+dR
 
-        dsdy=10.*flux(ega12)*ega12*csgA12
-        write(6,190)y12,ega12,flux(ega12),10.*csgA12,dsdy,10.*int
- 190    format(' ',F7.3,' ',F7.3,' ',E11.3,' ',F7.3,' ',F7.3,' ',F7.3)
+C        dsdy=10.*flux(ega12)*ega12*csgA12
+C        write(6,190)y12,ega12,flux(ega12),10.*csgA12,dsdy,10.*int
+C 190    format(' ',F7.3,' ',F7.3,' ',E11.3,' ',F7.3,' ',F7.3,' ',F7.3)
 
  200    CONTINUE
 
