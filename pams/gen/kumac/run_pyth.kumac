@@ -3,8 +3,10 @@
 * * contains kumacs for the pam: pyth
 * **********************************************
  
+ macro run
+   
  ami/mod/call pythia_
     /dui/evgen/particle
  
-
+ return
 * *****************************************

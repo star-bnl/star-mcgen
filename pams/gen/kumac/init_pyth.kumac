@@ -3,9 +3,11 @@
 * * contains kumacs for the pam: pyth
 * **********************************************
  
+ macro init
+   
  cd /dui/evgen
  tdm/newtable particle particle 4000
  cd /dui
  
- 
+ return
 * *****************************************
