@@ -1,7 +1,10 @@
-* $Id: hijjet.f,v 1.2 2000/06/22 22:49:36 longacre Exp $
+* $Id: hijjet.f,v 1.3 2000/06/22 22:53:54 longacre Exp $
 * $Log: hijjet.f,v $
+* Revision 1.3  2000/06/22 22:53:54  longacre
+* comment out debug code
+*
 * Revision 1.2  2000/06/22 22:49:36  longacre
-* new hijing better parton code
+*  new hijing better parton code
 *
 * Revision 1.1  2000/06/16 14:58:04  longacre
 *  hijing ntuple maker
@@ -73,24 +76,24 @@ C
 *
         njets = 0
         if(IFIRST.GT.1) then
-        ik = 0
-        DO IP = 1, NATT
-        ik = ik + 1
-        ISTAT=katt(ip,4)
-        imo(1)=katt(ip,3)
-        imo(2)=0
-        idau(1)=katt(ip,5)
-        idau(2)=katt(ip,6)
-        IF(ik.eq.NATT)  ik = -1
-        DO J = 1, 3
-          P(j)  = patt(ip,j)    
-          V(j)  = 0.        
-        END DO
-          E     = patt(ip,4)    
-          AMASS = patt(ip,5)
-        WRITE(63,6116)ik,ISTAT,katt(ip,1),imo,idau
-     1,P,E,AMASS
-      END DO
+CCCCC        ik = 0
+CCCCC        DO IP = 1, NATT
+CCCCC        ik = ik + 1
+CCCCC        ISTAT=katt(ip,4)
+CCCCC        imo(1)=katt(ip,3)
+CCCCC        imo(2)=0
+CCCCC        idau(1)=katt(ip,5)
+CCCCC        idau(2)=katt(ip,6)
+CCCCC        IF(ik.eq.NATT)  ik = -1
+CCCCC        DO J = 1, 3
+CCCCC          P(j)  = patt(ip,j)    
+CCCCC          V(j)  = 0.        
+CCCCC        END DO
+CCCCC          E     = patt(ip,4)    
+CCCCC          AMASS = patt(ip,5)
+CCCCC        WRITE(63,6116)ik,ISTAT,katt(ip,1),imo,idau
+CCCCC     1,P,E,AMASS
+CCCCC      END DO
         DO ip = 1, NATT
         if(katt(ip,1).gt.90.and.katt(ip,1).lt.94) then 
         pt=sqrt(patt(ip,1)**2+patt(ip,2)**2)
@@ -247,24 +250,24 @@ C
         endif
         endif
       END DO
-        ik = 0
-        DO IP = 1, NATT
-        ik = ik + 1
-        ISTAT=katt(ip,4)
-        imo(1)=katt(ip,3)
-        imo(2)=0
-        idau(1)=katt(ip,5)
-        idau(2)=katt(ip,6)
-        IF(ik.eq.NATT)  ik = -1
-        DO J = 1, 3
-          P(j)  = patt(ip,j)    
-          V(j)  = 0.        
-        END DO
-          E     = patt(ip,4)    
-          AMASS = patt(ip,5)
-        WRITE(62,6116)ik,ISTAT,katt(ip,1),imo,idau
-     1,P,E,AMASS
-      END DO
+CCCCC        ik = 0
+CCCCC        DO IP = 1, NATT
+CCCCC        ik = ik + 1
+CCCCC        ISTAT=katt(ip,4)
+CCCCC        imo(1)=katt(ip,3)
+CCCCC        imo(2)=0
+CCCCC        idau(1)=katt(ip,5)
+CCCCC        idau(2)=katt(ip,6)
+CCCCC        IF(ik.eq.NATT)  ik = -1
+CCCCC        DO J = 1, 3
+CCCCC          P(j)  = patt(ip,j)    
+CCCCC          V(j)  = 0.        
+CCCCC        END DO
+CCCCC          E     = patt(ip,4)    
+CCCCC          AMASS = patt(ip,5)
+CCCCC        WRITE(62,6116)ik,ISTAT,katt(ip,1),imo,idau
+CCCCC     1,P,E,AMASS
+CCCCC      END DO
 C
 C 
           matt=0
@@ -349,8 +352,8 @@ C--
           E     = patt(ip,4)    
           AMASS = patt(ip,5)
       CALL HEPPart(ik,ISTAT,katt(ip,1),imo,idau,P,E,AMASS,V,X4) 
-        WRITE(61,6116)ik,ISTAT,katt(ip,1),imo,idau
-     1,P,E,AMASS
+CCCCC        WRITE(61,6116)ik,ISTAT,katt(ip,1),imo,idau
+CCCCC     1,P,E,AMASS
  6116   FORMAT(7I6,5G12.5)
       END DO
       GO TO 999
