@@ -1,7 +1,7 @@
     0.0         ! Starting event number 
  200.           ! Energy NN CM 
    10.          ! STOPPING  EVENT NUMBER
-N               ! NO DECAY FILE
+Y               ! NO DECAY FILE
 Y               ! PIO DECAY
 Y               ! ETA DECAY
 Y               ! ETA' DECAY
@@ -11,7 +11,7 @@ Y               ! KSTAR DECAY
 Y               ! PHI DECAY
 Y               ! DELTA DECAY
 Y               ! JPSI DECAY
-     1                  ! Number of PID types
+    20                  ! Number of PID types
      1                  ! Distribution model type (1,2,3,4,5,6)
      4                  ! Reaction Plane Control (1,2,3,4)
    0.0    0.0           ! Reaction Plane Angle, mean and std.dev. (deg)
@@ -28,8 +28,8 @@ Y               ! JPSI DECAY
    3.                   ! # of std.dev. for Multiplicity scale factor
    25                   ! # of integration mesh pts for param var.
    60                   ! # of pt,y scan pts for finding max val of dN/dp
-       155              ! Repeat for other PID types, etc.....
-       1000   1 
+         7              ! Repeat for other PID types, etc.....
+        10   1 
          0.18  0.01 
          1.7   0.1 
          0.0   0.0

@@ -1323,16 +1323,12 @@ C                                                            **
 C                     START EVENT LOOP                       **
 C                                                            **
 C**************************************************************
-      itimes=psshep(3)
-      do j=1,itimes
-         VSSHEP(3)=ranf()
-      enddo
 7777  CALL DATIME(I,J)
       VSSHEP(2) = VSSHEP(2) + 1
       WRITE(6,881) PSSHEP(5), VSSHEP(2)
  881  FORMAT(' I GOT TO HERE',2F10.5)
       IF(psshep(5).LT.vsshep(2)) then
-         CALL HEPEnd()
+         CALL HEPEnd('  ')
          STOP
       ENDIF
 CCC   Compute the Reaction plane angle for this event:
