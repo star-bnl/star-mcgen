@@ -1,18 +1,18 @@
 MACRO PAR_HIS [N]=1
 * 
-make par
+make gen/par
 * 
 ghist par_his.nt 
-DIO/NEWFILESTREAM hijet genoutput.xdf r
+DIO/NEWFILESTREAM hijet hijjet.xdf r
 * 
 DO I=1,[N] 
 dio/stream/getevent hijet
 ls
 cd evgen
 ls
+cd .. 
 tdm/table/print evgen/particle
 ami/mod/call par_anal evgen/particle
-cd ..
 ENDDO 
 * 
 rz/cdir //PAWC
