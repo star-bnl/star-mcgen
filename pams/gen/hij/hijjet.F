@@ -1,5 +1,8 @@
-* $Id: hijjet.F,v 1.4 1999/08/13 23:55:08 fisyak Exp $
+* $Id: hijjet.F,v 1.5 1999/08/14 21:49:00 fisyak Exp $
 * $Log: hijjet.F,v $
+* Revision 1.5  1999/08/14 21:49:00  fisyak
+* eliminate include and source level
+*
 * Revision 1.4  1999/08/13 23:55:08  fisyak
 * remove hepevt
 *
@@ -21,8 +24,8 @@
 *:>--------------------------------------------------------------------
       EXTERNAL  HIJEV
 #include "hijjet.inc"
-#include "hicdes/headpss.inc"
-#include "hicdes/himevt2.inc"
+#include "headpss.inc"
+#include "himevt2.inc"
 *--
       INTEGER NATT, JATT, NT, NP, N0, N01, N10, N11
       REAL  EATT

@@ -7,7 +7,7 @@ C       The following is an example program for calling HIJING. one should
 C       include all the common blocks and the data values which are listed 
 C       below in his own program.
 C***************************************************************************
-#include "hicdes/headpss.inc"
+#include "headpss.inc"
 *--
       CHARACTER FRAME*8,PROJ*8,TARG*8, line*80
       DATA lin, lout / 40, 50 /

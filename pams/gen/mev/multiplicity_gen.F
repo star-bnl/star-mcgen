@@ -2,7 +2,7 @@
      1     pt_cut_min,pt_cut_max,eta_cut_min,eta_cut_max,
      2     phi_cut_min,phi_cut_max,n_scan_pts,rad,pid,status)
       implicit none
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
       Common/track/ pout(npid,3,factorial_max)
       real*4 pout
       Common/Geant/geant_mass(60)
@@ -104,7 +104,7 @@ CCC  computes E, px, py, pz and loads the momenta into the index-th
 CCC  row of array pout(,,) in Common/track/ .
 
       integer index,pid
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
       Common/track/ pout(npid,3,factorial_max)
       real*4 pout
 
@@ -136,7 +136,7 @@ CCC  row of array pout(,,) in Common/track/ .
       real*4 pi,mt,coshy,E,ptot,FAC,gamma,yp,sinhyp,coshyp
       real*4 FAC2,FAC3,expR
       integer control, ktl,pid,pt_index,eta_index,index_locate
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
 CCC   Calculates dN/dp^3 using several models:
 CCC
 CCC      control = 1,  Humanic factorized model
@@ -210,7 +210,7 @@ CCC      ktl     = 1,  to return value of dN/dpt*dy
       Integer Function index_locate(pid,arg,kind)
       implicit none
 
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
       integer pid,kind,ibin
       real*4 arg
 
@@ -424,7 +424,7 @@ C
       implicit none
 
       integer n
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
       real*4 FN
 
 CCC   Computes the natural log of n! for n = 0,1,2...(factorial_max -1)
@@ -466,7 +466,7 @@ CCC      array integ();
 CCC   Records the coordinates in array xfunc().
 
       integer min,max,mean,nsteps,ndim,i,n
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
       real*4 mean_real,mean_real_log,expR
       real*4 integ(ndim)
       real*4 xfunc(ndim)
@@ -524,7 +524,7 @@ CCC   Integrate this distribution and record result at each mesh in
 CCC      array integ();
 CCC   Record the coordinates in array xfunc().
 
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
       integer npts,ndim,i
       real*4 min,max,mean,stdev,integ(ndim),xfunc(ndim)
       real*4 dm,x,Gauss_dist(nmax_integ),FAC1,FAC2,pi,expR

@@ -1,5 +1,8 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
+*Revision 1.7  1999/08/14 21:49:01  fisyak
+*eliminate include and source level
+*
 *Revision 1.6  1999/08/14 00:02:46  fisyak
 *unify hepevt
 *
@@ -227,12 +230,12 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 *:>--------------------------------------------------------------------
 #include "mevsim.inc"
 #include "hepevt.inc"
-#include "mevcdes/headpss.inc"
+#include "headpss.inc"
 C---------------------------------------------------------------------
       DOUBLE PRECISION HEPMASS
       INTEGER IDTRAN
       INTEGER II
-#include "mevcdes/multi_gen.inc"
+#include "multi_gen.inc"
       Common/track/ pout(npid,3,factorial_max)
       real*4 pout
       Common/Geant/geant_mass(60)

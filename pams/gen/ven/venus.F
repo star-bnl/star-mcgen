@@ -1,5 +1,8 @@
 * Id: venus.F, v 1.1 1998/04/02 11:10:40 longacre Exp $
 *$Log: venus.F,v $
+*Revision 1.7  1999/08/14 21:49:57  fisyak
+*eliminate include and source level
+*
 *Revision 1.6  1999/08/13 23:35:26  fisyak
 *unify hepevt
 *
@@ -28,10 +31,10 @@ c
 c     Common and variables relating to VENUS
 c     ======================================
 #include "venus.inc"
-#include "vencdes/venpack.inc"
+#include "venpack.inc"
 #include "hepevt.inc"
-#include "vencdes/headpss.inc"
-#include "vencdes/outfgdt.inc"
+#include "headpss.inc"
+#include "outfgdt.inc"
 c     
       real scfermi
 C---------------------------------------------------------------------
