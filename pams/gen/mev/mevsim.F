@@ -1,5 +1,8 @@
 * Id: mevsim.F, v 1.1 1998/03/30 14:20:50 longacre Exp $
 *$Log: mevsim.F,v $
+*Revision 1.4  1998/04/03 18:58:50  longacre
+*change order of ifirst in headpss.inc
+*
 *Revision 1.3  1998/04/03 17:26:03  longacre
 *move seed to kumac for rndm
 *
@@ -221,11 +224,8 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 #include "mevcdes/headpss.inc"
 C---------------------------------------------------------------------
       DOUBLE PRECISION HEPMASS
-      INTEGER IFIRST
       INTEGER IDTRAN
-      INTEGER I
       INTEGER II
-      INTEGER J
 #include "mevcdes/multi_gen.inc"
       Common/track/ pout(npid,3,factorial_max)
       real*4 pout

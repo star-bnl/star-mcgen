@@ -1,7 +1,10 @@
 *
-* $Id: headpss.inc,v 1.2 1998/04/02 21:37:51 longacre Exp $
+* $Id: headpss.inc,v 1.3 1998/04/03 18:58:46 longacre Exp $
 *
 * $Log: headpss.inc,v $
+* Revision 1.3  1998/04/03 18:58:46  longacre
+* change order of ifirst in headpss.inc
+*
 * Revision 1.2  1998/04/02 21:37:51  longacre
 * change ran to ranf
 *
@@ -54,7 +57,7 @@
 *
 * headpss.inc
 *
-      COMMON/HEADPSS/IFIRST,PSSHEP(5),VSSHEP(4)
-      INTEGER IFIRST
+      COMMON/HEADPSS/PSSHEP(5),VSSHEP(4),IFIRST
       DOUBLE PRECISION PSSHEP,VSSHEP
+      INTEGER IFIRST
       SAVE /HEADPSS/
