@@ -1,12 +1,13 @@
 c     This subroutine reads in a table of F values
 c     parameterized by rapidity and mass
+c     comment added for newer modify date
 
       subroutine readDiffLum
 
+        REAL f_max
+
         include 'Ftable.inc'
         include 'inputp.inc'
-
-        REAL f_max
 
 c     numw is the number of w values
 c     numy is the number of y values
@@ -18,7 +19,9 @@ c     f is the twoD array of f values
 
       open (unit=20,file='starlight.dat',status='unknown')
 
-c     skip first nine entries, Z, A,Gamma,wmax,wmin,numw,ymax,numw,gg_or_gP
+c  Skip first 10 entries, Z, A,Gamma,wmax,wmin,numw,ymax,numw,gg_or_gP
+c  ibreakup
+      read (20,*) dummy
       read (20,*) dummy
       read (20,*) dummy
       read (20,*) dummy
