@@ -1,7 +1,7 @@
-* $Id: pythia.F,v 1.1 1998/02/10 15:13:46 fisyak Exp $
+* $Id: pythia.F,v 1.2 1998/03/27 14:16:16 fisyak Exp $
 * $Log: pythia.F,v $
-* Revision 1.1  1998/02/10 15:13:46  fisyak
-* Add interface with Staf
+* Revision 1.2  1998/03/27 14:16:16  fisyak
+* force load of py_init
 *
       INTEGER*4 FUNCTION PYTHIA(par_h, par) 
       IMPLICIT NONE
@@ -9,10 +9,13 @@
 *: ROUTINE:    PYTHIA
 *: generate one pythia event and put into table
 *:>--------------------------------------------------------------------
-      EXTERNAL PYDATA, PYEVNT, PYHEPC
+      EXTERNAL PYDATA, PYEVNT, PYHEPC, PY_INIT
 #include "pythia.inc"
 #include "pycdes/hepevt.inc"
-      INTEGER I, J
+      INTEGER I, J, LOAD
+      DATA LOAD /-1/
+      SAVE LOAD
+      IF (LOAD .EQ. 0) CALL PY_INIT(4)
 *---     
       CALL PYEVNT
       CALL PYHEPC (1)

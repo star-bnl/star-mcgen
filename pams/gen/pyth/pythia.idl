@@ -1,8 +1,8 @@
-/*    $Id: pythia.idl,v 1.1 1998/02/10 15:13:49 fisyak Exp $
+/*    $Id: pythia.idl,v 1.2 1998/03/27 14:16:17 fisyak Exp $
       Generate one pythia event
       $Log: pythia.idl,v $
-      Revision 1.1  1998/02/10 15:13:49  fisyak
-      Add interface with Staf
+      Revision 1.2  1998/03/27 14:16:17  fisyak
+      force load of py_init
 
 */
 #include "PAM.idl"
