@@ -11,8 +11,12 @@ include Makefile.Linux
 #
 BIN= ../bin
 #
+<<<<<<< Makefile
+SLIB = `cernlib mathlib packlib kernlib jetset74`
+=======
 SLIB = `cernlib mathlib packlib kernlib jetset74`
 #SLIB = `cernlib -v pro mathlib packlib kernlib jetset74`
+>>>>>>> 1.4
 #
 #CGLIB=`cernlib -v new -G mathlib` 
 #
@@ -33,7 +37,7 @@ EXE = starlight
 #          Fortran Sources
 #
 FSOURCES = starlight.f \
-           hencken.f \
+	   vladimir.f \
 	   diffLum_vm.f \
 	   flux.f \
 	   formf.f \
@@ -76,7 +80,16 @@ FSOURCES = starlight.f \
 	   pickwy_vm.f\
 	   heptup.f\
 	   photonbreakup.f\
-	   hadronbreakup.f
+	   hadronbreakup.f\
+	   pttablegen.f\
+	   vmpt.f\
+	   vmsigmapt.f\
+	   nofe.f\
+           radmul.F\
+	   PofB.f
+
+
+
 #
 #      C Sources
 #
@@ -102,13 +115,23 @@ $(BIN)/$(EXE):  $(OBJECTS)
 # use the following line to compile on Solaris
 #	$(FC) -o $(BIN)/$(EXE) $(OBJECTS) $(SLIB) -L/opt/WS5.0/lib -lM77 -lM77 -lF77 -lsunmath
 #use the following line to compile on Linux
-	$(FC) -o $(BIN)/$(EXE) $(OBJECTS) $(SLIB) -L/usr/pgi/linux86/lib -lpgftnrtl -lpgc -L/usr/local/lib/gcc-lib/i686-pc-linux-gnu/egcs-2.91.66 -lg2c 
+	$(FC) -o $(BIN)/$(EXE) $(OBJECTS) $(SLIB) -L/usr/pgi/linux86/lib -lpgftnrtl -lpgc -L/usr/local/pkg/egcs-1.1.2-lhc/lib/gcc-lib/i686-pc-linux-gnu/egcs-2.91.66 -lg2c 
 #
 #
 #    Second-level dependencies
 #
 .F.o:    
 	$(FC) -c -o $*.o $*.F                              
+
+#  Cleanup
+
+	rm -rf $(BIN)/starlight.dat
+
+
+
+
+
+
 
 
 
