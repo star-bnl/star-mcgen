@@ -1,5 +1,8 @@
 * Id: venus.F, v 1.1 1998/04/02 11:10:40 longacre Exp $
 *$Log: venus.F,v $
+*Revision 1.6  1999/08/13 23:35:26  fisyak
+*unify hepevt
+*
 *Revision 1.5  1999/06/25 16:18:14  longacre
 *add flag icmtst keep beamgas in lab fram
 *
@@ -26,7 +29,7 @@ c     Common and variables relating to VENUS
 c     ======================================
 #include "venus.inc"
 #include "vencdes/venpack.inc"
-#include "vencdes/hepevt.inc"
+#include "hepevt.inc"
 #include "vencdes/headpss.inc"
 #include "vencdes/outfgdt.inc"
 c     
