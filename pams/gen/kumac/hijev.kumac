@@ -1,8 +1,9 @@
 MACRO hijjet nevent=1 file=hijjet_w_ej.xdr
-RNDM 1841445  98361521
+RNDM 541418  148361526
 * 
 make gen/hij
-*  
+*
+ghist hijing.nt  
 DIO/NEWFILESTREAM hijjet [file] w
 mkdir hijjet
 do i = 1, [nevent]
@@ -10,7 +11,7 @@ cd hijjet
 tdm/newtable particle particle 40000
 ami/mod/call hijjet particle
 if [i]=1 then
-  tdm/table/print /dui/hijjet/particle
+tdm/table/print /dui/hijjet/particle
 endif
 cd ..
 message "Write event no." [i]
