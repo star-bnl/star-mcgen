@@ -1,13 +1,16 @@
-    1.                  ! RUN NUMBER
-    0.                  ! STARTING EVENT NUMBER
-   80.                  ! GENERATOR NUMBER VNI LIKE MEV
-  200.                  ! ENERGY OF N-N CM
-  197.197               ! Awest.Aeast
-Y                       ! NO DECAY FILE
-Y                       ! PIO DECAY
-Y                       ! RHO DECAY
-Y                       ! KSTAR DECAY
-Y                       ! PHI DECAY
+    1.0         ! Run number 
+    0.0         ! Starting event number 
+17832.          ! Seed Random Number
+    200         ! Energy NN CM 
+   2.           ! STOPPING  EVENT NUMBER
+Y               ! NO DECAY FILE
+Y               ! PIO DECAY
+Y               ! ETA DECAY
+Y               ! RHO DECAY
+Y               ! KSTAR DECAY
+Y               ! PHI DECAY
+Y               ! DELTA DECAY
+Y               ! JPSI DECAY
     15                  ! Number of PID types
      1                  ! Distribution model type (1,2,3,4,5,6)
      1                  ! Reaction Plane Control (1,2,3,4)

@@ -2080,8 +2080,8 @@ CCC   End track kinematics output.
         kmohep(2)=jmohep(2,JJ)
         kdahep(1)=jdahep(1,JJ)
         kdahep(2)=jdahep(2,JJ)
-        WRITE(61,6116)JJ,isthep(JJ),idhep(JJ),kmohep,kdahep
-     1,PPP,phep(4,JJ),phep(5,JJ)
+CCCC        WRITE(61,6116)JJ,isthep(JJ),idhep(JJ),kmohep,kdahep
+CCCC     1,PPP,phep(4,JJ),phep(5,JJ)
  6116   FORMAT(7I6,5G12.5)
         IF(JJ.EQ.NPT) JJJ=-1
         CALL HEPPart(JJJ,isthep(JJ),idhep(JJ),kmohep,kdahep
