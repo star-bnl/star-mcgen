@@ -744,6 +744,10 @@ C--the only change for 6505 was to increase MODMAX from 5 to 50
       DOUBLE PRECISION PDFX0,PDFPOW
       COMMON /HW6506/PDFX0,PDFPOW
 CCCCCC#include "hepevt.inc"
+      INTEGER jput
+      PARAMETER(jput=900000)
+      INTEGER itest
+      PARAMETER(itest=9000000)
         INTEGER isthp !  status code of the entry 0
         INTEGER idhp !  particle identity, accordingly to the PDG standard 0
         INTEGER jmohp !  pointer(s) to position where the mother(s) stored 0
@@ -766,6 +770,13 @@ CCCCCC#include "headpss.inc"
         IF(I.EQ.NHEP) JJJ=-1
         isthp=isthep(I)
         idhp=idhep(I)
+        IF(IABS(idhp).GT.itest) THEN
+          IF(idhp.LT.0) THEN
+            idhp=idhp+itest-jput
+          ELSE
+            idhp=idhp-itest+jput
+          ENDIF
+        ENDIF
         jmohp(1)=jmohep(1,I)
         jmohp(2)=jmohep(2,I)
         jdahp(1)=jdahep(1,I)
