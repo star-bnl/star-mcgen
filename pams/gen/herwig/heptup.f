@@ -140,6 +140,7 @@ C    Check BTEST(IDRUN,IS)                                                87
       IMPLICIT NONE                                                       97
       INTEGER GETPID,IVER/11/,IPMX/1000000/,MXRF/1/,MXPA/32000/,NV/16/    98
       INTEGER MAXIP,MAXRF,MAXPA,MAXNV,K,IC/0/,ID/999/,LUX/2/              99
+      INTEGER I1,I2,I3,I4
       REAL VXMAX,VXMX/10.00/,VXMM                                         100
 * Input parameters:
       CHARACTER GENERATOR*(*)                                             102
@@ -261,6 +262,17 @@ C    Loop here                                                            181
       CALL HFNT(ID)                                                       192
       NP=NPART                                                            193
       RETURN                                                              195
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      ENTRY HEPINFO (I1, I2, I3, I4)                                      204
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      IPDG=IPDG-1                                                         205
+      PXYZ(1)=I1                                                          205
+      PXYZ(2)=I2                                                          205
+      PXYZ(3)=I3                                                          205
+      PXYZ(4)=I4                                                          205
+      PXYZ(5)=3                                                           205
+      CALL HFNT(ID)                                                       205
+      RETURN                                                              207
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       ENTRY HEPPART (IPA,IST,PDG,MOTH,IDAU,PP,EP,AM,VV,VT)                198
 * - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

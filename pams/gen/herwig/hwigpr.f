@@ -764,6 +764,8 @@ CCCCCC#include "headpss.inc"
       COMMON/HEADPSS/PSSHEP(5),VSSHEP(4),INTRUN
       SAVE /HEADPSS/
       CALL HEPEvent('herwig',0,NHEP,0.0,0.,0.,0.,1.,1.,1.,1.)
+      CALL HEPInfo(0,0,0,0)
+      CALL HEPInfo(IPROC,IHPRO,0,0)
        JJJ=0
        DO I=1,NHEP
        JJJ = JJJ + 1
