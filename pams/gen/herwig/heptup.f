@@ -141,7 +141,7 @@ C    Check BTEST(IDRUN,IS)                                                87
       INTEGER GETPID,IVER/11/,IPMX/1000000/,MXRF/1/,MXPA/32000/,NV/16/    98
       INTEGER MAXIP,MAXRF,MAXPA,MAXNV,K,IC/0/,ID/999/,LUX/2/              99
       INTEGER I1,I2,I3,I4
-      REAL VXMAX,VXMX/10.00/,VXMM                                         100
+      REAL VXMAX,VXMX/20.00/,VXMM                                         100
 * Input parameters:
       CHARACTER GENERATOR*(*)                                             102
       INTEGER RUN,NPART,IPA,IST,PDG,MOTH(2),IDAU(2)                       103

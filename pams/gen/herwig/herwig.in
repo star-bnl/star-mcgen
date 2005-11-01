@@ -4,5 +4,5 @@ P           proton
 P           proton
 100.0       CMS energy
 1500        QCD is 1500
-20.0        pt max
-5.0         pt min
+10.0        pt max
+3.0         pt min

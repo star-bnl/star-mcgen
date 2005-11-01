@@ -756,16 +756,79 @@ CCCCCC#include "hepevt.inc"
          REAL*4 PPP 
          REAL*4 V
          REAL*4 vhp !  production vertex (mm) and time (mm/c) 0
+         REAL*4 AS
+         REAL*4 BS
+         REAL*4 CS
+         REAL*4 DS
+         REAL*4 ES
+         REAL*4 FS
          DIMENSION jmohp(2), jdahp(2)
          DIMENSION php(5),vhp(4),PPP(3),V(3)
 CCCCCC#include "headpss.inc"
       real*4 PSSHEP,VSSHEP
-      INTEGER INTRUN, JJJ
+      INTEGER INTRUN, JJJ, J, K
       COMMON/HEADPSS/PSSHEP(5),VSSHEP(4),INTRUN
       SAVE /HEADPSS/
+      DOUBLE PRECISION
+     & A,B,C,D,E,F
+      COMMON /HPASS/A,B,C,D,E,F
+      SAVE /HPASS/
       CALL HEPEvent('herwig',0,NHEP,0.0,0.,0.,0.,1.,1.,1.,1.)
       CALL HEPInfo(0,0,0,0)
-      CALL HEPInfo(IPROC,IHPRO,0,0)
+      AS=A
+      BS=B
+      CS=C
+      DS=D
+      ES=E
+      FS=F
+      JJJ=NHEP
+      isthp=11
+      idhp=999995
+        jmohp(2)=0
+        jdahp(1)=0
+        jdahp(2)=0
+        php(1)=FLOAT(IPROC)
+        php(2)=FLOAT(IHPRO)
+        php(3)=AS
+        php(4)=BS
+        php(5)=0.0
+        PPP(1)=php(1)
+        PPP(2)=php(2)
+        PPP(3)=php(3)
+        vhp(1)=0.0
+        vhp(2)=0.0
+        vhp(3)=0.0
+        vhp(4)=0.0
+        V(1)=vhp(1)
+        V(2)=vhp(2)
+        V(3)=vhp(3)
+        CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
+     1,PPP,php(4),php(5),V,vhp(4))
+      JJJ=NHEP
+      isthp=11
+      idhp=999994
+        jmohp(1)=0
+        jmohp(2)=0
+        jdahp(1)=0
+        jdahp(2)=0
+        php(1)=CS
+        php(2)=DS
+        php(3)=ES
+        php(4)=FS
+        php(5)=0.0
+        PPP(1)=php(1)
+        PPP(2)=php(2)
+        PPP(3)=php(3)
+        vhp(1)=0.0
+        vhp(2)=0.0
+        vhp(3)=0.0
+        vhp(4)=0.0
+        V(1)=vhp(1)
+        V(2)=vhp(2)
+        V(3)=vhp(3)
+        CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
+     1,PPP,php(4),php(5),V,vhp(4))
+CCCCC      WRITE(12,*) A, B, C, D, E, F
        JJJ=0
        DO I=1,NHEP
        JJJ = JJJ + 1
@@ -800,9 +863,19 @@ CCCCCC#include "headpss.inc"
         V(3)=vhp(3)
         CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
      1,PPP,php(4),php(5),V,vhp(4))
+CCCCC        IF(ISTHEP(I).GT.140.AND.ISTHEP(I).LT.143) THEN
+CCCCC        J=JMOHEP(1,I)
+CCCCC        K=JMOHEP(2,I)
 CCCCC        WRITE(12,*) NEVHEP,I,ISTHEP(I),IDHEP(I),JMOHEP(1,I),JMOHEP(2,I)
 CCCCC     &,JDAHEP(1,I),JDAHEP(2,I),PHEP(1,I),PHEP(2,I),PHEP(3,I),PHEP(4,I)
 CCCCC     &,PHEP(5,I),VHEP(1,I),VHEP(2,I),VHEP(3,I),VHEP(4,I)
+CCCCC        WRITE(12,*) NEVHEP,J,ISTHEP(J),IDHEP(J),JMOHEP(1,J),JMOHEP(2,J)
+CCCCC     &,JDAHEP(1,J),JDAHEP(2,J),PHEP(1,J),PHEP(2,J),PHEP(3,J),PHEP(4,J)
+CCCCC     &,PHEP(5,J),VHEP(1,J),VHEP(2,J),VHEP(3,J),VHEP(4,J)
+CCCCC        WRITE(12,*) NEVHEP,K,ISTHEP(K),IDHEP(K),JMOHEP(1,K),JMOHEP(2,K)
+CCCCC     &,JDAHEP(1,K),JDAHEP(2,K),PHEP(1,K),PHEP(2,K),PHEP(3,K),PHEP(4,K)
+CCCCC     &,PHEP(5,K),VHEP(1,K),VHEP(2,K),VHEP(3,K),VHEP(4,K)
+CCCCC        ENDIF
       ENDDO
       RETURN
       END
