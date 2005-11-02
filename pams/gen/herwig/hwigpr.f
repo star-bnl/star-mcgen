@@ -780,6 +780,12 @@ CCCCCC#include "headpss.inc"
       CS=C
       DS=D
       ES=E
+      DO I=1,NHEP
+      IF(ISTHEP(I).EQ.143) THEN
+         J=JMOHEP(1,I)
+CCCCC         F=DSQRT(PHEP(1,J)**2+PHEP(2,J)**2)
+      ENDIF
+      ENDDO
       FS=F
       JJJ=NHEP
       isthp=11
@@ -828,9 +834,9 @@ CCCCCC#include "headpss.inc"
         V(3)=vhp(3)
         CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
      1,PPP,php(4),php(5),V,vhp(4))
-CCCCC      WRITE(12,*) A, B, C, D, E, F
+CCCCCC      WRITE(12,*) A, B, C, D, E, F
        JJJ=0
-       DO I=1,NHEP
+      DO I=1,NHEP
        JJJ = JJJ + 1
         IF(I.EQ.NHEP) JJJ=-1
         isthp=isthep(I)
@@ -863,7 +869,7 @@ CCCCC      WRITE(12,*) A, B, C, D, E, F
         V(3)=vhp(3)
         CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
      1,PPP,php(4),php(5),V,vhp(4))
-CCCCC        IF(ISTHEP(I).GT.140.AND.ISTHEP(I).LT.143) THEN
+CCCCC        IF(ISTHEP(I).GT.140.AND.ISTHEP(I).LT.145) THEN
 CCCCC        J=JMOHEP(1,I)
 CCCCC        K=JMOHEP(2,I)
 CCCCC        WRITE(12,*) NEVHEP,I,ISTHEP(I),IDHEP(I),JMOHEP(1,I),JMOHEP(2,I)

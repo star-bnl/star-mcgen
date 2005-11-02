@@ -7,6 +7,7 @@ graph/meta 77 -111
 nt/plot 999.Pxyz(1) ipdg=999995
 nt/plot 999.Pxyz(2) ipdg=999995
 nt/plot 999.Pxyz(1) ipdg=999994
+nt/plot 999.ener ipdg=999994
 close 77
 quit
 *** End   of history file: Mon Mar  1 17:34:52 2004
