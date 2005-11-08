@@ -1,3 +1,11 @@
+C $Id: hwigpr.f,v 1.6 2005/11/08 21:36:18 potekhin Exp $
+C $Log: hwigpr.f,v $
+C Revision 1.6  2005/11/08 21:36:18  potekhin
+C a) commented out an extraneous line pt=5.0, problaby a leftover
+C b) read random seeds form the input file
+C c) renamed the common block variables
+C
+C
       PROGRAM HWIGPR
 C---COMMON BLOCKS ARE INCLUDED AS FILE HERWIG65.INC
 C      INCLUDE 'HERWIG65.INC'
@@ -380,10 +388,16 @@ C   THIS POINT, OTHERWISE DEFAULT
 C   VALUES IN HWIGIN WILL BE USED.
       READ(13,*) PTMAX
       READ(13,*) PTMIN
+C Random number generator seeds
+      READ(13,*) NRN(1)
+      READ(13,*) NRN(2)
       PRVTX=.FALSE.
       MAXER=MAXEV/100
       MAXPR=0
-      PTMIN=5.
+
+C Must have been left over by Ron:
+C     PTMIN=5.
+
 C   N.B. TO READ SUDAKOV FORM FACTOR FILE ON UNIT 77
 C   INSERT THE FOLLOWING TWO LINES IN SUBSEQUENT RUNS
 C      LRSUD=77
@@ -756,37 +770,38 @@ CCCCCC#include "hepevt.inc"
          REAL*4 PPP 
          REAL*4 V
          REAL*4 vhp !  production vertex (mm) and time (mm/c) 0
-         REAL*4 AS
-         REAL*4 BS
-         REAL*4 CS
-         REAL*4 DS
-         REAL*4 ES
-         REAL*4 FS
+
+         REAL*4 XX1_N,XX2_N,COSTH_N,S_N,T_N,ET_N
+
          DIMENSION jmohp(2), jdahp(2)
          DIMENSION php(5),vhp(4),PPP(3),V(3)
 CCCCCC#include "headpss.inc"
+
       real*4 PSSHEP,VSSHEP
       INTEGER INTRUN, JJJ, J, K
-      COMMON/HEADPSS/PSSHEP(5),VSSHEP(4),INTRUN
-      SAVE /HEADPSS/
-      DOUBLE PRECISION
-     & A,B,C,D,E,F
-      COMMON /HPASS/A,B,C,D,E,F
-      SAVE /HPASS/
+      COMMON /HEADPSS/  PSSHEP(5),VSSHEP(4),INTRUN
+      SAVE   /HEADPSS/
+
+      COMMON /HPASS/    XX1_OUT,XX2_OUT,COSTH_OUT,S_OUT,T_OUT,ET_OUT
+      DOUBLE PRECISION  XX1_OUT,XX2_OUT,COSTH_OUT,S_OUT,T_OUT,ET_OUT
+      SAVE   /HPASS/
+
       CALL HEPEvent('herwig',0,NHEP,0.0,0.,0.,0.,1.,1.,1.,1.)
       CALL HEPInfo(0,0,0,0)
-      AS=A
-      BS=B
-      CS=C
-      DS=D
-      ES=E
+      XX1_N   = XX1_OUT
+      XX2_N   = XX2_OUT
+      COSTH_N = COSTH_OUT
+      S_N     = S_OUT
+      T_N     = T_OUT
+
       DO I=1,NHEP
-      IF(ISTHEP(I).EQ.143) THEN
-         J=JMOHEP(1,I)
-CCCCC         F=DSQRT(PHEP(1,J)**2+PHEP(2,J)**2)
-      ENDIF
+         IF(ISTHEP(I).EQ.143) THEN
+            J=JMOHEP(1,I)
+         ENDIF
       ENDDO
-      FS=F
+
+      ET_N=ET_OUT
+
       JJJ=NHEP
       isthp=11
       idhp=999995
@@ -795,8 +810,8 @@ CCCCC         F=DSQRT(PHEP(1,J)**2+PHEP(2,J)**2)
         jdahp(2)=0
         php(1)=FLOAT(IPROC)
         php(2)=FLOAT(IHPRO)
-        php(3)=AS
-        php(4)=BS
+        php(3)=XX1_N
+        php(4)=XX2_N
         php(5)=0.0
         PPP(1)=php(1)
         PPP(2)=php(2)
@@ -813,34 +828,40 @@ CCCCC         F=DSQRT(PHEP(1,J)**2+PHEP(2,J)**2)
       JJJ=NHEP
       isthp=11
       idhp=999994
+
         jmohp(1)=0
         jmohp(2)=0
         jdahp(1)=0
         jdahp(2)=0
-        php(1)=CS
-        php(2)=DS
-        php(3)=ES
-        php(4)=FS
+
+        php(1)=COSTH_N
+        php(2)=S_N
+        php(3)=T_N
+        php(4)=ET_N
         php(5)=0.0
+
         PPP(1)=php(1)
         PPP(2)=php(2)
         PPP(3)=php(3)
+
         vhp(1)=0.0
         vhp(2)=0.0
         vhp(3)=0.0
         vhp(4)=0.0
+
         V(1)=vhp(1)
         V(2)=vhp(2)
         V(3)=vhp(3)
         CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
      1,PPP,php(4),php(5),V,vhp(4))
-CCCCCC      WRITE(12,*) A, B, C, D, E, F
+
        JJJ=0
       DO I=1,NHEP
        JJJ = JJJ + 1
         IF(I.EQ.NHEP) JJJ=-1
         isthp=isthep(I)
         idhp=idhep(I)
+
         IF(IABS(idhp).GT.itest) THEN
           IF(idhp.LT.0) THEN
             idhp=idhp+itest-jput
@@ -848,6 +869,7 @@ CCCCCC      WRITE(12,*) A, B, C, D, E, F
             idhp=idhp-itest+jput
           ENDIF
         ENDIF
+
         jmohp(1)=jmohep(1,I)
         jmohp(2)=jmohep(2,I)
         jdahp(1)=jdahep(1,I)
