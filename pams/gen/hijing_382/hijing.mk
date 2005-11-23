@@ -13,8 +13,8 @@ OBJECTS = $(SOURCES:.f=.o)
 #       Library assignments: if you want to link the CERN library, replace the
 #       assignment with the correct path on your local host.
 LIBS =  
-#LIBS =   -L/cern/pro/lib -lgraflib -lgrafX11 -lpacklib -lmathlib  -lkernlib
-LIBS =   `cernlib graflib packlib mathlib kernlib`
+#LIBS =   -L/cern/pro/lib -lgraflib -lgrafX11 -lpacklib_noshift -lmathlib  -lkernlib
+LIBS =   `cernlib graflib packlib_noshift mathlib kernlib`
 
 #	Lintfiles can derive the old fashioned way
 #	Don't need them for nr's, yet.
