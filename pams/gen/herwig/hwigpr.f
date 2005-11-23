@@ -1,5 +1,8 @@
-C $Id: hwigpr.f,v 1.7 2005/11/10 19:15:25 potekhin Exp $
+C $Id: hwigpr.f,v 1.8 2005/11/23 19:14:37 longacre Exp $
 C $Log: hwigpr.f,v $
+C Revision 1.8  2005/11/23 19:14:37  longacre
+C for idpg=999995 Pxyz(1)=s Pxyz(2)=t Pxyz(3)=u ener=Et Vxyz(1)=x1 Vxyz(2)=x2 Vxyz(3)=cos
+C
 C Revision 1.7  2005/11/10 19:15:25  potekhin
 C We don't need to use an extra pdeudo particle to
 C pass the Herwig data, there is plenty of space in the one
@@ -776,7 +779,7 @@ CCCCCC#include "hepevt.inc"
          REAL*4 V
          REAL*4 vhp !  production vertex (mm) and time (mm/c) 0
 
-         REAL*4 XX1_N,XX2_N,COSTH_N,S_N,T_N,ET_N
+         REAL*4 XX1_N,XX2_N,COSTH_N,S_N,T_N,ET_N,U_N
 
          DIMENSION jmohp(2), jdahp(2)
          DIMENSION php(5),vhp(4),PPP(3),V(3)
@@ -814,64 +817,30 @@ CCCCCC#include "headpss.inc"
         jmohp(2)=IHPRO
         jdahp(1)=0
         jdahp(2)=0
-        php(1)=XX1_N
-        php(2)=XX2_N
-        php(3)=COSTH_N
-        php(4)=0.0
+        php(1)=S_N
+        php(2)=T_N
+        U_N=-S_N-T_N
+        php(3)=U_N
+        php(4)=ET_N
         php(5)=0.0
         PPP(1)=php(1)
         PPP(2)=php(2)
         PPP(3)=php(3)
-        vhp(1)=S_N
-        vhp(2)=T_N
-        vhp(3)=ET_N
+        vhp(1)=XX1_N
+        vhp(2)=XX2_N
+        vhp(3)=COSTH_N
         vhp(4)=0.0
         V(1)=vhp(1)
         V(2)=vhp(2)
         V(3)=vhp(3)
         CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
      1,PPP,php(4),php(5),V,vhp(4))
-
-C - I DECIDED TO NOT USE AN EXTRA PARTICLE AND PUT IT INTO
-C   THE VERTEX AS SHOWN THE ABOVE --MAXIM--
-C
-C      JJJ=NHEP
-C      isthp=11
-C      idhp=999994
-
-C        jmohp(1)=0
-C        jmohp(2)=0
-C        jdahp(1)=0
-C        jdahp(2)=0
-
-C        php(1)=COSTH_N
-C        php(2)=S_N
-C        php(3)=T_N
-C        php(4)=ET_N
-C        php(5)=0.0
-
-C        PPP(1)=php(1)
-C        PPP(2)=php(2)
-C        PPP(3)=php(3)
-
-C        vhp(1)=0.0
-C        vhp(2)=0.0
-C        vhp(3)=0.0
-C        vhp(4)=0.0
-
-C        V(1)=vhp(1)
-C        V(2)=vhp(2)
-C        V(3)=vhp(3)
-C        CALL HEPPart(JJJ,isthp,idhp,jmohp,jdahp
-C     1,PPP,php(4),php(5),V,vhp(4))
-
        JJJ=0
       DO I=1,NHEP
        JJJ = JJJ + 1
         IF(I.EQ.NHEP) JJJ=-1
         isthp=isthep(I)
         idhp=idhep(I)
-
         IF(IABS(idhp).GT.itest) THEN
           IF(idhp.LT.0) THEN
             idhp=idhp+itest-jput
