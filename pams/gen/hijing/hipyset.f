@@ -14294,6 +14294,7 @@ C...hadronic events or leptoproduction.
       ENDIF 
     
 C...Subdivide remnant if necessary, store first parton. 
+      NNTTSS=0
   140 I=NS  
       DO 190 JT=1,2 
       IF(JT.EQ.ILEP) GOTO 190   
@@ -14378,6 +14379,11 @@ C...Relative distribution of energy for particle into jet plus particle.
         ENDIF   
       ENDIF 
   190 CONTINUE  
+      NNTTSS=NNTTSS+1
+      IF(NNTTSS.GT.200) THEN
+         MINT(43)=1
+         RETURN  
+      ENDIF
       IF(SHR.LE.SQRT(PMS(1))+SQRT(PMS(2))) GOTO 140 
       N=I   
     
