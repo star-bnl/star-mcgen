@@ -15,7 +15,7 @@
 # Source star_login.csh in case STAR environment variables are
 # not setup (e.g. batch mode on SP1).
 #
-source /afs/rhic/star/login/star_login.csh
+source /afs/rhic.bnl.gov/star/login/star_login.csh
 #
 # Other environment definitions:
 #   	XFLRTEOPTS : 	use "old" namelist convention
