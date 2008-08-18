@@ -29,14 +29,17 @@ CCC#include "headpss.inc"
      &                PJTE(300,500),PJTM(300,500)
       SAVE  /HIJJET1/
       INTEGER ISTAT
+      character input_file*100
       DATA IFIRST /0/
        IF(IFIRST.EQ.0) THEN
        IRUN=0
        CALL HEPRUN(IRUN)
 *--
-*      character output_dir*80, output_file*80
+*      character output_dir*80, output_file*80, input_file*100
 *--
-      open ( lin, file='hijev.inp', status='old' )
+      input_file = 'hijev.inp'
+      call getopt('-inp',input_file)
+      open ( lin, file=input_file, status='old', err = 913)
  10   continue
          read ( lin, '(a80)', end=20 ) line
        write ( 6, * ) line
@@ -99,7 +102,10 @@ CCC#include "headpss.inc"
          VSSHEP(2) = HINT1(20) 
          return
 C           
-       end
+ 913  write(6,*) '*** can not open file:',input_file
+      call abort()
+      end
+
       REAL FUNCTION RAN(IDUMMY)
 
  100  RAN = RNDM(IDUMMY)

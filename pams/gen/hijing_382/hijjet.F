@@ -1,5 +1,8 @@
-* $Id: hijjet.f,v 1.7 2003/05/06 15:30:34 longacre Exp $
-* $Log: hijjet.f,v $
+* $Id: hijjet.F,v 1.1 2008/08/18 18:24:25 perev Exp $
+* $Log: hijjet.F,v $
+* Revision 1.1  2008/08/18 18:24:25  perev
+* Rename .f to .F
+*
 * Revision 1.7  2003/05/06 15:30:34  longacre
 * Pavels improved HEPTUP
 *

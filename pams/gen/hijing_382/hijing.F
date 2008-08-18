@@ -629,15 +629,15 @@ C
 		ENDIF
 C			********Check errors
 C
-		N_ST=1
-		IDSTR=92
+Cvp		N_ST=1
+Cvp		IDSTR=92
 		IF(IHPR2(21).EQ.0) THEN
 		   CALL LUEDIT(2)
-		ELSE
-351		   N_ST=N_ST+1
-		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  351
-		   IDSTR=K(N_ST,2)
-		   N_ST=N_ST+1
+Cvp		ELSE
+CvpCvp351		   N_ST=N_ST+1
+Cvp		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  351
+Cvp		   IDSTR=K(N_ST,2)
+Cvp		   N_ST=N_ST+1
 		ENDIF
 C
 		IF(FRAME.EQ.'LAB') THEN
@@ -691,15 +691,15 @@ C
 		ENDIF
 C			********check errors
 C
-		N_ST=1
-		IDSTR=92
+Cvp		N_ST=1
+Cvp		IDSTR=92
 		IF(IHPR2(21).EQ.0) THEN
 		   CALL LUEDIT(2)
-		ELSE
-381		   N_ST=N_ST+1
-		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  381
-		   IDSTR=K(N_ST,2)
-		   N_ST=N_ST+1
+Cvp		ELSE
+Cvp381		   N_ST=N_ST+1
+Cvp		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  381
+Cvp		   IDSTR=K(N_ST,2)
+Cvp		   N_ST=N_ST+1
 		ENDIF
 		IF(FRAME.EQ.'LAB') THEN
 			CALL HIBOOST

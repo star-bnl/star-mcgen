@@ -4,7 +4,7 @@ SOURCES = hijjet.f hipyset.f hijev.f heptup.f hijing.f makhvy.f rzmake.f
 # Include files (for printout, below)
 INCFILES = 
 
-PROGRAM = hijjet.x
+PROGRAM = $(STAR_BIN)/hijing.exe
 
 #	Names of source files and derived names of .o files
 #	Use pattern matching rules to make
@@ -30,7 +30,8 @@ LINTFILES = $(SOURCES:.f=.ln)
 #CC = pgf77 
 CC = g77 
 #CFLAGS = -O 
-CFLAGS = -g -w -O -fno-second-underscore -fno-automatic   
+#CFLAGS = -g -w -O -fno-second-underscore -fno-automatic   
+CFLAGS  = -g -w    -fno-second-underscore -fno-automatic   
 CPPFLAGS =
 LDFLAGS = 
 LINTFLAGS = 
