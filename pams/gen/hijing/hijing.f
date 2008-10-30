@@ -523,6 +523,7 @@ C
 		   CALL LUEDIT(2)
 		ELSE
 331		   N_ST=N_ST+1
+                   if (N_ST>9000) call abort
 		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  331
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
@@ -589,6 +590,7 @@ C
 		   CALL LUEDIT(2)
 		ELSE
 351		   N_ST=N_ST+1
+                   if (N_ST>9000) call abort
 		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  351
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
@@ -659,6 +661,7 @@ C           WRITE (6, *) '  NATT','  IDST ', '  IMOH', '  JDA1', '  JDA2'
 		   CALL LUEDIT(2)
 		ELSE
 381		   N_ST=N_ST+1
+                   if (N_ST>9000) call abort
 		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  381
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
