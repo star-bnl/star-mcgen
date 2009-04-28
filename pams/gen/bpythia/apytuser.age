@@ -16,6 +16,7 @@ external     PYDATA
 #include "geant321/gcflag.inc"
 #include "geant321/gckine.inc"
 #include "hepevt61.inc"
+      integer filt_act,dumy,itry
 
 call KUPATL( command, npar )
 Com   = Command
@@ -96,13 +97,18 @@ Entry AgUsRead
       NbytesPw = 8
       IRunNum  = IdRun
       cEVGEN   = 'Pythia'
+      dumy = filt_act(1,NEVHEP,0)	!// init RejectEG (EventGenerator)
    endif
 
    IPRIN = ISLFLAG('PYTH','PRIN')
    IPRIN=-1
-   call pyevnt
-   call pylist(Iprin)
-   call pyhepc(1)
+   do itry=1,100000
+     call pyevnt
+     call pylist(Iprin)
+     call pyhepc(1)
+     if (filt_act(2,0,0) .eq.0) goto :SUCCESS:
+   enddo
+:SUCCESS: continue
    NevHep = IdEvt
 *   print *, 'NevHep set to',NevHep
    call heperead
