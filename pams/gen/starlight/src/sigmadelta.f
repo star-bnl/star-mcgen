@@ -51,8 +51,8 @@ c     then just set sigma to be 100 nb
         do 500 j = 1,numy-1
           sum = sum + 2.0 * (yarray(j+1) - yarray(j)) *
      &            100.0 *  10.0**(-9.) * (.1/mass) *
-     & ( (1.-remainw)*f_max*(farray(ivalw,j)+farray(ivalw,j))/2. +
-     & remainw*f_max*(farray(ivalw+1,j)+farray(ivalw+1,j+1))/2. )
+     & ( (1.-remainw)*f_max*(farray(ivalw  ,j)+farray(ivalw  ,j+1))/2. +
+     &   (   remainw)*f_max*(farray(ivalw+1,j)+farray(ivalw+1,j+1))/2. )
  500    continue
       else
 
@@ -62,8 +62,8 @@ c       over just 1/2 of the rapidity range
         sum = 0.
         do 600 j = 1,numy-1
           sum =  sum + 2. *  (yarray(j+1) - yarray(j)) *
-     &    ( (1.-remainw)*(sigma(ivalw,j)+sigma(ivalw,j))/2. +
-     &    remainw*(sigma(ivalw+1,j)+sigma(ivalw+1,j+1))/2. )
+     &    ( (1.-remainw)*(sigma(ivalw  ,j)+sigma(ivalw  ,j+1))/2. +
+     &      (   remainw)*(sigma(ivalw+1,j)+sigma(ivalw+1,j+1))/2. )
  600    continue
       endif
 
