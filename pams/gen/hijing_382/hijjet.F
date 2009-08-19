@@ -1,5 +1,8 @@
-* $Id: hijjet.F,v 1.1 2008/08/18 18:24:25 perev Exp $
+* $Id: hijjet.F,v 1.2 2009/08/19 18:55:20 jeromel Exp $
 * $Log: hijjet.F,v $
+* Revision 1.2  2009/08/19 18:55:20  jeromel
+* Continuation FORtran character on column 7 (?? sigh!)
+*
 * Revision 1.1  2008/08/18 18:24:25  perev
 * Rename .f to .F
 *
@@ -365,7 +368,7 @@ CCCCC          WRITE(6,888) natt
          vsshep(3)=float(njets)
 C--
        CALL HEPEvent('hijing',IRUN,NATT,vsshep(1),vsshep(2),psshep(5)
-      1,vsshep(3),psshep(1),psshep(2),psshep(3),psshep(4))
+     1 ,vsshep(3),psshep(1),psshep(2),psshep(3),psshep(4))
        CALL HepInfo(N0+N01+N10+N11,NP,NT,njets)
         ik=0
         DO IP = 1, NATT
