@@ -12,7 +12,8 @@ include Makefile.Linux
 BIN= ../bin
 #
 
-SLIB = `cernlib mathlib packlib kernlib jetset74`
+#SLIB = `cernlib mathlib packlib kernlib jetset74`
+SLIB = `cernlib mathlib jetset74`
 
 #SLIB = `cernlib -v pro mathlib packlib kernlib jetset74`
 #
