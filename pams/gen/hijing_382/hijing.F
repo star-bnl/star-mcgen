@@ -183,6 +183,8 @@ C
 C	SUBROUTINE HIJING
 C
 C****************************************************************
+#define RAN(A) rndm(a)
+
 	SUBROUTINE HIJING(FRAME,BMIN0,BMAX0)
 	CHARACTER FRAME*8
 	DIMENSION SCIP(300,300),RNIP(300,300),SJIP(300,300),JTP(3),
