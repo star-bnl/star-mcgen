@@ -6,7 +6,7 @@ $build =~ s/\\/\//g;
 (my $Dir = $obj_dir) =~ s/$build\///g;
 my $ObjDir = "#" . $obj_dir; 
 my $STAR_SYS = $env->{ENV}->{STAR_SYS};
-my $pkg = $Dir;
+my $pkg =  File::Basename::basename($Dir);
 my $PKG  = $pkg . $env->{SUFEXE};
 my $SO_PKG = $PKG . "." . $env->{SUFSOLIB};
 my $LIBPKG = $PKG . "." . $env->{SUFLIB};
