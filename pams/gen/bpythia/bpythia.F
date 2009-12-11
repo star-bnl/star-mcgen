@@ -53,6 +53,23 @@
       CALL KUGUID('MSEL',GUID,1,'S')
       CALL KUACT('MSEL',apytuser)
 
+      CALL KUCMD(' ','TUNE','C')
+      CALL KUPAR('TUNE','tune','index of the pythia tune','I','S')
+      CALL KUPVAL('TUNE','tune',100,0.,' ','D')
+      GUID(1)='Selection of the pythia tune.  Default corresponds to CDF
+     + tune A.'
+      GUID(2)='Consult the pythia manual (or comments in source code of'
+     +//' pytune.F)'
+      GUID(3)='for the available options.'
+      GUID(4)='For pythia 6.3 and earlier:'
+      GUID(5)='  http://home.thep.lu.se/~torbjorn/Pythia.html'
+      GUID(6)='For pythia 6.4:'
+      GUID(7)='  http://projects.hepforge.org/pythia6/'
+      GUID(8)='Example:'
+      GUID(9)='  TUNE 100'
+      CALL KUGUID('TUNE',GUID,9,'S')
+      CALL KUACT('TUNE',apytuser)
+
       CALL KUCMD(' ','PMAS','C')
       CALL KUPAR('PMAS','pmas',
      +'given particle code and selector set mass value','C','S')
@@ -106,12 +123,13 @@
       CALL KUGUID('CKIN',GUID,2,'S')
       CALL KUACT('CKIN',apytuser)
 
-      CALL KUCMD(' ','MPRY','C')
-      CALL KUPAR('MPRY','mpry','key 1-6','C','S')
-      GUID(1)='This random number setting is not used under atlsim.'
-      GUID(2)='Use RanLux or RNDM instead.'
-      CALL KUGUID('MPRY',GUID,2,'S')
-      CALL KUACT('MPRY',apytuser)
+      CALL KUCMD(' ','MRPY','C')
+      CALL KUPAR('MRPY','mpry','key 1-6','C','S')
+      GUID(1)='Random number setting for Pythia internal random'
+      GUID(2)='number generator. If not set, the built-in starsim'
+      GUID(3)='generator will be used instead.'
+      CALL KUGUID('MRPY',GUID,3,'S')
+      CALL KUACT('MRPY',apytuser)
 
       CALL KUCMD(' ','MSUB','C')
       CALL KUPAR('MSUB','msub','Process key 1-500','C','S')

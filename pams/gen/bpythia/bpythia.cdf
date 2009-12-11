@@ -41,6 +41,24 @@ msel  'hard scattering subprocess selector' I D=1
 Selection of hard scattering subprocesses
 >action apytuser
 
+>Command  TUNE
+>Parameters
+tune  'index of the pythia tune' I D=100 
+>Guidance
+Selection of the pythia tune.  Default corresponds to CDF tune A.
+Consult the pythia manual (or comments in source code of pytune.F) 
+for the available options. 
+
+For pythia 6.3 and earlier:
+  http://home.thep.lu.se/~torbjorn/Pythia.html
+
+For pythia 6.4:
+  http://projects.hepforge.org/pythia6/
+
+Example:
+* Sets CDF tune A 
+  TUNE 100 
+>actions apytuser 
 
 >Command  PMAS
 >Parameters
