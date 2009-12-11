@@ -2,13 +2,13 @@ subroutine   apytuser
 implicit     none
 integer      LENOCC,ISLFLAG,Iprin,eq,sp
 character    command*10,line*256,car*80
-integer      Np,Npar,is,Len1,Lc,I,iTune
-parameter    (Np=12)
+integer      Np,Npar,is,Len1,Lc,I
+parameter    (Np=11)
 character*4  list(Np)/'MSUB','MSTP','MSTU','MSTJ','MRPY','CKIN',
-                      'PARU','PARP','PARJ','IMSS','RMSS','TUNE'/
+                      'PARU','PARP','PARJ','IMSS','RMSS'/
 character*4  frame/'CMS'/,beam/'P'/,targ/'P'/,msel,com
 character*20 allowed/'(=+-.,0123456789)'/
-Real*8       ener/200./                                              ! default to 200 GeV 
+Real*8       ener/14000./
 Real         E
 Logical      First/.true./
 external     PYDATA
@@ -22,24 +22,20 @@ call KUPATL( command, npar )
 Com   = Command
 Lc    = Lenocc(Command)
 
-if     (com=='FRAM') then        ! fixed target, CMS, etc... 
+if     (com=='FRAM') then
   Call KUGETC(frame,len1)
 
-elseif (com=='BEAM') then        ! redefine the beams 
+elseif (com=='BEAM') then
   call KUGETC(beam,len1)
   if (Npar>1) call KUGETC(targ,len1)  
 
 elseif (com=='TARG') then
   call KUGETC(targ,len1)  
 
-elseif (com=='ENER') then        ! set the pythia energy to Ener
+elseif (com=='ENER') then
   call KUGETR(E); Ener=E
 
-elseif (com=='TUNE') then        ! set the pythia tune to iTune
-  call KUGETI(iTune)
-  call PyTUNE(iTune)
-
-elseif (com=='MSEL') then        ! set physical processes
+elseif (com=='MSEL') then
   call KUGETC(msel,len1)
   car='MSEL='//msel
   call PYGIVE(car)
