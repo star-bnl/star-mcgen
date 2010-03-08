@@ -13,7 +13,7 @@ OBJECTS = $(SOURCES:.f=.o)
 #       Library assignments: if you want to link the CERN library, replace the
 #       assignment with the correct path on your local host.
 LIBS =  
-LIBS =   -L/cern/2004/lib  -lmathlib -lgraflib -lgrafX11 -lpacklib_noshift -lkernlib_noshift
+LIBS =   -L${CERN_ROOT}/lib  -lmathlib -lgraflib -lgrafX11 -lpacklib_noshift -lkernlib_noshift
 #	Lintfiles can derive the old fashioned way
 #	Don't need them for nr's, yet.
 LINTFILES = $(SOURCES:.f=.ln)
@@ -26,7 +26,8 @@ LINTFILES = $(SOURCES:.f=.ln)
 # Flags for default macros to compile and link: if you want optimized
 # executable, use "-O3", if you want a debug version, use "-g ..."
 #CC = pgf77 
-CC = g77 
+#CC = g77
+CC = gfortran 
 #CFLAGS = -O 
 CFLAGS = -g -w -O -fno-second-underscore -fno-automatic   
 CPPFLAGS =
