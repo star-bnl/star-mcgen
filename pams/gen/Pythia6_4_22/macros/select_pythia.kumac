@@ -19,6 +19,8 @@
 
 MACRO select_pythia library=libpythia_6410t.so path=$STAR_LIB
 
+   MESSAGE Loading  [path]/[library]
+
    GExec [path]/[library]
    GExec [path]/bpythia.so
 

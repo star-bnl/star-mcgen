@@ -11,11 +11,11 @@
 * $ # To run with a locally compiled version of pythia: 
 * $ starsim -w 0 -b test_pythia.kumac library=libpythia_7890.so path=.sl765_gcc888/lib
 *
-MACRO test_pythia library=libPythia6_4_22.so path=$STAR_LIB tune=100  
+MACRO test_pythia library=libPythia6_4_23.so path=$STAR_LIB mytune=100  
 
    exec select_pythia library=[library] path=[path]  
 
-   TUNE [tune] 
-   Call PyTEST(0,'MEH')
+   TUNE [mytune] 
+   Call PySTAR(0,'MEH')
 
 RETURN
