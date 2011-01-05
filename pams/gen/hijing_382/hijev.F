@@ -65,7 +65,21 @@ CCC#include "headpss.inc"
 *      read ( lin, * ) line, nevt_file, output_dir 
 *
 *       open ( lout, file=output_file, status='unknown'
-*
+
+      !@@
+      !@@ ==================================================
+      !@@ Optional flags.  Once the EOF is reached, the
+      !@@ program will branch to the setup below
+      !@@
+      read ( lin, *, end=30 ) line               ! comment line
+      read ( lin, *, end=30 ) line, ihpr2(6)     ! shadowing
+      !@@
+ 30   continue 
+      !@@
+      !@@ Setup hijing common blocks and prepare for run
+      !@@ ==================================================
+      !@@
+
        PSSHEP(1) = float(iap)
        PSSHEP(2) = float(izp)
        PSSHEP(3) = float(iat)
@@ -115,7 +129,12 @@ C
       END
 
   
-
+! $Log: hijev.F,v $
+! Revision 1.2  2011/01/05 21:58:18  jwebb
+! Added additional (but optional) line to configuration file to
+! specify whether shadowing should be used or not.  Is backwards
+! compatible with previous version.
+! 
 
 
 
