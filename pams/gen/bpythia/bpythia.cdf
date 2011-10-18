@@ -12,6 +12,9 @@ versions 6.1 and 6.2.
 >Command  FRAME
 >Guidance 
 Select the collision frame - Center Of Mass, Fix Target, etc
+In the case of CMS frame, one can set the CMS energy using
+the ENER command.  Otherwise, set beam and target momenta
+using pblue and pyell.
 >Parameters
 frame   'collision frame'                    C D=CMS
 >action apytuser
@@ -25,6 +28,25 @@ Upper-case and lower-case letters may be freely mixed
 beam   'composition of the incident beam'    C D=P
 target 'composition of the target (beam)'    C D=P
 >action apytuser
+
+>Command PBLUE
+>Guidance
+Provides the blue beam (+z) three-momentum.
+>Parameters
+px 'x-component in GeV' R D=0.0
+py 'y-component in GeV' R D=0.0
+pz 'z-component in GeV' R D=250.0
+>action apytuser
+
+>Command PYELL
+>Guidance
+Provides the yellow beam (-z) three-momentum.
+>Parameters
+px 'x-component in GeV' R D=0.0
+py 'y-component in GeV' R D=0.0
+pz 'z-component in GeV' R D=-250.0
+>action apytuser
+
 
 >Command  ENER
 >Parameters

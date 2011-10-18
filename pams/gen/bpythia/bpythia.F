@@ -19,7 +19,12 @@
       CALL KUPVAL('FRAME','frame',0,0.,'CMS','D')
       GUID(1)='Select the collision frame - Center Of Mass, Fix Target,'
      +//' etc'
-      CALL KUGUID('FRAME',GUID,1,'S')
+      GUID(2)='In the case of CMS frame, one can set the CMS energy usin
+     +g'
+      GUID(3)='the ENER command.  Otherwise, set beam and target momenta
+     +'
+      GUID(4)='using pblue and pyell.'
+      CALL KUGUID('FRAME',GUID,4,'S')
       CALL KUACT('FRAME',apytuser)
 
       CALL KUCMD(' ','BEAM','C')
@@ -36,6 +41,28 @@
       GUID(3)='Upper-case and lower-case letters may be freely mixed'
       CALL KUGUID('BEAM',GUID,3,'S')
       CALL KUACT('BEAM',apytuser)
+
+      CALL KUCMD(' ','PBLUE','C')
+      CALL KUPAR('PBLUE','px','x-component in GeV','R','S')
+      CALL KUPVAL('PBLUE','px',0,0.0,' ','D')
+      CALL KUPAR('PBLUE','py','y-component in GeV','R','S')
+      CALL KUPVAL('PBLUE','py',0,0.0,' ','D')
+      CALL KUPAR('PBLUE','pz','z-component in GeV','R','S')
+      CALL KUPVAL('PBLUE','pz',0,250.0,' ','D')
+      GUID(1)='Provides the blue beam (+z) three-momentum.'
+      CALL KUGUID('PBLUE',GUID,1,'S')
+      CALL KUACT('PBLUE',apytuser)
+
+      CALL KUCMD(' ','PYELL','C')
+      CALL KUPAR('PYELL','px','x-component in GeV','R','S')
+      CALL KUPVAL('PYELL','px',0,0.0,' ','D')
+      CALL KUPAR('PYELL','py','y-component in GeV','R','S')
+      CALL KUPVAL('PYELL','py',0,0.0,' ','D')
+      CALL KUPAR('PYELL','pz','z-component in GeV','R','S')
+      CALL KUPVAL('PYELL','pz',0,-250.0,' ','D')
+      GUID(1)='Provides the yellow beam (-z) three-momentum.'
+      CALL KUGUID('PYELL',GUID,1,'S')
+      CALL KUACT('PYELL',apytuser)
 
       CALL KUCMD(' ','ENER','C')
       CALL KUPAR('ENER','energy','collision energy','R','S')
