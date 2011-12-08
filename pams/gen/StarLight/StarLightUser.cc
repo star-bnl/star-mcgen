@@ -77,17 +77,15 @@ extern "C" {
   void agusread_()
   {
     static bool first = true;
-    std::cout << "agusread_ is called" << std::endl;;
-    
-    par_out << "RND_SEED      = 1234 # Dummy (using starsim RNG)" << std::endl;   // dummy
-    par_out << "OUTPUT_FORMAT = 1" << std::endl; // ???
-
-    par_out.close(); // close output file
     
     //
     // Initialization on the first event
     //
     if ( first ) {
+
+      par_out << "RND_SEED      = 1234 # Dummy (using starsim RNG)" << std::endl;   // dummy
+      par_out << "OUTPUT_FORMAT = 1" << std::endl; // ???
+      par_out.close(); // close output file      
       first = false;
 
       // Read in input parameters from the temporary input file
