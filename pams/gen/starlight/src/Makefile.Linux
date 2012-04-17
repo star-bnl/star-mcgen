@@ -1,3 +1,0 @@
-FC     = pgf77 -O
-CC     = cc
-CPPC   = c++
