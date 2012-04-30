@@ -7,7 +7,8 @@ integer      Np,Npar,is,Len1,Lc,I,iTune
 parameter    (Np=12)
 character*4  list(Np)/'MSUB','MSTP','MSTU','MSTJ','MRPY','CKIN',
                       'PARU','PARP','PARJ','IMSS','RMSS','TUNE'/
-character*4  frame/'CMS'/,beam/'P'/,targ/'P'/,msel,com
+character*4  frame/'CMS'/,msel,com
+character*20 beam/'P'/, targ/'P'/
 character*20 allowed/'(=+-.,0123456789)'/
 Real*8       ener/200./                                              ! default to 200 GeV 
 Real         pblue(3)/0,0,0/, pyell(3)/0,0,0/
