@@ -5177,7 +5177,7 @@ C...Purpose: to reconstruct an angle from given x and y coordinates.
       END   
     
 C*********************************************************************  
-    
+#ifdef HIPY_RANDOM    
       FUNCTION RLU(IDUM)    
     
 C...Purpose: to generate random numbers uniformly distributed between   
@@ -5244,7 +5244,7 @@ C...Update counters. Random number to output.
     
       RETURN    
       END   
-    
+#endif    
 C*********************************************************************  
     
       SUBROUTINE RLUGET(LFN,MOVE)   
