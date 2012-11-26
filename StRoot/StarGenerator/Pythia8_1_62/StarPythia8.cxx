@@ -8,6 +8,7 @@ ClassImp(StarPythia8);
 #include "StarGenerator/EVENT/StarGenPPEvent.h"
 #include "StarGenerator/EVENT/StarGenEPEvent.h"
 #include "TString.h"
+#include "TSystem.h"
 
 // ----------------------------------------------------------------------------
 // Remap pythia's random number generator to StarRandom
@@ -25,11 +26,16 @@ StarPythia8::StarPythia8(const Char_t *name) : StarGenerator(name)
   // auxilliary files required by pythia. 
   // NOTE:  When adding new versions of Pythia8, we need to specify
   // the version of the code in the source code
-  TString path = "StRoot/StarGenerator/"; path+=Pythia8::_version; path+="/xml"; 
-  try        { ifstream in(path); }
-  catch(...) { path = "$STAR/"+path; }
+  TString path = "StRoot/StarGenerator/"; path+=Pythia8::_version; path+="/xml/"; 
+  { 
+    ifstream in(path); 
+    if (!in.good()) { path = "$(STAR)/"+path; }
+    path = gSystem->ExpandPathName(path.Data());
+  }
+  
 
   Info(GetName(),Form("MC version is %s data at %s",Pythia8::_version,path.Data()));
+  Info(GetName(),Form("Configuration files at %s",path.Data()));
 
   mPythia = new Pythia8::Pythia( path.Data() );
   mPythia -> setRndmEnginePtr( new PyRand() );
