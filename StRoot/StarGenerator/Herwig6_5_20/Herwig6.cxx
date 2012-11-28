@@ -56,7 +56,7 @@ void InitializeEvent( vector<string> particles )
     /// Compute parameter dependent constanst
     hwuinc();
     /// Set particles to be stable
-    for( int i=0;i<particles.size();i++)
+    for( unsigned int i=0;i<particles.size();i++)
     {
       HWUSTA(particles[i]);
     }
