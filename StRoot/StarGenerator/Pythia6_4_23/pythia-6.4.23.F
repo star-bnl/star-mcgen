@@ -73367,7 +73367,7 @@ C...Commonblocks.
       END
  
 C*********************************************************************
- 
+#if 0 
 C...PYR
 C...Generates random numbers uniformly distributed between
 C...0 and 1, excluding the endpoints.
@@ -73445,7 +73445,7 @@ C...Update counters. Random number to output.
  
       RETURN
       END
- 
+#endif 
 C*********************************************************************
  
 C...PYRGET
