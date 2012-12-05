@@ -1,6 +1,25 @@
 #ifndef __StarHijing_h__
 #define __StarHijing_h__
 
+/*!
+  \class StarHijing
+  \author Jason C. Webb
+  \brief Interface to the HIJING event generator
+
+  StarHijing provides the user interface for steering the HIJING event
+  generator, and provides the connection between HIJING and the concrete
+  Monte Carlo application.
+
+  To configure HIJING for a particular simulation, the user should refer
+  to the HIJING manual: http://ntc0.lbl.gov/~xnwang/hijing/.
+
+  The HIPARNT, HIMAIN1, HIMAIN2 and LUDAT3 common blocks have been exposed
+  as C structures.
+
+  
+ 
+ */
+
 #include "StarGenerator/BASE/StarGenerator.h"
 
 #include "Hijing.h"
