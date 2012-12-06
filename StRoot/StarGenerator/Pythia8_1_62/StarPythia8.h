@@ -3,7 +3,7 @@
 
 /*!
   \class StarPythaia8
-  \author Jason C. Webb
+
   \brief Interface to Pythia 8
 
   StarPythia8 provides the user interface to the Pythia 8 event generator.
@@ -17,6 +17,32 @@
   Configuration of the beam parameters (energy, frame, species, etc...)
   is through methods defined on the StarGenerator base class.
 
+  \author Jason C. Webb
+
+ */
+
+/**
+  \example ../macros/starsim.pythia8.C
+  Example of how to run pythia8 events.
+ */
+
+/**
+   Code snippet illustrating how to setup pythia8 for W production at sqrt(s)=510 GeV
+   \code
+   StarPythia8 *pythia8 = new StarPythia8();    
+   {
+      pythia8->SetFrame("CMS", 510.0);
+      pythia8->SetBlue("proton");
+      pythia8->SetYell("proton");
+      
+      pythia8->Set("WeakSingleBoson:all=off");
+      pythia8->Set("WeakSingleBoson:ffbar2W=on");
+      pythia8->Set("24:onMode=0");              // switch off all W+/- decaus
+      pythia8->Set("24:onIfAny 11 -11");        // switch on for decays to e+/-
+      
+   }
+   primary -> AddGenerator( pythia8 );  
+   \endcode
 
  */
 
@@ -42,7 +68,7 @@ class StarPythia8 : public StarGenerator
   void Set( const Char_t *s ){ mPythia -> readString(s); }
 
   virtual const char *GetCVS() const
-  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.2 2012/12/05 21:50:57 jwebb Exp $ built "__DATE__" "__TIME__ ; return cvs;}
+  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.3 2012/12/06 22:07:44 jwebb Exp $ built "__DATE__" "__TIME__ ; return cvs;}
 
  private:
  protected:

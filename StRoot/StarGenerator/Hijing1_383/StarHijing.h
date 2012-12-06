@@ -3,7 +3,7 @@
 
 /*!
   \class StarHijing
-  \author Jason C. Webb
+
   \brief Interface to the HIJING event generator
 
   StarHijing provides the user interface for steering the HIJING event
@@ -16,7 +16,26 @@
   The HIPARNT, HIMAIN1, HIMAIN2 and LUDAT3 common blocks have been exposed
   as C structures.
 
+  Example:
+  \example ../macros/starsim.hijing.C
+
+  Code snippet showing how to setup a 200 GeV AuAu collision.
+
+  \code
+  StarHijing *hijing = new StarHijing("hijing");
+  hijing->SetTitle("Hijing 1.383");
+
+  hijing->SetFrame("CMS",200.0);
+  hijing->SetBlue("Au");
+  hijing->SetYell("Au");
+
+  hijing->SetImpact(0.0, 30.0);
+
+  primary -> AddGenerator(hijing);
+  \endcode
+
   
+  \author Jason C. Webb
  
  */
 

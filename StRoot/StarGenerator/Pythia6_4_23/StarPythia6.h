@@ -3,7 +3,7 @@
 
 /*!
   \class StarPythia6
-  \author Jason C. Webb
+
   \brief Interface to pythia 6
 
   StarPythia6 provides the STAR user interface to the Pythia 6 event generator.
@@ -15,7 +15,7 @@
   set array elements *exactly as described* in the pythia 6 manual. 
 
   Example:
-
+  \code
   // Minbias process selection
   PySubs_t &pysubs = starpythia6->pysubs();
   pysubs.msel = 1; 
@@ -25,9 +25,18 @@
   pydat3.mdcy(102,1) = 0;
   pydat3.mdcy(106,1) = 0;
   pydat3.mdcy(109,1) = 0;
+  \endcode
 
   For more information about pythia 6.4:
   http://arxiv.org/abs/hep-ph/0603175
+
+  \author Jason C. Webb
+
+ */
+
+/**
+   \example ../macros/starsim.pythia6.C
+   Example how to run pythia6 events.
 
  */
 
