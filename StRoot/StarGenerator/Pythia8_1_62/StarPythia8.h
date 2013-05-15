@@ -17,17 +17,8 @@
   Configuration of the beam parameters (energy, frame, species, etc...)
   is through methods defined on the StarGenerator base class.
 
-  \author Jason C. Webb
+  Code snippet illustrating how to setup pythia8 for W production at sqrt(s)=510 GeV
 
- */
-
-/**
-  \example ../macros/starsim.pythia8.C
-  Example of how to run pythia8 events.
- */
-
-/**
-   Code snippet illustrating how to setup pythia8 for W production at sqrt(s)=510 GeV
    \code
    StarPythia8 *pythia8 = new StarPythia8();    
    {
@@ -44,6 +35,38 @@
    primary -> AddGenerator( pythia8 );  
    \endcode
 
+The general way that you configure Pythia8 is by passing a string to the generator which follows the form
+
+System:Flag = value1 ... valueN
+
+StarPythia8 (which is what the pythia8 variable points to in the example macro) passes these flags to Pythia8 using the Set 
+method.  So in general, you'll be calling it like
+
+     pythia8 -> Set( "System:Flag = value1 ... valueN" )
+
+     [ FYI -- The Set method really is just a wrapper to the Pythia8::Pythia::readString( string ) method.  ]
+
+So then you need to figure out what the flags are you want to set.  These are documented in the Pythia8 manual.  
+
+For example, you go to the manual and follow the link that says "QCD" under "Process Selection"...
+http://home.thep.lu.se/~torbjorn/pythia81html/QCDProcesses.html
+
+You see a flag under "Hard QCD" processes, which is something which would be useful for jet production.
+
+     flag  HardQCD:all   (default = off)
+     Common switch for the group of all hard QCD processes, as listed separately in the following.
+
+To set this parameter in the simulation, yould would call the Set method with
+
+     pythia8 -> Set( "HardQCD:all = on" );
+
+  \author Jason C. Webb
+
+ */
+
+/**
+  \example ../macros/starsim.pythia8.C
+  Example of how to run pythia8 events.
  */
 
 #include "StarGenerator/BASE/StarGenerator.h"
@@ -68,7 +91,7 @@ class StarPythia8 : public StarGenerator
   void Set( const Char_t *s ){ mPythia -> readString(s); }
 
   virtual const char *GetCVS() const
-  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.3 2012/12/06 22:07:44 jwebb Exp $ built "__DATE__" "__TIME__ ; return cvs;}
+  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.4 2013/05/15 20:06:50 jwebb Exp $ built "__DATE__" "__TIME__ ; return cvs;}
 
  private:
  protected:
