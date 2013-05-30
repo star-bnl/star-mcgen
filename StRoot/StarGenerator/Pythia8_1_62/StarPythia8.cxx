@@ -231,6 +231,36 @@ void StarPythia8::FillPP( StarGenEvent *myevent )
 
 }
 // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+StarGenStats StarPythia8::Stats()
+{
+
+  StarGenStats stats( GetName(), "Pythia 8 Run Statistics" );
+  Pythia8::Info &info  = mPythia->info;
+
+  // Print pythia statistics
+  mPythia->stat();
+
+  stats.nTried         = info.nTried();
+  stats.nSelected      = info.nSelected();
+  stats.nAccepted      = info.nAccepted();
+  stats.sigmaGen       = info.sigmaGen();
+  stats.sigmaErr       = info.sigmaErr();
+  stats.sumWeightGen   = info.weightSum();
+
+  stats.nFilterSeen    = stats.nAccepted;
+  stats.nFilterAccept  = stats.nAccepted;
+
+  stats.Dump();
+
+  // Return a copy of the class we just created
+  return stats;
+  
+}
+
+
+// ----------------------------------------------------------------------------
 Int_t StarPythia8::InitCMS( Int_t blue, Int_t yell )
 {
   mPythia->init( blue, yell, mRootS );

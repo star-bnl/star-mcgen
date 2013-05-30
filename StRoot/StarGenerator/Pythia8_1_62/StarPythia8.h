@@ -90,8 +90,11 @@ class StarPythia8 : public StarGenerator
   /// Pass a string to Pythia8::Pythia::readString(), for user configuration.
   void Set( const Char_t *s ){ mPythia -> readString(s); }
 
+  /// Return end-of-run statistics
+  StarGenStats Stats();
+
   virtual const char *GetCVS() const
-  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.4 2013/05/15 20:06:50 jwebb Exp $ built "__DATE__" "__TIME__ ; return cvs;}
+  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.5 2013/05/30 17:36:16 jwebb Exp $ built "__DATE__" "__TIME__ ; return cvs;}
 
  private:
  protected:
