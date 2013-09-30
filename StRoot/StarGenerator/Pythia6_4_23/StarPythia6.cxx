@@ -41,10 +41,10 @@ StarPythia6::StarPythia6( const Char_t *name ) : StarGenerator(name)
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-void StarPythia6::PyTune( Int_t tune )
-{
-  ::PyTune(tune);
-}
+void StarPythia6::PyTune( Int_t tune ){  ::PyTune(tune); }
+void StarPythia6::PyStat( Int_t stat ){  ::PyStat(stat); }
+void StarPythia6::PyList( Int_t list ){  ::PyList(list); }
+
 // ----------------------------------------------------------------------------
 Int_t StarPythia6::Init()
 {

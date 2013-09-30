@@ -65,6 +65,11 @@ class StarPythia6 : public StarGenerator
 
   /// Calls the pytune function
   void PyTune( Int_t tune );
+  /// Calls the pystat function
+  void PyStat( Int_t stat );
+  /// Calls the pylist function
+  void PyList( Int_t list );
+
 
  private:
  protected:
