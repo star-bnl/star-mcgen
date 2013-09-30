@@ -67,3 +67,15 @@
       address_of_pypars = loc(mstp(1))
       return
       End
+
+      Function address_of_pyint5()
+      IMPLICIT DOUBLE PRECISION(A-H, O-Z)
+      IMPLICIT INTEGER(I-N)
+      Integer address_of_pyint5
+      Integer LOC
+
+      COMMON/PYINT5/NGENPD,NGEN(0:500,3),XSEC(0:500,3)
+      address_of_pyint5 = loc(NGEN(0,1))
+      return
+      End
+

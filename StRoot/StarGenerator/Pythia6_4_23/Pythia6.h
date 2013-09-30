@@ -90,6 +90,18 @@ struct PyPars_t {
   Double_t &pari( Int_t i ){ return _pari[i-1]; }
 };
 extern "C" PyPars_t *address_of_pypars();
-  
+
+//
+// Interface to the PYINT5 common block
+//      COMMON/PYINT5/NGENPD,NGEN(0:500,3),XSEC(0:500,3)
+//
+#define address_of_pyint5 F77_NAME( address_of_pyint5, ADDRESS_OF_PYINT5 )
+struct PyInt5_t {
+  Int_t    _ngen[3][501];
+  Double_t _xsec[3][501];
+  Int_t    &ngen( Int_t isub, Int_t i){ return _ngen[i-1][isub]; }
+  Double_t &xsec( Int_t isub, Int_t i){ return _xsec[i-1][isub]; }
+};
+extern "C" PyInt5_t *address_of_pyint5();
 
 #endif

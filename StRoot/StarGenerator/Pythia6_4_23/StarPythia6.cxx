@@ -204,3 +204,25 @@ void StarPythia6::FillEP( StarGenEvent *event )
   myevent -> weight     = pypars().pari(7);
 
 }
+
+StarGenStats StarPythia6::Stats()
+{
+  StarGenStats stats("Pythia6Stats","Pythia 6 Run Statistics");
+  PyStat(1);
+
+  stats.nTried         = pyint5().ngen(0,1);
+  stats.nSelected      = pyint5().ngen(0,2);
+  stats.nAccepted      = pyint5().ngen(0,3);
+  stats.sigmaGen       = pyint5().xsec(0,3); //xsection
+  // ... we may want to extend StarGenStats to add these, if they are useful ...
+  //  stats.xxxxxxxx       = pyint5().xsec(0,1); //estimated maximum differential cross section
+  //  stats.xxxxxxxxxxxx   = pyint5().xsec(0,2); //gives the sum of differential cross sections phase-space points evaluated so far
+
+  stats.nFilterSeen    = stats.nAccepted;
+  stats.nFilterAccept  = stats.nAccepted;
+
+  //stats.Dump();
+
+  // Return a copy of the class we just created
+  return stats;
+}
