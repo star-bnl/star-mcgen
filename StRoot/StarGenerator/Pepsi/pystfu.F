@@ -1,3 +1,4 @@
+#define RLU(x) RLUSTAR(x)
       SUBROUTINE PYSTFU(KF,X,Q2,XPQ)
  
 C...Gives electron, photon, pi+, neutron, proton and hyperon

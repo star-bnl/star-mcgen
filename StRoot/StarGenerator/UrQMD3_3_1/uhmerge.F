@@ -1,3 +1,5 @@
+#define RANF RANFSTAR
+#define ranf RANFSTAR
 
 
       subroutine hydro(thydro_start,thydro)

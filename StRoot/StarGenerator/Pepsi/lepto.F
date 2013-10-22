@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LEPTO
@@ -57,7 +57,7 @@ C...Note: if error flag LST(21) is non-zero, no proper event generated.
 
 
       INTEGER NUMMIS,NWARN,I,J,NS,L17
-      REAL ULMASS,ULANGL,RLU,ULALPS
+      REAL ULMASS,ULANGL,RLU,ULALPS,RLUSTAR
       REAL QG,QQB,SPQ,SRLU,PLU,PT,PHI,ENERGY,P2,ATAN
       DOUBLE PRECISION DETOT,DARI29,DARI30
       DIMENSION SPQ(17)

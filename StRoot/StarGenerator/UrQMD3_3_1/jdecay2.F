@@ -15,7 +15,8 @@ c     Phys. C 3, 255 (1980). The original  routine is contained in  CPC
 c     (Code ACGJ). It has been modified for uQMD purposes.
 c     More documentation and better readability are to follow.
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-
+#define RANF RANFSTAR
+#define ranf RANFSTAR
         implicit none
         integer j,i,imin1
 C        include 'newpart.f'

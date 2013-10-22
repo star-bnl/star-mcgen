@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LZP(XP,ZP,IFAIL)
@@ -23,7 +23,7 @@ C...Choose value of ZP according to QCD matrix elements.
 *...
       INTEGER IFAIL,LOOP,IPART
       REAL XP,AP,BP
-      REAL RLU,DZPMAX
+      REAL RLU,DZPMAX,RLUSTAR
       REAL D,E,DP,DQCD,ZPWEIT
       REAL DZ,DX,DA,DB,DC,DD,DE
       INTEGER IH,I

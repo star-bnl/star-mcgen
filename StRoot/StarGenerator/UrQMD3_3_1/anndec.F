@@ -1,4 +1,6 @@
-c $Id: anndec.F,v 1.1 2012/11/29 20:57:02 jwebb Exp $    
+#define RANF RANFSTAR
+#define ranf RANFSTAR
+c $Id: anndec.F,v 1.2 2013/10/22 20:15:35 jwebb Exp $    
 C####C##1#########2#########3#########4#########5#########6#########7##
         subroutine anndec(io,mm1,ii1,iiz1,mm2,ii2,iiz2,sqrts,sig,gam)
 c

@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LXP(XP,IFAIL)
@@ -34,7 +34,7 @@ C...structure functions.
       
       INTEGER IFAIL,LOOP
       REAL XP,XPMIN,XPMAX,AP,BP,QXPMAX,XPWEIT
-      REAL RLU,DSIGMA
+      REAL RLU,DSIGMA,RLUSTAR
       DOUBLE PRECISION DXPMAX
 
       IFAIL=1

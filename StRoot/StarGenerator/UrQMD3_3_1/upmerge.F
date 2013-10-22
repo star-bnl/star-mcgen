@@ -1,5 +1,6 @@
 C*********************************************************************
  
+#define RANF RANFSTAR
       subroutine upyth(id1,iso31,id2,iso32,sqrts)
  
 C...Double precision and integer declarations.

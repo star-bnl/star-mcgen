@@ -1,5 +1,5 @@
 C **********************************************************************
-
+#define RLU(x) RLUSTAR(x)
       SUBROUTINE LFLAV(IFL,IFLR)
 
       IMPLICIT NONE
@@ -31,7 +31,7 @@ C...corresponding flavour of the target remnant jet.
       DIMENSION PDF(-6:6)
 
       INTEGER IFL,IFLR,NFL,I,IFLA,J1,M1,M2,J,IFLRA,J2
-      REAL R,PSUB,AMIFL,AMIFLR,AMU,ULMASS,RLU,USEA,DSEA,PDF
+      REAL R,PSUB,AMIFL,AMIFLR,AMU,ULMASS,RLU,USEA,DSEA,PDF,RLUSTAR
 
       LST(21)=0
       IF(LST(24).EQ.3) THEN

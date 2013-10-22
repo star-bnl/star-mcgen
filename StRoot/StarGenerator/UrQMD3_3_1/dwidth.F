@@ -1,5 +1,7 @@
-c $Id: dwidth.F,v 1.1 2012/11/29 20:57:02 jwebb Exp $
+c $Id: dwidth.F,v 1.2 2013/10/22 20:15:35 jwebb Exp $
 C####C##1#########2#########3#########4#########5#########6#########7##
+#define RANF RANFSTAR
+#define ranf RANFSTAR
       real*8 function mmean (io,m0,g,mmin,mmax) 
 c
 cinput  io  : flag (see bleow)

@@ -1,3 +1,4 @@
+#define RLU(x) RLUSTAR(x)
 C ********************************************************************
 
       SUBROUTINE LSMALL
@@ -43,7 +44,7 @@ C--       global variables
 
 
 C--       functions
-      REAL RLU,ULMASS
+      REAL RLU,ULMASS,RLUSTAR
       INTEGER LUCOMP
 C--       local variables
       INTEGER I,J,IFIRST,I1,I2,IAQ,IQ,NTRY1,NTRY2,KFB,KFH1,KFH2

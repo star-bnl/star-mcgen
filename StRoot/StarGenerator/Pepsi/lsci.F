@@ -1,3 +1,4 @@
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LSCI(PROB)
@@ -30,7 +31,7 @@ C--   global variables
 
       
 C--       functions
-      REAL RLU
+      REAL RLU,RLUSTAR
 C--       local variables
       INTEGER I,J,LUCOMP,NS,NEXT,THIS,INIT
       LOGICAL QUARK,QUARK1,QUARK2,AQUARK1,AQUARK2,GLUON1,GLUON2,FIRST

@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LSCALE(INFIN,QMAX)
@@ -31,7 +31,7 @@ C...Give maximum virtuality of partons in parton showers.
 
 C...  Power in f(x0)=(1-x0)**power used for scale x0*W2
       INTEGER INFIN,I,J
-      REAL POWER,QMAX,FOUR,X0,RLU
+      REAL POWER,QMAX,FOUR,X0,RLU,RLUSTAR
       DATA POWER/3./
       FOUR(I,J)=P(I,4)*P(J,4)-P(I,1)*P(J,1)-P(I,2)*P(J,2)-P(I,3)*P(J,3)
 

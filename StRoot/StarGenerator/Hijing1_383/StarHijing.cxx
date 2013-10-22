@@ -15,8 +15,8 @@ using namespace std;
 // ----------------------------------------------------------------------------
 // Remap hijing's random number generator to StarRandom
 extern "C" {
-  Double_t rlu_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
-  Float_t  rndm_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
+  Double_t rlustar_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
+  Float_t  rndmstar_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
 };
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------

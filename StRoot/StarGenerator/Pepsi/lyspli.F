@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LYSPLI(KPART,KFLIN,KFLCH,KFLSP)
@@ -19,7 +19,7 @@ C...QUARK OR A DIQUARK, SPLIT IT INTO TWO (PARTONS OR HADRON + PARTON).
 
       
       INTEGER KPART,KFLIN,KFLCH,KFLSP,IFLIN,KSIGN,IFL,IDUM
-      REAL RLU,R
+      REAL RLU,R,RLUSTAR
       
       IFLIN=KFLIN
       KSIGN=ISIGN(1,KPART)

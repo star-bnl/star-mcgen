@@ -1,4 +1,4 @@
-#define RAN(x) rndm(x)
+#define RAN(x) RNDMSTAR(x)
 
 c     Version 1.383
 c     The variables I_SNG in HIJSFT and JL in ATTRAD were not initialized.

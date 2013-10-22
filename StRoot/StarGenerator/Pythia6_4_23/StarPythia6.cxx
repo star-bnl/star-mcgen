@@ -13,7 +13,7 @@ ClassImp(StarPythia6);
 // ----------------------------------------------------------------------------
 // Remap pythia's random number generator to StarRandom
 extern "C" {
-  Double_t pyr_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
+  Double_t pyrstar_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
 };
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------

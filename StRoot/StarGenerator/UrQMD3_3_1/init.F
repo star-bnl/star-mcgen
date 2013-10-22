@@ -1,5 +1,7 @@
-c $Id: init.F,v 1.1 2012/11/29 20:57:03 jwebb Exp $
+c $Id: init.F,v 1.2 2013/10/22 20:15:35 jwebb Exp $
 C####C##1#########2#########3#########4#########5#########6#########7##
+#define RANF RANFSTAR
+#define ranf RANFSTAR
       subroutine uinit(io)
 c
 c Revision : 1.0

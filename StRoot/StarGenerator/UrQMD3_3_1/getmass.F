@@ -1,5 +1,7 @@
-c $Id: getmass.F,v 1.1 2012/11/29 20:57:03 jwebb Exp $
+c $Id: getmass.F,v 1.2 2013/10/22 20:15:35 jwebb Exp $
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+#define RANF RANFSTAR
+#define ranf RANFSTAR
       real*8 function getmass(ssqrt,type)
 c
 c     Revision : 1.0 

@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C ********************************************************************
 
       SUBROUTINE LWBB(ENU)
@@ -6,7 +6,7 @@ C ********************************************************************
       IMPLICIT NONE
       REAL EMEAN,SLOPE,EMIN,EMAX,ENU 
       REAL A1,A2,E
-      REAL RLU
+      REAL RLU,RLUSTAR
 
 C...Gives energy (ENU) of a (anti-)neutrino chosen from a simple
 C...parametrization of a wide band beam.

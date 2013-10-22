@@ -1,3 +1,4 @@
+#define RLU(x) RLUSTAR(x)
 *72*********************************************************************
       SUBROUTINE POLLAZIMU(XP,ZP)
 
@@ -30,7 +31,7 @@ C...Choose azimuthal angle (PHI) according to QCD matrix elements.
       INTEGER J,IFL,I,IH,IEVFL
       REAL XPQ1,XP,ZP,DQCD,POLDQCD,A,B,C,XDPQ1,PHIMAX,PHI,
      +XI,SGN
-      REAL RLU
+      REAL RLU,RLUSTAR
 
       DIMENSION XPQ1(-6:6),XDPQ1(-6:6)
 *---

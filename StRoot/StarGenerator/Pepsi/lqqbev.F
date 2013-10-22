@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LQQBEV
@@ -44,7 +44,7 @@ C...QCD matrix elements and apply cuts for softness and collinearness.
       INTEGER J1,J2,J3,J4,IFAIL,LQMCUT
       REAL W,XP,ZP,XT,PT,PHI,PT2,EPZ,
      +AMIFL1,AMIFL3,AMR1,AMR2,TM2R1,TM2R2
-      REAL ULMASS,RLU,PLU
+      REAL ULMASS,RLU,PLU,RLUSTAR
       INTEGER IFL1,IFLR2,IFLR1,IFL3,IFL1A,IFL3A,NREMH,IR1,IR2,
      +     I,J,IFL1S
       INTEGER LUCOMP,KFIFL1,KFIFL2

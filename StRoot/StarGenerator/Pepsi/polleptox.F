@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 *72*********************************************************************
       
       SUBROUTINE POLLEPTOX
@@ -56,7 +56,7 @@ C...according to the differential cross section.
      +XPQ,XDPQ,GFQ2,AEMCOR,ULALEM,ZLEP,A,B,FLG,FLQ,
      +FLM,FLT,F2EM,PQH17,WEIGHT,HX,XFACT,Q2FACT,HY,YFACT,HQ2,
      +W2FACT,SIGL,SIGR,SIGMA,VIOL,YQ,YQB,FYQ,FYDQ,HW2,WHICH
-      REAL RLU
+      REAL RLU,RLUSTAR
 *...Added array XDPQ to store delta parton distributions
       DIMENSION PQH(17,2),PNT(2,2),XPQ(-6:6),XDPQ(-6:6)
 *---

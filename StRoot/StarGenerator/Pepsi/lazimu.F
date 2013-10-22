@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LAZIMU(XP,ZP)
@@ -23,7 +23,7 @@ C...Choose azimuthal angle (PHI) according to QCD matrix elements.
             
       INTEGER J,IFL,I,IH
       REAL XP,ZP,DQCD,A,B,C,PHIMAX,PHI,SGN
-      REAL RLU
+      REAL RLU,RLUSTAR
 
 *PEPSI>>
       IF(LST(40).NE.0) THEN

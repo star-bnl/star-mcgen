@@ -1,5 +1,5 @@
 C
-C
+#define RLU(x) RLUSTAR(x)
 C
 C     Modified for HIJING program
 c

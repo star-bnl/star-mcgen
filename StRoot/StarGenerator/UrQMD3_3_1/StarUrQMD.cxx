@@ -13,8 +13,8 @@ ClassImp(StarUrQMD);
 // ---------------------------------------------------------------------------
 /// Remap UrQMD's and Pythia's random number generator to StarRandom
 extern "C" {
-  Double_t ranf_( Int_t *idummy ){    return StarRandom::Instance().flat(); };
-  Double_t pyr_ ( Int_t *idummy ){    return StarRandom::Instance().flat(); };  
+  Double_t ranfstar_( Int_t *idummy ){    return StarRandom::Instance().flat(); };
+  Double_t pyrstar_ ( Int_t *idummy ){    return StarRandom::Instance().flat(); };  
   //  StarRandom &ranf_ = StarRandom::Instance();
   //  StarRandom &pyr_  = StarRandom::Instance();
 };

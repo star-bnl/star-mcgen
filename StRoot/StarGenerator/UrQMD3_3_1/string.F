@@ -1,4 +1,5 @@
-c $Id: string.F,v 1.1 2012/11/29 20:57:04 jwebb Exp $
+c $Id: string.F,v 1.2 2013/10/22 20:15:35 jwebb Exp $
+#define RANF RANFSTAR
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       subroutine stringdec(ityp,iz2,smass,part,ident2,npart)
 c

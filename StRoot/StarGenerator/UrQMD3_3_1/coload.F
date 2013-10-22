@@ -1,4 +1,6 @@
-c $Id: coload.F,v 1.1 2012/11/29 20:57:02 jwebb Exp $
+#define RANF RANFSTAR
+#define ranf RANFSTAR
+c $Id: coload.F,v 1.2 2013/10/22 20:15:35 jwebb Exp $
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       real*8 function sigtot(ind1,ind2,sqrts)
 c

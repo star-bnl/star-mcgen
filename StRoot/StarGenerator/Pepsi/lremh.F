@@ -1,4 +1,4 @@
-
+#define RLU(x) RLUSTAR(x)
 C **********************************************************************
 
       SUBROUTINE LREMH(IFLRO,PT,IFLR,K2,Z)
@@ -30,7 +30,7 @@ C...simple diquark.
 
       INTEGER IFLRO,IFLR,K2,IDUM,KSP,KC2,K2A
       INTEGER IFLQ,IFLQQ,LUCOMP
-      REAL RLU,ULMASS,TM2,PT
+      REAL RLU,ULMASS,TM2,PT,RLUSTAR
       REAL Z,AMSP,AMK2,A,FC
 
 C...Flavours fixed when calling from LQQBEV OR LYREMN
