@@ -1,3 +1,4 @@
+
 #include "StarHijing.h"
 ClassImp(StarHijing);
 
@@ -65,6 +66,7 @@ Int_t StarHijing::Init()
   mEvent = new StarGenAAEvent();
 
   // Number of spectators
+  // Initialized per event
   for ( Int_t i=0; i<2; i++ ){
     mNumberOfSpectatorProtons[i]=0;
     mNumberOfSpectatorNeutrons[i]=0;
@@ -76,13 +78,8 @@ Int_t StarHijing::Init()
    *
    **/ 
 
-  /**** Not certain about the indexing here
   ludat3().mdcy(102,1)=0; // PI0 111
-  ludat3().mdcy(106,1)=0; // PI+ 211
   ludat3().mdcy(109,1)=0; // ETA 221
-  ludat3().mdcy(116,1)=0; // K+ 321
-  ludat3().mdcy(112,1)=0; // K_SHORT 310
-  ludat3().mdcy(105,1)=0; // K_LONG 130
   ludat3().mdcy(164,1)=0; // LAMBDA0 3122
   ludat3().mdcy(167,1)=0; // SIGMA0 3212
   ludat3().mdcy(162,1)=0; // SIGMA- 3112
@@ -90,14 +87,21 @@ Int_t StarHijing::Init()
   ludat3().mdcy(172,1)=0; // Xi- 3312
   ludat3().mdcy(174,1)=0; // Xi0 3322
   ludat3().mdcy(176,1)=0; // OMEGA- 3334
+ 
+  /**** Not certain about the indexing here
+
+  ludat3().mdcy(106,1)=0; // PI+ 211   (not decayed anyhow)
+  ludat3().mdcy(112,1)=0; // K_SHORT 310
+  ludat3().mdcy(105,1)=0; // K_LONG 130
+  ludat3().mdcy(116,1)=0; // K+ 321
   ****/
  
   //
   // Check the frame.  Only CMS is supported at this time
   //
-  if ( mFrame != "CMS" )
+  if (!( mFrame == "CMS" || mFrame =="FIXT"))
     {
-      cout << "StarHijing: Only CMS frame supported for now.  Kill me now." << endl;
+      cout << "StarHijing: Only CMS / FIXT frame supported for now.  Kill me now." << endl;
     }
 
   ////////////////////////////////////
@@ -110,7 +114,7 @@ Int_t StarHijing::Init()
   A["n"] =1;    Z["n"] =0;   type["n"] ="N       ";
   A["d"] =2;    Z["d"] =1;   type["d"] ="A       ";
   A["Au"]=197;  Z["Au"]=79;  type["Au"]="A       ";
-  A["Cu"]=64;   Z["Cu"]=29;  type["Cu"]="A       ";
+  A["Cu"]=63;   Z["Cu"]=29;  type["Cu"]="A       ";
   A["U"] =238;  Z["U"]=92;   type["U"] ="A       ";
 
   A["proton"]   =1;    Z["proton"]   =1;   type["proton"]   ="P       "; // important to map size of type onto character*8
@@ -120,6 +124,8 @@ Int_t StarHijing::Init()
   hiparnt().ihpr2(12) = 1;
 
   string frame = mFrame.Data();
+  if(frame =="FIXT") frame="LAB";
+
   float  roots = mRootS;
   Hijset( roots, frame, type[mBlue], type[mYell], A[mBlue], Z[mBlue], A[mYell], Z[mYell] );
 
@@ -180,13 +186,30 @@ Int_t StarHijing::Generate()
 
   // Generate one hijing event
   {
-    //    string frame = mFrame.Data();
+    //    string frame = mframe;
+
     string frame = "CMS     ";
+
+    if(mFrame == "FIXT")
+      frame="LAB     ";
+
+    cout << mFrame.Data() << " " << frame.data() << endl;
+
     Float_t bmin = mImpactMin;
     Float_t bmax = mImpactMax;
     //    Hijing( frame, bmin, bmax );
     hijing_( frame.c_str(), bmin, bmax, frame.size() );
   }
+
+
+  // Number of spectators
+  // Initialized per event
+  //
+  for ( Int_t i=0; i<2; i++ ){
+    mNumberOfSpectatorProtons[i]=0;
+    mNumberOfSpectatorNeutrons[i]=0;
+  }
+
 
   //
   // Loop over all particles in the event
@@ -236,6 +259,10 @@ Int_t StarHijing::Generate()
 
 
     }
+
+
+
+  FillAA(mEvent);
 
   return kStOK;
   
