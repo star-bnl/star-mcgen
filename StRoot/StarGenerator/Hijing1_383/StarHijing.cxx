@@ -13,12 +13,15 @@ ClassImp(StarHijing);
 #include <iostream>
 using namespace std;
 
+
+
 // ----------------------------------------------------------------------------
 // Remap hijing's random number generator to StarRandom
 extern "C" {
   Double_t rlustar_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
   Float_t  rndmstar_( Int_t *idummy ){    return StarRandom::Instance().flat();  };
 };
+Double_t rndm(){ return StarRandom::Instance().flat(); }
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
@@ -29,6 +32,7 @@ StarHijing::StarHijing( const Char_t *name ) : StarGenerator(name)
   // katt(i,4)... all other codes should map to kUnknown
   mStatusCode[1]  = StarGenParticle::kFinal;
   mStatusCode[11] = StarGenParticle::kDecayed;
+
 
   // Mapping between jetset particle IDs and PDG particle IDs
   mParticleCode[ 10551 ] = 551;
@@ -46,7 +50,16 @@ Int_t StarHijing::pdgid( const Int_t &jetid )
   if ( jetid ==   551 ) return 0;
   if ( jetid == 10443 ) return 0;
 
+  // K0/K0bar = 0.5 K0 short + 0.5 K0 long
+  if ( jetid==311 || jetid==-311 )
+    {
+      if ( rndm() > 0.5 ) return 130; // K0 long
+      else                return 310; // K0 short
+    }
+
   int id = mParticleCode[jetid];
+
+
 
   // Return ID if it was found in the table
   if ( id )
@@ -87,14 +100,15 @@ Int_t StarHijing::Init()
   ludat3().mdcy(172,1)=0; // Xi- 3312
   ludat3().mdcy(174,1)=0; // Xi0 3322
   ludat3().mdcy(176,1)=0; // OMEGA- 3334
- 
-  /**** Not certain about the indexing here
 
+  // Double check indexing here
+  /*
   ludat3().mdcy(106,1)=0; // PI+ 211   (not decayed anyhow)
-  ludat3().mdcy(112,1)=0; // K_SHORT 310
-  ludat3().mdcy(105,1)=0; // K_LONG 130
+  ludat3().mdcy(112,1)=1; // K_SHORT 310   ... decay these ...
+  ludat3().mdcy(105,1)=1; // K_LONG 130
   ludat3().mdcy(116,1)=0; // K+ 321
-  ****/
+  */
+
  
   //
   // Check the frame.  Only CMS is supported at this time
