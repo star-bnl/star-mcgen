@@ -130,6 +130,7 @@ Int_t StarHijing::Init()
   A["Au"]=197;  Z["Au"]=79;  type["Au"]="A       ";
   A["Cu"]=63;   Z["Cu"]=29;  type["Cu"]="A       ";
   A["U"] =238;  Z["U"]=92;   type["U"] ="A       ";
+  A["Al"]=27;   Z["Al"]=13;  type["Al"]="A       ";
 
   A["proton"]   =1;    Z["proton"]   =1;   type["proton"]   ="P       "; // important to map size of type onto character*8
   A["neutron"]  =1;    Z["neutron"]  =0;   type["neutron"]  ="N       ";
@@ -140,7 +141,7 @@ Int_t StarHijing::Init()
   string frame = mFrame.Data();
   if(frame =="FIXT") frame="LAB";
 
-  float  roots = mRootS;
+  float  roots = TMath::Abs( mRootS );
   Hijset( roots, frame, type[mBlue], type[mYell], A[mBlue], Z[mBlue], A[mYell], Z[mYell] );
 
   mNumberOfBeamProtons[0]=Z[mBlue];
@@ -224,7 +225,6 @@ Int_t StarHijing::Generate()
     mNumberOfSpectatorNeutrons[i]=0;
   }
 
-
   //
   // Loop over all particles in the event
   //
@@ -245,7 +245,7 @@ Int_t StarHijing::Generate()
       Int_t d2 = -1; // 
       Double_t px = himain2().patt(idx, 1);
       Double_t py = himain2().patt(idx, 2);
-      Double_t pz = himain2().patt(idx, 3);
+      Double_t pz = himain2().patt(idx, 3);  pz *= mDirect;
       Double_t E  = himain2().patt(idx, 4);
       Double_t M  = Ulmass(jsid); // Need to lookup mass here... from hijing library ... ulmass in hipyset
       Double_t vx = himain2().vatt(idx, 1);
@@ -269,8 +269,6 @@ Int_t StarHijing::Generate()
 	  if ( id == 2212 ) mNumberOfSpectatorProtons[1]++;
 	  if ( id == 2112 ) mNumberOfSpectatorNeutrons[1]++;
 	}
-
-
 
     }
 
