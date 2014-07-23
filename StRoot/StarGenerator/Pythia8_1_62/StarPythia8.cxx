@@ -10,6 +10,10 @@ ClassImp(StarPythia8);
 #include "TString.h"
 #include "TSystem.h"
 
+#ifndef Pythia8_version 
+#error "Pythia8_version is not defined"
+#endif
+
 // ----------------------------------------------------------------------------
 // Remap pythia's random number generator to StarRandom
 class PyRand : public Pythia8::RndmEngine {
@@ -26,7 +30,7 @@ StarPythia8::StarPythia8(const Char_t *name) : StarGenerator(name)
   // auxilliary files required by pythia. 
   // NOTE:  When adding new versions of Pythia8, we need to specify
   // the version of the code in the source code
-  TString path = "StRoot/StarGenerator/"; path+=Pythia8::_version; path+="/xml/"; 
+  TString path = "StRoot/StarGenerator/"; path+= Pythia8_version; path+="/xmldoc/"; 
   { 
     ifstream in(path); 
     if (!in.good()) { path = "$(STAR)/"+path; }
@@ -34,7 +38,7 @@ StarPythia8::StarPythia8(const Char_t *name) : StarGenerator(name)
   }
   
 
-  Info(GetName(),Form("MC version is %s data at %s",Pythia8::_version,path.Data()));
+  Info(GetName(),Form("MC version is %s data at %s",Pythia8_version,path.Data()));
   Info(GetName(),Form("Configuration files at %s",path.Data()));
 
   mPythia = new Pythia8::Pythia( path.Data() );
