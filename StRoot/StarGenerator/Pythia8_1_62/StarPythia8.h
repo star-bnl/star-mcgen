@@ -94,7 +94,7 @@ class StarPythia8 : public StarGenerator
   StarGenStats Stats();
 
   virtual const char *GetCVS() const
-  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.7 2014/07/23 16:37:14 jeromel Exp $ built "__DATE__" "__TIME__ ; return cvs;}
+  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.8 2014/08/06 11:43:57 jeromel Exp $ built " __DATE__ " " __TIME__ ; return cvs;}
 
  private:
  protected:
