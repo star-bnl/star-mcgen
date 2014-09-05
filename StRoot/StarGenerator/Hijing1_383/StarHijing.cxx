@@ -124,9 +124,12 @@ Int_t StarHijing::Init()
   
   // Map typical species run at RHIC
   map<TString,Int_t> A, Z;  map<TString,string> type;
-  A["p"] =1;    Z["p"] =1;   type["p"] ="P       "; 
-  A["n"] =1;    Z["n"] =0;   type["n"] ="N       ";
-  A["d"] =2;    Z["d"] =1;   type["d"] ="A       ";
+  A["p"]  =1;    Z["p"]  =1;   type["p"]  ="P       "; 
+  A["n"]  =1;    Z["n"]  =0;   type["n"]  ="N       ";
+  A["d"]  =2;    Z["d"]  =1;   type["d"]  ="A       ";
+  A["He3"]=3;    Z["He3"]=2;   type["He3"]="A       ";
+
+
   A["Au"]=197;  Z["Au"]=79;  type["Au"]="A       ";
   A["Cu"]=63;   Z["Cu"]=29;  type["Cu"]="A       ";
   A["U"] =238;  Z["U"]=92;   type["U"] ="A       ";
