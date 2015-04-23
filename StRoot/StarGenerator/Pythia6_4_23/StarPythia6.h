@@ -56,23 +56,22 @@ class StarPythia6 : public StarGenerator
   StarGenStats Stats();
 
   /// Returns a reference to the /PYJETS/ common block
-  PyJets_t &pyjets(){ return *address_of_pyjets(); }
+  static PyJets_t &pyjets(){ return *address_of_pyjets(); }
   /// Returns a reference to the /PYSUBS/ common block
-  PySubs_t &pysubs(){ return *address_of_pysubs(); }
+  static PySubs_t &pysubs(){ return *address_of_pysubs(); }
   /// Returns a reference to the /PYDAT3/ common block
-  PyDat3_t &pydat3(){ return *address_of_pydat3(); }
+  static PyDat3_t &pydat3(){ return *address_of_pydat3(); }
   /// Returns a reference to the /PYPARS/ common block
-  PyPars_t &pypars(){ return *address_of_pypars(); }
+  static PyPars_t &pypars(){ return *address_of_pypars(); }
   /// Returns a reference to the /PYINT5/ common block
-  PyInt5_t &pyint5(){ return *address_of_pyint5(); }
+  static PyInt5_t &pyint5(){ return *address_of_pyint5(); }
 
   /// Calls the pytune function
-  void PyTune( Int_t tune );
+  static void PyTune( Int_t tune );
   /// Calls the pystat function
-  void PyStat( Int_t stat );
+  static void PyStat( Int_t stat );
   /// Calls the pylist function
-  void PyList( Int_t list );
-
+  static void PyList( Int_t list );
 
  private:
  protected:
