@@ -181,7 +181,7 @@ Int_t StarHijing::Init()
   //
   // Keep all information for all particles, even those which decay
   //
-  //$$$  hiparnt().ihpr2(21)=1;
+  hiparnt().ihpr2(21)=1;
 
   hiparnt().ihpr2(10)=1; // show error msgs
 
@@ -232,6 +232,8 @@ Int_t StarHijing::Generate()
   // Loop over all particles in the event
   //
   mNumberOfParticles = himain1().natt;
+  StarGenParticle *particles[ mNumberOfParticles ]; // temporary list of particles
+  StarGenParticle *current = 0;
   for ( Int_t idx=1; idx<=mNumberOfParticles; idx++ )
     {
 
@@ -256,7 +258,16 @@ Int_t StarHijing::Generate()
       Double_t vz = himain2().vatt(idx, 3);
       Double_t vt = himain2().vatt(idx, 4);
 
-      mEvent -> AddParticle( stat, id, m1, m2, d1, d2, px, py, pz, E, M, vx, vy, vz, vt );
+      particles[idx] = mEvent -> AddParticle( stat, id, m1, m2, d1, d2, px, py, pz, E, M, vx, vy, vz, vt );
+      if ( m1 > 0 ) { // 
+	current = particles[m1]; 
+	assert(current);
+	// Set first daughter if it hasn't been set
+	if (  -1 == current->GetFirstDaughter() ) current->SetFirstDaughter(idx);
+	// Set last daughter if it's larger than the current idx
+	if ( idx  > current->GetLastDaughter()  ) current->SetLastDaughter(idx);
+      }
+	
 
       // count spectators
       Int_t code = himain2().katt(idx, 2 );
