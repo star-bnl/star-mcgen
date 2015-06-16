@@ -89,6 +89,10 @@ Int_t StarHijing::pdgid( const Int_t &jetid )
 
 
 
+Int_t StarHijing::LuComp( Int_t jetsetid )
+{
+  return Lucomp( jetsetid );
+};
 
 
 Int_t StarHijing::Init()
@@ -109,6 +113,23 @@ Int_t StarHijing::Init()
    *
    **/ 
 
+  Int_t pdgCodes[] = { 
+    111, // pi0
+    221, // eta
+    3122,// Lambda0
+    3212,// Sigma0
+    3112,// Sigma-
+    3222,// Sigma+
+    3312,// Xi-
+    3322,// Xi0
+    3334 // Omega-
+  };
+  for ( UInt_t ii=0;ii<sizeof(pdgCodes);ii++) 
+    {
+      ludat3().mdcy( Lucomp( pdgCodes[ii] ), 1 ) = 0;
+    }
+
+  /*
   ludat3().mdcy(102,1)=0; // PI0 111
   ludat3().mdcy(109,1)=0; // ETA 221
   ludat3().mdcy(164,1)=0; // LAMBDA0 3122
@@ -118,7 +139,7 @@ Int_t StarHijing::Init()
   ludat3().mdcy(172,1)=0; // Xi- 3312
   ludat3().mdcy(174,1)=0; // Xi0 3322
   ludat3().mdcy(176,1)=0; // OMEGA- 3334
-
+  */
   // Double check indexing here
   /*
   ludat3().mdcy(106,1)=0; // PI+ 211   (not decayed anyhow)
@@ -157,7 +178,7 @@ Int_t StarHijing::Init()
   A["neutron"]  =1;    Z["neutron"]  =0;   type["neutron"]  ="N       ";
   A["deuteron"] =2;    Z["deuteron"] =1;   type["deuteron"] ="A       ";
 
-  hiparnt().ihpr2(12) = 1; // Turn on particle decays  
+  hiparnt().ihpr2(12) = 0; // 0=particle decays on 1=off
 
   string frame = mFrame.Data();
   if(frame =="FIXT") frame="LAB";
@@ -200,14 +221,7 @@ Int_t StarHijing::Init()
   // Keep all information for all particles, even those which decay
   //
   hiparnt().ihpr2(21)=1;
-
   hiparnt().ihpr2(10)=1; // show error msgs
-
-
-  // Create generic table to display configurations
-  TGenericTable *HIPARNT = new TGenericTable("HiParnt_t","hiparnt");
-  AddData(HIPARNT,".const");
-  HIPARNT -> Adopt( 1, (void *)address_of_hiparnt() );
 
   return StMaker::Init();
 
