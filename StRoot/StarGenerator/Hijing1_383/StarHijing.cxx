@@ -13,7 +13,17 @@ ClassImp(StarHijing);
 #include <iostream>
 using namespace std;
 
+#include "TGenericTable.h"
 
+StMaker *_maker = 0;
+
+TGenericTable *regtable( const Char_t *type, const Char_t *name, void *address )
+{
+  TGenericTable *table = new TGenericTable(type,name);
+  table->Adopt( 1, address );
+  _maker -> AddData( table, ".const" );
+  return table;
+};
 
 // ----------------------------------------------------------------------------
 // Remap hijing's random number generator to StarRandom
@@ -27,6 +37,14 @@ Double_t rndm(){ return StarRandom::Instance().flat(); }
 // ----------------------------------------------------------------------------
 StarHijing::StarHijing( const Char_t *name ) : StarGenerator(name)
 {
+
+  _maker = this;
+
+  // Register configuration commons
+  regtable("HiParnt_t", "hiparnt", (void *)address_of_hiparnt() );
+  regtable("HiMain1_t", "himain1", (void *)address_of_himain1() );
+  //regtable("HiMain2_t", "himain2", (void *)address_of_himain2() ); // Probably too big to be useful
+  regtable("Ludat3_t",  "ludat3",  (void *)address_of_hiparnt() );
 
   // Setup a map between HIJING status codes and HepMC status codes
   // katt(i,4)... all other codes should map to kUnknown
@@ -120,7 +138,7 @@ Int_t StarHijing::Init()
 
   ////////////////////////////////////
   // Initialize the hijing
-  ////////////////////////////////////
+  ///////////////////////////////////
   
   // Map typical species run at RHIC
   map<TString,Int_t> A, Z;  map<TString,string> type;
@@ -139,7 +157,7 @@ Int_t StarHijing::Init()
   A["neutron"]  =1;    Z["neutron"]  =0;   type["neutron"]  ="N       ";
   A["deuteron"] =2;    Z["deuteron"] =1;   type["deuteron"] ="A       ";
 
-  hiparnt().ihpr2(12) = 1;
+  hiparnt().ihpr2(12) = 1; // Turn on particle decays  
 
   string frame = mFrame.Data();
   if(frame =="FIXT") frame="LAB";
@@ -185,6 +203,11 @@ Int_t StarHijing::Init()
 
   hiparnt().ihpr2(10)=1; // show error msgs
 
+
+  // Create generic table to display configurations
+  TGenericTable *HIPARNT = new TGenericTable("HiParnt_t","hiparnt");
+  AddData(HIPARNT,".const");
+  HIPARNT -> Adopt( 1, (void *)address_of_hiparnt() );
 
   return StMaker::Init();
 
