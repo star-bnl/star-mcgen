@@ -47,6 +47,32 @@ EvtPythiaEngine::EvtPythiaEngine(std::string xmlDir, bool convertPhysCodes,
   // versions in one Pythia generator, we can use two generators to 
   // get the required behaviour.
 
+
+  // JCW 10/26/2016 -- if XML files not found, look in STAR area
+  std::ifstream in( xmlDir.c_str() );
+  if (!in.good())
+    {
+
+      xmlDir  = "StRoot/StarGenerator/"; 
+      xmlDir += Pythia8_version;
+      xmlDir += "/xmldoc/";
+      std::ifstream in( xmlDir.c_str() );
+    
+      if (!in.good())
+	{
+
+	  xmlDir  = "$STAR/StRoot/StarGenerator/"; 
+	  xmlDir += Pythia8_version;
+	  xmlDir += "/xmldoc/";
+	  std::ifstream in( xmlDir.c_str() );
+
+	  assert(in.good());
+
+	}
+
+    }
+
+
   EvtGenReport(EVTGEN_INFO,"EvtGen")<<"Creating generic Pythia generator"<<endl;
   _genericPythiaGen = new Pythia8::Pythia(xmlDir);
   _genericPartData = _genericPythiaGen->particleData;
