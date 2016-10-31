@@ -33,6 +33,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 
 using std::endl;
 
@@ -61,7 +62,8 @@ EvtPythiaEngine::EvtPythiaEngine(std::string xmlDir, bool convertPhysCodes,
       if (!in.good())
 	{
 
-	  xmlDir  = "$STAR/StRoot/StarGenerator/"; 
+	  xmlDir  = std::getenv("STAR");
+	  xmlDir += "/StRoot/StarGenerator/"; 
 	  xmlDir += Pythia8_version;
 	  xmlDir += "/xmldoc/";
 	  std::ifstream in( xmlDir.c_str() );
