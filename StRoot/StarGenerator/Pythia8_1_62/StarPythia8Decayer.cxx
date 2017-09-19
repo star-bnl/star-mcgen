@@ -80,7 +80,8 @@ Int_t StarPythia8Decayer::ImportParticles( TClonesArray *_array )
 
   for ( Int_t i=0; i<mPythia->event.size();i++ )
     {
-      if ( mPythia->event[i].id() == 90 ) continue; //??
+      
+     // if ( mPythia->event[i].id() == 90 ) continue; //??
       new(array[nparts++]) TParticle ( 		  
           mPythia->event[i].id(),
 	  mPythia->event[i].status(),
