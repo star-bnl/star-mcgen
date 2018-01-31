@@ -88,29 +88,31 @@ class StarPythia8 : public StarGenerator
   Int_t Generate();
 
   /// Pass a string to Pythia8::Pythia::readString(), for user configuration.
-  void Set( const Char_t *s ){ mPythia -> readString(s); }
+  void Set( const char* s ){ mPythia -> readString(s); }
+  /// Read in a command file
+  void ReadFile( const char* f ){ mPythia -> readFile( f ); }
 
   /// Return end-of-run statistics
   StarGenStats Stats();
 
   virtual const char *GetCVS() const
-  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.8 2014/08/06 11:43:57 jeromel Exp $ built " __DATE__ " " __TIME__ ; return cvs;}
+  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.9 2018/01/31 16:21:41 jwebb Exp $ built " __DATE__ " " __TIME__ ; return cvs;}
 
  private:
  protected:
 
-  Int_t InitCMS ( Int_t blue, Int_t yell );
-  Int_t InitFIXT( Int_t blue, Int_t yell );
-  Int_t Init3MOM( Int_t blue, Int_t yell );
-  Int_t Init4MOM( Int_t blue, Int_t yell );
-  Int_t Init5MOM( Int_t blue, Int_t yell );
+  int InitCMS ( int blue, int yell );
+  int InitFIXT( int blue, int yell );
+  int Init3MOM( int blue, int yell );
+  int Init4MOM( int blue, int yell );
+  int Init5MOM( int blue, int yell );
 
   Pythia8::Pythia *mPythia;
 
   void FillPP( StarGenEvent *event );
   void FillEP( StarGenEvent *event );
 
-  ClassDef(StarPythia8,1);
+  ClassDef(StarPythia8,0);
 
 };
 
