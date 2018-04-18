@@ -79,13 +79,13 @@ class StarPythia8 : public StarGenerator
 {
 
  public:
-  StarPythia8( const Char_t *name="Pythia8" );
+  StarPythia8( const char *name="Pythia8" );
   ~StarPythia8(){ /* nada */ };
 
   /// Initialize the event generator
-  Int_t Init();
+  int Init();
   /// Generate one event
-  Int_t Generate();
+  int Generate();
 
   /// Pass a string to Pythia8::Pythia::readString(), for user configuration.
   void Set( const char* s ){ mPythia -> readString(s); }
@@ -96,7 +96,7 @@ class StarPythia8 : public StarGenerator
   StarGenStats Stats();
 
   virtual const char *GetCVS() const
-  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.9 2018/01/31 16:21:41 jwebb Exp $ built " __DATE__ " " __TIME__ ; return cvs;}
+  {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.10 2018/04/18 15:33:25 jwebb Exp $ built " __DATE__ " " __TIME__ ; return cvs;}
 
  private:
  protected:

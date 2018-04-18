@@ -18,12 +18,12 @@ ClassImp(StarPythia8);
 // Remap pythia's random number generator to StarRandom
 class PyRand : public Pythia8::RndmEngine {
 public:
-  Double_t flat() { return StarRandom::Instance().flat(); }
+  double flat() { return StarRandom::Instance().flat(); }
 };
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-StarPythia8::StarPythia8(const Char_t *name) : StarGenerator(name)
+StarPythia8::StarPythia8(const char *name) : StarGenerator(name)
 {
 
   // Create the new instance of pythia, specifying the path to the
@@ -48,7 +48,7 @@ StarPythia8::StarPythia8(const Char_t *name) : StarGenerator(name)
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-Int_t StarPythia8::Init()
+int StarPythia8::Init()
 {
 
   //
@@ -102,7 +102,7 @@ Int_t StarPythia8::Init()
   //
 }
 // ----------------------------------------------------------------------------
-Int_t StarPythia8::Generate()
+int StarPythia8::Generate()
 {
   
   //
@@ -127,24 +127,24 @@ Int_t StarPythia8::Generate()
   else                              FillEP( mEvent );
 
   // Loop over all particles in the event
-  for ( Int_t idx=1; idx <= mNumberOfParticles; idx++ )
+  for ( int idx=1; idx <= mNumberOfParticles; idx++ )
     {
       
-      Int_t id        = event[idx].id();
-      Int_t stat      = event.statusHepMC(idx);
-      Int_t mother1   = event[idx].mother1();
-      Int_t mother2   = event[idx].mother2();
-      Int_t daughter1 = event[idx].daughter1();
-      Int_t daughter2 = event[idx].daughter2();
-      Double_t px     = event[idx].px();
-      Double_t py     = event[idx].py();
-      Double_t pz     = event[idx].pz();
-      Double_t energy = event[idx].e();
-      Double_t mass   = event[idx].m();
-      Double_t vx     = event[idx].xProd(); // mm
-      Double_t vy     = event[idx].yProd(); // mm
-      Double_t vz     = event[idx].zProd(); // mm
-      Double_t vt     = event[idx].tProd(); // mm/c
+      int id        = event[idx].id();
+      int stat      = event.statusHepMC(idx);
+      int mother1   = event[idx].mother1();
+      int mother2   = event[idx].mother2();
+      int daughter1 = event[idx].daughter1();
+      int daughter2 = event[idx].daughter2();
+      double px     = event[idx].px();
+      double py     = event[idx].py();
+      double pz     = event[idx].pz();
+      double energy = event[idx].e();
+      double mass   = event[idx].m();
+      double vx     = event[idx].xProd(); // mm
+      double vy     = event[idx].yProd(); // mm
+      double vz     = event[idx].zProd(); // mm
+      double vt     = event[idx].tProd(); // mm/c
 
       mEvent -> AddParticle( stat, id, mother1, mother2, daughter1, daughter2, px, py, pz, energy, mass, vx, vy, vz, vt );
 
@@ -168,10 +168,10 @@ void StarPythia8::FillEP( StarGenEvent *myevent )
   event -> process    = info.code();
   event -> subprocess = (info.hasSub())? 0 : info.codeSub();
 
-  Int_t id = info.id1();
-  Double_t x = info.x1();
-  Double_t xPdf = info.pdf1();
-  Int_t valence = info.isValence1();
+  int id = info.id1();
+  double x = info.x1();
+  double xPdf = info.pdf1();
+  int valence = info.isValence1();
   if ( TMath::Abs(id)>6 )
     {
       id = info.id2();
@@ -265,13 +265,13 @@ StarGenStats StarPythia8::Stats()
 
 
 // ----------------------------------------------------------------------------
-Int_t StarPythia8::InitCMS( Int_t blue, Int_t yell )
+int StarPythia8::InitCMS( int blue, int yell )
 {
   mPythia->init( blue, yell, mRootS );
   return 0;
 }
 // ----------------------------------------------------------------------------
-Int_t StarPythia8::InitFIXT( Int_t blue, Int_t yell )
+int StarPythia8::InitFIXT( int blue, int yell )
 {
   if ( mRootS > 0 ) 
     mPythia->init( blue, yell, mRootS, 0.0 );
@@ -281,7 +281,7 @@ Int_t StarPythia8::InitFIXT( Int_t blue, Int_t yell )
   return 0;
 }
 // ----------------------------------------------------------------------------
-Int_t StarPythia8::Init3MOM( Int_t blue, Int_t yell )
+int StarPythia8::Init3MOM( int blue, int yell )
 {
 
   cout << "Initializing 3MOM: " << endl;
@@ -296,12 +296,12 @@ Int_t StarPythia8::Init3MOM( Int_t blue, Int_t yell )
   return 0;
 }
 // ----------------------------------------------------------------------------
-Int_t StarPythia8::Init4MOM( Int_t blue, Int_t yell )
+int StarPythia8::Init4MOM( int blue, int yell )
 {
   return Init3MOM( blue, yell );
 }
 // ----------------------------------------------------------------------------
-Int_t StarPythia8::Init5MOM( Int_t blue, Int_t yell )
+int StarPythia8::Init5MOM( int blue, int yell )
 {
   return Init3MOM( blue, yell );
 }

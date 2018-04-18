@@ -6,6 +6,8 @@
 #include "TSystem.h"
 #include "StMessMgr.h"
 
+#include "ParticleData.h"
+
 #ifndef Pythia8_version 
 #error "Pythia8_version is not defined"
 #endif
@@ -16,7 +18,7 @@ using namespace Pythia8;
 // Remap pythia's random number generator to StarRandom
 class PyRand : public Pythia8::RndmEngine {
 public:
-  Double_t flat() { return StarRandom::Instance().flat(); }
+  double flat() { return StarRandom::Instance().flat(); }
 };
 
 //..................................................................................................
@@ -55,7 +57,7 @@ void StarPythia8Decayer::Init()
       
 }
 //..................................................................................................
-void StarPythia8Decayer::Decay( Int_t pdgid, TLorentzVector *_p )
+void StarPythia8Decayer::Decay( int pdgid, TLorentzVector *_p )
 {
 
   LOG_INFO << "Decay pdgid=" << pdgid << endm;
@@ -65,7 +67,7 @@ void StarPythia8Decayer::Decay( Int_t pdgid, TLorentzVector *_p )
   // Add the particle to the pythia stack
   AppendParticle( pdgid, _p );
   // Get the particle ID and allow it to decay
-  //  Int_t id = mPythia -> event[0].id();
+  //  int id = mPythia -> event[0].id();
   //  mPythia->particleData.mayDecay( id, true );
   mPythia->next();
 
@@ -73,16 +75,16 @@ void StarPythia8Decayer::Decay( Int_t pdgid, TLorentzVector *_p )
   if ( mDebug ) mPythia->event.list();
 }
 //..................................................................................................
-Int_t StarPythia8Decayer::ImportParticles( TClonesArray *_array )
+int StarPythia8Decayer::ImportParticles( TClonesArray *_array )
 {
   // Save the decay products
   assert(_array);
   TClonesArray &array = *_array;
   array.Clear();
 
-  Int_t nparts = 0;
+  int nparts = 0;
 
-  for ( Int_t i=0; i<mPythia->event.size();i++ )
+  for ( int i=0; i<mPythia->event.size();i++ )
     {
       //if ( mPythia->event[i].id() == 90 ) continue; //??
       new(array[nparts++]) TParticle ( 		  
@@ -105,22 +107,37 @@ Int_t StarPythia8Decayer::ImportParticles( TClonesArray *_array )
 }
 //..................................................................................................
 // not implemented.  complain about it.  loudly.
-void StarPythia8Decayer::SetForceDecay( Int_t type ){ assert(0); }
+void StarPythia8Decayer::SetForceDecay( int type ){ assert(0); }
 void StarPythia8Decayer::ForceDecay(){ assert(0); }
-Float_t StarPythia8Decayer::GetPartialBranchingRatio( Int_t ipdg ){ assert(0); }
+float StarPythia8Decayer::GetPartialBranchingRatio( int ipdg ){ assert(0); }
 void StarPythia8Decayer::ReadDecayTable(){ assert(0); }
 //..................................................................................................
-Float_t StarPythia8Decayer::GetLifetime(Int_t pdg) 
+float StarPythia8Decayer::GetLifetime(int pdg) 
 {
   // return lifetime in seconds of teh particle with PDG number pdg
   return (mPythia->particleData.tau0(pdg) * 3.3333e-12) ;
 }
 //..................................................................................................
-void StarPythia8Decayer::AppendParticle(Int_t pdg, TLorentzVector* p)
+void StarPythia8Decayer::AppendParticle(int pdg, TLorentzVector* p)
 {
-  // Append a particle to the stack to be decayed
-  const Int_t status = 23;
-  mPythia->event.append(pdg, status, 0, 0, p->Px(), p->Py(), p->Pz(), p->E(), p->M());
+  // Append a particle to the stack to be decayed  
+  const int status = 23;
+
+  double pt2 = p->Perp2();   // pt squared
+  double px  = p->Px();
+  double py  = p->Py();
+  double pz  = p->Pz();  // z-component
+  double M2  = p->M2();   // mass squared
+
+  // Lookup particle entry in pythia8
+  const auto* pde = mPythia->particleData.particleDataEntryPtr( pdg );
+  if ( pde ) {
+    M2 = pde->m0() * pde->m0();
+  }
+ 
+  double E = TMath::Sqrt( pt2 + M2 + pz*pz );
+ 
+  mPythia->event.append(pdg, status, 0, 0, px, py, pz, E, TMath::Sqrt(M2) );
 }
 //..................................................................................................
 void StarPythia8Decayer::ClearEvent()
