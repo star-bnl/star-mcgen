@@ -745,7 +745,9 @@ C
 		   KATT(NATT,1)=K(I,2)
 		   KATT(NATT,2)=NFTP
 		   KATT(NATT,4)=K(I,1)
-		   IF(K(I,3).EQ.0 .OR. K(K(I,3),2).EQ.IDSTR) THEN
+		   IF(K(I,3).EQ.0 ) THEN 
+		      KATT(NATT,3)=0
+                   ELSE IF (K(K(I,3),2).EQ.IDSTR) THEN ! protect against runtime bounds check
 		      KATT(NATT,3)=0
 		   ELSE
 		      KATT(NATT,3)=NATT-I+K(I,3)+N_STR-K(K(I,3),4)
