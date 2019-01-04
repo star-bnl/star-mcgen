@@ -721,7 +721,9 @@ C
 		   CALL LUEDIT(2)
 		ELSE
 381		   N_ST=N_ST+1
-		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  381
+                 IF ( K(N_ST,2) .gt. 0 ) THEN ! Prevent infinite loop off the end of the record
+                 IF ( K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO 381
+                 ENDIF
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
 		ENDIF
