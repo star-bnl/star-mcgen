@@ -658,9 +658,11 @@ C
 		   CALL LUEDIT(2)
 		ELSE
 351		   N_ST=N_ST+1
+                   if (N_ST.le.N ) THEN ! protection in small events 
 		   IF(K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO  351
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
+                   endif
 		ENDIF
 C
 		IF(FRAME.EQ.'LAB') THEN
@@ -721,11 +723,11 @@ C
 		   CALL LUEDIT(2)
 		ELSE
 381		   N_ST=N_ST+1
-                 IF ( K(N_ST,2) .gt. 0 ) THEN ! Prevent infinite loop off the end of the record
-                 IF ( K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO 381
-                 ENDIF
+                   if (N_ST.le.N ) THEN ! protection in small events 
+                   IF ( K(N_ST,2).LT.91.OR.K(N_ST,2).GT.93) GO TO 381
 		   IDSTR=K(N_ST,2)
 		   N_ST=N_ST+1
+                   endif 
 		ENDIF
 		IF(FRAME.EQ.'LAB') THEN
 			CALL HIBOOST
