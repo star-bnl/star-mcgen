@@ -1,4 +1,4 @@
-#ifndef __StarPythia5_h__
+#ifndef __StarPythia6_h__
 #define __StarPythia6_h__
 
 /*!
