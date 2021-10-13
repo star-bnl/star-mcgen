@@ -53,8 +53,11 @@ void Hijset( float E, string frame, string blue, string yell, int Ablue, int Zbl
     _ablue = Ablue;
     _zblue = Zblue;
     _ayell = Ayell;
-    _ablue = Zblue;
-    LOG_INFO << "Hijset captured " << _frame << " " << _blue << " " << _yell << endm;
+    _zyell = Zyell;
+    LOG_INFO << "Hijset captured " << _frame << " E=" << _E << " GeV " 
+	     << _blue << " (" << _ablue << "," << _zblue << ") "
+	     << _yell << " (" << _ayell << "," << _zyell << ") "
+	     << endm;
     ++called;
   }
   else if ( 1 == called ) {        // perform actual initialization on subsequent call
