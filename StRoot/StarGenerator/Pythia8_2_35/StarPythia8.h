@@ -97,11 +97,6 @@ class StarPythia8 : public StarGenerator
   /// Return end-of-run statistics
   StarGenStats Stats();
 
-  /// Provide access to the pythia object and its internal state for analysis / filtering purposes
-#ifndef __CINT__
-  const Pythia8::Pythia& pythia(){ return *mPythia; } 
-#endif 
-
   virtual const char *GetCVS() const
   {static const char cvs[]="Tag $Name:  $ $Id: StarPythia8.h,v 1.1 2018/09/25 18:53:47 jwebb Exp $ built " __DATE__ " " __TIME__ ; return cvs;}
 
