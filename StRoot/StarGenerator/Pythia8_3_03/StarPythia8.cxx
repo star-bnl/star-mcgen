@@ -62,6 +62,14 @@ int StarPythia8::Init()
   TString myYell = particles[mYell];     if ( myYell == "" ) myYell=mYell;
 
   //
+  LOG_INFO << "Default configuration with the Detroit Tune" << endm;
+  Set("MultipartonInteractions:pT0Ref=1.40");
+  Set("MultipartonInteractions:ecmPow=0.135");
+  Set("MultipartonInteractions:coreRadius=0.56");
+  Set("MultipartonInteractions:coreFraction=0.78");
+  Set("ColourReconnection:range=5.4");
+
+  //
   // Initialize pythia based on the frame and registered beam momenta
   // TODO: Switch to StarParticleDB
   //
@@ -97,7 +105,8 @@ int StarPythia8::Init()
   Set("3312:onMode=0"); // Xi -
   Set("3322:onMode=0"); // Xi 0
   Set("3334:onMode=0"); // Omega -
-  //
+
+
   return StMaker::Init();
   //
 }
