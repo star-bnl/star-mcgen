@@ -29,7 +29,7 @@ StarPythia8Decayer::StarPythia8Decayer() :
   mRootS(510.0)
 {
 
-  TString path = "StRoot/StarGenerator/"; path+= Pythia8_version; path+="/xmldoc/"; 
+  TString path = "StRoot/StarGenerator/"; path+= Pythia8_version; path+="/share/Pythia8/xmldoc/"; 
   { 
     ifstream in(path); 
     if (!in.good()) { path = "$(STAR)/"+path; }
