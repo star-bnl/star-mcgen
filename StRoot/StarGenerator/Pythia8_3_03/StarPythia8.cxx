@@ -1,7 +1,7 @@
 #include "StarPythia8.h"
 ClassImp(StarPythia8);
 
-#include "TDatabasePDG.h"
+#include "StarGenerator/UTIL/StarParticleData.h"
 #include "TParticlePDG.h"
 
 #include "StarGenerator/UTIL/StarRandom.h" 
@@ -71,9 +71,9 @@ int StarPythia8::Init()
 
   //
   // Initialize pythia based on the frame and registered beam momenta
-  // TODO: Switch to StarParticleDB
   //
-  TDatabasePDG &pdg  = (*TDatabasePDG::Instance());
+  StarParticleData& pdg = StarParticleData::instance();
+
   TParticlePDG *blue = pdg.GetParticle(myBlue); assert(blue);
   TParticlePDG *yell = pdg.GetParticle(myYell); assert(yell);
   //
@@ -85,8 +85,13 @@ int StarPythia8::Init()
   //
   // Setup event record based upon the beam species
   //
-  if ( mBlue == "proton" )         mEvent = new StarGenPPEvent();
-  else                             assert(0); // Pythia 8 does not (yet) support e+p collisions
+  mEvent = new StarGenPPEvent();
+  if ( mBlue == "proton" ) {
+    LOG_INFO << "pp or pA mode detected" << endm;
+  } 
+  else {
+    LOG_INFO << "AA (or eA) mode detected... event record will still be a pp event record." << endm;
+  }
   //
   // Make several particles stable which may cross the beam pipe,
   // and so the simulation package must be allowed to decide to
