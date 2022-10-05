@@ -63,6 +63,8 @@ class StarPythia6 : public StarGenerator
   static PyDat3_t &pydat3(){ return *address_of_pydat3(); }
   /// Returns a reference to the /PYPARS/ common block
   static PyPars_t &pypars(){ return *address_of_pypars(); }
+  /// Returns a reference to the /PYINT2/ common block
+  static PyInt2_t &pyint2(){ return *address_of_pyint2(); }
   /// Returns a reference to the /PYINT5/ common block
   static PyInt5_t &pyint5(){ return *address_of_pyint5(); }
 
