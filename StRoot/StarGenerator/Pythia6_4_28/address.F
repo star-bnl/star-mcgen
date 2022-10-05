@@ -75,6 +75,21 @@
       return
       End
 
+      Function address_of_pyint2()
+      use iso_c_binding
+      IMPLICIT DOUBLE PRECISION(A-H, O-Z)
+      IMPLICIT INTEGER(I-N)
+
+      type(c_ptr) :: address_of_pyint2
+
+      COMMON/PYINT2/ISET(500),KFPR(500,2),COEF(500,20),ICOL(40,4,2)
+      integer, target :: iset
+
+      address_of_pyint2 = c_loc(iset(1))
+      return
+      End
+
+
       Function address_of_pyint5()
       use iso_c_binding
       IMPLICIT DOUBLE PRECISION(A-H, O-Z)

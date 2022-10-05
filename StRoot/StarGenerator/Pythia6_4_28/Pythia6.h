@@ -110,4 +110,22 @@ struct PyInt5_t {
 };
 extern "C" PyInt5_t *address_of_pyint5();
 
+//
+// Interface to the PYINT2 common block
+//      COMMON/PYINT2/ISET(500),KFPR(500,2),COEF(500,20),ICOL(40,4,2)
+//
+#define address_of_pyint2 F77_NAME( address_of_pyint2, ADDRESS_OF_PYINT2 )
+struct PyInt2_t {
+  int    _iset[500];
+  int    _kfpr[2][500];
+  double _coef[20][500];
+  int    _icol[2][4][40];
+  int& iset( int index ){ return _iset[index-1]; }
+  int& kfpr( int isub, int i ){ return _kfpr[i-1][isub-1]; }
+  double& coef( int isub, int i){ return _coef[i-1][isub-1]; }
+  int& icol(int i, int j, int k){ return _icol[k-1][j-1][i-1]; }  
+};
+extern "C" PyInt2_t *address_of_pyint2();
+
 #endif
+
