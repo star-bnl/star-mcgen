@@ -5,6 +5,7 @@
 //
 #define pytune F77_NAME(pytune,PYTUNE) /* selects pythia tune */
 #define pyinit F77_NAME(pyinit,PYINIT) /* pythia initialization */
+#define pygive F77_NAME(pygive,PYGIVE) /* pythia configuration */
 #define pylist F77_NAME(pylist,PYLIST) /* pythia event recrd listing */
 #define pyevnt F77_NAME(pyevnt,PYEVNT) /* generate a pythia event */
 #define pyhepc F77_NAME(pyhepc,PYHEPC) /* copy to HEPEVT common... needed? */
@@ -21,6 +22,7 @@ extern "C" void   type_of_call  pylist(int *key);
 extern "C" int    type_of_call  pytune(int *itune);
 extern "C" void   type_of_call  pyhepc(int *mconv);
 extern "C" void   type_of_call  pyinit( const char *frame, const char *beam, const char *targ, double *ener, int nframe, int nbeam, int ntarg );
+extern "C" void   type_of_call  pygive( const char *command, int n );
 extern "C" void   type_of_call  py1ent(int *i, int *j, double *e, double *t, double *p );
 extern "C" int    type_of_call  pycomp(int *kf);
 
@@ -33,6 +35,7 @@ void PyList( int l ){ pylist( &l ); }
 void PyTune( int t ){ pytune( &t ); }
 void PyHepc( int m ){ pyhepc( &m ); }
 void PyInit( string frame, string blue, string yellow, double energy ){ pyinit( frame.c_str(), blue.c_str(), yellow.c_str(), &energy, frame.size(), blue.size(), yellow.size() ); }
+void PyGive( string command ){ pygive( command.c_str(), command.size() ); }
 void Py1Ent( int ip, int kf, double energy, double theta, double phi ) { py1ent( &ip, &kf, &energy, &theta, &phi ); }
 int  PyComp( int kf ){ return pycomp(&kf); }
 void PyCloseDecays( int id ) { closedecays(id); }
