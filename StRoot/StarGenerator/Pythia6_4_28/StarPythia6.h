@@ -75,7 +75,7 @@ class StarPythia6 : public StarGenerator
   /// Calls the pygive function
   static void PyGive( const char* give );
   /// ... and alias this to Set
-  static void Set( const char* give ){ Set(give); }
+  static void Set( const char* give ){ PyGive(give); }
 
   static void CloseDecays( int id ){ PyCloseDecays(id); }
   static void OpenDecay( int id, int idcy, int val ){ PyOpenDecay( id, idcy, val ); } 
