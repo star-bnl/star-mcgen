@@ -58,6 +58,23 @@ struct PySubs_t {
 extern "C" PySubs_t *address_of_pysubs();
 
 //
+// Interface to the PYDAT1 common block
+//      COMMON/PYDAT1/MSTU(200),PARU(200),MSTJ(200),PARJ(200)
+//
+#define address_of_pydat1 F77_NAME( address_of_pydat1, ADDRESS_OF_PYDAT1 )
+struct PyDat1_t{
+  Int_t    _mstu[200];
+  Double_t _paru[200];
+  Int_t    _mstj[200];
+  Double_t _parj[200];
+  Int_t    &mstu(Int_t i){return _mstu[i-1];}
+  Double_t &paru(Int_t i){return _paru[i-1];}
+  Int_t    &mstj(Int_t i){return _mstj[i-1];}
+  Double_t &parj(Int_t i){return _parj[i-1];}
+};
+extern "C" PyDat1_t *address_of_pydat1();
+
+//
 // Interface to the PYDAT3 common block
 //      COMMON/PYDAT3/MDCY(500,3),MDME(8000,2),BRAT(8000),KFDP(8000,5)
 //
