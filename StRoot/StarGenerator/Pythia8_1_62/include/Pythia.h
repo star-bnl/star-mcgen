@@ -146,11 +146,11 @@ public:
 
   // List the current Les Houches event.
   void LHAeventList(ostream& os = cout) {
-    if (lhaUpPtr > 0) lhaUpPtr->listEvent(os);}
+    if (lhaUpPtr != nullptr) lhaUpPtr->listEvent(os);}
 
   // Skip a number of Les Houches events at input.
   bool LHAeventSkip(int nSkip) {
-    if (lhaUpPtr > 0) return lhaUpPtr->skipEvent(nSkip); return false;}
+    if (lhaUpPtr != nullptr) return lhaUpPtr->skipEvent(nSkip); return false;}
 
   // Main routine to provide final statistics on generation.
   void stat();
