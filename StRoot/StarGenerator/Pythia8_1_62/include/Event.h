@@ -78,7 +78,7 @@ public:
 
   // Member functions to set the ParticleData and ParticleDataEntry pointers.
   void setPDTPtr(ParticleData* pdtPtrIn) { pdtPtr = pdtPtrIn; setPDEPtr();}
-  void setPDEPtr() {pdePtr = (pdtPtr > 0) 
+  void setPDEPtr() {pdePtr = (pdtPtr != nullptr ) 
     ? pdtPtr->particleDataEntryPtr( idSave) : 0;}
       
   // Member functions for input.
@@ -187,56 +187,56 @@ public:
 
   // Further output, based on a pointer to a ParticleDataEntry object.
   string name()      const {
-    return (pdePtr > 0) ? pdePtr->name(idSave) : " ";}
+    return (pdePtr != nullptr) ? pdePtr->name(idSave) : " ";}
   string nameWithStatus(int maxLen = 20) const;
   int    spinType()  const {
-    return (pdePtr > 0) ? pdePtr->spinType() : 0;}
+    return (pdePtr != nullptr) ? pdePtr->spinType() : 0;}
   int    chargeType() const {
-    return (pdePtr > 0) ? pdePtr->chargeType(idSave) : 0;}
+    return (pdePtr != nullptr) ? pdePtr->chargeType(idSave) : 0;}
   double charge()    const {
-    return (pdePtr > 0) ?  pdePtr->charge(idSave) : 0;}
+    return (pdePtr != nullptr) ?  pdePtr->charge(idSave) : 0;}
   bool   isCharged() const {
-    return (pdePtr > 0) ? (pdePtr->chargeType(idSave) != 0) : false;}
+    return (pdePtr != nullptr) ? (pdePtr->chargeType(idSave) != 0) : false;}
   bool   isNeutral() const {
-    return (pdePtr > 0) ? (pdePtr->chargeType(idSave) == 0) : false;}
+    return (pdePtr != nullptr) ? (pdePtr->chargeType(idSave) == 0) : false;}
   int    colType()   const {
-    return (pdePtr > 0) ? pdePtr->colType(idSave) : 0;}
+    return (pdePtr != nullptr) ? pdePtr->colType(idSave) : 0;}
   double m0()        const {
-    return (pdePtr > 0) ? pdePtr->m0() : 0.;}
+    return (pdePtr != nullptr) ? pdePtr->m0() : 0.;}
   double mWidth()    const {
-    return (pdePtr > 0) ? pdePtr->mWidth() : 0.;}
+    return (pdePtr != nullptr) ? pdePtr->mWidth() : 0.;}
   double mMin()      const {
-    return (pdePtr > 0) ? pdePtr->mMin() : 0.;}
+    return (pdePtr != nullptr) ? pdePtr->mMin() : 0.;}
   double mMax()      const {
-    return (pdePtr > 0) ? pdePtr->mMax() : 0.;}
+    return (pdePtr != nullptr) ? pdePtr->mMax() : 0.;}
   double mass()      const {
-    return (pdePtr > 0) ? pdePtr->mass() : 0.;}
+    return (pdePtr != nullptr) ? pdePtr->mass() : 0.;}
   double constituentMass() const {
-    return (pdePtr > 0) ? pdePtr->constituentMass() : 0.;}
+    return (pdePtr != nullptr) ? pdePtr->constituentMass() : 0.;}
   double tau0()      const {
-    return (pdePtr > 0) ? pdePtr->tau0() : 0.;}
+    return (pdePtr != nullptr) ? pdePtr->tau0() : 0.;}
   bool   mayDecay()  const {
-    return (pdePtr > 0) ? pdePtr->mayDecay() : false;}
+    return (pdePtr != nullptr) ? pdePtr->mayDecay() : false;}
   bool   canDecay()  const {
-    return (pdePtr > 0) ? pdePtr->canDecay() : false;}
+    return (pdePtr != nullptr) ? pdePtr->canDecay() : false;}
   bool   doExternalDecay() const {
-    return (pdePtr > 0) ? pdePtr->doExternalDecay() : false;}
+    return (pdePtr != nullptr) ? pdePtr->doExternalDecay() : false;}
   bool   isResonance() const {
-    return (pdePtr > 0) ? pdePtr->isResonance() : false;}
+    return (pdePtr != nullptr) ? pdePtr->isResonance() : false;}
   bool   isVisible() const {
-    return (pdePtr > 0) ? pdePtr->isVisible() : false;}
+    return (pdePtr != nullptr) ? pdePtr->isVisible() : false;}
   bool   isLepton()  const {
-    return  (pdePtr > 0) ? pdePtr->isLepton() : false;}
+    return  (pdePtr != nullptr) ? pdePtr->isLepton() : false;}
   bool   isQuark()   const {
-    return  (pdePtr > 0) ? pdePtr->isQuark() : false;}
+    return  (pdePtr != nullptr) ? pdePtr->isQuark() : false;}
   bool   isGluon()   const {
-    return (pdePtr > 0) ? pdePtr->isGluon() : false;}
+    return (pdePtr != nullptr) ? pdePtr->isGluon() : false;}
   bool   isDiquark()   const {
-    return  (pdePtr > 0) ? pdePtr->isDiquark() : false;}
+    return  (pdePtr != nullptr) ? pdePtr->isDiquark() : false;}
   bool   isParton()   const {
-    return (pdePtr > 0) ? pdePtr->isParton() : false;}
+    return (pdePtr != nullptr) ? pdePtr->isParton() : false;}
   bool   isHadron()  const {
-    return (pdePtr > 0) ? pdePtr->isHadron() : false;}
+    return (pdePtr != nullptr) ? pdePtr->isHadron() : false;}
   ParticleDataEntry& particleDataEntry() const {return *pdePtr;}
 
   // Member functions that perform operations.

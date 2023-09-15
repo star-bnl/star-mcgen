@@ -56,8 +56,8 @@ public:
 
   // Store or replace Les Houches pointer.
   void setLHAPtr( LHAup* lhaUpPtrIn) {lhaUpPtr = lhaUpPtrIn;
-    if (sigmaProcessPtr > 0) sigmaProcessPtr->setLHAPtr(lhaUpPtr); 
-    if (phaseSpacePtr > 0) phaseSpacePtr->setLHAPtr(lhaUpPtr);}
+    if (sigmaProcessPtr != nullptr) sigmaProcessPtr->setLHAPtr(lhaUpPtr); 
+    if (phaseSpacePtr != nullptr) phaseSpacePtr->setLHAPtr(lhaUpPtr);}
 
   // Update the CM energy of the event.
   void newECM(double eCM) {phaseSpacePtr->newECM(eCM);}
