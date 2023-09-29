@@ -175,6 +175,9 @@ void StarPythia6::FillPP( StarGenEvent *event )
   myevent -> phiHat     = -999;
   
   myevent -> weight     = pypars().pari(7);
+  
+  myevent -> mstu72     = pydat1().mstu(72);
+  myevent -> mstu73     = pydat1().mstu(73);
 
 }
 // ----------------------------------------------------------------------------
