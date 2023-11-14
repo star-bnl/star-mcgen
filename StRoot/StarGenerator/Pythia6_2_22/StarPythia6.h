@@ -59,6 +59,8 @@ class StarPythia6 : public StarGenerator
   PyJets_t &pyjets(){ return *address_of_pyjets(); }
   /// Returns a reference to the /PYSUBS/ common block
   PySubs_t &pysubs(){ return *address_of_pysubs(); }
+  /// Returns a reference to the /PYDAT1/ common block
+  PyDat1_t &pydat1(){ return *address_of_pydat1(); }
   /// Returns a reference to the /PYDAT3/ common block
   PyDat3_t &pydat3(){ return *address_of_pydat3(); }
   /// Returns a reference to the /PYPARS/ common block
