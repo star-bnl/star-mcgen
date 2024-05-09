@@ -30,7 +30,7 @@ StarPythia8::StarPythia8(const char *name) : StarGenerator(name)
   // auxilliary files required by pythia. 
   // NOTE:  When adding new versions of Pythia8, we need to specify
   // the version of the code in the source code
-  TString path = "StRoot/StarGenerator/"; path+= Pythia8_version; path+="/share/xmldoc/"; 
+  TString path = "StRoot/StarGenerator/"; path+= Pythia8_version; path+="/share/Pythia8/xmldoc/"; 
   { 
     ifstream in(path); 
     if (!in.good()) { path = "$(STAR)/"+path; }
