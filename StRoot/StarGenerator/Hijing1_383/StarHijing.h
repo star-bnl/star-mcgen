@@ -74,6 +74,11 @@ class StarHijing : public StarGenerator
   /// from the jetset id of the particle
   Int_t LuComp( Int_t jetsetid );
 
+  /// Calls the pygive function
+  static void LuGive( const char* give );
+  /// ... and alias this to Set
+  static void Set( const char* give ){ LuGive(give); }
+
  private:
  protected:
   ClassDef(StarHijing,1);

@@ -11,6 +11,8 @@ using namespace std;
 //
 //////////////////////////////////////////////////////////////////////////////////////////
 
+
+
 /// Configuration of HIJING
 void Hijset( float   efrm, string frame, string proj, string targ, int ap, int zp, int at, int zt );
 void Hijset( );

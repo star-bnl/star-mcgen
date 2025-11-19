@@ -1,4 +1,3 @@
-
 #include "StarHijing.h"
 ClassImp(StarHijing);
 
@@ -14,6 +13,28 @@ ClassImp(StarHijing);
 using namespace std;
 
 #include "TGenericTable.h"
+
+#include "Hijing.h"
+
+namespace {
+  vector<std::string> tokenize(const std::string &s, const std::string &sep_chars=";")
+  {
+    std::string::size_type prev_pos = 0, pos = 0;
+    std::vector<std::string> result;
+    
+    if ( s.length() > 1 ) {
+      while ((pos = s.find_first_of(sep_chars, pos)) != std::string::npos) {
+	result.push_back(  ( s.substr(prev_pos, pos - prev_pos))  );
+	pos += 1;
+	prev_pos = pos;
+      }
+      result.push_back( (s.substr(prev_pos)));
+    }
+
+    return result;
+  }
+
+}
 
 StMaker *_maker = 0;
 
@@ -97,6 +118,17 @@ Int_t StarHijing::LuComp( Int_t jetsetid )
 
 Int_t StarHijing::Init()
 {
+
+  // Configuration based on StMaker attributes
+  if ( SAttr("FRAME") ) SetFrame( SAttr("FRAME"), DAttr("Ecms") );
+  if ( SAttr("BLUE")  ) SetBlue ( SAttr("BLUE" ) );
+  if ( SAttr("YELL")  ) SetYell ( SAttr("YELL" ) );
+  if ( SAttr("SET" )  ) {
+    for ( auto cmd : tokenize( SAttr("Set"), ";" ) ) {
+      Set( cmd.c_str() );
+    }
+  }
+
 
   mEvent = new StarGenAAEvent();
 
@@ -364,4 +396,12 @@ void StarHijing::FillAA( StarGenEvent *_event )
 
   event -> weight = 1.0;
 
+}
+
+#define lugive F77_NAME(lugive,LUGIVE) /* pythia configuration */
+extern "C" void   type_of_call  lugive( const char *command, int n );
+
+void StarHijing::LuGive( const char* give_){ 
+  std::string give = give_;
+  lugive(give.c_str(),give.size()); 
 }

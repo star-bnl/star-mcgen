@@ -5,6 +5,7 @@
 #define ulmass F77_NAME(ulmass, ULMASS)
 #define lucomp F77_NAME(lucomp, LUCOMP)
 
+
 #include <StMessMgr.h>
 
 extern "C" {
@@ -25,6 +26,8 @@ extern "C" {
   int   lucomp( int &code );
 
 };
+
+extern "C" void   type_of_call  lugive( const char *command, int n );
 
 
 void Hijset() {
@@ -91,3 +94,6 @@ int Lucomp( int code )
 {
   return lucomp(code);
 };
+
+
+void LuGive( string command ){ lugive( command.c_str(), command.size() ); }
