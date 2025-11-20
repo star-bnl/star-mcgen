@@ -14,12 +14,33 @@ ClassImp(StarPythia6);
 
 StMaker *_maker = 0;
 
+namespace {
+  vector<std::string> tokenize(const std::string &s, const std::string &sep_chars=";")
+  {
+    std::string::size_type prev_pos = 0, pos = 0;
+    std::vector<std::string> result;
+    
+    if ( s.length() > 1 ) {
+      while ((pos = s.find_first_of(sep_chars, pos)) != std::string::npos) {
+	result.push_back(  ( s.substr(prev_pos, pos - prev_pos))  );
+	pos += 1;
+	prev_pos = pos;
+      }
+      result.push_back( (s.substr(prev_pos)));
+    }
+
+    return result;
+  }
+
+}
+
 TGenericTable *regtable( const Char_t *type, const Char_t *name, void *address )
 {
-  TGenericTable *table = new TGenericTable(type,name);
-  table->Adopt( 1, address );
-  _maker -> AddData( table, ".const" );
-  return table;
+  //  TGenericTable *table = new TGenericTable(type,name);
+  //$$$table->Adopt( 1, address );
+  //$$$_maker -> AddData( table, ".const" );
+  //return table;
+  return nullptr;
 };
 
 // ----------------------------------------------------------------------------
@@ -50,12 +71,14 @@ StarPythia6::StarPythia6( const Char_t *name ) : StarGenerator(name)
 
   _maker = this;
 
+  /*
   regtable("PyJets_t", "pyjets", address_of_pyjets() );
   regtable("PySubs_t", "pysubs", address_of_pysubs() );
   regtable("PyDat1_t", "pydat1", address_of_pydat1() );
   regtable("PyDat3_t", "pydat3", address_of_pydat3() );
   regtable("PyPars_t", "pypars", address_of_pypars() );
   regtable("PyInt5_t", "pyint5", address_of_pyint5() );
+  */
 
 }
 // ----------------------------------------------------------------------------
@@ -69,6 +92,15 @@ void StarPythia6::PyGive( const char* give){ ::PyGive(give); }
 // ----------------------------------------------------------------------------
 Int_t StarPythia6::Init()
 {
+
+  if ( SAttr("FRAME") ) SetFrame( SAttr("FRAME"), DAttr("Ecms") );
+  if ( SAttr("BLUE")  ) SetBlue ( SAttr("BLUE" ) );
+  if ( SAttr("YELL")  ) SetYell ( SAttr("YELL" ) );
+  if ( SAttr("SET" )  ) {
+    for ( auto cmd : tokenize( SAttr("Set"), ";" ) ) {
+      Set( cmd.c_str() );
+    }
+  }
 
   //
   // Create a new event record for either pp or ep events

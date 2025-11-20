@@ -14,6 +14,26 @@ ClassImp(StarPythia8);
 #error "Pythia8_version is not defined"
 #endif
 
+namespace {
+  vector<std::string> tokenize(const std::string &s, const std::string &sep_chars=";")
+  {
+    std::string::size_type prev_pos = 0, pos = 0;
+    std::vector<std::string> result;
+    
+    if ( s.length() > 1 ) {
+      while ((pos = s.find_first_of(sep_chars, pos)) != std::string::npos) {
+	result.push_back(  ( s.substr(prev_pos, pos - prev_pos))  );
+	pos += 1;
+	prev_pos = pos;
+      }
+      result.push_back( (s.substr(prev_pos)));
+    }
+
+    return result;
+  }
+
+}
+
 // ----------------------------------------------------------------------------
 // Remap pythia's random number generator to StarRandom
 class PyRand : public Pythia8::RndmEngine {
@@ -50,6 +70,17 @@ StarPythia8::StarPythia8(const char *name) : StarGenerator(name)
 // ----------------------------------------------------------------------------
 int StarPythia8::Init()
 {
+
+
+  // Configuration based on StMaker attributes
+  if ( SAttr("FRAME") ) SetFrame( SAttr("FRAME"), DAttr("Ecms") );
+  if ( SAttr("BLUE")  ) SetBlue ( SAttr("BLUE" ) );
+  if ( SAttr("YELL")  ) SetYell ( SAttr("YELL" ) );
+  if ( SAttr("SET" )  ) {
+    for ( auto cmd : tokenize( SAttr("Set"), ";" ) ) {
+      Set( cmd.c_str() );
+    }
+  }
 
   //
   // Remap pythia8 to pdg particles
