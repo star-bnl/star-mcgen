@@ -55,8 +55,7 @@ class StarUrQMD : public StarGenerator
   ClassDef(StarUrQMD,1);
 
   void FillPP( StarGenEvent *event );
-  void FillEP( StarGenEvent *event );
-  void FillAA( StarGenEvent *event ){ /* implement */ };
+  void FillAA( StarGenEvent *event );
 
   map<Int_t,Int_t> mStatusCode;
 
