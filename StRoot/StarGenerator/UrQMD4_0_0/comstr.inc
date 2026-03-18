@@ -1,4 +1,4 @@
-c $Id: comstr.f,v 1.2 1999/01/18 09:56:58 ernst Exp $
+!c $Id: comstr.f,v 1.2 1999/01/18 09:56:58 ernst Exp $
 
       parameter (njspin=8)
   
@@ -12,9 +12,9 @@ c $Id: comstr.f,v 1.2 1999/01/18 09:56:58 ernst Exp $
      *PARQLS,PARRS
       COMMON/FRGCPA/ PJSPNC,PMIX1C,PMIX2C,PBARC
  
-c parm gives the probability for different meson multiplets according
-c to spin degeneracy and average mass ratios
-c spin-parity 0- : 1- : 0+ : 1+ : 2+ = parm(1):parm(2)...:parm(njspin)  
+!c parm gives the probability for different meson multiplets according
+!c to spin degeneracy and average mass ratios
+!c spin-parity 0- : 1- : 0+ : 1+ : 2+ = parm(1):parm(2)...:parm(njspin)  
       real*8 parm(njspin)
 
       common/coparm/parm

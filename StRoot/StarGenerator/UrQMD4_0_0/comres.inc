@@ -1,7 +1,7 @@
-c $Id: comres.f,v 1.15 2003/06/29 14:26:36 weber Exp $
-c
-cdes This file contains definitions for the collision term
-c
+!c $Id: comres.f,v 1.15 2003/06/29 14:26:36 weber Exp $
+!c
+!cdes This file contains definitions for the collision term
+!c
       integer maxbar,maxbra,minbar
       integer offmeson,maxmeson,pimeson,maxbrm,minnuc,mindel
       integer maxbrs1,maxbrs2
@@ -11,25 +11,25 @@ c
 
       parameter (minnuc=1) ! lowest baryon particle ID 
       parameter (minmes=100) ! lowest meson particle ID
-corig      parameter (maxmes=132) ! hightest meson particle ID
-c add 5 charmed mesons to array
+!corig      parameter (maxmes=132) ! hightest meson particle ID
+!c add 5 charmed mesons to array
       parameter (maxmes=139) ! hightest meson particle ID
 
-c number of resonances of a kind
+!c number of resonances of a kind
       parameter (numnuc=23) ! number of nucleon resonances
       parameter (numdel=17) ! number of delta resonances
-c indices of minimal and maximal itype of a kind (redundant but nice)
+!c indices of minimal and maximal itype of a kind (redundant but nice)
       parameter (maxnuc=minnuc+numnuc-1) ! highest nucleon ID
       parameter (mindel=minnuc+maxnuc)   ! lowest delta ID
       parameter (maxdel=mindel+numdel-1) ! highest delta ID
 
-c minres & maxres define the range of nonstable & nonstrange baryons
+!c minres & maxres define the range of nonstable & nonstrange baryons
       integer minres,maxres
       parameter (minres=minnuc+1) ! lowest baryon resonance ID
       parameter (maxres=maxdel)   ! highest (nonstrange) baryon 
                                   ! resonance ID
 
-c strangenes.ne.0 baryon resonances
+!c strangenes.ne.0 baryon resonances
       integer minlam,minsig,mincas,minome
       integer numlam,numsig,numcas,numome
       integer maxlam,maxsig,maxcas,maxome
@@ -46,7 +46,7 @@ c strangenes.ne.0 baryon resonances
       parameter (minome=mincas+numcas)   ! ID of lowest omega state
       parameter (maxome=minome+numome-1) ! ID of highest omega state
 
-c Charmed Baryons
+!c Charmed Baryons
 
       integer minlamc,numlamc,maxlamc
 
@@ -55,17 +55,17 @@ c Charmed Baryons
       parameter (maxlamc=minlamc+numlamc-1) ! ID of highest Lambda_C state
 
 
-c minbar & maxbar define the range of all baryons
+!c minbar & maxbar define the range of all baryons
       parameter (minbar=minnuc) ! ID of lowest baryon state
       parameter (maxbar=maxlamc) ! ID of highest baryon state
 
       parameter (offmeson=minmes) ! offset between zero and lowest 
                                   ! meson state
       parameter (maxmeson=maxmes) ! ID of highest meson state
-c... these variables are in principal obsolete and should be exchanged 
-c were referenced 
+!c... these variables are in principal obsolete and should be exchanged 
+!c were referenced 
 
-c... avoid hard coded itypes
+!c... avoid hard coded itypes
       integer itrho,itome,iteta,itkaon,itphi,itetapr
       parameter (itkaon=106)   ! ID of kaon
       parameter (itrho=104)    ! ID of rho meson 
@@ -79,15 +79,15 @@ c... avoid hard coded itypes
       integer itmin,itmax
       parameter (itmin=minnuc)  ! lowest defined ID
       parameter (itmax=maxmes)  ! highest defined ID
-c
+!c
       parameter (maxbra=27)  ! decay channels for $s=0$ baryon resonances
-corig      parameter (maxbrm=25) ! decay channels for meson resonances
-c add 2 decay channels for D*
+!corig      parameter (maxbrm=25) ! decay channels for meson resonances
+!c add 2 decay channels for D*
       parameter (maxbrm=27) ! decay channels for meson resonances
       parameter (maxbrs1=10)! decay channels for $s=1$ baryon resonances
       parameter (maxbrs2=3) ! decay channels for $s=2$ baryon resonances
 
-c 
+!c 
       integer mlt2it(maxmes-minmes) ! meson IDs sorted by multipletts
 
 
@@ -121,49 +121,49 @@ c
       integer lbs2(0:maxbrs2,mincas+1:maxcas)
       integer lbm(0:maxbrm,minmes+1:maxmes)
 
-      common /resonances/ massres,widres,massmes,widmes,mmesmn,
-     ,                    branres,branmes,branbs1,branbs2,
-     ,                    bs1type,bs2type,lbs1,lbs2,lbm,
-     ,                    jres,jmes,lbr,brtype,pares,pames,
-     ,                    bmtype,
-     ,                    Isores,Isomes,strres,strmes,mlt2it,
-     ,                    chrmres,chrmmes
+      common /resonances/ massres,widres,massmes,widmes,mmesmn,                                            &
+     &                    branres,branmes,branbs1,branbs2,                                                 &
+     &                    bs1type,bs2type,lbs1,lbs2,lbm,                                                   &
+     &                    jres,jmes,lbr,brtype,pares,pames,                                                &
+     &                    bmtype,                                                                          &
+     &                    Isores,Isomes,strres,strmes,mlt2it,                                              &
+     &                    chrmres,chrmmes
 
-c     massres   : baryon mass table
-c     widres    : baryon decay width table
-c     massmes   : meson mass table
-c     widmes    : meson decay width table
-c     mmesmn    : table of minimum masses for meson resonances
-c     branres   : branching ratios for $s=0$ baryon resonances
-c     branmes   : branching ratios for meson resonances
-c     branbs1   : branching ratios for $s=1$ baryon resonances
-c     branbs2   : branching ratios for $s=2$ baryon resonances
-c     brtype    : definitions of the decay branches for $s=0$ baryon resonances
-c     bmtype    : definitions of the decay branches for meson resonances
-c     bs1type   : definitions of the decay branches for $s=1$ baryon resonances
-c     bs2type   : definitions of the decay branches for $s=2$ baryon resonances
-c     lbr       : decay angular momenta for $s=0$ baryon decays
-c     lbm       : decay angular momenta for meson decays
-c     lbs1      : decay angular momenta for $s=1$ baryon decays
-c     lbs2      : decay angular momenta for $s=2$ baryon decays
-c     jres      : spin table for baryons
-c     jmes      : spin table for mesons
-c     pares     : parity table for baryons
-c     pames     : parity table for mesons
-c     isores    : isospin table for baryons
-c     isomes    : isospin table for mesons
-c     strres    : strangeness table for baryons
-c     strmes    : strangeness table for mesons 
-c     
-c
-ccccccccccccccccccccc sigtab-declarations cccccccccccccccccccccccccccccccccc
+!c     massres   : baryon mass table
+!c     widres    : baryon decay width table
+!c     massmes   : meson mass table
+!c     widmes    : meson decay width table
+!c     mmesmn    : table of minimum masses for meson resonances
+!c     branres   : branching ratios for $s=0$ baryon resonances
+!c     branmes   : branching ratios for meson resonances
+!c     branbs1   : branching ratios for $s=1$ baryon resonances
+!c     branbs2   : branching ratios for $s=2$ baryon resonances
+!c     brtype    : definitions of the decay branches for $s=0$ baryon resonances
+!c     bmtype    : definitions of the decay branches for meson resonances
+!c     bs1type   : definitions of the decay branches for $s=1$ baryon resonances
+!c     bs2type   : definitions of the decay branches for $s=2$ baryon resonances
+!c     lbr       : decay angular momenta for $s=0$ baryon decays
+!c     lbm       : decay angular momenta for meson decays
+!c     lbs1      : decay angular momenta for $s=1$ baryon decays
+!c     lbs2      : decay angular momenta for $s=2$ baryon decays
+!c     jres      : spin table for baryons
+!c     jmes      : spin table for mesons
+!c     pares     : parity table for baryons
+!c     pames     : parity table for mesons
+!c     isores    : isospin table for baryons
+!c     isomes    : isospin table for mesons
+!c     strres    : strangeness table for baryons
+!c     strmes    : strangeness table for mesons 
+!c     
+!c
+!ccccccccccccccccccccc sigtab-declarations cccccccccccccccccccccccccccccccccc
 
       integer itblsz,nsigs,maxreac,maxpsig,sigver
-c     VERSION NUMBER of SIGTAB
+!c     VERSION NUMBER of SIGTAB
       parameter (sigver = 1000) ! version number for collision 
                                 ! term and tables
-ccccccccccccccccccccccccccccccccccccccc
-c
+!ccccccccccccccccccccccccccccccccccccccc
+!c
 
       parameter (maxreac = 15) ! maximum number of collision classes
       parameter (maxpsig = 21) ! maximum number of cross 
@@ -173,16 +173,16 @@ c
       PARAMETER (ITBLSZ= 100)  ! table size of cross section tables
 
 
-c
+!c
       integer sigmaLN(maxpsig,2,maxreac)
       integer sigmainf(nsigs,20)
       real*8 sigmascal(nsigs,5), sigmas(nsigs,itblsz)
-c
+!c
       common/sigtabi/sigmaln,sigmainf
       common/sigtabr/sigmas,sigmascal
 
-c     sigmaln   : pointer array connecting collision classes with cross sections
-c     sigmainf  : information related to tabulated cross sections
-c     sigmascal : information related to tabulated cross sections
-c     sigmas    : tabulated cross sections
+!c     sigmaln   : pointer array connecting collision classes with cross sections
+!c     sigmainf  : information related to tabulated cross sections
+!c     sigmascal : information related to tabulated cross sections
+!c     sigmas    : tabulated cross sections
 

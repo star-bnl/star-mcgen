@@ -1,13 +1,13 @@
-c $Id: options.f,v 1.9 2001/04/06 21:48:16 weber Exp $
-c... law: include file (only) for global parameters & options
+!c $Id: options.f,v 1.9 2001/04/06 21:48:16 weber Exp $
+!c... law: include file (only) for global parameters & options
       integer numcto,numctp,maxstables
       parameter(numcto=400) ! maximum number of options
       parameter(numctp=400) ! maximum number of parameters
       parameter(maxstables=20) ! maximum number of stable particles
-c...
+!c...
       integer   CTOption(numcto)
       character ctodc(numcto)*2
-c...
+!c...
       real*8    CTParam(numctp)
       character ctpdc(numctp)*2
 
