@@ -348,6 +348,7 @@ Int_t StarUrQMD::Init()
      139,   0,   433 
   };
 
+  int invalid = 0;
   for ( unsigned int idx=0;idx<urqmdidvec.size();idx+=3 ) {
     
     int id    = urqmdidvec[idx];
@@ -355,7 +356,8 @@ Int_t StarUrQMD::Init()
     int pdgid = urqmdidvec[idx+2];
 
     auto* pdg = pdb.GetParticle( pdgid );
-
+    if ( 0==pdg ) invalid++;
+    
     LOG_INFO << "URQMD: " << id << " " 
 	     << iso3 << " " 
 	     << "PDG: " << pdgid << " "
@@ -365,11 +367,10 @@ Int_t StarUrQMD::Init()
     
   }
 
-  exit(0);
-
-
-  
-
+  if (invalid) {
+    LOG_INFO << "Number of missing particle states=" << invalid << endm;
+    assert(0);
+  }
 
   return StMaker::Init();
 }
