@@ -85,9 +85,11 @@ extern "C" {
 Int_t StarUrQMD::Init()
 {
 
+  
   if ( SAttr("FRAME") ) SetFrame( SAttr("FRAME"), DAttr("Ecms") );
   if ( SAttr("BLUE")  ) SetBlue ( SAttr("BLUE" ) );
   if ( SAttr("YELL")  ) SetYell ( SAttr("YELL" ) );
+  
 
 
   // Proton mass:  // TODO:  Get from StarParticle DB
@@ -369,7 +371,7 @@ Int_t StarUrQMD::Init()
 
   if (invalid) {
     LOG_INFO << "Number of missing particle states=" << invalid << endm;
-    assert(0);
+    //    assert(0);
   }
 
   return StMaker::Init();
@@ -655,7 +657,7 @@ ClassImp(StarUrQMD);
 #include <vector>
 #include <string>
 
-#define urqmd_init F77_NAME(urqmd_init,URQMD_INIT)
+//#define urqmd_init F77_NAME(urqmd_init,URQMD_INIT)
 #define urqmd_make F77_NAME(urqmd_make,URQMD_MAKE)
 
 namespace {
