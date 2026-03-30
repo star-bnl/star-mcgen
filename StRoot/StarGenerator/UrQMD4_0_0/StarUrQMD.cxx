@@ -83,6 +83,7 @@ extern "C" {
 Int_t StarUrQMD::Init()
 {
 
+  StarParticleData& pdb = StarParticleData::instance();
   
   if ( SAttr("FRAME") ) SetFrame( SAttr("FRAME"), DAttr("Ecms") );
   if ( SAttr("BLUE")  ) SetBlue ( SAttr("BLUE" ) );
