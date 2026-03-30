@@ -402,7 +402,7 @@ Int_t StarUrQMD::Generate()
   //Do Stuff with the particles
   mNumberOfParticles = sys().npart;
 
-  LOG_INFO << "Number of particles=" << mNumberOfParticles << endm;
+  // Per-event logging of particle count removed to avoid excessive log volume and performance impact.
 
   //mNumberOfParticles = isys().ncoll(1); //JFN 11/28/12- this is wrong
   for ( Int_t idx=1; idx<=mNumberOfParticles; idx++ )
