@@ -4,8 +4,9 @@
 //   root4star starsim.urqmd4.C
 //
 // Note:
-//   The checked-in UrQMD4 bridge currently contains a diagnostic assert in
-//   StarUrQMD::Init(). This macro documents the intended STAR-side setup.
+//   This macro documents the intended STAR-side setup for the UrQMD4 bridge.
+//   Consult the StarUrQMD implementation (e.g. StarUrQMD::Init()) for the
+//   current diagnostic behavior of the bridge itself.
 
 class St_geant_Maker;
 St_geant_Maker *geant_maker = 0;
