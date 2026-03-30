@@ -471,8 +471,9 @@ x     .        frrx(i),                       // freezeout position
       mEvent -> AddParticle( stat, id, m1, m2, d1, d2, px, py, pz, E, M, vx, vy, vz, vt );
     }
 
-
+#ifdef STAR_URQMD_DEBUG
   mEvent->Print();
+#endif
 
 #endif
 
