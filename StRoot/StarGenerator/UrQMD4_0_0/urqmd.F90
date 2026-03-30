@@ -1,7 +1,5 @@
 MODULE UrQMDmod
-
   use, intrinsic :: iso_c_binding
-
   include 'coms90.inc'
   include 'comres90.inc'
   include 'options90.inc'
@@ -19,14 +17,13 @@ MODULE UrQMDmod
   common /energies/ Ekinbar, Ekinmes, ESky2, ESky3, EYuk, ECb, EPau
   integer cti1sav,cti2sav
 
-! hp hydro variables
   real*8 thydro_start,thydro,nucrad
   logical lhydro    
 
   external nucrad
 
   contains
-
+ 
   subroutine urqmd_init()  bind(c, name="urqmd_init_")
 
 !c
