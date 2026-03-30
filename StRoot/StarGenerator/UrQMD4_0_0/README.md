@@ -302,10 +302,6 @@ Relative to other STAR generator adapters in `StRoot/StarGenerator`:
 
 ## Current caveat in the checked-in bridge
 
-As checked in, `StarUrQMD::Init()` contains a diagnostic loop that prints the UrQMD-to-PDG lookup coverage through `StarParticleData`, then calls:
+Earlier development versions of this bridge used a diagnostic loop in `StarUrQMD::Init()` to print the UrQMD-to-PDG lookup coverage through `StarParticleData` and then exited early. That diagnostic `exit(0)` has been removed from the checked-in `StarUrQMD.cxx`, so the bridge now proceeds from initialization into ordinary event generation as described in the rest of this document.
 
-```c++
-exit(0);
-```
-
-That means the current source does not proceed from initialization into ordinary event generation unless that statement is removed or guarded. The rest of the bridge code documents the intended production flow, but this `exit(0)` is the behavior of the checked-in file.
+If you reintroduce similar diagnostics in local development, ensure they are either disabled or properly guarded before using the bridge in production simulation or embedding jobs.
