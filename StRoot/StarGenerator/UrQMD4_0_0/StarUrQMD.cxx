@@ -880,7 +880,7 @@ Int_t StarUrQMD::Generate()
     }
 
 
-  mEvent->Print();
+  //mEvent->Print();
 
 #endif
 
