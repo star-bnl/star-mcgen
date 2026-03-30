@@ -18,8 +18,6 @@ ClassImp(StarUrQMD);
 #define urqmd_make F77_NAME(urqmd_make,URQMD_MAKE)
 #define urqmd_pdgid F77_NAME(urqmd_pdgid,URQMD_PDGID)
 
-auto& pdb = StarParticleData::instance();
-
 namespace {
   vector<std::string> tokenize(const std::string &s, const std::string &sep_chars=";")
   {
