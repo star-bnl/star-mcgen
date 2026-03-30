@@ -49,9 +49,13 @@ void UrQMD4( Double_t ecm=200.0,
   urqmd = new StarUrQMD("urqmd4");
   urqmd->SetTitle("UrQMD 4.0.0");
 
-  urqmd->SetFrame("CMS", ecm);
-  urqmd->SetBlue( blue );
-  urqmd->SetYell( yell );
+  urqmd->SetAttr("FRAME", "CMS");
+  urqmd->SetAttr("Ecms", ecm );
+  urqmd->SetAttr("BLUE", blue );
+  urqmd->SetAttr("YELL", yell );
+  //  urqmd->SetFrame("CMS", ecm);
+  //  urqmd->SetBlue( blue );
+  //  urqmd->SetYell( yell );
   urqmd->SetImpact( bmin, bmax );
 
   if ( urqmdSet && TString(urqmdSet).Length() ) {
