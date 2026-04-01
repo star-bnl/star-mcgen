@@ -2,15 +2,15 @@
 !c
 !cdes  This file contains the  uqmd collision tables
 !c
-      integer ncollmax
+      integer:: ncollmax
       parameter (ncollmax = 100000) ! maximum number of entries in collision table
-      integer nct,actcol,nsav,apt
-      real*8 cttime(0:ncollmax),ctsqrts(ncollmax),ctsigtot(ncollmax)
-      real*8 ctcolfluc(ncollmax)
+      integer,target:: nct,actcol,nsav,apt
+      real*8,target:: cttime(0:ncollmax),ctsqrts(ncollmax),ctsigtot(ncollmax)
+      real*8,target:: ctcolfluc(ncollmax)
       logical ctvalid(ncollmax)
-      real*8 tmin
-      integer cti1(ncollmax),cti2(ncollmax),ctsav(ncollmax)
-!c      integer updi1(ncollmax),updi2(ncollmax)
+      real*8,target:: tmin
+      integer,target:: cti1(ncollmax),cti2(ncollmax),ctsav(ncollmax)
+!c      integer,target:: updi1(ncollmax),updi2(ncollmax)
 !c
 !c     cttime  : collision time
 !c     ctsqrts : $sqrt{s}$ of collision
@@ -25,5 +25,5 @@
 !c     nsav    : number of entries in {\tt ctsav}
 !c     apt     : mass of first particle/composite in the part. arrays 
 
-      common /colltab/cttime,ctsqrts,ctsigtot,tmin,cti1,cti2,nct,actcol,                                           &
-     &     ctvalid,ctsav,nsav,apt,ctcolfluc
+      common /colltab/cttime,ctsqrts,ctsigtot,tmin,cti1,cti2,nct,actcol, &
+           ctvalid,ctsav,nsav,apt,ctcolfluc

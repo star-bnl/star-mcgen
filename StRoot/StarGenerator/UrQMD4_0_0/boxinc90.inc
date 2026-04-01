@@ -7,29 +7,29 @@
 !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
 !c       max count of different species
-        integer bptmax
+        integer:: bptmax
         parameter(bptmax=20)
 
 !c      counter
-        integer cbox
+        integer,target:: cbox
 !c      Flags
-        integer boxflag
-        integer edensflag, mbflag
-        integer para,solid,mtest
+        integer,target:: boxflag
+        integer,target:: edensflag, mbflag
+        integer,target:: para,solid,mtest
 !c      number of different species
-        integer mbox
+        integer,target:: mbox
 !c      particle counters
-        integer bptpart(bptmax),bptityp(bptmax),bptiso3(bptmax)
-        real*8 bptpmax(bptmax)
-        real*8 edens
+        integer,target:: bptpart(bptmax),bptityp(bptmax),bptiso3(bptmax)
+        real*8,target:: bptpmax(bptmax)
+        real*8,target:: edens
 !c      edge length of a cube in fm
-        real*8  lbox
+        real*8,target::  lbox
 !c      half edge lengt of a cube 
-        real*8  lboxhalbe
+        real*8,target::  lboxhalbe
 !c      double edge length of a cube
-        real*8  lboxd
+        real*8,target::  lboxd
 !c      momenta
-        real*8 mbp0, mbpx, mbpy, mbpz
+        real*8,target:: mbp0, mbpx, mbpy, mbpz
         
         common /boxic/ cbox,boxflag, mbox, bptityp, bptiso3, bptpart
         common /boxic/ edensflag, para, solid, mbflag, mtest

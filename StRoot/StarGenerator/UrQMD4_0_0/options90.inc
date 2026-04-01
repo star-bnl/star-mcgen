@@ -1,20 +1,20 @@
 !c $Id: options.f,v 1.9 2001/04/06 21:48:16 weber Exp $
 !c... law: include file (only) for global parameters & options
-      integer numcto,numctp,maxstables
+      integer:: numcto,numctp,maxstables
       parameter(numcto=400) ! maximum number of options
       parameter(numctp=400) ! maximum number of parameters
       parameter(maxstables=20) ! maximum number of stable particles
 !c...
-      integer   CTOption(numcto)
-      character ctodc(numcto)*2
+      integer,target::   CTOption(numcto)
+      character,target:: ctodc(numcto)*2
 !c...
-      real*8    CTParam(numctp)
-      character ctpdc(numctp)*2
+      real*8,target::    CTParam(numctp)
+      character,target:: ctpdc(numctp)*2
 
-      integer nstable
-      integer stabvec(maxstables)
+      integer,target:: nstable
+      integer,target:: stabvec(maxstables)
 
-      logical bf13,bf14,bf15,bf16,bf19,bf20,fixedseed
+      logical,target:: bf13,bf14,bf15,bf16,bf19,bf20,fixedseed
       common /options/CTOption,CTParam
       common /optstrings/ctodc,ctpdc
       common /loptions/fixedseed,bf13,bf14,bf15,bf16,bf19,bf20

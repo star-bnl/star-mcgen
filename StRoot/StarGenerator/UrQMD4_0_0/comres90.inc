@@ -2,11 +2,11 @@
 !c
 !cdes This file contains definitions for the collision term
 !c
-      integer maxbar,maxbra,minbar
-      integer offmeson,maxmeson,pimeson,maxbrm,minnuc,mindel
-      integer maxbrs1,maxbrs2
-      integer numnuc,numdel,nucleon,maxnuc,maxdel
-      integer minmes,maxmes
+      integer:: maxbar,maxbra,minbar
+      integer:: offmeson,maxmeson,pimeson,maxbrm,minnuc,mindel
+      integer:: maxbrs1,maxbrs2
+      integer:: numnuc,numdel,nucleon,maxnuc,maxdel
+      integer:: minmes,maxmes
 
 
       parameter (minnuc=1) ! lowest baryon particle ID 
@@ -24,15 +24,15 @@
       parameter (maxdel=mindel+numdel-1) ! highest delta ID
 
 !c minres & maxres define the range of nonstable & nonstrange baryons
-      integer minres,maxres
+      integer:: minres,maxres
       parameter (minres=minnuc+1) ! lowest baryon resonance ID
       parameter (maxres=maxdel)   ! highest (nonstrange) baryon 
                                   ! resonance ID
 
 !c strangenes.ne.0 baryon resonances
-      integer minlam,minsig,mincas,minome
-      integer numlam,numsig,numcas,numome
-      integer maxlam,maxsig,maxcas,maxome
+      integer:: minlam,minsig,mincas,minome
+      integer:: numlam,numsig,numcas,numome
+      integer:: maxlam,maxsig,maxcas,maxome
       parameter (numlam=13) ! number of lambda states
       parameter (numsig=9)  ! number of sigma states
       parameter (numcas=6)  ! number of cascade states
@@ -48,7 +48,7 @@
 
 !c Charmed Baryons
 
-      integer minlamc,numlamc,maxlamc
+      integer:: minlamc,numlamc,maxlamc
 
       parameter (numlamc=1)  ! Number of Lambda_c states
       parameter (minlamc=maxome+1) !ID of lowest Lambda_C state
@@ -66,7 +66,7 @@
 !c were referenced 
 
 !c... avoid hard coded itypes
-      integer itrho,itome,iteta,itkaon,itphi,itetapr
+      integer:: itrho,itome,iteta,itkaon,itphi,itetapr
       parameter (itkaon=106)   ! ID of kaon
       parameter (itrho=104)    ! ID of rho meson 
       parameter (itome=103)    ! ID of omega meson
@@ -76,7 +76,7 @@
       parameter (pimeson=101)  ! ID of $\pi$
       parameter (nucleon=minnuc) ! ID of nucleon
 
-      integer itmin,itmax
+      integer:: itmin,itmax
       parameter (itmin=minnuc)  ! lowest defined ID
       parameter (itmax=maxmes)  ! highest defined ID
 !c
@@ -88,10 +88,10 @@
       parameter (maxbrs2=3) ! decay channels for $s=2$ baryon resonances
 
 !c 
-      integer mlt2it(maxmes-minmes) ! meson IDs sorted by multipletts
+      integer,target:: mlt2it(maxmes-minmes) ! meson IDs sorted by multipletts
 
 
-      real*8 massoff,mresmin,mresmax
+      real*8:: massoff,mresmin,mresmax
       parameter (massoff=1d-4)      ! offset for mass generation
       parameter (mresmin=1.0765d0)  ! minimum baryon resonance mass
       parameter (mresmax=6.0d0)       ! maximum baryon resonance mass
@@ -99,35 +99,35 @@
       character*45 versiontag
       common /versioning/ versiontag
 
-      real*8 massres(minbar:maxbar),widres(minbar:maxbar)
-      real*8 branmes(0:maxbrm,minmes+1:maxmes)
-      real*8 branres(0:maxbra,minnuc+1:maxdel)
-      real*8 branbs1(0:maxbrs1,minlam+1:maxsig)
-      real*8 branbs2(0:maxbrs2,mincas+1:maxcas)
-      integer Jres(minbar:maxbar)
-      integer Jmes(minmes:maxmes)
-      integer pares(minbar:maxbar),pames(minmes:maxmes)
-      integer Isores(minbar:maxbar), Isomes(minmes:maxmes)
-      integer brtype(4,0:maxbra),bmtype(4,0:maxbrm)
-      integer bs1type(4,0:maxbrs1),bs2type(4,0:maxbrs2)
-      real*8 massmes(minmes:maxmes)
-      real*8 mmesmn(minmes:maxmes)
-      real*8 widmes(minmes:maxmes)
-      integer strres(minbar:maxbar),strmes(minmes:maxmes)
-      integer chrmres(minbar:maxbar),chrmmes(minmes:maxmes)
+      real*8,target:: massres(minbar:maxbar),widres(minbar:maxbar)
+      real*8,target:: branmes(0:maxbrm,minmes+1:maxmes)
+      real*8,target:: branres(0:maxbra,minnuc+1:maxdel)
+      real*8,target:: branbs1(0:maxbrs1,minlam+1:maxsig)
+      real*8,target:: branbs2(0:maxbrs2,mincas+1:maxcas)
+      integer,target:: Jres(minbar:maxbar)
+      integer,target:: Jmes(minmes:maxmes)
+      integer,target:: pares(minbar:maxbar),pames(minmes:maxmes)
+      integer,target:: Isores(minbar:maxbar), Isomes(minmes:maxmes)
+      integer,target:: brtype(4,0:maxbra),bmtype(4,0:maxbrm)
+      integer,target:: bs1type(4,0:maxbrs1),bs2type(4,0:maxbrs2)
+      real*8,target:: massmes(minmes:maxmes)
+      real*8,target:: mmesmn(minmes:maxmes)
+      real*8,target:: widmes(minmes:maxmes)
+      integer,target:: strres(minbar:maxbar),strmes(minmes:maxmes)
+      integer,target:: chrmres(minbar:maxbar),chrmmes(minmes:maxmes)
 
-      integer lbr(0:maxbra,minnuc+1:maxdel)
-      integer lbs1(0:maxbrs1,minlam+1:maxsig)
-      integer lbs2(0:maxbrs2,mincas+1:maxcas)
-      integer lbm(0:maxbrm,minmes+1:maxmes)
+      integer,target:: lbr(0:maxbra,minnuc+1:maxdel)
+      integer,target:: lbs1(0:maxbrs1,minlam+1:maxsig)
+      integer,target:: lbs2(0:maxbrs2,mincas+1:maxcas)
+      integer,target:: lbm(0:maxbrm,minmes+1:maxmes)
 
-      common /resonances/ massres,widres,massmes,widmes,mmesmn,                                            &
-     &                    branres,branmes,branbs1,branbs2,                                                 &
-     &                    bs1type,bs2type,lbs1,lbs2,lbm,                                                   &
-     &                    jres,jmes,lbr,brtype,pares,pames,                                                &
-     &                    bmtype,                                                                          &
-     &                    Isores,Isomes,strres,strmes,mlt2it,                                              &
-     &                    chrmres,chrmmes
+      common /resonances/ massres,widres,massmes,widmes,mmesmn, & 
+                          branres,branmes,branbs1,branbs2,       &
+                          bs1type,bs2type,lbs1,lbs2,lbm,          &
+                          jres,jmes,lbr,brtype,pares,pames,        &
+                          bmtype,                                   &
+                          Isores,Isomes,strres,strmes,mlt2it,        &
+                          chrmres,chrmmes
 
 !c     massres   : baryon mass table
 !c     widres    : baryon decay width table
@@ -158,7 +158,7 @@
 !c
 !ccccccccccccccccccccc sigtab-declarations cccccccccccccccccccccccccccccccccc
 
-      integer itblsz,nsigs,maxreac,maxpsig,sigver
+      integer:: itblsz,nsigs,maxreac,maxpsig,sigver
 !c     VERSION NUMBER of SIGTAB
       parameter (sigver = 1000) ! version number for collision 
                                 ! term and tables
@@ -174,9 +174,9 @@
 
 
 !c
-      integer sigmaLN(maxpsig,2,maxreac)
-      integer sigmainf(nsigs,20)
-      real*8 sigmascal(nsigs,5), sigmas(nsigs,itblsz)
+      integer,target:: sigmaLN(maxpsig,2,maxreac)
+      integer,target:: sigmainf(nsigs,20)
+      real*8,target:: sigmascal(nsigs,5), sigmas(nsigs,itblsz)
 !c
       common/sigtabi/sigmaln,sigmainf
       common/sigtabr/sigmas,sigmascal

@@ -420,7 +420,7 @@ c header for output files
 
 c open fortran-unit 9 for input
 c and units 14, 15 for output
-      call getenv('ftn09',file9)
+      !$$$call getenv('ftn09',file9)
       call getenv('ftn10',file10)
       call getenv('ftn13',file13)
       call getenv('ftn14',file14)
@@ -428,8 +428,9 @@ c and units 14, 15 for output
       call getenv('ftn16',file16)
       call getenv('ftn19',file19)
       call getenv('ftn20',file20)
-      if (file9(1:4).ne.'    ') then
-         OPEN(UNIT=9,FILE=file9,STATUS='OLD',FORM='FORMATTED')
+!$$$      if (file9(1:4).ne.'    ') then
+      if ( .true. ) then
+      OPEN(UNIT=9,FILE='UrQMD.in',STATUS='OLD',FORM='FORMATTED')
 C peak into input file to find out if cto40 is specified.
          do
            read(9,99,end=9) flag,inputstr

@@ -1,30 +1,30 @@
-c************************************************************8
-c.. Author: Marcus Bleicher, LBNL, Dec. 5. 1999
-c.. file 15 analysis...
-c.. Author: Tom Reichert, GU, May 13. 2020
-c.. kinetic freeze-out analysis
-c.. Author: Tom Reichert, FIAS, Dec 29. 2023
-c.. integrate analysis for all reconstructable resonances 
-c.. into urqmd natively, write resonances to f13 output      
-c.. 
-c.. This file contains array declarations for the resonance reconstruction
-c.. Therefore a single event has to be remembered until kinetic fo      
-c************************************************************8
+!c************************************************************8
+!c.. Author: Marcus Bleicher, LBNL, Dec. 5. 1999
+!c.. file 15 analysis...
+!c.. Author: Tom Reichert, GU, May 13. 2020
+!c.. kinetic freeze-out analysis
+!c.. Author: Tom Reichert, FIAS, Dec 29. 2023
+!c.. integrate analysis for all reconstructable resonances 
+!c.. into urqmd natively, write resonances to f13 output      
+!c.. 
+!c.. This file contains array declarations for the resonance reconstruction
+!c.. Therefore a single event has to be remembered until kinetic fo      
+!c************************************************************8
 
-c. array sizes (original: 20000, 10, 50)
+!c. array sizes (original: 20000, 10, 50)
       integer wwmax,inmax,outmax,resomax
       parameter (wwmax=20000)
       parameter (inmax=10)
       parameter (outmax=50)
       parameter (resomax=40000)
 
-c. interaction header, one for every interaction ww
+!c. interaction header, one for every interaction ww
       integer hisnin(wwmax),hisnexit(wwmax),hisiline(wwmax)
       integer hisctag(wwmax)
       real*8 hisacttime(wwmax),hissqrts(wwmax),hisstot(wwmax)
       real*8 hissigpart(wwmax),hiscdens(wwmax)
 
-c.. INgoing particles
+!c.. INgoing particles
       integer INind(wwmax,inmax)
       real*8 INr0(wwmax,inmax),INrx(wwmax,inmax)
       real*8 INry(wwmax,inmax),INrz(wwmax,inmax)
@@ -36,7 +36,7 @@ c.. INgoing particles
       integer INcoll(wwmax,inmax),INistr(wwmax,inmax)
       integer INorigin(wwmax,inmax)
 
-c.. OUTgoing particles
+!c.. OUTgoing particles
       integer OUTind(wwmax,outmax)
       real*8 OUTr0(wwmax,outmax),OUTrx(wwmax,outmax)
       real*8 OUTry(wwmax,outmax),OUTrz(wwmax,outmax)
@@ -50,7 +50,7 @@ c.. OUTgoing particles
 
       integer www
 
-c.. REConstructable resonances, store particle vector
+!c.. REConstructable resonances, store particle vector
       real*8 RECr0(resomax),RECrx(resomax)
       real*8 RECry(resomax),RECrz(resomax)
       real*8 RECp0(resomax),RECpx(resomax)
