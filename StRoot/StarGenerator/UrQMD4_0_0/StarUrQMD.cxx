@@ -105,6 +105,10 @@ Int_t StarUrQMD::Init()
   A["Au"] = 197;    Z["Au"] = 79;
   A["Cu"] =  64;    Z["Cu"] = 29;
   A["U"]  = 238;    Z["U"]  = 92;
+  A["O"]=16;    Z["O"]=8;    //type["O"] ="A       ";
+  
+  A["Zr96"]= 96;  Z["Zr96"]=40;  //type["Zr96"]="A       ";
+  A["Ru96"]= 96;  Z["Ru96"]=44;  //type["Ru96"]="A       ";
 
   A["proton"]   =1;    Z["proton"]   =1;
   A["neutron"]  =1;    Z["neutron"]  =0;
