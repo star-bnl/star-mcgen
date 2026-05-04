@@ -204,6 +204,7 @@ Int_t StarHijing::Init()
   A["Cu"]=63;   Z["Cu"]=29;  type["Cu"]="A       ";
   A["U"] =238;  Z["U"]=92;   type["U"] ="A       ";
   A["Al"]=27;   Z["Al"]=13;  type["Al"]="A       ";
+  A["O"]=16;    Z["O"]=8;    type["O"] ="A       ";
 
   A["proton"]   =1;    Z["proton"]   =1;   type["proton"]   ="P       "; // important to map size of type onto character*8
   A["neutron"]  =1;    Z["neutron"]  =0;   type["neutron"]  ="N       ";
