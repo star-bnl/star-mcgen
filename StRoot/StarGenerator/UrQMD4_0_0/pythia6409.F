@@ -68498,6 +68498,9 @@ C...0 and 1, excluding the endpoints.
 C...Double precision and integer declarations.
       IMPLICIT DOUBLE PRECISION(A-H, O-Z)
       IMPLICIT INTEGER(I-N)
+
+      pyr=pyrstar(idummy)
+#if 0      
       INTEGER PYK,PYCHGE,PYCOMP
 C...Commonblocks.
       COMMON/PYDATR/MRPY(6),RRPY(100)
@@ -68563,7 +68566,7 @@ C...Update counters. Random number to output.
         MRPY3=0
       ENDIF
       PYR=RUNI
- 
+ #endif
       RETURN
       END
  
