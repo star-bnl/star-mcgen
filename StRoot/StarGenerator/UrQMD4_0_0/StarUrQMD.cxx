@@ -105,6 +105,10 @@ Int_t StarUrQMD::Init()
   A["Au"] = 197;    Z["Au"] = 79;
   A["Cu"] =  64;    Z["Cu"] = 29;
   A["U"]  = 238;    Z["U"]  = 92;
+  A["O"]=16;    Z["O"]=8;    //type["O"] ="A       ";
+  
+  A["Zr96"]= 96;  Z["Zr96"]=40;  //type["Zr96"]="A       ";
+  A["Ru96"]= 96;  Z["Ru96"]=44;  //type["Ru96"]="A       ";
 
   A["proton"]   =1;    Z["proton"]   =1;
   A["neutron"]  =1;    Z["neutron"]  =0;
@@ -155,6 +159,7 @@ Int_t StarUrQMD::Init()
       InputParametersDouble["ecm"]=mRootS;
     }
 
+#if 0
   std::vector<int> stablepdg = {
     111, // pi0
     211, // pi+/-
@@ -199,6 +204,8 @@ Int_t StarUrQMD::Init()
 
   // Lambda_c
   //  StableParticles.push_back("-69");
+
+#endif
 
   /// Initialize UrQMD:
   InitializeUrQMD();
@@ -603,13 +610,13 @@ void StarUrQMD::InitializeUrQMD()
       inputfile << "ecm " << mRootS << "\n";
     }
     /// Define calculation time: total time span, interval at which output is written (both in fm/c)
-    inputfile << "tim 200 200" << endl;
+    inputfile << "tim 100 100" << endl;
     /// This supresses the output files
     inputfile << "f13 \n #f14 \n f15 \n f16 \n #f17 \n #f18 \n f19 \n f20" << endl;
     /// This sets the number of events for UrQMD to run (but we aren't using this, so it doens't matter)
-    inputfile << "nev 1000" << endl;
+    inputfile << "nev 1" << endl;
     /// This sets the random number generator seed (but we aren't using UrQMD's random number generator, so this doens't matter)
-    inputfile << "rsd 111" << endl;
+    //    inputfile << "rsd 111" << endl;
 
     
     if ( SAttr("SET" )  ) {
@@ -621,7 +628,7 @@ void StarUrQMD::InitializeUrQMD()
 
 
     /// This marks the end of the input file
-    inputfile << "xxx and done" << endl;
+    inputfile << "xxx" << endl;
     inputfile.close();
 
     /// Initialize UrQMD
@@ -1015,9 +1022,9 @@ void StarUrQMD::InitializeUrQMD()
     /// This supresses the output files
     inputfile << "f13 \n #f14 \n f15 \n f16 \n #f17 \n #f18 \n f19 \n f20" << endl;
     /// This sets the number of events for UrQMD to run (but we aren't using this, so it doens't matter)
-    inputfile << "nev 1000" << endl;
+    inputfile << "nev 100" << endl;
     /// This sets the random number generator seed (but we aren't using UrQMD's random number generator, so this doens't matter)
-    inputfile << "rsd 111" << endl;
+    /////    inputfile << "rsd 111" << endl;
 
     
     if ( SAttr("SET" )  ) {

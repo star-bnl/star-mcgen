@@ -8,7 +8,10 @@ c
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       implicit none
-
+      real *8 ranf, ranfstar
+      integer idummy
+      ranf = ranfstar( idummy )
+#if 0
       include 'coms.inc'
 
       integer idummy, iseed, oldseed
@@ -21,7 +24,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
             call error ('ranf','ranf gives endpoint values',ranf,3)
          endif
       endif
-
+#endif
       return
       end
 
